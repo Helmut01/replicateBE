@@ -1,0 +1,17 @@
+Package: replicateBE
+Type: Package
+Title: Comparative BA-calculation for the EMA's Average Bioequivalence with Expanding Limits (ABEL)
+Version: 1.0.5
+Date: 2017-06-24
+Authors@R: c(person("Helmut", "Schuetz", role = c("aut", "cre"), email =
+                    "helmut.schuetz@bebac.at"),
+             person("Michael", "Tomashevskiy", role = c("ctb"), email =
+                    "mittyright@yandex.ru"),
+             person("Detlew", "Labes", role = c("ctb"), email =
+                    "DetlewLabes@gmx.de"))
+Maintainer: Helmut Schuetz <helmut.schuetz@bebac.at>
+Description: Functions to perform comparative BA-calculations for the
+             EMA's Average Bioequivalence with Expanding Limits (ABEL).
+Imports: readxl (>= 1.0.0), PowerTOST, lmerTest, nlme, graphics, grDevices
+ByteCompile: no
+License: GPL (>=2)

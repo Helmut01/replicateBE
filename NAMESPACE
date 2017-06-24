@@ -1,0 +1,16 @@
+# Import selectively only the used functions (good practice)
+importFrom(grDevices, graphics.off, dev.off, png)
+importFrom(readxl, read_excel)
+importFrom(utils, read.csv, head, capture.output,
+           citation, packageVersion, sessionInfo)
+importFrom(stats, qt, df, coef, confint, lm,
+           anova, aov, rstudent, rstandard,
+           complete.cases, na.omit, reshape)
+importFrom(graphics, boxplot, bxp, mtext, text,
+           abline)
+importFrom(PowerTOST, mse2CV, scABEL, reg_const,
+           scABEL.ad)
+importFrom(nlme, lme, intervals) # for method.B(option=2)
+import(lmerTest)                 # for method.B(option=1)
+# Export explicitly by name
+export(method.A, method.B, ABE)

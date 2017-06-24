@@ -1,0 +1,288 @@
+\encoding{utf-8}
+\name{method.B}
+\alias{method.B}
+\title{
+Comparative BA-calculation for the EMA's Average Bioequivalence with Expanding Limits (ABEL), Method B
+}
+\description{
+This function performs the required calculations for the \acronym{BE} decision
+via Average Bioequivalence with Expanding Limits (\acronym{ABEL}) based
+on a linear mixed effects model with subjects as a random effect (\sQuote{Method B}) as
+recommended in the \acronym{EMA}’s Q&A-document.
+}
+\usage{
+method.B(alpha = 0.05, path.in, path.out = NULL, file, set, ext, header = 0,
+         na = ".", sep = ",", dec = ".", logtrans = TRUE, ola = FALSE,
+         print = TRUE, option = 2, details = FALSE, verbose = FALSE,
+         ask = FALSE, plot.bxp = FALSE, data = NULL)
+}
+\arguments{
+  \item{alpha}{Type I Error (\acronym{TIE}) probability (nominal level of the test). Per convention commonly set to 0.05 which results in a \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
+\eqn{\alpha}{alpha})} confidence interval.
+}
+  \item{path.in}{
+Path to the data file for import. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. If missing or not existing the user’s home folder \code{"~/"} will be used.
+}
+  \item{path.out}{
+Path to safe the result file if \code{print=TRUE}. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. The user must have write-permission to the directory. If missing or not existing the user’s home folder \code{"~/"} will be used.
+}
+\item{file}{
+Name of the data set for import (\emph{without} extension).
+}
+  \item{set}{
+Name of the sheet of an Excel-file.
+}
+  \item{ext}{
+File-extension. Acceptable are \code{"CSV"} or \code{"csv"} for character-separated variables (\acronym{CSV}) and \code{"XLS"}, \code{"xls"}, \code{"XLXS"}, and \code{"xlsx"} for Excel-files.
+}
+  \item{header}{
+If an Excel-sheet contains an explanatory header, the number of rows to skip (\emph{e.g.,}
+if the first two rows contain a comment, use \code{header=2} and the data will be imported starting with the third row). Defaults to \code{0}.
+}
+  \item{na}{
+Character string denoting missing values. Acceptable are any of \code{"NA"} (not available),
+\code{"ND"} (not determined), \code{"."} (\acronym{SAS}), \code{"Missing"} (Phoenix WinNonlin), and \code{""} (\acronym{Excel}; empty cell). Missings will be converted to \code{NA} in the imported data. Defaults to \code{"."}.
+}
+  \item{sep}{
+Variable separator in the \acronym{CSV}-file. Acceptable are any of \code{";"} (semicolon -- \code{ASCII 59}), \code{","} (colon -- \code{ASCII 44}), and \code{"\\t"} (tabulator -- \code{ASCII 9}). Defaults to \code{","}.
+}
+  \item{dec}{
+Decimal separator in the \acronym{CSV}-file. Acceptable are \code{"."} (period -- \code{ASCII 46}) or \code{","} (colon -- \code{ASCII 44}). Defaults to \code{"."}.
+}
+  \item{logtrans}{
+If \code{TRUE} (default) the raw data (provided in column \code{PK}) will be
+internally log-transformed and used in the calculations. If \code{FALSE} the already log-transformed data (provided in the column \code{log-PK}) will be used in the calculations.
+}
+\item{ola}{
+Defaults to \code{FALSE}. If \code{TRUE} an outlier analysis based on the studentized and standardized residuals of the model estimating \code{CVwR} is performed.
+}
+  \item{print}{
+If \code{TRUE} (default), the function prints its results to a file. If \code{FALSE}, returns a data.frame of results.
+}
+  \item{option}{
+If \code{2} (default), the model will be evaluated by \code{lme()} from package \code{nlme}. The degrees of freedom of the treatment comparison will be equivalent to \acronym{SAS}’ \code{DDFM=CONTAIN} and Phoenix WinNonlin’s \code{Residual}.\cr
+If \code{1}, the model will be evaluated by \code{lmer()} from package \code{lmerTest}. The degrees of freedom of the treatment comparison will be equivalent to \acronym{SAS}’ \code{DDFM=SATTERTHWAITE} and Phoenix WinNonlin’s \code{Satterthwaite}.\cr
+}
+  \item{details}{
+Defaults to \code{FALSE}. If \code{TRUE}, the function sends its results in 7-digits precision to a data.frame.
+}
+  \item{verbose}{
+Defaults to \code{FALSE}. If \code{TRUE} the ANOVA-table is send to the console. If \code{ola=TRUE} additional information about outliers are shown.
+}
+  \item{ask}{
+Defaults to \code{FALSE}. If \code{TRUE} the user will be asked whether an already existing result file (and if outliers are found, the boxplot) should be overwritten.
+}
+  \item{plot.bxp}{
+Only observed if \code{ola=TRUE} and at least one outlier is found. If \code{FALSE} (default) the boxplot will be shown in the graphics device. If \code{TRUE} the boxplot will be saved in \acronym{PNG} format to \code{path.out}.
+}
+  \item{data}{
+Internal reference data set (currently \code{ref01} to \code{ref03}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For the use see the examples.\cr
+Defaults to \code{NULL} (\emph{i.e.}, work with external data).
+}
+}
+\details{
+The model for the estimation of \code{CVwR} is\cr
+\verb{   log(response) ~ sequence + subject(sequence) + period}\cr
+where all effects are fixed.\cr\cr
+The model for the treatment comparison is\cr
+\verb{   log(response) ~ sequence + subject(sequence) + period + treatment}\cr
+where \code{sequence}, \code{period}, and \code{treatment} are fixed effects and \code{subject(sequence)} is a random effect.\cr\cr
+Supported designs:
+  \itemize{
+    \item 4-period 2-sequence full replicates:
+      \tabular{rcl}{
+        \code{RTRT} \tab \code{|} \tab \code{TRTR}\cr
+        \code{RTTR} \tab \code{|} \tab \code{TRRT}
+      }
+    \item 3-period 2-sequence full replicates:
+      \tabular{rcl}{
+        \code{RTR} \tab \code{|} \tab \code{TRT}\cr
+        \code{RTT} \tab \code{|} \tab \code{TRR}
+      }
+    \item 3-period 3-sequence (aka partial) replicate:
+      \tabular{rcccl}{
+        \code{RRT} \tab \code{|} \tab \code{RTR} \tab \code{|} \tab \code{TRR}
+      }
+  }
+}
+\value{
+Prints results to a file if argument \code{print=TRUE} (default).\cr
+If argument \code{print=FALSE}, returns a data.frame with the elements:
+  \tabular{ll}{
+    \code{Design} \tab \emph{e.g.}, RTRT|TRTR\cr
+    \code{Method} \tab B-\code{option} (\code{1} or \code{2})\cr
+    \code{n} \tab total number of subjects\cr
+    \code{nTT} \tab number of subjects with two treatments of \code{T} (full replicates only)\cr
+    \code{nRR} \tab number of subjects with two treatments of \code{R}\cr
+    \code{Sub/seq} \tab number of subjects per sequence\cr
+    \code{Miss/seq} \tab if the design is unbalanced, number of missings per sequence\cr
+    \code{Miss/per} \tab if the design is incomplete, number of missings per period\cr
+    \code{alpha} \tab nominal level of the test\cr
+    \code{DF} \tab degrees of freedom of the treatment comparison\cr
+    \code{CVwT(\%)} \tab intra-subject coefficient of variation of the test treatment (full replicates only)\cr
+    \code{CVwR(\%)} \tab intra-subject coefficient of variation of the reference treatment
+  }
+\itemize{
+  \item If reference-scaling is applicable (\emph{i.e.}, \code{CVwR(\%)} >30\%):
+    \tabular{ll}{
+      \code{EL.lo(\%)} \tab lower expanded limit\cr
+      \code{EL.hi(\%)} \tab upper expanded limit
+    }
+  \item If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR(\%)} ≤30\%):
+    \tabular{ll}{
+      \code{BE.lo(\%)} \tab conventional lower limit (\emph{i.e.}, 80.00\%)\cr
+      \code{BE.hi(\%)} \tab conventional upper limit (\emph{i.e.}, 125.00\%)
+    }  
+}
+  \tabular{ll}{
+    \code{CI.lo(\%)} \tab lower confidence limit of the treatment comparison\cr
+    \code{CI.hi(\%)} \tab upper confidence limit of the treatment comparison\cr
+    \code{PE(\%)} \tab point estimate of the treatment comparison (aka \acronym{GMR})\cr
+    \code{CI} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
+\eqn{\alpha}{alpha})} \acronym{CI} lies entirely within the acceptance range (\code{pass|fail})\cr
+    \code{GMR} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%–125.00\% (\code{pass|fail})\cr
+    \code{BE} \tab assessment whether the study demonstrates bioequivalence (\code{pass|fail})\cr
+    \code{log.half-width} \tab half-width of the \acronym{CI} in log-scale
+  }
+If \code{ola=TRUE} and at least one outlier was detected:
+  \tabular{ll}{
+    \code{outlier} \tab outlying subject(s)\cr
+    \code{CVwR.new(\%)} \tab intra-subject coefficient of variation of the reference treament; recalculated after exclusion of outlier(s)
+  }
+\itemize{
+  \item If reference-scaling is applicable (\emph{i.e.}, \code{CVwR.new(\%)} >30\%):
+    \tabular{ll}{
+      \code{EL.new.lo(\%)} \tab recalculated lower expanded limit\cr
+      \code{EL.newhi(\%)} \tab  recalculated upper expanded limit
+    }
+  \item If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR.new(\%)} ≤30\%):
+    \tabular{ll}{
+      \code{BE.new.lo(\%)} \tab conventional lower limit (\emph{i.e.}, 80.00\%)\cr
+      \code{BE.new.hi(\%)} \tab conventional upper limit (\emph{i.e.}, 125.00\%)
+    }  
+}
+  \tabular{ll}{
+    \code{CI.new} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
+\eqn{\alpha}{alpha})} \acronym{CI} lies entirely within the new acceptance range (\code{pass|fail})\cr
+    \code{GMR.new} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%–125.00\% (\code{pass|fail})\cr
+    \code{BE.new} \tab assessment whether the study demonstrates bioequivalence (\code{pass|fail})\cr
+  }
+}
+
+\section{Warning}{
+If the input file has a header, the word \code{subject} \emph{must not} be part of the text. Otherwise, the header will terminate before.
+}
+
+\references{
+European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
+\emph{Guideline on the Investigation of Bioequivalence}\cr
+London, 20 January 2010. \href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2010/01/WC500070039.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
+
+3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{\textsuperscript}{rd}} \acronym{EGA} Symposium on Bioequivalence\cr
+\emph{Questions and Answers on the Revised \acronym{EMA} Bioequivalence Guideline}\cr
+London, 1 June 2010. \href{http://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf}{open access}
+
+European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
+\emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP)}\cr
+London, 19 November 2015. \href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf}{EMA/618604/2008 Rev. 13}
+
+European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
+\emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms}\cr
+London, 20 November 2014. \href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2014/11/WC500177884.pdf}{EMA/CPMP/EWP/280/96 Corr1}
+
+World Health Organization, Prequalification Team: medicines\cr
+\emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm}\cr
+Geneva, 9 June 2017. \href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_June2017.pdf}{open access}
+}
+
+\author{
+Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
+}
+\note{
+The \acronym{EMA}’s model specified in \sQuote{Method B} assumes equal [sic!] intra-subject variances of test and reference (like in 2×2×2 trials) -- even if proven false in one of the full replicate designs (were \emph{both} \code{CVwT} and \code{CVwR} can be estimated). Hence, amongst biostatisticians it is called the \dQuote{crippled model}.\cr
+The method for calculating the degrees of freedom is not specified in the \acronym{SAS} code provided by the \acronym{EMA} in the Q&A document. Hence, the default in \code{PROC MIXED}, namely \code{DDFM=CONTAIN} is applied. For incomplete data (\emph{i.e.}, missing periods) Satterthwaite’s approximation of the degrees of freedom (\code{option=1}) might be a better choice -- if stated as such in the statistical analysis plan.\cr
+The half-width of the CI in log-scale allows a comparison of methods (B \emph{v.s.} A) or options (2 \emph{v.s.} 1). A higher value \emph{might} point towards a more conservative decision. Quoting the Q&A-document:\itemize{
+  \item A simple linear mixed model, which assumes identical within-subject variability (Method B), may be acceptable as long as results obtained with the two methods do not lead to different regulatory decisions. However, in borderline cases [\ldots] additional analysis using Method A might be required.
+}
+In the provided example data sets -- with one exception -- the conclusion of \acronym{BE} (based on the aggregate \acronym{CI} and \acronym{GMR} criteria) agrees between \sQuote{Method A} and \sQuote{Method B}. However, for the highly incomplete data set 14 \sQuote{Method A} was \emph{liberal} (passing by \acronym{ANOVA} but failing by the mixed effects model).\cr\cr
+Reference-scaling is acceptable for \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} (immediate release products) and \ifelse{html}{\out{C<sub>max,ss</sub>}}{\eqn{C\textsubscript}{max,ss}}, \ifelse{html}{\out{C<sub>τ,ss</sub>}}{\eqn{C\textsubscript}{τ,ss}}, and \ifelse{html}{\out{<sub>partial</sub>AUC}}{\eqn{\textsubscript}{partial}AUC} (modified release products). However, quoting the \acronym{BE} guideline:
+\itemize{
+  \item The applicant should justify that the calculated intra-subject variability is a reliable estimate and that it is not the result of outliers.}
+Quoting the Q&A on the Revised EMA Bioequivalence Guideline:
+\itemize{
+  \item [\ldots] a study could be acceptable if the bioequivalence requirements are met both including the outlier subject (using the scaled average bioequivalence approach and the within-subject CV with this subject) and after exclusion of the outlier (using the within-subject CV without this subject).\cr
+An outlier test is not an expectation of the medicines agencies but outliers could be shown by a box plot. This would allow the medicines agencies to compare the data between them.}
+The \acronym{EMA}’s method of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (\emph{e.g.}, the \acronym{WHO};
+\acronym{ASEAN} States, Australia, Brazil, Egypt, the Russian Federation, the Eurasian Economic Union, New Zealand). The \acronym{WHO} opened a pilot phase exploring reference-scaling for AUC (4-period full replicate studies are mandatory in order to assess both \code{CVwR} and \code{CVwT}).\cr\cr
+\strong{Program offered for Use without any Guarantees and Absolutely No Warranty.\cr
+No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.}
+}
+
+\seealso{
+  \tabular{ll}{
+    \code{\link{method.A}} \tab evaluation by a fixed effects model (\acronym{ANOVA})\cr
+    \code{\link{ABE}} \tab evaluation for conventional (unscaled) Average Bioeqivalence
+  }
+}
+
+\examples{
+# Importing from a CSV-file in path, using most of the defaults: variable
+# separator colon, decimal separator period, no outlier-analyis, print to file
+# Note: You must adapt the path-variables. Write-permissions must be
+# granted for 'path.out' in order to save the result file. If 'path.out'
+# not specified, results are written to the home folder.
+path.in <- paste0(find.package("replicateBE"), "/extdata/")       # example files
+method.B(path.in = path.in, file = "DS", set = "01", ext = "csv") # EMA's Q&A data set I
+# Should result in:
+#   CVwR               :  46.96\% (reference-scaling applicable)
+#   Expanded limits    :  71.23\% ... 140.40\%
+#   Confidence interval: 107.17\% ... 124.97\% (pass)
+#   Point estimate     : 115.73\% (pass)
+#   Overall conclusion : pass
+#
+# Internal reference data set 01 used and results to the home folder.
+# Additional outlier-analyis and boxplot saved as PNG (accidental overwriting prevented)
+data("RTRT.TRTR")
+method.B(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
+# Should give the same as above. Additionally:
+#   Recalculation due to presence of 2 outliers (subj. 45|52)
+#   CVwR (outl. excl.) :  32.16\% (reference-scaling applicable)
+#   Expanded limits    :  78.79\% ... 126.93\%
+#   Confidence interval: pass
+#   Point estimate     : pass
+#   Overall conclusion : pass
+#
+# Same data set. Show information about outliers and the model-table
+method.B(ola = TRUE, verbose = TRUE, data = rds01)
+# data.frame of results (7-digits precision) shown in the console
+x <- method.B(ola = TRUE, print = FALSE, details = TRUE, data = rds01)
+print(x, row.names = FALSE)
+# Compare Method B with Method A
+\dontrun{
+path.in <- paste0(find.package("replicateBE"), "/extdata/") # examples
+files   <- list.files(path=path.in, pattern="DS\\\d([[:digit:]]).csv")
+for (j in seq_along(files)) {
+  set  <- substr(files[j], 3, 4)
+  A    <- method.A(path.in=path.in, file="DS", set=substr(files[j], 3, 4),
+                   ext="csv", print=FALSE, details=TRUE)
+  B    <- method.B(path.in=path.in, file="DS", set=substr(files[j], 3, 4),
+                   ext="csv", print=FALSE, details=TRUE)
+  BE.A <- as.character(A$BE)
+  BE.B <- as.character(B$BE)
+  ds   <- paste0("DS", set, ": ")
+  res  <- paste0("A ", A$BE, ", B ", BE.B, " \u2013 ")
+  if (BE.A == BE.B) {
+    cat(paste0(ds, res, "Method A and B agree.\n"))
+    } else {
+    if (BE.A == "fail" & BE.B == "pass") {
+      cat(paste0(ds, res, "Method A is conservative.\n"))
+    } else {
+      cat(paste0(ds, res, "Method B is conservative.\n"))
+    }
+  }
+}}
+# should give
+#   DS01: A pass, B pass – Method A and B agree.
+#   DS02: A pass, B pass – Method A and B agree.
+#   ...
+#   DS14: A pass, B fail – Method B is conservative.}
