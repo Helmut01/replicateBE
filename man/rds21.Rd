@@ -10,7 +10,7 @@ Reference data set 21 (RTRT|TRTR)
 Based on \code{ds01}. 77 subjects.
 }
 
-\usage{data("RTRT.TRTR"); rds01}
+\usage{data("RTRT.TRTR"); rds21}
 \format{
   A data frame with 298 observations (2 NA) on the following 6 variables:
   \describe{
@@ -42,7 +42,8 @@ Helmut \enc{Schütz}{Schuetz}
 
 \examples{
 data("RTRT.TRTR")
-str(rds01)
-head(rds01, 8)
+str(rds21)
+row <- c(172:175, 200:203)
+rds21[row, ]
 }
 \keyword{datasets}

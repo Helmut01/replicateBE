@@ -131,7 +131,7 @@ If argument \code{print=FALSE}, returns a data.frame with the elements:
     \tabular{ll}{
       \code{BE.lo(\%)} \tab conventional lower limit (\emph{i.e.}, 80.00\%)\cr
       \code{BE.hi(\%)} \tab conventional upper limit (\emph{i.e.}, 125.00\%)
-    }  
+    }
 }
   \tabular{ll}{
     \code{CI.lo(\%)} \tab lower confidence limit of the treatment comparison\cr
@@ -158,7 +158,7 @@ If \code{ola=TRUE} and at least one outlier was detected:
     \tabular{ll}{
       \code{BE.new.lo(\%)} \tab conventional lower limit (\emph{i.e.}, 80.00\%)\cr
       \code{BE.new.hi(\%)} \tab conventional upper limit (\emph{i.e.}, 125.00\%)
-    }  
+    }
 }
   \tabular{ll}{
     \code{CI.new} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
@@ -194,7 +194,7 @@ World Health Organization, Prequalification Team: medicines\cr
 Geneva, 9 June 2017. \href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_June2017.pdf}{open access}
 
 Labes D, \enc{Schütz}{Schuetz} H.\cr
-\emph{Inflation of Type I Error in the Evaluation of Scaled Average Bioequivalence, 
+\emph{Inflation of Type I Error in the Evaluation of Scaled Average Bioequivalence,
 and a Method for its Control}\cr
 Pharm Res. 2016;33(11):2805--14. \doi{10.1007/s11095-016-2006-1}
 }
@@ -269,8 +269,7 @@ method.A(adjust = TRUE, data = rds01)}
 # Assess the Type I Error and iteratively adjust alpha if necessary
 # Not run: due to timing policy of CRAN for examples
 \dontrun{
-method.A(path.in = path.in, file = "DS", set = "21", ext = "csv",
-         adjust = TRUE)}
+method.A(adjust = TRUE, data = rds21)} # like rds01 but no outliers; lower CVwR
 # Should give in the result file:
 #   Empiric TIE for alpha 0.0500  : 0.07018
 #   Iteratively adjusted alpha    : 0.03342
