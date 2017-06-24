@@ -25,7 +25,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     if (missing(path.out)) {
       setwd("~/")
       cat("No path for output given; output to", getwd(), "\n")
-      path.out <- getwd()      
+      path.out <- getwd()
     }
     if (is.null(path.out)) {
       setwd("~/")
@@ -34,7 +34,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     }
     if (!dir.exists(path.out)) {
       setwd("~/")
-      cat("Path for output does not exist; output to", getwd(), "\n")      
+      cat("Path for output does not exist; output to", getwd(), "\n")
       path.out <- getwd()
     } # Adds trailing '/' to path if missing
     path.out <- ifelse(regmatches(path.out, regexpr(".$", path.out)) == "/",
@@ -132,7 +132,6 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     set   <- id[id$checksum == md5, "set"]
     ref   <- id[id$checksum == md5, "ref"]
     descr <- id[id$checksum == md5, "descr"]
-#browser()
     if (print) res.file <- paste0(path.out, file, set, "_ABEL")
     if (plot.bxp) png.path <- paste0(path.out, "/", file, set, "_boxplot.png")
   }
@@ -191,7 +190,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     TT  <- TT[!is.na(TT$PK), ]        # exclude NAs
     nTT <- length(unique(TT$subject)) # number of subjects
   }
-  txt <- ""
+  txt <- "" # paranoia
   if (!is.na(descr) & !is.null(descr) & length(descr) >= 1)
     txt <- paste0(strwrap(descr, width = 85), collapse="\n")
   if (logtrans) {
