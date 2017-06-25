@@ -87,7 +87,7 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 }
 
 \seealso{
-  {\link[replicateBE]{RTRT.TRTR}}, {\link[replicateBE]{RTTR.TRRT}}, {\link[replicateBE]{TRR.RRT}}, {\link[replicateBE]{RTR.TRT}}, {\link[replicateBE]{RRT.RTR.TRR}}
+  {\link[replicateBE]{RTRT.TRTR}}, {\link[replicateBE]{RTTR.TRRT}}, {\link[replicateBE]{TRR.RRT}}, {\link[replicateBE]{RTR.TRT}}, {\link[replicateBE]{RRT.RTR.TRR}}, {\link[replicateBE]{RTR.TRR}}
 }
 
 \examples{

@@ -23,7 +23,7 @@ Data set simulated with \ifelse{html}{\out{C<sub>wT</sub>}}{\eqn{C\textsubscript
 }
 
 \details{
-Balanced and complete. No outliers.
+Balanced (18 subjects in each of the sequences) and complete (no missing data). No outliers.
 }
 
 \note{
