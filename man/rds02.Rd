@@ -3,14 +3,14 @@
 \alias{rds02}
 \docType{data}
 \title{
-Reference data set 02 (RRT|RTR|TRR)
+Reference Data Set 02 (RRT|RTR|TRR)
 }
 
 \description{
 Data set II of the EMA’s Q&A document. 24 subjects.
 }
 
-\usage{data("RRT.RTR.TRR"); rds02}
+\usage{rds02}
 \format{
   A data frame with 72 observations on the following 6 variables:
   \describe{
@@ -43,7 +43,6 @@ London, 19 November 2015. \href{http://www.ema.europa.eu/docs/en_GB/document_lib
 }
 
 \examples{
-data("RRT.RTR.TRR")
 str(rds02)
 row <- c(1:3, 10:12, 16:18)
 rds02[row, ]

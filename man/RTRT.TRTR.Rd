@@ -3,7 +3,7 @@
 \alias{RTRT.TRTR}
 \docType{data}
 \title{
-Reference data sets for RTRT|TRTR replicate designs
+Reference Data Sets for RTRT|TRTR Replicate Designs
 }
 
 \description{
@@ -52,7 +52,6 @@ London, 19 November 2015. \href{http://www.ema.europa.eu/docs/en_GB/document_lib
 }
 
 \examples{
-data("RTRT.TRTR")
 str(rds01)
 }
 

@@ -3,7 +3,7 @@
 \alias{data}
 \docType{data}
 \title{
-Reference data sets for replicate designs
+Reference Data Sets for Replicate Designs
 }
 
 \description{
@@ -91,9 +91,7 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 }
 
 \examples{
-# load all
-data(RTRT.TRTR, RTR.TRT, RRT.RTR.TRR, RTTR.TRRT, TRR.RRT, RTTR.TRRT, RTR.TRR)
-# show their structure
+# show structure of all data sets
 ds <- sprintf("rds\%02i", 1:22)
 for (i in seq_along(ds)) {
   cat(ds[i], "\n")

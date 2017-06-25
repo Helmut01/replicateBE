@@ -3,14 +3,14 @@
 \alias{rds09}
 \docType{data}
 \title{
-Reference data set 09 (RTRT|TRTR)
+Reference Data Set 09 (RTRT|TRTR)
 }
 
 \description{
 Based on \code{rds08}. Wide numeric range (data of last 37 subjects multiplied by 1,000,000). 222 subjects.
 }
 
-\usage{data("RTRT.TRTR"); rds09}
+\usage{rds09}
 \format{
   A data frame with 888 observations on the following 5 variables:
   \describe{
@@ -35,7 +35,6 @@ Detlew Labes, Helmut \enc{Schütz}{Schuetz}
 }
 
 \examples{
-data("RTRT.TRTR")
 str(rds09)
 row <- c(737:744)
 rds09[row, ]

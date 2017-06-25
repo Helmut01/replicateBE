@@ -3,14 +3,14 @@
 \alias{rds07}
 \docType{data}
 \title{
-Reference data set 07 (RRT|RTR|TRR)
+Reference Data Set 07 (RRT|RTR|TRR)
 }
 
 \description{
 Data set simulated with \ifelse{html}{\out{C<sub>wT</sub>}}{\eqn{C\textsubscript}{wT}} = \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} = 35\%, GMR 0.90. 360 subjects.
 }
 
-\usage{data("RRT.RTR.TRR"); rds07}
+\usage{rds07}
 \format{
   A data frame with 1,080 observations on the following 5 variables:
   \describe{
@@ -35,7 +35,6 @@ Detlew Labes
 }
 
 \examples{
-data("RRT.RTR.TRR")
 str(rds07)
 row <- c(1:3, 361:363, 721:723)
 rds07[row, ]

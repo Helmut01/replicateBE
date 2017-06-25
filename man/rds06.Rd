@@ -3,14 +3,14 @@
 \alias{rds06}
 \docType{data}
 \title{
-Reference data set 06 (RTRT|TRTR)
+Reference Data Set 06 (RTRT|TRTR)
 }
 
 \description{
 Based on \code{rds01}. 77 subjects. Responses of T and R switched.
 }
 
-\usage{data("RTRT.TRTR"); rds06}
+\usage{rds06}
 \format{
   A data frame with 298 observations on the following 6 variables:
   \describe{
@@ -41,7 +41,6 @@ Helmut \enc{Schütz}{Schuetz}
 }
 
 \examples{
-data(RTRT.TRTR)
 str(rds06)
 head(rds06, 8)
 }

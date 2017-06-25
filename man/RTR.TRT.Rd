@@ -27,7 +27,6 @@ Data sets from the literature and edited to be evaluated by \code{method.A()} an
 }
 
 \examples{
-data("RTR.TRT")
 head(rds03, 6)
 }
 

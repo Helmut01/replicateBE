@@ -3,14 +3,14 @@
 \alias{rds16}
 \docType{data}
 \title{
-Reference data set 16 (RTTR|TRRT)
+Reference Data Set 16 (RTTR|TRRT)
 }
 
 \description{
 Data set given by the \acronym{FDA}. 38 subjects.
 }
 
-\usage{data("RTTR.TRRT"); rds16}
+\usage{rds16}
 \format{
   A data frame with 152 observations on the following 5 variables:
   \describe{
@@ -36,7 +36,6 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 }
 
 \examples{
-data("RTTR.TRRT")
 str(rds16)
 row <- c(1:4, 9:12)
 rds16[row, ]

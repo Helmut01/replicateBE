@@ -132,7 +132,7 @@ If argument \code{print=FALSE}, returns a data.frame with the elements:
     \tabular{ll}{
       \code{BE.lo(\%)} \tab conventional lower limit (\emph{i.e.}, 80.00\%)\cr
       \code{BE.hi(\%)} \tab conventional upper limit (\emph{i.e.}, 125.00\%)
-    }  
+    }
 }
   \tabular{ll}{
     \code{CI.lo(\%)} \tab lower confidence limit of the treatment comparison\cr
@@ -159,7 +159,7 @@ If \code{ola=TRUE} and at least one outlier was detected:
     \tabular{ll}{
       \code{BE.new.lo(\%)} \tab conventional lower limit (\emph{i.e.}, 80.00\%)\cr
       \code{BE.new.hi(\%)} \tab conventional upper limit (\emph{i.e.}, 125.00\%)
-    }  
+    }
 }
   \tabular{ll}{
     \code{CI.new} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
@@ -242,7 +242,6 @@ method.B(path.in = path.in, file = "DS", set = "01", ext = "csv") # EMA's Q&A da
 #
 # Internal reference data set 01 used and results to the home folder.
 # Additional outlier-analyis and boxplot saved as PNG (accidental overwriting prevented)
-data("RTRT.TRTR")
 method.B(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 # Should give the same as above. Additionally:
 #   Recalculation due to presence of 2 outliers (subj. 45|52)
@@ -259,25 +258,19 @@ x <- method.B(ola = TRUE, print = FALSE, details = TRUE, data = rds01)
 print(x, row.names = FALSE)
 # Compare Method B with Method A
 \dontrun{
-path.in <- paste0(find.package("replicateBE"), "/extdata/") # examples
-files   <- list.files(path=path.in, pattern="DS\\\d([[:digit:]]).csv")
-for (j in seq_along(files)) {
-  set  <- substr(files[j], 3, 4)
-  A    <- method.A(path.in=path.in, file="DS", set=substr(files[j], 3, 4),
-                   ext="csv", print=FALSE, details=TRUE)
-  B    <- method.B(path.in=path.in, file="DS", set=substr(files[j], 3, 4),
-                   ext="csv", print=FALSE, details=TRUE)
-  BE.A <- as.character(A$BE)
-  BE.B <- as.character(B$BE)
-  ds   <- paste0("DS", set, ": ")
-  res  <- paste0("A ", A$BE, ", B ", BE.B, " \u2013 ")
-  if (BE.A == BE.B) {
-    cat(paste0(ds, res, "Method A and B agree.\n"))
+ds <- sprintf("rds\%02i", 1:22)
+for (i in seq_along(ds)) {
+  A   <- method.A(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
+  B   <- method.B(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
+  res <- paste0("A ", A, ", B ", B, " \u2013 ")
+  cat(paste0(substr(toupper(ds[i]), 2, 5), ":"), res)
+  if (A == B) {
+    cat("Method A and B agree.\n")
+  } else {
+    if (A == "fail" & B == "pass") {
+      cat("Method A is conservative.\n")
     } else {
-    if (BE.A == "fail" & BE.B == "pass") {
-      cat(paste0(ds, res, "Method A is conservative.\n"))
-    } else {
-      cat(paste0(ds, res, "Method B is conservative.\n"))
+      cat("Method B is conservative.\n")
     }
   }
 }}
@@ -285,4 +278,5 @@ for (j in seq_along(files)) {
 #   DS01: A pass, B pass – Method A and B agree.
 #   DS02: A pass, B pass – Method A and B agree.
 #   ...
-#   DS14: A pass, B fail – Method B is conservative.}
+#   DS14: A pass, B fail – Method B is conservative.
+}

@@ -3,14 +3,14 @@
 \alias{rds04}
 \docType{data}
 \title{
-Reference data set 04 (RRT|RTR|TRR)
+Reference Data Set 04 (RRT|RTR|TRR)
 }
 
 \description{
 Data set of Table II given by Patterson & Jones. 51 subjects.
 }
 
-\usage{data("RRT.RTR.TRR"); rds04}
+\usage{rds04}
 \format{
   A data frame with 153 observations on the following 5 variables:
   \describe{
@@ -42,7 +42,6 @@ Pharm Stat. 2012;11(1):1--7. \doi{10.1002/pst.498}
 }
 
 \examples{
-data("RRT.RTR.TRR")
 str(rds04)
 row <- c(1:3, 52:54, 103:105)
 rds04[row, ]

@@ -3,14 +3,14 @@
 \alias{rds12}
 \docType{data}
 \title{
-Reference data set 12 (RTRT|TRTR)
+Reference Data Set 12 (RTRT|TRTR)
 }
 
 \description{
 Data set simulated with extreme intrasubject variability. 77 subjects.
 }
 
-\usage{data("RTRT.TRTR"); rds12}
+\usage{rds12}
 \format{
   A data frame with 298 observations on the following 6 variables:
   \describe{
@@ -36,7 +36,6 @@ Michael Tomashevskiy
 }
 
 \examples{
-data("RTRT.TRTR")
 str(rds12)
 head(rds12, 8)
 }

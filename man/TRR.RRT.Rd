@@ -3,11 +3,11 @@
 \alias{TRR.RRT}
 \docType{data}
 \title{
-Reference data sets for TRR|RTT replicate designs
+Reference Data Sets for TRR|RTT Replicate Designs
 }
 
 \description{
-Data sets from the literature to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
+Data set from the literature to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
 }
 
 \details{
@@ -30,7 +30,6 @@ Boca Raton: CRC Press; \ifelse{html}{\out{3<sup>rd</sup>}}{\eqn{3\textsuperscrip
 }
 
 \examples{
-data("TRR.RRT")
 str(rds10)
 row <- c(1:3, 28:30)
 rds10[row, ]

@@ -3,14 +3,14 @@
 \alias{rds08}
 \docType{data}
 \title{
-Reference data set 08 (RTRT|TRTR)
+Reference Data Set 08 (RTRT|TRTR)
 }
 
 \description{
 Data set simulated with \ifelse{html}{\out{C<sub>wT</sub>}}{\eqn{C\textsubscript}{wT}} = 70\%, \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} = 80\%, \ifelse{html}{\out{C<sub>bT</sub>}}{\eqn{C\textsubscript}{bT}} = \ifelse{html}{\out{C<sub>bT</sub>}}{\eqn{C\textsubscript}{bT}} = 150\%, GMR = 0.85. 222 subjects.
 }
 
-\usage{data("RTRT.TRTR"); rds08}
+\usage{rds08}
 \format{
   A data frame with 888 observations on the following 5 variables:
   \describe{
@@ -36,7 +36,6 @@ Detlew Labes
 }
 
 \examples{
-data("RTRT.TRTR")
 str(rds08)
 row <- c(1:4, 445:448)
 rds08[row, ]

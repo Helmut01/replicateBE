@@ -3,14 +3,14 @@
 \alias{rds14}
 \docType{data}
 \title{
-Reference data set 14 (RTRT|TRTR)
+Reference Data Set 14 (RTRT|TRTR)
 }
 
 \description{
 Data set simulated with high variability and dropouts as a hazard function growing with period. 77 subjects.
 }
 
-\usage{data("RTRT.TRTR"); rds14}
+\usage{rds14}
 \format{
   A data frame with 273 observations on the following 6 variables:
   \describe{
@@ -36,7 +36,6 @@ Michael Tomashevskiy
 }
 
 \examples{
-data("RTRT.TRTR")
 str(rds14)
 head(rds14, 8)
 }

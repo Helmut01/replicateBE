@@ -3,14 +3,14 @@
 \alias{rds22}
 \docType{data}
 \title{
-Reference data set 22 (RTR|TRR)
+Reference Data Set 22 (RTR|TRR)
 }
 
 \description{
 Data set simulated with \ifelse{html}{\out{C<sub>wT</sub>}}{\eqn{C\textsubscript}{wT}} = \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} = 40\%, GMR 0.90. 36 subjects.
 }
 
-\usage{data("RTR.TRR"); rds21}
+\usage{rds21}
 \format{
   A data frame with 108 observations on the following 5 variables:
   \describe{
@@ -40,7 +40,6 @@ Stat Med. 2002;21:629--48. \doi{10.1002/sim.1056}
 }
 
 \examples{
-data("RTR.TRR")
 str(rds22)
 rds22[52:57, ]
 }

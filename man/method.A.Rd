@@ -243,7 +243,6 @@ method.A(path.in = path.in, file = "DS", set = "01", ext = "csv") # EMA's Q&A da
 #
 # Internal reference data set 01 used and results to the home folder.
 # Additional outlier-analyis and boxplot saved as PNG (accidental overwriting prevented)
-data("RTRT.TRTR")
 method.A(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 # Should give the same as above. Additionally:
 #   Recalculation due to presence of 2 outliers (subj. 45|52)

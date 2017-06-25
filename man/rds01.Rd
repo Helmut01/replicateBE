@@ -3,14 +3,14 @@
 \alias{rds01}
 \docType{data}
 \title{
-Reference data set 01 (RTRT|TRTR)
+Reference Data Set 01 (RTRT|TRTR)
 }
 
 \description{
 Data set I of the EMA’s Q&A document. 77 subjects.
 }
 
-\usage{data("RTRT.TRTR"); rds01}
+\usage{rds01}
 \format{
   A data frame with 298 observations on the following 6 variables:
   \describe{
@@ -43,7 +43,6 @@ London, 19 November 2015. \href{http://www.ema.europa.eu/docs/en_GB/document_lib
 }
 
 \examples{
-data("RTRT.TRTR")
 str(rds01)
 head(rds01, 8)
 }

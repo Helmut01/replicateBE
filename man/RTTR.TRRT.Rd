@@ -3,7 +3,7 @@
 \alias{RTTR.TRRT}
 \docType{data}
 \title{
-Reference data sets for RTTR|TRRT replicate designs
+Reference Data Sets for RTTR|TRRT Replicate Designs
 }
 
 \description{
@@ -40,7 +40,6 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 }
 
 \examples{
-data("RTTR.TRRT")
 str(rds05)
 head(rds11, 8)
 }

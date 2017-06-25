@@ -3,14 +3,14 @@
 \alias{rds11}
 \docType{data}
 \title{
-Reference data set 11 (RTTR|TRRT)
+Reference Data Set 11 (RTTR|TRRT)
 }
 
 \description{
 Data set given in Table 9.6 of Hauschke \emph{et al.} 37 subjects.
 }
 
-\usage{data("RTTR.TRRT"); rds11}
+\usage{rds11}
 \format{
   A data frame with 148 observations on the following 5 variables:
   \describe{
@@ -44,7 +44,6 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 }
 
 \examples{
-data("RTTR.TRRT")
 str(rds11)
 head(rds11, 8)
 }

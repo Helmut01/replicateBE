@@ -3,14 +3,14 @@
 \alias{rds21}
 \docType{data}
 \title{
-Reference data set 21 (RTRT|TRTR)
+Reference Data Set 21 (RTRT|TRTR)
 }
 
 \description{
 Based on \code{ds01}. 77 subjects.
 }
 
-\usage{data("RTRT.TRTR"); rds21}
+\usage{rds21}
 \format{
   A data frame with 298 observations (2 NA) on the following 6 variables:
   \describe{
@@ -41,7 +41,6 @@ Helmut \enc{Schütz}{Schuetz}
 }
 
 \examples{
-data("RTRT.TRTR")
 str(rds21)
 row <- c(172:175, 200:203)
 rds21[row, ]

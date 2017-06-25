@@ -3,14 +3,14 @@
 \alias{rds13}
 \docType{data}
 \title{
-Reference data set 13 (RTRT|TRTR)
+Reference Data Set 13 (RTRT|TRTR)
 }
 
 \description{
 Based on \code{rds08}. Highly incomplete (approx. 50\% of period 4 data deleted). 222 subjects.
 }
 
-\usage{data("RTRT.TRTR"); rds13}
+\usage{rds13}
 \format{
   A data frame with 776 observations on the following 5 variables:
   \describe{
@@ -35,7 +35,6 @@ Detlew Labes, Helmut \enc{Schütz}{Schuetz}
 }
 
 \examples{
-data("RTRT.TRTR")
 str(rds13)
 row <- c(605:612)
 rds13[row, ]

@@ -3,14 +3,14 @@
 \alias{rds15}
 \docType{data}
 \title{
-Reference data set 15 (RTRT|TRTR)
+Reference Data Set 15 (RTRT|TRTR)
 }
 
 \description{
 Based on \code{ref08}. Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}). 222 subjects.
 }
 
-\usage{data("RTRT.TRTR"); rds15}
+\usage{rds15}
 \format{
   A data frame with 888 observations (112 \code{NA}) on the following 5 variables:
   \describe{
@@ -35,7 +35,6 @@ Detlew Labes, Helmut \enc{Schütz}{Schuetz}
 }
 
 \examples{
-data("RTRT.TRTR")
 str(rds15)
 row <- c(881:888)
 rds15[row, ]

@@ -3,14 +3,14 @@
 \alias{rds10}
 \docType{data}
 \title{
-Reference data set 10 (TRR|RRT)
+Reference Data Set 10 (TRR|RRT)
 }
 
 \description{
 Data set given in Table 9.3.3 of Chow & Liu. 18 subjects.
 }
 
-\usage{data("TRR.RRT"); rds10}
+\usage{rds10}
 \format{
   A data frame with 54 observations on the following 5 variables:
   \describe{
@@ -40,7 +40,6 @@ Boca Raton: CRC Press; \ifelse{html}{\out{3<sup>rd</sup>}}{\eqn{3\textsuperscrip
 }
 
 \examples{
-data("TRR.RRT")
 str(rds10)
 row <- c(1:3, 28:30)
 rds10[row, ]

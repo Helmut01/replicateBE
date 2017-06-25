@@ -3,7 +3,7 @@
 \alias{RRT.RTR.TRR}
 \docType{data}
 \title{
-Reference data sets for RRT|RTR|TRR (partial) replicate designs
+Reference Data Sets for RRT|RTR|TRR (partial) Replicate Designs
 }
 
 \description{
@@ -37,7 +37,6 @@ Pharm Stat. 2012;11(1):1--7. \doi{10.1002/pst.498}
 }
 
 \examples{
-data("RRT.RTR.TRR")
 str(rds02)
 row <- c(1:3, 10:12, 16:18)
 rds02[row, ]

@@ -3,11 +3,11 @@
 \alias{RTR.TRR}
 \docType{data}
 \title{
-Reference data sets for RTR|TRT (extra-reference) designs
+Reference Data Sets for RTR|TRT (extra-reference) Designs
 }
 
 \description{
-Data sets simulated to be evaluated by \code{method.A()}, \code{method.B()}.
+Data set simulated to be evaluated by \code{method.A()}, \code{method.B()}.
 }
 
 \details{
@@ -25,7 +25,6 @@ Data sets simulated to be evaluated by \code{method.A()}, \code{method.B()}.
 }
 
 \examples{
-data("RTR.TRT")
 str(rds22)
 rds22[52:57, ]
 }

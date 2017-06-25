@@ -3,14 +3,14 @@
 \alias{rds05}
 \docType{data}
 \title{
-Reference data set 05 (RTTR|TRRT)
+Reference Data Set 05 (RTTR|TRRT)
 }
 
 \description{
 Data set given in the Appendix of Metzler & Shumaker. 26 subjects.
 }
 
-\usage{data("RTTR.TRRT"); rds05}
+\usage{rds05}
 \format{
   A data frame with 104 observations on the following 5 variables:
   \describe{
@@ -43,7 +43,6 @@ Drug Inf J. 1998;32:1063--72.
 }
 
 \examples{
-data("RTTR.TRRT")
 str(rds05)
 row <- c(1:4, 9:12)
 rds05[row, ]

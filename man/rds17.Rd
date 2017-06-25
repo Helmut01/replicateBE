@@ -3,14 +3,14 @@
 \alias{rds17}
 \docType{data}
 \title{
-Reference data set 17 (RTR|TRT)
+Reference Data Set 17 (RTR|TRT)
 }
 
 \description{
 Based on \code{ds03}. 19 subjects.
 }
 
-\usage{data("RTR.TRT"); rds17}
+\usage{rds17}
 \format{
   A data frame with 56 observations on the following 6 variables:
   \describe{
@@ -45,7 +45,6 @@ Helmut \enc{Schütz}{Schuetz}
 }
 
 \examples{
-data("RTR.TRT")
 str(rds17)
 head(rds17, 6)
 }

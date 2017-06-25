@@ -3,14 +3,14 @@
 \alias{rds18}
 \docType{data}
 \title{
-Reference data set 18 (RTRT|TRTR)
+Reference Data Set 18 (RTRT|TRTR)
 }
 
 \description{
 Data set based on \code{rds14}. Removed T data of subjects 63–78. 77 subjects.
 }
 
-\usage{data("RTRT.TRTR"); rds18}
+\usage{rds18}
 \format{
   A data frame with 245 observations on the following 6 variables:
   \describe{
@@ -36,7 +36,6 @@ Michael Tomashevskiy, Helmut \enc{Schütz}{Schuetz}
 }
 
 \examples{
-data("RTRT.TRTR")
 str(rds18)
 head(rds18, 8)
 }

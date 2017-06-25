@@ -162,6 +162,6 @@ ABE(path.in = path.in, file = "DS", set = "02", ext = "csv") # EMA's Q&A data se
 #
 # Generate the data.frame of results (7-digits precision) and show in the console
 # Use the internal data set
-data("RRT.RTR.TRR")
 x <- ABE(details = TRUE, print = FALSE, data = rds02)
-print(x, row.names = FALSE)}
+print(x, row.names = FALSE)
+}
