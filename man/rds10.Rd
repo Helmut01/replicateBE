@@ -3,7 +3,7 @@
 \alias{rds10}
 \docType{data}
 \title{
-Reference data set 10
+Reference data set 10 (TRR|RRT)
 }
 
 \description{
