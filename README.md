@@ -20,3 +20,7 @@ Two options:
 2:  Implemented with function lme() of library nlme. Uses Degrees of freedom equivalent to SAS DDFM=CONTAIN and Phoenix/WinNonlin DF Residual.
 
 Conventional (unscaled) Average Bioequivalence (ABE) can be calculated as well.
+
+Program offered for Use without any Guarantees and Absolutely No Warranty.
+
+No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.
