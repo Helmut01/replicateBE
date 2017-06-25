@@ -26,6 +26,8 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     modA <- lm(logPK ~ sequence + subject%in%sequence + period + treatment,
                        data=ret$data)
   }
+  # generate variables for internal data based on MD5 hash
+  # 2nd condition: Otherwise, the header from a CSV file will be overwritten
   if (!is.null(data) & missing(ext)) {
     id    <- which.data(data)
     md5   <- digest::digest(data)
@@ -110,8 +112,8 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   if (details) { # results in default (7 digits) precision
     ret <- res
     if (as.character(res$outlier) == "NA") {
-      # remove superfluous columns if ola=FALSE or
-      # ola=TRUE and no outlier(s) detected
+      # remove superfluous columns if ola=FALSE or ola=TRUE
+      # and no outlier(s) detected
       ret <- ret[ , !names(ret) %in% c("outlier", "CVwR.new(%)",
                                        "EL.new.lo(%)", "EL.new.hi(%)",
                                        "CI.new", "GMR.new", "BE.new")]
@@ -148,6 +150,7 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
       if(answer != "y") overwrite <- FALSE
     }
     if (overwrite) { # either the file does not exist or should be overwritten
+      # only binary mode supports UTF-8 and different line endings
       res.file <- file(description=results, open="wb")
       res.str  <- env.info(fun="method.A", option=NA, path.in, path.out,
                            file, set, ext, exec, data)

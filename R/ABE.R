@@ -30,6 +30,8 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     mod <- lm(logPK ~ sequence + subject%in%sequence + period + treatment,
                       data=ret$data)
   }
+  # generate variables for internal data based on MD5 hash
+  # 2nd condition: Otherwise, the header from a CSV file will be overwritten
   if (!is.null(data) & missing(ext)) {
     id    <- which.data(data)
     md5   <- digest::digest(data)
@@ -87,12 +89,15 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
       if(answer != "y") overwrite <- FALSE
     }
     if (overwrite) { # either the file does not exist or should be overwritten
+      # only binary mode supports UTF-8 and different line endings
       res.file <- file(description=results, open="wb")
       res.str  <- env.info(fun="ABE", option=NA, path.in, path.out,
                            file, set, ext, exec, data)
       if (os == "Windows") res.str <- gsub("\n", "\r\n", res.str) # CRLF
       if (os == "Darwin")  res.str <- gsub("\n", "\r", res.str)   # CR
-      writeBin(charToRaw(res.str), res.file)
+      # Note: Selecting the /first/ element is a workaround!
+      # Don't know why /two/ are returned for the internal rds03.
+      writeBin(charToRaw(res.str[1]), res.file)
       close(res.file)
     }
   }

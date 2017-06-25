@@ -40,6 +40,8 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     CI    <- exp(as.numeric(intervals(modB, which="fixed",
                           level=1-2*alpha)[[1]]["treatmentT", c(1, 3)]))
     DF    <- EMA.B$tTable["treatmentT", "DF"]
+    # generate variables for internal data based on MD5 hash
+    # 2nd condition: Otherwise, the header from a CSV file will be overwritten
     if (!is.null(data) & missing(ext)) {
       id    <- which.data(data)
       md5   <- digest::digest(data)
@@ -149,8 +151,8 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   if (details) { # results in default (7 digits) precision
     ret <- res
     if (as.character(res$outlier) == "NA") {
-      # remove superfluous columns if ola=FALSE or ola=TRUE and no
-      # outlier(s) detected
+      # remove superfluous columns if ola=FALSE or ola=TRUE
+      # and no outlier(s) detected
       ret <- ret[ , !names(ret) %in% c("outlier", "CVwR.new(%)",
                                        "EL.new.lo(%)", "EL.new.hi(%)",
                                        "CI.new", "GMR.new", "BE.new")]
@@ -197,6 +199,7 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
       # option=2: "E:/Users/HS/Documents/DS01_ABEL_B_lme.txt"  (works)
       # option=1: "E:/Users/HS/Documents/DS01_ABEL_B_lmer.txt" (don't work!)
       # Same code works in ABE() and method.A()...
+      # only binary mode supports UTF-8 and different line endings
       res.file <- file(description=results, open="wb")
       res.str  <- env.info(fun="method.B", option=option, path.in, path.out,
                            file, set, ext, exec, data)
