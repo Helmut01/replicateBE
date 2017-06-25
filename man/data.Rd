@@ -1,11 +1,6 @@
 \encoding{utf-8}
 \name{rds01+rds02+rds03+rds04+rds05+rds06+rds07+rds08+rds09+rds10+rds11+rds12+rds13+rds14+rds15+rds16+rds17+rds18+rds19+rds20+rds21}
 \alias{data}
-\alias{RTRT.TRTR}
-\alias{RTTR.TRRT}
-\alias{RRT.RTR.TRR}
-\alias{TRR.RRT}
-\alias{RTR.TRT}
 \docType{data}
 \title{
 Reference data sets for replicate designs
@@ -18,7 +13,6 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
 \details{
   \tabular{clrcl}{
   \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Design \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
-
   \code{rds01} \tab RTRT|TRTR \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   \code{rds02} \tab RRT|RTR|TRR \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
   \code{rds03} \tab RTR|TRT \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
@@ -49,8 +43,8 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
   \code{rds01} \tab EMA, CHMP \tab Data set I.\cr
   \code{rds02} \tab EMA, CHMP \tab Data set II.\cr
   \code{rds03} \tab \code{rds01} edited \tab Period 4 removed.\cr
-  \code{rds04} \tab Patterson & Jones \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Table II.\cr
-  \code{rds05} \tab Metzler & Shumaker \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in the Appendix.\cr
+  \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Table II.\cr
+  \code{rds05} \tab \ifelse{html}{\out{Metzler&nbsp;&amp;&nbsp;Shumaker}}{Metzler~&~Shumaker} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in the Appendix.\cr
   \code{rds06} \tab \code{rds01} edited \tab T and R switched.\cr
   \code{rds07} \tab R \tab Large simulated data set with homoscedasticity.\cr
   \code{rds08} \tab R \tab Large simulated data set with slight heteroscedasticity.\cr

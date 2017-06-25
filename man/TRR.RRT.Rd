@@ -11,14 +11,16 @@ Data sets from the literature to be evaluated by \code{method.A()}, \code{method
 }
 
 \details{
-  \tabular{lll}{
-  \code{rds10} \tab N=18 \tab \code{CVwR} <30\%: Evaluate by \code{method.A()}, \code{method.B()}, or \code{ABE()}
+  \tabular{crcl}{
+  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
+  \code{rds10} \tab 18 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}
   }
 }
 
 \source{
-  \tabular{ll}{
-  \code{rds10} \tab Chow & Liu. 2009. AUC data given in Table 9.3.3.
+  \tabular{cll}{
+  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
+  \code{rds10} \tab Chow & Liu \tab AUC data given in Table 9.3.3.
   }
 }
 

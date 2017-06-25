@@ -11,18 +11,20 @@ Data sets from the literature to be evaluated by \code{method.A()}, \code{method
 }
 
 \details{
-  \tabular{lll}{
-  \code{rds05} \tab N=26 \tab \code{CVwR} <30\%: Evaluate by \code{method.A()}, \code{method.B()}, or \code{ABE()}\cr
-  \code{rds11} \tab N=37 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or\code{method.B()}\cr
-  \code{rds16} \tab N=38 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}
+  \tabular{crcl}{
+  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
+  \code{rds05} \tab 26 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
+  \code{rds11} \tab 37 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds16} \tab 38 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 }
 
 \source{
-  \tabular{ll}{
-  \code{rds05} \tab Metzler & Shumaker. 1998. \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in the Appendix.\cr
-  \code{rds11} \tab Hauschke \emph{et al.} 2007. \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in Table 9.6.\cr
-  \code{rds16} \tab FDA. 1997. \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 14a.
+  \tabular{cll}{
+  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
+  \code{rds05} \tab \ifelse{html}{\out{Metzler&nbsp;&amp;&nbsp;Shumaker}}{Metzler~&~Shumaker} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in the Appendix.\cr
+  \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in Table 9.6.\cr
+  \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 14a.
   }
 }
 

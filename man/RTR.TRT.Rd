@@ -7,26 +7,23 @@ Reference data sets for RTR|TRT full replicate designs
 }
 
 \description{
-Data sets from the literature, edited, or obtained by simulations to be evaluated by \code{method.A()} and/or \code{method.B()}.
+Data sets from the literature and edited to be evaluated by \code{method.A()} and/or \code{method.B()}.
 }
 
 \details{
-  \tabular{lll}{
-  \code{rds03} \tab N=77 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds17} \tab N=19 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}
+  \tabular{crcl}{
+  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
+  \code{rds03} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds17} \tab 19 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 }
 
 \source{
-  \tabular{ll}{
-  \code{rds03} \tab Based on \code{rds01} (period 4 removed).\cr
-  \code{rds17} \tab Based on \code{rds03}. Highly unbalanced (12 subjects in RTR and 7 in TRT).
+  \tabular{cll}{
+  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
+  \code{rds03} \tab \code{rds01} edited \tab Period 4 removed.\cr
+  \code{rds17} \tab \code{rds03} edited \tab Highly unbalanced (12 subjects in RTR and 7 in TRT).
   }
-}
-
-\references{
-European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).}\cr
-London, 19 November 2015. \href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf}{EMA/618604/2008 Rev. 13}
 }
 
 \examples{

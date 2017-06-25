@@ -11,18 +11,20 @@ Data sets from the literature or obtained by simulations to be evaluated by \cod
 }
 
 \details{
-  \tabular{lll}{
-  \code{rds02} \tab N=24 \tab \code{CVwR} <30\%: Evaluate by \code{method.A()}, \code{method.B()}, or \code{ABE()}\cr
-  \code{rds04} \tab N=51 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds07} \tab N=360 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}
+  \tabular{crcl}{
+  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
+  \code{rds02} \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
+  \code{rds04} \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 }
 
 \source{
-  \tabular{ll}{
-  \code{rds02} \tab EMA, CHMP. 2015. Data set II.\cr
-  \code{rds04} \tab Patterson & Jones. 2012. \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Table II.\cr
-  \code{rds07} \tab Large simulated data set with homoscedasticity.
+  \tabular{cll}{
+  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
+  \code{rds02} \tab EMA, CHMP \tab Data set II.\cr
+  \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Table II.\cr
+  \code{rds07} \tab R \tab Large simulated data set with homoscedasticity.
   }
 }
 
