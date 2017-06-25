@@ -3,10 +3,12 @@
 ###############################################
 env.info <- function(fun, option=NA, path.in, path.out,
                      file, set, ext, exec, data) {
-  if (!is.null(data)) {
+  if (!is.null(data) & missing(ext)) {
     id    <- which.data(data)
     md5   <- digest::digest(data)
+    file  <- id[id$checksum == md5, "file"]
     set   <- id[id$checksum == md5, "set"]
+    descr <- id[id$checksum == md5, "descr"]
     ext   <- ""
   }
   system <- Sys.info()

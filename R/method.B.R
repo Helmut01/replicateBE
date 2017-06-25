@@ -200,7 +200,7 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
       # option=1: "E:/Users/HS/Documents/DS01_ABEL_B_lmer.txt" (don't work!)
       # Same code works in ABE() and method.A()...
       # only binary mode supports UTF-8 and different line endings
-      res.file <- file(description=results, open="wb")
+      res.file <- file(description=results[1], open="wb")
       res.str  <- env.info(fun="method.B", option=option, path.in, path.out,
                            file, set, ext, exec, data)
       if (os == "Windows") res.str <- gsub("\n", "\r\n", res.str) # CRLF
