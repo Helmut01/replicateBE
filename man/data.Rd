@@ -16,54 +16,57 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
 }
 
 \details{
-  \tabular{llll}{
-  \code{rds01} \tab RTRT|TRTR \tab N=77 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds02} \tab RRT|RTR|TRR \tab N=24 \tab \code{CVwR} <30\%: Evaluate by \code{method.A()}, \code{method.B()}, or \code{ABE()}\cr
-  \code{rds03} \tab RTR|TRT \tab N=77 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds04} \tab RRT|RTR|TRR \tab N=51 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds05} \tab RTTR|TRRT \tab N=26 \tab \code{CVwR} <30\%: Evaluate by \code{method.A()}, \code{method.B()}, or \code{ABE()}\cr
-  \code{rds06} \tab RTRT|TRTR \tab N=77 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds07} \tab RRT|RTR|TRR \tab N=360 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds08} \tab RTRT|TRTR \tab N=222 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds09} \tab RTRT|TRTR \tab N=222 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds10} \tab TRR|RTT \tab N=18 \tab \code{CVwR} <30\%: Evaluate by \code{method.A()}, \code{method.B()}, or \code{ABE()}\cr
-  \code{rds11} \tab RTTR|TRRT \tab N=37 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or\code{method.B()}\cr
-  \code{rds12} \tab RTRT|TRTR \tab N=77 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds13} \tab RTRT|TRTR \tab N=222 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds14} \tab RTRT|TRTR \tab N=77 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds15} \tab RTRT|TRTR \tab N=222 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds16} \tab RTTR|TRRT \tab N=38 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds17} \tab RTR|TRT \tab N=19 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds18} \tab RTRT|TRTR \tab N=77 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds19} \tab RTRT|TRTR \tab N=61 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds20} \tab RTRT|TRTR \tab N=61 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}\cr
-  \code{rds21} \tab RTRT|TRTR \tab N=77 \tab \code{CVwR} >30\%: Evaluate by \code{method.A()} or \code{method.B()}
+  \tabular{llrcl}{
+  Data set \tab Design \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
+
+  \code{rds01} \tab RTRT|TRTR \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds02} \tab RRT|RTR|TRR \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
+  \code{rds03} \tab RTR|TRT \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds04} \tab RRT|RTR|TRR \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds05} \tab RTTR|TRRT \tab 26 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
+  \code{rds06} \tab RTRT|TRTR \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds07} \tab RRT|RTR|TRR \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds08} \tab RTRT|TRTR \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds09} \tab RTRT|TRTR \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds10} \tab TRR|RTT \tab 18 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
+  \code{rds11} \tab RTTR|TRRT \tab 37 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds12} \tab RTRT|TRTR \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds13} \tab RTRT|TRTR \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds14} \tab RTRT|TRTR \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds15} \tab RTRT|TRTR \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds16} \tab RTTR|TRRT \tab 38 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds17} \tab RTR|TRT \tab 19 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds18} \tab RTRT|TRTR \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds19} \tab RTRT|TRTR \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds20} \tab RTRT|TRTR \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds21} \tab RTRT|TRTR \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 }
 
 \source{
-  \tabular{ll}{
-  \code{rds01} \tab EMA, CHMP. 2015. Data set I.\cr
-  \code{rds02} \tab EMA, CHMP. 2015. Data set II.\cr
-  \code{rds03} \tab Based on \code{rds01} (period 4 removed).\cr
-  \code{rds04} \tab Patterson & Jones. 2012. \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Table II.\cr
-  \code{rds05} \tab Metzler & Shumaker. 1998. \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in the Appendix.\cr
-  \code{rds06} \tab Based on \code{rds01} (T and R switched).\cr
-  \code{rds08} \tab Large simulated data set with slight heteroscedasticity.\cr
-  \code{rds07} \tab Large simulated data set with homoscedasticity.\cr
-  \code{rds09} \tab Based on \code{rds08}. Wide numeric range (data of last 37 subjects multiplied by 1,000,000).\cr
-  \code{rds10} \tab Chow & Liu. 2009. AUC data given in Table 9.3.3.\cr
-  \code{rds11} \tab Hauschke \emph{et al.} 2007. \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in Table 9.6.\cr
-  \code{rds12} \tab Simulated data set with extreme intrasubject variability.\cr
-  \code{rds13} \tab Based on \code{rds08}. Highly incomplete (approx. 50\% of period 4 data deleted).\cr
-  \code{rds14} \tab Simulated data set with high intrasubject variability and number of dropouts increasing with period.\cr
-  \code{rds15} \tab Based on \code{rds08}. Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}).\cr
-  \code{rds16} \tab FDA. 1997. \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 14a.\cr
-  \code{rds17} \tab Based on \code{rds03}. Highly unbalanced (12 subjects in RTR and 7 in TRT).\cr
-  \code{rds18} \tab Based on \code{rds14}. Removed T data of subjects 63–78.\cr
-  \code{rds19} \tab Based on \code{rds18}. Removed data of subjects 63–78.\cr
-  \code{rds20} \tab Based on \code{rds19}. Outlier of R (subject 1) introduced: original value ×100.\cr
-  \code{rds21} \tab Based on \code{rds01}. One extreme result of subjects 45 & 52 set to NA.
+  \tabular{lll}{
+  Data set \tab Origin \tab Description\cr
+  \code{rds01} \tab EMA, CHMP. \tab Data set I.\cr
+  \code{rds02} \tab EMA, CHMP. \tab Data set II.\cr
+  \code{rds03} \tab \code{rds01} \tab Period 4 removed.\cr
+  \code{rds04} \tab Patterson & Jones. \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Table II.\cr
+  \code{rds05} \tab Metzler & Shumaker. \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in the Appendix.\cr
+  \code{rds06} \tab \code{rds01} edited \tab T and R switched.\cr
+  \code{rds08} \tab R \tab Large simulated data set with slight heteroscedasticity.\cr
+  \code{rds07} \tab R \tab Large simulated data set with homoscedasticity.\cr
+  \code{rds09} \tab \code{rds08} \tab Wide numeric range (data of last 37 subjects multiplied by 1,000,000).\cr
+  \code{rds10} \tab Chow & Liu. \tab AUC data given in Table 9.3.3.\cr
+  \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in Table 9.6.\cr
+  \code{rds12} \tab Phoenix NLME \tab Simulated data set with extreme intrasubject variability.\cr
+  \code{rds13} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data deleted).\cr
+  \code{rds14} \tab Phoenix NLME \tab Simulated data set with high intrasubject variability and number of dropouts increasing with period.\cr
+  \code{rds15} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}).\cr
+  \code{rds16} \tab FDA. 1997. \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 14a.\cr
+  \code{rds17} \tab \code{rds03} edited \tab Highly unbalanced (12 subjects in RTR and 7 in TRT).\cr
+  \code{rds18} \tab \code{rds14} edited \tab Removed T data of subjects 63–78.\cr
+  \code{rds19} \tab \code{rds18} edited \tab Removed data of subjects 63–78.\cr
+  \code{rds20} \tab \code{rds19} edited \tab Outlier of R (subject 1) introduced: original value ×100.\cr
+  \code{rds21} \tab \code{rds01} edited \tab One extreme result of subjects 45 & 52 set to NA.
   }
 }
 
