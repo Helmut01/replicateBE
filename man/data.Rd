@@ -91,8 +91,14 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 }
 
 \examples{
-data("RTRT.TRTR")
-str(rds01)
+# load all
+data(RTRT.TRTR, RTR.TRT, RRT.RTR.TRR, RTTR.TRRT, TRR.RRT, RTTR.TRRT, RTR.TRR)
+# show their structure
+ds <- sprintf("rds\%02i", 1:22)
+for (i in seq_along(ds)) {
+  cat(ds[i], "\n")
+  str(eval(parse(text=ds[i])))
+}
 }
 
 \keyword{datasets}
