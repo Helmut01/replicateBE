@@ -1,5 +1,6 @@
 Version 1.0.5.9000
     - Version control at GitHub.
+    - Added data set 22 for the extra-reference design (RTR|TRR).
 Version 1.0.5
 Released to collaborators 2016-06-24
     - Unified data sets, updated man-pages, and changed which.data():

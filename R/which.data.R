@@ -1,12 +1,12 @@
 ############################################
 # return data.frame of currently available #
-# data containg variables as required by   # 
+# data containg variables as required by   #
 # get.data(). Don't forget to update for   #
 # new reference data sets!                 #
 ############################################
 which.data <- function(data = NULL) {
   if (missing(data) | is.null(data)) stop()
-  sets     <- 21
+  sets     <- 22
   descr    <- c("Data set I given by the EMA (Q&A document) available at
  http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf",
                 "Data set II given by the EMA (Q&A document) available at http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf",
@@ -29,7 +29,8 @@ which.data <- function(data = NULL) {
                 "Highly incomplete data set (based on rds18. Data of subjects 63\u201378 removed).",
                 "Highly incomplete data set (based on rds19. Outlier of R (subject 1) introduced: original value \u00D7100).",
                 "Modified Data set I given by the EMA (Q&A document): one extreme result of subjects 45
-& 52 set to NA.")
+& 52 set to NA.",
+                "Data set simulated with CVwT = CVwR = 40%, CVbT = CVbR = 80%, GMR = 0.90.")
   checksum <- c("a182455ab26d616fb0b5b60e8f959bb7",
                 "d45885ce457b6102af94f8c46258453e",
                 "82aed880964a33f429344118308836c3",
@@ -50,7 +51,8 @@ which.data <- function(data = NULL) {
                 "9d01442657b7fc858939cec25db42016",
                 "0528e9cda37aba33df190c3217c9ec9a",
                 "01535af145ece037bca496d00bddc6f7",
-                "fc7047448c3aee4206be2824d9fcdd45")
+                "fc7047448c3aee4206be2824d9fcdd45",
+                "6c75fd67cb53643fcd7f2fe4ffa6c0b6")
   file     <- rep("DS", sets)
   set      <- sprintf("%02i", 1:sets)
   ref      <- paste0("rds", set)

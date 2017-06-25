@@ -1,5 +1,5 @@
 \encoding{utf-8}
-\name{rds01+rds02+rds03+rds04+rds05+rds06+rds07+rds08+rds09+rds10+rds11+rds12+rds13+rds14+rds15+rds16+rds17+rds18+rds19+rds20+rds21}
+\name{rds01+rds02+rds03+rds04+rds05+rds06+rds07+rds08+rds09+rds10+rds11+rds12+rds13+rds14+rds15+rds16+rds17+rds18+rds19+rds20+rds21+rds22}
 \alias{data}
 \docType{data}
 \title{
@@ -33,7 +33,8 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
   \code{rds18} \tab RTRT|TRTR \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   \code{rds19} \tab RTRT|TRTR \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   \code{rds20} \tab RTRT|TRTR \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  \code{rds21} \tab RTRT|TRTR \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}
+  \code{rds21} \tab RTRT|TRTR \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  \code{rds22} \tab RTR|TRR \tab 36 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 }
 
@@ -60,7 +61,8 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
   \code{rds18} \tab \code{rds14} edited \tab Removed T data of subjects 63–78.\cr
   \code{rds19} \tab \code{rds18} edited \tab Removed data of subjects 63–78.\cr
   \code{rds20} \tab \code{rds19} edited \tab Outlier of R (subject 1) introduced: original value ×100.\cr
-  \code{rds21} \tab \code{rds01} edited \tab One extreme result of subjects 45 & 52 set to NA.
+  \code{rds21} \tab \code{rds01} edited \tab One extreme result of subjects 45 & 52 set to NA.\cr
+  \code{rds22} \tab R \tab Simulated data set with homoscedasticity.\cr
   }
 }
 

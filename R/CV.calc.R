@@ -60,7 +60,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
         if (overwrite) { # either the file does not exist or should be overwritten
           png(ret$png.path, width=720, height=720, pointsize=18)
         }
-      }   
+      }
       bxp(bp1, xlim=c(0, 3), ylim=c(-1, 1)*max(abs(ol.value1)), las=1, cex.main=1,
           main=paste0("EMA\u2019s model for CVwR:",
                       "\nlog(response) ~ sequence + subject(sequence) + period;",
@@ -115,7 +115,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
     }
   } # end of outlier analysis (if requested, i.e., ola=TRUE)
   CVwT  <- NA
-  if (nchar(ret$type) != 11) { # only for full replicates
+  if (!ret$type %in% c("RRT|RTR|TRR", "RTR|TRR")) { # only for full replicates
     if (logtrans) { # use the raw data and log-transform internally
       modCVT <- lm(log(PK) ~ subject + period, data=ret$test)
     } else {        # use the already log-transformed data

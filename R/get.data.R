@@ -149,9 +149,15 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     if (Npers != 4) stop("4 periods required in this full replicate design.")
     if (Nseqs != 2) stop("2 sequences required in this full replicate design.")
   }
-  if (nchar(type) == 7) {  # 3-period full replicate design
-    if (Npers != 3) stop("3 periods required in this full replicate design.")
-    if (Nseqs != 2) stop("2 sequences required in this full replicate design.")
+  if (nchar(type) == 7) {  # 3-period full replicate or extra-reference design
+    if (type %in% c("RTR|TRT", "TRR|RRT")) {
+      if (Npers != 3) stop("3 periods required in this full replicate design.")
+      if (Nseqs != 2) stop("2 sequences required in this full replicate design.")
+    }
+    if (type == "RTR|TRR") {
+      if (Npers != 3) stop("3 periods required in the extra-reference design.")
+      if (Nseqs != 2) stop("2 sequences required in the extra-reference design.")
+    }
   }
   Nsub.seq <- table(data$sequence[!duplicated(data$subject)])
   ref   <- data[data$treatment == "R", ]
@@ -183,7 +189,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
   RR   <- RR[!is.na(RR$PK), ]        # exclude NAs
   nRR  <- length(unique(RR$subject)) # number of subjects
   nTT  <- NA
-  if (nchar(type) != 11) { # i.e., one of the full replicates
+  if (!type %in% c("RRT|RTR|TRR", "RTR|TRR")) { # i.e., only full replicates
     # Data of subjects with two Test treatments
     TT  <- test[duplicated(test$subject, fromLast=TRUE)|
                 duplicated(test$subject, fromLast=FALSE), ]
@@ -205,7 +211,13 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
   txt <- paste0(txt, "\nSequences (design) : ", type)
   if (nchar(type) == 11) txt <- paste(txt, "(partial replicate)")
   if (nchar(type) ==  9) txt <- paste(txt, "(4-period full replicate)")
-  if (nchar(type) ==  7) txt <- paste(txt, "(3-period full replicate)")
+  if (nchar(type) ==  7) {
+    if (type != "RTR|TRR") {
+      txt <- paste(txt, "(3-period full replicate)")
+    } else {
+      txt <- paste(txt, "(extra-reference)")
+    }
+  }
   x <- paste0(Nsub.seq, collapse = "|")
   if (sum(Miss.seq) > 0) x <- c(x, paste0(Miss.seq, collapse = "|"))
   if (sum(Miss.per) > 0) x <- c(x, paste0(Miss.per, collapse = "|"))
@@ -237,7 +249,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     txt <- paste0(txt, "\n                     ",
                   "Less than 12 as required acc. to the BE-GL.")
   }
-  if (nchar(type) != 11) # full replicate only
+  if (nchar(type) != 11 & type != "RTR|TRR") # full replicates only
     txt <- paste0(txt, "\nSub\u2019s with two Ts  : ", sprintf("%3i", nTT))
   txt <- paste0(txt, "\nSub\u2019s with two Rs  : ", sprintf("%3i", nRR))
   if ((type == "RTR|TRT" | type == "RTT|TRR") & nRR < 12) {
