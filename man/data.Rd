@@ -16,8 +16,8 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
 }
 
 \details{
-  \tabular{llrcl}{
-  Data set \tab Design \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
+  \tabular{clrcl}{
+  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Design \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
 
   \code{rds01} \tab RTRT|TRTR \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   \code{rds02} \tab RRT|RTR|TRR \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
@@ -44,24 +44,24 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
 }
 
 \source{
-  \tabular{lll}{
-  Data set \tab Origin \tab Description\cr
-  \code{rds01} \tab EMA, CHMP. \tab Data set I.\cr
-  \code{rds02} \tab EMA, CHMP. \tab Data set II.\cr
-  \code{rds03} \tab \code{rds01} \tab Period 4 removed.\cr
-  \code{rds04} \tab Patterson & Jones. \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Table II.\cr
-  \code{rds05} \tab Metzler & Shumaker. \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in the Appendix.\cr
+  \tabular{cll}{
+  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
+  \code{rds01} \tab EMA, CHMP \tab Data set I.\cr
+  \code{rds02} \tab EMA, CHMP \tab Data set II.\cr
+  \code{rds03} \tab \code{rds01} edited \tab Period 4 removed.\cr
+  \code{rds04} \tab Patterson & Jones \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Table II.\cr
+  \code{rds05} \tab Metzler & Shumaker \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in the Appendix.\cr
   \code{rds06} \tab \code{rds01} edited \tab T and R switched.\cr
-  \code{rds08} \tab R \tab Large simulated data set with slight heteroscedasticity.\cr
   \code{rds07} \tab R \tab Large simulated data set with homoscedasticity.\cr
+  \code{rds08} \tab R \tab Large simulated data set with slight heteroscedasticity.\cr
   \code{rds09} \tab \code{rds08} \tab Wide numeric range (data of last 37 subjects multiplied by 1,000,000).\cr
-  \code{rds10} \tab Chow & Liu. \tab AUC data given in Table 9.3.3.\cr
+  \code{rds10} \tab Chow & Liu \tab AUC data given in Table 9.3.3.\cr
   \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in Table 9.6.\cr
   \code{rds12} \tab Phoenix NLME \tab Simulated data set with extreme intrasubject variability.\cr
   \code{rds13} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data deleted).\cr
   \code{rds14} \tab Phoenix NLME \tab Simulated data set with high intrasubject variability and number of dropouts increasing with period.\cr
   \code{rds15} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}).\cr
-  \code{rds16} \tab FDA. 1997. \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 14a.\cr
+  \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 14a.\cr
   \code{rds17} \tab \code{rds03} edited \tab Highly unbalanced (12 subjects in RTR and 7 in TRT).\cr
   \code{rds18} \tab \code{rds14} edited \tab Removed T data of subjects 63–78.\cr
   \code{rds19} \tab \code{rds18} edited \tab Removed data of subjects 63–78.\cr
