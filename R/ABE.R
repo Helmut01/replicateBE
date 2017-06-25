@@ -13,11 +13,20 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                   sep=sep, dec=dec, logtrans=logtrans, ola=FALSE,
                   print=print, verbose=verbose, ask=ask,
                   data=data)
-  ow    <- options() # save options
   if (print) { # change from "ABEL" to "ABE"
     results <- paste0(substr(ret$res.file, 1,
                      which(strsplit(ret$res.file, "")[[1]]=="_")),
                      "ABE.txt")
+  }
+  # generate variables for internal data based on MD5 hash
+  # 2nd condition: Otherwise, the header from a CSV file will be overwritten
+  if (!is.null(data) & missing(ext)) {
+    id    <- which.data(data)
+    md5   <- digest::digest(data)
+    file  <- id[id$checksum == md5, "file"]
+    set   <- id[id$checksum == md5, "set"]
+    descr <- id[id$checksum == md5, "descr"]
+    ext   <- ""
   }
   logtrans <- ret$transf
   os <- Sys.info()[[1]] # get OS for line-endings in output (Win: CRLF)
@@ -29,15 +38,6 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   } else {        # use the already log-transformed data
     mod <- lm(logPK ~ sequence + subject%in%sequence + period + treatment,
                       data=ret$data)
-  }
-  # generate variables for internal data based on MD5 hash
-  # 2nd condition: Otherwise, the header from a CSV file will be overwritten
-  if (!is.null(data) & missing(ext)) {
-    id    <- which.data(data)
-    md5   <- digest::digest(data)
-    file  <- id[id$checksum == md5, "file"]
-    set   <- id[id$checksum == md5, "set"]
-    descr <- id[id$checksum == md5, "descr"]
   }
   if (verbose) {
     cat("\nData set", paste0(file, set), "by ABE",

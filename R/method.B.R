@@ -20,6 +20,16 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   # Add '_lme'/'_lmer' to the result file
   results  <- paste0(ret$res.file, "_B",
                      ifelse(option == 2, "_lme", "_lmer"), ".txt")
+  # generate variables for internal data based on MD5 hash
+  # 2nd condition: Otherwise, the header from a CSV file will be overwritten
+  if (!is.null(data) & missing(ext)) {
+    id    <- which.data(data)
+    md5   <- digest::digest(data)
+    file  <- id[id$checksum == md5, "file"]
+    set   <- id[id$checksum == md5, "set"]
+    descr <- id[id$checksum == md5, "descr"]
+    ext   <- ""
+  }
   logtrans <- ret$transf
   os <- Sys.info()[[1]] # get OS for line-endings in output (Win: CRLF)
   ow <- options()       # save options
@@ -40,16 +50,6 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     CI    <- exp(as.numeric(intervals(modB, which="fixed",
                           level=1-2*alpha)[[1]]["treatmentT", c(1, 3)]))
     DF    <- EMA.B$tTable["treatmentT", "DF"]
-    # generate variables for internal data based on MD5 hash
-    # 2nd condition: Otherwise, the header from a CSV file will be overwritten
-    if (!is.null(data) & missing(ext)) {
-      id    <- which.data(data)
-      md5   <- digest::digest(data)
-      file  <- id[id$checksum == md5, "file"]
-      set   <- id[id$checksum == md5, "set"]
-      descr <- id[id$checksum == md5, "descr"]
-      ext   <- ""
-    }
     if (verbose) {
       cat("\nData set", paste0(file, set,
           ": Method B by lme (option=2; ",
@@ -189,16 +189,6 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
       if(answer != "y") overwrite <- FALSE
     }
     if (overwrite) { # either the file does not exist or should be overwritten
-      # browser()
-      # why the heck does it work for option=2 but not for option=1???
-      # Error in file(results, open = "wb") :
-      #   argument "file" is missing, with no default
-      # try cat(results, "\n")
-      # The description of the file (full path an file name) is correct!
-      # For rds01 on my machine:
-      # option=2: "E:/Users/HS/Documents/DS01_ABEL_B_lme.txt"  (works)
-      # option=1: "E:/Users/HS/Documents/DS01_ABEL_B_lmer.txt" (don't work!)
-      # Same code works in ABE() and method.A()...
       # only binary mode supports UTF-8 and different line endings
       res.file <- file(description=results[1], open="wb")
       res.str  <- env.info(fun="method.B", option=option, path.in, path.out,

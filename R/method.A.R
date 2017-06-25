@@ -15,6 +15,16 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                   print=print, verbose=verbose, ask=ask,
                   plot.bxp=plot.bxp, data=data)
   results  <- paste0(ret$res.file, "_A.txt")
+  # generate variables for internal data based on MD5 hash
+  # 2nd condition: Otherwise, the header from a CSV file will be overwritten
+  if (!is.null(data) & missing(ext)) {
+    id    <- which.data(data)
+    md5   <- digest::digest(data)
+    file  <- id[id$checksum == md5, "file"]
+    set   <- id[id$checksum == md5, "set"]
+    descr <- id[id$checksum == md5, "descr"]
+    ext   <- ""
+  }
   logtrans <- ret$transf
   os <- Sys.info()[[1]] # get OS for line-endings in output (Win: CRLF)
   ow <- options()       # save options
@@ -25,16 +35,6 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   } else {        # use the already log-transformed data
     modA <- lm(logPK ~ sequence + subject%in%sequence + period + treatment,
                        data=ret$data)
-  }
-  # generate variables for internal data based on MD5 hash
-  # 2nd condition: Otherwise, the header from a CSV file will be overwritten
-  if (!is.null(data) & missing(ext)) {
-    id    <- which.data(data)
-    md5   <- digest::digest(data)
-    file  <- id[id$checksum == md5, "file"]
-    set   <- id[id$checksum == md5, "set"]
-    descr <- id[id$checksum == md5, "descr"]
-    ext   <- ""
   }
   if (verbose) {
     cat("\nData set", paste0(file, set), "by Method A",
