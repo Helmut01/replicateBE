@@ -14,7 +14,7 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                   sep=sep, dec=dec, logtrans=logtrans, ola=ola,
                   print=print, verbose=verbose, ask=ask,
                   plot.bxp=plot.bxp, data=data)
-  results  <- paste0(ret$res.file, "_A.txt")
+  results  <- paste0(ret$res.file, "_MethodA.txt")
   # generate variables for internal data based on MD5 hash
   # 2nd condition: Otherwise, the header from a CSV file will be overwritten
   if (!is.null(data) & missing(ext)) {
@@ -151,7 +151,8 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     }
     if (overwrite) { # either the file does not exist or should be overwritten
       # only binary mode supports UTF-8 and different line endings
-      res.file <- file(description=results[1], open="wb")
+      #res.file <- file(description=results[1], open="wb")
+      res.file <- file(description=results, open="wb")
       res.str  <- env.info(fun="method.A", option=NA, path.in, path.out,
                            file, set, ext, exec, data)
       if (os == "Windows") res.str <- gsub("\n", "\r\n", res.str) # CRLF
