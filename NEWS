@@ -1,16 +1,16 @@
 Version 1.0.5.9000
-    - Version control at GitHub.
+Published on GitHub 2017-06-25
     - Added data set 22 for the extra-reference design (RTR|TRR).
     - Bug-fix: method.B(option=1) output to file.
     - Lazy data: true in DESCRIPTION allows direct access of objects
       within data().
 Version 1.0.5
-Released to collaborators 2016-06-24
+Released to collaborators 2017-06-24
     - Unified data sets, updated man-pages, and changed which.data():
       'ref' => 'rds'. Warnings in CHECK: 'rdsXX' not found.
     - Still unresolved: method.B(option=1) can't print to file with internal data.
 Version 1.0.4
-Released to collaborators 2016-06-23
+Released to collaborators 2017-06-23
     - Working on \data and the documentation. All data sets observe the
       pattern 'refXX.rda' in order to come last in the man-page.
     - Modified imports in NAMESPACE. [DL]

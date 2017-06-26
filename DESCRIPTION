@@ -16,3 +16,5 @@ Imports: readxl (>= 1.0.0), PowerTOST, lmerTest, nlme, graphics, grDevices
 ByteCompile: no
 LazyData: true
 License: GPL (>=2)
+URL: https://github.com/Helmut01/replicateBE
+BugReports: https://github.com/Helmut01/replicateBE/issues
