@@ -59,7 +59,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     }
     if (ext %in% c("XLS", "xls", "XLXS", "xlsx") & missing(set))
       stop("Name of sheet to read must be given.")
-    if (ext %in% c("XLS", "xls", "XLXS", "xlsx")) { # read from Excel
+    if (ext %in% c("XLS", "xls", "XLSX", "xlsx")) { # read from Excel
       full.name <- paste0(path.in, file, ".", ext)
       if (!file.exists(full.name)) {
         #setwd("~/")
