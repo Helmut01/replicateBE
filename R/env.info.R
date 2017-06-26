@@ -53,20 +53,24 @@ env.info <- function(fun, option=NA, path.in, path.out,
     hr.len <- 70
   }
   hr     <- paste0(rep("\u2500", hr.len), collapse="")
-  if (!is.null(data)) {
-    info <- paste(lic, discl, "\nReference data set :", set, "(internal)")
-  } else {
-    info <- paste(lic, discl, "\nInput from         : ")
-    if (is.null(path.out)) {
-      info <- paste0(info, getwd(), "/")
-    } else {
-      info <- paste0(info, path.out)
-    }
-    if (ext %in% c("XLS", "xls", "XLXS", "xlsx")) {
-      info <- paste0(info, "\nFile [sheet]       : ", file, ".", ext,
-                     " [", set, "]")
-    } else {
-      info <- paste0(info, "\nFile               : ", file, set, ".", ext)
+  if (!is.null(data)) { # internal data
+    info <- paste(lic, discl, "\nReference data set :", set, "(internal data)")
+  } else {              # CSV or XLS(X)
+    if (regexpr("/library/replicateBE/extdata/", path.in)[1] >= 1) { # internal CSV
+      info <- paste(lic, discl, "\nReference data set :", set, "(internal CSV)")
+    } else {                                                         # external CSV or XLS(X)
+      info <- paste(lic, discl, "\nInput from         : ")
+      if (is.null(path.out)) {
+        info <- paste0(info, getwd(), "/")
+      } else {
+        info <- paste0(info, path.out)
+      }
+      if (ext %in% c("XLS", "xls", "XLSX", "xlsx")) {
+        info <- paste0(info, "\nFile [sheet]       : ", file, ".", ext,
+                       " [", set, "]")
+      } else {
+        info <- paste0(info, "\nFile               : ", file, set, ".", ext)
+      }
     }
   }
   info <- paste(info, "\nOutput to          : ")
@@ -92,7 +96,7 @@ env.info <- function(fun, option=NA, path.in, path.out,
   }
   info <- paste0(info, "\nreplicateBE version: ", sprintf("%-7s", packageVersion("replicateBE")), year)
   info <- paste0(info, "\n", hr,
-                       "\nFunction           : CV.calc(); exec. ", exec,
+                       "\nFunction           : CV.calc() exec. ", exec,
                        "\n  Fixed effects    : sequence + subject(sequence) + period",
                        "\n  Data             : treatment = R")
   info <- paste0(info, "\nFunction           : ", fun, "(")
@@ -101,12 +105,12 @@ env.info <- function(fun, option=NA, path.in, path.out,
   } else {
     info <- paste0(info, "option=", option, "): ")
     if (option == 1) {
-      info <- paste0(info, "lme4/lmerTest")
+      info <- paste0(info, "lmerTest:lmer")
     } else {
-      info <- paste0(info, "nlme/lme")
+      info <- paste0(info, "nlme:lme")
     }
   }
-  info <- paste0(info, "; exec. ", exec)
+  info <- paste0(info, " exec. ", exec)
   if (fun == "model.A") {
     info <- paste0(info, "\n  Fixed effects    : sequence + ",
                          "subject(sequence) + period + treatment",
