@@ -1,6 +1,13 @@
 \encoding{utf-8}
-\name{RTRT.TRTR+RTTR.TRRT+RTR.TRT+RTT.TRR+RRT.RTR.TRR+RTR.TRR}
+\name{data}
+\alias{RTRT.TRTR}
+\alias{RTTR.TRRT}
+\alias{RTR.TRT}
+\alias{RTT.TRR}
+\alias{RRT.RTR.TRR}
+\alias{RTR.TRR}
 \docType{data}
+
 \title{
 Reference Data Sets for Replicate Designs
 }
