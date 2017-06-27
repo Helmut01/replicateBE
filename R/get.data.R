@@ -1,8 +1,8 @@
-###########################################
-# Get the data from the file or internal  #
-# data and generate output common to both #
-# methods.                                #
-###########################################
+#####################################
+# Get the data from the file or     #
+# internal data and generate output #
+# common to all methods.            #
+#####################################
 get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
                      header = 0, na = ".", sep = ",", dec=".",
                      logtrans=TRUE, print, plot.bxp, data) {
@@ -62,8 +62,6 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     if (ext %in% c("XLS", "xls", "XLSX", "xlsx")) { # read from Excel
       full.name <- paste0(path.in, file, ".", ext)
       if (!file.exists(full.name)) {
-        #setwd("~/")
-        #getwd()
         setwd(dirname(file.choose()))
         path.in <- getwd()
         full.name <- paste0(path.in, "/", file, set, ".", ext)
@@ -84,8 +82,6 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     } else { # read from CSV
       full.name <- paste0(path.in, file, set, ".", ext)
       if (!file.exists(full.name)) {
-        #setwd("~/")
-        #getwd()
         setwd(dirname(file.choose()))
         path.in <- getwd()
         full.name <- paste0(path.in, "/", file, set, ".", ext)
@@ -141,16 +137,12 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
   type  <- paste0(seqs, collapse="|")
   pers  <- unique(as.integer(data$period)) # Periods
   Npers <- length(pers)                    # Number of periods
-  if (nchar(type) == 11) { # partial replicate
-    if (Npers != 3) stop("3 periods required in the partial replicate design.")
-    if (Nseqs != 3) stop("3 sequences required in the partial replicate design.")
-  }
   if (nchar(type) == 9) {  # 4-period full replicate design
     if (Npers != 4) stop("4 periods required in this full replicate design.")
     if (Nseqs != 2) stop("2 sequences required in this full replicate design.")
   }
-  if (nchar(type) == 7) {  # 3-period full replicate or extra-reference design
-    if (type %in% c("RTR|TRT", "TRR|RRT")) {
+  if (nchar(type) == 7) {  # 3-period replicates
+    if (type == "RTR|TRT") {
       if (Npers != 3) stop("3 periods required in this full replicate design.")
       if (Nseqs != 2) stop("2 sequences required in this full replicate design.")
     }
@@ -158,6 +150,14 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
       if (Npers != 3) stop("3 periods required in the extra-reference design.")
       if (Nseqs != 2) stop("2 sequences required in the extra-reference design.")
     }
+    if (type == "RTT|TRR") {
+      if (Npers != 3) stop("3 periods required in this partial replicate design.")
+      if (Nseqs != 2) stop("2 sequences required in this partial replicate design.")
+    }
+  }
+  if (nchar(type) == 11) { # 3-sequence partial replicate
+    if (Npers != 3) stop("3 periods required in this partial replicate design.")
+    if (Nseqs != 3) stop("3 sequences required in this partial replicate design.")
   }
   Nsub.seq <- table(data$sequence[!duplicated(data$subject)])
   ref   <- data[data$treatment == "R", ]
@@ -183,14 +183,14 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     Miss.seq <- rep(0, Nseqs)
     Miss.per <- rep(0, Npers)
   }
-  # Data of subjects with two Reference treatments
+  # Data of subjects with two R treatments
   RR   <- ref[duplicated(ref$subject, fromLast=TRUE)|
               duplicated(ref$subject, fromLast=FALSE), ]
   RR   <- RR[!is.na(RR$PK), ]        # exclude NAs
   nRR  <- length(unique(RR$subject)) # number of subjects
   nTT  <- NA
   if (!type %in% c("RRT|RTR|TRR", "RTR|TRR")) { # i.e., only full replicates
-    # Data of subjects with two Test treatments
+    # Data of subjects with two T treatments
     TT  <- test[duplicated(test$subject, fromLast=TRUE)|
                 duplicated(test$subject, fromLast=FALSE), ]
     TT  <- TT[!is.na(TT$PK), ]        # exclude NAs
@@ -198,7 +198,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
   }
   txt <- "" # paranoia
   if (!is.na(descr) & !is.null(descr) & length(descr) >= 1)
-    txt <- paste0(strwrap(descr, width = 85), collapse="\n")
+    txt <- paste0(strwrap(descr, width = 78), collapse="\n")
   if (logtrans) {
     txt <- paste0(txt,
                   "\nAnalysis performed on column \u2018PK\u2019 ",
@@ -209,15 +209,10 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
                   "(data already log-transformed)")
   }
   txt <- paste0(txt, "\nSequences (design) : ", type)
-  if (nchar(type) == 11) txt <- paste(txt, "(partial replicate)")
-  if (nchar(type) ==  9) txt <- paste(txt, "(4-period full replicate)")
-  if (nchar(type) ==  7) {
-    if (type != "RTR|TRR") {
-      txt <- paste(txt, "(3-period full replicate)")
-    } else {
-      txt <- paste(txt, "(extra-reference)")
-    }
-  }
+  if (nchar(type) == 9) txt <- paste(txt, "(4-period full replicate)")
+  if (nchar(type) == 11 | type == "RTT|TRR") txt <- paste(txt, "(partial replicate)")
+  if (type == "RTR|TRT") txt <- paste(txt, "(3-period full replicate)")
+  if (type == "RTR|TRR") txt <- paste(txt, "(partial replicate; extra-reference)")
   x <- paste0(Nsub.seq, collapse = "|")
   if (sum(Miss.seq) > 0) x <- c(x, paste0(Miss.seq, collapse = "|"))
   if (sum(Miss.per) > 0) x <- c(x, paste0(Miss.per, collapse = "|"))

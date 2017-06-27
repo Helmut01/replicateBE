@@ -9,7 +9,6 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
   if (missing(path.in)) path.in <- NULL
   if (missing(data)) data <- NULL
   called.from <- as.character(sys.call(-1))[1]
-  if (is.na(called.from)) called.from <- "internally"
   ret   <- get.data(path.in=path.in, path.out=path.out, file=file,
                     set=set, ext=ext, header=header, na=na, sep=sep,
                     dec=dec, logtrans=logtrans, print=print,

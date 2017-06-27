@@ -50,7 +50,7 @@ env.info <- function(fun, option=NA, path.in, path.out,
   if (fun == "model.B") {
     ifelse (option == 1, hr.len <- 62+nchar(exec), hr.len <- 57+nchar(exec))
   } else {
-    hr.len <- 70
+    hr.len <- 78
   }
   hr     <- paste0(rep("\u2500", hr.len), collapse="")
   if (!is.null(data)) { # internal data
