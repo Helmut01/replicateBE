@@ -206,8 +206,8 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
   }
   txt <- paste0(txt, "\nSequences (design) : ", type)
   if (nchar(type) == 9) txt <- paste(txt, "(4-period full replicate)")
-  if (nchar(type) == 11 | type == "RTT|TRR") txt <- paste(txt, "(partial replicate)")
-  if (type == "RTR|TRT") txt <- paste(txt, "(3-period full replicate)")
+  if (type %in% c("RTR|TRT", "RTT|TRR")) txt <- paste(txt, "(3-period full replicate)")
+  if (nchar(type) == 11) txt <- paste(txt, "(partial replicate)")
   if (type == "RTR|TRR") txt <- paste(txt, "(partial replicate; extra-reference)")
   x <- paste0(Nsub.seq, collapse = "|")
   if (sum(Miss.seq) > 0) x <- c(x, paste0(Miss.seq, collapse = "|"))
