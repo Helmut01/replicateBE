@@ -87,7 +87,12 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 }
 
 \seealso{
-  {\link[replicateBE]{RTRT.TRTR}}, {\link[replicateBE]{RTTR.TRRT}}, {\link[replicateBE]{TRR.RRT}}, {\link[replicateBE]{RTR.TRT}}, {\link[replicateBE]{RRT.RTR.TRR}}, {\link[replicateBE]{RTR.TRR}}
+  4-period full replicates\cr
+  {\link[replicateBE]{RTRT.TRTR}}, {\link[replicateBE]{RTTR.TRRT}}\cr
+  3-period full replicates\cr
+  {\link[replicateBE]{RTR.TRT}}, {\link[replicateBE]{RTT.TRR}}\cr
+  3-period partial replicates\cr
+  {\link[replicateBE]{RRT.RTR.TRR}}, {\link[replicateBE]{RTR.TRR}}
 }
 
 \examples{
