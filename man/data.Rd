@@ -22,7 +22,7 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
   \code{rds07} \tab RRT|RTR|TRR \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   \code{rds08} \tab RTRT|TRTR \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   \code{rds09} \tab RTRT|TRTR \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  \code{rds10} \tab TRR|RTT \tab 18 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
+  \code{rds10} \tab RTT|TRR \tab 18 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
   \code{rds11} \tab RTTR|TRRT \tab 37 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   \code{rds12} \tab RTRT|TRTR \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   \code{rds13} \tab RTRT|TRTR \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr

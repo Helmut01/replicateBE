@@ -3,7 +3,7 @@
 \alias{rds10}
 \docType{data}
 \title{
-Reference Data Set 10 (TRR|RRT)
+Reference Data Set 10 (RRT|TRR)
 }
 
 \description{
@@ -16,7 +16,7 @@ Data set given in Table 9.3.3 of Chow & Liu. 18 subjects.
   \describe{
     \item{\code{subject}}{a factor with 18 levels: 1, 2, \ldots, 18}
     \item{\code{period}}{a factor with 3 levels: 1, 2, 3}
-    \item{\code{sequence}}{a factor with 2 levels: TRR, RTT}
+    \item{\code{sequence}}{a factor with 2 levels: RTT, TRR}
     \item{\code{treatment}}{a factor with 2 levels: R, T}
     \item{\code{PK}}{a numeric vector of pharmacokinetic responses (here AUC)}
   }
@@ -37,12 +37,12 @@ Boca Raton: CRC Press; \ifelse{html}{\out{3<sup>rd</sup>}}{\eqn{3\textsuperscrip
 }
 
 \seealso{
-  {\link[replicateBE]{TRR.RRT}}
+  {\link[replicateBE]{RRT.TRR}}
 }
 
 \examples{
 str(rds10)
-row <- c(1:3, 28:30)
+row <- c(28:30, 1:3)
 rds10[row, ]
 }
 
