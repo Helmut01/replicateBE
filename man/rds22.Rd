@@ -10,7 +10,7 @@ Reference Data Set 22 (RTR|TRR)
 Data set simulated with \ifelse{html}{\out{C<sub>wT</sub>}}{\eqn{C\textsubscript}{wT}} = \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} = 40\%, GMR 0.90. 36 subjects.
 }
 
-\usage{rds21}
+\usage{rds22}
 \format{
   A data frame with 108 observations on the following 5 variables:
   \describe{
