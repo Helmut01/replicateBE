@@ -3,7 +3,7 @@
 \alias{TRR.RRT}
 \docType{data}
 \title{
-Reference Data Sets for TRR|RTT Replicate Designs
+Reference Data Sets for TRR|RRT Replicate Designs
 }
 
 \description{
@@ -22,6 +22,10 @@ Data set from the literature to be evaluated by \code{method.A()}, \code{method.
   \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
   \code{rds10} \tab Chow & Liu \tab AUC data given in Table 9.3.3.
   }
+}
+
+\note{
+Since T is not administered in all periods, lacking period effects must be assumed. In the presence of a \emph{true} period effect the treatment comparison will be biased. Hence, this design is not recommended.
 }
 
 \references{

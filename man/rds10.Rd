@@ -27,7 +27,8 @@ Balanced (9 subjects in both sequences) and complete. No outliers.
 }
 
 \note{
-In analogy to the \acronym{EMA}’s Q&A: Uncertain estimate of \code{CVwR} since less than 12 subjects in sequence TRR.
+In analogy to the \acronym{EMA}’s Q&A: Uncertain estimate of \code{CVwR} since less than 12 subjects in sequence TRR.\cr
+Since T is not administered in all periods, lacking period effects must be assumed. In the presence of a \emph{true} period effect the treatment comparison will be biased. Hence, this design is not recommended.
 }
 
 \source{

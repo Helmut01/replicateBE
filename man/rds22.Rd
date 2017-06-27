@@ -27,7 +27,11 @@ Balanced (18 subjects in each of the sequences) and complete (no missing data). 
 }
 
 \note{
-This is an extra-reference design (partial replicate). Contrary to the common partial replicate RRT|RTR|TRR lacking period effects have to be \emph{assumed} (since T is not administered in the \ifelse{html}{\out{3<sup>rd</sup>}}{\eqn{3\textsuperscript}{red}} period). This design should be avoided.
+This partial replicate design is also known as the \sQuote{extra-reference design}. Since T is not administered in all periods, lacking period effects must be assumed. In the presence of a \emph{true} period effect the treatment comparison will be biased. Hence, this design is not recommended.
+}
+
+\author{
+Helmut \enc{Schütz}{Schuetz}
 }
 
 \references{
