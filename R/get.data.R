@@ -137,22 +137,18 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
   type  <- paste0(seqs, collapse="|")
   pers  <- unique(as.integer(data$period)) # Periods
   Npers <- length(pers)                    # Number of periods
-  if (nchar(type) == 9) {  # 4-period full replicate design
+  if (nchar(type) == 9) {  # 4-period full replicate designs
     if (Npers != 4) stop("4 periods required in this full replicate design.")
     if (Nseqs != 2) stop("2 sequences required in this full replicate design.")
   }
   if (nchar(type) == 7) {  # 3-period replicates
-    if (type == "RTR|TRT") {
+    if (type %in% c("RTR|TRT", "RTT|TRR")) {
       if (Npers != 3) stop("3 periods required in this full replicate design.")
       if (Nseqs != 2) stop("2 sequences required in this full replicate design.")
     }
     if (type == "RTR|TRR") {
       if (Npers != 3) stop("3 periods required in the extra-reference design.")
       if (Nseqs != 2) stop("2 sequences required in the extra-reference design.")
-    }
-    if (type == "RTT|TRR") {
-      if (Npers != 3) stop("3 periods required in this partial replicate design.")
-      if (Nseqs != 2) stop("2 sequences required in this partial replicate design.")
     }
   }
   if (nchar(type) == 11) { # 3-sequence partial replicate

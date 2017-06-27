@@ -105,10 +105,10 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                 "\nConfidence interval: ", sprintf("%6.2f%% ... %.2f%%",
                 res$"CI.lo(%)", res$"CI.hi(%)"), " (", res$BE, ")",
                 "\nPoint estimate     : ", sprintf("%6.2f%%", res$"PE(%)"))
-  if (res$Design %in% c("RRT|TRR", "RTR|TRR")) {
-    txt <- paste0(txt, "\nNote: This design assumes lacking period effects. ",
-                       "The treatment comparison",
-                       "\nwill be biased in the presence of a true period effect.")
+  if (res$Design == "RTR|TRR") {
+    txt <- paste0(txt, "\nNote: The extra-reference design assumes lacking period effects. ",
+                  "The treatment\ncomparison will be biased in the presence of a ",
+                  "true period effect.")
   }
   txt <- paste0(txt, "\n")
   if (print & overwrite) {
