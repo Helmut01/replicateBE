@@ -6,6 +6,7 @@ Published on GitHub 2017-06-25
       within data().
     - Changed the names of result files reflecting the Method used
       rather the internals (lme/lmer).
+    - Changed TRR.RTT to RTT.TRR for consistancy (R always first).
 Version 1.0.5
 Released to collaborators 2017-06-24
     - Unified data sets, updated man-pages, and changed which.data():
