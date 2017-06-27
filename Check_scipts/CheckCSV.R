@@ -1,8 +1,8 @@
-########################################
-# Scripts to check internal reference  #
-# data sets imported from CSV-files.   #
-########################################
-sets    <- 1:21
+#######################################
+# Scripts to check internal reference #
+# data sets imported from CSV-files.  #
+#######################################
+sets    <- 1:22
 set     <- sprintf("%02i", sets)
 path.in <- paste0(find.package("replicateBE"), "/extdata/") # example files
 ### ABE ###
