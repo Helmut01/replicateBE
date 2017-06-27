@@ -1,6 +1,3 @@
----
-output: html_document
----
 # replicateBE
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
