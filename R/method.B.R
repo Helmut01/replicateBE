@@ -229,6 +229,11 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                   "\nPoint estimate     : ", res$GMR.new,
                   "\nOverall conclusion : ", res$BE.new)
   }
+  if (res$Design %in% c("RRT|TRR", "RTR|TRR")) {
+    txt <- paste0(txt, "\nNote: This design assumes lacking period effects. ",
+                  "The treatment comparison",
+                  "\nwill be biased in the presence of a true period effect.")
+  }
   txt <- paste0(txt, "\n")
   if (print & overwrite) {
     res.file <- file(description=results, open="ab")
