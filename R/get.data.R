@@ -121,7 +121,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
   } # end of reading external data
   # generate variables for internal data based on MD5 hash
   # 2nd condition: Otherwise, the header from a CSV file will be overwritten
-  if (!is.null(data) & missing(ext)) {
+  if (!is.null(data) | missing(ext)) {
     id    <- which.data(data)
     md5   <- digest::digest(data)
     file  <- id[id$checksum == md5, "file"]

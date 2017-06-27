@@ -17,7 +17,7 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   results  <- paste0(ret$res.file, "_MethodA.txt")
   # generate variables for internal data based on MD5 hash
   # 2nd condition: Otherwise, the header from a CSV file will be overwritten
-  if (!is.null(data) & missing(ext)) {
+  if (!is.null(data) | missing(ext)) {
     id    <- which.data(data)
     md5   <- digest::digest(data)
     file  <- id[id$checksum == md5, "file"]
