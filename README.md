@@ -1,3 +1,6 @@
+---
+output: html_document
+---
 # replicateBE
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
@@ -28,11 +31,11 @@ Tested designs
 - 4-period (full) replicates
   - RTRT | TRTR
   - RTTR | TRRT
-- 3-period (full) replicates
+- 3-period (full) replicate
   - RTR | TRT
-  - TRR | RRT (_not recommended_)
 - 3-period (partial) replicates
   - RRT | RTR | TRR
+  - RRT | TRR (_not recommended_)
   - RTR | TRR (extra-reference design; _not recommended_)
 
 **Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.**
