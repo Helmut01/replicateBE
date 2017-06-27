@@ -213,9 +213,15 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
         if (ret$type == "RTR|TRT")     des <- "2x2x3"
         if (ret$type == "RRT|RTR|TRR") des <- "2x3x3"
         if (print) {
-          adj <- capture.output(PowerTOST::scABEL.ad(theta0=PE, CV=ret$CVwR,
-                                          design=des, n=ret$Sub.Seq,
-                                          alpha.pre=alpha, details=TRUE))
+          if (ret$type != "RTR|TRT") {
+            adj <- capture.output(scABEL.ad(theta0=PE, CV=ret$CVwR,
+                                            design=des, n=ret$Sub.Seq,
+                                           alpha.pre=alpha, details=TRUE))
+          } else {
+            adj <- capture.output(scABEL.ad(theta0=PE, CV=ret$CVwR,
+                                            design=des, n=rev(ret$Sub.Seq),
+                                            alpha.pre=alpha, details=TRUE))
+          }
           txt <- paste0("\nSim\u2019s based on ANOVA; ",
                         "1,000,000 studies in each iteration simulated.",
                         "\n", substr(adj[18], 1, 39), "\n", adj[20])
@@ -231,8 +237,14 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
             close(res.file)
           }
         } else { # to console
-          scABEL.ad(theta0=PE, CV=ret$CVwR, design=des, n=ret$Sub.Seq,
-                    alpha.pre=alpha, details=TRUE)
+          if (ret$type != "RTR|TRT") {
+            scABEL.ad(theta0=PE, CV=ret$CVwR, design=des, n=ret$Sub.Seq,
+                     alpha.pre=alpha, details=TRUE)
+          } else { # reverse the order of subj/seq for the RTR|RTR design
+            scABEL.ad(theta0=PE, CV=ret$CVwR, design=des, n=rev(ret$Sub.Seq),
+                      alpha.pre=alpha, details=TRUE)
+
+          }
         }
       } else {
         message("PE must be within 80.00-125.00% for the assessment of the Type I Error.")

@@ -7,6 +7,11 @@ Published on GitHub 2017-06-25
     - Changed the names of result files reflecting the Method used
       rather the internals (lme/lmer).
     - Changed TRR.RTT to RTT.TRR for consistancy (R always first).
+    - In PowerTOST T is always first. The order is only relevant in
+      method.A(..., adjust=TRUE) and an unbalanced RTR|TRT-design.
+      In this case the order of subjects/sequence is reversed in
+      calling scABEL(...,  n=rev(ret$Sub.Seq)). THX to Detlew for
+      discovering this bug.
 Version 1.0.5
 Released to collaborators 2017-06-24
     - Unified data sets, updated man-pages, and changed which.data():
