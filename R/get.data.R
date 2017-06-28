@@ -1,8 +1,8 @@
-#####################################
-# Get the data from the file or     #
-# internal data and generate output #
-# common to all methods.            #
-#####################################
+#################################
+# Get the data from the file or #
+# internal data and generate    #
+# output common to all methods. #
+#################################
 get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
                      header = 0, na = ".", sep = ",", dec=".",
                      logtrans=TRUE, print, plot.bxp, data) {
@@ -119,17 +119,14 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     if (sum(!unique(data$treatment) %in% c("R", "T")) !=0)
       stop("treatments must be given as \'R\' and \'T\'.")
   } # end of reading external data
-  # generate variables for internal data based on MD5 hash
+  # generate variables based on the attribute
   # 2nd condition: Otherwise, the header from a CSV file will be overwritten
-  if (!is.null(data) | missing(ext)) {
-    #browser()
-    #info  <- info.data(data)
-    id    <- which.data(data)
-    md5   <- digest::digest(data)
-    file  <- id[id$checksum == md5, "file"]
-    set   <- id[id$checksum == md5, "set"]
-    ref   <- id[id$checksum == md5, "ref"]
-    descr <- id[id$checksum == md5, "descr"]
+  if (!is.null(data) & missing(ext)) {
+    info  <- info.data(data)
+    file  <- info$file
+    set   <- info$set
+    ref   <- info$ref
+    descr <- info$descr
     if (print) res.file <- paste0(path.out, file, set, "_ABEL")
     if (plot.bxp) png.path <- paste0(path.out, "/", file, set, "_boxplot.png")
   }

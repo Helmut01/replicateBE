@@ -1,6 +1,8 @@
 \encoding{utf-8}
 \name{RTR.TRT}
 \alias{RTR.TRT}
+\alias{rds03}
+\alias{rds17}
 \docType{data}
 \title{
 Reference data sets for RTR|TRT full replicate designs

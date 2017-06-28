@@ -18,16 +18,14 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                      which(strsplit(ret$res.file, "")[[1]]=="_")),
                      "ABE.txt")
   }
-  # generate variables for internal data based on MD5 hash
+  # generate variables based on the attribute
   # 2nd condition: Otherwise, the header from a CSV file will be overwritten
   if (!is.null(data) | missing(ext)) {
-    #browser()
-    #info  <- info.data(data)
-    id    <- which.data(data)
-    md5   <- digest::digest(data)
-    file  <- id[id$checksum == md5, "file"]
-    set   <- id[id$checksum == md5, "set"]
-    descr <- id[id$checksum == md5, "descr"]
+    info  <- info.data(data)
+    file  <- info$file
+    set   <- info$set
+    ref   <- info$ref
+    descr <- info$descr
     ext   <- ""
   }
   logtrans <- ret$transf

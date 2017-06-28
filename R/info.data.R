@@ -35,18 +35,11 @@ info.data <- function(data = NULL) {
   set      <- sprintf("%02i", 1:sets)
   ref      <- paste0("rds", set)
   id       <- data.frame(file, set, ref, descr, stringsAsFactors = FALSE)
-  which.ds <- function(data) {
-    name <- as.character(substitute(data))
-    ds   <- as.integer(substr(name, 4, 5))
-    if (ds < 1 | ds > sets) stop("Failed to identify the internal data set.")
-    res  <- data.frame(name, ds, stringsAsFactors = FALSE)
-    return(res)
-  }
-  set <- which.ds(data) # returns "data" and - obviously - NA
-  if (!set$name %in% ref) {
+  act      <- attr(data, "rset")
+  if (!act %in% ref) {
     info <- NULL
   } else {
-    info <- id[set$ds, ]
+    info <- id[as.integer(substr(act, 4, 5)), ]
   }
   return(info)
 }

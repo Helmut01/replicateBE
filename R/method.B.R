@@ -20,14 +20,14 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   # Add description of the degrees of freedom to the result file
   results  <- paste0(ret$res.file, "_MethodB",
                      ifelse(option == 2, "_DF_GL", "_DF_Satt"), ".txt")
-  # generate variables for internal data based on MD5 hash
+  # generate variables based on the attribute
   # 2nd condition: Otherwise, the header from a CSV file will be overwritten
   if (!is.null(data) | missing(ext)) {
-    id    <- which.data(data)
-    md5   <- digest::digest(data)
-    file  <- id[id$checksum == md5, "file"]
-    set   <- id[id$checksum == md5, "set"]
-    descr <- id[id$checksum == md5, "descr"]
+    info  <- info.data(data)
+    file  <- info$file
+    set   <- info$set
+    ref   <- info$ref
+    descr <- info$descr
     ext   <- ""
   }
   logtrans <- ret$transf

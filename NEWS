@@ -18,6 +18,10 @@ Published on GitHub 2017-06-25
     - method.A(adjust=TRUE) assesses) additionaly the TIE based on
       the recalculated CVwR (if applicable).
     - Man pages reworked. [DL]
+    - identify internal data sets bbased on their attribute. Use
+      info.data(). THX to Detlew. which.data() removed.
+    - Had to introduce aliases for all data sets. Otherwise, warnings
+      in CHECK about undocumented objects.
 Version 1.0.5
 Released to collaborators 2017-06-24
     - Unified data sets, updated man-pages, and changed which.data():

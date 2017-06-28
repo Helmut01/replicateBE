@@ -1,6 +1,9 @@
 \encoding{utf-8}
 \name{RRT.RTR.TRR}
 \alias{RRT.RTR.TRR}
+\alias{rds02}
+\alias{rds04}
+\alias{rds07}
 \docType{data}
 \title{
 Reference Data Sets for RRT|RTR|TRR (partial) Replicate Designs

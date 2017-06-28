@@ -1,6 +1,18 @@
 \encoding{utf-8}
 \name{RTRT.TRTR}
 \alias{RTRT.TRTR}
+\alias{rds01}
+\alias{rds06}
+\alias{rds08}
+\alias{rds09}
+\alias{rds12}
+\alias{rds13}
+\alias{rds14}
+\alias{rds15}
+\alias{rds18}
+\alias{rds19}
+\alias{rds20}
+\alias{rds21}
 \docType{data}
 \title{
 Reference Data Sets for RTRT|TRTR Designs

@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.md$
-Check_scipts
+^GitHubIcon.ico$
+Check_scripts
 .Rhistory
 .RData
