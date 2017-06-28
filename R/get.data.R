@@ -7,6 +7,10 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
                      header = 0, na = ".", sep = ",", dec=".",
                      logtrans=TRUE, print, plot.bxp, data) {
   graphics.off()
+  if(!is.null(data) & length(paste0(set, file, ext)) > 0) {
+    cat("Both file for input and data specified; file will be used.\n")
+    data <- NULL
+  }
   if (is.null(data)) { # check only external data
     if (is.null(path.in) | missing(path.in)) {
       setwd("~/")
