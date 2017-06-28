@@ -1,0 +1,52 @@
+###########################################
+# return information of the internal data #
+# containg variables as required by other #
+# functions. Don't forget to update for   #
+# new reference data sets!                #
+############################################
+info.data <- function(data = NULL) {
+  if (missing(data) | is.null(data)) stop()
+  sets     <- 22
+  descr    <- c("Data set I given by the EMA (Q&A document) available at
+ http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf",
+                "Data set II given by the EMA (Q&A document) available at http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf",
+                "Modified Data set I given by the EMA (Q&A document): Period\u00A03 removed.",
+                "Cmax data of Table II from Patterson SD, Jones B. Viewpoint: observations on scaled average bioequivalence. Pharm Stat. 2012:11(1):1\u20137. doi:10.1002/pst.498",
+                "Cmax data of the Appendix from Metzler CM, Shumaker RC. The Phenytoin Trial is a Case Study of \u2018Individual\u2019 Bioequivalence. Drug Inf J. 1998:32:1063\u201372.",
+                "Modified Data set I given by the EMA (Q&A document): T and R switched.",
+                "Data set simulated with CVwT\u00A0=\u00A0CVwR\u00A0=\u00A035%, GMR\u00A0=\u00A00.90.",
+                "Data set simulated with CVwT\u00A0=\u00A070%, CVwR\u00A0=\u00A00%, CVbT\u00A0=\u00A0CVbR\u00A0=\u00A0150%, GMR\u00A0=\u00A00.85.",
+                "Data set with wide numeric range (based of rds08: Data of last 37 subjects multiplied by 1,000,000).",
+                "Table 9.3.3 (AUC) from: Chow SC, Liu JP. Design and Analysis of Bioavailability and Bioequivalence Studies. Boca Raton: CRC Press: 3rd edition 2009. p275.",
+                "Table 9.6 (Cmax) from: Hauschke D, Steinijans VW, Pigeot I. Bioequivalence Studies in Drug Development. Chichester: John Wiley: 2007. p216. (Drug\u00A017a of the FDA\u2019s bioequivalence study files: available at https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip).",
+                "Data set simulated with extreme intrasubject variability.",
+                "Highly incomplete data set (based of rds08: Approx. 50% of period\u00A04 data deleted).",
+                "Data set simulated with high variability and dropouts as a hazard function growing with period.",
+                "Highly incomplete data set (based of rds08: Approx. 50% of period\u00A04 data are coded as missing '.').",
+                "Drug 14a, Cmax data: MAO inhibitor\u00A0- IR of the FDA\u2019s bioequivalence study files: available at https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip.",
+                "Highly unbalanced data set (based on rds03: 12 subjects in RTR and 7 in TRT).",
+                "Highly incomplete data set (based on rds14: T data of subjects 63\u201378 removed).",
+                "Highly incomplete data set (based on rds18: Data of subjects 63\u201378 removed).",
+                "Highly incomplete data set (based on rds19: Outlier of R (subject\u00A01) introduced: original value \u00D7100).",
+                "Modified Data set I given by the EMA (Q&A document): One extreme result of subjects 45
+& 52 set to NA.",
+                "Data set simulated with CVwT = CVwR\u00A0=\u00A040%, CVbT = CVbR\u00A0=\u00A080%, GMR\u00A0=\u00A00.90.")
+  file     <- rep("DS", sets)
+  set      <- sprintf("%02i", 1:sets)
+  ref      <- paste0("rds", set)
+  id       <- data.frame(file, set, ref, descr, stringsAsFactors = FALSE)
+  which.ds <- function(data) {
+    name <- as.character(substitute(data))
+    ds   <- as.integer(substr(name, 4, 5))
+    if (ds < 1 | ds > sets) stop("Failed to identify the internal data set.")
+    res  <- data.frame(name, ds, stringsAsFactors = FALSE)
+    return(res)
+  }
+  set <- which.ds(data) # returns "data" and - obviously - NA
+  if (!set$name %in% ref) {
+    info <- NULL
+  } else {
+    info <- id[set$ds, ]
+  }
+  return(info)
+}
