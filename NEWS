@@ -12,6 +12,12 @@ Published on GitHub 2017-06-25
       In this case the order of subjects/sequence is reversed in
       calling scABEL(...,  n=rev(ret$Sub.Seq)). THX to Detlew for
       discovering this bug.
+    - Bug-fix: method.A(adjust=TRUE). If CVwR <= 0.3 the regulatory
+      constant is missing in the captured output of scABEL.ad(). In
+      this case all lines have to shifted upwards by 1.
+    - method.A(adjust=TRUE) assesses) additionaly the TIE based on
+      the recalculated CVwR (if applicable).
+    - Man pages reworked. [DL]
 Version 1.0.5
 Released to collaborators 2017-06-24
     - Unified data sets, updated man-pages, and changed which.data():
