@@ -239,7 +239,7 @@ London, 19 November 2015. \href{http://www.ema.europa.eu/docs/en_GB/document_lib
 }
 
 \author{
-Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael Tomashevskiy (simulations in Phoenix/NLME)
+Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael Tomashevskiy (simulations in Phoenix NLME)
 }
 
 \examples{

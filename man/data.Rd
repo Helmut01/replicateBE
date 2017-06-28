@@ -37,7 +37,8 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
   RRT|RTR|TRR \tab partial \tab \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   RTR|TRR  \tab partial \tab \code{rds22} \tab 36 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
-In full replicate designs both R and T are administered twice. In partial replicate only R is administered twice.
+In full replicate designs \emph{both} R and T are administered twice (although not necessarily to \emph{all} subjects).\cr
+In partial replicate designs \emph{only} R is administered twice.
 }
 
 \source{
@@ -98,7 +99,7 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 }
 
 \author{
-Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael Tomashevskiy (simulations in Phoenix/NLME)
+Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael Tomashevskiy (simulations in Phoenix NLME)
 }
 
 \examples{
