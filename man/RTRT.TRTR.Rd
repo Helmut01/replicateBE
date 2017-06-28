@@ -10,20 +10,20 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
 }
 
 \details{
-   \tabular{crcl}{
-  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
-  \code{rds01} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  \code{rds06} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  \code{rds08} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  \code{rds09} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  \code{rds12} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  \code{rds13} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  \code{rds14} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  \code{rds15} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  \code{rds18} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  \code{rds19} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  \code{rds20} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  \code{rds21} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}
+  \tabular{crcl}{
+    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
+    \code{rds01} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds06} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds08} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds09} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds12} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds13} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds14} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds15} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds18} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds19} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds20} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds21} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 }
 
@@ -221,9 +221,9 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
   \code{rds06} \tab \code{rds01} edited \tab T and R switched.\cr
   \code{rds08} \tab R \tab Large simulated data set with slight heteroscedasticity.\cr
   \code{rds09} \tab \code{rds08} \tab Wide numeric range (data of last 37 subjects multiplied by 1,000,000).\cr
-  \code{rds12} \tab Phoenix NLME \tab Simulated data set with extreme intrasubject variability.\cr
+  \code{rds12} \tab \ifelse{html}{\out{Phoenix&nbsp;NLME}}{Phoenix~NLME} \tab Simulated data set with extreme intrasubject variability.\cr
   \code{rds13} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data deleted).\cr
-  \code{rds14} \tab Phoenix NLME \tab Simulated data set with high intrasubject variability and number of dropouts increasing with period.\cr
+  \code{rds14} \tab \ifelse{html}{\out{Phoenix&nbsp;NLME}}{Phoenix~NLME} \tab Simulated data set with high intrasubject variability and number of dropouts increasing with period.\cr
   \code{rds15} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}).\cr
   \code{rds18} \tab \code{rds14} edited \tab Removed T data of subjects 63–78.\cr
   \code{rds19} \tab \code{rds18} edited \tab Removed data of subjects 63–78.\cr
