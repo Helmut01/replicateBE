@@ -1,5 +1,6 @@
 \encoding{utf-8}
 \name{RTRT.TRTR}
+\alias{RTRT.TRTR}
 \docType{data}
 \title{
 Reference Data Sets for RTRT|TRTR Designs

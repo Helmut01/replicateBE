@@ -1,5 +1,6 @@
 \encoding{utf-8}
 \name{RTT.TRR}
+\alias{RTT.TRR}
 \docType{data}
 \title{
 Reference Data Set for RTT|TRR Replicate Designs

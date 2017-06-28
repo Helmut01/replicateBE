@@ -1,11 +1,6 @@
 \encoding{utf-8}
-\name{data}
-\alias{RTRT.TRTR}
-\alias{RTTR.TRRT}
-\alias{RTR.TRT}
-\alias{RTT.TRR}
-\alias{RRT.RTR.TRR}
-\alias{RTR.TRR}
+\name{refdata}
+\alias{data}
 \docType{data}
 
 \title{
