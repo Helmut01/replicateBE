@@ -7,15 +7,20 @@ if (packageDescription("replicateBE")$Version < "1.0.5") {
   } else {
   sets <- 22
   ds <- sprintf("rds%02i", 1:sets)
+  adjust <- FALSE # set to TRUE if you have some spare time
+  ### ABE ###
   for (j in seq_along(ds)) {
     ABE(data=eval(parse(text=ds[j])))
   }
+  ### method.A ###
   for (j in seq_along(ds)) {
-    method.A(ola=TRUE, plot.bxp=TRUE, data=eval(parse(text=ds[j])))
+    method.A(ola=TRUE, plot.bxp=TRUE, adjust=adjust, data=eval(parse(text=ds[j])))
   }
+  ### method.B (option=2) ###
   for (j in seq_along(ds)) {
     method.B(ola=TRUE, data=eval(parse(text=ds[j])))
   }
+  ### method.B (option=1) ###
   for (j in seq_along(ds)) {
     method.B(ola=TRUE, option=1, data=eval(parse(text=ds[j])))
   }
