@@ -14,11 +14,11 @@ Published on GitHub 2017-06-25
       discovering this bug.
     - Bug-fix: method.A(adjust=TRUE). If CVwR <= 0.3 the regulatory
       constant is missing in the captured output of scABEL.ad(). In
-      this case all lines have to shifted upwards by 1.
-    - method.A(adjust=TRUE) assesses) additionaly the TIE based on
+      this case all lines have to be shifted upwards by 1.
+    - method.A(adjust=TRUE) assesses additionally the TIE based on
       the recalculated CVwR (if applicable).
     - Man pages reworked. [DL]
-    - identify internal data sets bbased on their attribute. Use
+    - Identify internal data sets based on their attribute. Uses now
       info.data(). THX to Detlew. which.data() removed.
     - Had to introduce aliases for all data sets. Otherwise, warnings
       in CHECK about undocumented objects.
@@ -26,7 +26,8 @@ Version 1.0.5
 Released to collaborators 2017-06-24
     - Unified data sets, updated man-pages, and changed which.data():
       'ref' => 'rds'. Warnings in CHECK: 'rdsXX' not found.
-    - Still unresolved: method.B(option=1) can't print to file with internal data.
+    - Still unresolved: method.B(option=1) can't print to file with internal
+      data.
 Version 1.0.4
 Released to collaborators 2017-06-23
     - Working on \data and the documentation. All data sets observe the
@@ -37,7 +38,7 @@ Released to collaborators 2017-06-23
     - Q: A user calls foo(path.in=path.in, ...) but the variable 'path.in'
       is not defined before. Gives "object 'path.in' not found in CV.calc()"
       line 13. Line 10 does not help.
-    - Bug fix: If the specified file is not found in 'path.in' the file
+    - Bug-fix: If the specified file is not found in 'path.in' the file
       browser opens. Q: How to start the search at the home folder? Lines 70/71
       and 92/93 in get.data(R) don't work as intended.
     - Added argument 'data=NULL' (default NULL) to top-level functions.
@@ -59,7 +60,7 @@ Released to collaborators 2017-06-23
       file "DS", set ("01", ... "XX"), ref ("refXX"), descr.
       Used in get.data() to obtain required variables of the currently
       attached internal data set based on its MD5-checksum.
-    - Bug fix: If 'descr' was read from an external file and the code stopped
+    - Bug-fix: If 'descr' was read from an external file and the code stopped
       for data not matching the id in which.data().
     - Warning in man-pages: Header must not contain the word 'subject'.
 Version 1.0.3
@@ -207,7 +208,7 @@ Released to collaborators 2016-12-09
 
 Version 0.7
 Released to collaborators and beta-tester Jiri Hofmann 2016-12-07
-    - Bug fix in BE-assessment corrected (testing both res$CI and res$GMR
+    - Bug-fix in BE-assessment corrected (testing both res$CI and res$GMR
       instead of unique().
     - Bug in the calculation of Nsub.seq! DA12 (with N=77) gives 149 in
       both sequences.

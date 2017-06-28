@@ -266,11 +266,14 @@ method.A(adjust = TRUE, data = rds01)}
 # Should give in the result file:
 #   TIE not > nominal alpha; no adjustment of alpha is required.
 #
-# Assess the Type I Error and iteratively adjust alpha if necessary
+# Same with recalculation based on outliers, iteratively adjust alpha if necessary
 # Not run: due to timing policy of CRAN for examples
 \dontrun{
-method.A(adjust = TRUE, data = rds21)} # like rds01 but no outliers; lower CVwR
+method.A(ola = TRUE, adjust = TRUE, data = rds01)}
 # Should give in the result file:
+# Assessment based on original CVwR 46.96%:
+#   TIE not > nominal alpha; no adjustment of alpha is required.
+# Assessment based on recalculated CVwR 32.16%:
 #   Empiric TIE for alpha 0.0500  : 0.07018
 #   Iteratively adjusted alpha    : 0.03342
 #   Empiric TIE for adjusted alpha: 0.05000
