@@ -38,7 +38,7 @@ info.data <- function(data = NULL) {
   which.ds <- function(data) {
     name <- as.character(substitute(data))
     ds   <- as.integer(substr(name, 4, 5))
-    if (is.na(ds) | ds < 1 | ds > sets) stop("Failed to identify the internal data set.")
+    if (ds < 1 | ds > sets) stop("Failed to identify the internal data set.")
     res  <- data.frame(name, ds, stringsAsFactors = FALSE)
     return(res)
   }
