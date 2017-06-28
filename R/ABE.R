@@ -21,6 +21,8 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   # generate variables for internal data based on MD5 hash
   # 2nd condition: Otherwise, the header from a CSV file will be overwritten
   if (!is.null(data) | missing(ext)) {
+    #browser()
+    #info  <- info.data(data)
     id    <- which.data(data)
     md5   <- digest::digest(data)
     file  <- id[id$checksum == md5, "file"]
