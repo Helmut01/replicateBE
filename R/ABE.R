@@ -95,9 +95,7 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                            file, set, ext, exec, data)
       if (os == "Windows") res.str <- gsub("\n", "\r\n", res.str) # CRLF
       if (os == "Darwin")  res.str <- gsub("\n", "\r", res.str)   # CR
-      # Note: Selecting the /first/ element is a workaround!
-      # Don't know why /two/ are returned for the internal rds03.
-      writeBin(charToRaw(res.str[1]), res.file)
+      writeBin(charToRaw(res.str), res.file)
       close(res.file)
     }
   }

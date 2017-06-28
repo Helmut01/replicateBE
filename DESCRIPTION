@@ -13,7 +13,7 @@ Maintainer: Helmut Schuetz <helmut.schuetz@bebac.at>
 Description: Functions to perform comparative BA-calculations for the
              EMA's Average Bioequivalence with Expanding Limits (ABEL).
 Imports: readxl (>= 1.0.0), PowerTOST, lmerTest, nlme, graphics, grDevices
-License: GPL (>=2)
+License: GPL (>=3)
 ByteCompile: no
 LazyData: true
 URL: https://github.com/Helmut01/replicateBE

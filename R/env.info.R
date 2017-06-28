@@ -97,7 +97,7 @@ env.info <- function(fun, option=NA, path.in, path.out,
   info <- paste0(info, "\nreplicateBE version: ", sprintf("%-7s", packageVersion("replicateBE")), year)
   info <- paste0(info, "\n", hr,
                        "\nFunction           : CV.calc() exec. ", exec,
-                       "\n  Fixed effects    : sequence + subject(sequence) + period",
+                       "\n  Fixed effects    : sequence, subject(sequence), period",
                        "\n  Data             : treatment = R")
   info <- paste0(info, "\nFunction           : ", fun, "(")
   if (is.na(option)) {
@@ -112,11 +112,11 @@ env.info <- function(fun, option=NA, path.in, path.out,
   }
   info <- paste0(info, " exec. ", exec)
   if (fun == "model.A") {
-    info <- paste0(info, "\n  Fixed effects    : sequence + ",
-                         "subject(sequence) + period + treatment",
+    info <- paste0(info, "\n  Fixed effects    : sequence, ",
+                         "subject(sequence), period, treatment",
                          "\n  Data             : all")
   } else {
-    info <- paste0(info, "\n  Fixed effects    : sequence + period + treatment",
+    info <- paste0(info, "\n  Fixed effects    : sequence, period, treatment",
                          "\n  Random effect    : subject(sequence)",
                          "\n  Data             : all")
   }
