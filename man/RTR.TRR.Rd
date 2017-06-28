@@ -42,7 +42,7 @@ Data set simulated to be evaluated by \code{method.A()}, \code{method.B()}.
 \source{
   \tabular{cll}{
   \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
-    \code{rds22} \code{rds22} \tab R \tab Simulated data set with homoscedasticity.
+    \code{rds22} \tab R \tab Simulated data set with homoscedasticity.
   }
 }
 

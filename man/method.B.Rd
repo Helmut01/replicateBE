@@ -76,7 +76,7 @@ Defaults to \code{FALSE}. If \code{TRUE} the user will be asked whether an alrea
 Only observed if \code{ola=TRUE} and at least one outlier is found. If \code{FALSE} (default) the boxplot will be shown in the graphics device. If \code{TRUE} the boxplot will be saved in \acronym{PNG} format to \code{path.out}.
 }
   \item{data}{
-Internal reference data set (currently \code{ref01} to \code{ref03}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For the use see the examples.\cr
+One of internal reference data sets (\code{rds01} -- \code{rds22}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For the use see the examples.\cr
 Defaults to \code{NULL} (\emph{i.e.}, work with external data).
 }
 }

@@ -64,7 +64,7 @@ Defaults to \code{FALSE}. If \code{TRUE} the ANOVA-table is send to the console.
 Defaults to \code{FALSE}. If \code{TRUE} the user will be asked whether an already existing result file should be overwritten.
 }
   \item{data}{
-Internal reference data set (currently \code{ref01} to \code{ref03}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For the use see the examples.\cr
+One of internal reference data sets (\code{rds01} -- \code{rds22}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For the use see the examples.\cr
 Defaults to \code{NULL} (\emph{i.e.}, work with external data).
 }
 }

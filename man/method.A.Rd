@@ -63,7 +63,8 @@ Defaults to \code{FALSE}. If \code{TRUE}, the function sends its results in 7-di
 }
   \item{adjust}{
 Defaults to \code{FALSE}.\cr
-If \code{TRUE}, the empiric Type I Error is evaluated via simulations (by \code{PowerTOST}’s function \code{scABEL.ad()}). Currently implemented designs are \code{RTRT|TRTR}, \code{RTR|TRT}, and \code{RRT|RTR|TRR}. If the \acronym{TIE} exceeeds the nominal level of the test \code{alpha}, \ifelse{html}{\out{&alpha;}}{\eqn{\alpha}{alpha}} is iteratively adjusted until \acronym{TIE}\code{ = alpha ± 1E-6}.
+If \code{TRUE}, the empiric Type I Error is evaluated via simulations (by \code{PowerTOST}’s function \code{scABEL.ad()}). Currently implemented designs are \code{RTRT|TRTR}, \code{RTR|TRT}, and \code{RRT|RTR|TRR}. If the \acronym{TIE} exceeeds the nominal level of the test \code{alpha}, \ifelse{html}{\out{&alpha;}}{\eqn{\alpha}{alpha}} is iteratively adjusted until \acronym{TIE}\code{ = alpha ± 1E-6}.\cr
+If \code{ola=TRUE} and outlier(s) found which lead to a -- lower -- recalculated \code{CVwr}, the assessment is repeated for its value.
 }
   \item{verbose}{
 Defaults to \code{FALSE}. If \code{TRUE} the ANOVA-table is send to the console. If \code{ola=TRUE} additional information about outliers are shown.
@@ -75,7 +76,7 @@ Defaults to \code{FALSE}. If \code{TRUE} the user will be asked whether an alrea
 Only observed if \code{ola=TRUE} and at least one outlier is found. If \code{FALSE} (default) the boxplot will be shown in the graphics device. If \code{TRUE} the boxplot will be saved in \acronym{PNG} format to \code{path.out}.
 }
   \item{data}{
-Internal reference data set (currently \code{ref01} to \code{ref03}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For the use see the examples.\cr
+One of internal reference data sets (\code{rds01} -- \code{rds22}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For the use see the examples.\cr
 Defaults to \code{NULL} (\emph{i.e.}, work with external data).
 }
 }
