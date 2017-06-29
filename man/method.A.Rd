@@ -259,14 +259,14 @@ print(x, row.names = FALSE)
 \dontrun{
 method.A(adjust = TRUE, data = rds01)}
 # Should give in the result file:
-#      TIE not > nominal 0.05; no adjustment of alpha is required.
+#      TIE not > nominal 0.05; consumer risk is controlled.
 #
 # Same with recalculation based on outliers, iteratively adjust alpha if necessary
 \dontrun{
 method.A(ola = TRUE, adjust = TRUE, data = rds01)}
 # Should give in the result file:
 #    Assessment of empiric Type I Error (TIE) based on original CVwR
-#      TIE not > nominal 0.05; no adjustment of alpha is required.
+#      TIE not > nominal 0.05; consumer risk is controlled.
 #    Assessment of empiric Type I Error (TIE) based on recalculated CVwR
 #      TIE for alpha 0.050000         : 0.07018
 #      TIE for adjusted alpha 0.033416: 0.05000
@@ -285,4 +285,5 @@ method.A(alpha = 0.033416, ola = TRUE, adjust = TRUE, data = rds01)}
 #   Overall conclusion : pass
 #   Assessment of empiric Type I Error (TIE) based on recalculated CVwR
 #     TIE for alpha 0.033416         : 0.05000
+#     TIE not > nominal 0.05; consumer risk is controlled.
 }

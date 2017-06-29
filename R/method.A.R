@@ -226,7 +226,7 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
           txt <- paste0("\n", paste0(rep("\u2500", 68), collapse=""),
                         "\nSim\u2019s based on ANOVA; ",
                         "1,000,000 studies in each iteration simulated.\n")
-          no.infl <- "  TIE not > nominal 0.05; no adjustment of alpha is required.\n"
+          no.infl <- "  TIE not > nominal 0.05; consumer risk is controlled.\n"
           if (!is.na(ret$CVwR.new))
             txt <- paste0(txt, "Assessment of empiric Type I Error (TIE) based on original CVwR\n")
           if (is.na(adj$alpha.adj)) {
@@ -244,13 +244,15 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
             if (is.na(adj1$alpha.adj)) {
               txt <- paste0(txt, no.infl)
             } else {
+              if (alpha)
               txt <- paste0(txt, "  TIE for alpha",
                             sprintf(" %1.6f         : %1.5f",
                                     alpha, adj1$TIE.unadj), "\n")
-              if (round(adj1$TIE.adj, 5) != round(adj1$TIE.unadj, 5)) {
+              if (round(adj1$TIE.adj, 5) != round(adj1$TIE.unadj, 5)) { # this should not happen...
                 txt <- paste0(txt, "  TIE for adjusted alpha",
-                              sprintf(" %1.6f: %1.5f",
-                                      adj1$alpha.adj, adj1$TIE.adj), "\n")
+                              sprintf(" %1.6f: %1.5f", adj1$alpha.adj, adj1$TIE.adj), "\n")
+              } else {
+                txt <- paste0(txt, no.infl)
               }
             }
           } # EO recalculated CVwR
