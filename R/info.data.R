@@ -30,7 +30,7 @@ info.data <- function(data = NULL) {
                 "Highly incomplete data set (based on rds19: Outlier of R (subject\u00A01) introduced: original value \u00D7100).",
                 "Modified Data set I given by the EMA (Q&A document): One extreme result of subjects 45
 & 52 set to NA.",
-                "Data set simulated with CVwT = CVwR\u00A0=\u00A040%, CVbT = CVbR\u00A0=\u00A080%, GMR\u00A0=\u00A00.90.")
+                "Data set simulated with CVwT = CVwR\u00A0=\u00A045%, CVbT = CVbR\u00A0=\u00A0100%, GMR\u00A0=\u00A00.90.")
   file     <- rep("DS", sets)
   set      <- sprintf("%02i", 1:sets)
   ref      <- paste0("rds", set)
