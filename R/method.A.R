@@ -1,7 +1,7 @@
-################################################
-# EMA's 'Method A' (ANOVA)                     #
-# fixed: sequence, subjects, period, treatment #
-################################################
+#########################################################
+# EMA's 'Method A' (ANOVA)                              #
+# fixed: sequence, subject(sequence), period, treatment #
+#########################################################
 method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                      file, set, ext, header = 0, na = ".", sep = ",",
                      dec = ".", logtrans = TRUE, ola = FALSE,
@@ -213,65 +213,48 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
         if (ret$type == "RRT|RTR|TRR") des <- "2x3x3"
         if (print) {
           if (ret$type != "RTR|TRT") {
-            adj <- capture.output(scABEL.ad(theta0=PE, CV=ret$CVwR,
-                                            design=des, n=ret$Sub.Seq,
-                                            alpha.pre=alpha, details=TRUE))
-            if (!is.na(ret$CVwR.new)) { # 2nd run for recalculated CVwR
-              adj1 <- capture.output(scABEL.ad(theta0=PE, CV=ret$CVwR.new,
-                                              design=des, n=ret$Sub.Seq,
-                                              alpha.pre=alpha, details=TRUE))
-            }
-          } else { # reverse order of subjects/sequence (in PowerTOST T comes 1st)
-            adj <- capture.output(scABEL.ad(theta0=PE, CV=ret$CVwR,
-                                            design=des, n=rev(ret$Sub.Seq),
-                                            alpha.pre=alpha, details=TRUE))
-            if (!is.na(ret$CVwR.new)){ # 2nd run for recalculated CVwR
-              adj1 <- capture.output(scABEL.ad(theta0=PE, CV=ret$CVwR.new,
-                                               design=des, n=ret$Sub.Seq,
-                                               alpha.pre=alpha, details=TRUE))
-            }
+            n.seq <- ret$Sub.Seq
+          } else { # reverse the order (in PowerTOST T comes first)
+            n.seq <- rev(ret$Sub.Seq)
+          }
+          adj <- scABEL.ad(theta0=PE, CV=ret$CVwR, design=des,
+                           n=n.seq, alpha.pre=alpha, print=FALSE)
+          if (!is.na(ret$CVwR.new)) { # 2nd run for recalculated CVwR
+            adj1 <- scABEL.ad(theta0=PE, CV=ret$CVwR.new, design=des,
+                              n=n.seq, alpha.pre=alpha, print=FALSE)
           }
           txt <- paste0("\n", paste0(rep("\u2500", 68), collapse=""),
                         "\nSim\u2019s based on ANOVA; ",
                         "1,000,000 studies in each iteration simulated.\n")
+          no.infl <- "  TIE not > nominal 0.05; no adjustment of alpha is required.\n"
           if (!is.na(ret$CVwR.new))
-            txt <- paste0(txt, "Assessment based on original CVwR",
-                          sprintf(" %.2f%%", 100*ret$CVwR), ":\n")
-          if (ret$CVwR <= 0.3) { # regulatory constant /not/ returned!
-            if (adj[19] == "TIE not > nominal alpha; no adjustment of alpha is required.") {
-              txt <- paste0(txt, "  ", adj[19], "\n")
-            } else {
-              txt <- paste0(txt, "  ", substr(adj[17], 1, 39), "\n")
-              txt <- paste0(txt, "  ", adj[19], "\n", "  ", adj[20], "\n")
-            }
+            txt <- paste0(txt, "Assessment of empiric Type I Error (TIE) based on original CVwR\n")
+          if (is.na(adj$alpha.adj)) {
+            txt <- paste0(txt, no.infl)
           } else {
-            if (adj[20] == "TIE not > nominal alpha; no adjustment of alpha is required.") {
-              txt <- paste0(txt, "  ", adj[20], "\n")
-            } else {
-              txt <- paste0(txt, "  ", substr(adj[18], 1, 39), "\n")
-              txt <- paste0(txt, "  ", adj[20], "\n", "  ", adj[21], "\n")
-            }
+            txt <- paste0(txt, "  TIE for alpha",
+                          sprintf(" %1.6f         : %1.5f",
+                                  alpha, adj$TIE.unadj), "\n")
+            txt <- paste0(txt, "  TIE for adjusted alpha",
+                          sprintf(" %1.6f: %1.5f",
+                                  adj$alpha.adj, adj$TIE.adj), "\n")
           } # EO orginal CVwR
-          if (!is.na(ret$CVwR.new)) { # additional for recalculated CVwR
-            txt <- paste0(txt, "Assessment based on recalculated CVwR",
-                          sprintf(" %.2f%%", 100*ret$CVwR.new), ":\n")
-            if (ret$CVwR.new <= 0.3) { # regulatory constant /not/ returned!
-              if (adj1[19] == "TIE not > nominal alpha; no adjustment of alpha is required.") {
-                txt <- paste0(txt, "  ", adj1[19], "\n")
-              } else {
-                txt <- paste0(txt, "  ", substr(adj1[17], 1, 39), "\n")
-                txt <- paste0(txt, "  ", adj1[19], "\n", "  ", adj1[20], "\n")
-              }
+          if (!is.na(ret$CVwR.new)) {
+            txt <- paste0(txt, "Assessment of empiric Type I Error (TIE) based on recalculated CVwR\n")
+            if (is.na(adj1$alpha.adj)) {
+              txt <- paste0(txt, no.infl)
             } else {
-              if (adj1[20] == "TIE not > nominal alpha; no adjustment of alpha is required.") {
-                txt <- paste0(txt, "  ", adj1[20], "\n")
-              } else {
-                txt <- paste0(txt, "  ", substr(adj1[18], 1, 39), "\n")
-                txt <- paste0(txt, "  ", adj1[20], "\n", "  ", adj1[21], "\n")
+              txt <- paste0(txt, "  TIE for alpha",
+                            sprintf(" %1.6f         : %1.5f",
+                                    alpha, adj1$TIE.unadj), "\n")
+              if (round(adj1$TIE.adj, 5) != round(adj1$TIE.unadj, 5)) {
+                txt <- paste0(txt, "  TIE for adjusted alpha",
+                              sprintf(" %1.6f: %1.5f",
+                                      adj1$alpha.adj, adj1$TIE.adj), "\n")
               }
             }
-          }
-         if (overwrite) {
+          } # EO recalculated CVwR
+          if (overwrite) {
             res.file <- file(results, open="ab")
             res.str  <- txt # UNIXes LF
             if (os == "Windows") res.str <- gsub("\n", "\r\n", res.str) # CRLF

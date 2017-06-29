@@ -264,17 +264,28 @@ print(x, row.names = FALSE)
 \dontrun{
 method.A(adjust = TRUE, data = rds01)}
 # Should give in the result file:
-#   TIE not > nominal alpha; no adjustment of alpha is required.
+#   TIE not > nominal 0.05; no adjustment of alpha is required.
 #
 # Same with recalculation based on outliers, iteratively adjust alpha if necessary
-# Not run: due to timing policy of CRAN for examples
 \dontrun{
 method.A(ola = TRUE, adjust = TRUE, data = rds01)}
 # Should give in the result file:
-# Assessment based on original CVwR 46.96%:
-#   TIE not > nominal alpha; no adjustment of alpha is required.
-# Assessment based on recalculated CVwR 32.16%:
-#   Empiric TIE for alpha 0.0500  : 0.07018
-#   Iteratively adjusted alpha    : 0.03342
-#   Empiric TIE for adjusted alpha: 0.05000
+# Assessment of empiric Type I Error (TIE) based on original CVwR
+#   TIE not > nominal 0.05; no adjustment of alpha is required.
+# Assessment of empiric Type I Error (TIE) based on recalculated CVwR
+#   TIE for alpha 0.033416         : 0.05000
+# Repeat the evaluation with the adjusted alpha
+\dontrun{
+method.A(method.A(alpha = 0.033416, ola = TRUE, adjust = TRUE, data = rds01)}
+# Should give in the result file:
+#  alpha              : 0.033416 (93.3168\% CI)
+#  Confidence interval: 106.16\% ... 126.00\% (pass)
+#  Point estimate     : 115.66\% (pass)
+#  Overall conclusion : pass
+#  Assessment based on recalculated CVwR 32.16\%
+#  Confidence interval: pass
+#  Point estimate     : pass
+#  Overall conclusion : pass
+#  Assessment of empiric Type I Error (TIE) based on recalculated CVwR
+#    TIE for alpha 0.033416         : 0.05000
 }
