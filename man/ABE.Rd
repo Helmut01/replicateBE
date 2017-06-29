@@ -31,7 +31,7 @@ Name of the data set for import (\emph{without} extension).
 Name of the sheet of an Excel-file.
 }
   \item{ext}{
-File-extension. Acceptable are \code{"CSV"} or \code{"csv"} for character-separated variables (\acronym{CSV}) and \code{"XLS"}, \code{"xls"}, \code{"XLXS"}, and \code{"xlsx"} for Excel-files.
+File-extension. Acceptable are \code{"CSV"} or \code{"csv"} for character-separated variables (\acronym{CSV}) and \code{"XLS"}, \code{"xls"}, \code{"XLXS"}, and \code{"xlxs"} for Excel-files.
 }
   \item{header}{
 If an Excel-sheet contains an explanatory header, the number of rows to skip (\emph{e.g.,}
@@ -74,20 +74,15 @@ The model for the treatment comparison is\cr
 where all effects are fixed.\cr\cr
 Supported designs:
   \itemize{
-    \item 4-period 2-sequence full replicates:
-      \tabular{rcl}{
-        \code{RTRT} \tab \code{|} \tab \code{TRTR}\cr
-        \code{RTTR} \tab \code{|} \tab \code{TRRT}
-      }
-    \item 3-period 2-sequence full replicates:
-      \tabular{rcl}{
-        \code{RTR} \tab \code{|} \tab \code{TRT}\cr
-        \code{RTT} \tab \code{|} \tab \code{TRR}
-      }
-    \item 3-period 3-sequence (aka partial) replicate:
-      \tabular{rcccl}{
-        \code{RRT} \tab \code{|} \tab \code{RTR} \tab \code{|} \tab \code{TRR}
-      }
+    \item 4-period 2-sequence full replicates:\cr
+      \code{RTRT | TRTR}\cr
+      \code{RTTR | TRRT}
+    \item 3-period 2-sequence full replicates:\cr
+      \code{RTR | TRT}\cr
+      \code{RTT | TRR}
+    \item 3-period (partial) replicates:\cr
+      \code{RRT | RTR | TRR}\cr
+      \code{TRT | TRT } (extra-reference design)
   }
 }
 \value{
