@@ -42,7 +42,7 @@ Data sets from the literature to be evaluated by \code{method.A()}, \code{method
             \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
             \code{sequence} \tab a factor with 2 levels: RTTR, TRRT\cr
             \code{treatment} \tab a factor with 2 levels: R, T\cr
-            \code{PK} a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
           }
           Balanced (13 subjects in both sequences) and complete. No outliers.\cr\cr
           In the source evaluated by SAS for the FDA’s mixed effects model (\sQuote{Method C}; \strong{not} acceptable for the \acronym{EMA}). Reported results:
@@ -63,7 +63,7 @@ Data sets from the literature to be evaluated by \code{method.A()}, \code{method
             \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
             \code{sequence} \tab a factor with 2 levels: RTTR, TRRT\cr
             \code{treatment} \tab a factor with 2 levels: R, T\cr
-            \code{PK} a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
           }
           Unbalanced (19 subjects in sequence RTTR and 18 in TRRT) and complete. No outliers.\cr\cr
           In the source evaluated by the FDA's mixed effects model (\sQuote{Method C}; \strong{not} acceptable for the \acronym{EMA}). Reported results:
@@ -82,7 +82,7 @@ Data sets from the literature to be evaluated by \code{method.A()}, \code{method
             \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
             \code{sequence} \tab a factor with 2 levels: RTTR, TRRT\cr
             \code{treatment} \tab a factor with 2 levels: R, T\cr
-            \code{PK} a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
           }
           Unbalanced (20 subjects in sequence RTTR and 18 in TRRT) and complete. No outliers.
       }
