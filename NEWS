@@ -17,8 +17,8 @@ Published on GitHub 2017-06-25
     - Man pages reworked. [DL]
     - Identify internal data sets based on their attribute. Uses now
       info.data(). THX to Detlew. which.data() removed.
-    - Introduced aliases for all data sets. Otherwise, warnings in
-      CHECK about undocumented objects.
+    - Introduced aliases in man pages for all data sets. Otherwise, warnings
+      in CHECK about undocumented objects.
 Version 1.0.5
 Released to collaborators 2017-06-24
     - Unified data sets, updated man-pages, and changed which.data():
