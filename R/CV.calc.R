@@ -60,25 +60,30 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
           png(ret$png.path, width=720, height=720, pointsize=18)
         }
       }
-      bxp(bp1, xlim=c(0, 3), ylim=c(-1, 1)*max(abs(ol.value1)), las=1, cex.main=1,
+      bxp(bp1, xlim=c(0, 3), ylim=c(-1, 1)*max(abs(c(ol.value1, ol.value2))),
+          las=1, cex.main=1,
           main=paste0("EMA\u2019s model for CVwR:",
                       "\nlog(response) ~ sequence + subject(sequence) + period;",
                       " data = R"), ylab="residual", pars=pars)
       mtext("studentized\n(R, SAS)", 1, line=2.25, at=1)
       text(rep(1.1, 2), bp1$stats[c(1, 5)], adj=c(0, 0.25), cex=0.8,
            sprintf("%+.3f", bp1$stats[c(1, 5)]))
-      text(rep(0.9, length(ol.value1)), ol.value1, adj=c(1, 0.25), cex=0.8,
-           paste0("# ", ol.subj1, " (", ol.seq1, ")"))
-      text(rep(1.1, length(ol.value1)), ol.value1, adj=c(0, 0.25), cex=0.8,
-           sprintf("%+.3f", ol.value1))
+      if (!identical(ol.value1, numeric(0))) { # only if stud. outlier
+        text(rep(0.9, length(ol.value1)), ol.value1, adj=c(1, 0.25), cex=0.8,
+             paste0("# ", ol.subj1, " (", ol.seq1, ")"))
+        text(rep(1.1, length(ol.value1)), ol.value1, adj=c(0, 0.25), cex=0.8,
+             sprintf("%+.3f", ol.value1))
+      }
       bxp(bp2, axes=FALSE, at=2, add=TRUE, pars=pars)
       mtext("standardized\n(R, SAS, Phoenix WinNonlin)", 1, line=2.25, at=2)
       text(rep(2.1, 2), bp2$stats[c(1, 5)], adj=c(0, 0.25), cex=0.8,
            sprintf("%+.3f", bp2$stats[c(1, 5)]))
-      text(rep(1.9, length(ol.value2)), ol.value2, adj=c(1, 0.25), cex=0.8,
-           paste0("# ", ol.subj2, " (", ol.seq2, ")"))
-      text(rep(2.1, length(ol.value2)), ol.value2, adj=c(0, 0.25), cex=0.8,
-           sprintf("%+.3f", ol.value2))
+      if (!identical(ol.value2, numeric(0))) { # only if stand. outlier
+        text(rep(1.9, length(ol.value2)), ol.value2, adj=c(1, 0.25), cex=0.8,
+             paste0("# ", ol.subj2, " (", ol.seq2, ")"))
+        text(rep(2.1, length(ol.value2)), ol.value2, adj=c(0, 0.25), cex=0.8,
+             sprintf("%+.3f", ol.value2))
+      }
       abline(h=0, lty="dotted")
       if (plot.bxp & overwrite) dev.off() # close PNG
       # prep data and calculate new CVwR

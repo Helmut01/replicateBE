@@ -19,6 +19,11 @@ Published on GitHub 2017-06-25
       info.data(). THX to Detlew. which.data() removed.
     - Introduced aliases in man pages for all data sets. Otherwise, warnings
       in CHECK about undocumented objects.
+    - Added Data Set 23 as an example of a 4-period 4-sequence design
+      (although not recommended by the FDA).
+    - Bug-fix in CV.calc(..., ole=TRUE) if an outlier is detected not
+      in both methods (studentized, standardized).
+
 Version 1.0.5
 Released to collaborators 2017-06-24
     - Unified data sets, updated man-pages, and changed which.data():

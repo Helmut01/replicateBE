@@ -27,7 +27,8 @@ The library supports methods given in the EMA’s [Q&A document](http://www.ema.
 Tested designs
 - 4-period (full) replicates
   - RTRT | TRTR
-  - RTTR | TRRT
+  - RTTR | TRRT (_not recommended_)
+  - RTRT | TRTR | RTTR | TRRT
 - 3-period (full) replicates
   - RTR | TRT
   - RTT | TRR
