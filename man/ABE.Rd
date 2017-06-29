@@ -82,7 +82,7 @@ Supported designs:
       \code{RTT | TRR}
     \item 3-period (partial) replicates:\cr
       \code{RRT | RTR | TRR}\cr
-      \code{TRT | TRT } (extra-reference design)
+      \code{RTR | TRR } (extra-reference design)
   }
 }
 \value{
