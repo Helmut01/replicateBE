@@ -36,7 +36,7 @@ Data sets from the literature to be evaluated by \code{method.A()}, \code{method
     \item Reference Data Set 05 (\code{rds05})\cr
     Data set given in the Appendix of Metzler & Shumaker. 26 subjects.
       \describe{
-          A data frame with 72 observations on the following 5 variables:
+          A data frame with 104 observations on the following 5 variables:
           \tabular{ll}{
             \code{subject} \tab a factor with 26 levels: 1, 2, \ldots, 26\cr
             \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
