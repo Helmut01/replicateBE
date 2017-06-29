@@ -97,7 +97,7 @@ Supported designs:
       \code{RTT | TRR}
     \item 3-period (partial) replicates:\cr
       \code{RRT | RTR | TRR}\cr
-      \code{TRT | TRT } (extra-reference design)
+      \code{RTR | TRR } (extra-reference design)
   }
 }
 \value{
@@ -273,7 +273,7 @@ method.A(ola = TRUE, adjust = TRUE, data = rds01)}
 #
 # Repeat the evaluation with the adjusted alpha
 \dontrun{
-method.A(method.A(alpha = 0.033416, ola = TRUE, adjust = TRUE, data = rds01)}
+method.A(alpha = 0.033416, ola = TRUE, adjust = TRUE, data = rds01)}
 # Should give in the result file:
 #   alpha              : 0.033416 (93.3168\% CI)
 #   Confidence interval: 106.16\% ... 126.00\% (pass)
