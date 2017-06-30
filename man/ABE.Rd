@@ -91,7 +91,8 @@ Data structure:
     \item Columns must have the headers \code{subject}, \code{period}, \code{sequence}, \code{treatment}, \code{PK}, and/or \code{logPK}.\cr
     Uppercase and mixed case headers will be internally converted to lowercase headers.
     \itemize{
-      \item \code{subject} and \code{period} must be integer numbers.
+      \item \code{subject} must be integer numbers or alphanumerics \code{[0-9, A-Z, a-z, -, _, #]}
+      \item \code{period} must be integer numbers.
       \item \code{sequence} must be contained in the supported designs (numbers or \emph{e.g.}, \code{ABAB} are not acceptable).
       \item The Test treatment must be coded \code{T} and the Reference \code{R}.
     }

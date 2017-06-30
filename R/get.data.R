@@ -137,12 +137,30 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     if (plot.bxp) png.path <- paste0(path.out, "/", file, set, "_boxplot.png")
   }
   subjs <- unique(data$subject)
-  # Reverse lexical order (T before R; in conformity with PowerTOST and the Q&A DSII)
-  seqs  <- rev(levels(unique(data$sequence))) # Sequences
+  seqs  <- levels(unique(data$sequence))   # Sequences
   Nseqs <- length(seqs)                    # Number of sequences
+  # recode sequences if necessary
+  if (Nseqs == 2) {
+    if (sum(seqs %in% c("RTRT", "TRTR")) == Nseqs)
+      seqs <- c("TRTR", "RTRT")
+    if (sum(seqs %in% c("RTTR", "TRRT")) == Nseqs)
+      seqs <- c("TRRT", "TRRT")
+    if (sum(seqs %in% c("RTR", "TRT")) == Nseqs)
+      seqs <- c("TRT", "RTR")
+    if (sums(seqs %in% c("RTT", "TRR")) == Nseqs)
+      seqs <- c("TRR", "RTT")
+    if (sum(seqs %in% c("RTR", "TRR")) == Nseqs)
+      seqs <- c("TRR", "RTR")
+  }
+  if (Nseqs == 3) {
+    if (sume(seqs == c("RRT", "RTR", "TRR")) == Nseqs)
+      seqs <- c("TRR", "RTR", "RRT")
+  }
+  if (Nseqs == 4) {
+    if (sum(seqs %in% c("RTRT", "RTTR", "TRRT", "TRTR")) == Nseqs)
+      seqs <- c("TRTR", "RTRT", "TRRT", "RTTR")
+  }
   type  <- paste0(seqs, collapse="|")
-  # more logical: stack sequences of the two other 4-period full replicates
-  if (type == "TRTR|TRRT|RTTR|RTRT") type <- "TRTR|RTRT|TRRT|RTTR"
   pers  <- unique(as.integer(data$period)) # Periods
   Npers <- length(pers)                    # Number of periods
   if (nchar(type) == 19) {  # 4-period 4-sequence full replicate designs
@@ -197,7 +215,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
   RR   <- RR[!is.na(RR$PK), ]        # exclude NAs
   nRR  <- length(unique(RR$subject)) # number of subjects
   nTT  <- NA
-  if (!type %in% c("TRR|RTR|RRT", "TRR|RTR", "TRTR|RTRT|TRRT|RTTR")) { # only full replicates
+  if (type %in% c("TRR|RTR|RRT", "TRR|RTR", "TRTR|RTRT|TRRT|RTTR")) { # only full replicates
     # Data of subjects with two T treatments
     TT  <- test[duplicated(test$subject, fromLast=TRUE)|
                 duplicated(test$subject, fromLast=FALSE), ]
