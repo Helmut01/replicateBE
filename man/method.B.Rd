@@ -90,21 +90,23 @@ where \code{sequence}, \code{period}, and \code{treatment} are fixed effects and
 Supported designs:
   \itemize{
     \item 4-period 2-sequence full replicates:\cr
-      \code{RTRT | TRTR}\cr
-      \code{RTTR | TRRT}
+      \code{TRTR | RTRT}\cr
+      \code{TRRT | RTTR}
+    \item 4-period 4-sequence full replicate:\cr
+      \code{TRTR | TRRT | RTTR | RTRT}\cr
     \item 3-period 2-sequence full replicates:\cr
-      \code{RTR | TRT}\cr
-      \code{RTT | TRR}
+      \code{TRT | RTR}\cr
+      \code{TRR | RTT}
     \item 3-period (partial) replicates:\cr
-      \code{RRT | RTR | TRR}\cr
-      \code{RTR | TRR } (extra-reference design)
+      \code{TRR | RTR | RRT}\cr
+      \code{TRR | RTR } (extra-reference design)
   }
 }
 \value{
 Prints results to a file if argument \code{print=TRUE} (default).\cr
 If argument \code{print=FALSE}, returns a data.frame with the elements:
   \tabular{ll}{
-    \code{Design} \tab \emph{e.g.}, RTRT|TRTR\cr
+    \code{Design} \tab \emph{e.g.}, TRTR|RTRT\cr
     \code{Method} \tab B-\code{option} (\code{1} or \code{2})\cr
     \code{n} \tab total number of subjects\cr
     \code{nTT} \tab number of subjects with two treatments of \code{T} (full replicates only)\cr
@@ -253,12 +255,12 @@ x <- method.B(ola = TRUE, print = FALSE, details = TRUE, data = rds01)
 print(x, row.names = FALSE)
 # Compare Method B with Method A
 \dontrun{
-ds <- sprintf("rds\%02i", 1:22)
+ds <- sprintf("rds\%02i", 1:23)
 for (i in seq_along(ds)) {
-  A   <- method.A(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
-  B   <- method.B(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
-  res <- paste0("A ", A, ", B ", B, " \u2013 ")
-  cat(paste0(substr(toupper(ds[i]), 2, 5), ":"), res)
+  A <- method.A(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
+  B <- method.B(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
+  r <- paste0("A ", A, ", B ", B, " \u2013 ")
+  cat(paste0(substr(toupper(ds[i]), 2, 5), ":"), r)
   if (A == B) {
     cat("Method A and B agree.\n")
   } else {

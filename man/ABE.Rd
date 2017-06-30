@@ -75,21 +75,23 @@ where all effects are fixed.\cr\cr
 Supported designs:
   \itemize{
     \item 4-period 2-sequence full replicates:\cr
-      \code{RTRT | TRTR}\cr
-      \code{RTTR | TRRT}
+      \code{TRTR | RTRT}\cr
+      \code{TRRT | RTTR}
+    \item 4-period 4-sequence full replicate:\cr
+      \code{TRTR | TRRT | RTTR | RTRT}\cr
     \item 3-period 2-sequence full replicates:\cr
-      \code{RTR | TRT}\cr
-      \code{RTT | TRR}
+      \code{TRT | RTR}\cr
+      \code{TRR | RTT}
     \item 3-period (partial) replicates:\cr
-      \code{RRT | RTR | TRR}\cr
-      \code{RTR | TRR } (extra-reference design)
+      \code{TRR | RTR | RRT}\cr
+      \code{TRR | RTR } (extra-reference design)
   }
 }
 \value{
 Prints results to a file if argument \code{print=TRUE} (default).\cr
 If argument \code{print=FALSE}, returns a data.frame with the elements:
   \tabular{ll}{
-    \code{Design} \tab \emph{e.g.}, RTRT|TRTR\cr
+    \code{Design} \tab \emph{e.g.}, TRTR|RTRT\cr
     \code{Method} \tab ABE\cr
     \code{n} \tab total number of subjects\cr
     \code{nTT} \tab number of subjects with two treatments of \code{T} (full replicates only)\cr
