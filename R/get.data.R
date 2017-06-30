@@ -191,7 +191,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
   RR   <- RR[!is.na(RR$PK), ]        # exclude NAs
   nRR  <- length(unique(RR$subject)) # number of subjects
   nTT  <- NA
-  if (!type %in% c("TRR|RTR|RRT", "TRR|RTR")) { # only full replicates
+  if (!type %in% c("TRR|RTR|RRT", "TRR|RTR", "TRTR|RTRT|TRRT|RTTR")) { # only full replicates
     # Data of subjects with two T treatments
     TT  <- test[duplicated(test$subject, fromLast=TRUE)|
                 duplicated(test$subject, fromLast=FALSE), ]
