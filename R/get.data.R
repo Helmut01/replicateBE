@@ -42,6 +42,12 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
   }
   if (is.null(data)) { # read external data
     if (missing(file)) stop("Name of file must be given.")
+    num.file <- paste0("File must be a string",
+                       "\n(i.e., the name enclosed in single or double quotes)")
+    if (is.numeric(file)) stop(num.file)
+    num.set <- paste0("Set must be a string",
+                      "\n(i.e., the set enclosed in single or double quotes)")
+    if (is.numeric(set)) stop(num.set)
     if (missing(ext)) stop("Extension of file must be given.")
     if (!ext %in% c("CSV", "csv", "XLS", "xls", "XLXS", "xlsx"))
       stop("Data format not supported.")
