@@ -64,7 +64,7 @@ Defaults to \code{FALSE}. If \code{TRUE} the ANOVA-table is send to the console.
 Defaults to \code{FALSE}. If \code{TRUE} the user will be asked whether an already existing result file should be overwritten.
 }
   \item{data}{
-One of internal reference data sets (\code{rds01} -- \code{rds22}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For the use see the examples.\cr
+One of internal reference data sets (\code{rds01} -- \code{rds23}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For the use see the examples.\cr
 Defaults to \code{NULL} (\emph{i.e.}, work with external data).
 }
 }
@@ -78,13 +78,23 @@ Supported designs:
       \code{TRTR | RTRT}\cr
       \code{TRRT | RTTR}
     \item 4-period 4-sequence full replicate:\cr
-      \code{TRTR | TRRT | RTTR | RTRT}\cr
+      \code{TRTR | RTRT | TRRT | RTTR}\cr
     \item 3-period 2-sequence full replicates:\cr
       \code{TRT | RTR}\cr
       \code{TRR | RTT}
     \item 3-period (partial) replicates:\cr
       \code{TRR | RTR | RRT}\cr
       \code{TRR | RTR } (extra-reference design)
+  }
+Data structure:
+  \itemize{
+    \item Columns must have the headers \code{subject}, \code{period}, \code{sequence}, \code{treatment}, \code{PK}, and/or \code{logPK}.\cr
+    Uppercase and mixed case headers will be internally converted to lowercase headers.
+    \itemize{
+      \item \code{subject} and \code{period} must be integer numbers.
+      \item \code{sequence} must be contained in the supported designs (numbers or \emph{e.g.}, \code{ABAB} are not acceptable).
+      \item The Test treatment must be coded \code{T} and the Reference \code{R}.
+    }
   }
 }
 \value{
@@ -152,7 +162,7 @@ No Liability is accepted for any Loss and Risk to Public Health Resulting from U
 # granted for 'path.out' in order to save the result file. If 'path.out'
 # not specified, results are written to the home folder.
 path.in <- paste0(find.package("replicateBE"), "/extdata/")  # example files
-ABE(path.in = path.in, file = "DS", set = "02", ext = "csv") # EMA's Q&A data set II
+ABE(path.in = path.in, file = "DS", set = "02", ext = "csv") # Q&A data set II
 # Should result in:
 #   BE-limits          :  80.00\% ... 125.00\%
 #   Confidence interval:  97.32\% ... 107.46\% (pass)

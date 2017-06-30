@@ -5,7 +5,7 @@
 Comparative BA-calculation for the EMA's Average Bioequivalence with Expanding Limits (ABEL), Method A
 }
 \description{
-This function performs the required calculations for the \acronym{BE} decision
+This function performs the required calculations for the aggregate \acronym{BE} decision
 via Average Bioequivalence with Expanding Limits (\acronym{ABEL}) based
 on ANOVA (\sQuote{Method A}) as recommended in the \acronym{EMA}’s Q&A-document.
 }
@@ -63,8 +63,8 @@ Defaults to \code{FALSE}. If \code{TRUE}, the function sends its results in 7-di
 }
   \item{adjust}{
 Defaults to \code{FALSE}.\cr
-If \code{TRUE}, the empiric Type I Error is evaluated via simulations (by \code{PowerTOST}’s function \code{scABEL.ad()}). Currently implemented designs are \code{RTRT|TRTR}, \code{RTR|TRT}, and \code{RRT|RTR|TRR}. If the \acronym{TIE} exceeeds the nominal level of the test \code{alpha}, \ifelse{html}{\out{&alpha;}}{\eqn{\alpha}{alpha}} is iteratively adjusted until \acronym{TIE}\code{ = alpha ± 1E-6}.\cr
-If \code{ola=TRUE} and outlier(s) found which lead to a -- lower -- recalculated \code{CVwr}, the assessment is repeated for its value.
+If \code{TRUE}, the empiric Type I Error is evaluated via simulations (by \code{PowerTOST}’s function \code{scABEL.ad()}). Currently implemented designs are \code{TRTR|RTRT}, \code{TRT|RTR}, and \code{TRR|RTR|RRT}. If the \acronym{TIE} exceeeds the nominal level of the test \code{alpha}, \ifelse{html}{\out{&alpha;}}{\eqn{\alpha}{alpha}} is iteratively adjusted until \acronym{TIE}\code{ = alpha ± 1E-6}.\cr
+If \code{ola=TRUE} and outlier(s) found which lead to an -- always lower -- recalculated \code{CVwr}, the assessment is repeated for its value.
 }
   \item{verbose}{
 Defaults to \code{FALSE}. If \code{TRUE} the ANOVA-table is send to the console. If \code{ola=TRUE} additional information about outliers are shown.
@@ -76,7 +76,7 @@ Defaults to \code{FALSE}. If \code{TRUE} the user will be asked whether an alrea
 Only observed if \code{ola=TRUE} and at least one outlier is found. If \code{FALSE} (default) the boxplot will be shown in the graphics device. If \code{TRUE} the boxplot will be saved in \acronym{PNG} format to \code{path.out}.
 }
   \item{data}{
-One of internal reference data sets (\code{rds01} -- \code{rds22}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For the use see the examples.\cr
+One of internal reference data sets (\code{rds01} -- \code{rds23}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For the use see the examples.\cr
 Defaults to \code{NULL} (\emph{i.e.}, work with external data).
 }
 }
@@ -93,13 +93,23 @@ Supported designs:
       \code{TRTR | RTRT}\cr
       \code{TRRT | RTTR}
     \item 4-period 4-sequence full replicate:\cr
-      \code{TRTR | TRRT | RTTR | RTRT}\cr
+      \code{TRTR | RTRT | TRRT | RTTR}\cr
     \item 3-period 2-sequence full replicates:\cr
       \code{TRT | RTR}\cr
       \code{TRR | RTT}
     \item 3-period (partial) replicates:\cr
       \code{TRR | RTR | RRT}\cr
       \code{TRR | RTR } (extra-reference design)
+  }
+Data structure:
+  \itemize{
+    \item Columns must have the headers \code{subject}, \code{period}, \code{sequence}, \code{treatment}, \code{PK}, and/or \code{logPK}.\cr
+    Uppercase and mixed case headers will be internally converted to lowercase headers.
+    \itemize{
+      \item \code{subject} and \code{period} must be integer numbers.
+      \item \code{sequence} must be contained in the supported designs (numbers or \emph{e.g.}, \code{ABAB} are not acceptable).
+      \item The Test treatment must be coded \code{T} and the Reference \code{R}.
+    }
   }
 }
 \value{
@@ -138,7 +148,7 @@ If argument \code{print=FALSE}, returns a data.frame with the elements:
     \code{CI} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
 \eqn{\alpha}{alpha})} \acronym{CI} lies entirely within the acceptance range (\code{pass|fail})\cr
     \code{GMR} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%–125.00\% (\code{pass|fail})\cr
-    \code{BE} \tab assessment whether the study demonstrates bioequivalence (\code{pass|fail})\cr
+    \code{BE} \tab aggregate assessment whether the study demonstrates bioequivalence (\code{pass|fail})\cr
     \code{log.half-width} \tab half-width of the \acronym{CI} in log-scale
   }
 If \code{ola=TRUE} and at least one outlier was detected:
@@ -162,7 +172,7 @@ If \code{ola=TRUE} and at least one outlier was detected:
     \code{CI.new} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
 \eqn{\alpha}{alpha})} \acronym{CI} lies entirely within the new acceptance range (\code{pass|fail})\cr
     \code{GMR.new} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%–125.00\% (\code{pass|fail})\cr
-    \code{BE.new} \tab assessment whether the study demonstrates bioequivalence (\code{pass|fail})\cr
+    \code{BE.new} \tab aggregate assessment whether the study demonstrates bioequivalence (\code{pass|fail})\cr
   }
 }
 
@@ -231,13 +241,14 @@ No Liability is accepted for any Loss and Risk to Public Health Resulting from U
 # granted for 'path.out' in order to save the result file. If 'path.out'
 # not specified, results are written to the home folder.
 path.in <- paste0(find.package("replicateBE"), "/extdata/")       # example files
-method.A(path.in = path.in, file = "DS", set = "01", ext = "csv") # EMA's Q&A data set I
+method.A(path.in = path.in, file = "DS", set = "01", ext = "csv") # Q&A data set I
 # Should result in:
 #   CVwR               :  46.96\% (reference-scaling applicable)
-#   Expanded limits    :  71.23\% ... 140.40\%
+#   swR                :   0.44645
+#   Expanded limits    :  71.23\% ... 140.40\% [100exp(±0.760·swR)]
 #   Confidence interval: 107.11\% ... 124.89\% (pass)
 #   Point estimate     : 115.66\% (pass)
-#   Overall conclusion : pass
+#   Aggregate (CI, PE) : pass
 #
 # Internal reference data set 01 used and results to the home folder.
 # Additional outlier-analyis and boxplot saved as PNG (accidental overwriting prevented)
@@ -245,10 +256,11 @@ method.A(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 # Should give the same as above. Additionally:
 #   Recalculation due to presence of 2 outliers (subj. 45|52)
 #   CVwR (outl. excl.) :  32.16\% (reference-scaling applicable)
-#   Expanded limits    :  78.79\% ... 126.93\%
+#   swR                :   0.31374
+#   Expanded limits    :  78.79\% ... 126.93\% [100exp(±0.760·swR)]
 #   Confidence interval: pass
 #   Point estimate     : pass
-#   Overall conclusion : pass
+#   Aggregate (CI, PE) : pass
 #
 # Same data set. Show information about outliers and the ANOVA-table
 method.A(ola = TRUE, verbose = TRUE, data = rds01)
@@ -277,14 +289,14 @@ method.A(ola = TRUE, adjust = TRUE, data = rds01)}
 \dontrun{
 method.A(alpha = 0.033416, ola = TRUE, adjust = TRUE, data = rds01)}
 # Should give in the result file:
-#   alpha              : 0.033416 (93.3168\% CI)
+#   alpha              :   0.033416 (93.3168\% CI)
 #   Confidence interval: 106.16\% ... 126.00\% (pass)
 #   Point estimate     : 115.66\% (pass)
-#   Overall conclusion : pass
+#   Aggregate (CI, PE) : pass
 #   Assessment based on recalculated CVwR 32.16\%
 #   Confidence interval: pass
 #   Point estimate     : pass
-#   Overall conclusion : pass
+#   Aggregate (CI, PE) : pass
 #   Assessment of empiric Type I Error (TIE) based on recalculated CVwR
 #     TIE for alpha 0.033416         : 0.05000
 #     TIE not > nominal 0.05; consumer risk is controlled.

@@ -119,14 +119,14 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
     }
   } # end of outlier analysis (if requested, i.e., ola=TRUE)
   CVwT  <- NA
-  if (!ret$type %in% c("RRT|RTR|TRR", "RTR|TRR")) { # only for full replicates
+  if (!ret$type %in% c("TRR|RTR|RRT", "TRR|RTR")) { # not for partial replicates
     if (logtrans) { # use the raw data and log-transform internally
       modCVT <- lm(log(PK) ~ subject + period, data=ret$test)
     } else {        # use the already log-transformed data
       modCVT <- lm(logPK ~ subject + period, data=ret$test)
     }
     msewT <- anova(modCVT)["Residuals", "Mean Sq"]
-    CVwT  <- mse2CV(msewT) # nice to know
+    CVwT  <- mse2CV(msewT) # not in the GL but nice to know
   }
   options(ow) # restore options
   reg_set <- reg_const("EMA")
@@ -137,7 +137,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
                   sprintf("%6.2f%%", 100*reg_set$CVswitch),
                   "\nScaling cap        : ",
                   sprintf("%6.2f%%", 100*reg_set$CVcap),
-                  "\nRegulatory constant: ",
+                  "\nRegulat. const (k) :   ",
                   sprintf("%.3f", reg_set$r_const),
                   "\nGMR restriction    :  80.00% ... 125.00%")
   }
@@ -150,11 +150,15 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
     if (CVwR <= 0.3) txt <- paste0(txt, "not ")
     txt <- paste0(txt, "applicable)")
     if (CVwR <= 0.3) {
-      txt <- paste0(txt, "\nUnscaled BE-limits : ")
+      txt <- paste0(txt, "\nUnscaled BE-limits :  80.00% ... 125.00%")
     } else {
-      txt <- paste0(txt, "\nExpanded limits    : ")
+      txt <- paste0(txt, "\nswR                :   ",
+                    sprintf("%.5f", CV2se(CVwR)))
+      txt <- paste0(txt, "\nExpanded limits    : ",
+                    sprintf("%6.2f%% ... %.2f%%",
+                            100*BE[1], 100*BE[2]), " [100exp(\u00B1",
+                    sprintf("%.3f", reg_set$r_const), "\u00B7swR)]")
     }
-    txt <- paste0(txt, sprintf("%6.2f%% ... %.2f%%", 100*BE[1], 100*BE[2]))
     if (ola) {
       if (outlier) {
         BE.new <- as.numeric(scABEL(CV=CVwR.new, regulator="EMA"))
@@ -176,20 +180,22 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
           txt <- paste0(txt, "not applicable)")
         }
         if (CVwR.new <= 0.3) {
-          txt <- paste0(txt, "\nUnscaled BE-limits : ")
+          txt <- paste0(txt, "\nUnscaled BE-limits :  80.00% ... 125.00%")
         } else {
-          txt <- paste0(txt, "\nExpanded limits    : ")
+          txt <- paste0(txt, "\nswR                :   ",
+                        sprintf("%.5f", CV2se(CVwR.new)))
+          txt <- paste0(txt, "\nExpanded limits    : ",
+                        sprintf("%6.2f%% ... %.2f%%",
+                                100*BE.new[1], 100*BE.new[2]), " [100exp(\u00B1",
+                        sprintf("%.3f", reg_set$r_const), "\u00B7swR)]")
         }
-        txt <- paste0(txt, sprintf("%6.2f%% ... %.2f%%", 100*BE.new[1],
-                      100*BE.new[2]))
       } else {
         txt <- paste0(txt, "\nNo outlier in studentized residuals of R detected",
                       "\n", paste0(rep("\u2500", 49), collapse=""))
       }
     } # end of ola
-  } else { # specific for ABE
-    txt <- paste0(txt, "\nBE-limits          : ")
-    txt <- paste0(txt, sprintf("%6.2f%% ... %.2f%%", 80, 125))
+  } else { # if called from ABE()
+    txt <- paste0(txt, "\nBE-limits          :  80.00% ... 125.00%")
   }
   ret$txt <- txt
   ret <- c(ret, CVswitch=reg_set$CVswitch, CVcap=reg_set$CVcap,

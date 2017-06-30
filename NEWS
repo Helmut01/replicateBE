@@ -25,6 +25,9 @@ Published on GitHub 2017-06-25
       in both methods (studentized, standardized).
     - Changed the lexical order of sequences (T befor R) in conformity
       with PowerTOST and Q&A DSII.
+    - Changed TRTR|TRRT|RTTR|RTRT to TRTR|RTRT|TRRT|RTTR. More logical
+      (stacking sequences of the other full replicates). Adapted
+      scripts and man pages accordingly.
 
 Version 1.0.5
 Released to collaborators 2017-06-24

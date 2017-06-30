@@ -28,7 +28,7 @@ Tested designs
 - 4-period (full) replicates
   - TRTR | RTRT
   - TRRT | RTTR
-  - TRTR | TRRT | RTTR | RTRT (_not recommended_)
+  - TRTR | RTRT | TRRT | RTTR (_not recommended_)
 - 3-period (full) replicates
   - TRT | RTR
   - TRR | RTT

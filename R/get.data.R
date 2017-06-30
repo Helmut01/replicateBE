@@ -135,6 +135,8 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
   seqs  <- rev(levels(unique(data$sequence))) # Sequences
   Nseqs <- length(seqs)                    # Number of sequences
   type  <- paste0(seqs, collapse="|")
+  # more logical: stack sequences of the two other 4-period full replicates
+  if (type == "TRTR|TRRT|RTTR|RTRT") type <- "TRTR|RTRT|TRRT|RTTR"
   pers  <- unique(as.integer(data$period)) # Periods
   Npers <- length(pers)                    # Number of periods
   if (nchar(type) == 19) {  # 4-period 4-sequence full replicate designs
@@ -189,7 +191,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
   RR   <- RR[!is.na(RR$PK), ]        # exclude NAs
   nRR  <- length(unique(RR$subject)) # number of subjects
   nTT  <- NA
-  if (!type %in% c("TRR|RTR|RRT", "TRR|RTR", "TRTR|TRRT|RTTR|RTRT")) { # only full replicates
+  if (!type %in% c("TRR|RTR|RRT", "TRR|RTR")) { # only full replicates
     # Data of subjects with two T treatments
     TT  <- test[duplicated(test$subject, fromLast=TRUE)|
                 duplicated(test$subject, fromLast=FALSE), ]

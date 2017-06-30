@@ -209,7 +209,7 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   } else {
     insert.str <- paste0(insert.str, sprintf("%3i", DF))
   }
-  insert.str <- paste0(insert.str, "\nalpha              : ", alpha,
+  insert.str <- paste0(insert.str, "\nalpha              :   ", alpha,
                 " (", 100*(1-2*alpha), "% CI)\n")
   txt <- paste0(left.str, insert.str, right.str)
   if (!is.na(res$"CVwR.new(%)")) {
@@ -220,21 +220,21 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   txt <- paste0(txt, "\nConfidence interval: ", sprintf("%6.2f%% ... %.2f%%",
                 res$"CI.lo(%)", res$"CI.hi(%)"), " (", res$CI, ")",
                 "\nPoint estimate     : ", sprintf("%6.2f%%", res$"PE(%)"),
-                " (", res$GMR, ")", "\nOverall conclusion : ", res$BE)
+                " (", res$GMR, ")", "\nAggregate (CI, PE) : ", res$BE, "\n")
   if (!is.na(res$"CVwR.new(%)")) {
-    txt1 <- paste0("\n\nAssessment based on recalculated CVwR",
+    txt1 <- paste0("\nAssessment based on recalculated CVwR",
                    sprintf(" %.2f%%", res$"CVwR.new(%)"))
     txt <- paste0(txt, txt1, "\n", paste0(rep("\u2500", nchar(txt1)-2), collapse=""))
     txt <- paste0(txt, "\nConfidence interval: ", res$CI.new,
                   "\nPoint estimate     : ", res$GMR.new,
-                  "\nOverall conclusion : ", res$BE.new)
+                  "\nAggregate (CI, PE) : ", res$BE.new, "\n")
   }
-  if (res$Design == "RTR|TRR") {
-    txt <- paste0(txt, "\nNote: The extra-reference design assumes lacking period effects. ",
+  if (res$Design == "TRR|RTR")
+    txt <- paste0(txt, "Note: The extra-reference design assumes lacking period effects. ",
                   "The treatment\ncomparison will be biased in the presence of a ",
-                  "true period effect.")
-  }
-  txt <- paste0(txt, "\n")
+                  "true period effect.\n")
+  if (res$Design == "TRTR|RTRT|TRRT|RTTR")
+    txt <- paste0(txt, "Note: Confounded effects; design not recommended.\n")
   if (print & overwrite) {
     res.file <- file(description=results, open="ab")
     res.str  <- txt # UNIXes LF

@@ -99,15 +99,18 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
       close(res.file)
     }
   }
-  txt <- paste0(ret$txt,
+  txt <- paste0(ret$txt, "\nalpha              :   ", alpha,
+                       " (", 100*(1-2*alpha), "% CI)")
+  txt <- paste0(txt,
                 "\nConfidence interval: ", sprintf("%6.2f%% ... %.2f%%",
                 res$"CI.lo(%)", res$"CI.hi(%)"), " (", res$BE, ")",
                 "\nPoint estimate     : ", sprintf("%6.2f%%", res$"PE(%)"))
-  if (res$Design == "RTR|TRR") {
+  if (res$Design == "TRR|RTR")
     txt <- paste0(txt, "\nNote: The extra-reference design assumes lacking period effects. ",
                   "The treatment\ncomparison will be biased in the presence of a ",
                   "true period effect.")
-  }
+  if (res$Design == "TRTR|RTRT|TRRT|RTTR")
+    txt <- paste0(txt, "\nNote: Confounded effects; design not recommended.")
   txt <- paste0(txt, "\n")
   if (print & overwrite) {
     res.file <- file(description=results, open="ab")

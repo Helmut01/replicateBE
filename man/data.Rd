@@ -36,7 +36,7 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
   TRR|RTR|RRT \tab partial \tab \code{rds04} \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTR|RRT \tab partial \tab \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTR \tab partial \tab \code{rds22} \tab 36 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  TRTR|TRRT|RTTR|RTRT \tab full \tab \code{rds23} \tab 22 \tab >30 \tab \code{method.A()}, \code{method.B()}
+  TRTR|RTRT|TRRT|RTTR \tab full \tab \code{rds23} \tab 22 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 In full replicate designs \emph{both} R and T are administered twice (although not necessarily to \emph{all} subjects).\cr
 In partial replicate designs \emph{only} R is administered twice.
@@ -93,7 +93,7 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 
 \seealso{
   4-period full replicates\cr
-  {\link[replicateBE]{TRTR.RTRT}}, {\link[replicateBE]{TRRT.RTTR}}, {\link[replicateBE]{TRTR.TRRT.RTTR.RTRT}}\cr
+  {\link[replicateBE]{TRTR.RTRT}}, {\link[replicateBE]{TRRT.RTTR}}, {\link[replicateBE]{TRTR.RTRT.TRRT.RTTR}}\cr
   3-period full replicates\cr
   {\link[replicateBE]{TRT.RTR}}, {\link[replicateBE]{TRR.RTT}}\cr
   3-period partial replicates\cr
