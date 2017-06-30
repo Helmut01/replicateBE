@@ -26,10 +26,10 @@ Path to the data file for import. The path \emph{must} be given with forward sla
 Path to safe the result file if \code{print=TRUE}. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. The user must have write-permission to the directory. If missing or not existing the user’s home folder \code{"~/"} will be used.
 }
 \item{file}{
-Name of the data set for import (\emph{without} extension).
+Name of the data set for import (\emph{without} extension). Must be a string (\emph{i.e.}, enclosed in single or double quotation marks).
 }
   \item{set}{
-Name of the sheet of an Excel-file.
+Name of the sheet of an Excel-file. Must be a string (\emph{i.e.}, enclosed in single or double quotation marks).
 }
   \item{ext}{
 File-extension. Acceptable are \code{"CSV"} or \code{"csv"} for character-separated variables (\acronym{CSV}) and \code{"XLS"}, \code{"xls"}, \code{"XLXS"}, and \code{"xlxs"} for Excel-files.
