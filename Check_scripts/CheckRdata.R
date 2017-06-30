@@ -5,7 +5,7 @@
 if (packageDescription("replicateBE")$Version < "1.0.5") {
   message("replicateBE 1.0.5 or higher required.")
   } else {
-  sets <- 22
+  sets <- 23
   ds <- sprintf("rds%02i", 1:sets)
   adjust <- FALSE # set to TRUE if you have some spare time
   ### ABE ###

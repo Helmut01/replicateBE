@@ -1,12 +1,12 @@
 \encoding{utf-8}
-\name{RTTR.TRRT}
-\alias{RTTR.TRRT}
+\name{TRRT.RTTR}
+\alias{TRRT.RTTR}
 \alias{rds05}
 \alias{rds11}
 \alias{rds16}
 \docType{data}
 \title{
-Reference Data Sets for RTTR|TRRT Replicate Designs
+Reference Data Sets for TRRT|RTTR Replicate Designs
 }
 
 \description{
@@ -40,8 +40,8 @@ Data sets from the literature to be evaluated by \code{method.A()}, \code{method
           \tabular{ll}{
             \code{subject} \tab a factor with 26 levels: 1, 2, \ldots, 26\cr
             \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
-            \code{sequence} \tab a factor with 2 levels: RTTR, TRRT\cr
-            \code{treatment} \tab a factor with 2 levels: R, T\cr
+            \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
+            \code{treatment} \tab a factor with 2 levels: T, R\cr
             \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
           }
           Balanced (13 subjects in both sequences) and complete. No outliers.\cr\cr
@@ -61,11 +61,11 @@ Data sets from the literature to be evaluated by \code{method.A()}, \code{method
           \tabular{ll}{
             \code{subject} \tab a factor with 37 levels: 1, 2, \ldots, 37\cr
             \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
-            \code{sequence} \tab a factor with 2 levels: RTTR, TRRT\cr
-            \code{treatment} \tab a factor with 2 levels: R, T\cr
+            \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
+            \code{treatment} \tab a factor with 2 levels: T, R\cr
             \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
           }
-          Unbalanced (19 subjects in sequence RTTR and 18 in TRRT) and complete. No outliers.\cr\cr
+          Unbalanced (18 subjects in sequence TRRT and 19 subjects in RTTR) and complete. No outliers.\cr\cr
           In the source evaluated by the FDA’s mixed effects model (\sQuote{Method C}; \strong{not} acceptable for the \acronym{EMA}). Reported results:
             \tabular{ll}{
               \code{PE} \tab 90.0\%\cr
@@ -80,11 +80,11 @@ Data sets from the literature to be evaluated by \code{method.A()}, \code{method
           \tabular{ll}{
             \code{subject} \tab a factor with 38 levels: 1, 2, \ldots, 38\cr
             \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
-            \code{sequence} \tab a factor with 2 levels: RTTR, TRRT\cr
-            \code{treatment} \tab a factor with 2 levels: R, T\cr
+            \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
+            \code{treatment} \tab a factor with 2 levels: T, R\cr
             \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
           }
-          Unbalanced (20 subjects in sequence RTTR and 18 in TRRT) and complete. No outliers.
+          Unbalanced (18 subjects in sequence TRRT and 20 in RTTR) and complete. No outliers.
       }
     }
 }

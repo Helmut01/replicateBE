@@ -26,15 +26,15 @@ The library supports methods given in the EMA’s [Q&A document](http://www.ema.
 
 Tested designs
 - 4-period (full) replicates
-  - RTRT | TRTR
-  - RTTR | TRRT
-  - RTRT | TRTR | RTTR | TRRT (_not recommended_)
+  - TRTR | RTRT
+  - TRRT | RTTR
+  - TRTR | TRRT | RTTR | RTRT (_not recommended_)
 - 3-period (full) replicates
-  - RTR | TRT
-  - RTT | TRR
+  - TRT | RTR
+  - TRR | RTT
 - 3-period (partial) replicates
-  - RRT | RTR | TRR
-  - RTR | TRR (extra-reference design; _not recommended_)
+  - TRR | RTR | RRT
+  - TRR | RTR (extra-reference design; _not recommended_)
 
 Cross-validation: Results of reference data sets agree with ones obtained in SAS 9.3 and Phoenix WinNonlin (6.4, 7.0).
 

@@ -14,29 +14,29 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
 \details{
   \tabular{llcrcl}{
   Design \tab Specification \tab\ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab  N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
-  RTRT|TRTR \tab full \tab \code{rds01} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTRT|TRTR \tab full \tab \code{rds06} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTRT|TRTR \tab full \tab \code{rds12} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTRT|TRTR \tab full \tab \code{rds14} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTRT|TRTR \tab full \tab \code{rds18} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTRT|TRTR \tab full \tab \code{rds21} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTRT|TRTR \tab full \tab \code{rds19} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTRT|TRTR \tab full \tab \code{rds20} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTRT|TRTR \tab full \tab \code{rds08} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTRT|TRTR \tab full \tab \code{rds09} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTRT|TRTR \tab full \tab \code{rds13} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTRT|TRTR \tab full \tab \code{rds15} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTTR|TRRT \tab full \tab \code{rds05} \tab 26 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
-  RTTR|TRRT \tab full \tab \code{rds11} \tab 37 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTTR|TRRT \tab full \tab \code{rds16} \tab 38 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTR|TRT \tab full \tab \code{rds03} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTR|TRT \tab full \tab \code{rds17} \tab 19 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTT|TRR \tab full \tab \code{rds10} \tab 18 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
-  RRT|RTR|TRR \tab partial \tab \code{rds02} \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
-  RRT|RTR|TRR \tab partial \tab \code{rds04} \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RRT|RTR|TRR \tab partial \tab \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTR|TRR \tab partial \tab \code{rds22} \tab 36 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  RTRT|TRTR|RTTR|TRRT \tab full \tab \code{rds23} \tab 22 \tab >30 \tab \code{method.A()}, \code{method.B()}
+   \tab full \tab \code{rds01} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT \tab full \tab \code{rds06} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT \tab full \tab \code{rds12} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT \tab full \tab \code{rds14} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT \tab full \tab \code{rds18} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT \tab full \tab \code{rds21} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT \tab full \tab \code{rds19} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT \tab full \tab \code{rds20} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT \tab full \tab \code{rds08} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT \tab full \tab \code{rds09} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT \tab full \tab \code{rds13} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT \tab full \tab \code{rds15} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRRT|RTTR \tab full \tab \code{rds05} \tab 26 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
+  TRRT|RTTR \tab full \tab \code{rds11} \tab 37 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRRT|RTTR \tab full \tab \code{rds16} \tab 38 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRT|RTR \tab full \tab \code{rds03} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRT|RTR \tab full \tab \code{rds17} \tab 19 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRR|RTT \tab full \tab \code{rds10} \tab 18 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
+  TRR|RTR|RRT \tab partial \tab \code{rds02} \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
+  TRR|RTR|RRT \tab partial \tab \code{rds04} \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRR|RTR|RRT \tab partial \tab \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRR|RTR \tab partial \tab \code{rds22} \tab 36 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|TRRT|RTTR|RTRT \tab full \tab \code{rds23} \tab 22 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 In full replicate designs \emph{both} R and T are administered twice (although not necessarily to \emph{all} subjects).\cr
 In partial replicate designs \emph{only} R is administered twice.
@@ -93,11 +93,11 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 
 \seealso{
   4-period full replicates\cr
-  {\link[replicateBE]{RTRT.TRTR}}, {\link[replicateBE]{RTTR.TRRT}}, {\link[replicateBE]{RTRT.TRTR.RTTR.TRRT}}\cr
+  {\link[replicateBE]{TRTR.RTRT}}, {\link[replicateBE]{TRRT.RTTR}}, {\link[replicateBE]{TRTR.TRRT.RTTR.RTRT}}\cr
   3-period full replicates\cr
-  {\link[replicateBE]{RTR.TRT}}, {\link[replicateBE]{RTT.TRR}}\cr
+  {\link[replicateBE]{TRT.RTR}}, {\link[replicateBE]{TRR.RTT}}\cr
   3-period partial replicates\cr
-  {\link[replicateBE]{RRT.RTR.TRR}}, {\link[replicateBE]{RTR.TRR}}
+  {\link[replicateBE]{TRR.RTR.RRT}}, {\link[replicateBE]{TRR.RTR}}
 }
 
 \author{

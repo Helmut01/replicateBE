@@ -1,10 +1,10 @@
 \encoding{utf-8}
-\name{RTT.TRR}
-\alias{RTT.TRR}
+\name{TRR.RTT}
+\alias{TRR.RTT}
 \alias{rds10}
 \docType{data}
 \title{
-Reference Data Set for RTT|TRR Replicate Designs
+Reference Data Set for TRR|RTT Replicate Designs
 }
 
 \description{
@@ -29,8 +29,8 @@ Data set from the literature to be evaluated by \code{method.A()}, \code{method.
       \tabular{ll}{
       \code{subject} \tab a factor with 18 levels: 1, 2, \ldots, 18\cr
       \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
-      \code{sequence} \tab a factor with 2 levels: RTT, TRR\cr
-      \code{treatment} \tab a factor with 2 levels: R, T\cr
+      \code{sequence} \tab a factor with 2 levels: TRR, RTT\cr
+      \code{treatment} \tab a factor with 2 levels: T, R\cr
       \code{PK} \tab a numeric vector of pharmacokinetic responses (here AUC)
       }
       Balanced (9 subjects in both sequences) and complete. No outliers.
@@ -56,7 +56,7 @@ Boca Raton: CRC Press; \ifelse{html}{\out{3<sup>rd</sup>}}{\eqn{3\textsuperscrip
 
 \examples{
 str(rds10)
-row <- c(28:30, 1:3)
+row <- c(1:3, 28:30)
 rds10[row, ]
 }
 

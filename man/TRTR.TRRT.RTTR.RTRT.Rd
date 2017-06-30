@@ -1,10 +1,10 @@
 \encoding{utf-8}
-\name{RTRT.TRTR.RTTR.TRRT}
-\alias{RTRT.TRTR.RTTR.TRRT}
+\name{TRTR.TRRT.RTTR.RTRT}
+\alias{TRTR.TRRT.RTTR.RTRT}
 \alias{rds23}
 \docType{data}
 \title{
-Reference Data Set for RTRT|TRTR|RTTR|TRRT Designs
+Reference Data Set for TRTR|TRRT|RTTR|RTRT Designs
 }
 
 \description{
@@ -27,8 +27,8 @@ Data set from the literature to be evaluated by \code{method.A()} and/or \code{m
       \tabular{ll}{
         \code{subject} \tab a factor with 22 levels: 1, 2, \ldots, 27\cr
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
-        \code{sequence} \tab a factor with 4 levels: RTRT, RTTR, TRRT, TRTR\cr
-        \code{treatment} \tab a factor with 2 levels: R, T\cr
+        \code{sequence} \tab a factor with 4 levels: TRTR, TRRT, RTTR, RTRT\cr
+        \code{treatment} \tab a factor with 2 levels: T, R\cr
         \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
         }
       Unbalanced (4 subjects in sequence RTRT and 6 in each of the other three) and complete. One extreme outlier (subject 17) after the reference treatment in sequence TRTR.
@@ -50,7 +50,7 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 
 \examples{
 str(rds23)
-row <- c(5:8, 25:28, 1:4, 9:12)
+row <- c(25:28, 9:12, 1:4, 5:8)
 rds23[row, ]
 }
 

@@ -1,12 +1,12 @@
 \encoding{utf-8}
-\name{RRT.RTR.TRR}
-\alias{RRT.RTR.TRR}
+\name{TRR.RTR.RRT}
+\alias{TRR.RTR.RRT}
 \alias{rds02}
 \alias{rds04}
 \alias{rds07}
 \docType{data}
 \title{
-Reference Data Sets for RRT|RTR|TRR (partial) Replicate Designs
+Reference Data Sets for TRR|RTR|RRT (partial) Replicate Designs
 }
 
 \description{
@@ -40,8 +40,8 @@ Data sets from the literature or edited to be evaluated by \code{method.A()}, \c
           \tabular{ll}{
             \code{subject} \tab a factor with 24 levels: 1, 2, \ldots, 24\cr
             \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
-            \code{sequence} \tab a factor with 3 levels: RRT, RTR, TRR\cr
-            \code{treatment} \tab a factor with 2 levels: R, T\cr
+            \code{sequence} \tab a factor with 3 levels: TRR, RTR, RRT\cr
+            \code{treatment} \tab a factor with 2 levels: T, R\cr
             \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
             \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
           }
@@ -61,8 +61,8 @@ Data sets from the literature or edited to be evaluated by \code{method.A()}, \c
           \tabular{ll}{
             \code{subject} \tab a factor with 51 levels: 1, 2, \ldots, 56\cr
             \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
-            \code{sequence} \tab a factor with 3 levels: RRT, RTR, TRR\cr
-            \code{treatment} \tab a factor with 2 levels: R, T\cr
+            \code{sequence} \tab a factor with 3 levels: TRR, RTR, RRT\cr
+            \code{treatment} \tab a factor with 2 levels: T, R\cr
             \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
           }
           Balanced (17 subjects in each of the three sequences) and complete. No outliers.\cr\cr
@@ -81,8 +81,8 @@ Data sets from the literature or edited to be evaluated by \code{method.A()}, \c
           \tabular{ll}{
             \code{subject} \tab a factor with 360 levels: 1, 2, \ldots, 360\cr
             \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
-            \code{sequence} \tab a factor with 3 levels: RRT, RTR, TRR\cr
-            \code{treatment} \tab a factor with 2 levels: R, T\cr
+            \code{sequence} \tab a factor with 3 levels: TRR, RTR, RRT\cr
+            \code{treatment} \tab a factor with 2 levels: T, R\cr
             \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
           }
           Balanced (120 subjects in each of the three sequences) and complete. No outliers.
@@ -104,7 +104,7 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes)
 
 \examples{
 str(rds02)
-row <- c(1:3, 10:12, 16:18)
+row <- c(10:12, 1:3, 16:18)
 rds02[row, ]
 }
 

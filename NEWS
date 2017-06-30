@@ -23,6 +23,8 @@ Published on GitHub 2017-06-25
       (although not recommended by the FDA).
     - Bug-fix in CV.calc(..., ole=TRUE) if an outlier is detected not
       in both methods (studentized, standardized).
+    - Changed the lexical order of sequences (T befor R) in conformity
+      with PowerTOST and Q&A DSII.
 
 Version 1.0.5
 Released to collaborators 2017-06-24

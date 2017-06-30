@@ -131,21 +131,26 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     if (plot.bxp) png.path <- paste0(path.out, "/", file, set, "_boxplot.png")
   }
   subjs <- unique(data$subject)
-  seqs  <- levels(unique(data$sequence))   # Sequences
+  # Reverse lexical order (T before R; in conformity with PowerTOST and the Q&A DSII)
+  seqs  <- rev(levels(unique(data$sequence))) # Sequences
   Nseqs <- length(seqs)                    # Number of sequences
   type  <- paste0(seqs, collapse="|")
   pers  <- unique(as.integer(data$period)) # Periods
   Npers <- length(pers)                    # Number of periods
+  if (nchar(type) == 19) {  # 4-period 4-sequence full replicate designs
+    if (Npers != 4) stop("4 periods required in this full replicate design.")
+    if (Nseqs != 4) stop("4 sequences required in this full replicate design.")
+  }
   if (nchar(type) == 9) {  # 4-period full replicate designs
     if (Npers != 4) stop("4 periods required in this full replicate design.")
     if (Nseqs != 2) stop("2 sequences required in this full replicate design.")
   }
   if (nchar(type) == 7) {  # 3-period replicates
-    if (type %in% c("RTR|TRT", "RTT|TRR")) {
+    if (type %in% c("TRT|RTR", "TRR|RTT")) {
       if (Npers != 3) stop("3 periods required in this full replicate design.")
       if (Nseqs != 2) stop("2 sequences required in this full replicate design.")
     }
-    if (type == "RTR|TRR") {
+    if (type == "TRR|RTR") {
       if (Npers != 3) stop("3 periods required in the extra-reference design.")
       if (Nseqs != 2) stop("2 sequences required in the extra-reference design.")
     }
@@ -184,7 +189,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
   RR   <- RR[!is.na(RR$PK), ]        # exclude NAs
   nRR  <- length(unique(RR$subject)) # number of subjects
   nTT  <- NA
-  if (!type %in% c("RRT|RTR|TRR", "RTR|TRR")) { # i.e., only full replicates
+  if (!type %in% c("TRR|RTR|RRT", "TRR|RTR", "TRTR|TRRT|RTTR|RTRT")) { # only full replicates
     # Data of subjects with two T treatments
     TT  <- test[duplicated(test$subject, fromLast=TRUE)|
                 duplicated(test$subject, fromLast=FALSE), ]
@@ -204,10 +209,11 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
                   "(data already log-transformed)")
   }
   txt <- paste0(txt, "\nSequences (design) : ", type)
+  if (nchar(type) == 19) txt <- paste(txt, "(4-period 4-sequence full replicate)")
   if (nchar(type) == 9) txt <- paste(txt, "(4-period full replicate)")
-  if (type %in% c("RTR|TRT", "RTT|TRR")) txt <- paste(txt, "(3-period full replicate)")
+  if (type %in% c("TRT|RTR", "TRR|RTT")) txt <- paste(txt, "(3-period full replicate)")
   if (nchar(type) == 11) txt <- paste(txt, "(partial replicate)")
-  if (type == "RTR|TRR") txt <- paste(txt, "(partial replicate; extra-reference)")
+  if (type == "TRR|RTR") txt <- paste(txt, "(partial replicate; extra-reference)")
   x <- paste0(Nsub.seq, collapse = "|")
   if (sum(Miss.seq) > 0) x <- c(x, paste0(Miss.seq, collapse = "|"))
   if (sum(Miss.per) > 0) x <- c(x, paste0(Miss.per, collapse = "|"))
@@ -239,10 +245,10 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     txt <- paste0(txt, "\n                     ",
                   "Less than 12 as required acc. to the BE-GL.")
   }
-  if (nchar(type) != 11 & type != "RTR|TRR") # full replicates only
+  if (nchar(type) != 11 & type != "TRR|RTR") # full replicates only
     txt <- paste0(txt, "\nSub\u2019s with two Ts  : ", sprintf("%3i", nTT))
   txt <- paste0(txt, "\nSub\u2019s with two Rs  : ", sprintf("%3i", nRR))
-  if ((type == "RTR|TRT" | type == "RTT|TRR") & nRR < 12) {
+  if ((type == "TRT|RTR" | type == "TRR|RTT") & nRR < 12) {
     txt <- paste(txt, "(uncertain CVwR acc. to Q&A Rev. 12)")
   }
   ret <- list(data=data, ref=ref, RR=RR, test=test, type=type, n=n,

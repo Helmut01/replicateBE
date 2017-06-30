@@ -204,24 +204,19 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   # with the specified alpha. If yes, iteratively adjust alpha to
   # preserve the consumer risk.
   if (adjust) {
-    if (!ret$type %in% c("RTRT|TRTR", "RTR|TRT", "RRT|RTR|TRR")) {
+    if (!ret$type %in% c("TRTR|RTRT", "TRT|RTR", "TRR|RTR|RRT")) {
       message("Assessment of the Type I Error for this design is not implemented.")
     } else {
       if (PE > 0.80 & PE < 1.25) { # PE must be within limits!
-        if (ret$type == "RTRT|TRTR")   des <- "2x2x4"
-        if (ret$type == "RTR|TRT")     des <- "2x2x3"
-        if (ret$type == "RRT|RTR|TRR") des <- "2x3x3"
+        if (ret$type == "TRTR|RTRT")   des <- "2x2x4"
+        if (ret$type == "TRT|RTR")     des <- "2x2x3"
+        if (ret$type == "TRR|RTR|RRT") des <- "2x3x3"
         if (print) {
-          if (ret$type != "RTR|TRT") {
-            n.seq <- ret$Sub.Seq
-          } else { # reverse the order (in PowerTOST T comes first)
-            n.seq <- rev(ret$Sub.Seq)
-          }
           adj <- scABEL.ad(theta0=PE, CV=ret$CVwR, design=des,
-                           n=n.seq, alpha.pre=alpha, print=FALSE)
+                           n=ret$Sub.Seq, alpha.pre=alpha, print=FALSE)
           if (!is.na(ret$CVwR.new)) { # 2nd run for recalculated CVwR
             adj1 <- scABEL.ad(theta0=PE, CV=ret$CVwR.new, design=des,
-                              n=n.seq, alpha.pre=alpha, print=FALSE)
+                              n=ret$Sub.Seq, alpha.pre=alpha, print=FALSE)
           }
           txt <- paste0("\n", paste0(rep("\u2500", 68), collapse=""),
                         "\nSim\u2019s based on ANOVA; ",
@@ -265,13 +260,11 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
             close(res.file)
           }
         } else { # to console
-          if (ret$type != "RTR|TRT") {
-            scABEL.ad(theta0=PE, CV=ret$CVwR, design=des, n=ret$Sub.Seq,
-                     alpha.pre=alpha, details=TRUE)
-          } else { # reverse the order of subj/seq for the RTR|RTR design
-            scABEL.ad(theta0=PE, CV=ret$CVwR, design=des, n=rev(ret$Sub.Seq),
+          scABEL.ad(theta0=PE, CV=ret$CVwR, design=des, n=ret$Sub.Seq,
+                    alpha.pre=alpha, details=TRUE)
+          if (!is.na(ret$CVwR.new)) { # 2nd run for recalculated CVwR
+            scABEL.ad(theta0=PE, CV=ret$CVwR.new, design=des, n=ret$Sub.Seq,
                       alpha.pre=alpha, details=TRUE)
-
           }
         }
       } else {
