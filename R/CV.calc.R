@@ -5,7 +5,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
                     header, na, sep = ",", dec =".", logtrans = TRUE,
                     ola = FALSE, details = FALSE, adjust = FALSE,
                     print, verbose = FALSE, ask = FALSE,
-                    plot.bxp = FALSE, data) {
+                    plot.bxp = FALSE, fence = 2, data) {
   if (missing(path.in)) path.in <- NULL
   if (missing(data)) data <- NULL
   called.from <- as.character(sys.call(-1))[1]
@@ -35,11 +35,11 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
     stand.res <- stand.res[!is.na(stand.res)]
     stand.res <- stand.res[which(stand.res != 0)]
     stand.res <- stand.res[c(TRUE, FALSE)] # need only the 1st occasions
-    bp1       <- boxplot(stud.res, range=3, plot=FALSE)
-    bp2       <- boxplot(stand.res, range=3, plot=FALSE)
+    bp1       <- boxplot(stud.res, range=fence, plot=FALSE)
+    bp2       <- boxplot(stand.res, range=fence, plot=FALSE)
     names.ol1 <- names(bp1$out)
     names.ol2 <- names(bp2$out)
-    if (length(names.ol1 > 0)) { # at least one found
+    if (length(names.ol1) > 0) { # at least one found
       outlier <- TRUE
       # boxplot
       ol.value1 <- as.numeric(bp1$out)
@@ -64,8 +64,18 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
           las=1, cex.main=1,
           main=paste0("EMA\u2019s model for CVwR:",
                       "\nlog(response) ~ sequence + subject(sequence) + period;",
-                      " data = R"), ylab="residual", pars=pars)
-      mtext("studentized\n(R, SAS)", 1, line=2.25, at=1)
+                      " data = R",
+                      "\nOutlier fence ", fence, "\u00D7IQR"), ylab="residual", pars=pars)
+      if (length(names.ol1) == 0) {
+        lab.txt <- "no outlier"
+      } else {
+        if (length(ol.value1) == 1) {
+          lab.txt <- "1 outlier"
+        } else {
+          lab.txt <- paste(length(ol.value1), "outliers")
+        }
+      }
+      mtext(paste0("studentized\n(R, SAS)\n", lab.txt), 1, line=3, at=1)
       text(rep(1.1, 2), bp1$stats[c(1, 5)], adj=c(0, 0.25), cex=0.8,
            sprintf("%+.3f", bp1$stats[c(1, 5)]))
       if (!identical(ol.value1, numeric(0))) { # only if stud. outlier
@@ -75,7 +85,16 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
              sprintf("%+.3f", ol.value1))
       }
       bxp(bp2, axes=FALSE, at=2, add=TRUE, pars=pars)
-      mtext("standardized\n(R, SAS, Phoenix WinNonlin)", 1, line=2.25, at=2)
+      if (length(names.ol2) == 0) {
+        lab.txt <- "no outlier"
+      } else {
+        if (length(ol.value2) == 1) {
+          lab.txt <- "1 outlier"
+        } else {
+          lab.txt <- paste(length(ol.value2), "outliers")
+        }
+      }
+      mtext(paste0("standardized\n(R, SAS, Phoenix WinNonlin)\n", lab.txt), 1, line=3, at=2)
       text(rep(2.1, 2), bp2$stats[c(1, 5)], adj=c(0, 0.25), cex=0.8,
            sprintf("%+.3f", bp2$stats[c(1, 5)]))
       if (!identical(ol.value2, numeric(0))) { # only if stand. outlier
@@ -88,7 +107,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
       if (plot.bxp & overwrite) dev.off() # close PNG
       # prep data and calculate new CVwR
       ol   <- ret$ref[names(bp1$out), "subject"]
-      excl <- ret$ref[ret$ref$subject != ol, ]
+      excl <- ret$ref[!ret$ref$subject %in% ol, ]
       if (logtrans) { # use the raw data and log-transform internally
         modCVR1 <- lm(log(PK) ~ sequence + subject%in%sequence + period,
                                 data=excl)
@@ -106,10 +125,10 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
         stand.res.outliers <- data.frame(ol.subj2, ol.seq2, signif(ol.value2, 7))#
         names(stand.res.outliers) <- c("subject", "sequence", "stand.res")
         cat(paste0("\nOutlier analysis\n Studentized residuals",
-                   "\n Limits (3IQR whiskers): ",
+                   "\n Limits (", fence, "u00D7IQR whiskers): ",
                    stud.res.whiskers[1], ", ", stud.res.whiskers[2],
                    "\n Outliers:\n")); print(stud.res.outliers, row.names=FALSE)
-        cat(paste0("\n Standarized residuals\n Limits (3IQR whiskers): ",
+        cat(paste0("\n Standarized residuals\n Limits (", fence, "u00D7IQR whiskers): ",
                    stand.res.whiskers[1], ", ", stand.res.whiskers[2],
                    "\n Outliers:\n")); print(stand.res.outliers, row.names=FALSE)
       }
@@ -162,6 +181,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
     if (ola) {
       if (outlier) {
         BE.new <- as.numeric(scABEL(CV=CVwR.new, regulator="EMA"))
+        txt <- paste0(txt, "\n\nOutlier fence      :  ", fence, "\u00D7IQR of studentized residuals.")
         txt1 <- paste0("\nRecalculation due to presence of ",
                       length(ol))
         if (length(ol) == 1) {
@@ -190,7 +210,8 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
                         sprintf("%.3f", reg_set$r_const), "\u00B7swR)]")
         }
       } else {
-        txt <- paste0(txt, "\nNo outlier in studentized residuals of R detected",
+        txt <- paste0(txt, "\n\nOutlier fence      :  ", fence, "\u00D7IQR of studentized residuals.")
+        txt <- paste0(txt, "\nNo outlier detected.",
                       "\n", paste0(rep("\u2500", 49), collapse=""))
       }
     } # end of ola

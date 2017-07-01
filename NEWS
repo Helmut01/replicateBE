@@ -33,6 +33,9 @@ Published on GitHub 2017-06-25
     - Bug-fix: Adapt the No. of subjects / sequence and No. of missings /
       sequence to the reordered sequences in get.data(). Calculation was
       correct but output in result-files wrong. TODO: Check all man pages.
+    - Argument 'fence' for box plots instead of the hard-coded 3 as a
+      multiplier for IQR. The default 1.5 in most (all?) software packages
+      detects /a lot/ of outliers. 3 seems to be liberal. 2 is a compromise.
 
 Version 1.0.5
 Released to collaborators 2017-06-24

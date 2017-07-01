@@ -42,7 +42,7 @@ Data sets from the literature and edited to be evaluated by \code{method.A()} an
             \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
             \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
           }
-          Unbalanced (39 subjects in sequence TRT and 38 in RTR) and incomplete (6 missings in sequence TRT and 2 in RTR). Missings / period: 0/1, 1/2, 7/3. Two extreme outliers (subjects 45 and 52) after the reference treatment in sequence RTR.
+          Unbalanced (39 subjects in sequence TRT and 38 in RTR) and incomplete (6 missings in sequence TRT and 2 in RTR). Missings / period: 0/1, 1/2, 7/3. Two outliers (subjects 45 and 52) in sequence RTR.
        }
 
     \item Reference Data Set 17 (\code{rds17})\cr
@@ -57,7 +57,7 @@ Data sets from the literature and edited to be evaluated by \code{method.A()} an
             \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
             \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
           }
-          Unbalanced (7 subjects in sequence TRT and 12 in RTR) and incomplete (1 missing in sequence TRT). Missings / period: 0/1, 0/2, 1/3. No outliers.
+          Unbalanced (7 subjects in sequence TRT and 12 in RTR) and incomplete (1 missing in sequence TRT). Missings / period: 0/1, 0/2, 1/3. One outlier (subject 18) in sequence RTR.
        }
   }
 }

@@ -14,7 +14,7 @@ recommended in the \acronym{EMA}’s Q&A-document.
 method.B(alpha = 0.05, path.in, path.out = NULL, file, set, ext, header = 0,
          na = ".", sep = ",", dec = ".", logtrans = TRUE, ola = FALSE,
          print = TRUE, option = 2, details = FALSE, verbose = FALSE,
-         ask = FALSE, plot.bxp = FALSE, data = NULL)
+         ask = FALSE, plot.bxp = FALSE, fence = 2, data = NULL)
 }
 \arguments{
   \item{alpha}{Type I Error (\acronym{TIE}) probability (nominal level of the test). Per convention commonly set to 0.05 which results in a \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
@@ -75,6 +75,9 @@ Defaults to \code{FALSE}. If \code{TRUE} the user will be asked whether an alrea
   \item{plot.bxp}{
 Only observed if \code{ola=TRUE} and at least one outlier is found. If \code{FALSE} (default) the boxplot will be shown in the graphics device. If \code{TRUE} the boxplot will be saved in \acronym{PNG} format to \code{path.out}.
 }
+  \item{fence}{
+Only observed if \code{ola=TRUE}. The limit for outlier detection as a multiplier of the interquartile range. Defaults to 2. Less outliers will be detected for with higher values. Not recommended.
+}
   \item{data}{
 One of internal reference data sets (\code{rds01} -- \code{rds23}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For the use see the examples.\cr
 Defaults to \code{NULL} (\emph{i.e.}, work with external data).
@@ -87,7 +90,7 @@ where all effects are fixed.\cr\cr
 The model for the treatment comparison is\cr
 \verb{   log(response) ~ sequence + subject(sequence) + period + treatment}\cr
 where \code{sequence}, \code{period}, and \code{treatment} are fixed effects and \code{subject(sequence)} is a random effect.\cr\cr
-Supported designs:
+Tested designs:
   \itemize{
     \item 4-period 2-sequence full replicates:\cr
       \code{TRTR | RTRT}\cr

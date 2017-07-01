@@ -72,7 +72,7 @@ Defaults to \code{NULL} (\emph{i.e.}, work with external data).
 The model for the treatment comparison is\cr
 \verb{   log(response) ~ sequence + subject(sequence) + period + treatment}\cr
 where all effects are fixed.\cr\cr
-Supported designs:
+Tested designs:
   \itemize{
     \item 4-period 2-sequence full replicates:\cr
       \code{TRTR | RTRT}\cr

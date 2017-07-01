@@ -7,13 +7,13 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                      dec = ".", logtrans = TRUE, ola = FALSE,
                      print = TRUE, details = FALSE, adjust = FALSE,
                      verbose = FALSE, ask = FALSE, plot.bxp = FALSE,
-                     data = NULL) {
+                     fence = 2, data = NULL) {
   exec <- strftime(Sys.time(), usetz=TRUE)
   ret  <- CV.calc(alpha=alpha, path.in=path.in, path.out=path.out,
                   file=file, set=set, ext=ext, header=header, na=na,
                   sep=sep, dec=dec, logtrans=logtrans, ola=ola,
                   print=print, verbose=verbose, ask=ask,
-                  plot.bxp=plot.bxp, data=data)
+                  plot.bxp=plot.bxp, fence=fence, data=data)
   results  <- paste0(ret$res.file, "_MethodA.txt")
   # generate variables based on the attribute
   # 2nd condition: Otherwise, the header from a CSV file will be overwritten

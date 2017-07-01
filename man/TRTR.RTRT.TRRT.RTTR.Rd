@@ -31,7 +31,7 @@ Data set from the literature to be evaluated by \code{method.A()} and/or \code{m
         \code{treatment} \tab a factor with 2 levels: T, R\cr
         \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
         }
-      Unbalanced (4 subjects in sequence RTRT and 6 in each of the other three) and complete. One extreme outlier (subject 17) after the reference treatment in sequence TRTR.
+      Unbalanced (4 subjects in sequence RTRT and 6 in each of the other three) and complete. Two outliers (subjects 8 and 17) in sequence TRTR.
     }
   }
 }
