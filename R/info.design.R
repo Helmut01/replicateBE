@@ -71,7 +71,7 @@ info.design <- function(seqs = NA) {
 
   # 3-period 3-sequence partial replicate
   if (periods == 3 & sequences == 3 & is.na(reordered[1])) {
-    if (sum(seqs %in% c("RRT", "RTR", "TRR")) == 2 & is.na(reordered[1])) {
+    if (sum(seqs %in% c("RRT", "RTR", "TRR")) == 3 & is.na(reordered[1])) {
       reordered <- seqs[order(match(seqs, c("TRR", "RTR", "RRT")))]
     }
     if (is.na(reordered[1])) {
