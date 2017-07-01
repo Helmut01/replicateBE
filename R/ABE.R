@@ -91,7 +91,7 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     if (overwrite) { # either the file does not exist or should be overwritten
       # only binary mode supports UTF-8 and different line endings
       res.file <- file(description=results, open="wb")
-      res.str  <- env.info(fun="ABE", option=NA, path.in, path.out,
+      res.str  <- info.env(fun="ABE", option=NA, path.in, path.out,
                            file, set, ext, exec, data)
       if (os == "Windows") res.str <- gsub("\n", "\r\n", res.str) # CRLF
       if (os == "Darwin")  res.str <- gsub("\n", "\r", res.str)   # CR

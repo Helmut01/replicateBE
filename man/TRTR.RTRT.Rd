@@ -54,7 +54,7 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
         \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
-      Unbalanced (38 subjects in sequence RTRT and 39 in TRTR) and incomplete (3 missings in sequence RTRT and 7 in sequence TRTR). Missings / period: 0/1, 1/2, 7/3, 2/4. Two extreme outliers (subjects 45 and 52) after the reference treatment in sequence RTRT.\cr
+      Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (7 missings in sequence TRTR and 3 in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. Two extreme outliers (subjects 45 and 52) after the reference treatment in sequence RTRT.\cr
 In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported results:
     \tabular{ll}{
       \code{CVwR} \tab 47.0\%\cr

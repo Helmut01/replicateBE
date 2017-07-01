@@ -1,7 +1,8 @@
-###############################################
-# Information about the computing environment #
-###############################################
-env.info <- function(fun, option=NA, path.in, path.out,
+################################################
+# Information about the computing environment, #
+# packages, data set, and method.              #
+################################################
+info.env <- function(fun, option=NA, path.in, path.out,
                      file, set, ext, exec, data) {
   if (!is.null(data) & missing(ext)) {
     info  <- info.data(data)
@@ -82,19 +83,19 @@ env.info <- function(fun, option=NA, path.in, path.out,
   info <- paste0(info, "\nSystem             : ", node,
                  "\nUser               : ", user,
                  "\nOperating System   : ", OS, " ", OSrel, " ", OSver,
-                 "\nR version          : ", sprintf("%-7s", rver), ryear)
-  if (ext %in% c("XLS", "xls", "XLXS", "xlsx")) {
-    info <- paste0(info, "\nreadxl version     : ", sprintf("%-7s", packageVersion("readxl")), year1)
+                 "\nR version          : ", sprintf("%-10s", rver), ryear)
+  if (ext %in% c("XLS", "xls", "XLSX", "xlsx")) {
+    info <- paste0(info, "\nreadxl version     : ", sprintf("%-10s", packageVersion("readxl")), year1)
   }
-  info <- paste0(info, "\nPowerTOST version  : ", sprintf("%-7s", packageVersion("PowerTOST")), year2)
+  info <- paste0(info, "\nPowerTOST version  : ", sprintf("%-10s", packageVersion("PowerTOST")), year2)
   if (fun == "method.B") {
     if (option == 1) {
-      info <- paste0(info, "\nlmerTest version   : ", sprintf("%-7s", packageVersion("lmerTest")), year4)
+      info <- paste0(info, "\nlmerTest version   : ", sprintf("%-10s", packageVersion("lmerTest")), year4)
     } else {
-      info <- paste0(info, "\nnlme version       : ", sprintf("%-7s", packageVersion("nlme")), year3)
+      info <- paste0(info, "\nnlme version       : ", sprintf("%-10s", packageVersion("nlme")), year3)
     }
   }
-  info <- paste0(info, "\nreplicateBE version: ", sprintf("%-7s", packageVersion("replicateBE")), year)
+  info <- paste0(info, "\nreplicateBE version: ", sprintf("%-10s", packageVersion("replicateBE")), year)
   info <- paste0(info, "\n", hr,
                        "\nFunction           : CV.calc() exec. ", exec,
                        "\n  Fixed effects    : sequence, subject(sequence), period",

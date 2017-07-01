@@ -136,33 +136,13 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     if (print) res.file <- paste0(path.out, file, set, "_ABEL")
     if (plot.bxp) png.path <- paste0(path.out, "/", file, set, "_boxplot.png")
   }
-  subjs <- unique(data$subject)
-  seqs  <- levels(unique(data$sequence))   # Sequences
-  Nseqs <- length(seqs)                    # Number of sequences
-  # recode sequences if necessary
-  if (Nseqs == 2) {
-    if (sum(seqs %in% c("RTRT", "TRTR")) == Nseqs)
-      seqs <- c("TRTR", "RTRT")
-    if (sum(seqs %in% c("RTTR", "TRRT")) == Nseqs)
-      seqs <- c("TRRT", "TRRT")
-    if (sum(seqs %in% c("RTR", "TRT")) == Nseqs)
-      seqs <- c("TRT", "RTR")
-    if (sums(seqs %in% c("RTT", "TRR")) == Nseqs)
-      seqs <- c("TRR", "RTT")
-    if (sum(seqs %in% c("RTR", "TRR")) == Nseqs)
-      seqs <- c("TRR", "RTR")
-  }
-  if (Nseqs == 3) {
-    if (sume(seqs == c("RRT", "RTR", "TRR")) == Nseqs)
-      seqs <- c("TRR", "RTR", "RRT")
-  }
-  if (Nseqs == 4) {
-    if (sum(seqs %in% c("RTRT", "RTTR", "TRRT", "TRTR")) == Nseqs)
-      seqs <- c("TRTR", "RTRT", "TRRT", "RTTR")
-  }
-  type  <- paste0(seqs, collapse="|")
-  pers  <- unique(as.integer(data$period)) # Periods
-  Npers <- length(pers)                    # Number of periods
+  subjs  <- unique(data$subject)          # Subjects
+  seqs   <- levels(unique(data$sequence)) # Sequences
+  design <- info.design(seqs=seqs)        # fetch info
+  seqs   <- design$reordered              # preferred reordered sequences (T first)
+  Npers  <- design$periods                # Number of periods
+  Nseqs  <- design$sequences              # Number of sequences
+  type   <- design$type                   # Nice identifier string
   if (nchar(type) == 19) {  # 4-period 4-sequence full replicate designs
     if (Npers != 4) stop("4 periods required in this full replicate design.")
     if (Nseqs != 4) stop("4 sequences required in this full replicate design.")
@@ -186,6 +166,8 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     if (Nseqs != 3) stop("3 sequences required in this partial replicate design.")
   }
   Nsub.seq <- table(data$sequence[!duplicated(data$subject)])
+  # adapt to reordered sequences
+  Nsub.seq <- Nsub.seq[order(match(names(Nsub.seq), seqs))]
   ref   <- data[data$treatment == "R", ]
   test  <- data[data$treatment == "T", ]
   NTR   <- sum(levels(test$subject) %in% levels(ref$subject)) # >= 1 T & >= 1 R
@@ -209,6 +191,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     Miss.seq <- rep(0, Nseqs)
     Miss.per <- rep(0, Npers)
   }
+  Miss.seq <- Miss.seq[order(match(names(Miss.seq), seqs))]
   # Data of subjects with two R treatments
   RR   <- ref[duplicated(ref$subject, fromLast=TRUE)|
               duplicated(ref$subject, fromLast=FALSE), ]

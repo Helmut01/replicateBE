@@ -23,11 +23,16 @@ Published on GitHub 2017-06-25
       (although not recommended by the FDA).
     - Bug-fix in CV.calc(..., ole=TRUE) if an outlier is detected not
       in both methods (studentized, standardized).
-    - Changed the lexical order of sequences (T befor R) in conformity
+    - Changed the lexical order of sequences (T before R) in conformity
       with PowerTOST and Q&A DSII.
     - Changed TRTR|TRRT|RTTR|RTRT to TRTR|RTRT|TRRT|RTTR. More logical
       (stacking sequences of the other full replicates). Adapted
       scripts and man pages accordingly.
+    - New function info.design(). Sorts sequences according to the
+      preferred order and throws a message if the design is untested.
+    - Bug-fix: Adapt the No. of subjects / sequence and No. of missings /
+      sequence to the reordered sequences in get.data(). Calculation was
+      correct but output in result-files wrong. TODO: Check all man pages.
 
 Version 1.0.5
 Released to collaborators 2017-06-24
