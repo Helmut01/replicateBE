@@ -9,8 +9,8 @@ This function performs the required calculations for the \acronym{BE} decision
 via conventional (unscaled) Average Bioequivalence based on ANOVA as recommended in the \acronym{EMA}’s guideline.
 }
 \usage{
-ABE(alpha = 0.05, path.in = NULL, path.out = NULL, file, set, ext,
-    header = 0, na = ".", sep = ",", dec = ".", logtrans = TRUE,
+ABE(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
+    ext, header = 0, na = ".", sep = ",", dec = ".", logtrans = TRUE,
     print = TRUE, details = FALSE, verbose = FALSE, ask = FALSE,
     data = NULL)
 }
@@ -25,7 +25,8 @@ Path to the data file for import. The path \emph{must} be given with forward sla
 Path to safe the result file if \code{print=TRUE}. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. The user must have write-permission to the directory. If missing or not existing the user’s home folder \code{"~/"} will be used.
 }
 \item{file}{
-Name of the data set for import (\emph{without} extension). Must be a string (\emph{i.e.}, enclosed in single or double quotation marks).
+Name of the data set for import (\emph{without} extension). Must be a string (\emph{i.e.}, enclosed in single or double quotation marks).\cr
+If reading from a \acronym{CSV}-file a commentary header is allowed. Commentary line(s) must start with the hash character \code{"#"}.
 }
   \item{set}{
 Name of the sheet of an Excel-file. Must be a string (\emph{i.e.}, enclosed in single or double quotation marks).

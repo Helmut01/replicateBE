@@ -3,8 +3,8 @@
 # fixed: sequence, subject(sequence), period, treatment #
 #########################################################
 method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
-                     file, set, ext, header = 0, na = ".", sep = ",",
-                     dec = ".", logtrans = TRUE, ola = FALSE,
+                     file, set = "", ext, header = 0, na = ".",
+                     sep = ",", dec = ".", logtrans = TRUE, ola = FALSE,
                      print = TRUE, details = FALSE, adjust = FALSE,
                      verbose = FALSE, ask = FALSE, plot.bxp = FALSE,
                      fence = 2, data = NULL) {
@@ -182,7 +182,7 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   if (!is.na(res$"CVwR.new(%)")) {
     txt1 <- paste0("\nAssessment based on recalculated CVwR",
                  sprintf(" %.2f%%", res$"CVwR.new(%)"))
-    txt <- paste0(txt, txt1, "\n", paste0(rep("\u2500", nchar(txt1)-2), collapse=""))
+    txt <- paste0(txt, txt1, "\n", paste0(rep("\u2500", nchar(txt1)-1), collapse=""))
     txt <- paste0(txt, "\nConfidence interval: ", res$CI.new,
                   "\nPoint estimate     : ", res$GMR.new,
                   "\nAggregate (CI, PE) : ", res$BE.new, "\n")

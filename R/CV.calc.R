@@ -1,10 +1,10 @@
 ####################################################
 # Calculate CV according to the EMA's Q&A-document #
 ####################################################
-CV.calc <- function(alpha = 0.05, path.in, path.out, file, set, ext,
-                    header, na, sep = ",", dec =".", logtrans = TRUE,
-                    ola = FALSE, details = FALSE, adjust = FALSE,
-                    print, verbose = FALSE, ask = FALSE,
+CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
+                    ext, header, na, sep = ",", dec = ".",
+                    logtrans = TRUE, ola = FALSE, details = FALSE,
+                    adjust = FALSE, print, verbose = FALSE, ask = FALSE,
                     plot.bxp = FALSE, fence = 2, data) {
   if (missing(path.in)) path.in <- NULL
   if (missing(data)) data <- NULL

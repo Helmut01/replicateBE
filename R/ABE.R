@@ -3,7 +3,7 @@
 # fixed: sequence, subjects, period, treatment #
 ################################################
 ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
-                file, set, ext, header = 0, na = ".", sep = ",",
+                file, set = "", ext, header = 0, na = ".", sep = ",",
                 dec = ".", logtrans = TRUE, print = TRUE,
                 details = FALSE, verbose = FALSE, ask = FALSE,
                 data = NULL) {

@@ -17,8 +17,8 @@ Published on GitHub 2017-06-25
     - Man pages reworked. [DL]
     - Identify internal data sets based on their attribute. Uses now
       info.data(). THX to Detlew. which.data() removed.
-    - Introduced aliases in man pages for all data sets. Otherwise, warnings
-      in CHECK about undocumented objects.
+    - Introduced aliases in man pages for all data sets. Otherwise,
+      warnings in CHECK about undocumented objects.
     - Added Data Set 23 as an example of a 4-period 4-sequence design
       (although not recommended by the FDA).
     - Bug-fix in CV.calc(..., ole=TRUE) if an outlier is detected not
@@ -36,6 +36,8 @@ Published on GitHub 2017-06-25
     - Argument 'fence' for box plots instead of the hard-coded 3 as a
       multiplier for IQR. The default 1.5 in most (all?) software packages
       detects /a lot/ of outliers. 3 seems to be liberal. 2 is a compromise.
+    - Argument 'set' can be an empty string "" to support reading from
+      CSV-files. Only required for XLS (the name of the sheet) now.
 
 Version 1.0.5
 Released to collaborators 2017-06-24

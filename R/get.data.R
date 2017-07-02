@@ -3,11 +3,39 @@
 # internal data and generate    #
 # output common to all methods. #
 #################################
-get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
-                     header = 0, na = ".", sep = ",", dec=".",
-                     logtrans=TRUE, print, plot.bxp, data) {
+get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
+                     ext, header = 0, na = ".", sep = ",", dec = ".",
+                     logtrans = TRUE, print, plot.bxp, data) {
   graphics.off()
-  if (is.null(data)) { # check only external data
+  if (is.null(data)) { # checking external data
+    ext.csv <- c("CSV", "csv")
+    ext.xls <- c("XLS", "xls", "XLSX", "xlsx")
+    if (missing(file))
+      stop("Name of file must be given.")
+    if (is.numeric(file))
+      stop(paste0("File must be a string",
+                  "\n(i.e., the name enclosed in single or double quotes)"))
+    if (is.numeric(set))
+      stop(paste0("Set must be a string",
+                 "\n(i.e., the set enclosed in single or double quotes)"))
+    if (missing(ext))
+      stop("Extension of file must be given.")
+    if (!ext %in% c(ext.csv, ext.xls))
+      stop("Data format not supported (must be Character Separated Variables or Excel.")
+    if (ext %in% ext.csv) {
+      if (!sep %in% c(";", ",", "\t"))
+        stop(paste0("Reading CSV-file",
+                    "\nVariable separator must be any of",
+                    "\n\';\' (semicolon), \',\' (comma), or \'\\t\' (tab)."))
+      if (!dec %in% c(".", ","))
+        stop(paste0("Reading CSV-file",
+                    "\nDecimal separator must be \'.\' (period) or \',\' (comma)."))
+      if (sep == dec)
+        stop(paste0("Reading CSV-file",
+                    "\nVariable and decimal separators must be different."))
+    }
+    if (ext %in% ext.xls & (set == ""))
+      stop("Name of sheet to read must be given.")
     if (is.null(path.in) | missing(path.in)) {
       setwd("~/")
       cat("No path for input given; home folder", getwd(), "used.\n")
@@ -20,7 +48,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     } # Adds trailing '/' to path if missing
     path.in <- ifelse(regmatches(path.in, regexpr(".$", path.in)) == "/",
                       path.in, paste0(path.in, "/"))
-  }
+  } # EO checking external data
   if (print | plot.bxp) { # check only if necessary
     if (missing(path.out)) {
       setwd("~/")
@@ -39,38 +67,14 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     } # Adds trailing '/' to path if missing
     path.out <- ifelse(regmatches(path.out, regexpr(".$", path.out)) == "/",
                        path.out, paste0(path.out, "/"))
-  }
-  if (is.null(data)) { # read external data
-    if (missing(file)) stop("Name of file must be given.")
-    num.file <- paste0("File must be a string",
-                       "\n(i.e., the name enclosed in single or double quotes)")
-    if (is.numeric(file)) stop(num.file)
-    num.set <- paste0("Set must be a string",
-                      "\n(i.e., the set enclosed in single or double quotes)")
-    if (is.numeric(set)) stop(num.set)
-    if (missing(ext)) stop("Extension of file must be given.")
-    if (!ext %in% c("CSV", "csv", "XLS", "xls", "XLXS", "xlsx"))
-      stop("Data format not supported.")
-    if (ext %in% c("CSV", "csv")) {
-      if (!sep %in% c(";", ",", "\t"))
-        stop(paste0("Reading CSV-file",
-            "\nVariable separator must be any of",
-            "\n\';\' (semicolon), \',\' (comma), or \'\\t\' (tab)."))
-      if (!dec %in% c(".", ","))
-        stop(paste0("Reading CSV-file",
-             "\nDecimal separator must be \'.\' (period) or \',\' (comma)."))
-      if (sep == dec)
-        stop(paste0("Reading CSV-file",
-             "\nVariable and decimal separators must be different."))
-    }
-    if (ext %in% c("XLS", "xls", "XLXS", "xlsx") & missing(set))
-      stop("Name of sheet to read must be given.")
-    if (ext %in% c("XLS", "xls", "XLSX", "xlsx")) { # read from Excel
+  } # EO print/plot checks
+  if (is.null(data)) {      # read data from file
+    if (ext %in% ext.xls) { # read from Excel
       full.name <- paste0(path.in, file, ".", ext)
       if (!file.exists(full.name)) {
         setwd(dirname(file.choose()))
-        path.in <- getwd()
-        full.name <- paste0(path.in, "/", file, set, ".", ext)
+        path.in <- paste0(getwd(), "/")
+        full.name <- paste0(path.in, file, set, ".", ext)
       }
       # The entire content
       descr <- read_excel(path=full.name, sheet=set, skip=0)
@@ -85,12 +89,12 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
       names(data)[facs] <- tolower(names(data)[facs])
       if (sum(names(data)[facs] %in% c("subject", "period", "sequence", "treatment")) !=4)
         stop("Variables must be given as \'subject\', \'period\', \'sequence\', \'treatment\'.")
-    } else { # read from CSV
+    } else {                # read from CSV
       full.name <- paste0(path.in, file, set, ".", ext)
       if (!file.exists(full.name)) {
         setwd(dirname(file.choose()))
-        path.in <- getwd()
-        full.name <- paste0(path.in, "/", file, set, ".", ext)
+        path.in <- paste0(getwd(), "/")
+        full.name <- paste0(path.in, file, set, ".", ext)
       }
       # The entire content
       descr <- scan(file=full.name, quiet=TRUE, what="character",
@@ -115,16 +119,15 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     # If the user erroneously asks for analysis of logPK - which does not
     # exist in the data set - change to internal log-transformation.
     if (logtrans == FALSE & !"logPK" %in% colnames(data)) {
-      warn.txt <- paste0("Column \'logPK\' does not exist in the data set.",
-                         "\nLog-transformed column \'PK'\ internally.")
-      warning(warn.txt)
+      warning(paste0("Column \'logPK\' does not exist in the data set.",
+                     "\nLog-transformed column \'PK'\ internally."))
       logtrans <- TRUE
     } # factorize variables except response(s)
     cols       <- c("subject", "period", "sequence", "treatment")
     data[cols] <- lapply(data[cols], factor)
     if (sum(!unique(data$treatment) %in% c("R", "T")) !=0)
       stop("treatments must be given as \'R\' and \'T\'.")
-  } # end of reading external data
+  } # EO reading external data
   # generate variables based on the attribute
   # 2nd condition: Otherwise, the header from a CSV file will be overwritten
   if (!is.null(data) & missing(ext)) {
@@ -205,7 +208,6 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set, ext,
     TT  <- TT[!is.na(TT$PK), ]        # exclude NAs
     nTT <- length(unique(TT$subject)) # number of subjects
   }
-  txt <- "" # paranoia
   if (!is.na(descr) & !is.null(descr) & length(descr) >= 1)
     txt <- paste0(strwrap(descr, width = 78), collapse="\n")
   if (logtrans) {
