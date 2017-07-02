@@ -12,6 +12,7 @@ info.env <- function(fun, option=NA, path.in, path.out,
     descr <- info$descr
     ext   <- ""
   }
+  ext.xls <- c("XLS", "xls", "XLSX", "xlsx")
   system <- Sys.info()
   node   <- system[["nodename"]]
   user   <- system[["user"]]
@@ -66,7 +67,7 @@ info.env <- function(fun, option=NA, path.in, path.out,
       } else {
         info <- paste0(info, path.out)
       }
-      if (ext %in% c("XLS", "xls", "XLSX", "xlsx")) {
+      if (ext %in% ext.xls) {
         info <- paste0(info, "\nFile [sheet]       : ", file, ".", ext,
                        " [", set, "]")
       } else {
@@ -82,9 +83,18 @@ info.env <- function(fun, option=NA, path.in, path.out,
   }
   info <- paste0(info, "\nSystem             : ", node,
                  "\nUser               : ", user,
-                 "\nOperating System   : ", OS, " ", OSrel, " ", OSver,
-                 "\nR version          : ", sprintf("%-10s", rver), ryear)
-  if (ext %in% c("XLS", "xls", "XLSX", "xlsx")) {
+                 "\nOperating System   : ", OS, " ")
+  if (OS == "Darwin") { # special treatment - extremely long string
+    MacOS <- paste(OSrel, OSver)
+    tmp   <- strwrap(MacOS, width = 57, prefix="\n                     ")
+    for (j in 1:length(tmp)) {
+      info <- paste0(info, tmp[[j]])
+    }
+  } else {
+    info <- paste0(info, OSrel, " ", OSver)
+  }
+  info <- paste0(info, "\nR version          : ", sprintf("%-10s", rver), ryear)
+  if (ext %in% ext.xls) {
     info <- paste0(info, "\nreadxl version     : ", sprintf("%-10s", packageVersion("readxl")), year1)
   }
   info <- paste0(info, "\nPowerTOST version  : ", sprintf("%-10s", packageVersion("PowerTOST")), year2)

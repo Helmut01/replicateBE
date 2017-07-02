@@ -65,10 +65,10 @@ Defaults to \code{FALSE}. If \code{TRUE} the ANOVA-table is send to the console.
 Defaults to \code{FALSE}. If \code{TRUE} the user will be asked whether an already existing result file should be overwritten.
 }
   \item{theta1}{
-Lower bioequivalence limit. Defaults to \code{0.80}.
+Lower bioequivalence limit. Defaults to \code{0.80}. If missing will be set to \code{1/theta2}.
 }
   \item{theta2}{
-Lower bioequivalence limit. Defaults to \code{1.25}.
+Lower bioequivalence limit. Defaults to \code{1.25}. If missing will be set to \code{1/theta1}.
 }
   \item{data}{
 One of internal reference data sets (\code{rds01} -- \code{rds23}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For its use see the examples.\cr
@@ -122,8 +122,8 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     \code{DF} \tab degrees of freedom of the treatment comparison\cr
     \code{CVwT(\%)} \tab intra-subject coefficient of variation of the test treatment (full replicates only)\cr
     \code{CVwR(\%)} \tab intra-subject coefficient of variation of the reference treatment\cr
-    \code{BE.lo(\%)} \tab conventional lower limit (\emph{i.e.}, 80.00\%)\cr
-    \code{BE.hi(\%)} \tab conventional upper limit (\emph{i.e.}, 125.00\%)\cr
+    \code{BE.lo(\%)} \tab lower bioequivalence limit (\emph{e.g.}, 80.00\%)\cr
+    \code{BE.hi(\%)} \tab upper bioequivalence limit (\emph{e.g.}, 125.00\%)\cr
     \code{CI.lo(\%)} \tab lower confidence limit of the treatment comparison\cr
     \code{CI.hi(\%)} \tab upper confidence limit of the treatment comparison\cr
     \code{PE(\%)} \tab point estimate of the treatment comparison (aka \acronym{GMR})\cr
@@ -182,7 +182,7 @@ x <- ABE(details = TRUE, print = FALSE, data = rds02)
 print(x, row.names = FALSE)
 #
 # Assuming a NTID and assess BE with narrower limits.
-ABE(data = rds02, theta1 = 0.90) # theta2 is automatically set to 1/theta1
+ABE(data = rds02, theta1 = 0.90)
 # Should result in:
 #   BE-limits          :  90.00\% ... 111.11\%
 #   Confidence interval:  97.32\% ... 107.46\% (pass)

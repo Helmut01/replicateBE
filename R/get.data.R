@@ -13,29 +13,24 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
     if (missing(file))
       stop("Name of file must be given.")
     if (is.numeric(file))
-      stop(paste0("File must be a string",
-                  "\n(i.e., the name enclosed in single or double quotes)"))
+      stop("Argument file must be a string (i.e., enclosed in single or double quotes).")
     if (is.numeric(set))
-      stop(paste0("Set must be a string",
-                 "\n(i.e., the set enclosed in single or double quotes)"))
+      stop("Argument set must be a string (i.e., enclosed in single or double quotes).")
     if (missing(ext))
-      stop("Extension of file must be given.")
+      stop("Argument ext (extension of file) must be given.")
     if (!ext %in% c(ext.csv, ext.xls))
       stop("Data format not supported (must be Character Separated Variables or Excel.")
     if (ext %in% ext.csv) {
       if (!sep %in% c(";", ",", "\t"))
-        stop(paste0("Reading CSV-file",
-                    "\nVariable separator must be any of",
+        stop(paste0("Reading CSV-file: Argument sep (variable separator) must be any of",
                     "\n\';\' (semicolon), \',\' (comma), or \'\\t\' (tab)."))
       if (!dec %in% c(".", ","))
-        stop(paste0("Reading CSV-file",
-                    "\nDecimal separator must be \'.\' (period) or \',\' (comma)."))
+        stop("Reading CSV-file: Argument dec (decimal separator) must be \'.\' (period) or \',\' (comma).")
       if (sep == dec)
-        stop(paste0("Reading CSV-file",
-                    "\nVariable and decimal separators must be different."))
+        stop("Reading CSV-file: Variable (sep) and decimal (dec) separators must be different.")
     }
     if (ext %in% ext.xls & (set == ""))
-      stop("Name of sheet to read must be given.")
+      stop("Reading Excel: Argument set (name of sheet) to use must be given.")
     if (is.null(path.in) | missing(path.in)) {
       setwd("~/")
       cat("No path for input given; home folder", getwd(), "used.\n")
