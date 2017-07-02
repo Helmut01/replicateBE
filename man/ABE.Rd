@@ -12,7 +12,7 @@ via conventional (unscaled) Average Bioequivalence based on ANOVA as recommended
 ABE(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
     ext, header = 0, na = ".", sep = ",", dec = ".", logtrans = TRUE,
     print = TRUE, details = FALSE, verbose = FALSE, ask = FALSE,
-    data = NULL)
+    theta1, theta2, data = NULL)
 }
 \arguments{
   \item{alpha}{Type I Error (\acronym{TIE}) probability (nominal level of the test). Per convention commonly set to 0.05 which results in a \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
@@ -29,21 +29,21 @@ Name of the data set for import (\emph{without} extension). Must be a string (\e
 If reading from a \acronym{CSV}-file a commentary header is allowed. Commentary line(s) must start with the hash character \code{"#"}.
 }
   \item{set}{
-Name of the sheet of an Excel-file. Must be a string (\emph{i.e.}, enclosed in single or double quotation marks).
+Name of the sheet of an Excel-file (mandatory). Must be a string (\emph{i.e.}, enclosed in single or double quotation marks).
 }
 \item{ext}{
-File-extension. Acceptable are \code{"CSV"} or \code{"csv"} for character-separated variables (\acronym{CSV}) and \code{"XLS"}, \code{"xls"}, \code{"XLXS"}, and \code{"xlxs"} for Excel-files.
+File-extension enclosed in single or double quotation marks. Acceptable are \code{"CSV"} and \code{"csv"} for character-separated variables (\acronym{CSV}) or \code{"XLS"}, \code{"xls"}, \code{"XLSX"}, and \code{"xlsx"} for Excel-files.
 }
   \item{header}{
-If an Excel-sheet contains an explanatory header, the number of rows to skip (\emph{e.g.,}
-if the first two rows contain a comment, use \code{header=2} and the data will be imported starting with the third row). Defaults to \code{0}.
+If an Excel-sheet contains a commentary header, the number of rows to skip (\emph{e.g.,}
+if the first two rows contain a comment, use \code{header = 2} and the data will be imported starting with the third row). Defaults to \code{0}.
 }
   \item{na}{
-Character string denoting missing values. Acceptable are any of \code{"NA"} (not available),
+Character string denoting missing values. Acceptable are \code{"NA"} (not available),
 \code{"ND"} (not determined), \code{"."} (\acronym{SAS}), \code{"Missing"} (Phoenix WinNonlin), and \code{""} (\acronym{Excel}; empty cell). Missings will be converted to \code{NA} in the imported data. Defaults to \code{"."}.
 }
   \item{sep}{
-Variable separator in the \acronym{CSV}-file. Acceptable are any of \code{";"} (semicolon -- \code{ASCII 59}), \code{","} (colon -- \code{ASCII 44}), and \code{"\\t"} (tabulator -- \code{ASCII 9}). Defaults to \code{","}.
+Variable separator in the \acronym{CSV}-file. Acceptable are \code{","} (colon -- \code{ASCII 44}), \code{";"} (semicolon -- \code{ASCII 59}), and \code{"\\t"} (tabulator -- \code{ASCII 9}). Defaults to \code{","}.
 }
   \item{dec}{
 Decimal separator in the \acronym{CSV}-file. Acceptable are \code{"."} (period -- \code{ASCII 46}) or \code{","} (colon -- \code{ASCII 44}). Defaults to \code{"."}.
@@ -64,9 +64,15 @@ Defaults to \code{FALSE}. If \code{TRUE} the ANOVA-table is send to the console.
   \item{ask}{
 Defaults to \code{FALSE}. If \code{TRUE} the user will be asked whether an already existing result file should be overwritten.
 }
+  \item{theta1}{
+Lower bioequivalence limit. Defaults to \code{0.80}.
+}
+  \item{theta2}{
+Lower bioequivalence limit. Defaults to \code{1.25}.
+}
   \item{data}{
-One of internal reference data sets (\code{rds01} -- \code{rds23}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For the use see the examples.\cr
-Defaults to \code{NULL} (\emph{i.e.}, work with external data).
+One of internal reference data sets (\code{rds01} -- \code{rds23}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For its use see the examples.\cr
+Defaults to \code{NULL} (\emph{i.e.}, import external data).
 }
 }
 \details{
@@ -90,18 +96,19 @@ Tested designs:
 Data structure:
   \itemize{
     \item Columns must have the headers \code{subject}, \code{period}, \code{sequence}, \code{treatment}, \code{PK}, and/or \code{logPK}.\cr
+    Any order of columns is acceptable (only \code{subject} must be the first).\cr
     Uppercase and mixed case headers will be internally converted to lowercase headers.
     \itemize{
-      \item \code{subject} must be integer numbers or alphanumerics \code{[0-9, A-Z, a-z, -, _, #]}
+      \item \code{subject} must be integer numbers or alphanumerics \code{[A-Z, a-z, -, _, #, 0-9]}
       \item \code{period} must be integer numbers.
-      \item \code{sequence} must be contained in the supported designs (numbers or \emph{e.g.}, \code{ABAB} are not acceptable).
+      \item \code{sequence} must be contained in the tested designs (numbers or \emph{e.g.}, \code{ABAB} are not acceptable).
       \item The Test treatment must be coded \code{T} and the Reference \code{R}.
     }
   }
 }
 \value{
-Prints results to a file if argument \code{print=TRUE} (default).\cr
-If argument \code{print=FALSE}, returns a data.frame with the elements:
+Prints results to a file if argument \code{print = TRUE} (default).\cr
+If argument \code{print = FALSE}, returns a data.frame with the elements:
   \tabular{ll}{
     \code{Design} \tab \emph{e.g.}, TRTR|RTRT\cr
     \code{Method} \tab ABE\cr
@@ -126,7 +133,7 @@ If argument \code{print=FALSE}, returns a data.frame with the elements:
 }
 
 \section{Warning}{
-If the input file has a header, the word \code{subject} \emph{must not} be part of the text. Otherwise, the header will terminate before.
+If the \acronym{CSV}-file has a commentray header, the word \code{subject} \emph{must not} be part of the text. Otherwise, the header will terminate before.
 }
 
 \references{
@@ -173,4 +180,10 @@ ABE(path.in = path.in, file = "DS", set = "02", ext = "csv") # Q&A data set II
 # Use the internal data set
 x <- ABE(details = TRUE, print = FALSE, data = rds02)
 print(x, row.names = FALSE)
+#
+# Assuming a NTID and assess BE with narrower limits.
+ABE(data = rds02, theta1 = 0.90) # theta2 is automatically set to 1/theta1
+# Should result in:
+#   BE-limits          :  90.00\% ... 111.11\%
+#   Confidence interval:  97.32\% ... 107.46\% (pass)
 }

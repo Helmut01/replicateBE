@@ -5,7 +5,8 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                     ext, header, na, sep = ",", dec = ".",
                     logtrans = TRUE, ola = FALSE, details = FALSE,
                     adjust = FALSE, print, verbose = FALSE, ask = FALSE,
-                    plot.bxp = FALSE, fence = 2, data) {
+                    theta1 = theta1, theta2 = theta2, plot.bxp = FALSE,
+                    fence = 2, data) {
   if (missing(path.in)) path.in <- NULL
   if (missing(data)) data <- NULL
   called.from <- as.character(sys.call(-1))[1]
@@ -216,7 +217,8 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
       }
     } # end of ola
   } else { # if called from ABE()
-    txt <- paste0(txt, "\nBE-limits          :  80.00% ... 125.00%")
+    txt <- paste0(txt, "\nBE-limits          : ",
+                       sprintf("%6.2f%% ... %.2f%%", 100*theta1, 100*theta2))
   }
   ret$txt <- txt
   ret <- c(ret, CVswitch=reg_set$CVswitch, CVcap=reg_set$CVcap,

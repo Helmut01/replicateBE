@@ -3,16 +3,18 @@
 # fixed: sequence, subjects, period, treatment #
 ################################################
 ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
-                file, set = "", ext, header = 0, na = ".", sep = ",",
-                dec = ".", logtrans = TRUE, print = TRUE,
+                file, set = "", ext, header = 0, na = ".",
+                sep = ",", dec = ".", logtrans = TRUE, print = TRUE,
                 details = FALSE, verbose = FALSE, ask = FALSE,
-                data = NULL) {
+                theta1, theta2, data = NULL) {
   exec <- strftime(Sys.time(), usetz=TRUE)
+  if (missing(theta1)) theta1 <- 0.80
+  if (missing(theta2)) theta2 <- 1/theta1
   ret  <- CV.calc(alpha=alpha, path.in=path.in, path.out=path.out,
                   file=file, set=set, ext=ext, header=header, na=na,
                   sep=sep, dec=dec, logtrans=logtrans, ola=FALSE,
                   print=print, verbose=verbose, ask=ask,
-                  data=data)
+                  theta1=theta1, theta2=theta2, data=data)
   if (print) { # change from "ABEL" to "ABE"
     results <- paste0(substr(ret$res.file, 1,
                      which(strsplit(ret$res.file, "")[[1]]=="_")),
@@ -54,8 +56,8 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                     paste0(ret$Sub.Seq, collapse="|"),
                     paste0(ret$Miss.seq, collapse="|"),
                     paste0(ret$Miss.per, collapse="|"), alpha,
-                    sprintf("%8.3f", DF), ret$CVwT, ret$CVwR, 80,
-                    125, CI[1], CI[2], PE, "fail")
+                    sprintf("%8.3f", DF), ret$CVwT, ret$CVwR,
+                    100*theta1, 100*theta2, CI[1], CI[2], PE, "fail")
   names(res)<- c("Design", "Method", "n", "nTT", "nRR", "Sub/seq",
                  "Miss/seq", "Miss/per", "alpha", "DF", "CVwT(%)",
                  "CVwR(%)", "BE.lo(%)", "BE.hi(%)", "CI.lo(%)",
@@ -66,8 +68,8 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   res$"PE(%)"    <- 100*res$"PE(%)"
   res$"CI.lo(%)" <- 100*res$"CI.lo(%)"
   res$"CI.hi(%)" <- 100*res$"CI.hi(%)"
-  if (round(res$"CI.lo(%)", 2) >= 80 &
-      round(res$"CI.hi(%)", 2) <= 125)
+  if (round(res$"CI.lo(%)", 2) >= 100*theta1 &
+      round(res$"CI.hi(%)", 2) <= 100*theta2)
     res$BE <- "pass" # CI within acceptance range
   options(ow) # restore options
   if (details) { # results in default (7 digits) precision

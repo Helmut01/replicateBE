@@ -38,6 +38,8 @@ Published on GitHub 2017-06-25
       detects /a lot/ of outliers. 3 seems to be liberal. 2 is a compromise.
     - Argument 'set' can be an empty string "" to support reading from
       CSV-files. Only required for XLS (the name of the sheet) now.
+    - Assessment for NTIDs implemented. ABE() has new arguments 'theta1'
+      and 'theta2'. Default to 0.80 and 1.25.
 
 Version 1.0.5
 Released to collaborators 2017-06-24
