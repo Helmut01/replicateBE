@@ -83,15 +83,14 @@ info.env <- function(fun, option=NA, path.in, path.out,
   }
   info <- paste0(info, "\nSystem             : ", node,
                  "\nUser               : ", user,
-                 "\nOperating System   : ", OS)
-  if (OS == "Darwin") { # special treatment (long system[["release"]])
-    tmp <- strwrap(OSrel, width = 59, prefix="\n                     ")
+                 "\nOperating System   : ", OS, " ", OSrel)
+  if (OS == "Darwin") { # special treatment (long system[["version"]])
+    tmp <- strwrap(OSver, width = 78, prefix="\n                     ")
     for (j in 1:length(tmp)) {
       info <- paste0(info, tmp[[j]])
     }
-    info <- paste(info, "\n                    ", OSver)
   } else {
-    info <- paste0(info, " ", OSrel, " ", OSver)
+    info <- paste0(info, " ", OSver)
   }
   info <- paste0(info, "\nR version          : ",
                        sprintf("%-10s", rver), ryear)
