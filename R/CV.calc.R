@@ -188,7 +188,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                     sprintf("%.3f", reg_set$r_const), "\u00B7swR)]")
     }
     if (design == "full") {
-      txt <- paste0(txt, "\nswT / swR        :   ",
+      txt <- paste0(txt, "\nswT / swR          :   ",
                     sprintf("%.4f", sw.ratio))
       if (sw.ratio >= 2/3 & sw.ratio <= 3/2) {
         txt <- paste0(txt, " (similar variabilities of T and R)")
@@ -202,7 +202,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
     }
     if (ola) {
       if (outlier) {
-        sw.ratio.new <- CV2se(CVwT)/CV2se(CVwR.new)
+        if (design == "full") sw.ratio.new <- CV2se(CVwT)/CV2se(CVwR.new)
         BE.new <- as.numeric(scABEL(CV=CVwR.new, regulator="EMA"))
         txt <- paste0(txt, "\n\nOutlier fence      :  ", fence,
                       "\u00D7IQR of studentized residuals.")
@@ -224,12 +224,18 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
         } else {
           txt <- paste0(txt, "not applicable)")
         }
+        txt <- paste0(txt, "\nswR  (recalc.)     :   ",
+                      sprintf("%.5f", CV2se(CVwR.new)))
         if (CVwR.new <= 0.3) {
           txt <- paste0(txt, "\nUnscaled BE-limits :  80.00% ... 125.00%")
         } else {
-          txt <- paste0(txt, "\nswR                :   ",
-                        sprintf("%.5f", CV2se(CVwR.new)),
-                        "\nswT / swR          :   ",
+          txt <- paste0(txt, "\nExpanded limits    : ",
+                        sprintf("%6.2f%% ... %.2f%%",
+                                100*BE.new[1], 100*BE.new[2]), " [100exp(\u00B1",
+                        sprintf("%.3f", reg_set$r_const), "\u00B7swR)]")
+        }
+        if (design == "full") {
+          txt <- paste0(txt, "\nswT / swR (recalc.):   ",
                         sprintf("%.4f", sw.ratio.new))
           if (sw.ratio.new >= 2/3 & sw.ratio.new <= 3/2) {
             txt <- paste0(txt, " (similar variabilities of T and R)")
@@ -240,10 +246,6 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
               txt <- paste0(txt, " (T higher variability than R)")
             }
           }
-          txt <- paste0(txt, "\nExpanded limits    : ",
-                        sprintf("%6.2f%% ... %.2f%%",
-                                100*BE.new[1], 100*BE.new[2]), " [100exp(\u00B1",
-                        sprintf("%.3f", reg_set$r_const), "\u00B7swR)]")
         }
       } else {
         txt <- paste0(txt, "\n\nOutlier fence      :  ", fence,
