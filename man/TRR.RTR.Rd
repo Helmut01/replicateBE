@@ -47,7 +47,8 @@ Data set simulated to be evaluated by \code{method.A()}, \code{method.B()}.
 }
 
 \note{
-This partial replicate design is also known as the \sQuote{extra-reference design}. Since T is not administered in all periods, lacking period effects must be assumed. In the presence of a \emph{true} period effect the treatment comparison will be biased. Hence, this design is not recommended.
+In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTR", "TRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.\cr
+This partial replicate design is also known as the \sQuote{extra-reference design}. Since the Test is not administered in all periods, lacking period effects must be assumed. In the presence of a \emph{true} period effect the treatment comparison will be biased. Hence, this design is not recommended.
 }
 
 \author{
@@ -57,6 +58,7 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes)
 \examples{
 str(rds22)
 rds22[61:66, ]
+summary(rds22[2:5])
 }
 
 \keyword{datasets}

@@ -54,7 +54,7 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
         \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
-      Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (7 missings in sequence TRTR and 3 in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. Two extreme outliers (subjects 45 and 52) after the reference treatment in sequence RTRT.\cr
+      Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and three in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. Two outliers (subjects 45 and 52) in sequence RTRT.\cr
 In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported results:
     \tabular{ll}{
       \code{CVwR} \tab 47.0\%\cr
@@ -75,7 +75,7 @@ In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported resul
         \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
-      Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (7 missings in sequence TRTR and 3 in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. No outliers.
+      Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and three in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. No outliers.
     }
 
     \item Reference Data Set 08 (\code{rds08})\cr
@@ -119,7 +119,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
-      Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (7 missings in sequence TRTR and 3 in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. No outliers.
+      Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and three in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. No outliers.
     }
 
     \item Reference Data Set 13 (\code{rds13})\cr
@@ -192,7 +192,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
-      Unbalanced (31 subjects in sequence TRTR and 30 in RTRT) and incomplete (14 missings in both sequences). Missings / period: 0/1, 4/2, 9/3, 15/4. 2 outliers (subjects 18 and 51 in sequence RTRT).
+      Unbalanced (31 subjects in sequence TRTR and 30 in RTRT) and incomplete (14 missings in both sequences). Missings / period: 0/1, 4/2, 9/3, 15/4. Two outliers (subjects 18 and 51 in sequence RTRT).
     }
 
     \item Reference Data Set 20 (\code{rds20})\cr
@@ -207,7 +207,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
-      Unbalanced (31 subjects in sequence TRTR and 30 in RTRT) and incomplete (14 missings in both sequences). Missings / period: 0/1, 4/2, 9/3, 15/4. 2 outliers (subjects 1 and 51 in sequence RTRT).
+      Unbalanced (31 subjects in sequence TRTR and 30 in RTRT) and incomplete (14 missings in both sequences). Missings / period: 0/1, 4/2, 9/3, 15/4. Two outliers (subjects 1 and 51 in sequence RTRT).
     }
 
     \item Reference Data Set 21 (\code{rds21})\cr
@@ -222,7 +222,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
-      Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (7 missings in sequence TRTR and 5 in sequence RTRT). Missings / period: 1/1, 1/2, 8/3, 2/4. No outliers.
+      Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and five in sequence RTRT). Missings / period: 1/1, 1/2, 8/3, 2/4. No outliers.
     }
   }
 }
@@ -250,12 +250,17 @@ European Medicines Agency, Committee for Medicinal Products for Human Use. \emph
 London, 19 November 2015. \href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf}{EMA/618604/2008 Rev. 13}
 }
 
+\note{
+In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTRT", "TRTR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.
+}
+
 \author{
 Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael Tomashevskiy (simulations in Phoenix NLME)
 }
 
 \examples{
 str(rds01)
+summary(rds01[2:6])
 }
 
 \keyword{datasets}

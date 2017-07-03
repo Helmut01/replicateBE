@@ -14,7 +14,7 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
 \details{
   \tabular{llcrcl}{
   Design \tab Specification \tab\ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab  N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
-   \tab full \tab \code{rds01} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT \tab full \tab \code{rds01} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRTR|RTRT \tab full \tab \code{rds06} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRTR|RTRT \tab full \tab \code{rds12} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRTR|RTRT \tab full \tab \code{rds14} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
@@ -61,7 +61,7 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in Table 9.6.\cr
     \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 14a.\cr
     \code{rds03} \tab \code{rds01} edited \tab Period 4 removed.\cr
-    \code{rds17} \tab \code{rds03} edited \tab Highly unbalanced (12 subjects in RTR and 7 in TRT).\cr
+    \code{rds17} \tab \code{rds03} edited \tab Highly unbalanced (twelve subjects in RTR and seven in TRT).\cr
     \code{rds10} \tab Chow & Liu \tab AUC data given in Table 9.3.3.\cr
     \code{rds02} \tab EMA, CHMP \tab Data set II.\cr
     \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Table II.\cr

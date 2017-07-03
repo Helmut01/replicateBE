@@ -31,7 +31,7 @@ Data set from the literature to be evaluated by \code{method.A()} and/or \code{m
         \code{treatment} \tab a factor with 2 levels: T, R\cr
         \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
         }
-      Unbalanced (4 subjects in sequence RTRT and 6 in each of the other three) and complete. Two outliers (subjects 8 and 17) in sequence TRTR.
+      Unbalanced (four subjects in sequence RTRT and six in each of the other three) and complete. Two outliers (subjects 8 and 17) in sequence TRTR.
     }
   }
 }
@@ -43,6 +43,10 @@ Data set from the literature to be evaluated by \code{method.A()} and/or \code{m
   }
 }
 
+\note{
+In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTRT", "RTTR", "TRRT", "TRTR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.
+}
+
 \references{
 \acronym{U.S.} Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Bioequivalence Studies.}\cr
 Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip}{bioequivalence study files}
@@ -52,6 +56,7 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 str(rds23)
 row <- c(25:28, 5:8, 9:12, 1:4)
 rds23[row, ]
+summary(rds23[2:5])
 }
 
 \keyword{datasets}

@@ -45,7 +45,7 @@ Data sets from the literature or edited to be evaluated by \code{method.A()}, \c
             \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
             \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
           }
-          Balanced (8 subjects in each of the three sequences) and complete (no missing data). No outliers.\cr\cr
+          Balanced (eight subjects in each of the three sequences) and complete (no missing data). No outliers.\cr\cr
           In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported results:
           \tabular{ll}{
             \code{CVwR} \tab 11.2\%\cr
@@ -98,6 +98,10 @@ Patterson SD, Jones B. \emph{Viewpoint: observations on scaled average bioequiva
 Pharm Stat. 2012;11(1):1--7. \doi{10.1002/pst.498}
 }
 
+\note{
+In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RRT", "RTR", "TRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.
+}
+
 \author{
 Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes)
 }
@@ -106,6 +110,7 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes)
 str(rds02)
 row <- c(10:12, 1:3, 16:18)
 rds02[row, ]
+summary(rds02[2:6])
 }
 
 \keyword{datasets}

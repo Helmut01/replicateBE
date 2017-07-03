@@ -33,7 +33,7 @@ Data set from the literature to be evaluated by \code{method.A()}, \code{method.
       \code{treatment} \tab a factor with 2 levels: T, R\cr
       \code{PK} \tab a numeric vector of pharmacokinetic responses (here AUC)
       }
-      Balanced (9 subjects in both sequences) and complete. No outliers.
+      Balanced (nine subjects in both sequences) and complete. No outliers.
     }
   }
 }
@@ -46,7 +46,8 @@ Data set from the literature to be evaluated by \code{method.A()}, \code{method.
 }
 
 \note{
-In analogy to the \acronym{EMA}’s Q&A: Uncertain estimate of \code{CVwR} since less than 12 subjects in sequence TRR.
+In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTT", "TRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.\cr
+In analogy to the \acronym{EMA}’s Q&A: Uncertain estimate of \code{CVwR} since less than twelve subjects in sequence TRR.
 }
 
 \references{
@@ -58,6 +59,7 @@ Boca Raton: CRC Press; \ifelse{html}{\out{3<sup>rd</sup>}}{\eqn{3\textsuperscrip
 str(rds10)
 row <- c(1:3, 28:30)
 rds10[row, ]
+summary(rds10[2:5])
 }
 
 \keyword{datasets}

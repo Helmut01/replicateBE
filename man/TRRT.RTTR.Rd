@@ -89,6 +89,10 @@ Data sets from the literature to be evaluated by \code{method.A()}, \code{method
     }
 }
 
+\note{
+In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTTR", "TRRT"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.
+}
+
 \references{
 Metzler CM, Shumaker RC. \emph{The Phenytoin Trial is a Case Study of \sQuote{Individual} Bioequivalence.}\cr
 Drug Inf J. 1998;32:1063--72
@@ -102,6 +106,7 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 
 \examples{
 str(rds05)
+summary(rds05[2:5])
 head(rds11, 8)
 }
 
