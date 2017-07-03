@@ -141,6 +141,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
   Npers  <- design$periods                # Number of periods
   Nseqs  <- design$sequences              # Number of sequences
   type   <- design$type                   # Nice identifier string
+  design <- design$design                 # "full" or "partial"
   if (nchar(type) == 19) {  # 4-period 4-sequence full replicate designs
     if (Npers != 4) stop("4 periods required in this full replicate design.")
     if (Nseqs != 4) stop("4 sequences required in this full replicate design.")
@@ -196,7 +197,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
   RR   <- RR[!is.na(RR$PK), ]        # exclude NAs
   nRR  <- length(unique(RR$subject)) # number of subjects
   nTT  <- NA
-  if (type %in% c("TRR|RTR|RRT", "TRR|RTR", "TRTR|RTRT|TRRT|RTTR")) { # only full replicates
+  if (design == "full") { # only full replicates
     # Data of subjects with two T treatments
     TT  <- test[duplicated(test$subject, fromLast=TRUE)|
                 duplicated(test$subject, fromLast=FALSE), ]
@@ -251,14 +252,16 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
     txt <- paste0(txt, "\n                     ",
                   "Less than 12 as required acc. to the BE-GL.")
   }
-  if (nchar(type) != 11 & type != "TRR|RTR") # full replicates only
+  if (design == "full") {
     txt <- paste0(txt, "\nSub\u2019s with two Ts  : ", sprintf("%3i", nTT))
+  }
   txt <- paste0(txt, "\nSub\u2019s with two Rs  : ", sprintf("%3i", nRR))
   if ((type == "TRT|RTR" | type == "TRR|RTT") & nRR < 12) {
     txt <- paste(txt, "(uncertain CVwR acc. to Q&A Rev. 12)")
   }
   ret <- list(data=data, ref=ref, RR=RR, test=test, type=type, n=n,
-              nTT=nTT, nRR=nRR, txt=txt, Sub.Seq=Nsub.seq,
+              nTT=ifelse(design == "full", nTT, NA), nRR=nRR,
+              design=design, txt=txt, Sub.Seq=Nsub.seq,
               Miss.seq=Miss.seq, Miss.per=Miss.per, transf=logtrans,
               res.file=ifelse(print, res.file, NA),
               png.path=ifelse(plot.bxp, png.path, NA))

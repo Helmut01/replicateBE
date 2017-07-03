@@ -134,7 +134,8 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     \code{alpha} \tab nominal level of the test\cr
     \code{DF} \tab degrees of freedom of the treatment comparison\cr
     \code{CVwT(\%)} \tab intra-subject coefficient of variation of the test treatment (full replicates only)\cr
-    \code{CVwR(\%)} \tab intra-subject coefficient of variation of the reference treatment
+    \code{CVwR(\%)} \tab intra-subject coefficient of variation of the reference treatment\cr
+    \code{sw.ratio} \tab ratio of intrasubject variabilities of \code{T} and \code{R}
   }
 \itemize{
   \item If reference-scaling is applicable (\emph{i.e.}, \code{CVwR(\%)} >30\%):
@@ -144,8 +145,8 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     }
   \item If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR(\%)} ≤30\%):
     \tabular{ll}{
-      \code{BE.lo(\%)} \tab conventional lower limit (\emph{i.e.}, 80.00\%)\cr
-      \code{BE.hi(\%)} \tab conventional upper limit (\emph{i.e.}, 125.00\%)
+      \code{BE.lo(\%)} \tab conventional lower limit (\emph{i.e.}, \verb{ 80})\cr
+      \code{BE.hi(\%)} \tab conventional upper limit (\emph{i.e.}, \verb{125})
     }
 }
   \tabular{ll}{
@@ -161,7 +162,8 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
 If \code{ola=TRUE} and at least one outlier was detected:
   \tabular{ll}{
     \code{outlier} \tab outlying subject(s)\cr
-    \code{CVwR.new(\%)} \tab intra-subject coefficient of variation of the reference treament; recalculated after exclusion of outlier(s)
+    \code{CVwR.new(\%)} \tab intra-subject coefficient of variation of the reference treament; recalculated after exclusion of outlier(s)\cr
+    \code{sw.ratio.new} \tab ratio of intrasubject variabilities of \code{T} and \code{R} after exclusion of outlier(s)
   }
 \itemize{
   \item If reference-scaling is applicable (\emph{i.e.}, \code{CVwR.new(\%)} >30\%):
@@ -171,8 +173,8 @@ If \code{ola=TRUE} and at least one outlier was detected:
     }
   \item If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR.new(\%)} ≤30\%):
     \tabular{ll}{
-      \code{BE.new.lo(\%)} \tab conventional lower limit (\emph{i.e.}, 80.00\%)\cr
-      \code{BE.new.hi(\%)} \tab conventional upper limit (\emph{i.e.}, 125.00\%)
+      \code{BE.new.lo(\%)} \tab conventional lower limit (\emph{i.e.}, \verb{ 80})\cr
+      \code{BE.new.hi(\%)} \tab conventional upper limit (\emph{i.e.}, \verb{125})
     }
 }
   \tabular{ll}{
@@ -227,7 +229,8 @@ Quoting the Q&A on the Revised EMA Bioequivalence Guideline:
   \item [\ldots] a study could be acceptable if the bioequivalence requirements are met both including the outlier subject (using the scaled average bioequivalence approach and the within-subject CV with this subject) and after exclusion of the outlier (using the within-subject CV without this subject).\cr
 An outlier test is not an expectation of the medicines agencies but outliers could be shown by a box plot. This would allow the medicines agencies to compare the data between them.}
 The \acronym{EMA}’s method of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (\emph{e.g.}, the \acronym{WHO};
-\acronym{ASEAN} States, Australia, Brazil, Egypt, the Russian Federation, the Eurasian Economic Union, New Zealand). The \acronym{WHO} opened a pilot phase exploring reference-scaling for AUC (4-period full replicate studies are mandatory in order to assess both \code{CVwR} and \code{CVwT}).\cr\cr
+\acronym{ASEAN} States, Australia, Brazil, Egypt, the Russian Federation, the Eurasian Economic Union, New Zealand).\cr
+The \acronym{WHO} opened a pilot phase exploring reference-scaling for AUC (4-period full replicate studies are mandatory in order to assess the variability associated with each product). It is an open issue how this assessment should be done. In Population Bioequivalence (\acronym{PBE}) and Individual Bioequivalence (\acronym{IBE}) the \ifelse{html}{\out{s<sub>wT</sub>}}{\eqn{w\textsubscript}{T}}/\ifelse{html}{\out{s<sub>wR</sub>}}{\eqn{w\textsubscript}{R}} ratio was assessed and similar variability was concluded for a ratio within 0.667 -- 1.500. However, the power of comparing variabilities in a study designed to demonstrate \acronym{ABE} is low. This was the main reason why \acronym{PBE} and \acronym{IBE} were not implemented in regulatory practice.\cr\cr
 \strong{Program offered for Use without any Guarantees and Absolutely No Warranty.\cr
 No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.}
 }
@@ -248,6 +251,9 @@ No Liability is accepted for any Loss and Risk to Public Health Resulting from U
 path.in <- paste0(find.package("replicateBE"), "/extdata/")       # example files
 method.B(path.in = path.in, file = "DS", set = "01", ext = "csv") # Q&A data set I
 # Should result in:
+#   CVwT               :  35.16\%
+#   swT                :   0.34138
+#   swT/swR            :   0.7647 (similar variabilities of T and R)
 #   CVwR               :  46.96\% (reference-scaling applicable)
 #   swR                :   0.44645
 #   Expanded limits    :  71.23\% ... 140.40\% [100exp(±0.760·swR)]
@@ -262,6 +268,7 @@ method.B(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 #   Recalculation due to presence of 2 outliers (subj. 45|52)
 #   CVwR (outl. excl.) :  32.16\% (reference-scaling applicable)
 #   swR                :   0.31374
+#   swT/swR            :   1.0881 (similar variabilities of T and R)
 #   Expanded limits    :  78.79\% ... 126.93\% [100exp(±0.760·swR)]
 #   Confidence interval: pass
 #   Point estimate     : pass

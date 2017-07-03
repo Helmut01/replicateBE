@@ -14,6 +14,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                     set=set, ext=ext, header=header, na=na, sep=sep,
                     dec=dec, logtrans=logtrans, print=print,
                     plot.bxp=plot.bxp, data=data)
+  design <- ret$design
   ow    <- options() # save options
   options(digits=12) # dealing with anova(): increase digits!
   if (logtrans) {    # use the raw data and log-transform internally
@@ -138,8 +139,8 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
       BE.new   <- rep(NA, 2)
     }
   } # end of outlier analysis (if requested, i.e., ola=TRUE)
-  CVwT  <- NA
-  if (!ret$type %in% c("TRR|RTR|RRT", "TRR|RTR")) { # not for partial replicates
+  #CVwT  <- NA # keep!
+  if (design == "full") {
     if (logtrans) { # use the raw data and log-transform internally
       modCVT <- lm(log(PK) ~ subject + period, data=ret$test)
     } else {        # use the already log-transformed data
@@ -161,10 +162,28 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                   sprintf("%.3f", reg_set$r_const),
                   "\nGMR restriction    :  80.00% ... 125.00%")
   }
-  if (!is.na(CVwT)) txt <- paste0(txt, "\nCVwT               : ",
-                                  sprintf("%6.2f%%", 100*CVwT))
-  txt <- paste0(txt,
-                "\nCVwR               : ", sprintf("%6.2f%%", 100*CVwR))
+  if (design == "full") {
+    sw.ratio <- CV2se(CVwT)/CV2se(CVwR)
+    txt <- paste0(txt, "\nCVwT               : ",
+                 sprintf("%6.2f%%", 100*CVwT))
+    if (called.from != "ABE") { # not needed for ABE
+      txt <- paste0(txt, "\nswT                :   ",
+                 sprintf("%.5f", CV2se(CVwT)),
+                 "\nswT/swR            :   ",
+                 sprintf("%.4f", sw.ratio))
+      if (sw.ratio >= 2/3 & sw.ratio <= 3/2) {
+        txt <- paste0(txt, " (similar variabilities of T and R)")
+      } else {
+        if (sw.ratio < 2/3) {
+          txt <- paste0(txt, " (T lower variability than R)")
+        } else {
+          txt <- paste0(txt, " (T higher variability than R)")
+        }
+      }
+    }
+  }
+  txt <- paste0(txt, "\nCVwR               : ",
+                sprintf("%6.2f%%", 100*CVwR))
   if (called.from != "ABE") { # only for scaling
     txt <- paste0(txt, " (reference-scaling ")
     if (CVwR <= 0.3) txt <- paste0(txt, "not ")
@@ -181,8 +200,10 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
     }
     if (ola) {
       if (outlier) {
+        sw.ratio.new <- CV2se(CVwT)/CV2se(CVwR.new)
         BE.new <- as.numeric(scABEL(CV=CVwR.new, regulator="EMA"))
-        txt <- paste0(txt, "\n\nOutlier fence      :  ", fence, "\u00D7IQR of studentized residuals.")
+        txt <- paste0(txt, "\n\nOutlier fence      :  ", fence,
+                      "\u00D7IQR of studentized residuals.")
         txt1 <- paste0("\nRecalculation due to presence of ",
                       length(ol))
         if (length(ol) == 1) {
@@ -191,7 +212,8 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
           txt1 <- paste0(txt1, " outliers (subj. ")
         }
         txt1 <- paste0(txt1, paste0(ol, collapse="|"), ")")
-        txt <- paste0(txt, txt1, "\n", paste0(rep("\u2500", nchar(txt1)-1), collapse=""))
+        txt <- paste0(txt, txt1, "\n",
+                      paste0(rep("\u2500", nchar(txt1)-1), collapse=""))
         txt <- paste0(txt,
                     "\nCVwR (outl. excl.) : ", sprintf("%6.2f%%", 100*CVwR.new),
                     " (reference-scaling ")
@@ -204,14 +226,26 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
           txt <- paste0(txt, "\nUnscaled BE-limits :  80.00% ... 125.00%")
         } else {
           txt <- paste0(txt, "\nswR                :   ",
-                        sprintf("%.5f", CV2se(CVwR.new)))
+                        sprintf("%.5f", CV2se(CVwR.new)),
+                        "\nswT/swR            :   ",
+                        sprintf("%.4f", sw.ratio.new))
+          if (sw.ratio.new >= 2/3 & sw.ratio.new <= 3/2) {
+            txt <- paste0(txt, " (similar variabilities of T and R)")
+          } else {
+            if (sw.ratio.new < 2/3) {
+              txt <- paste0(txt, " (T lower variability than R)")
+            } else {
+              txt <- paste0(txt, " (T higher variability than R)")
+            }
+          }
           txt <- paste0(txt, "\nExpanded limits    : ",
                         sprintf("%6.2f%% ... %.2f%%",
                                 100*BE.new[1], 100*BE.new[2]), " [100exp(\u00B1",
                         sprintf("%.3f", reg_set$r_const), "\u00B7swR)]")
         }
       } else {
-        txt <- paste0(txt, "\n\nOutlier fence      :  ", fence, "\u00D7IQR of studentized residuals.")
+        txt <- paste0(txt, "\n\nOutlier fence      :  ", fence,
+                      "\u00D7IQR of studentized residuals.")
         txt <- paste0(txt, "\nNo outlier detected.",
                       "\n", paste0(rep("\u2500", 49), collapse=""))
       }
@@ -222,8 +256,16 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
   }
   ret$txt <- txt
   ret <- c(ret, CVswitch=reg_set$CVswitch, CVcap=reg_set$CVcap,
-           r_const=reg_set$r_const, BE=BE, CVwT=CVwT, CVwR=CVwR,
+           r_const=reg_set$r_const, BE=BE,
+           CVwT=ifelse(design == "full", CVwT, NA), CVwR=CVwR,
+           sw.ratio=ifelse(called.from != "ABE" &
+                          design == "full", sw.ratio, NA),
            ol=ifelse(outlier, list(ol.subj1), NA),
-           CVwR.new=ifelse(outlier, CVwR.new, NA), BE.new=BE.new)
+           CVwR.new=ifelse(outlier, CVwR.new, NA),
+           sw.ratio.new=ifelse(called.from != "ABE" &
+                               design == "full" &
+                               outlier,
+                               sw.ratio.new, NA),
+           BE.new=BE.new)
   return(ret)
 } # end of function CV.calc()

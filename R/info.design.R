@@ -36,6 +36,7 @@ info.design <- function(seqs = NA) {
       message("Untested design.")
       reordered <- rev(seqs) # at least T first
     }
+    design <- "full"
   }
 
   # 4-period 2-sequence full replicates
@@ -50,22 +51,27 @@ info.design <- function(seqs = NA) {
       message("Untested design.")
       reordered <- rev(seqs) # at least T first
     }
+    design <- "full"
   }
 
   # 3-period 2-sequence full replicates or partial replicate
   if (periods == 3 & sequences == 2 & is.na(reordered[1])) {
     if (sum(seqs %in% c("RTR", "TRT")) == 2 & is.na(reordered[1])) { # full
       reordered <- seqs[order(match(seqs, c("TRT", "RTR")))]
+      design <- "full"
     }
     if (sum(seqs %in% c("RTT", "TRR")) == 2 & is.na(reordered[1])) { # full
       reordered <- seqs[order(match(seqs, c("TRR", "RTT")))]
+      design <- "full"
     }
     if (sum(seqs %in% c("RTR", "TRR")) == 2 & is.na(reordered[1])) { # extra-reference
       reordered <- seqs[order(match(seqs, c("TRR", "RTR")))]
+      design <- "partial"
     }
     if (is.na(reordered[1])) {
       message("Untested design.")
       reordered <- rev(seqs) # at least T first
+      design <- "partial" # likely...
     }
   }
 
@@ -78,6 +84,7 @@ info.design <- function(seqs = NA) {
       message("Untested design.")
       reordered <- rev(seqs) # at least T first
     }
+    design <- "partial"
   }
 
   # 2-period 4-sequence (Balaam's?)
@@ -90,9 +97,10 @@ info.design <- function(seqs = NA) {
       message("Untested design.")
       reordered <- rev(seqs) # at least T first
     }
+    design <- "full"
   }
   design <- list(reordered, paste0(reordered, collapse="|"),
-                 sequences, periods)
-  names(design) <- c("reordered", "type", "sequences", "periods")
+                 sequences, periods, design)
+  names(design) <- c("reordered", "type", "sequences", "periods", "design")
   return(design)
 }

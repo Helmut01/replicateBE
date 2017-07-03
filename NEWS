@@ -40,6 +40,9 @@ Published on GitHub 2017-06-25
       CSV-files. Only required for XLS (the name of the sheet) now.
     - Assessment for NTIDs implemented. ABE() has new arguments 'theta1'
       and 'theta2'. Default to 0.80 and 1.25.
+    - Bug-fix: nTT was NA in get.data() for TRTR|RTRR. Now design
+      (full/replicate) is obtained from info.design().
+    - Calculate the sw-ratio (maybe useful for the WHO).
 
 Version 1.0.5
 Released to collaborators 2017-06-24

@@ -122,8 +122,8 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     \code{DF} \tab degrees of freedom of the treatment comparison\cr
     \code{CVwT(\%)} \tab intra-subject coefficient of variation of the test treatment (full replicates only)\cr
     \code{CVwR(\%)} \tab intra-subject coefficient of variation of the reference treatment\cr
-    \code{BE.lo(\%)} \tab lower bioequivalence limit (\emph{e.g.}, 80.00\%)\cr
-    \code{BE.hi(\%)} \tab upper bioequivalence limit (\emph{e.g.}, 125.00\%)\cr
+    \code{BE.lo(\%)} \tab lower bioequivalence limit (\emph{e.g.}, \verb{ 80})\cr
+    \code{BE.hi(\%)} \tab upper bioequivalence limit (\emph{e.g.}, \verb{125})\cr
     \code{CI.lo(\%)} \tab lower confidence limit of the treatment comparison\cr
     \code{CI.hi(\%)} \tab upper confidence limit of the treatment comparison\cr
     \code{PE(\%)} \tab point estimate of the treatment comparison (aka \acronym{GMR})\cr

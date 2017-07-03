@@ -51,17 +51,17 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                     paste0(ret$Sub.Seq, collapse="|"),
                     paste0(ret$Miss.seq, collapse="|"),
                     paste0(ret$Miss.per, collapse="|"), alpha,
-                    sprintf("%8.3f", DF), ret$CVwT, ret$CVwR, ret$BE1,
-                    ret$BE2, CI[1], CI[2], PE, "fail", "fail", "fail",
-                    log(CI[2])-log(PE), paste0(ret$ol, collapse="|"),
-                    ret$CVwR.new, ret$BE.new1, ret$BE.new2,
-                    "fail", "fail", "fail")
+                    sprintf("%8.3f", DF), ret$CVwT, ret$CVwR, ret$sw.ratio,
+                    ret$BE1, ret$BE2, CI[1], CI[2], PE, "fail", "fail",
+                    "fail", log(CI[2])-log(PE), paste0(ret$ol, collapse="|"),
+                    ret$CVwR.new, ret$sw.ratio.new, ret$BE.new1,
+                    ret$BE.new2, "fail", "fail", "fail")
   names(res)<- c("Design", "Method", "n", "nTT", "nRR", "Sub/seq",
                  "Miss/seq", "Miss/per", "alpha", "DF", "CVwT(%)",
-                 "CVwR(%)", "EL.lo(%)", "EL.hi(%)", "CI.lo(%)",
+                 "CVwR(%)", "sw.ratio", "EL.lo(%)", "EL.hi(%)", "CI.lo(%)",
                  "CI.hi(%)", "PE(%)", "CI", "GMR", "BE", "log.half-width",
-                 "outlier", "CVwR.new(%)", "EL.new.lo(%)", "EL.new.hi(%)",
-                 "CI.new", "GMR.new", "BE.new")
+                 "outlier", "CVwR.new(%)", "sw.ratio.new", "EL.new.lo(%)",
+                 "EL.new.hi(%)", "CI.new", "GMR.new", "BE.new")
   if (ret$BE2 == 1.25) { # change column names if necessary
     colnames(res)[which(names(res) == "EL.lo(%)")] <- "BE.lo(%)"
     colnames(res)[which(names(res) == "EL.hi(%)")] <- "BE.hi(%)"
@@ -115,8 +115,9 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
       # remove superfluous columns if ola=FALSE or ola=TRUE
       # and no outlier(s) detected
       ret <- ret[ , !names(ret) %in% c("outlier", "CVwR.new(%)",
-                                       "EL.new.lo(%)", "EL.new.hi(%)",
-                                       "CI.new", "GMR.new", "BE.new")]
+                                       "sw.ratio.new", "EL.new.lo(%)",
+                                       "EL.new.hi(%)", "CI.new",
+                                       "GMR.new", "BE.new")]
     }
     return(ret)
   }
