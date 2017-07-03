@@ -127,10 +127,10 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
         stand.res.outliers <- data.frame(ol.subj2, ol.seq2, signif(ol.value2, 7))#
         names(stand.res.outliers) <- c("subject", "sequence", "stand.res")
         cat(paste0("\nOutlier analysis\n Studentized residuals",
-                   "\n Limits (", fence, "u00D7IQR whiskers): ",
+                   "\n Limits (", fence, "\u00D7IQR whiskers): ",
                    stud.res.whiskers[1], ", ", stud.res.whiskers[2],
                    "\n Outliers:\n")); print(stud.res.outliers, row.names=FALSE)
-        cat(paste0("\n Standarized residuals\n Limits (", fence, "u00D7IQR whiskers): ",
+        cat(paste0("\n Standarized residuals\n Limits (", fence, "\u00D7IQR whiskers): ",
                    stand.res.whiskers[1], ", ", stand.res.whiskers[2],
                    "\n Outliers:\n")); print(stand.res.outliers, row.names=FALSE)
       }
@@ -168,18 +168,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                  sprintf("%6.2f%%", 100*CVwT))
     if (called.from != "ABE") { # not needed for ABE
       txt <- paste0(txt, "\nswT                :   ",
-                 sprintf("%.5f", CV2se(CVwT)),
-                 "\nswT/swR            :   ",
-                 sprintf("%.4f", sw.ratio))
-      if (sw.ratio >= 2/3 & sw.ratio <= 3/2) {
-        txt <- paste0(txt, " (similar variabilities of T and R)")
-      } else {
-        if (sw.ratio < 2/3) {
-          txt <- paste0(txt, " (T lower variability than R)")
-        } else {
-          txt <- paste0(txt, " (T higher variability than R)")
-        }
-      }
+                 sprintf("%.5f", CV2se(CVwT)))
     }
   }
   txt <- paste0(txt, "\nCVwR               : ",
@@ -197,6 +186,19 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                     sprintf("%6.2f%% ... %.2f%%",
                             100*BE[1], 100*BE[2]), " [100exp(\u00B1",
                     sprintf("%.3f", reg_set$r_const), "\u00B7swR)]")
+    }
+    if (design == "full") {
+      txt <- paste0(txt, "\nswT / swR        :   ",
+                    sprintf("%.4f", sw.ratio))
+      if (sw.ratio >= 2/3 & sw.ratio <= 3/2) {
+        txt <- paste0(txt, " (similar variabilities of T and R)")
+      } else {
+        if (sw.ratio < 2/3) {
+          txt <- paste0(txt, " (T lower variability than R)")
+        } else {
+          txt <- paste0(txt, " (T higher variability than R)")
+        }
+      }
     }
     if (ola) {
       if (outlier) {
@@ -227,7 +229,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
         } else {
           txt <- paste0(txt, "\nswR                :   ",
                         sprintf("%.5f", CV2se(CVwR.new)),
-                        "\nswT/swR            :   ",
+                        "\nswT / swR          :   ",
                         sprintf("%.4f", sw.ratio.new))
           if (sw.ratio.new >= 2/3 & sw.ratio.new <= 3/2) {
             txt <- paste0(txt, " (similar variabilities of T and R)")
