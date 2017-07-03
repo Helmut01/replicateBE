@@ -221,18 +221,15 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                     " (reference-scaling ")
         if (CVwR.new > 0.3) {
           txt <- paste0(txt, "applicable)")
-        } else {
-          txt <- paste0(txt, "not applicable)")
-        }
-        txt <- paste0(txt, "\nswR  (recalc.)     :   ",
-                      sprintf("%.5f", CV2se(CVwR.new)))
-        if (CVwR.new <= 0.3) {
-          txt <- paste0(txt, "\nUnscaled BE-limits :  80.00% ... 125.00%")
-        } else {
+          txt <- paste0(txt, "\nswR  (recalc.)     :   ",
+                        sprintf("%.5f", CV2se(CVwR.new)))
           txt <- paste0(txt, "\nExpanded limits    : ",
                         sprintf("%6.2f%% ... %.2f%%",
                                 100*BE.new[1], 100*BE.new[2]), " [100exp(\u00B1",
                         sprintf("%.3f", reg_set$r_const), "\u00B7swR)]")
+        } else {
+          txt <- paste0(txt, "not applicable)")
+          txt <- paste0(txt, "\nUnscaled BE-limits :  80.00% ... 125.00%")
         }
         if (design == "full") {
           txt <- paste0(txt, "\nswT / swR (recalc.):   ",
