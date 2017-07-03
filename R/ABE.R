@@ -16,9 +16,15 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                   print=print, verbose=verbose, ask=ask,
                   theta1=theta1, theta2=theta2, data=data)
   if (print) { # change from "ABEL" to "ABE"
-    results <- paste0(substr(ret$res.file, 1,
-                     which(strsplit(ret$res.file, "")[[1]]=="_")),
-                     "ABE.txt")
+    if (theta1 <= 0.8) {
+      results <- paste0(substr(ret$res.file, 1,
+                        which(strsplit(ret$res.file, "")[[1]]=="_")),
+                        "ABE.txt")
+    } else {
+      results <- paste0(substr(ret$res.file, 1,
+                               which(strsplit(ret$res.file, "")[[1]]=="_")),
+                        "ABE_NTID.txt")
+    }
   }
   # generate variables based on the attribute
   # 2nd condition: Otherwise, the header from a CSV file will be overwritten

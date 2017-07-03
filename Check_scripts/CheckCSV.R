@@ -9,6 +9,9 @@ adjust  <- FALSE # set to TRUE if you have some spare time
 ### ABE ###
 for (j in seq_along(sets)) {
   ABE(path.in=path.in, file="DS", set=set[j], ext="csv")
+  if (j == 2) {
+    ABE(path.in=path.in, file="DS", set=set[j], ext="csv", theta1=0.9)
+  }
 }
 ### method.A ###
 for (j in seq_along(sets)) {
