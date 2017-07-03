@@ -1,7 +1,7 @@
 # replicateBE
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
-The library supports methods given in the EMA’s [Q&A document](http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf) according to the EMA’s [Guideline on the Investigation of Bioequivalence](http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2010/01/WC500070039.pdf).
+The library supports methods given in the EMA’s [Q&A document](http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf) for reference-scaling according to the EMA’s [Guideline on the Investigation of Bioequivalence](http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2010/01/WC500070039.pdf). Potential influence of outliers on the variability of the reference can be assessed by boxplots of studentized and standardized residuals as suggested at a joint [EGA/EMA workshop](http://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf).
 
 
 - Method A
