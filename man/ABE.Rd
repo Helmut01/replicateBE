@@ -84,8 +84,9 @@ Tested designs:
     \item 4-period 2-sequence full replicates:\cr
       \code{TRTR | RTRT}\cr
       \code{TRRT | RTTR}
-    \item 4-period 4-sequence full replicate:\cr
+    \item 4-period 4-sequence full replicates:\cr
       \code{TRTR | RTRT | TRRT | RTTR}\cr
+      \code{TRRT | RTTR | TTRR | RRTT}
     \item 3-period 2-sequence full replicates:\cr
       \code{TRT | RTR}\cr
       \code{TRR | RTT}

@@ -29,6 +29,8 @@ Tested designs
   - ```TRTR | RTRT```
   - ```TRRT | RTTR```
   - ```TRTR | RTRT | TRRT | RTTR``` (_not recommended_)
+  - ```TRRT | RTTR | TTRR | RRTT``` (_not recommended_)
+
 - 3-period (full) replicates
   - ```TRT | RTR```
   - ```TRR | RTT```
