@@ -28,16 +28,20 @@ Tested designs
 - 4-period (full) replicates
   - ```TRTR | RTRT```
   - ```TRRT | RTTR```
-  - ```TRTR | RTRT | TRRT | RTTR``` (_not recommended_)
-  - ```TRRT | RTTR | TTRR | RRTT``` (_not recommended_)
+  - ```TRTR | RTRT | TRRT | RTTR```¹
+  - ```TRRT | RTTR | TTRR | RRTT```¹
 
 - 3-period (full) replicates
   - ```TRT | RTR```
   - ```TRR | RTT```
 - 3-period (partial) replicates
   - ```TRR | RTR | RRT```
-  - ```TRR | RTR``` (extra-reference design; _not recommended_)
+  - ```TRR | RTR```²
 
 Cross-validation: Results of reference data sets agree with ones obtained in SAS 9.3 and Phoenix WinNonlin (6.4, 7.0).
+
+¹ Confounded effects (design _not recommended_).
+
+² Extra-reference design; biased in the presence of period effects (design _not recommended_).
 
 **Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.**
