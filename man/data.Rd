@@ -36,7 +36,8 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
   TRR|RTR|RRT \tab partial \tab \code{rds04} \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTR|RRT \tab partial \tab \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTR \tab partial \tab \code{rds22} \tab 36 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  TRTR|RTRT|TRRT|RTTR \tab full \tab \code{rds23} \tab 22 \tab >30 \tab \code{method.A()}, \code{method.B()}
+  TRTR|RTRT|TRRT|RTTR \tab full \tab \code{rds23} \tab 22 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRRT|RTTR|TTRR|RRTT \tab full \tab \code{rds24} \tab 39 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   }
 In full replicate designs \emph{both} R and T are administered twice (although not necessarily to \emph{all} subjects).\cr
 In partial replicate designs \emph{only} R is administered twice.
@@ -67,7 +68,8 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Table II.\cr
     \code{rds07} \tab R \tab Large simulated data set with homoscedasticity.\cr
     \code{rds22} \tab R \tab Simulated data set with homoscedasticity.\cr
-    \code{rds23} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 7.
+    \code{rds23} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 7.\cr
+    \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 1.
   }
 }
 
@@ -93,7 +95,7 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 
 \seealso{
   4-period full replicates\cr
-  {\link[replicateBE]{TRTR.RTRT}}, {\link[replicateBE]{TRRT.RTTR}}, {\link[replicateBE]{TRTR.RTRT.TRRT.RTTR}}\cr
+  {\link[replicateBE]{TRTR.RTRT}}, {\link[replicateBE]{TRRT.RTTR}}, {\link[replicateBE]{TRTR.RTRT.TRRT.RTTR}}, {\link[replicateBE]{TRRT.RTTR.TTRR.RRTT}}\cr
   3-period full replicates\cr
   {\link[replicateBE]{TRT.RTR}}, {\link[replicateBE]{TRR.RTT}}\cr
   3-period partial replicates\cr
@@ -106,7 +108,7 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael 
 
 \examples{
 # show structure of all data sets
-ds <- sprintf("rds\%02i", 1:23)
+ds <- sprintf("rds\%02i", 1:24)
 for (i in seq_along(ds)) {
   cat(ds[i], "\n")
   str(eval(parse(text=ds[i])))

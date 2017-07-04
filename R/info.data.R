@@ -6,7 +6,7 @@
 ############################################
 info.data <- function(data = NULL) {
   if (missing(data) | is.null(data)) stop()
-  sets     <- 23
+  sets     <- 24
   descr    <- c("Data set I given by the EMA (Q&A document) available at
  http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf",
                 "Data set II given by the EMA (Q&A document) available at http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf",
@@ -31,7 +31,8 @@ info.data <- function(data = NULL) {
                 "Modified Data set I given by the EMA (Q&A document): One extreme result of subjects 45
 & 52 set to NA.",
                 "Data set simulated with CVwT = CVwR\u00A0=\u00A045%, CVbT = CVbR\u00A0=\u00A0100%, GMR\u00A0=\u00A00.90.",
-                "Drug 7a, Cmax data: Beta-adrenergic blocking agent\u00A0- IR of the FDA\u2019s bioequivalence study files: available at https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip.")
+                "Drug 7a, Cmax data: Beta-adrenergic blocking agent\u00A0- IR of the FDA\u2019s bioequivalence study files: available at https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip.",
+                "Drug 1, Cmax data: Antianxiety agent\u00A0- IR of the FDA\u2019s bioequivalence study files: available at https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip.")
   file     <- rep("DS", sets)
   set      <- sprintf("%02i", 1:sets)
   ref      <- paste0("rds", set)

@@ -215,7 +215,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                       " (reference-scaling ")
         if (CVwR.new > 0.3) {
           txt <- paste0(txt, "applicable)")
-          txt <- paste0(txt, "\nswR  (recalc.)     :   ",
+          txt <- paste0(txt, "\nswR (recalculated) :   ",
                         sprintf("%.5f", CV2se(CVwR.new)))
           txt <- paste0(txt, "\nExpanded limits    : ",
                         sprintf("%6.2f%% ... %.2f%%",

@@ -38,8 +38,8 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   }
   logtrans <- ret$transf
   os <- Sys.info()[[1]] # get OS for line-endings in output (Win: CRLF)
-  ow <- options()       # save options
-  options(digits=12)    # dealing with anova(): increase digits!
+  ow <- options("digits") # save options
+  options(digits=12)    # increase digits for anova()
   if (logtrans) { # use the raw data and log-transform internally
     mod <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
                         data=ret$data)
@@ -108,7 +108,7 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     }
   }
   txt <- paste0(ret$txt, "\nalpha              :   ", alpha,
-                       " (", 100*(1-2*alpha), "% CI)")
+                " (", 100*(1-2*alpha), "% CI)")
   txt <- paste0(txt,
                 "\nConfidence interval: ", sprintf("%6.2f%% ... %.2f%%",
                 res$"CI.lo(%)", res$"CI.hi(%)"), " (", res$BE, ")",
@@ -117,7 +117,7 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     txt <- paste0(txt, "\nNote: The extra-reference design assumes lacking period effects. ",
                   "The treatment\ncomparison will be biased in the presence of a ",
                   "true period effect.")
-  if (res$Design == "TRTR|RTRT|TRRT|RTTR")
+  if (res$Design %in% c("TRTR|RTRT|TRRT|RTTR", "TRRT|RTTR|TTRR|RRTT"))
     txt <- paste0(txt, "\nNote: Confounded effects; design not recommended.")
   txt <- paste0(txt, "\n")
   if (print & overwrite) {

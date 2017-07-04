@@ -164,12 +164,16 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
     if (Npers != 3) stop("3 periods required in this partial replicate design.")
     if (Nseqs != 3) stop("3 sequences required in this partial replicate design.")
   }
+  # next line introduced for DS24 where all data of subject 16 are NA
+  # TODO: Check for eventual side-effects!
+  data <- na.omit(data)
   Nsub.seq <- table(data$sequence[!duplicated(data$subject)])
   # adapt to reordered sequences
   Nsub.seq <- Nsub.seq[order(match(names(Nsub.seq), seqs))]
   ref   <- data[data$treatment == "R", ]
   test  <- data[data$treatment == "T", ]
-  NTR   <- sum(levels(test$subject) %in% levels(ref$subject)) # >= 1 T & >= 1 R
+#  NTR   <- sum(levels(test$subject) %in% levels(ref$subject)) # >= 1 T & >= 1 R
+  NTR   <- length(unique(test$subject) %in% unique(ref$subject)) # for rds24
   n     <- length(unique(data$subject))
   # Get the wide data frame subject+sequence\period
   compl <- reshape(data[c("subject", "sequence", "period", "PK")],
@@ -246,16 +250,16 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
   }
   txt <- paste0(txt,
                 "\nSubjects (total)   : ", sprintf("%3i", n),
-                "\nSub\u2019s with T and R : ", sprintf("%3i", NTR),
+                "\nSubj\u2019s with T and R: ", sprintf("%3i", NTR),
                 " (calculation of the CI)")
   if (NTR < 12) {
     txt <- paste0(txt, "\n                     ",
                   "Less than 12 as required acc. to the BE-GL.")
   }
   if (design == "full") {
-    txt <- paste0(txt, "\nSub\u2019s with two Ts  : ", sprintf("%3i", nTT))
+    txt <- paste0(txt, "\nSubj\u2019s with two Ts : ", sprintf("%3i", nTT))
   }
-  txt <- paste0(txt, "\nSub\u2019s with two Rs  : ", sprintf("%3i", nRR))
+  txt <- paste0(txt, "\nSubj\u2019s with two Rs : ", sprintf("%3i", nRR))
   if ((type == "TRT|RTR" | type == "TRR|RTT") & nRR < 12) {
     txt <- paste(txt, "(uncertain CVwR acc. to Q&A Rev. 12)")
   }

@@ -32,8 +32,8 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   }
   logtrans <- ret$transf
   os <- Sys.info()[[1]] # get OS for line-endings in output (Win: CRLF)
-  ow <- options()       # save options
-  options(digits=12)    # dealing with anova(): increase digits!
+  ow <- options("digits") # save options
+  options(digits=12)    # increase digits for anova()
   if (option == 2) {    # by nlme (Residual DF)
     options(contrasts=c("contr.treatment", "contr.poly"))
     if (logtrans) {     # use the raw data and log-transform internally
@@ -234,7 +234,7 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     txt <- paste0(txt, "Note: The extra-reference design assumes lacking period effects. ",
                   "The treatment\ncomparison will be biased in the presence of a ",
                   "true period effect.\n")
-  if (res$Design == "TRTR|RTRT|TRRT|RTTR")
+  if (res$Design %in% c("TRTR|RTRT|TRRT|RTTR", "TRRT|RTTR|TTRR|RRTT"))
     txt <- paste0(txt, "Note: Confounded effects; design not recommended.\n")
   if (print & overwrite) {
     res.file <- file(description=results, open="ab")

@@ -28,9 +28,8 @@ info.design <- function(seqs = NA) {
     if (sum(seqs %in% c("RTRT", "RTTR", "TRRT", "TRTR")) == 4) {
       reordered <- seqs[order(match(seqs, c("TRTR", "RTRT", "TRRT", "RTTR")))]
     }
-    if (sum(seqs %in% c("RRTT", "RTRT", "TRTR", "TTRR")) == 4 & is.na(reordered[1])) {
-      message("Untested design.")
-      reordered <- seqs[order(match(seqs, c("TRTR", "RTRT", "TTRR", "RRTT")))]
+    if (sum(seqs %in% c("RRTT", "RTTR", "TRRT", "TTRR")) == 4 & is.na(reordered[1])) {
+      reordered <- seqs[order(match(seqs, c("TRRT", "RTTR", "TTRR", "RRTT")))]
     }
     if (is.na(reordered[1])) {
       message("Untested design.")

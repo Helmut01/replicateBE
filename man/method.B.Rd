@@ -281,7 +281,7 @@ x <- method.B(ola = TRUE, print = FALSE, details = TRUE, data = rds01)
 print(x, row.names = FALSE)
 # Compare Method B with Method A
 \dontrun{
-ds <- sprintf("rds\%02i", 1:23)
+ds <- sprintf("rds\%02i", 1:24)
 for (i in seq_along(ds)) {
   A <- method.A(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
   B <- method.B(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
