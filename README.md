@@ -38,10 +38,10 @@ Tested designs
   - ```TRR | RTR | RRT```
   - ```TRR | RTR```²
 
-Cross-validation: Results of reference data sets agree with ones obtained in SAS 9.3 and Phoenix WinNonlin (6.4, 7.0).
-
 ¹ Confounded effects (design _not recommended_).
 
 ² Extra-reference design; biased in the presence of period effects (design _not recommended_).
+
+Cross-validation: Results of reference data sets agree with ones obtained in SAS 9.3 and Phoenix WinNonlin (6.4, 7.0).
 
 **Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.**
