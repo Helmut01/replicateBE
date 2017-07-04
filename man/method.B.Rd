@@ -112,7 +112,7 @@ Data structure:
     Any order of columns is acceptable (only \code{subject} must be the first).\cr
     Uppercase and mixed case headers will be internally converted to lowercase headers.
     \itemize{
-      \item \code{subject} must be integer numbers or alphanumerics \code{[A-Z, a-z, -, _, #, 0-9]}
+      \item \code{subject} must be integer numbers or (any combination of) alphanumerics \code{[A-Z, a-z, -, _, #, 0-9]}
       \item \code{period} must be integer numbers.
       \item \code{sequence} must be contained in the tested designs (numbers or \emph{e.g.}, \code{ABAB} are not acceptable).
       \item The Test treatment must be coded \code{T} and the Reference \code{R}.
@@ -253,10 +253,10 @@ method.B(path.in = path.in, file = "DS", set = "01", ext = "csv") # Q&A data set
 # Should result in:
 #   CVwT               :  35.16\%
 #   swT                :   0.34138
-#   swT/swR            :   0.7647 (similar variabilities of T and R)
 #   CVwR               :  46.96\% (reference-scaling applicable)
 #   swR                :   0.44645
 #   Expanded limits    :  71.23\% ... 140.40\% [100exp(±0.760·swR)]
+#   swT / swR          :   0.7647 (similar variabilities of T and R)
 #   Confidence interval: 107.17\% ... 124.97\% (pass)
 #   Point estimate     : 115.73\% (pass)
 #   Aggregate (CI, PE) : pass
@@ -267,9 +267,9 @@ method.B(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 # Should give the same as above. Additionally:
 #   Recalculation due to presence of 2 outliers (subj. 45|52)
 #   CVwR (outl. excl.) :  32.16\% (reference-scaling applicable)
-#   swR                :   0.31374
-#   swT/swR            :   1.0881 (similar variabilities of T and R)
+#   swR  (recalc.)     :   0.31374
 #   Expanded limits    :  78.79\% ... 126.93\% [100exp(±0.760·swR)]
+#   swT / swR (recalc.):   1.0881 (similar variabilities of T and R)
 #   Confidence interval: pass
 #   Point estimate     : pass
 #   Aggregate (CI, PE) : pass

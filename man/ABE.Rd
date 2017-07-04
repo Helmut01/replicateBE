@@ -99,7 +99,7 @@ Data structure:
     Any order of columns is acceptable (only \code{subject} must be the first).\cr
     Uppercase and mixed case headers will be internally converted to lowercase headers.
     \itemize{
-      \item \code{subject} must be integer numbers or alphanumerics \code{[A-Z, a-z, -, _, #, 0-9]}
+      \item \code{subject} must be integer numbers or (any combination of) alphanumerics \code{[A-Z, a-z, -, _, #, 0-9]}
       \item \code{period} must be integer numbers.
       \item \code{sequence} must be contained in the tested designs (numbers or \emph{e.g.}, \code{ABAB} are not acceptable).
       \item The Test treatment must be coded \code{T} and the Reference \code{R}.
