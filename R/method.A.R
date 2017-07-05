@@ -214,18 +214,21 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
         if (ret$type == "TRT|RTR")     des <- "2x2x3"
         if (ret$type == "TRR|RTR|RRT") des <- "2x3x3"
         if (print) {
+          txt <- paste0("\n", paste0(rep("\u2500", 68), collapse=""))
           adj <- scABEL.ad(theta0=PE, CV=ret$CVwR, design=des,
                            n=ret$Sub.Seq, alpha.pre=alpha, print=FALSE)
           if (!is.na(ret$CVwR.new)) { # 2nd run for recalculated CVwR
             adj1 <- scABEL.ad(theta0=PE, CV=ret$CVwR.new, design=des,
                               n=ret$Sub.Seq, alpha.pre=alpha, print=FALSE)
           }
-          txt <- paste0("\n", paste0(rep("\u2500", 68), collapse=""),
-                        "\nSim\u2019s based on ANOVA; ",
-                        "1,000,000 studies in each iteration simulated.\n")
           no.infl <- "  TIE not > nominal 0.05; consumer risk is controlled.\n"
           if (!is.na(ret$CVwR.new))
-            txt <- paste0(txt, "Assessment of empiric Type I Error (TIE) based on original CVwR\n")
+            txt <- paste0(txt, "\nAssessment of the empiric Type I Error (TIE) based on original CVwR;")
+            iter <- (adj$sims - adj$sims %% 1e6) / 1e6
+            ifelse (iter == 1,
+              txt <- paste0(txt, "\n1,000,000 studies simulated.\n"),
+              txt <- paste0(txt, "\n1,000,000 studies in each of the ", iter,
+                            " iterations simulated.\n"))
           if (is.na(adj$alpha.adj)) {
             txt <- paste0(txt, no.infl)
           } else {
@@ -237,7 +240,12 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                                   adj$alpha.adj, adj$TIE.adj), "\n")
           } # EO orginal CVwR
           if (!is.na(ret$CVwR.new)) {
-            txt <- paste0(txt, "Assessment of empiric Type I Error (TIE) based on recalculated CVwR\n")
+            txt <- paste0(txt, "Assessment of the empiric Type I Error (TIE) based on recalculated CVwR;")
+            iter <- (adj1$sims - adj1$sims %% 1e6) / 1e6
+            ifelse (iter == 1,
+              txt <- paste0(txt, "\n1,000,000 studies simulated.\n"),
+              txt <- paste0(txt, "\n1,000,000 studies in each of the ", iter,
+                                  " iterations simulated.\n"))
             if (is.na(adj1$alpha.adj)) {
               txt <- paste0(txt, no.infl)
             } else {

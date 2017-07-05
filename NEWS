@@ -46,6 +46,7 @@ Published on GitHub 2017-06-25
       it to 4-period full replicates (as required by the WHO)?
     - DS24 (TRRT|RTTR|TTRR|RRTT) from the FDA. Subject 16 missing.
       Adapted get.data() for such a case.
+    - Bug-fix: mixed model was given in the result file of method.A().
 
 Version 1.0.5
 Released to collaborators 2017-06-24

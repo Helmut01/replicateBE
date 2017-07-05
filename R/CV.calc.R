@@ -84,7 +84,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
           lab.txt <- "1 outlier",
           lab.txt <- paste(length(ol.value1), "outliers"))
       }
-      mtext(paste0("studentized\n(R, SAS)\n", lab.txt), 1, line=3, at=1)
+      mtext(paste0("studentized\n(R, SAS)\n\n", lab.txt), 1, line=4, at=1)
       text(rep(1.1, 2), bp1$stats[c(1, 5)], adj=c(0, 0.25), cex=0.8,
            sprintf("%+.3f", bp1$stats[c(1, 5)]))
       if (!identical(ol.value1, numeric(0))) { # only if stud. outlier
@@ -100,8 +100,8 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
         ifelse (length(ol.value2) == 1,
           lab.txt <- "1 outlier",
           lab.txt <- paste(length(ol.value2), "outliers"))
-      }
-      mtext(paste0("standardized\n(R, SAS, Phoenix WinNonlin)\n", lab.txt), 1, line=3, at=2)
+      } # Note: not /exactly/ equal to PHX/WNL
+      mtext(paste0("standardized\n(R, SAS,\n~Phoenix WinNonlin)\n", lab.txt), 1, line=4, at=2)
       text(rep(2.1, 2), bp2$stats[c(1, 5)], adj=c(0, 0.25), cex=0.8,
            sprintf("%+.3f", bp2$stats[c(1, 5)]))
       if (!identical(ol.value2, numeric(0))) { # only if stand. outlier
@@ -144,7 +144,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
   options(ow) # restore options
   if (!called.from == "ABE") {
     reg_set <- reg_const("EMA")
-    BE      <- as.numeric(scABEL(CV=CVwR, regulator="EMA"))
+    BE <- as.numeric(scABEL(CV=CVwR, regulator="EMA"))
   } else {
     BE <- c(theta1, theta2)
   }
@@ -167,8 +167,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                     sprintf("%.5f", CV2se(CVwT)))
     }
   }
-  txt <- paste0(txt, "\nCVwR               : ",
-                sprintf("%6.2f%%", 100*CVwR))
+  txt <- paste0(txt, "\nCVwR               : ", sprintf("%6.2f%%", 100*CVwR))
   if (called.from != "ABE") { # only for scaling
     txt <- paste0(txt, " (reference-scaling ")
     if (CVwR <= 0.3) txt <- paste0(txt, "not ")
@@ -189,11 +188,9 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
       if (sw.ratio >= 2/3 & sw.ratio <= 3/2) {
         txt <- paste0(txt, " (similar variabilities of T and R)")
       } else {
-        if (sw.ratio < 2/3) {
-          txt <- paste0(txt, " (T lower variability than R)")
-        } else {
-          txt <- paste0(txt, " (T higher variability than R)")
-        }
+        ifelse (sw.ratio < 2/3,
+          txt <- paste0(txt, " (T lower variability than R)"),
+          txt <- paste0(txt, " (T higher variability than R)"))
       }
     }
     if (ola) {
@@ -232,8 +229,8 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
             txt <- paste0(txt, " (similar variabilities of T and R)")
           } else {
             ifelse (sw.ratio.new < 2/3,
-                    txt <- paste0(txt, " (T lower variability than R)"),
-                    txt <- paste0(txt, " (T higher variability than R)"))
+              txt <- paste0(txt, " (T lower variability than R)"),
+              txt <- paste0(txt, " (T higher variability than R)"))
           }
         }
       } else {

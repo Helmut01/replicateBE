@@ -1,4 +1,4 @@
-# Data set simulated with high variability and dropouts as a hazard function growing with period.
+# Data set simulated with extreme intra- and intersubject variability, GMR = 1. Dropouts as a hazard function growing with period.
 subject,period,sequence,treatment,PK,logPK
 1,1,RTRT,R,6.1277,1.81282
 1,2,RTRT,T,2.19175,0.7847

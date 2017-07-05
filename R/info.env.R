@@ -112,22 +112,21 @@ info.env <- function(fun, option=NA, path.in, path.out,
   info <- paste0(info, "\nreplicateBE version: ",
                  sprintf("%-10s", packageVersion("replicateBE")), year)
   info <- paste0(info, "\n", hr,
-                       "\nFunction           : CV.calc() exec. ", exec,
+                       "\nFunction           : CV.calc(): stats:lm() executed ", exec,
                        "\n  Fixed effects    : sequence, subject(sequence), period",
                        "\n  Data             : treatment = R")
   info <- paste0(info, "\nFunction           : ", fun, "(")
   if (is.na(option)) {
-    info <- paste0(info, ")")
+    info <- paste0(info, "): stats:lm()")
+    info <- paste0(info, " executed ", exec)
   } else {
     info <- paste0(info, "option=", option, "): ")
-    if (option == 1) {
-      info <- paste0(info, "lmerTest:lmer")
-    } else {
-      info <- paste0(info, "nlme:lme")
-    }
+    ifelse (option == 1,
+      info <- paste0(info, "lmerTest:lmer()\n"),
+      info <- paste0(info, "nlme:lme()\n"))
+    info <- paste(info, "                    executed", exec)
   }
-  info <- paste0(info, " exec. ", exec)
-  if (fun == "model.A") {
+  if (fun %in% c("ABE", "method.A")) {
     info <- paste0(info, "\n  Fixed effects    : sequence, ",
                          "subject(sequence), period, treatment",
                          "\n  Data             : all")

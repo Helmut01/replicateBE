@@ -48,13 +48,13 @@ In partial replicate designs \emph{only} R is administered twice.
     \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
     \code{rds01} \tab EMA, CHMP \tab Data set I.\cr
     \code{rds06} \tab \code{rds01} edited \tab T and R switched.\cr
-    \code{rds12} \tab Phoenix NLME \tab Simulated data set with extreme intrasubject variability.\cr
-    \code{rds14} \tab Phoenix NLME \tab Simulated data set with high intrasubject variability and number of dropouts increasing with period.\cr
+    \code{rds12} \tab Phoenix NLME \tab Simulated with extreme intra- and intersubject variability.\cr
+    \code{rds14} \tab Phoenix NLME \tab Simulated with high intra- and intersubject variability and number of dropouts increasing with period.\cr
     \code{rds18} \tab \code{rds14} edited \tab Removed T data of subjects 63–78.\cr
     \code{rds21} \tab \code{rds01} edited \tab One extreme result of subjects 45 & 52 set to NA.\cr
     \code{rds19} \tab \code{rds18} edited \tab Removed data of subjects 63–78.\cr
     \code{rds20} \tab \code{rds19} edited \tab Outlier of R (subject 1) introduced: original value ×100.\cr
-    \code{rds08} \tab R \tab Large simulated data set with slight heteroscedasticity.\cr
+    \code{rds08} \tab R \tab Simulated with slight heteroscedasticity.\cr
     \code{rds09} \tab \code{rds08} \tab Wide numeric range (data of last 37 subjects multiplied by 1,000,000).\cr
     \code{rds13} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data deleted).\cr
     \code{rds15} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}).\cr
@@ -66,8 +66,8 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds10} \tab Chow & Liu \tab AUC data given in Table 9.3.3.\cr
     \code{rds02} \tab EMA, CHMP \tab Data set II.\cr
     \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Table II.\cr
-    \code{rds07} \tab R \tab Large simulated data set with homoscedasticity.\cr
-    \code{rds22} \tab R \tab Simulated data set with homoscedasticity.\cr
+    \code{rds07} \tab R \tab Simulated with homoscedasticity.\cr
+    \code{rds22} \tab R \tab Simulated with homoscedasticity.\cr
     \code{rds23} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 7.\cr
     \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 1.
   }

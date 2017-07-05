@@ -108,7 +108,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
     }
 
     \item Reference Data Set 12 (\code{rds12})\cr
-    Data set simulated with extreme intrasubject variability. 77 subjects.\cr
+    Data set simulated with extreme intra- and intersubject variability, GMR = 1.6487. 77 subjects.\cr
     \describe{
       A data frame with 298 observations on the following 6 variables:
       \tabular{ll}{
@@ -137,7 +137,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
     }
 
     \item Reference Data Set 14 (\code{rds14})\cr
-    Data set simulated with high variability and dropouts as a hazard function growing with period. 77 subjects.
+    Data set simulated with high variability, GMR = 1. Dropouts as a hazard function growing with period. 77 subjects.
     \describe{
       A data frame with 273 observations on the following 6 variables:
       \tabular{ll}{
@@ -234,9 +234,9 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
     \code{rds06} \tab \code{rds01} edited \tab T and R switched.\cr
     \code{rds08} \tab R \tab Large simulated data set with slight heteroscedasticity.\cr
     \code{rds09} \tab \code{rds08} \tab Wide numeric range (data of last 37 subjects multiplied by 1,000,000).\cr
-    \code{rds12} \tab \ifelse{html}{\out{Phoenix&nbsp;NLME}}{Phoenix~NLME} \tab Simulated data set with extreme intrasubject variability.\cr
+    \code{rds12} \tab \ifelse{html}{\out{Phoenix&nbsp;NLME}}{Phoenix~NLME} \tab Simulated data set with extreme intra- and intersubject variability.\cr
     \code{rds13} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data deleted).\cr
-    \code{rds14} \tab \ifelse{html}{\out{Phoenix&nbsp;NLME}}{Phoenix~NLME} \tab Simulated data set with high intrasubject variability and number of dropouts increasing with period.\cr
+    \code{rds14} \tab \ifelse{html}{\out{Phoenix&nbsp;NLME}}{Phoenix~NLME} \tab Simulated data set with high intra- and intersubject and number of dropouts increasing with period.\cr
     \code{rds15} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}).\cr
     \code{rds18} \tab \code{rds14} edited \tab Removed T data of subjects 63–78.\cr
     \code{rds19} \tab \code{rds18} edited \tab Removed data of subjects 63–78.\cr

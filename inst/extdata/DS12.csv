@@ -1,4 +1,4 @@
-# Data set simulated with extreme intrasubject variability.
+# Data set simulated with extreme intra- and intersubject variability, GMR = 1.6487.
 subject,period,sequence,treatment,PK,logPK
 1,1,RTRT,R,1.267799854,0.237283
 1,2,RTRT,T,0.333660924,-1.09763
