@@ -9,7 +9,7 @@ Reference Data Sets for TRT|RTR full Replicate Designs
 }
 
 \description{
-Data sets from the literature and edited to be evaluated by \code{method.A()} and/or \code{method.B()}.
+Data sets from the public domain and edited to be evaluated by \code{method.A()} and/or \code{method.B()}.
 }
 
 \details{

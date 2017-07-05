@@ -19,7 +19,7 @@ Reference Data Sets for TRTR|RTRT Designs
 }
 
 \description{
-Data sets from the literature, edited, or obtained by simulations to be evaluated by \code{method.A()} and/or \code{method.B()}.
+Data sets from the public domain, edited, or obtained by simulations to be evaluated by \code{method.A()} and/or \code{method.B()}.
 }
 
 \details{

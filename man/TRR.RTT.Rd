@@ -8,7 +8,7 @@ Reference Data Set for TRR|RTT Replicate Designs
 }
 
 \description{
-Data set from the literature to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
+Data set from the public domain to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
 }
 
 \usage{rds10}

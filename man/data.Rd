@@ -8,7 +8,7 @@ Reference Data Sets for Replicate Designs
 }
 
 \description{
-Data sets from the literature, edited, or obtained by simulations to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
+Data sets from the public domain, edited, or obtained by simulations to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
 }
 
 \details{
@@ -29,17 +29,17 @@ Data sets from the literature, edited, or obtained by simulations to be evaluate
   TRRT|RTTR \tab full \tab \code{rds05} \tab 26 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
   TRRT|RTTR \tab full \tab \code{rds11} \tab 37 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRRT|RTTR \tab full \tab \code{rds16} \tab 38 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT|TRRT|RTTR \tab full \tab \code{rds23} \tab 22 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRRT|RTTR|TTRR|RRTT \tab full \tab \code{rds24} \tab 39 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRT|RTR \tab full \tab \code{rds03} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRT|RTR \tab full \tab \code{rds17} \tab 19 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTT \tab full \tab \code{rds10} \tab 18 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
   TRR|RTR|RRT \tab partial \tab \code{rds02} \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
   TRR|RTR|RRT \tab partial \tab \code{rds04} \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTR|RRT \tab partial \tab \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  TRR|RTR \tab partial \tab \code{rds22} \tab 36 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  TRTR|RTRT|TRRT|RTTR \tab full \tab \code{rds23} \tab 22 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  TRRT|RTTR|TTRR|RRTT \tab full \tab \code{rds24} \tab 39 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRR|RTR \tab partial \tab \code{rds22} \tab 36 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
-In full replicate designs \emph{both} R and T are administered twice (although not necessarily to \emph{all} subjects).\cr
+In full replicate designs \emph{both} R and T are administered twice (in 3-period designs to ½ of the subjects).\cr
 In partial replicate designs \emph{only} R is administered twice.
 }
 
@@ -61,15 +61,15 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds05} \tab \ifelse{html}{\out{Metzler&nbsp;&amp;&nbsp;Shumaker}}{Metzler~&~Shumaker} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in the Appendix.\cr
     \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in Table 9.6.\cr
     \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 14a.\cr
+    \code{rds23} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 7.\cr
+    \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 1.\cr
     \code{rds03} \tab \code{rds01} edited \tab Period 4 removed.\cr
     \code{rds17} \tab \code{rds03} edited \tab Highly unbalanced (twelve subjects in RTR and seven in TRT).\cr
     \code{rds10} \tab Chow & Liu \tab AUC data given in Table 9.3.3.\cr
     \code{rds02} \tab EMA, CHMP \tab Data set II.\cr
     \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Table II.\cr
     \code{rds07} \tab R \tab Simulated with homoscedasticity.\cr
-    \code{rds22} \tab R \tab Simulated with homoscedasticity.\cr
-    \code{rds23} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 7.\cr
-    \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 1.
+    \code{rds22} \tab R \tab Simulated with homoscedasticity.
   }
 }
 

@@ -10,7 +10,7 @@ Reference Data Sets for TRRT|RTTR Replicate Designs
 }
 
 \description{
-Data sets from the literature to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
+Data sets from the public domain to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
 }
 
 \details{

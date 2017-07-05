@@ -8,7 +8,7 @@ Reference Data Set for TRTR|RTRT|TRRT|RTTR Designs
 }
 
 \description{
-Data set from the literature to be evaluated by \code{method.A()} and/or \code{method.B()}.
+Data set from the public domain to be evaluated by \code{method.A()} and/or \code{method.B()}.
 }
 
 \details{

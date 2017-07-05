@@ -268,9 +268,10 @@ method.A(path.in = path.in, file = "DS", set = "01", ext = "csv") # Q&A data set
 # Additional outlier-analyis and boxplot saved as PNG (accidental overwriting prevented)
 method.A(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 # Should give the same as above. Additionally:
+#   Outlier fence      :  2×IQR of studentized residuals.
 #   Recalculation due to presence of 2 outliers (subj. 45|52)
 #   CVwR (outl. excl.) :  32.16\% (reference-scaling applicable)
-#   swR  (recalc.)     :   0.31374
+#   swR (recalculated) :   0.31374
 #   Expanded limits    :  78.79\% ... 126.93\% [100exp(±0.760·swR)]
 #   swT / swR (recalc.):   1.0881 (similar variabilities of T and R)
 #   Confidence interval: pass
@@ -288,17 +289,20 @@ print(x, row.names = FALSE)
 \dontrun{
 method.A(adjust = TRUE, data = rds01)}
 # Should give in the result file:
-#      TIE not > nominal 0.05; consumer risk is controlled.
+#   Assessment of the empiric Type I Error (TIE); 1,000,000 studies simulated.
+#     TIE not > nominal 0.05; consumer risk is controlled.
 #
 # Same with recalculation based on outliers, iteratively adjust alpha if necessary
 \dontrun{
 method.A(ola = TRUE, adjust = TRUE, data = rds01)}
 # Should give in the result file:
-#    Assessment of empiric Type I Error (TIE) based on original CVwR
-#      TIE not > nominal 0.05; consumer risk is controlled.
-#    Assessment of empiric Type I Error (TIE) based on recalculated CVwR
-#      TIE for alpha 0.050000         : 0.07018
-#      TIE for adjusted alpha 0.033416: 0.05000
+#   Assessment of the empiric Type I Error (TIE) based on original CVwR;
+#   1,000,000 studies simulated.
+#     TIE not > nominal 0.05; consumer risk is controlled.
+#   Assessment of the empiric Type I Error (TIE) based on recalculated CVwR;
+#   1,000,000 studies in each of the 8 iterations simulated.
+#     TIE for alpha 0.050000         : 0.07018
+#     TIE for adjusted alpha 0.033416: 0.05000
 #
 # Repeat the evaluation with the adjusted alpha
 \dontrun{
@@ -312,7 +316,11 @@ method.A(alpha = 0.033416, ola = TRUE, adjust = TRUE, data = rds01)}
 #   Confidence interval: pass
 #   Point estimate     : pass
 #   Aggregate (CI, PE) : pass
-#   Assessment of empiric Type I Error (TIE) based on recalculated CVwR
+#   Assessment of the empiric Type I Error (TIE) based on original CVwR;
+#   1,000,000 studies simulated.
+#     TIE not > nominal 0.05; consumer risk is controlled.
+#   Assessment of empiric Type I Error (TIE) based on recalculated CVwR;
+#   1,000,000 studies in each of the 8 iterations simulated.
 #     TIE for alpha 0.033416         : 0.05000
 #     TIE not > nominal 0.05; consumer risk is controlled.
 }

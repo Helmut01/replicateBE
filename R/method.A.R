@@ -214,7 +214,7 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
         if (ret$type == "TRT|RTR")     des <- "2x2x3"
         if (ret$type == "TRR|RTR|RRT") des <- "2x3x3"
         if (print) {
-          txt <- paste0("\n", paste0(rep("\u2500", 68), collapse=""))
+          txt <- paste0("\n", paste0(rep("\u2500", 74), collapse=""))
           adj <- scABEL.ad(theta0=PE, CV=ret$CVwR, design=des,
                            n=ret$Sub.Seq, alpha.pre=alpha, print=FALSE)
           if (!is.na(ret$CVwR.new)) { # 2nd run for recalculated CVwR
@@ -222,12 +222,13 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                               n=ret$Sub.Seq, alpha.pre=alpha, print=FALSE)
           }
           no.infl <- "  TIE not > nominal 0.05; consumer risk is controlled.\n"
-          if (!is.na(ret$CVwR.new))
-            txt <- paste0(txt, "\nAssessment of the empiric Type I Error (TIE) based on original CVwR;")
+          ifelse (is.na(ret$CVwR.new),
+            txt <- paste0(txt, "\nAssessment of the empiric Type I Error (TIE); "),
+            txt <- paste0(txt, "\nAssessment of the empiric Type I Error (TIE) based on original CVwR;\n"))
             iter <- (adj$sims - adj$sims %% 1e6) / 1e6
             ifelse (iter == 1,
-              txt <- paste0(txt, "\n1,000,000 studies simulated.\n"),
-              txt <- paste0(txt, "\n1,000,000 studies in each of the ", iter,
+              txt <- paste0(txt, "1,000,000 studies simulated.\n"),
+              txt <- paste0(txt, "1,000,000 studies in each of the ", iter,
                             " iterations simulated.\n"))
           if (is.na(adj$alpha.adj)) {
             txt <- paste0(txt, no.infl)
