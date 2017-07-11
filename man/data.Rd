@@ -4,11 +4,11 @@
 \docType{data}
 
 \title{
-Reference Data Sets for Replicate Designs
+Reference Data Sets
 }
 
 \description{
-Data sets from the public domain, edited, or obtained by simulations to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
+Data sets for replicate design from the public domain, edited, or obtained by simulations to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
 }
 
 \details{

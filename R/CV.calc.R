@@ -131,11 +131,11 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
         stand.res.whiskers <- signif(range(bp2$stats[, 1]), 7)
         stand.res.outliers <- data.frame(ol.subj2, ol.seq2, signif(ol.value2, 7))#
         names(stand.res.outliers) <- c("subject", "sequence", "stand.res")
-        cat(paste0("\nOutlier analysis\n Studentized residuals",
+        cat(paste0("\nOutlier analysis\n (externally) studentized residuals",
                    "\n Limits (", fence, "\u00D7IQR whiskers): ",
                    stud.res.whiskers[1], ", ", stud.res.whiskers[2],
                    "\n Outliers:\n")); print(stud.res.outliers, row.names=FALSE)
-        cat(paste0("\n Standarized residuals\n Limits (", fence, "\u00D7IQR whiskers): ",
+        cat(paste0("\n standarized (internally studentized) residuals\n Limits (", fence, "\u00D7IQR whiskers): ",
                    stand.res.whiskers[1], ", ", stand.res.whiskers[2],
                    "\n Outliers:\n")); print(stand.res.outliers, row.names=FALSE)
       } # EO verbose

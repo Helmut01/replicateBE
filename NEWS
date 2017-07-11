@@ -42,8 +42,7 @@ Published on GitHub 2017-06-25
       and 'theta2'. Default to 0.80 and 1.25.
     - Bug-fix: nTT was NA in get.data() for TRTR|RTRT. Now design
       (full/replicate) is obtained from info.design().
-    - Calculate the sw-ratio (maybe useful for the WHO). Q: Shall we limit
-      it to 4-period full replicates (as required by the WHO)?
+    - Calculate the sw-ratio (maybe useful for the WHO).
     - DS24 (TRRT|RTTR|TTRR|RRTT) from the FDA. Subject 16 missing.
       Adapted get.data() for such a case.
     - Bug-fix: mixed model was given in the result file of method.A().

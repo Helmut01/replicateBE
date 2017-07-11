@@ -280,14 +280,15 @@ method.B(ola = TRUE, verbose = TRUE, data = rds01)
 # data.frame of results (7-digits precision) shown in the console
 x <- method.B(ola = TRUE, print = FALSE, details = TRUE, data = rds01)
 print(x, row.names = FALSE)
-# Compare Method B with Method A
+# Compare Method B with Method A for all reference data sets
 \dontrun{
-ds <- sprintf("rds\%02i", 1:24)
+ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))),
+                  value=TRUE), 1, 5)
 for (i in seq_along(ds)) {
   A <- method.A(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
   B <- method.B(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
   r <- paste0("A ", A, ", B ", B, " \u2013 ")
-  cat(paste0(substr(toupper(ds[i]), 2, 5), ":"), r)
+  cat(paste0(ds[i], ":"), r)
   if (A == B) {
     cat("Method A and B agree.\n")
   } else {
@@ -299,8 +300,8 @@ for (i in seq_along(ds)) {
   }
 }}
 # should give
-#   DS01: A pass, B pass – Method A and B agree.
-#   DS02: A pass, B pass – Method A and B agree.
+#   rds01: A pass, B pass – Method A and B agree.
+#   rds02: A pass, B pass – Method A and B agree.
 #   ...
-#   DS14: A pass, B fail – Method B is conservative.
+#   rds14: A pass, B fail – Method B is conservative.
 }

@@ -165,15 +165,14 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
     if (Nseqs != 3) stop("3 sequences required in this partial replicate design.")
   }
   # next line introduced for DS24 where all data of subject 16 are NA
-  # TODO: Check for eventual side-effects!
+  # Given that: Do we need na.action=na.omit in lme() any more?
   data <- na.omit(data)
   Nsub.seq <- table(data$sequence[!duplicated(data$subject)])
   # adapt to reordered sequences
   Nsub.seq <- Nsub.seq[order(match(names(Nsub.seq), seqs))]
   ref   <- data[data$treatment == "R", ]
   test  <- data[data$treatment == "T", ]
-#  NTR   <- sum(levels(test$subject) %in% levels(ref$subject)) # >= 1 T & >= 1 R
-  NTR   <- length(unique(test$subject) %in% unique(ref$subject)) # for rds24
+  NTR   <- length(unique(test$subject) %in% unique(ref$subject)) #  >= 1 T & >= 1 R
   n     <- length(unique(data$subject))
   # Get the wide data frame subject+sequence\period
   compl <- reshape(data[c("subject", "sequence", "period", "PK")],
