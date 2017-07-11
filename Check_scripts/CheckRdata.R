@@ -5,8 +5,8 @@
 if (packageDescription("replicateBE")$Version < "1.0.5") {
   message("replicateBE 1.0.5 or higher required.")
   } else {
-  sets <- 24
-  ds <- sprintf("rds%02i", 1:sets)
+  ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))),
+               value=TRUE), 1, 5)
   adjust <- FALSE # set to TRUE if you have some spare time
   ### ABE ###
   for (j in seq_along(ds)) {
