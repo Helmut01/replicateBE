@@ -4,7 +4,7 @@
 # output common to all methods. #
 #################################
 get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
-                     ext, header = 0, na = ".", sep = ",", dec = ".",
+                     ext, na = ".", sep = ",", dec = ".",
                      logtrans = TRUE, print, plot.bxp, data) {
   graphics.off()
   if (is.null(data)) { # checking external data
@@ -64,51 +64,54 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
                        path.out, paste0(path.out, "/"))
   } # EO print/plot checks
   if (is.null(data)) {      # read data from file
-    if (ext %in% ext.xls) { # read from Excel
-      full.name <- paste0(path.in, file, ".", ext)
-      if (!file.exists(full.name)) {
+    if (ext %in% ext.csv) full.name <- paste0(path.in, file, set, ".", ext)
+    if (ext %in% ext.xls) full.name <- paste0(path.in, file, ".", ext)
+    if (!file.exists(full.name)) {
         setwd(dirname(file.choose()))
         path.in <- paste0(getwd(), "/")
-        full.name <- paste0(path.in, file, set, ".", ext)
+        full.name <- paste0(path.in, file, ".", ext)
+    }  # The entire content
+    if (ext %in% ext.xls) { # read from Excel to the data frame
+      datawithdescr <- as.data.frame(read_excel(path=full.name, sheet=set,
+                                                na=c("NA", "ND", ".", "", "Missing"),
+                                                skip=0, col_names=FALSE))
+    } else {
+      datawithdescr <- read.csv(file=full.name, sep=sep, dec=dec, quote="", header=FALSE,
+                                strip.white=TRUE, na.strings=c("NA", "ND", ".", "", "Missing"),
+                                stringsAsFactors=FALSE)
+    }
+    namesvector = c("subject", "period", "sequence", "treatment")
+    # looking for a row with namesvector, summing all its members, if all are there, marking as TRUE
+    Nnamesdf <- c(t(apply(datawithdescr, 1, function(row, table) {
+      sum(match(tolower(row), table=table), na.rm=TRUE)}, table=namesvector)) == 10)
+    if(sum(Nnamesdf) == 0)
+      stop("Column names must be given as \'subject\', \'period\', \'sequence\', \'treatment\'.")
+    if(sum(Nnamesdf) > 1)
+      stop("More than 1 row with column names as \'subject\', \'period\', \'sequence\', \'treatment\' detected.")
+    # selecting the rows before names of dataset
+    descrdf <- datawithdescr[0:(which(Nnamesdf == TRUE)-1), ]
+    # if there are some # comments in CSV-files, collapse them
+    if(nrow(descrdf)) {
+      descr <- unname(apply(descrdf, 1, function(row){paste0(row[!is.na(row)], collapse=" ")}))
+      if (!ext %in% ext.xls) {
+        descr <- paste0(descr[startsWith(descr, "#")], collapse="\n")
+        descr <- gsub("# ", "", descr)
       }
-      # The entire content
-      descr <- read_excel(path=full.name, sheet=set, skip=0)
-      # Only the header
-      descr <- names(head(descr, 1)[1])
-      # Only the data (skip the header)
-      data  <- read_excel(path=full.name, sheet=set,
-                          na=c("NA", "ND", ".", "", "Missing"), skip=header)
-      data  <- as.data.frame(data) # convert the tibble
-      # Convert eventual mixed or upper case variable names to lower case
-      facs  <- which(!names(data) %in% c("PK", "logPK")) # will be factors later
-      names(data)[facs] <- tolower(names(data)[facs])
-      if (sum(names(data)[facs] %in% c("subject", "period", "sequence", "treatment")) !=4)
-        stop("Variables must be given as \'subject\', \'period\', \'sequence\', \'treatment\'.")
-    } else {                # read from CSV
-      full.name <- paste0(path.in, file, set, ".", ext)
-      if (!file.exists(full.name)) {
-        setwd(dirname(file.choose()))
-        path.in <- paste0(getwd(), "/")
-        full.name <- paste0(path.in, file, set, ".", ext)
-      }
-      # The entire content
-      descr <- scan(file=full.name, quiet=TRUE, what="character",
-                    sep="", strip.white=TRUE,
-                    na.strings=c("NA", "ND", ".", "", "Missing"))
-      # Only the header
-      descr <- descr[1:(which(tolower(substr(descr, 1, 7)) == "subject") - 1)]
-      descr <- descr[!descr %in% "#"]
-      descr <- paste0(descr, collapse=" ")
-      # Only the data (skip the header)
-      data  <- read.csv(file=full.name, sep=sep, dec=dec, quote="",
-                        strip.white=TRUE, comment.char="#",
-                        na.strings=c("NA", "ND", ".", "", "Missing"))
-      # Convert eventual mixed or upper case variable names to lower case
-      facs <- which(!names(data) %in% c("PK", "logPK")) # will be factors later
-      names(data)[facs] <- tolower(names(data)[facs])
-      if (sum(names(data)[facs] %in% c("subject", "period", "sequence", "treatment")) !=4)
-        stop("Variables must be given as \'subject\', \'period\', \'sequence\', \'treatment\'.")
-    } # end of reading file
+      descr <- paste0(strwrap(descr, width = 78), collapse="\n")
+    } else {
+      descr <- ""
+    }
+    data <- datawithdescr[(which(Nnamesdf == TRUE)+1):nrow(datawithdescr), ]
+    names(data) <- lapply(datawithdescr[which(Nnamesdf == TRUE), ], as.character)
+    # Convert eventual mixed or upper case variable names to lower case
+    facs  <- which(!names(data) %in% c("PK", "logPK")) # will be factors later
+    names(data)[facs] <- tolower(names(data)[facs])
+    PKcols <- which(names(data) %in% c("PK", "logPK")) # PK columns
+    for (j in seq_along(PKcols)) {                    # transform to numeric
+      data[, PKcols[j]] <- as.numeric(data[, PKcols[j]])
+    }
+    # data[, PKcols] <- lapply(data[, PKcols], as.numeric) # throws warnings
+    # EO reading file
     if (print) res.file <- paste0(path.out, file, set, "_ABEL")
     if (plot.bxp) png.path <- paste0(path.out, file, set, "_boxplot.png")
     # If the user erroneously asks for analysis of logPK - which does not
@@ -122,18 +125,17 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
     data[cols] <- lapply(data[cols], factor)
     if (sum(!unique(data$treatment) %in% c("R", "T")) !=0)
       stop("treatments must be given as \'R\' and \'T\'.")
-  } # EO reading external data
-  # generate variables based on the attribute
-  # 2nd condition: Otherwise, the header from a CSV file will be overwritten
-  if (!is.null(data) & missing(ext)) {
-    info  <- info.data(data)
-    file  <- info$file
-    set   <- info$set
-    ref   <- info$ref
-    descr <- info$descr
-    if (print) res.file <- paste0(path.out, file, set, "_ABEL")
-    if (plot.bxp) png.path <- paste0(path.out, "/", file, set, "_boxplot.png")
+  } else { # EO reading external data
+    if (missing(ext)) { # get information of internal data set
+      info  <- info.data(data)
+      file  <- info$file
+      set   <- info$set
+      ref   <- info$ref
+      descr <- info$descr
+    }
   }
+  if (print) res.file <- paste0(path.out, file, set, "_ABEL")
+  if (plot.bxp) png.path <- paste0(path.out, "/", file, set, "_boxplot.png")
   subjs  <- unique(data$subject)          # Subjects
   seqs   <- levels(unique(data$sequence)) # Sequences
   design <- info.design(seqs=seqs)        # fetch info

@@ -6,15 +6,15 @@
 # option=2: lmerTest/lmer (CONTAIN/Residual DF) #
 #################################################
 method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
-                     file, set = "", ext, header = 0, na = ".",
-                     sep = ",", dec = ".", logtrans = TRUE, ola = FALSE,
+                     file, set = "", ext, na = ".", sep = ",",
+                     dec = ".", logtrans = TRUE, ola = FALSE,
                      print = TRUE, option = 2, details = FALSE,
                      verbose = FALSE, ask = FALSE, plot.bxp = FALSE,
                      fence = 2, data = NULL) {
   exec <- strftime(Sys.time(), usetz=TRUE)
   ret  <- CV.calc(alpha=alpha, path.in=path.in, path.out=path.out,
-                  file=file, set=set, ext=ext, header=header, na=na,
-                  sep=sep, dec=dec, logtrans=logtrans, ola=ola,
+                  file=file, set=set, ext=ext, na=na, sep=sep,
+                  dec=dec, logtrans=logtrans, ola=ola,
                   print=print, verbose=verbose, ask=ask,
                   plot.bxp=plot.bxp, fence=fence, data=data)
   # Add description of the degrees of freedom to the result file
@@ -22,7 +22,7 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                      ifelse(option == 2, "_DF_GL", "_DF_Satt"), ".txt")
   # generate variables based on the attribute
   # 2nd condition: Otherwise, the header from a CSV file will be overwritten
-  if (!is.null(data) | missing(ext)) {
+  if (!is.null(data) & missing(ext)) {
     info  <- info.data(data)
     file  <- info$file
     set   <- info$set
@@ -51,10 +51,11 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                           level=1-2*alpha)[[1]]["treatmentT", c(1, 3)]))
     DF    <- EMA.B$tTable["treatmentT", "DF"]
     if (verbose) {
-      cat("\nData set", paste0(file, set,
+      name <- paste0(file, set)
+      cat("\nData set", paste0(name,
           ": Method B by lme (option=2; ",
           "equivalent to SAS\u2019 DDFM=CONTAIN)"),
-          paste0("\n", paste0(rep("\u2500", 74), collapse="")), "\n")
+          paste0("\n", paste0(rep("\u2500", 70+nchar(name)), collapse="")), "\n")
       print(anova(modB))
       cat("\ntreatment T \u2013 R:\n")
       print(signif(EMA.B$tTable["treatmentT", ], 7))
@@ -218,17 +219,26 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                    sprintf(" %.2f%%", res$"CVwR(%)"))
     txt <- paste0(txt, txt1, "\n", paste0(rep("\u2500", nchar(txt1)-2), collapse=""))
   }
-  txt <- paste0(txt, "\nConfidence interval: ", sprintf("%6.2f%% ... %.2f%%",
-                res$"CI.lo(%)", res$"CI.hi(%)"), " (", res$CI, ")",
+  txt <- paste0(txt,
+                "\nConfidence interval: ", sprintf("%6.2f%% ... %6.2f%%",
+                                                   res$"CI.lo(%)", res$"CI.hi(%)"),
+                "  ", res$CI,
                 "\nPoint estimate     : ", sprintf("%6.2f%%", res$"PE(%)"),
-                " (", res$GMR, ")", "\nAggregate (CI, PE) : ", res$BE, "\n")
+                "              ", res$GMR,
+                "\nMixed (CI & PE)    :                      ", res$BE, "\n")
+  txt <- paste0(txt,
+                draw.line(called.from="ABEL",
+                          L=ret$BE1, U=ret$BE2, lo=CI[1], hi=CI[2], PE=PE), "\n")
   if (!is.na(res$"CVwR.new(%)")) {
     txt1 <- paste0("\nAssessment based on recalculated CVwR",
                    sprintf(" %.2f%%", res$"CVwR.new(%)"))
     txt <- paste0(txt, txt1, "\n", paste0(rep("\u2500", nchar(txt1)-1), collapse=""))
     txt <- paste0(txt, "\nConfidence interval: ", res$CI.new,
                   "\nPoint estimate     : ", res$GMR.new,
-                  "\nAggregate (CI, PE) : ", res$BE.new, "\n")
+                  "\nMixed (CI & PE)    : ", res$BE.new, "\n")
+    txt <- paste0(txt,
+                  draw.line(called.from="ABEL",
+                            L=ret$BE.new1, U=ret$BE.new2, lo=CI[1], hi=CI[2], PE=PE), "\n")
   }
   if (res$Design == "TRR|RTR")
     txt <- paste0(txt, "Note: The extra-reference design assumes lacking period effects. ",

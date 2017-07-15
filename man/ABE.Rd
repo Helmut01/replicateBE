@@ -10,7 +10,7 @@ via conventional (unscaled) Average Bioequivalence based on ANOVA as recommended
 }
 \usage{
 ABE(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
-    ext, header = 0, na = ".", sep = ",", dec = ".", logtrans = TRUE,
+    ext, na = ".", sep = ",", dec = ".", logtrans = TRUE,
     print = TRUE, details = FALSE, verbose = FALSE, ask = FALSE,
     theta1, theta2, data = NULL)
 }
@@ -33,10 +33,6 @@ Name of the sheet of an Excel-file (mandatory). Must be a string (\emph{i.e.}, e
 }
 \item{ext}{
 File-extension enclosed in single or double quotation marks. Acceptable are \code{"CSV"} and \code{"csv"} for character-separated variables (\acronym{CSV}) or \code{"XLS"}, \code{"xls"}, \code{"XLSX"}, and \code{"xlsx"} for Excel-files.
-}
-  \item{header}{
-If an Excel-sheet contains a commentary header, the number of rows to skip (\emph{e.g.,}
-if the first two rows contain a comment, use \code{header = 2} and the data will be imported starting with the third row). Defaults to \code{0}.
 }
   \item{na}{
 Character string denoting missing values. Acceptable are \code{"NA"} (not available),
@@ -97,7 +93,7 @@ Tested designs:
 Data structure:
   \itemize{
     \item Columns must have the headers \code{subject}, \code{period}, \code{sequence}, \code{treatment}, \code{PK}, and/or \code{logPK}.\cr
-    Any order of columns is acceptable (only \code{subject} must be the first).\cr
+    Any order of columns is acceptable.\cr
     Uppercase and mixed case headers will be internally converted to lowercase headers.
     \itemize{
       \item \code{subject} must be integer numbers or (any combination of) alphanumerics \code{[A-Z, a-z, -, _, #, 0-9]}
@@ -134,7 +130,12 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
 }
 
 \section{Warning}{
-If the \acronym{CSV}-file has a commentray header, the word \code{subject} \emph{must not} be part of the text. Otherwise, the header will terminate before.
+If the \acronym{CSV}-file has a commentary header, each line must start with \code{"# "} (hash-space -- \code{ASCII 35-32}). NB: All characters in the header which equal the value specified in the argument \code{sep} are removed.\cr
+Commentary headers in \acronym{XLS}-files are not restricted.
+}
+
+\note{
+The \sQuote{graphical} presentation in the result file gives the confidence limits with filled black squares (■) and the point estimate as a white rhombus (◊). If a confidence limit exceeds the drawing range, it is shown as a triangle (◄ or ►). The \acronym{BE} limits and 100\% are given with single vertical lines (│). The \sQuote{resolution} is approximatelly 0.5\% and therefore, not all symbols might be shown. The \acronym{CI} has presedence over the limits.
 }
 
 \references{
@@ -175,7 +176,9 @@ path.in <- paste0(find.package("replicateBE"), "/extdata/")  # example files
 ABE(path.in = path.in, file = "DS", set = "02", ext = "csv") # Q&A data set II
 # Should result in:
 #   BE-limits          :  80.00\% ... 125.00\%
-#   Confidence interval:  97.32\% ... 107.46\% (pass)
+#   Confidence interval:  97.32\% ... 107.46\%  pass
+#   Point estimate     : 102.26\%
+#              ├─────────────────■──┼─◊─────■─────────────────┤
 #
 # Generate the data.frame of results (7-digits precision) and show in the console
 # Use the internal data set
@@ -186,5 +189,7 @@ print(x, row.names = FALSE)
 ABE(data = rds02, theta1 = 0.90)
 # Should result in:
 #   BE-limits          :  90.00\% ... 111.11\%
-#   Confidence interval:  97.32\% ... 107.46\% (pass)
+#   Confidence interval:  97.32\% ... 107.46\%  pass
+#   Point estimate     : 102.26\%
+#                        ├───────■──┼─◊─────■──┤
 }

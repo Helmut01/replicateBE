@@ -2,14 +2,15 @@
 # Scripts to check internal reference #
 # data sets imported from CSV-files.  #
 #######################################
-sets    <- 1:24
-set     <- sprintf("%02i", sets)
 path.in <- paste0(find.package("replicateBE"), "/extdata/") # example files
+setwd(path.in)
+sets    <- 1:length(list.files(pattern="DS\\d{2}\\.csv"))
+set     <- sprintf("%02i", sets)
 adjust  <- FALSE # set to TRUE if you have some spare time
 ### ABE ###
 for (j in seq_along(sets)) {
   ABE(path.in=path.in, file="DS", set=set[j], ext="csv")
-  if (j == 2) {
+  if (j %in% c(2, 5, 10)) {
     ABE(path.in=path.in, file="DS", set=set[j], ext="csv", theta1=0.9)
   }
 }

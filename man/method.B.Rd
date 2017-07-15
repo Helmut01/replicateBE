@@ -12,7 +12,7 @@ recommended in the \acronym{EMA}’s Q&A-document.
 }
 \usage{
 method.B(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
-         ext, header = 0, na = ".", sep = ",", dec = ".", logtrans = TRUE,
+         ext, na = ".", sep = ",", dec = ".", logtrans = TRUE,
          ola = FALSE, print = TRUE, option = 2, details = FALSE,
          verbose = FALSE, ask = FALSE, plot.bxp = FALSE, fence = 2,
          data = NULL)
@@ -36,10 +36,6 @@ Name of the sheet of an Excel-file (mandatory). Must be a string (\emph{i.e.}, e
 }
 \item{ext}{
 File-extension enclosed in single or double quotation marks. Acceptable are \code{"CSV"} and \code{"csv"} for character-separated variables (\acronym{CSV}) or \code{"XLS"}, \code{"xls"}, \code{"XLSX"}, and \code{"xlsx"} for Excel-files.
-}
-  \item{header}{
-If an Excel-sheet contains a commentary header, the number of rows to skip (\emph{e.g.,}
-if the first two rows contain a comment, use \code{header = 2} and the data will be imported starting with the third row). Defaults to \code{0}.
 }
   \item{na}{
 Character string denoting missing values. Acceptable are \code{"NA"} (not available),
@@ -110,7 +106,7 @@ Tested designs:
 Data structure:
   \itemize{
     \item Columns must have the headers \code{subject}, \code{period}, \code{sequence}, \code{treatment}, \code{PK}, and/or \code{logPK}.\cr
-    Any order of columns is acceptable (only \code{subject} must be the first).\cr
+    Any order of columns is acceptable.\cr
     Uppercase and mixed case headers will be internally converted to lowercase headers.
     \itemize{
       \item \code{subject} must be integer numbers or (any combination of) alphanumerics \code{[A-Z, a-z, -, _, #, 0-9]}
@@ -157,7 +153,7 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     \code{CI} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
 \eqn{\alpha}{alpha})} \acronym{CI} lies entirely within the acceptance range (\code{pass|fail})\cr
     \code{GMR} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%–125.00\% (\code{pass|fail})\cr
-    \code{BE} \tab aggregate assessment whether the study demonstrates bioequivalence (\code{pass|fail})\cr
+    \code{BE} \tab mixed (aggregate) assessment whether the study demonstrates bioequivalence (\code{pass|fail})\cr
     \code{log.half-width} \tab half-width of the \acronym{CI} in log-scale
   }
 If \code{ola=TRUE} and at least one outlier was detected:
@@ -182,12 +178,13 @@ If \code{ola=TRUE} and at least one outlier was detected:
     \code{CI.new} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
 \eqn{\alpha}{alpha})} \acronym{CI} lies entirely within the new acceptance range (\code{pass|fail})\cr
     \code{GMR.new} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%–125.00\% (\code{pass|fail})\cr
-    \code{BE.new} \tab aggregate assessment whether the study demonstrates bioequivalence (\code{pass|fail})\cr
+    \code{BE.new} \tab mixed (aggregate) assessment whether the study demonstrates bioequivalence (\code{pass|fail})\cr
   }
 }
 
 \section{Warning}{
-If the \acronym{CSV}-file has a commentray header, the word \code{subject} \emph{must not} be part of the text. Otherwise, the header will terminate before.
+If the \acronym{CSV}-file has a commentary header, each line must start with \code{"# "} (hash-space -- \code{ASCII 35-32}). NB: All characters in the header which equal the value specified in the argument \code{sep} are removed.\cr
+Commentary headers in \acronym{XLS}-files are not restricted.
 }
 
 \references{
@@ -215,13 +212,18 @@ Geneva, 9 June 2017. \href{https://extranet.who.int/prequal/sites/default/files/
 \author{
 Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
 }
+
+\note{
+The \sQuote{graphical} presentation in the result file gives the confidence limits with filled black squares (■) and the point estimate as a white rhombus (◊). If a confidence limit exceeds the maximum possible extension limit, it is shown as a triangle (◄ or ►). Extended limits are given as double vertical lines (║). Unscaled limits, the \acronym{GMR} restriction, and 100\% are given with single vertical lines (│). The \sQuote{resolution} is approximatelly 0.5\% and therefore, not all symbols might be shown. The \acronym{CI} has presedence over the limits and the extended limits over unscaled ones.
+}
+
 \note{
 The \acronym{EMA}’s model specified in \sQuote{Method B} assumes equal [sic!] intra-subject variances of test and reference (like in 2×2×2 trials) -- even if proven false in one of the full replicate designs (were \emph{both} \code{CVwT} and \code{CVwR} can be estimated). Hence, amongst biostatisticians it is called the \dQuote{crippled model}.\cr
 The method for calculating the degrees of freedom is not specified in the \acronym{SAS} code provided by the \acronym{EMA} in the Q&A document. Hence, the default in \code{PROC MIXED}, namely \code{DDFM=CONTAIN} is applied. For incomplete data (\emph{i.e.}, missing periods) Satterthwaite’s approximation of the degrees of freedom (\code{option=1}) might be a better choice -- if stated as such in the statistical analysis plan.\cr
 The half-width of the CI in log-scale allows a comparison of methods (B \emph{v.s.} A) or options (2 \emph{v.s.} 1). A higher value \emph{might} point towards a more conservative decision. Quoting the Q&A-document:\itemize{
   \item A simple linear mixed model, which assumes identical within-subject variability (Method B), may be acceptable as long as results obtained with the two methods do not lead to different regulatory decisions. However, in borderline cases [\ldots] additional analysis using Method A might be required.
 }
-In the provided example data sets -- with one exception -- the conclusion of \acronym{BE} (based on the aggregate \acronym{CI} and \acronym{GMR} criteria) agrees between \sQuote{Method A} and \sQuote{Method B}. However, for the highly incomplete data set 14 \sQuote{Method A} was \emph{liberal} (passing by \acronym{ANOVA} but failing by the mixed effects model).\cr\cr
+In the provided example data sets -- with one exception -- the conclusion of \acronym{BE} (based on the mixed \acronym{CI} and \acronym{GMR} criteria) agrees between \sQuote{Method A} and \sQuote{Method B}. However, for the highly incomplete data set 14 \sQuote{Method A} was \emph{liberal} (passing by \acronym{ANOVA} but failing by the mixed effects model).\cr\cr
 Reference-scaling is acceptable for \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} (immediate release products) and \ifelse{html}{\out{C<sub>max,ss</sub>}}{\eqn{C\textsubscript}{max,ss}}, \ifelse{html}{\out{C<sub>τ,ss</sub>}}{\eqn{C\textsubscript}{τ,ss}}, and \ifelse{html}{\out{<sub>partial</sub>AUC}}{\eqn{\textsubscript}{partial}AUC} (modified release products). However, quoting the \acronym{BE} guideline:
 \itemize{
   \item The applicant should justify that the calculated intra-subject variability is a reliable estimate and that it is not the result of outliers.}
@@ -258,9 +260,10 @@ method.B(path.in = path.in, file = "DS", set = "01", ext = "csv") # Q&A data set
 #   swR                :   0.44645
 #   Expanded limits    :  71.23\% ... 140.40\% [100exp(±0.760·swR)]
 #   swT / swR          :   0.7647 (similar variabilities of T and R)
-#   Confidence interval: 107.17\% ... 124.97\% (pass)
-#   Point estimate     : 115.73\% (pass)
-#   Aggregate (CI, PE) : pass
+#   Confidence interval: 107.17\% ... 124.97\%  pass
+#   Point estimate     : 115.73\%              pass
+#   Mixed (CI & PE)    :                      pass
+#     ╟────────┼────────────────────┼──────■────────◊─────────■───────────────╢
 #
 # Internal reference data set 01 used and results to the home folder.
 # Additional outlier-analyis and boxplot saved as PNG (accidental overwriting prevented)
@@ -273,7 +276,8 @@ method.B(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 #   swT / swR (recalc.):   1.0881 (similar variabilities of T and R)
 #   Confidence interval: pass
 #   Point estimate     : pass
-#   Aggregate (CI, PE) : pass
+#   Mixed (CI & PE)    : pass
+#             ╟┼────────────────────┼──────■────────◊─────────■─╢
 #
 # Same data set. Show information about outliers and the model-table
 method.B(ola = TRUE, verbose = TRUE, data = rds01)

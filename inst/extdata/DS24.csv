@@ -1,4 +1,5 @@
-# Drug 1, Cmax data: Antianxiety agent - IR. Available at http://www.fda.gov/Drugs/ScienceResearch/ucm301277.htm.
+# Drug 1, Cmax data: Antianxiety agent - IR.
+# Available at http://www.fda.gov/Drugs/ScienceResearch/ucm301277.htm.
 subject,period,sequence,treatment,PK
 1,1,TTRR,T,6.29
 1,2,TTRR,T,6.45

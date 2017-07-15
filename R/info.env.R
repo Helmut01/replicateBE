@@ -58,14 +58,15 @@ info.env <- function(fun, option=NA, path.in, path.out,
   if (!is.null(data)) { # internal data
     info <- paste(lic, discl, "\nReference data set :", set, "(internal data)")
   } else {              # CSV or XLS(X)
-    if (regexpr("/library/replicateBE/extdata/", path.in)[1] >= 1) { # internal CSV
+    if (missing(path.in) |
+        regexpr("/library/replicateBE/extdata/", path.in)[1] >= 1) { # internal CSV
       info <- paste(lic, discl, "\nReference data set :", set, "(internal CSV)")
     } else {                                                         # external CSV or XLS(X)
       info <- paste(lic, discl, "\nInput from         : ")
-      if (is.null(path.out)) {
+      if (is.null(path.in)) {
         info <- paste0(info, getwd(), "/")
       } else {
-        info <- paste0(info, path.out)
+        info <- paste0(info, path.in)
       }
       if (ext %in% ext.xls) {
         info <- paste0(info, "\nFile [sheet]       : ", file, ".", ext,

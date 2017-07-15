@@ -11,7 +11,7 @@ if (packageDescription("replicateBE")$Version < "1.0.5") {
   ### ABE ###
   for (j in seq_along(ds)) {
     ABE(data=eval(parse(text=ds[j])))
-    if (j == 2) {
+    if (j %in% c(2, 5, 10)) {
       ABE(data=eval(parse(text=ds[j])), theta1=0.9)
     }
   }

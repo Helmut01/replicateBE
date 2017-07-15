@@ -1,4 +1,4 @@
-# Highly unbalanced data set (based of DS03. 12 subj's in RTR and 7 in TRT).
+# Highly unbalanced data set (based of DS03. 12 subjects in RTR and 7 in TRT).
 subject,period,sequence,treatment,PK,logPK
 1,1,RTR,R,2285.96,7.734541
 1,2,RTR,T,1955.82,7.578565

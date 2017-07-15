@@ -1,4 +1,4 @@
-# Modified Data set I given by the EMA (Q&A document): one extreme result of subj's 45 & 52 set to NA.
+# Modified Data set I given by the EMA (Q&A document): one extreme result of subjects 45 & 52 set to NA.
 subject,period,sequence,treatment,PK,logPK
 1,1,RTRT,R,2285.96,7.734541
 1,2,RTRT,T,1955.82,7.578565

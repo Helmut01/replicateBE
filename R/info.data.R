@@ -15,7 +15,7 @@ info.data <- function(data = NULL) {
                 "Cmax data of the Appendix from Metzler CM, Shumaker RC. The Phenytoin Trial is a Case Study of \u2018Individual\u2019 Bioequivalence. Drug Inf J. 1998:32:1063\u201372.",
                 "Modified Data set I given by the EMA (Q&A document): T and R switched.",
                 "Data set simulated with CVwT\u00A0=\u00A0CVwR\u00A0=\u00A035%, GMR\u00A0=\u00A00.90.",
-                "Data set simulated with CVwT\u00A0=\u00A070%, CVwR\u00A0=\u00A00%, CVbT\u00A0=\u00A0CVbR\u00A0=\u00A0150%, GMR\u00A0=\u00A00.85.",
+                "Data set simulated with CVwT\u00A0=\u00A070%, CVwR\u00A0=\u00A080%, CVbT\u00A0=\u00A0CVbR\u00A0=\u00A0150%, GMR\u00A0=\u00A00.85.",
                 "Data set with wide numeric range (based of rds08: Data of last 37 subjects multiplied by 1,000,000).",
                 "Table 9.3.3 (AUC) from: Chow SC, Liu JP. Design and Analysis of Bioavailability and Bioequivalence Studies. Boca Raton: CRC Press: 3rd edition 2009. p275.",
                 "Table 9.6 (Cmax) from: Hauschke D, Steinijans VW, Pigeot I. Bioequivalence Studies in Drug Development. Chichester: John Wiley: 2007. p216. (Drug\u00A017a of the FDA\u2019s bioequivalence study files: available at https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip).",

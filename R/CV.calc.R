@@ -2,17 +2,17 @@
 # Calculate CV according to the EMA's Q&A-document #
 ####################################################
 CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
-                    ext, header, na, sep = ",", dec = ".",
-                    logtrans = TRUE, ola = FALSE, details = FALSE,
-                    adjust = FALSE, print, verbose = FALSE, ask = FALSE,
+                    ext, na, sep = ",", dec = ".", logtrans = TRUE,
+                    ola = FALSE, details = FALSE, adjust = FALSE,
+                    print, verbose = FALSE, ask = FALSE,
                     theta1 = theta1, theta2 = theta2, plot.bxp = FALSE,
                     fence = 2, data) {
   if (missing(path.in)) path.in <- NULL
   if (missing(data)) data <- NULL
   called.from <- as.character(sys.call(-1))[1]
   ret   <- get.data(path.in=path.in, path.out=path.out, file=file,
-                    set=set, ext=ext, header=header, na=na, sep=sep,
-                    dec=dec, logtrans=logtrans, print=print,
+                    set=set, ext=ext, na=na, sep=sep, dec=dec,
+                    logtrans=logtrans, print=print,
                     plot.bxp=plot.bxp, data=data)
   ow <- options("digits")
   options(digits=12) # more digits for anova

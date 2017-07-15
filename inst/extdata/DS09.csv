@@ -1,4 +1,4 @@
-# Data set with wide numeric range (based of DS08; data of last 37 subj's multiplied by 1,000,000).
+# Data set with wide numeric range (based of DS08; data of last 37 subjects multiplied by 1,000,000).
 subject,period,sequence,treatment,PK
 1,1,RTRT,R,716.601
 1,2,RTRT,T,140.872

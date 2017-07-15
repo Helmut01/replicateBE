@@ -3,16 +3,16 @@
 # fixed: sequence, subjects, period, treatment #
 ################################################
 ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
-                file, set = "", ext, header = 0, na = ".",
-                sep = ",", dec = ".", logtrans = TRUE, print = TRUE,
+                file, set = "", ext, na = ".", sep = ",",
+                dec = ".", logtrans = TRUE, print = TRUE,
                 details = FALSE, verbose = FALSE, ask = FALSE,
                 theta1, theta2, data = NULL) {
   exec <- strftime(Sys.time(), usetz=TRUE)
   if (missing(theta1)) theta1 <- 0.80
   if (missing(theta2)) theta2 <- 1/theta1
   ret  <- CV.calc(alpha=alpha, path.in=path.in, path.out=path.out,
-                  file=file, set=set, ext=ext, header=header, na=na,
-                  sep=sep, dec=dec, logtrans=logtrans, ola=FALSE,
+                  file=file, set=set, ext=ext, na=na, sep=sep,
+                  dec=dec, logtrans=logtrans, ola=FALSE,
                   print=print, verbose=verbose, ask=ask,
                   theta1=theta1, theta2=theta2, data=data)
   if (print) { # change from "ABEL" to "ABE"
@@ -48,8 +48,9 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                       data=ret$data)
   }
   if (verbose) {
-    cat("\nData set", paste0(file, set), "by ABE",
-        paste0("\n", paste0(rep("\u2500", 20), collapse="")), "\n")
+    name <-  paste0(file, set)
+    cat("\nData set", name, "by ABE",
+        paste0("\n", paste0(rep("\u2500", 16+nchar(name)), collapse="")), "\n")
     print(stats::anova(mod)) # otherwise summary of lmerTest is used
     cat("\ntreatment T \u2013 R:\n")
     print(signif(summary(mod)$coefficients["treatmentT", ]), 7)
@@ -110,9 +111,13 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   txt <- paste0(ret$txt, "\nalpha              :   ", alpha,
                 " (", 100*(1-2*alpha), "% CI)")
   txt <- paste0(txt,
-                "\nConfidence interval: ", sprintf("%6.2f%% ... %.2f%%",
-                res$"CI.lo(%)", res$"CI.hi(%)"), " (", res$BE, ")",
-                "\nPoint estimate     : ", sprintf("%6.2f%%", res$"PE(%)"))
+                "\nConfidence interval: ", sprintf("%6.2f%% ... %6.2f%%",
+                res$"CI.lo(%)", res$"CI.hi(%)"), "  ", res$BE,
+                "\nPoint estimate     : ", sprintf("%6.2f%%", res$"PE(%)"), "\n")
+  txt <- paste0(txt,
+                draw.line(called.from="ABE",
+                          L=ret$BE1, U=ret$BE2, lo=CI[1], hi=CI[2], PE=PE,
+                          theta1=theta1, theta2=theta2), "\n")
   if (res$Design == "TRR|RTR")
     txt <- paste0(txt, "\nNote: The extra-reference design assumes lacking period effects. ",
                   "The treatment\ncomparison will be biased in the presence of a ",
