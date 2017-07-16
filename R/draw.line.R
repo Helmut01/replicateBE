@@ -30,6 +30,10 @@ draw.line <- function(called.from, L, U, lo, hi, PE, theta1, theta2) {
   }
   l <- paste0(rep(s["sp"], sf*(U.0-L.0)+2), collapse="")
   if (!called.from == "ABE") {
+    ifelse (L == 0.8  & lo > 0.8, sym <- s["BE1"], sym <- s["BE"])
+    l <- repl(l, sf, L.0, 0.80, sym)
+    ifelse (U == 1.25 & hi < 1.25, sym <- s["BE2"], sym <- s["BE"])
+    l <- repl(l, sf, L.0, 1.25, sym)
     if (L != 0.8) {
       ifelse (lo > L, sym <- s["EX1"], sym <- s["EX"])
       l <- repl(l, sf, L.0, L, sym)
@@ -44,10 +48,6 @@ draw.line <- function(called.from, L, U, lo, hi, PE, theta1, theta2) {
       ifelse (hi > 1.25, sym <- s["BE"], sym <- s["BE2"])
       l <- repl(l, sf, L.0, 1.25, sym)
     }
-    ifelse (L == 0.8  & lo > 0.8, sym <- s["BE1"], sym <- s["BE"])
-    l <- repl(l, sf, L.0, 0.80, sym)
-    ifelse (U == 1.25 & hi < 1.25, sym <- s["BE2"], sym <- s["BE"])
-    l <- repl(l, sf, L.0, 1.25, sym)
   } else {
     ifelse (lo < theta1, sym <- s["BE"], sym <- s["BE1"])
     l <- repl(l, sf, L.0, theta1, sym)
@@ -73,7 +73,8 @@ draw.line <- function(called.from, L, U, lo, hi, PE, theta1, theta2) {
     if (substr(l, first, first) != s["sp"]) break
   }
   while (first < last) { # replace space with line
-    if (substr(l, first, first) == s["sp"]) substr(l, first, first) <- s["li"]
+    if (substr(l, first, first) == s["sp"])
+      substr(l, first, first) <- s["li"]
     first <- first + 1
   }
   return(l) # TODO: trim trailing whitespace. How for unicode string?
