@@ -178,7 +178,7 @@ ABE(path.in = path.in, file = "DS", set = "02", ext = "csv") # Q&A data set II
 #   BE-limits          :  80.00\% ... 125.00\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass
 #   Point estimate     : 102.26\%
-#              ├─────────────────■──┼─◊─────■─────────────────┤
+#             ├─────────────────■──┼──◊────■─────────────────┤
 #
 # Generate the data.frame of results (7-digits precision) and show in the console
 # Use the internal data set
@@ -191,5 +191,5 @@ ABE(data = rds02, theta1 = 0.90)
 #   BE-limits          :  90.00\% ... 111.11\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass
 #   Point estimate     : 102.26\%
-#                        ├───────■──┼─◊─────■──┤
+#                        ├──────■──┼──◊────■───┤
 }

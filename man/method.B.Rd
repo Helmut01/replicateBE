@@ -263,7 +263,7 @@ method.B(path.in = path.in, file = "DS", set = "01", ext = "csv") # Q&A data set
 #   Confidence interval: 107.17\% ... 124.97\%  pass
 #   Point estimate     : 115.73\%              pass
 #   Mixed (CI & PE)    :                      pass
-#     ╟────────┼────────────────────┼──────■────────◊─────────■───────────────╢
+#    ╟────────┼────────────────────┼──────■────────◊─────────■───────────────╢
 #
 # Internal reference data set 01 used and results to the home folder.
 # Additional outlier-analyis and boxplot saved as PNG (accidental overwriting prevented)
