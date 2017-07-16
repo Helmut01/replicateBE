@@ -214,7 +214,7 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
 }
 
 \note{
-The \sQuote{graphical} presentation in the result file gives the confidence limits with filled black squares (■) and the point estimate as a white rhombus (◊). If a confidence limit exceeds the maximum possible extension limit, it is shown as a triangle (◄ or ►). Extended limits are given as double vertical lines (║). Unscaled limits, the \acronym{GMR} restriction, and 100\% are given with single vertical lines (│). The \sQuote{resolution} is approximatelly 0.5\% and therefore, not all symbols might be shown. The \acronym{CI} has presedence over the limits and the extended limits over unscaled ones.
+The \sQuote{graphical} presentation in the result file gives the confidence limits with filled black squares (■) and the point estimate as a white rhombus (◊). If a confidence limit exceeds the maximum possible expansion limit, it is shown as a triangle (◄ or ►). Expanded limits are given as double vertical lines (║). Unscaled limits, the \acronym{GMR} restriction, and 100\% are given with single vertical lines (│). The \sQuote{resolution} is approximatelly 0.5\% and therefore, not all symbols might be shown. The \acronym{CI} has presedence over the limits and the expanded limits over unscaled ones.
 }
 
 \note{
@@ -246,7 +246,7 @@ No Liability is accepted for any Loss and Risk to Public Health Resulting from U
 }
 
 \examples{
-# Importing from a CSV-file in path, using most of the defaults: variable
+# Importing from a CSV-file, using most of the defaults: variable
 # separator colon, decimal separator period, no outlier-analyis, print to file
 # Note: You must adapt the path-variables. Write-permissions must be
 # granted for 'path.out' in order to save the result file. If 'path.out'

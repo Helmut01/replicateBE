@@ -21,117 +21,60 @@ draw.line <- function(called.from, L, U, lo, hi, PE, theta1, theta2) {
                 "BE", "BE1", "BE2",
                 "PE", "CI", "CL.lo", "CL.hi",
                 "li", "sp")
-  L.0 <- 0.6983678 # max. lower expansion
-  U.0 <- 1.4319102 # max. upper expansion
-  if(missing(theta1)) theta1 <- 0.8
-  if(missing(theta2)) theta2 <- 1/theta1
-  f   <- 104       # scaling factor to get a 78 character string
-  # the empty string
-  l   <- paste0(rep(s["sp"], f*(U.0-L.0)+2), collapse="")
-  # lower CL
-  if (lo < L.0) { # below drawing range: left triangle
-    substr(l, 1, 1) <- s["CL.lo"]
-  } else {
-    substr(l, f*(lo-L.0)+2, f*(lo-L.0)+2) <- s["CI"]
+  sf   <- 104       # scaling factor to get a 78 character string
+  L.0  <- 0.6983678 # max. lower expansion
+  U.0  <- 1.4319102 # max. upper expansion
+  repl <- function(l, sf, L.0, loc, sym) {
+    substr(l, sf*(loc-L.0)+2, sf*(loc-L.0)+2) <- sym
+    return(l)
   }
-  # point estimate
-  substr(l, f*(PE-L.0)+2, f*(PE-L.0)+2) <- s["PE"]
-  # 100% mark
-  if (substr(l, f*(1-L.0)+2,  f*(1-L.0)+2) == s["sp"]) {
-    # only if not already 'occupied'
-  substr(l, f*(1-L.0)+2, f*(1-L.0)+2) <- s["BE"]
-  }
-  # upper CL
-  if (hi > U.0) { # above drawing range: right triangle
-    substr(l, f*(U.0-L.0)+2, f*(U.0-L.0)+2) <- s["CL.hi"]
-  } else {
-    substr(l, f*(hi-L.0)+2, f*(hi-L.0)+2) <- s["CI"]
-  }
+  l <- paste0(rep(s["sp"], sf*(U.0-L.0)+2), collapse="")
   if (!called.from == "ABE") {
-    # lower limit
-    if (substr(l, f*(L-L.0)+2, f*(L-L.0)+2) == s["sp"] & L != 0.8) {
-      # only if not already 'occupied'
-      if (lo > L) { # there will be a line to the left
-        substr(l, f*(L-L.0)+2, f*(L-L.0)+2) <- s["EX1"]
-      } else {      # no line to the left
-        substr(l, f*(L-L.0)+2, f*(L-L.0)+2) <- s["EX"]
-      }
-    } else { # unscaled
-      if (lo < 0.8) { # there will be a line to the left
-        substr(l, f*(0.8-L.0)+2, f*(theta1-L.0)+2) <- s["BE"]
-      } else {        # no line to the left
-        substr(l, f*(0.8-L.0)+2, f*(theta1-L.0)+2) <- s["BE1"]
-      }
+    if (L != 0.8) {
+      ifelse (lo > L, sym <- s["EX1"], sym <- s["EX"])
+      l <- repl(l, sf, L.0, L, sym)
+    } else {
+      ifelse (lo > 0.8, sym <- s["BE"], sym <- s["BE1"])
+      l <- repl(l, sf, L.0, 0.8, sym)
     }
-    # upper limit
-    if (substr(l, f*(U-L.0)+2,  f*(U-L.0)+2) == s["sp"] & U != 1.25) {
-      # only if not already 'occupied'
-      if (hi < U) { # there will be a line to the right
-        substr(l, f*(U-L.0)+2, f*(U-L.0)+2) <- s["EX2"]
-      } else {      # no line to the right
-        substr(l, f*(U-L.0)+2, f*(U-L.0)+2) <- s["EX"]
-      }
-    } else { # unscaled
-      if (hi > 1.25) { # there will be a line to the right
-        substr(l, f*(1.25-L.0)+2, f*(1.25-L.0)+2) <- s["BE"]
-      } else {        # no line to the right
-        substr(l, f*(1.25-L.0)+2, f*(1.25-L.0)+2) <- s["BE2"]
-      }
+    if (U != 1.25) {
+      ifelse (hi < U, sym <- s["EX2"], sym <- s["EX"])
+      l <- repl(l, sf, L.0, U, sym)
+    } else {
+      ifelse (hi > 1.25, sym <- s["BE"], sym <- s["BE2"])
+      l <- repl(l, sf, L.0, 1.25, sym)
     }
-    if (substr(l, f*(0.8-L.0)+2,  f*(0.8-L.0)+2) == s["sp"]) {
-      # only if not already 'occupied'
-      if (L == 0.8 & lo > 0.8) {   # lower GMR restriction
-        substr(l, f*(0.8-L.0)+2, f*(0.8-L.0)+2) <- s["BE1"]
-      } else {                     # lower expanded limit
-        substr(l, f*(0.8-L.0)+2, f*(0.8-L.0)+2) <- s["BE"]
-      }
-    }
-    if (substr(l, f*(1.25-L.0)+2, f*(1.25-L.0)+2) == s["sp"]) {
-      # only if not already 'occupied'
-      if (U == 1.25 & hi < 1.25) { # upper GMR restriction
-        substr(l, f*(1.25-L.0)+2, f*(1.25-L.0)+2) <- s["BE2"]
-        if (is.na(last)) last <- f*(0.8-L.0)+2 # for ABE
-      } else {                     # upper expanded limit
-        substr(l, f*(1.25-L.0)+2, f*(1.25-L.0)+2) <- s["BE"]
-      }
-    }
-  } else { # ABE
-    # lower limit
-    if (substr(l, f*(theta1-L.0)+2,  f*(theta1-L.0)+2) == s["sp"]) {
-      # only if not already 'occupied'
-      if (lo < theta1) { # there will be a line to the left
-        substr(l, f*(theta1-L.0)+2, f*(theta1-L.0)+2) <- s["BE"]
-      } else {        # no line to the left
-        substr(l, f*(theta1-L.0)+2, f*(theta1-L.0)+2) <- s["BE1"]
-      }
-    }
-    # upper limit
-    if (substr(l, f*(theta2-L.0)+2, f*(theta2-L.0)+2) == s["sp"]) {
-      # only if not already 'occupied'
-      if (hi > theta2) { # there will be a line to the right
-        substr(l, f*(theta2-L.0)+2, f*(theta2-L.0)+2) <- s["BE"]
-      } else {        # no line to the right
-        substr(l, f*(theta2-L.0)+2, f*(theta2-L.0)+2) <- s["BE2"]
-      }
-    }
+    ifelse (L == 0.8  & lo > 0.8, sym <- s["BE1"], sym <- s["BE"])
+    l <- repl(l, sf, L.0, 0.80, sym)
+    ifelse (U == 1.25 & hi < 1.25, sym <- s["BE2"], sym <- s["BE"])
+    l <- repl(l, sf, L.0, 1.25, sym)
+  } else {
+    ifelse (lo < theta1, sym <- s["BE"], sym <- s["BE1"])
+    l <- repl(l, sf, L.0, theta1, sym)
+    ifelse (hi > theta2, sym <- s["BE"], sym <- s["BE2"])
+    l <- repl(l, sf, L.0, theta2, sym)
   }
-  last <- f*(U.0-L.0)+2
-  while (last <= f*(U.0-L.0)+2) { # last non-space character
+  l <- repl(l, sf, L.0, 1, s["BE"])
+  l <- repl(l, sf, L.0, PE, s["PE"])
+  ifelse (lo < L.0, l <- repl(l, sf, L.0, L.0, s["CL.lo"]),
+          l <- repl(l, sf, L.0, lo, s["CI"]))
+  ifelse (hi > U.0, l <- repl(l, sf, L.0, U.0, s["CL.hi"]),
+          l <- repl(l, sf, L.0, hi, s["CI"]))
+  last <- sf*(U.0-L.0)+2
+  while (last <= sf*(U.0-L.0)+2) { # last non-space character
     last <- last - 1
     if (substr(l, last, last) != s["sp"]) break
   }
-  if (substr(l, f*(U.0-L.0)+2, f*(U.0-L.0)+2) != s["sp"]) # special case
-    last <- f*(U.0-L.0)+2
+  if (substr(l, sf*(U.0-L.0)+2, sf*(U.0-L.0)+2) != s["sp"]) # special case
+    last <- sf*(U.0-L.0)+2
   first <- 0
   while (first < last) {          # first non-space character
     first <- first + 1
     if (substr(l, first, first) != s["sp"]) break
   }
-  while (first < last) {          # fill to the right with a line
-    if (substr(l, first, first) == s["sp"])
-      substr(l, first, first) <- s["li"]
+  while (first < last) { # replace space with line
+    if (substr(l, first, first) == s["sp"]) substr(l, first, first) <- s["li"]
     first <- first + 1
   }
-  # TODO: trim trailing whitespace. How for unicode string?
-  return(l)
+  return(l) # TODO: trim trailing whitespace. How for unicode string?
 }

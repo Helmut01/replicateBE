@@ -167,7 +167,7 @@ No Liability is accepted for any Loss and Risk to Public Health Resulting from U
 }
 
 \examples{
-# Importing from a CSV-file in path, using most of the defaults: variable
+# Importing from a CSV-file, using most of the defaults: variable
 # separator colon, decimal separator period, print to file
 # Note: You must adapt the path-variables. Write-permissions must be
 # granted for 'path.out' in order to save the result file. If 'path.out'
