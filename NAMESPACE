@@ -7,7 +7,7 @@ importFrom(stats, qt, df, coef, confint, lm,
            anova, aov, rstudent, rstandard,
            complete.cases, na.omit, reshape)
 importFrom(graphics, boxplot, bxp, mtext, text,
-           abline)
+           abline, title)
 importFrom(PowerTOST, mse2CV, CV2se, scABEL, reg_const,
            scABEL.ad)
 importFrom(nlme, lme, intervals) # for method.B(option=2)

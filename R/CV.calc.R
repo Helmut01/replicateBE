@@ -73,10 +73,13 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
         }
       }
       bxp(bp1, xlim=c(0, 3), ylim=c(-1, 1)*max(abs(c(ol.value1, ol.value2))),
-          las=1, ylab="residual", pars=pars, cex.main=1, main="")
-      title(main=expression(paste("EMA\u2019s model for ", CV[wR], ":")), line=3)
-      title(main=expression(paste("log(response) ~ sequence + subject(sequence) + period; data = R")), line=2)
-      title(main=bquote(paste("Outlier fence ", .(fence), "\u00D7IQR")), line=1)
+          las=1, ylab="residual", pars=pars, main="")
+      title(main=expression(paste("EMA\u2019s model for ", CV[wR], ":")),
+            line=3, cex.main=1.1)
+      title(main=expression(paste("log(response) ~ sequence + subject(sequence) + period; data = R")),
+            line=2, cex.main=1.05)
+      title(main=bquote(paste("Outlier fence ", .(fence), "\u00D7IQR")),
+            line=1, cex.main=1.05)
       if (length(names.ol1) == 0) {
         lab.txt <- "no outlier"
       } else {

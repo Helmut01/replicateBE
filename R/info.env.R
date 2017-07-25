@@ -52,7 +52,7 @@ info.env <- function(fun, option=NA, path.in, path.out,
   if (fun == "model.B") {
     ifelse (option == 1, hr.len <- 62+nchar(exec), hr.len <- 57+nchar(exec))
   } else {
-    hr.len <- 78
+    hr.len <- 79
   }
   hr     <- paste0(rep("\u2500", hr.len), collapse="")
   if (!is.null(data)) { # internal data
@@ -86,7 +86,7 @@ info.env <- function(fun, option=NA, path.in, path.out,
                  "\nUser               : ", user,
                  "\nOperating System   : ", OS, " ", OSrel)
   if (OS == "Darwin") { # special treatment (long system[["version"]])
-    tmp <- strwrap(OSver, width = 78, prefix="\n                     ")
+    tmp <- strwrap(OSver, width = 79, prefix="\n                     ")
     for (j in 1:length(tmp)) {
       info <- paste0(info, tmp[[j]])
     }

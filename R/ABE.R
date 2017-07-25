@@ -81,6 +81,7 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   options(ow) # restore options
   if (details) { # results in default (7 digits) precision
     ret <- res   # and remove superfluous columns
+    #class(ret) <- "repBE"
     return(ret)
   }
   # Round percents to two decimals according to the GL

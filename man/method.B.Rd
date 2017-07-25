@@ -249,7 +249,7 @@ No Liability is accepted for any Loss and Risk to Public Health Resulting from U
 # Importing from a CSV-file, using most of the defaults: variable
 # separator colon, decimal separator period, no outlier-analyis, print to file
 # Note: You must adapt the path-variables. Write-permissions must be
-# granted for 'path.out' in order to save the result file. If 'path.out'
+# granted for 'path.out' in order to save the result file. If 'path.out' is
 # not specified, results are written to the home folder.
 path.in <- paste0(find.package("replicateBE"), "/extdata/")       # example files
 method.B(path.in = path.in, file = "DS", set = "01", ext = "csv") # Q&A data set I
@@ -263,7 +263,7 @@ method.B(path.in = path.in, file = "DS", set = "01", ext = "csv") # Q&A data set
 #   Confidence interval: 107.17\% ... 124.97\%  pass
 #   Point estimate     : 115.73\%              pass
 #   Mixed (CI & PE)    :                      pass
-#    ╟────────┼────────────────────┼──────■────────◊─────────■───────────────╢
+#    ╟────────┼─────────────────────┼───────■────────◊─────────■───────────────╢
 #
 # Internal reference data set 01 used and results to the home folder.
 # Additional outlier-analyis and boxplot saved as PNG (accidental overwriting prevented)
@@ -277,7 +277,7 @@ method.B(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 #   Confidence interval: pass
 #   Point estimate     : pass
 #   Mixed (CI & PE)    : pass
-#             ╟┼────────────────────┼──────■────────◊─────────■─╢
+#            ╟┼─────────────────────┼───────■────────◊─────────■─╢
 #
 # Same data set. Show information about outliers and the model-table
 method.B(ola = TRUE, verbose = TRUE, data = rds01)

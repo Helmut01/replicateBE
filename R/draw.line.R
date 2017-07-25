@@ -22,7 +22,7 @@ draw.line <- function(called.from, L, U, lo, hi, PE, theta1, theta2) {
                 "BE", "BE1", "BE2",
                 "PE", "CI", "CL.lo", "CL.hi",
                 "li", "sp")
-  sf   <- 105       # scaling factor to get a 78 character string
+  sf   <- 107.6     # scaling factor to get a 79 character string
   L.0  <- 0.6983678 # max. lower expansion
   U.0  <- 1.4319102 # max. upper expansion
   repl <- function(l, sf, L.0, loc, sym) {

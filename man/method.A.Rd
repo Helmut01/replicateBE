@@ -250,7 +250,7 @@ No Liability is accepted for any Loss and Risk to Public Health Resulting from U
 # Importing from a CSV-file, using most of the defaults: variable
 # separator colon, decimal separator period, no outlier-analyis, print to file
 # Note: You must adapt the path-variables. Write-permissions must be
-# granted for 'path.out' in order to save the result file. If 'path.out'
+# granted for 'path.out' in order to save the result file. If 'path.out' is
 # not specified, results are written to the home folder.
 path.in <- paste0(find.package("replicateBE"), "/extdata/")       # example files
 method.A(path.in = path.in, file = "DS", set = "01", ext = "csv") # Q&A data set I
@@ -264,7 +264,7 @@ method.A(path.in = path.in, file = "DS", set = "01", ext = "csv") # Q&A data set
 #   Confidence interval: 107.11\% ... 124.89\%  pass
 #   Point estimate     : 115.66\%              pass
 #   Mixed (CI & PE)    :                      pass
-#    ╟────────┼────────────────────┼───────■────────◊────────■────────────────╢
+#    ╟────────┼─────────────────────┼───────■────────◊─────────■───────────────╢
 #
 # Internal reference data set 01 used and results to the home folder.
 # Additional outlier-analyis and boxplot saved as PNG (accidental overwriting prevented)
@@ -279,7 +279,7 @@ method.A(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 #   Confidence interval: pass
 #   Point estimate     : pass
 #   Mixed (CI & PE)    : pass
-#            ╟┼────────────────────┼───────■────────◊────────■─╢
+#            ╟┼─────────────────────┼───────■────────◊─────────■─╢
 #
 # Same data set. Show information about outliers and the ANOVA-table
 method.A(ola = TRUE, verbose = TRUE, data = rds01)
@@ -315,12 +315,12 @@ method.A(alpha = 0.033416, ola = TRUE, adjust = TRUE, data = rds01)}
 #   Confidence interval: 106.16\% ... 126.00\%  pass
 #   Point estimate     : 115.66\%              pass
 #   Mixed (CI & PE)    :                      pass
-#    ╟────────┼────────────────────┼─────■─────────◊─────────┼■──────────────╢
+#    ╟────────┼─────────────────────┼──────■─────────◊─────────┼■──────────────╢
 #   Assessment based on recalculated CVwR 32.16\%
 #   Confidence interval: pass
 #   Point estimate     : pass
 #   Mixed (CI & PE)    : pass
-#            ╟┼────────────────────┼─────■─────────◊─────────┼■╢
+#            ╟┼─────────────────────┼──────■─────────◊─────────┼■╢
 #   Assessment of the empiric Type I Error (TIE) based on original CVwR;
 #   1,000,000 studies simulated.
 #     TIE not > nominal 0.05; consumer risk is controlled.

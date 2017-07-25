@@ -159,6 +159,7 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                                        "EL.new.hi(%)", "CI.new",
                                        "GMR.new", "BE.new")]
     }
+    #class(ret) <- "repBE"
     return(ret)
   }
   # Round percents to two decimals according to the GL
