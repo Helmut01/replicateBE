@@ -13,6 +13,7 @@
 \alias{rds19}
 \alias{rds20}
 \alias{rds21}
+\alias{rds25}
 \docType{data}
 \title{
 Reference Data Sets for TRTR|RTRT Designs
@@ -36,7 +37,8 @@ Data sets from the public domain, edited, or obtained by simulations to be evalu
     \code{rds18} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
     \code{rds19} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
     \code{rds20} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds21} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}
+    \code{rds21} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds25} \tab 70 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 }
 
@@ -79,7 +81,7 @@ In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported resul
     }
 
     \item Reference Data Set 08 (\code{rds08})\cr
-    Simulated with \ifelse{html}{\out{C<sub>wT</sub>}}{\eqn{C\textsubscript}{wT}} = 70\%, \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} = 80\%, \ifelse{html}{\out{C<sub>bT</sub>}}{\eqn{C\textsubscript}{bT}} = \ifelse{html}{\out{C<sub>bT</sub>}}{\eqn{C\textsubscript}{bT}} = 150\%, GMR = 0.85. 222 subjects.\cr
+    Simulated with slight heteroscedasticity (\ifelse{html}{\out{C<sub>wT</sub>}}{\eqn{C\textsubscript}{wT}} = 70\%, \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} = 80\%), \ifelse{html}{\out{C<sub>bT</sub>}}{\eqn{C\textsubscript}{bT}} = \ifelse{html}{\out{C<sub>bT</sub>}}{\eqn{C\textsubscript}{bT}} = 150\%, GMR = 0.85. 222 subjects.\cr
     \describe{
       A data frame with 888 observations on the following 5 variables:
       \tabular{ll}{
@@ -224,6 +226,20 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
       }
       Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and five in sequence RTRT). Missings / period: 1/1, 1/2, 8/3, 2/4. No outliers.
     }
+
+    \item Reference Data Set 25 (\code{rds25})\cr
+    Simulated with heteroscedasticity (\ifelse{html}{\out{C<sub>wT</sub>}}{\eqn{C\textsubscript}{wT}} = 50\%, \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} = 80\%), \ifelse{html}{\out{C<sub>bT</sub>}}{\eqn{C\textsubscript}{bT}} = \ifelse{html}{\out{C<sub>bT</sub>}}{\eqn{C\textsubscript}{bT}} = 130\%, GMR = 0.90. 70 subjects.\cr
+    \describe{
+      A data frame with 280 observations on the following 5 variables:
+      \tabular{ll}{
+        \code{subject} \tab a factor with 70 levels: 1, 2, \ldots, 70\cr
+        \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
+        \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
+        \code{treatment} \tab a factor with 2 levels: T, R\cr
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+      }
+      Balanced (70 subjects in both sequences) and complete. No outliers.
+    }
   }
 }
 
@@ -241,7 +257,8 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
     \code{rds18} \tab \code{rds14} edited \tab Removed T data of subjects 63–78.\cr
     \code{rds19} \tab \code{rds18} edited \tab Removed data of subjects 63–78.\cr
     \code{rds20} \tab \code{rds19} edited \tab Outlier of R (subject 1) introduced: original value ×100.\cr
-    \code{rds21} \tab \code{rds01} edited \tab One extreme result of subjects 45 & 52 set to NA.
+    \code{rds21} \tab \code{rds01} edited \tab One extreme result of subjects 45 & 52 set to NA.\cr
+    \code{rds25} \tab R \tab Simulated data set with heteroscedasticity.
   }
 }
 

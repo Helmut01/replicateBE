@@ -43,7 +43,7 @@ Published on GitHub 2017-06-25
     - Bug-fix: nTT was NA in get.data() for TRTR|RTRT. Now design
       (full/replicate) is obtained from info.design().
     - Calculate the sw-ratio (maybe useful for the WHO).
-    - Added Data Set 24 (TRRT|RTTR|TTRR|RRTT) from the FDA. Subject 16
+    - Added data set 24 (TRRT|RTTR|TTRR|RRTT) from the FDA. Subject 16
       completely missing. Adapted get.data() for such a case.
     - Bug-fix: mixed model was given in the result file of method.A().
     - Rewrite of reading from file. The header is automatically
@@ -55,6 +55,7 @@ Published on GitHub 2017-06-25
     - Bug-fix: info.env() gave 'path.out' as 'path.in'.
     - Shows a 'graphical' presentation of the CI, PE, and BE-limits in
       the result file.
+    - Added data set 25 (TRTR|RTRT) simulated with heteroscedasticy.
 
 Version 1.0.5
 Released to collaborators 2017-06-24

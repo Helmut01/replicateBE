@@ -26,6 +26,7 @@ Data sets for replicate design from the public domain, edited, or obtained by si
   TRTR|RTRT \tab full \tab \code{rds09} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRTR|RTRT \tab full \tab \code{rds13} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRTR|RTRT \tab full \tab \code{rds15} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT \tab full \tab \code{rds25} \tab 70 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRRT|RTTR \tab full \tab \code{rds05} \tab 26 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
   TRRT|RTTR \tab full \tab \code{rds11} \tab 37 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRRT|RTTR \tab full \tab \code{rds16} \tab 38 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
@@ -58,6 +59,7 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds09} \tab \code{rds08} \tab Wide numeric range (data of last 37 subjects multiplied by 1,000,000).\cr
     \code{rds13} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data deleted).\cr
     \code{rds15} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}).\cr
+    \code{rds25} \tab R \tab Simulated with heteroscedasticity.\cr
     \code{rds05} \tab \ifelse{html}{\out{Metzler&nbsp;&amp;&nbsp;Shumaker}}{Metzler~&~Shumaker} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in the Appendix.\cr
     \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in Table 9.6.\cr
     \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 14a.\cr
@@ -108,7 +110,7 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael 
 
 \examples{
 # show structure of all data sets
-ds <- sprintf("rds\%02i", 1:24)
+ds <- sprintf("rds\%02i", 1:25)
 for (i in seq_along(ds)) {
   cat(ds[i], "\n")
   str(eval(parse(text=ds[i])))
