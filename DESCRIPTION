@@ -20,5 +20,5 @@ Description: Performs comparative bioavailability-calculations for the
 License: GPL (>=3)
 ByteCompile: no
 LazyData: true
-URL: https://github.com/Helmut01/replicateBE
-BugReports: https://github.com/Helmut01/replicateBE/issues
+URL: <https://github.com/Helmut01/replicateBE>
+BugReports: <https://github.com/Helmut01/replicateBE/issues>
