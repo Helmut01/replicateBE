@@ -56,6 +56,8 @@ Published on GitHub 2017-06-25
     - Shows a 'graphical' presentation of the CI, PE, and BE-limits in
       the result file.
     - Added data set 25 (TRTR|RTRT) simulated with heteroscedasticy.
+    - Added data set 26 (TRTR|RTRT). One of the few where we have results
+      for comparison.
 
 Version 1.0.5
 Released to collaborators 2017-06-24

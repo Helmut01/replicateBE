@@ -6,7 +6,7 @@
 ############################################
 info.data <- function(data = NULL) {
   if (missing(data) | is.null(data)) stop()
-  sets     <- 25
+  sets     <- 26
   descr    <- c("Data set I given by the EMA (Q&A document) available at
  http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf",
                 "Data set II given by the EMA (Q&A document) available at http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf",
@@ -17,7 +17,7 @@ info.data <- function(data = NULL) {
                 "Data set simulated with CVwT\u00A0=\u00A0CVwR\u00A0=\u00A035%, GMR\u00A0=\u00A00.90.",
                 "Data set simulated with CVwT\u00A0=\u00A070%, CVwR\u00A0=\u00A080%, CVbT\u00A0=\u00A0CVbR\u00A0=\u00A0150%, GMR\u00A0=\u00A00.85.",
                 "Data set with wide numeric range (based of rds08: Data of last 37 subjects multiplied by 1,000,000).",
-                "Table 9.3.3 (AUC) from: Chow SC, Liu JP. Design and Analysis of Bioavailability and Bioequivalence Studies. Boca Raton: CRC Press: 3rd edition 2009. p275.",
+                "Table 9.3.3 (AUC) from: Chow SC, Liu JP. Design and Analysis of Bioavailability and Bioequivalence Studies. Boca Raton: CRC Press; 3rd edition 2009. p275.",
                 "Table 9.6 (Cmax) from: Hauschke D, Steinijans VW, Pigeot I. Bioequivalence Studies in Drug Development. Chichester: John Wiley: 2007. p216. (Drug\u00A017a of the FDA\u2019s bioequivalence study files: available at https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip).",
                 "Data set simulated with extreme intra- and intersubject variability, GMR\u00A0= 1.6487.",
                 "Highly incomplete data set (based of rds08: Approx. 50% of period\u00A04 data deleted).",
@@ -33,7 +33,8 @@ info.data <- function(data = NULL) {
                 "Data set simulated with CVwT = CVwR\u00A0=\u00A045%, CVbT = CVbR\u00A0=\u00A0100%, GMR\u00A0=\u00A00.90.",
                 "Drug 7a, Cmax data: Beta-adrenergic blocking agent\u00A0- IR of the FDA\u2019s bioequivalence study files: available at https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip.",
                 "Drug 1, Cmax data: Antianxiety agent\u00A0- IR of the FDA\u2019s bioequivalence study files: available at https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip.",
-                "Data set simulated with CVwT\u00A0=\u00A050%, CVwR\u00A0=\u00A080%, CVbT\u00A0=\u00A0CVbR\u00A0=\u00A0130%, GMR\u00A0=\u00A00.90.")
+                "Data set simulated with CVwT\u00A0=\u00A050%, CVwR\u00A0=\u00A080%, CVbT\u00A0=\u00A0CVbR\u00A0=\u00A0130%, GMR\u00A0=\u00A00.90.",
+                "Example 4.4 (Cmax) from: Patterson SD, Jones B. Bioequivalence and Statistics in Clinical Pharmacology. Boca Raton: CRC Press; 2nd edition 2016. p105\u20136.")
   file     <- rep("DS", sets)
   set      <- sprintf("%02i", 1:sets)
   ref      <- paste0("rds", set)

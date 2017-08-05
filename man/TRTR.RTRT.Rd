@@ -14,6 +14,7 @@
 \alias{rds20}
 \alias{rds21}
 \alias{rds25}
+\alias{rds26}
 \docType{data}
 \title{
 Reference Data Sets for TRTR|RTRT Designs
@@ -38,7 +39,8 @@ Data sets from the public domain, edited, or obtained by simulations to be evalu
     \code{rds19} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
     \code{rds20} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
     \code{rds21} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds25} \tab 70 \tab >30 \tab \code{method.A()}, \code{method.B()}
+    \code{rds25} \tab 70 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds26} \tab 54 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 }
 
@@ -240,6 +242,26 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
       }
       Balanced (70 subjects in both sequences) and complete. No outliers.
     }
+
+    \item Reference Data Set 26 (\code{rds26})\cr
+    54 subjects.\cr
+    \describe{
+      A data frame with 216 observations on the following 5 variables:
+      \tabular{ll}{
+        \code{subject} \tab a factor with 54 levels: 1, 2, \ldots, 57\cr
+        \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
+        \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
+        \code{treatment} \tab a factor with 2 levels: T, R\cr
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+      }
+      Balanced (27 subjects in both sequences) and incomplete (two missings in both sequences). Missings / period: 0/1, 0/2, 2/3, 2/4. One outlier (subject 49) in sequence RTRT.\cr
+In the source evaluated by \acronym{SAS} for \acronym{ABEL}. Reported results (Method A):
+    \tabular{ll}{
+      \code{CVwR} \tab 60.25\%\cr
+      \code{PE} \tab 151.3\%\cr
+      \code{90\% CI} \tab 133.5\% – 171.4\%
+    }
+    }
   }
 }
 
@@ -258,13 +280,17 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
     \code{rds19} \tab \code{rds18} edited \tab Removed data of subjects 63–78.\cr
     \code{rds20} \tab \code{rds19} edited \tab Outlier of R (subject 1) introduced: original value ×100.\cr
     \code{rds21} \tab \code{rds01} edited \tab One extreme result of subjects 45 & 52 set to NA.\cr
-    \code{rds25} \tab R \tab Simulated data set with heteroscedasticity.
+    \code{rds25} \tab R \tab Simulated data set with heteroscedasticity.\cr
+    \code{rds26} \tab \ifelse{html}{\out{Patterson&nbsp;&&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in Table 4.4.
   }
 }
 
 \references{
 European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).}\cr
 London, 19 November 2015. \href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf}{EMA/618604/2008 Rev. 13}
+
+Patterson SD, Jones B. \emph{Bioequivalence and Statistics in Clinical Pharmacology.}\cr
+Boca Raton: CRC Press; \ifelse{html}{\out{2<sup>nd</sup>}}{\eqn{2\textsuperscript}{nd}} edition 2016. p275--6.
 }
 
 \note{
