@@ -193,6 +193,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
     Miss.seq <- table(deshapeduncomplete$sequence)
   } else {
     Miss.seq <- rep(0, Nseqs)
+    names(Miss.seq) <- seqs
     Miss.per <- rep(0, Npers)
   }
   Miss.seq <- Miss.seq[order(match(names(Miss.seq), seqs))]
