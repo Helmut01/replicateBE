@@ -183,7 +183,7 @@ If \code{ola=TRUE} and at least one outlier was detected:
 }
 
 \section{Warning}{
-If the \acronym{CSV}-file has a commentary header, each line must start with \code{"# "} (hash-space -- \code{ASCII 35-32}). NB: All characters in the header which equal the value specified in the argument \code{sep} are removed.\cr
+If the \acronym{CSV}-file has a commentary header, each line must start with \code{"# "} (hash-space -- \code{ASCII 35-32}).\cr
 Commentary headers in \acronym{XLS}-files are not restricted.
 }
 

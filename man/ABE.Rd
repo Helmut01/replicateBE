@@ -24,7 +24,7 @@ Path to the data file for import. The path \emph{must} be given with forward sla
   \item{path.out}{
 Path to safe the result file if \code{print=TRUE}. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. The user must have write-permission to the directory. If missing or not existing the user’s home folder \code{"~/"} will be used.
 }
-\item{file}{
+  \item{file}{
 Name of the data set for import (\emph{without} extension). Must be a string (\emph{i.e.}, enclosed in single or double quotation marks).\cr
 If reading from a \acronym{CSV}-file a commentary header is allowed. Commentary line(s) must start with the hash character \code{"#"}.
 }
@@ -130,7 +130,7 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
 }
 
 \section{Warning}{
-If the \acronym{CSV}-file has a commentary header, each line must start with \code{"# "} (hash-space -- \code{ASCII 35-32}). NB: All characters in the header which equal the value specified in the argument \code{sep} are removed.\cr
+If the \acronym{CSV}-file has a commentary header, each line must start with \code{"# "} (hash-space -- \code{ASCII 35-32}).\cr
 Commentary headers in \acronym{XLS}-files are not restricted.
 }
 
