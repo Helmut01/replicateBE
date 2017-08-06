@@ -67,9 +67,9 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
     if (ext %in% ext.csv) full.name <- paste0(path.in, file, set, ".", ext)
     if (ext %in% ext.xls) full.name <- paste0(path.in, file, ".", ext)
     if (!file.exists(full.name)) {
-        setwd(dirname(file.choose()))
-        path.in <- paste0(getwd(), "/")
-        full.name <- paste0(path.in, file, ".", ext)
+      setwd(dirname(file.choose()))
+      path.in <- paste0(getwd(), "/")
+      full.name <- paste0(path.in, file, ".", ext)
     }  # The entire content
     if (ext %in% ext.xls) { # read from Excel to the data frame
       datawithdescr <- as.data.frame(read_excel(path=full.name, sheet=set,
@@ -84,18 +84,22 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
     # looking for a row with namesvector, summing all its members, if all are there, marking as TRUE
     Nnamesdf <- c(t(apply(datawithdescr, 1, function(row, table) {
       sum(match(tolower(row), table=table), na.rm=TRUE)}, table=namesvector)) == 10)
-    if(sum(Nnamesdf) == 0)
+    if (sum(Nnamesdf) == 0)
       stop("Column names must be given as \'subject\', \'period\', \'sequence\', \'treatment\'.")
-    if(sum(Nnamesdf) > 1)
+    if (sum(Nnamesdf) > 1)
       stop("More than 1 row with column names as \'subject\', \'period\', \'sequence\', \'treatment\' detected.")
-    # selecting the rows before names of dataset
-    descrdf <- datawithdescr[0:(which(Nnamesdf == TRUE)-1), ]
-    # if there are some # comments in CSV-files, collapse them
-    if(nrow(descrdf)) {
-      descr <- unname(apply(descrdf, 1, function(row){paste0(row[!is.na(row)], collapse=" ")}))
+    # if there are some # comments in datafiles, collapse them
+    if (which(Nnamesdf == TRUE)-1) {
+      # selecting the rows before names of dataset
       if (!ext %in% ext.xls) {
+        descr <- scan(file=full.name, what=character(), quiet = TRUE, sep = "\n",
+                      nlines = (which(Nnamesdf == TRUE)-1))
         descr <- paste0(descr[startsWith(descr, "#")], collapse="\n")
-        descr <- gsub("# ", "", descr)
+        descr <- gsub("#", "", descr)
+      } else {
+        datafordescr <- vector()
+        descrdf <- datafordescr[1:(which(Nnamesdf == TRUE)-1), ]
+        descr <- unname(apply(descrdf, 1, function(row){paste0(row[!is.na(row)], collapse=" ")}))
       }
       descr <- paste0(strwrap(descr, width = 78), collapse="\n")
     } else {
