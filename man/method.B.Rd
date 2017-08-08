@@ -132,7 +132,8 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     \code{DF} \tab degrees of freedom of the treatment comparison\cr
     \code{CVwT(\%)} \tab intra-subject coefficient of variation of the test treatment (full replicates only)\cr
     \code{CVwR(\%)} \tab intra-subject coefficient of variation of the reference treatment\cr
-    \code{sw.ratio} \tab ratio of intrasubject variabilities of \code{T} and \code{R}
+    \code{sw.ratio} \tab ratio of intrasubject variabilities of \code{T} and \code{R} (full replicates only)\cr
+    \code{sw.ratio.CL} \tab upper confidence limit of \code{sw.ratio} (full replicates only)
   }
 \itemize{
   \item If reference-scaling is applicable (\emph{i.e.}, \code{CVwR(\%)} >30\%):
@@ -160,13 +161,14 @@ If \code{ola=TRUE} and at least one outlier was detected:
   \tabular{ll}{
     \code{outlier} \tab outlying subject(s)\cr
     \code{CVwR.new(\%)} \tab intra-subject coefficient of variation of the reference treament; recalculated after exclusion of outlier(s)\cr
-    \code{sw.ratio.new} \tab ratio of intrasubject variabilities of \code{T} and \code{R} after exclusion of outlier(s)
+    \code{sw.ratio.new} \tab ratio of intrasubject variabilities of \code{T} and \code{R} after exclusion of outlier(s); full replicates only\cr
+    \code{sw.ratio.new.CL} \tab upper confidence limit of \code{sw.ratio.new} (full replicates only)
   }
 \itemize{
   \item If reference-scaling is applicable (\emph{i.e.}, \code{CVwR.new(\%)} >30\%):
     \tabular{ll}{
       \code{EL.new.lo(\%)} \tab recalculated lower expanded limit\cr
-      \code{EL.newhi(\%)} \tab  recalculated upper expanded limit
+      \code{EL.newhi(\%)} \tab recalculated upper expanded limit
     }
   \item If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR.new(\%)} ≤30\%):
     \tabular{ll}{
@@ -207,6 +209,10 @@ London, 20 November 2014. \href{http://www.ema.europa.eu/docs/en_GB/document_lib
 World Health Organization, Prequalification Team: medicines\cr
 \emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm}\cr
 Geneva, 9 June 2017. \href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_June2017.pdf}{open access}
+
+Food and Drug Administration, Office of Generic Drugs.\cr
+\emph{Draft Guidance on Warfarin Sodium}\cr
+December 2012. \href{https://www.fda.gov/downloads/drugs/guidancecomplianceregulatoryinformation/guidances/ucm201283.pdf}{open access}
 }
 
 \author{
@@ -233,7 +239,7 @@ Quoting the Q&A on the Revised EMA Bioequivalence Guideline:
 An outlier test is not an expectation of the medicines agencies but outliers could be shown by a box plot. This would allow the medicines agencies to compare the data between them.}
 The \acronym{EMA}’s method of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (\emph{e.g.}, the \acronym{WHO};
 \acronym{ASEAN} States, Australia, Brazil, Egypt, the Russian Federation, the Eurasian Economic Union, New Zealand).\cr
-The \acronym{WHO} opened a pilot phase exploring reference-scaling for AUC (4-period full replicate studies are mandatory in order to assess the variability associated with each product). It is an open issue how this assessment should be done. In Population Bioequivalence (\acronym{PBE}) and Individual Bioequivalence (\acronym{IBE}) the \ifelse{html}{\out{s<sub>wT</sub>}}{\eqn{w\textsubscript}{T}}/\ifelse{html}{\out{s<sub>wR</sub>}}{\eqn{w\textsubscript}{R}} ratio was assessed and similar variability was concluded for a ratio within 0.667 -- 1.500. However, the power of comparing variabilities in a study designed to demonstrate \acronym{ABE} is low. This was the main reason why \acronym{PBE} and \acronym{IBE} were not implemented in regulatory practice.\cr\cr
+The \acronym{WHO} opened a pilot phase exploring reference-scaling for AUC (4-period full replicate studies are mandatory in order to assess the variability associated with each product). It is an open issue how this assessment should be done. In Population Bioequivalence (\acronym{PBE}) and Individual Bioequivalence (\acronym{IBE}) the \ifelse{html}{\out{<em>s<sub>wT</sub></em>}}{\eqn{s\textsubscript}{wT}}/\ifelse{html}{\out{<em>s<sub>wR</sub></em>}}{\eqn{s\textsubscript}{wR}} ratio was assessed and similar variability was concluded for a ratio within 0.667 -- 1.500. However, the power of comparing variabilities in a study designed to demonstrate \acronym{ABE} is low. This was the main reason why \acronym{PBE} and \acronym{IBE} were not implemented in regulatory practice. An alternative approach is given in the \acronym{FDA}’s guidance on warfarin. Variabilities are considered comparable if the upper confidence limit of \ifelse{html}{\out{<em>&sigma;<sub>wT</sub></em>}}{\eqn{\sigma\textsubscript}{wT}}/\ifelse{html}{\out{<em>&sigma;<sub>wR</sub></em>}}{\eqn{\sigma\textsubscript}{wR}} is less than or equal to 2.5.\cr\cr
 \strong{Program offered for Use without any Guarantees and Absolutely No Warranty.\cr
 No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.}
 }
@@ -260,6 +266,7 @@ method.B(path.in = path.in, file = "DS", set = "01", ext = "csv") # Q&A data set
 #   swR                :   0.44645
 #   Expanded limits    :  71.23\% ... 140.40\% [100exp(±0.760·swR)]
 #   swT / swR          :   0.7647 (similar variabilities of T and R)
+#   sw-ratio (upper CL):   0.9324 (comparable variabilities of T and R)
 #   Confidence interval: 107.17\% ... 124.97\%  pass
 #   Point estimate     : 115.73\%              pass
 #   Mixed (CI & PE)    :                      pass
@@ -274,6 +281,7 @@ method.B(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 #   swR  (recalc.)     :   0.31374
 #   Expanded limits    :  78.79\% ... 126.93\% [100exp(±0.760·swR)]
 #   swT / swR (recalc.):   1.0881 (similar variabilities of T and R)
+#   sw-ratio (upper CL):   1.3282 (comparable variabilities of T and R)
 #   Confidence interval: pass
 #   Point estimate     : pass
 #   Mixed (CI & PE)    : pass

@@ -23,8 +23,10 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
     modCVR <- lm(logPK ~ sequence + subject%in%sequence + period,
                          data=ret$ref)
   }
-  msewR <- anova(modCVR)["Residuals", "Mean Sq"]
-  CVwR  <- mse2CV(msewR)
+  aovCVR <- anova(modCVR)
+  msewR  <- aovCVR["Residuals", "Mean Sq"]
+  DfCVR  <- aovCVR["Residuals", "Df"]
+  CVwR   <- mse2CV(msewR)
   if (ret$design == "full") { # not for the EMA but the WHO
     if (logtrans) {
       modCVT <- lm(log(PK) ~ sequence + subject%in%sequence + period,
@@ -33,9 +35,14 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
       modCVT <- lm(logPK ~ sequence + subject%in%sequence + period,
                            data=ret$test)
     }
-    msewT <- anova(modCVT)["Residuals", "Mean Sq"]
+    aovCVT <- anova(modCVT)
+    msewT  <- aovCVT["Residuals", "Mean Sq"]
+    DfCVT  <- aovCVT["Residuals", "Df"]
     CVwT  <- mse2CV(msewT)
     sw.ratio <- sqrt(msewT)/sqrt(msewR)
+    sw.ratio.CI <- c(sw.ratio/sqrt(qf(0.1/2, df1=DfCVT, df2=DfCVR, lower.tail=FALSE)),
+                     sw.ratio/sqrt(qf(1-0.1/2, df1=DfCVT, df2=DfCVR, lower.tail=FALSE)))
+    names(sw.ratio.CI) <- c("lower", "upper")
   }
   outlier <- FALSE
   BE.new  <- rep(NA, 2)
@@ -125,8 +132,16 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
         modCVR.new <- lm(logPK ~ sequence + subject%in%sequence + period,
                                  data=excl)
       }
-      msewR.new <- anova(modCVR.new)["Residuals", "Mean Sq"]
-      CVwR.new  <- mse2CV(msewR.new)
+      aovCVR.new <- anova(modCVR.new)
+      msewR.new  <- aovCVR.new["Residuals", "Mean Sq"]
+      DfCVR.new  <- aovCVR.new["Residuals", "Df"]
+      CVwR.new   <- mse2CV(msewR.new)
+      if (ret$design == "full") {
+        sw.ratio.new <- sqrt(msewT)/sqrt(msewR.new)
+        sw.ratio.new.CI <- c(sw.ratio.new/sqrt(qf(0.1/2, df1=DfCVT, df2=DfCVR.new, lower.tail=FALSE)),
+                             sw.ratio.new/sqrt(qf(1-0.1/2, df1=DfCVT, df2=DfCVR.new, lower.tail=FALSE)))
+        names(sw.ratio.new.CI) <- c("lower", "upper")
+      }
       if (verbose) {
         stud.res.whiskers <- signif(range(bp1$stats[, 1]), 7)
         stud.res.outliers <- data.frame(ol.subj1, ol.seq1, signif(ol.value1, 7))#
@@ -162,7 +177,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                   "\nGMR restriction    :  80.00% ... 125.00%")
   }
   if (ret$design == "full") {
-    sw.ratio <- CV2se(CVwT)/CV2se(CVwR)
+    # sw.ratio <- CV2se(CVwT)/CV2se(CVwR) # we should already have it, right?
     txt <- paste0(txt, "\nCVwT               : ",
                   sprintf("%6.2f%%", 100*CVwT))
     if (called.from != "ABE") { # not needed for ABE
@@ -188,12 +203,19 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
     if (ret$design == "full") {
       txt <- paste0(txt, "\nswT / swR          :   ",
                     sprintf("%.4f", sw.ratio))
-      if (sw.ratio >= 2/3 & sw.ratio <= 3/2) {
+      if (sw.ratio >= 2/3 & sw.ratio <= 3/2) { # like in PBE/IBE
         txt <- paste0(txt, " (similar variabilities of T and R)")
       } else {
         ifelse (sw.ratio < 2/3,
           txt <- paste0(txt, " (T lower variability than R)"),
           txt <- paste0(txt, " (T higher variability than R)"))
+      }
+      txt <- paste0(txt, "\nsw-ratio (upper CL):   ",
+                    sprintf("%.4f", sw.ratio.CI[["upper"]]))
+      if (sw.ratio.CI[["upper"]] <= 2.5) { # like in the FDA's warfarin guidance
+        txt <- paste0(txt, " (comparable variabilities of T and R)")
+      } else {
+        txt <- paste0(txt, " (T higher variability than R)")
       }
     }
     if (ola) {
@@ -228,12 +250,19 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
         if (ret$design == "full") {
           txt <- paste0(txt, "\nswT / swR (recalc.):   ",
                         sprintf("%.4f", sw.ratio.new))
-          if (sw.ratio.new >= 2/3 & sw.ratio.new <= 3/2) {
+          if (sw.ratio.new >= 2/3 & sw.ratio.new <= 3/2) { # like in PBE/IBE
             txt <- paste0(txt, " (similar variabilities of T and R)")
           } else {
             ifelse (sw.ratio.new < 2/3,
               txt <- paste0(txt, " (T lower variability than R)"),
               txt <- paste0(txt, " (T higher variability than R)"))
+          }
+          txt <- paste0(txt, "\nsw-ratio (upper CL):   ",
+                        sprintf("%.4f", sw.ratio.new.CI[["upper"]]))
+          if (sw.ratio.new.CI[["upper"]] <= 2.5) { # like in the FDA's warfarin guidance
+            txt <- paste0(txt, " (comparable variabilities of T and R)")
+          } else {
+            txt <- paste0(txt, " (T higher variability than R)")
           }
         }
       } else {
@@ -254,10 +283,15 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
            CVwT=ifelse(ret$design == "full", CVwT, NA), CVwR=CVwR,
            sw.ratio=ifelse(called.from != "ABE" & ret$design == "full",
                            sw.ratio, NA),
+           sw.ratio.upper=ifelse(called.from != "ABE" & ret$design == "full",
+                           sw.ratio.CI[["upper"]], NA),
            ol=ifelse(called.from != "ABE" & outlier, list(ol.subj1), NA),
            CVwR.new=ifelse(called.from != "ABE" & outlier, CVwR.new, NA),
            sw.ratio.new=ifelse(called.from != "ABE" & outlier &
                                ret$design == "full", sw.ratio.new, NA),
+           sw.ratio.new.upper=ifelse(called.from != "ABE" & outlier &
+                                     ret$design == "full",
+                                     sw.ratio.new.CI[["upper"]], NA),
            BE.new=BE.new)
   return(ret)
 } # end of function CV.calc()

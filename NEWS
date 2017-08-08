@@ -49,7 +49,7 @@ Published on GitHub 2017-06-25
     - Rewrite of reading from file. The header is automatically
       identified (removed as an argument from the calling functions).
       Subject must no more be the first column. The word 'subject' is
-      allowed in the header. [TM]
+      allowed in the header. [MT]
       TODO: CSV-files - characters in the header which are equal to
       'sep' are lost.
     - Bug-fix: info.env() gave 'path.out' as 'path.in'.
@@ -62,6 +62,7 @@ Published on GitHub 2017-06-25
       sequences.
     - Bug fix: get.data() CSV-file: Issue with characters in the header
       which were == sep resolved. [MT]
+    - Compare variabilites according to the FDA's warfarin guidance.
 
 Version 1.0.5
 Released to collaborators 2017-06-24
