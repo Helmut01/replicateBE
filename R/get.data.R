@@ -166,9 +166,14 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
       if (Nseqs != 2) stop("2 sequences required in the extra-reference design.")
     }
   }
-  if (nchar(type) == 11) { # 3-sequence partial replicate
-    if (Npers != 3) stop("3 periods required in this partial replicate design.")
-    if (Nseqs != 3) stop("3 sequences required in this partial replicate design.")
+  if (nchar(type) == 11) { # 3-sequence partial replicate or Balaam's design
+    if (!type == "TR|RT|TT|RR") {
+      if (Npers != 3) stop("3 periods required in this partial replicate design.")
+      if (Nseqs != 3) stop("3 sequences required in this partial replicate design.")
+    } else {
+      if (Npers != 2) stop("2 periods required in Balaam\'s design.")
+      if (Nseqs != 4) stop("4 sequences required in Balaam\'s design.")
+    }
   }
   # next line introduced for DS24 where all data of subject 16 are NA
   # Given that: Do we need na.action=na.omit in lme() any more?
@@ -178,7 +183,11 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
   Nsub.seq <- Nsub.seq[order(match(names(Nsub.seq), seqs))]
   ref   <- data[data$treatment == "R", ]
   test  <- data[data$treatment == "T", ]
-  NTR   <- length(unique(test$subject) %in% unique(ref$subject)) #  >= 1 T & >= 1 R
+  if (type == "TR|RT|TT|RR") { # TODO: Check Balaam's design for incomplete cases!
+    NTR <- nrow(ref[ref$sequence == "RT", ]) + nrow(test[test$sequence == "TR", ])
+  } else {
+    NTR <- length(unique(test$subject) %in% unique(ref$subject)) #  >= 1 T & >= 1 R
+  }
   n     <- length(unique(data$subject))
   # Get the wide data frame subject+sequence\period
   compl <- reshape(data[c("subject", "sequence", "period", "PK")],
@@ -229,7 +238,8 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
   if (nchar(type) == 19) txt <- paste(txt, "(4-period 4-sequence full replicate)")
   if (nchar(type) == 9) txt <- paste(txt, "(4-period full replicate)")
   if (type %in% c("TRT|RTR", "TRR|RTT")) txt <- paste(txt, "(3-period full replicate)")
-  if (nchar(type) == 11) txt <- paste(txt, "(partial replicate)")
+  if (type == "TR|RT|TT|RR") txt <- paste(txt, "(2-period 4-sequence full replicate; Balaam\u2019s)")
+  if (type == "TRR|RTR|RRT") txt <- paste(txt, "(partial replicate)")
   if (type == "TRR|RTR") txt <- paste(txt, "(partial replicate; extra-reference)")
   x <- paste0(Nsub.seq, collapse = "|")
   if (sum(Miss.seq) > 0) x <- c(x, paste0(Miss.seq, collapse = "|"))

@@ -86,10 +86,10 @@ info.design <- function(seqs = NA) {
     design <- "partial"
   }
 
-  # 2-period 4-sequence (Balaam's?)
+  # 2-period 4-sequence (Balaam's)
   if (periods == 2 & sequences == 4 & is.na(reordered[1])) {
     if (sum(seqs %in% c("RR", "RT", "TR", "TT")) == 4 & is.na(reordered[1])) {
-      message("Balaam\'s design? Untested.")
+      message("Balaam\'s design is experimental!")
       reordered <- seqs[order(match(seqs, c("TR", "RT", "TT", "RR")))]
     }
     if (is.na(reordered[1])) {
