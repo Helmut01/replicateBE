@@ -1,5 +1,5 @@
 Version 1.0.5.9000
-Published on GitHub 2017-06-25
+Published on GitHub 2017-08-17
     - Added data set 22 for the extra-reference design (RTR|TRR).
     - Bug-fix: method.B(option=1) output to file.
     - Lazy data: true in DESCRIPTION allows direct access of objects

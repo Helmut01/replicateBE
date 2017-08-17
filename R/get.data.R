@@ -183,8 +183,10 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
   Nsub.seq <- Nsub.seq[order(match(names(Nsub.seq), seqs))]
   ref   <- data[data$treatment == "R", ]
   test  <- data[data$treatment == "T", ]
-  if (type == "TR|RT|TT|RR") { # TODO: Check Balaam's design for incomplete cases!
-    NTR <- nrow(ref[ref$sequence == "RT", ]) + nrow(test[test$sequence == "TR", ])
+  if (type == "TR|RT|TT|RR") {
+    T.subj <- test[(test$sequence == "RT" | test$sequence == "TR"), "subject"]
+    R.subj <- ref[(ref$sequence == "RT" | ref$sequence == "TR"), "subject"]
+    NTR <- length(unique(T.subj) %in% unique(R.subj))
   } else {
     NTR <- length(unique(test$subject) %in% unique(ref$subject)) #  >= 1 T & >= 1 R
   }
