@@ -6,7 +6,7 @@
 \alias{rds07}
 \docType{data}
 \title{
-Reference Data Sets for TRR|RTR|RRT (partial) Replicate Designs
+Reference Data Sets for TRR\enc{|}{,}RTR\enc{|}{,}RRT (partial) Replicate Designs
 }
 
 \description{
@@ -15,7 +15,7 @@ Data sets from the public domain or edited to be evaluated by \code{method.A()},
 
 \details{
    \tabular{crcl}{
-      \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
+      \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
       \code{rds02} \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
       \code{rds04} \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
       \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}
@@ -26,7 +26,7 @@ Data sets from the public domain or edited to be evaluated by \code{method.A()},
   \tabular{cll}{
     \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
     \code{rds02} \tab EMA, CHMP \tab Data set II.\cr
-    \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Table II.\cr
+    \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Table II.\cr
     \code{rds07} \tab R \tab Large simulated data set with homoscedasticity.
   }
 }
@@ -34,7 +34,7 @@ Data sets from the public domain or edited to be evaluated by \code{method.A()},
 \format{
   \itemize{
     \item Reference Data Set 02 (\code{rds02})\cr
-    Data set II of the EMA’s Q&A document. 24 subjects.
+    Data set II of the EMA\enc{’}{'}s Q&A document. 24 subjects.
       \describe{
           A data frame with 72 observations on the following 6 variables:
           \tabular{ll}{
@@ -42,7 +42,7 @@ Data sets from the public domain or edited to be evaluated by \code{method.A()},
             \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
             \code{sequence} \tab a factor with 3 levels: TRR, RTR, RRT\cr
             \code{treatment} \tab a factor with 2 levels: T, R\cr
-            \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
+            \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
             \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
           }
           Balanced (eight subjects in each of the three sequences) and complete (no missing data). No outliers.\cr\cr
@@ -63,10 +63,10 @@ Data sets from the public domain or edited to be evaluated by \code{method.A()},
             \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
             \code{sequence} \tab a factor with 3 levels: TRR, RTR, RRT\cr
             \code{treatment} \tab a factor with 2 levels: T, R\cr
-            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
           }
           Balanced (17 subjects in each of the three sequences) and complete. No outliers.\cr\cr
-          In the source evaluated by SAS 9.1 for the FDA’s mixed effects model (\sQuote{Method C}; \strong{not} acceptable for the \acronym{EMA}). Reported results:
+          In the source evaluated by SAS 9.1 for the FDA\enc{’}{'}s mixed effects model (\sQuote{Method C}; \strong{not} acceptable for the \acronym{EMA}). Reported results:
             \tabular{ll}{
               \code{CVwR} \tab 61\%\cr
               \code{PE} \tab 137\%\cr
@@ -75,7 +75,7 @@ Data sets from the public domain or edited to be evaluated by \code{method.A()},
       }
 
     \item Reference Data Set 07 (\code{rds07})\cr
-    Simulated with \ifelse{html}{\out{C<sub>wT</sub>}}{\eqn{C\textsubscript}{wT}} = \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} = 35\%, GMR 0.90. 360 subjects.
+    Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 35\%, GMR 0.90. 360 subjects.
       \describe{
           A data frame with 1,080 observations on the following 5 variables:
           \tabular{ll}{
@@ -83,7 +83,7 @@ Data sets from the public domain or edited to be evaluated by \code{method.A()},
             \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
             \code{sequence} \tab a factor with 3 levels: TRR, RTR, RRT\cr
             \code{treatment} \tab a factor with 2 levels: T, R\cr
-            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+            \code{PK} \tab a numeric vector of pharmacokinetic responses (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
           }
           Balanced (120 subjects in each of the three sequences) and complete. No outliers.
       }

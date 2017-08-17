@@ -2,12 +2,12 @@
 \name{method.A}
 \alias{method.A}
 \title{
-Comparative BA-calculation for the EMA's Average Bioequivalence with Expanding Limits (ABEL), Method A
+Comparative BA-calculation for the EMA\enc{’}{'}s Average Bioequivalence with Expanding Limits (ABEL), Method A
 }
 \description{
 This function performs the required calculations for the aggregate \acronym{BE} decision
 via Average Bioequivalence with Expanding Limits (\acronym{ABEL}) based
-on ANOVA (\sQuote{Method A}) as recommended in the \acronym{EMA}’s Q&A-document.
+on ANOVA (\sQuote{Method A}) as recommended in the \acronym{EMA}\enc{’}{'}s Q&A-document.
 }
 \usage{
 method.A(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
@@ -21,10 +21,10 @@ method.A(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
 \eqn{\alpha}{alpha})} confidence interval.
 }
   \item{path.in}{
-Path to the data file for import. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. If missing or not existing the user’s home folder \code{"~/"} will be used.
+Path to the data file for import. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. If missing or not existing the user\enc{’}{'}s home folder \code{"~/"} will be used.
 }
   \item{path.out}{
-Path to safe the result file if \code{print=TRUE}. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. The user must have write-permission to the directory. If missing or not existing the user’s home folder \code{"~/"} will be used.
+Path to safe the result file if \code{print=TRUE}. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. The user must have write-permission to the directory. If missing or not existing the user\enc{’}{'}s home folder \code{"~/"} will be used.
 }
 \item{file}{
 Name of the data set for import (\emph{without} extension). Must be a string (\emph{i.e.}, enclosed in single or double quotation marks).\cr
@@ -61,7 +61,7 @@ Defaults to \code{FALSE}. If \code{TRUE}, the function sends its results in 7-di
 }
   \item{adjust}{
 Defaults to \code{FALSE}.\cr
-If \code{TRUE}, the empiric Type I Error is evaluated via simulations (by \code{PowerTOST}’s function \code{scABEL.ad()}). Currently implemented designs are \code{TRTR|RTRT}, \code{TRT|RTR}, and \code{TRR|RTR|RRT}. If the \acronym{TIE} exceeeds the nominal level of the test \code{alpha}, \ifelse{html}{\out{&alpha;}}{\eqn{\alpha}{alpha}} is iteratively adjusted until \acronym{TIE}\code{ = alpha ± 1E-6}.\cr
+If \code{TRUE}, the empiric Type I Error is evaluated via simulations (by \code{PowerTOST}\enc{’}{'}s function \code{scABEL.ad()}). Currently implemented designs are \code{TRTR|RTRT}, \code{TRT|RTR}, and \code{TRR|RTR|RRT}. If the \acronym{TIE} exceeeds the nominal level of the test \code{alpha}, \ifelse{html}{\out{&alpha;}}{\eqn{\alpha}{alpha}} is iteratively adjusted until \acronym{TIE}\code{ = alpha ± 1E-6}.\cr
 If \code{ola=TRUE} and outlier(s) found which lead to an -- always lower -- recalculated \code{CVwr}, the assessment is repeated for its value.
 }
   \item{verbose}{
@@ -91,17 +91,17 @@ where all effects are fixed.\cr\cr
 Tested designs:
   \itemize{
     \item 4-period 2-sequence full replicates:\cr
-      \code{TRTR | RTRT}\cr
-      \code{TRRT | RTTR}
+      \verb{TRTR | RTRT}\cr
+      \verb{TRRT | RTTR}
     \item 4-period 4-sequence full replicates:\cr
-      \code{TRTR | RTRT | TRRT | RTTR}\cr
-      \code{TRRT | RTTR | TTRR | RRTT}
+      \verb{TRTR | RTRT | TRRT | RTTR}\cr
+      \verb{TRRT | RTTR | TTRR | RRTT}
     \item 3-period 2-sequence full replicates:\cr
-      \code{TRT | RTR}\cr
-      \code{TRR | RTT}
+      \verb{TRT | RTR}\cr
+      \verb{TRR | RTT}
     \item 3-period (partial) replicates:\cr
-      \code{TRR | RTR | RRT}\cr
-      \code{TRR | RTR } (extra-reference design)
+      \verb{TRR | RTR | RRT}\cr
+      \verb{TRR | RTR } (extra-reference design)
   }
 Data structure:
   \itemize{
@@ -141,7 +141,7 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
       \code{EL.lo(\%)} \tab lower expanded limit\cr
       \code{EL.hi(\%)} \tab upper expanded limit
     }
-  \item If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR(\%)} ≤30\%):
+  \item If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR(\%)} \enc{≤}{<=}30\%):
     \tabular{ll}{
       \code{BE.lo(\%)} \tab conventional lower limit (\emph{i.e.}, \verb{ 80})\cr
       \code{BE.hi(\%)} \tab conventional upper limit (\emph{i.e.}, \verb{125})
@@ -153,7 +153,7 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     \code{PE(\%)} \tab point estimate of the treatment comparison (aka \acronym{GMR})\cr
     \code{CI} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
 \eqn{\alpha}{alpha})} \acronym{CI} lies entirely within the acceptance range (\code{pass|fail})\cr
-    \code{GMR} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%–125.00\% (\code{pass|fail})\cr
+    \code{GMR} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%\enc{–}{-}125.00\% (\code{pass|fail})\cr
     \code{BE} \tab mixed (aggregate) assessment whether the study demonstrates bioequivalence (\code{pass|fail})\cr
     \code{log.half-width} \tab half-width of the \acronym{CI} in log-scale
   }
@@ -170,7 +170,7 @@ If \code{ola=TRUE} and at least one outlier was detected:
       \code{EL.new.lo(\%)} \tab recalculated lower expanded limit\cr
       \code{EL.newhi(\%)} \tab  recalculated upper expanded limit
     }
-  \item If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR.new(\%)} ≤30\%):
+  \item If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR.new(\%)} \enc{≤}{<=}30\%):
     \tabular{ll}{
       \code{BE.new.lo(\%)} \tab conventional lower limit (\emph{i.e.}, \verb{ 80})\cr
       \code{BE.new.hi(\%)} \tab conventional upper limit (\emph{i.e.}, \verb{125})
@@ -179,7 +179,7 @@ If \code{ola=TRUE} and at least one outlier was detected:
   \tabular{ll}{
     \code{CI.new} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
 \eqn{\alpha}{alpha})} \acronym{CI} lies entirely within the new acceptance range (\code{pass|fail})\cr
-    \code{GMR.new} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%–125.00\% (\code{pass|fail})\cr
+    \code{GMR.new} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%\enc{–}{-}125.00\% (\code{pass|fail})\cr
     \code{BE.new} \tab mixed (aggregate) assessment whether the study demonstrates bioequivalence (\code{pass|fail})\cr
   }
 }
@@ -194,7 +194,7 @@ European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
 \emph{Guideline on the Investigation of Bioequivalence}\cr
 London, 20 January 2010. \href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2010/01/WC500070039.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
 
-3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{\textsuperscript}{rd}} \acronym{EGA} Symposium on Bioequivalence\cr
+3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} \acronym{EGA} Symposium on Bioequivalence\cr
 \emph{Questions and Answers on the Revised \acronym{EMA} Bioequivalence Guideline}\cr
 London, 1 June 2010. \href{http://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf}{open access}
 
@@ -225,22 +225,22 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
 }
 
 \note{
-The \sQuote{graphical} presentation in the result file gives the confidence limits with filled black squares (■) and the point estimate as a white rhombus (◊). If a confidence limit exceeds the maximum possible expansion limit, it is shown as a triangle (◄ or ►). Expanded limits are given as double vertical lines (║). Unscaled limits, the \acronym{GMR} restriction, and 100\% are given with single vertical lines (│). The \sQuote{resolution} is approximatelly 0.5\% and therefore, not all symbols might be shown. The \acronym{CI} has presedence over the limits and the expanded limits over unscaled ones.
+The \sQuote{graphical} presentation in the result file gives the confidence limits with filled black squares\enc{ (■)}{} and the point estimate as a white rhombus\enc{ (◊)}{}. If a confidence limit exceeds the maximum possible expansion limit, it is shown as a triangle\enc{ (◄ or ►)}{}. Expanded limits are given as double vertical lines\enc{ (║)}{}. Unscaled limits, the \acronym{GMR} restriction, and 100\% are given with single vertical lines\enc{ (│)}{}. The \sQuote{resolution} is approximatelly 0.5\% and therefore, not all symbols might be shown. The \acronym{CI} has presedence over the limits and the expanded limits over unscaled ones.
 }
 
 \note{
-The \acronym{EMA}’s model specified in \sQuote{Method A} assumes equal [sic!] intra-subject variances of test and reference (like in 2×2×2 trials) -- even if proven false in one of the full replicate designs (were \emph{both} \code{CVwT} and \code{CVwR} can be estimated). Hence, amongst biostatisticians it is called the \dQuote{crippled model}.\cr
+The \acronym{EMA}\enc{’}{'}s model specified in \sQuote{Method A} assumes equal [sic!] intra-subject variances of test and reference (like in \enc{2×2×2}{2x2x2} trials) -- even if proven false in one of the full replicate designs (were \emph{both} \code{CVwT} and \code{CVwR} can be estimated). Hence, amongst biostatisticians it is called the \dQuote{crippled model}.\cr
 The half-width of the \acronym{CI} in log-scale allows a comparison of methods (B \emph{v.s.} A) where a higher value \emph{might} point towards a more conservative decision. In the provided example data sets -- with one exception -- the conclusion of \acronym{BE} (based on the mixed \acronym{CI} and \acronym{GMR} criteria) agrees between \sQuote{Method A} and \sQuote{Method B}. However, for the highly incomplete data set 14 \sQuote{Method A} was \emph{liberal} (passing by \acronym{ANOVA} but failing by the mixed effects model).\cr\cr
-Reference-scaling is acceptable for \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} (immediate release products) and \ifelse{html}{\out{C<sub>max,ss</sub>}}{\eqn{C\textsubscript}{max,ss}}, \ifelse{html}{\out{C<sub>τ,ss</sub>}}{\eqn{C\textsubscript}{τ,ss}}, and \ifelse{html}{\out{<sub>partial</sub>AUC}}{\eqn{\textsubscript}{partial}AUC} (modified release products). However, quoting the \acronym{BE} guideline:
+Reference-scaling is acceptable for \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} (immediate release products) and \ifelse{html}{\out{C<sub>max,ss</sub>}}{\eqn{C_{max,ss}}}, \ifelse{html}{\out{C<sub>&tau;,ss</sub>}}{\eqn{C_{\tau,ss}}}, and \ifelse{html}{\out{<sub>partial</sub>AUC}}{\eqn{_{partial}AUC}} (modified release products). However, quoting the \acronym{BE} guideline:
 \itemize{
   \item The applicant should justify that the calculated intra-subject variability is a reliable estimate and that it is not the result of outliers.}
 Quoting the Q&A on the Revised EMA Bioequivalence Guideline:
 \itemize{
   \item [\ldots] a study could be acceptable if the bioequivalence requirements are met both including the outlier subject (using the scaled average bioequivalence approach and the within-subject CV with this subject) and after exclusion of the outlier (using the within-subject CV without this subject).\cr
 An outlier test is not an expectation of the medicines agencies but outliers could be shown by a box plot. This would allow the medicines agencies to compare the data between them.}
-The \acronym{EMA}’s method of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (\emph{e.g.}, the \acronym{WHO};
+The \acronym{EMA}\enc{’}{'}s method of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (\emph{e.g.}, the \acronym{WHO};
 \acronym{ASEAN} States, Australia, Brazil, Egypt, the Russian Federation, the Eurasian Economic Union, New Zealand).\cr
-The \acronym{WHO} opened a pilot phase exploring reference-scaling for AUC (4-period full replicate studies are mandatory in order to assess the variability associated with each product). It is an open issue how this assessment should be done. In Population Bioequivalence (\acronym{PBE}) and Individual Bioequivalence (\acronym{IBE}) the \ifelse{html}{\out{<em>s<sub>wT</sub></em>}}{\eqn{s\textsubscript}{wT}}/\ifelse{html}{\out{<em>s<sub>wR</sub></em>}}{\eqn{s\textsubscript}{wR}} ratio was assessed and similar variability was concluded for a ratio within 0.667 -- 1.500. However, the power of comparing variabilities in a study designed to demonstrate \acronym{ABE} is low. This was the main reason why \acronym{PBE} and \acronym{IBE} were not implemented in regulatory practice. An alternative approach is given in the \acronym{FDA}’s guidance on warfarin. Variabilities are considered comparable if the upper confidence limit of \ifelse{html}{\out{<em>&sigma;<sub>wT</sub></em>}}{\eqn{\sigma\textsubscript}{wT}}/\ifelse{html}{\out{<em>&sigma;<sub>wR</sub></em>}}{\eqn{\sigma\textsubscript}{wR}} is less than or equal to 2.5.\cr\cr
+The \acronym{WHO} opened a pilot phase exploring reference-scaling for AUC (4-period full replicate studies are mandatory in order to assess the variability associated with each product). It is an open issue how this assessment should be done. In Population Bioequivalence (\acronym{PBE}) and Individual Bioequivalence (\acronym{IBE}) the \ifelse{html}{\out{<em>s<sub>wT</sub></em>}}{\eqn{s_{wT}}}/\ifelse{html}{\out{<em>s<sub>wR</sub></em>}}{\eqn{s_{wR}}} ratio was assessed and similar variability was concluded for a ratio within 0.667 -- 1.500. However, the power of comparing variabilities in a study designed to demonstrate \acronym{ABE} is low. This was the main reason why \acronym{PBE} and \acronym{IBE} were not implemented in regulatory practice. An alternative approach is given in the \acronym{FDA}\enc{’}{'}s guidance on warfarin. Variabilities are considered comparable if the upper confidence limit of \ifelse{html}{\out{<em>&sigma;<sub>wT</sub></em>}}{\eqn{\sigma_{wT}}}/\ifelse{html}{\out{<em>&sigma;<sub>wR</sub></em>}}{\eqn{\sigma_{wR}}} is less than or equal to 2.5.\cr\cr
 \strong{Program offered for Use without any Guarantees and Absolutely No Warranty.\cr
 No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.}
 }

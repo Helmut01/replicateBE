@@ -17,7 +17,7 @@
 \alias{rds26}
 \docType{data}
 \title{
-Reference Data Sets for TRTR|RTRT Designs
+Reference Data Sets for TRTR\enc{|}{,}RTRT Designs
 }
 
 \description{
@@ -26,7 +26,7 @@ Data sets from the public domain, edited, or obtained by simulations to be evalu
 
 \details{
   \tabular{crcl}{
-    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
+    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
     \code{rds01} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
     \code{rds06} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
     \code{rds08} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
@@ -55,7 +55,7 @@ Data sets from the public domain, edited, or obtained by simulations to be evalu
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
       Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and three in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. Two outliers (subjects 45 and 52) in sequence RTRT.\cr
@@ -63,7 +63,7 @@ In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported resul
     \tabular{ll}{
       \code{CVwR} \tab 47.0\%\cr
       \code{PE} \tab 115.66\% (Method A)\cr\tab 115.73\% (Method B)\cr
-      \code{90\% CI} \tab 107.11\% – 124.89\% (Method A)\cr\tab 107.17\% – 124.97\% (Method B)
+      \code{90\% CI} \tab 107.11\% \enc{–}{-} 124.89\% (Method A)\cr\tab 107.17\% \enc{–}{-} 124.97\% (Method B)
     }
   }
 
@@ -76,14 +76,14 @@ In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported resul
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
       Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and three in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. No outliers.
     }
 
     \item Reference Data Set 08 (\code{rds08})\cr
-    Simulated with slight heteroscedasticity (\ifelse{html}{\out{C<sub>wT</sub>}}{\eqn{C\textsubscript}{wT}} = 70\%, \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} = 80\%), \ifelse{html}{\out{C<sub>bT</sub>}}{\eqn{C\textsubscript}{bT}} = \ifelse{html}{\out{C<sub>bT</sub>}}{\eqn{C\textsubscript}{bT}} = 150\%, GMR = 0.85. 222 subjects.\cr
+    Simulated with slight heteroscedasticity (\ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = 70\%, \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 80\%), \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 150\%, GMR = 0.85. 222 subjects.\cr
     \describe{
       A data frame with 888 observations on the following 5 variables:
       \tabular{ll}{
@@ -91,7 +91,7 @@ In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported resul
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
       }
       Balanced (222 subjects in both sequences) and complete. No outliers.\cr
 The extreme sample size results from high variability, an assumed true GMR 0.85, and target power 90\%.
@@ -106,7 +106,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
       }
       Balanced (222 subjects in both sequences) and complete. No outliers.
     }
@@ -120,7 +120,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
       Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and three in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. No outliers.
@@ -135,7 +135,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
       }
       Balanced (111 subjects in both sequences) and incomplete (56 missings in both sequences). Missings / period: 0/0, 0/0, 0/0, 112/4. No outliers.
     }
@@ -149,7 +149,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
       Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (18 missings in sequence TRTR and 17 in sequence RTRT). Missings / period: 0/1, 4/2, 12/3, 19/4. No outliers.
@@ -164,7 +164,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
       }
       Balanced (111 subjects in both sequences) and incomplete (56 missings in both sequences). Missings / period: 0/1, 0/2, 0/3, 112/4. No outliers.
     }
@@ -178,7 +178,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
       Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (32 missings in sequence TRTR and 31 in sequence RTRT). Missings / period: 8/1, 12/2, 18/3, 25/4. No outliers.
@@ -193,7 +193,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
       Unbalanced (31 subjects in sequence TRTR and 30 in RTRT) and incomplete (14 missings in both sequences). Missings / period: 0/1, 4/2, 9/3, 15/4. Two outliers (subjects 18 and 51 in sequence RTRT).
@@ -208,7 +208,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
       Unbalanced (31 subjects in sequence TRTR and 30 in RTRT) and incomplete (14 missings in both sequences). Missings / period: 0/1, 4/2, 9/3, 15/4. Two outliers (subjects 1 and 51 in sequence RTRT).
@@ -223,14 +223,14 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})\cr
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
       }
       Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and five in sequence RTRT). Missings / period: 1/1, 1/2, 8/3, 2/4. No outliers.
     }
 
     \item Reference Data Set 25 (\code{rds25})\cr
-    Simulated with heteroscedasticity (\ifelse{html}{\out{C<sub>wT</sub>}}{\eqn{C\textsubscript}{wT}} = 50\%, \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} = 80\%), \ifelse{html}{\out{C<sub>bT</sub>}}{\eqn{C\textsubscript}{bT}} = \ifelse{html}{\out{C<sub>bT</sub>}}{\eqn{C\textsubscript}{bT}} = 130\%, GMR = 0.90. 70 subjects.\cr
+    Simulated with heteroscedasticity (\ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = 50\%, \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 80\%), \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 130\%, GMR = 0.90. 70 subjects.\cr
     \describe{
       A data frame with 280 observations on the following 5 variables:
       \tabular{ll}{
@@ -238,7 +238,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
       }
       Balanced (70 subjects in both sequences) and complete. No outliers.
     }
@@ -252,14 +252,14 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
       }
       Balanced (27 subjects in both sequences) and incomplete (two missings in both sequences). Missings / period: 0/1, 0/2, 2/3, 2/4. One outlier (subject 49) in sequence RTRT.\cr
 In the source evaluated by \acronym{SAS} for \acronym{ABEL}. Reported results (Method A):
     \tabular{ll}{
       \code{CVwR} \tab 60.25\%\cr
       \code{PE} \tab 151.3\%\cr
-      \code{90\% CI} \tab 133.5\% – 171.4\%
+      \code{90\% CI} \tab 133.5\% \enc{–}{-} 171.4\%
     }
     }
   }
@@ -290,7 +290,7 @@ European Medicines Agency, Committee for Medicinal Products for Human Use. \emph
 London, 19 November 2015. \href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf}{EMA/618604/2008 Rev. 13}
 
 Patterson SD, Jones B. \emph{Bioequivalence and Statistics in Clinical Pharmacology.}\cr
-Boca Raton: CRC Press; \ifelse{html}{\out{2<sup>nd</sup>}}{\eqn{2\textsuperscript}{nd}} edition 2016. p275--6.
+Boca Raton: CRC Press; 2\ifelse{html}{\out{<sup>nd</sup>}}{\eqn{^{nd}}} edition 2016. p275--6.
 }
 
 \note{

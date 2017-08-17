@@ -63,8 +63,10 @@ Published on GitHub 2017-08-17
     - Bug fix: get.data() CSV-file: Issue with characters in the header
       which were == sep resolved. [MT]
     - Compare variabilites according to the FDA's warfarin guidance.
-    - Balaam's design. Experimental and undocumented.
+    - Balaam's design (TR|RT|TT|RR). Experimental and undocumented.
     - Bug fix: Import from XLS with a header.
+    - Working on LaTeX syntax for PDF manual. Poor support of UTF-8
+      is a joke.
 
 Version 1.0.5
 Released to collaborators 2017-06-24

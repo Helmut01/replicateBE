@@ -4,7 +4,7 @@
 \alias{rds10}
 \docType{data}
 \title{
-Reference Data Set for TRR|RTT Replicate Designs
+Reference Data Set for TRR\enc{|}{,}RTT Replicate Designs
 }
 
 \description{
@@ -15,7 +15,7 @@ Data set from the public domain to be evaluated by \code{method.A()}, \code{meth
 
 \details{
    \tabular{crcl}{
-  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
+  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
     \code{rds10} \tab 36 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}
   }
 }
@@ -47,12 +47,12 @@ Data set from the public domain to be evaluated by \code{method.A()}, \code{meth
 
 \note{
 In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTT", "TRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.\cr
-In analogy to the \acronym{EMA}’s Q&A: Uncertain estimate of \code{CVwR} since less than twelve subjects in sequence TRR.
+In analogy to the \acronym{EMA}\enc{’}{'}s Q&A: Uncertain estimate of \code{CVwR} since less than twelve subjects in sequence TRR.
 }
 
 \references{
 Chow SC, Liu JP. \emph{Design and Analysis of Bioavailability and Bioequivalence Studies.}\cr
-Boca Raton: CRC Press; \ifelse{html}{\out{3<sup>rd</sup>}}{\eqn{3\textsuperscript}{rd}} edition 2009. p275.
+Boca Raton: CRC Press; 3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} edition 2009. p275.
 }
 
 \examples{

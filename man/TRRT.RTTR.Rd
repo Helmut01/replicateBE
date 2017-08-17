@@ -6,7 +6,7 @@
 \alias{rds16}
 \docType{data}
 \title{
-Reference Data Sets for TRRT|RTTR Replicate Designs
+Reference Data Sets for TRRT\enc{|}{,}RTTR Replicate Designs
 }
 
 \description{
@@ -15,7 +15,7 @@ Data sets from the public domain to be evaluated by \code{method.A()}, \code{met
 
 \details{
   \tabular{crcl}{
-    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
+    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
     \code{rds05} \tab 26 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
     \code{rds11} \tab 37 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
     \code{rds16} \tab 38 \tab >30 \tab \code{method.A()}, \code{method.B()}
@@ -25,9 +25,9 @@ Data sets from the public domain to be evaluated by \code{method.A()}, \code{met
 \source{
   \tabular{cll}{
     \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
-    \code{rds05} \tab \ifelse{html}{\out{Metzler&nbsp;&amp;&nbsp;Shumaker}}{Metzler~&~Shumaker} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in the Appendix.\cr
-    \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in Table 9.6.\cr
-    \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 14a.
+    \code{rds05} \tab \ifelse{html}{\out{Metzler&nbsp;&amp;&nbsp;Shumaker}}{Metzler~&~Shumaker} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in the Appendix.\cr
+    \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Table 9.6.\cr
+    \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 14a.
   }
 }
 
@@ -42,10 +42,10 @@ Data sets from the public domain to be evaluated by \code{method.A()}, \code{met
             \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
             \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
             \code{treatment} \tab a factor with 2 levels: T, R\cr
-            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
           }
           Balanced (13 subjects in both sequences) and complete. No outliers.\cr\cr
-          In the source evaluated by SAS for the FDA’s mixed effects model (\sQuote{Method C}; \strong{not} acceptable for the \acronym{EMA}). Reported results:
+          In the source evaluated by SAS for the FDA\enc{’}{'}s mixed effects model (\sQuote{Method C}; \strong{not} acceptable for the \acronym{EMA}). Reported results:
             \tabular{ll}{
               \code{CVwR} \tab 5.47\%\cr
               \code{CVwT} \tab 6.75\%\cr
@@ -63,10 +63,10 @@ Data sets from the public domain to be evaluated by \code{method.A()}, \code{met
             \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
             \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
             \code{treatment} \tab a factor with 2 levels: T, R\cr
-            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
           }
           Unbalanced (18 subjects in sequence TRRT and 19 subjects in RTTR) and complete. No outliers.\cr\cr
-          In the source evaluated by the FDA’s mixed effects model (\sQuote{Method C}; \strong{not} acceptable for the \acronym{EMA}). Reported results:
+          In the source evaluated by the FDA\enc{’}{'}s mixed effects model (\sQuote{Method C}; \strong{not} acceptable for the \acronym{EMA}). Reported results:
             \tabular{ll}{
               \code{PE} \tab 90.0\%\cr
               \code{90\% CI} \tab 79.6\% – 101.7\%
@@ -82,7 +82,7 @@ Data sets from the public domain to be evaluated by \code{method.A()}, \code{met
             \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
             \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
             \code{treatment} \tab a factor with 2 levels: T, R\cr
-            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
           }
           Unbalanced (18 subjects in sequence TRRT and 20 in RTTR) and complete. No outliers.
       }

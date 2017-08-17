@@ -4,7 +4,7 @@
 \alias{rds24}
 \docType{data}
 \title{
-Reference Data Set for TRRT|RTTR|TTRR|RRTT Designs
+Reference Data Set for TRRT\enc{|}{,}RTTR\enc{|}{,}TTRR\enc{|}{,}RRTT Designs
 }
 
 \description{
@@ -13,7 +13,7 @@ Data set from the public domain to be evaluated by \code{method.A()} and/or \cod
 
 \details{
   \tabular{crcl}{
-    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
+    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
     \code{rds24} \tab 39 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 }
@@ -29,7 +29,7 @@ Data set from the public domain to be evaluated by \code{method.A()} and/or \cod
         \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
         \code{sequence} \tab a factor with 4 levels: TRRT, RTTR, TTRR, RRTT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}})
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
         }
       Unbalanced (nine subjects in sequence TRRT and ten in each of the other three) and complete. Two outliers (subject 3 in sequence RTTR and subject 30 in sequence TTRR).
     }
@@ -39,7 +39,7 @@ Data set from the public domain to be evaluated by \code{method.A()} and/or \cod
 \source{
   \tabular{cll}{
   \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
-  \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 1.
+  \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 1.
   }
 }
 

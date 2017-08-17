@@ -6,7 +6,7 @@ Comparative BA-calculation for the EMA's Average Bioequivalence (ABE)
 }
 \description{
 This function performs the required calculations for the \acronym{BE} decision
-via conventional (unscaled) Average Bioequivalence based on ANOVA as recommended in the \acronym{EMA}’s guideline.
+via conventional (unscaled) Average Bioequivalence based on ANOVA as recommended in the \acronym{EMA}\enc{’}{'}s guideline.
 }
 \usage{
 ABE(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
@@ -19,10 +19,10 @@ ABE(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
 \eqn{\alpha}{alpha})} confidence interval.
 }
   \item{path.in}{
-Path to the data file for import. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. If missing or not existing the user’s home folder \code{"~/"} will be used.
+Path to the data file for import. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. If missing or not existing the user\enc{’}{'}s home folder \code{"~/"} will be used.
 }
   \item{path.out}{
-Path to safe the result file if \code{print=TRUE}. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. The user must have write-permission to the directory. If missing or not existing the user’s home folder \code{"~/"} will be used.
+Path to safe the result file if \code{print=TRUE}. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. The user must have write-permission to the directory. If missing or not existing the user\enc{’}{'}s home folder \code{"~/"} will be used.
 }
   \item{file}{
 Name of the data set for import (\emph{without} extension). Must be a string (\emph{i.e.}, enclosed in single or double quotation marks).\cr
@@ -78,17 +78,17 @@ where all effects are fixed.\cr\cr
 Tested designs:
   \itemize{
     \item 4-period 2-sequence full replicates:\cr
-      \code{TRTR | RTRT}\cr
-      \code{TRRT | RTTR}
+      \verb{TRTR | RTRT}\cr
+      \verb{TRRT | RTTR}
     \item 4-period 4-sequence full replicates:\cr
-      \code{TRTR | RTRT | TRRT | RTTR}\cr
-      \code{TRRT | RTTR | TTRR | RRTT}
+      \verb{TRTR | RTRT | TRRT | RTTR}\cr
+      \verb{TRRT | RTTR | TTRR | RRTT}
     \item 3-period 2-sequence full replicates:\cr
-      \code{TRT | RTR}\cr
-      \code{TRR | RTT}
+      \verb{TRT | RTR}\cr
+      \verb{TRR | RTT}
     \item 3-period (partial) replicates:\cr
-      \code{TRR | RTR | RRT}\cr
-      \code{TRR | RTR } (extra-reference design)
+      \verb{TRR | RTR | RRT}\cr
+      \verb{TRR | RTR } (extra-reference design)
   }
 Data structure:
   \itemize{
@@ -135,7 +135,7 @@ Commentary headers in \acronym{XLS}-files are not restricted.
 }
 
 \note{
-The \sQuote{graphical} presentation in the result file gives the confidence limits with filled black squares (■) and the point estimate as a white rhombus (◊). If a confidence limit exceeds the drawing range, it is shown as a triangle (◄ or ►). The \acronym{BE} limits and 100\% are given with single vertical lines (│). The \sQuote{resolution} is approximatelly 0.5\% and therefore, not all symbols might be shown. The \acronym{CI} has presedence over the limits.
+The \sQuote{graphical} presentation in the result file gives the confidence limits with filled black squares\enc{ (■)}{} and the point estimate as a white rhombus\enc{ (◊)}{}. If a confidence limit exceeds the drawing range, it is shown as a triangle\enc{ (◄ or ►)}{}. The \acronym{BE} limits and 100\% are given with single vertical lines\enc{ (│)}{}. The \sQuote{resolution} is approximatelly 0.5\% and therefore, not all symbols might be shown. The \acronym{CI} has presedence over the limits.
 }
 
 \references{
@@ -153,8 +153,10 @@ Helmut \enc{Schütz}{Schuetz}
 }
 
 \note{
-The \acronym{EMA}’s model assumes equal [sic!] intra-subject variances of test and reference (like in 2×2×2 trials) -- even if proven false in one of the full replicate designs (were \emph{both} \code{CVwT} and \code{CVwR} can be estimated). Hence, amongst biostatisticians it is called the \dQuote{crippled model}.\cr
-Conventional unscaled \acronym{ABE} has to be employed for \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} (if widening of the acceptance range is clinically not justifiable), \ifelse{html}{\out{AUC<sub>0&ndash;t</sub>}}{\eqn{AUC\textsubscript}{0-t}}, \ifelse{html}{\out{AUC<sub>0&ndash;72h</sub>}}{\eqn{AUC\textsubscript}{0-72h}} (immediate release products) and \ifelse{html}{\out{C<sub>max,ss</sub>}}{\eqn{C\textsubscript}{max,ss}}, \ifelse{html}{\out{C<sub>τ,ss</sub>}}{\eqn{C\textsubscript}{tau,ss}}, \ifelse{html}{\out{<sub>partial</sub>AUC}}{\eqn{\textsubscript}{partial}AUC} (if widening of the acceptance range is clinically not justifiable), and \ifelse{html}{\out{AUC<sub>0&ndash;t</sub>}}{\eqn{AUC\textsubscript}{0-t}}, \ifelse{html}{\out{AUC<sub>0&ndash;&infin;</sub>}}{\eqn{AUC\textsubscript}{0-inf}}, \ifelse{html}{\out{AUC<sub>0&ndash;τ</sub>}}{\eqn{AUC\textsubscript}{0-tau}} (modified release products).\cr\cr
+The \acronym{EMA}\enc{’}{'}s model assumes equal [sic!] intra-subject variances of test and reference (like in \enc{2×2×2}{2x2x2} trials) -- even if proven false in one of the full replicate designs (were \emph{both} \code{CVwT} and \code{CVwR} can be estimated). Hence, amongst biostatisticians it is called the \dQuote{crippled model}.\cr
+Conventional unscaled \acronym{ABE} has to be employed for \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} (if widening of the acceptance range is clinically not justifiable), \ifelse{html}{\out{AUC<sub>0&ndash;t</sub>}}{\eqn{AUC_{0-t}}}, \ifelse{html}{\out{AUC<sub>0&ndash;72</sub>}}{\eqn{AUC_{0-72}}} immediate release products) and \ifelse{html}{\out{C<sub>max,ss</sub>}}{\eqn{C_{max,ss}}},
+\ifelse{html}{\out{C<sub>&tau;,ss</sub>}}{\eqn{C_{\tau,ss}}}, \ifelse{html}{\out{<sub>partial</sub>AUC}}{\eqn{_{partial}AUC}} (if widening of the acceptance range is clinically not justifiable), and
+\ifelse{html}{\out{AUC<sub>0&ndash;t</sub>}}{\eqn{AUC_{0-t}}}, \ifelse{html}{\out{AUC<sub>0&ndash;&infin;</sub>}}{\eqn{AUC_{0-\infty}}}, \ifelse{html}{\out{AUC<sub>0&ndash;&tau;</sub>}}{\eqn{AUC_{0-\tau}}} (modified release products).\cr\cr
 \strong{Program offered for Use without any Guarantees and Absolutely No Warranty.\cr
 No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.}
 }

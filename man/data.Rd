@@ -13,7 +13,7 @@ Data sets for replicate design from the public domain, edited, or obtained by si
 
 \details{
   \tabular{llcrcl}{
-  Design \tab Specification \tab\ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab  N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
+  Design \tab Specification \tab \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
   TRTR|RTRT \tab full \tab \code{rds01} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRTR|RTRT \tab full \tab \code{rds06} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRTR|RTRT \tab full \tab \code{rds12} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
@@ -41,7 +41,7 @@ Data sets for replicate design from the public domain, edited, or obtained by si
   TRR|RTR|RRT \tab partial \tab \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTR \tab partial \tab \code{rds22} \tab 36 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
-In full replicate designs \emph{both} R and T are administered twice (in 3-period designs to ½ of the subjects).\cr
+In full replicate designs \emph{both} R and T are administered twice (in 3-period designs to \enc{½}{1/2} of the subjects).\cr
 In partial replicate designs \emph{only} R is administered twice.
 }
 
@@ -61,17 +61,17 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds13} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data deleted).\cr
     \code{rds15} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}).\cr
     \code{rds25} \tab R \tab Simulated with heteroscedasticity.\cr
-    \code{rds26} \tab \ifelse{html}{\out{Patterson&nbsp;&&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in Table 4.4.\cr
-    \code{rds05} \tab \ifelse{html}{\out{Metzler&nbsp;&amp;&nbsp;Shumaker}}{Metzler~&~Shumaker} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in the Appendix.\cr
-    \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in Table 9.6.\cr
-    \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 14a.\cr
-    \code{rds23} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 7.\cr
-    \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Drug 1.\cr
+    \code{rds26} \tab \ifelse{html}{\out{Patterson&nbsp;&&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Table 4.4.\cr
+    \code{rds05} \tab \ifelse{html}{\out{Metzler&nbsp;&amp;&nbsp;Shumaker}}{Metzler~&~Shumaker} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in the Appendix.\cr
+    \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Table 9.6.\cr
+    \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 14a.\cr
+    \code{rds23} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 7.\cr
+    \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 1.\cr
     \code{rds03} \tab \code{rds01} edited \tab Period 4 removed.\cr
     \code{rds17} \tab \code{rds03} edited \tab Highly unbalanced (twelve subjects in RTR and seven in TRT).\cr
     \code{rds10} \tab Chow & Liu \tab AUC data given in Table 9.3.3.\cr
     \code{rds02} \tab EMA, CHMP \tab Data set II.\cr
-    \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data of Table II.\cr
+    \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Table II.\cr
     \code{rds07} \tab R \tab Simulated with homoscedasticity.\cr
     \code{rds22} \tab R \tab Simulated with homoscedasticity.
   }
@@ -88,13 +88,13 @@ Metzler CM, Shumaker RC. \emph{The Phenytoin Trial is a Case Study of \sQuote{In
 Drug Inf J. 1998;32:1063--72
 
 Chow SC, Liu JP. \emph{Design and Analysis of Bioavailability and Bioequivalence Studies.}\cr
-Boca Raton: CRC Press; \ifelse{html}{\out{3<sup>rd</sup>}}{\eqn{3\textsuperscript}{rd}} edition 2009. p275.
+Boca Raton: CRC Press; 3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} edition 2009. p275.
 
 Hauschke D, Steinijans VW, Pigeot I. \emph{Bioequivalence Studies in Drug Development.}\cr
 Chichester: John Wiley; 2007. p216.
 
 Patterson SD, Jones B. \emph{Bioequivalence and Statistics in Clinical Pharmacology.}\cr
-Boca Raton: CRC Press; \ifelse{html}{\out{2<sup>nd</sup>}}{\eqn{2\textsuperscript}{nd}} edition 2016. p275--6.
+Boca Raton: CRC Press; 2\ifelse{html}{\out{<sup>nd</sup>}}{\eqn{^{nd}}} edition 2016. p275--6.
 
 \acronym{U.S.} Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Bioequivalence Studies.}\cr
 Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip}{bioequivalence study files}
@@ -115,7 +115,7 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael 
 
 \examples{
 # show structure of all data sets
-ds <- sprintf("rds\%02i", 1:25)
+ds <- sprintf("rds\%02i", 1:26)
 for (i in seq_along(ds)) {
   cat(ds[i], "\n")
   str(eval(parse(text=ds[i])))
