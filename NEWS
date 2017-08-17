@@ -63,8 +63,8 @@ Published on GitHub 2017-08-17
     - Bug fix: get.data() CSV-file: Issue with characters in the header
       which were == sep resolved. [MT]
     - Compare variabilites according to the FDA's warfarin guidance.
-    - Balaam's design. Experimental and undocumented. Import from XLS
-      does not work.
+    - Balaam's design. Experimental and undocumented.
+    - Bug fix: Import from XLS with a header.
 
 Version 1.0.5
 Released to collaborators 2017-06-24

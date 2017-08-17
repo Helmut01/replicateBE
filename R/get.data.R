@@ -97,8 +97,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
         descr <- paste0(descr[startsWith(descr, "#")], collapse="\n")
         descr <- gsub("#", "", descr)
       } else {
-        datafordescr <- vector()
-        descrdf <- datafordescr[1:(which(Nnamesdf == TRUE)-1), ]
+        descrdf <- datawithdescr[1:(which(Nnamesdf == TRUE)-1), ]
         descr <- unname(apply(descrdf, 1, function(row){paste0(row[!is.na(row)], collapse=" ")}))
       }
       descr <- paste0(strwrap(descr, width = 78), collapse="\n")
@@ -240,7 +239,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
   if (nchar(type) == 19) txt <- paste(txt, "(4-period 4-sequence full replicate)")
   if (nchar(type) == 9) txt <- paste(txt, "(4-period full replicate)")
   if (type %in% c("TRT|RTR", "TRR|RTT")) txt <- paste(txt, "(3-period full replicate)")
-  if (type == "TR|RT|TT|RR") txt <- paste(txt, "(2-period 4-sequence full replicate; Balaam\u2019s)")
+  if (type == "TR|RT|TT|RR") txt <- paste(txt, "(Balaam\u2019s 2-period 4-sequence full replicate)")
   if (type == "TRR|RTR|RRT") txt <- paste(txt, "(partial replicate)")
   if (type == "TRR|RTR") txt <- paste(txt, "(partial replicate; extra-reference)")
   x <- paste0(Nsub.seq, collapse = "|")
