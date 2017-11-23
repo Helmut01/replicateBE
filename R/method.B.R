@@ -8,9 +8,9 @@
 method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                      file, set = "", ext, na = ".", sep = ",",
                      dec = ".", logtrans = TRUE, ola = FALSE,
-                     print = TRUE, option = 2, details = FALSE,
-                     verbose = FALSE, ask = FALSE, plot.bxp = FALSE,
-                     fence = 2, data = NULL) {
+                     print = TRUE, details = FALSE, verbose = FALSE,
+                     ask = FALSE, plot.bxp = FALSE, fence = 2,
+                     data = NULL, option = 2) {
   exec <- strftime(Sys.time(), usetz=TRUE)
   ret  <- CV.calc(alpha=alpha, path.in=path.in, path.out=path.out,
                   file=file, set=set, ext=ext, na=na, sep=sep,

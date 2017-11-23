@@ -66,7 +66,7 @@ Data sets from the public domain or edited to be evaluated by \code{method.A()},
             \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
           }
           Balanced (17 subjects in each of the three sequences) and complete. No outliers.\cr\cr
-          In the source evaluated by SAS 9.1 for the FDA\enc{’}{'}s mixed effects model (\sQuote{Method C}; \strong{not} acceptable for the \acronym{EMA}). Reported results:
+          In the source evaluated by \acronym{SAS} 9.1 for the \acronym{FDA}\enc{’}{'}s mixed effects model (\sQuote{Method C}; \strong{not} acceptable for the \acronym{EMA}). Reported results:
             \tabular{ll}{
               \code{CVwR} \tab 61\%\cr
               \code{PE} \tab 137\%\cr

@@ -6,7 +6,7 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                 file, set = "", ext, na = ".", sep = ",",
                 dec = ".", logtrans = TRUE, print = TRUE,
                 details = FALSE, verbose = FALSE, ask = FALSE,
-                theta1, theta2, data = NULL) {
+                data = NULL, theta1, theta2) {
   exec <- strftime(Sys.time(), usetz=TRUE)
   if (missing(theta1)) theta1 <- 0.80
   if (missing(theta2)) theta2 <- 1/theta1

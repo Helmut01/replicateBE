@@ -23,7 +23,7 @@ Data set simulated to be evaluated by \code{method.A()}, \code{method.B()}.
 \format{
   \itemize{
     \item Reference Data Set 22 (\code{rds22})\cr
-    Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 45\%, \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bR}}} = 100\% GMR 0.90. 42 subjects.
+    Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 45\%, \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 100\% GMR 0.90. 42 subjects.
     \describe{
       A data frame with 126 observations on the following 5 variables:
       \tabular{ll}{

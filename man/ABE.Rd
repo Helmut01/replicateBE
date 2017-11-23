@@ -2,84 +2,118 @@
 \name{ABE}
 \alias{ABE}
 \title{
-Comparative BA-calculation for the EMA's Average Bioequivalence (ABE)
+Comparative BA-calculation of Average Bioequivalence
 }
 \description{
-This function performs the required calculations for the \acronym{BE} decision
-via conventional (unscaled) Average Bioequivalence based on ANOVA as recommended in the \acronym{EMA}\enc{’}{'}s guideline.
+  This function performs the required calculations for the \acronym{BE}
+  decision via conventional (unscaled) Average Bioequivalence based on
+  ANOVA as recommended in the \acronym{EMA}\enc{’}{'}s guideline.
 }
 \usage{
 ABE(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
     ext, na = ".", sep = ",", dec = ".", logtrans = TRUE,
     print = TRUE, details = FALSE, verbose = FALSE, ask = FALSE,
-    theta1, theta2, data = NULL)
+    data = NULL, theta1, theta2)
 }
+
 \arguments{
-  \item{alpha}{Type I Error (\acronym{TIE}) probability (nominal level of the test). Per convention commonly set to 0.05 which results in a \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
-\eqn{\alpha}{alpha})} confidence interval.
-}
+  \item{alpha}{
+    Type I Error (\acronym{TIE}) probability (nominal level of the test).
+    Per convention commonly set to 0.05 which results in a
+    \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2\eqn{\alpha}{alpha})}
+    confidence interval.
+  }
   \item{path.in}{
-Path to the data file for import. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. If missing or not existing the user\enc{’}{'}s home folder \code{"~/"} will be used.
-}
+    Path to the data file for import. If missing or not existing the
+    user\enc{’}{'}s home folder \verb{"~/"} will be used.
+  }
   \item{path.out}{
-Path to safe the result file if \code{print=TRUE}. The path \emph{must} be given with forward slashes (/) -- even on Windows (where backward slashes (\\) are the standard. The user must have write-permission to the directory. If missing or not existing the user\enc{’}{'}s home folder \code{"~/"} will be used.
-}
+    Path to safe the result file if \code{print=TRUE}. The user must have
+    write-permission to the directory. If missing or not existing the
+    user\enc{’}{'}s home folder \verb{"~/"} will be used.
+  }
   \item{file}{
-Name of the data set for import (\emph{without} extension). Must be a string (\emph{i.e.}, enclosed in single or double quotation marks).\cr
-If reading from a \acronym{CSV}-file a commentary header is allowed. Commentary line(s) must start with the hash character \code{"#"}.
-}
+    Name of the data set for import (\emph{without} extension). Must be
+    a string (\emph{i.e.}, enclosed in single or double quotation marks).
+  }
   \item{set}{
-Name of the sheet of an Excel-file (mandatory). Must be a string (\emph{i.e.}, enclosed in single or double quotation marks).
-}
-\item{ext}{
-File-extension enclosed in single or double quotation marks. Acceptable are \code{"CSV"} and \code{"csv"} for character-separated variables (\acronym{CSV}) or \code{"XLS"}, \code{"xls"}, \code{"XLSX"}, and \code{"xlsx"} for Excel-files.
-}
+    Name of the sheet of an Excel-file (mandatory). Must be a string
+    (\emph{i.e.}, enclosed in single or double quotation marks).
+  }
+  \item{ext}{
+    File-extension enclosed in single or double quotation marks.
+    Acceptable are \verb{"CSV"} and \verb{"csv"} for character-separated
+    variables (\acronym{CSV}) or \verb{"XLS"}, \verb{"xls"}, \verb{"XLSX"},
+    and \verb{"xlsx"} for Excel-files.
+  }
   \item{na}{
-Character string denoting missing values. Acceptable are \code{"NA"} (not available),
-\code{"ND"} (not determined), \code{"."} (\acronym{SAS}), \code{"Missing"} (Phoenix WinNonlin), and \code{""} (\acronym{Excel}; empty cell). Missings will be converted to \code{NA} in the imported data. Defaults to \code{"."}.
-}
+    Character string denoting missing values. Acceptable are \verb{"NA"}
+    (not available), \verb{"ND"} (not determined), \verb{"."} (\acronym{SAS}),
+    \verb{"Missing"} (Phoenix WinNonlin), and \verb{""} (\acronym{Excel};
+    empty cell). Missings will be converted to \verb{NA} in the imported
+    data. Defaults to \verb{"."}.
+  }
   \item{sep}{
-Variable separator in the \acronym{CSV}-file. Acceptable are \code{","} (colon -- \code{ASCII 44}), \code{";"} (semicolon -- \code{ASCII 59}), and \code{"\\t"} (tabulator -- \code{ASCII 9}). Defaults to \code{","}.
-}
+    Variable separator in the \acronym{CSV}-file. Acceptable are \verb{","}
+    (colon -- \verb{ASCII 44}), \verb{";"} (semicolon -- \verb{ASCII 59}),
+    and \verb{"\\t"} (tabulator -- \verb{ASCII 9}). Defaults to \verb{","}.
+  }
   \item{dec}{
-Decimal separator in the \acronym{CSV}-file. Acceptable are \code{"."} (period -- \code{ASCII 46}) or \code{","} (colon -- \code{ASCII 44}). Defaults to \code{"."}.
-}
+    Decimal separator in the \acronym{CSV}-file. Acceptable are
+    \verb{"."} (period -- \verb{ASCII 46}) or \verb{","}
+    (colon -- \verb{ASCII 44}). Defaults to \verb{"."}.
+  }
   \item{logtrans}{
-If \code{TRUE} (default) the raw data (provided in column \code{PK}) will be
-internally log-transformed and used in the calculations. If \code{FALSE} the already log-transformed data (provided in the column \code{log-PK}) will be used in the calculations.
-}
+    If \code{TRUE} (default) the raw data (provided in column \verb{PK})
+    will be internally log-transformed and used in the calculations.
+    If \code{FALSE} the already log-transformed data (provided in the
+    column \verb{logPK}) will be used in the calculations.
+  }
   \item{print}{
-If \code{TRUE} (default), the function prints its results to a file. If \code{FALSE}, returns a data.frame of results.
-}
+    If \code{TRUE} (default), the function prints its results to a
+    file. If \code{FALSE}, returns a data.frame of results.
+  }
   \item{details}{
-Defaults to \code{FALSE}. If \code{TRUE}, the function sends its results in 7-digits precision to a data.frame.
-}
+    Defaults to \code{FALSE}. If \code{TRUE}, the function sends
+    its results in 7-digits precision to a data.frame.
+  }
   \item{verbose}{
-Defaults to \code{FALSE}. If \code{TRUE} the ANOVA-table is send to the console. If \code{ola=TRUE} additional information about outliers are shown.
-}
+    Defaults to \code{FALSE}. If \code{TRUE} the ANOVA-table is send to
+    the console.
+  }
   \item{ask}{
-Defaults to \code{FALSE}. If \code{TRUE} the user will be asked whether an already existing result file should be overwritten.
-}
-  \item{theta1}{
-Lower bioequivalence limit. Defaults to \code{0.80}. If missing will be set to \code{1/theta2}.
-}
-  \item{theta2}{
-Lower bioequivalence limit. Defaults to \code{1.25}. If missing will be set to \code{1/theta1}.
-}
+    Defaults to \code{FALSE}. If \code{TRUE} the user will be asked
+    whether an already existing result file should be overwritten.
+  }
   \item{data}{
-One of internal reference data sets (\code{rds01} -- \code{rds23}). If given, \code{path.in}, \code{file}, \code{set}, and \code{ext} are ignored. For its use see the examples.\cr
-Defaults to \code{NULL} (\emph{i.e.}, import external data).
+    Specification of one of the internal reference data sets (\verb{rds01}
+    -- \verb{rds26}). If given, \verb{path.in}, \verb{file}, \verb{set},
+    and \verb{ext} are ignored. For its use see the examples.\cr
+    If not given, defaults to \code{NULL} (\emph{i.e.}, import data
+    from a file).
+  }
+  \item{theta1}{
+    Lower bioequivalence limit. Defaults to \verb{0.80}. If missing
+    will be set to \code{1/theta2}.
+  }
+  \item{theta2}{
+    Lower bioequivalence limit. Defaults to \verb{1.25}. If missing
+    will be set to \code{1/theta1}.
+  }
 }
-}
+
 \details{
-The model for the treatment comparison is\cr
-\verb{   log(response) ~ sequence + subject(sequence) + period + treatment}\cr
-where all effects are fixed.\cr\cr
-Tested designs:
+  The model for the treatment comparison is\cr
+  \verb{   log(response) ~ sequence + subject(sequence) + period + treatment}\cr
+  where all effects are fixed.\cr\cr
+  Tested designs:
   \itemize{
     \item 4-period 2-sequence full replicates:\cr
       \verb{TRTR | RTRT}\cr
-      \verb{TRRT | RTTR}
+      \verb{TRRT | RTTR}\cr
+      \verb{TTRR | RRTT}
+    \item 2-period 4-sequence replicate:\cr
+      \verb{TR | RT | TT | RR } (Balaam\enc{’}{'}s design)
     \item 4-period 4-sequence full replicates:\cr
       \verb{TRTR | RTRT | TRRT | RTTR}\cr
       \verb{TRRT | RTTR | TTRR | RRTT}
@@ -90,19 +124,23 @@ Tested designs:
       \verb{TRR | RTR | RRT}\cr
       \verb{TRR | RTR } (extra-reference design)
   }
-Data structure:
+  Data structure:
   \itemize{
-    \item Columns must have the headers \code{subject}, \code{period}, \code{sequence}, \code{treatment}, \code{PK}, and/or \code{logPK}.\cr
+    \item Columns must have the headers \code{subject}, \code{period},
+    \code{sequence}, \code{treatment}, \code{PK}, and/or \code{logPK}.\cr
     Any order of columns is acceptable.\cr
     Uppercase and mixed case headers will be internally converted to lowercase headers.
     \itemize{
-      \item \code{subject} must be integer numbers or (any combination of) alphanumerics \code{[A-Z, a-z, -, _, #, 0-9]}
+      \item \code{subject} must be integer numbers or (any combination of) alphanumerics\cr
+      \verb{[A-Z, a-z, -, _, #, 0-9]}
       \item \code{period} must be integer numbers.
-      \item \code{sequence} must be contained in the tested designs (numbers or \emph{e.g.}, \code{ABAB} are not acceptable).
+      \item \code{sequence} must be contained in the tested designs (numbers or
+      \emph{e.g.}, \verb{ABAB} are not acceptable).
       \item The Test treatment must be coded \code{T} and the Reference \code{R}.
     }
   }
 }
+
 \value{
 Prints results to a file if argument \code{print = TRUE} (default).\cr
 If argument \code{print = FALSE}, returns a data.frame with the elements:
@@ -125,40 +163,64 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     \code{CI.hi(\%)} \tab upper confidence limit of the treatment comparison\cr
     \code{PE(\%)} \tab point estimate of the treatment comparison (aka \acronym{GMR})\cr
     \code{BE} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1-2
-\eqn{\alpha}{alpha})} \acronym{CI} lies entirely within the acceptance range (\code{pass|fail})
+\eqn{\alpha}{alpha})} \acronym{CI} lies entirely within the acceptance range (\verb{pass|fail})
   }
 }
 
 \section{Warning}{
-If the \acronym{CSV}-file has a commentary header, each line must start with \code{"# "} (hash-space -- \code{ASCII 35-32}).\cr
-Commentary headers in \acronym{XLS}-files are not restricted.
+  Files may contain a commentary header. If reading from a \acronym{CSV}-file,
+  \emph{each} line of the commentary header \emph{must} start with \verb{"# "}
+  (hash-space -- \verb{ASCII 35-32}). If reading from an \acronym{XLS}-file
+  all lines preceding the column headers are treated as a comment.
 }
 
 \note{
-The \sQuote{graphical} presentation in the result file gives the confidence limits with filled black squares\enc{ (■)}{} and the point estimate as a white rhombus\enc{ (◊)}{}. If a confidence limit exceeds the drawing range, it is shown as a triangle\enc{ (◄ or ►)}{}. The \acronym{BE} limits and 100\% are given with single vertical lines\enc{ (│)}{}. The \sQuote{resolution} is approximatelly 0.5\% and therefore, not all symbols might be shown. The \acronym{CI} has presedence over the limits.
+  The \sQuote{graphical} presentation in the result file gives the confidence
+  limits with filled black squares and the point estimate as a white rhombus.
+  If a confidence limit exceeds the drawing range, it is shown as a triangle.
+  The \acronym{BE} limits and 100\% are given with single vertical lines. The
+  \sQuote{resolution} is approximatelly 0.5\% and therefore, not all symbols
+  might be shown. The \acronym{CI} takes presedence over the limits.
 }
 
-\references{
-European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
-\emph{Guideline on the Investigation of Bioequivalence}\cr
-London, 20 January 2010. \href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2010/01/WC500070039.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
-
-European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
-\emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms}\cr
-London, 20 November 2014. \href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2014/11/WC500177884.pdf}{EMA/CPMP/EWP/280/96 Corr1}
+\note{
+  The \acronym{EMA}\enc{’}{'}s model assumes equal [sic!] intra-subject
+  variances of test and reference (like in \enc{2×2×2}{2x2x2} trials) --
+  even if proven false in one of the full replicate designs (were \emph{both}
+  \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}{CVwT}} and
+  \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}{CVwR}} can be estimated).
+  Hence, amongst biostatisticians it is called the \dQuote{crippled model}.\cr
+  Conventional unscaled \acronym{ABE} has to be employed for
+  \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} (if widening of the
+  acceptance range is clinically not justifiable),
+  \ifelse{html}{\out{AUC<sub>0&ndash;t</sub>}}{\eqn{AUC_{0-t}}},
+  \ifelse{html}{\out{AUC<sub>0&ndash;72</sub>}}{\eqn{AUC_{0-72}}} (immediate
+  release products) and
+  \ifelse{html}{\out{C<sub>max,ss</sub>}}{\eqn{C_{max,ss}}},
+  \ifelse{html}{\out{C<sub>&tau;,ss</sub>}}{\eqn{C_{\tau,ss}}},
+  \ifelse{html}{\out{<sub>partial</sub>AUC}}{\eqn{_{partial}AUC}} (if widening
+  of the acceptance range is clinically not justifiable), and
+  \ifelse{html}{\out{AUC<sub>0&ndash;t</sub>}}{\eqn{AUC_{0-t}}},
+  \ifelse{html}{\out{AUC<sub>0&ndash;&infin;</sub>}}{\eqn{AUC_{0-\infty}}},
+  \ifelse{html}{\out{AUC<sub>0&ndash;&tau;</sub>}}{\eqn{AUC_{0-\tau}}}
+  (modified release products).\cr\cr
+  \strong{Program offered for Use without any Guarantees and Absolutely No Warranty.\cr
+  No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.}
 }
 
 \author{
 Helmut \enc{Schütz}{Schuetz}
 }
+\references{
+European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
+\emph{Guideline on the Investigation of Bioequivalence}\cr
+London, 20 January 2010.
+\href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2010/01/WC500070039.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
 
-\note{
-The \acronym{EMA}\enc{’}{'}s model assumes equal [sic!] intra-subject variances of test and reference (like in \enc{2×2×2}{2x2x2} trials) -- even if proven false in one of the full replicate designs (were \emph{both} \code{CVwT} and \code{CVwR} can be estimated). Hence, amongst biostatisticians it is called the \dQuote{crippled model}.\cr
-Conventional unscaled \acronym{ABE} has to be employed for \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} (if widening of the acceptance range is clinically not justifiable), \ifelse{html}{\out{AUC<sub>0&ndash;t</sub>}}{\eqn{AUC_{0-t}}}, \ifelse{html}{\out{AUC<sub>0&ndash;72</sub>}}{\eqn{AUC_{0-72}}} immediate release products) and \ifelse{html}{\out{C<sub>max,ss</sub>}}{\eqn{C_{max,ss}}},
-\ifelse{html}{\out{C<sub>&tau;,ss</sub>}}{\eqn{C_{\tau,ss}}}, \ifelse{html}{\out{<sub>partial</sub>AUC}}{\eqn{_{partial}AUC}} (if widening of the acceptance range is clinically not justifiable), and
-\ifelse{html}{\out{AUC<sub>0&ndash;t</sub>}}{\eqn{AUC_{0-t}}}, \ifelse{html}{\out{AUC<sub>0&ndash;&infin;</sub>}}{\eqn{AUC_{0-\infty}}}, \ifelse{html}{\out{AUC<sub>0&ndash;&tau;</sub>}}{\eqn{AUC_{0-\tau}}} (modified release products).\cr\cr
-\strong{Program offered for Use without any Guarantees and Absolutely No Warranty.\cr
-No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.}
+European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
+\emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms}\cr
+London, 20 November 2014.
+\href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2014/11/WC500177884.pdf}{EMA/CPMP/EWP/280/96 Corr1}
 }
 
 \seealso{
@@ -170,28 +232,25 @@ No Liability is accepted for any Loss and Risk to Public Health Resulting from U
 
 \examples{
 # Importing from a CSV-file, using most of the defaults: variable
-# separator colon, decimal separator period, print to file
-# Note: You must adapt the path-variables. Write-permissions must be
-# granted for 'path.out' in order to save the result file. If 'path.out' is
-# not specified, results are written to the home folder.
-path.in <- paste0(find.package("replicateBE"), "/extdata/")  # example files
-ABE(path.in = path.in, file = "DS", set = "02", ext = "csv") # Q&A data set II
+# separator colon, decimal separator period, print to file.
+# Note: You must adapt the path-variables. Write-permissions must
+# be granted for 'path.out' in order to save the result file. If
+# 'path.out' is not specified, results are written to the home folder.
+path.in <- paste0(find.package("replicateBE"), "/extdata/")
+ABE(path.in = path.in, file = "DS", set = "02", ext = "csv")
 # Should result in:
 #   BE-limits          :  80.00\% ... 125.00\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass
 #   Point estimate     : 102.26\%
-#             ├──────────────────■──┼─◊─────■──────────────────┤
 #
-# Generate the data.frame of results (7-digits precision) and show in the console
-# Use the internal data set
+# Generate the data.frame of results (7-digits precision) and show
+# in the console. Use an internal data set.
 x <- ABE(details = TRUE, print = FALSE, data = rds02)
 print(x, row.names = FALSE)
-#
 # Assuming a NTID and assess BE with narrower limits.
 ABE(data = rds02, theta1 = 0.90)
 # Should result in:
 #   BE-limits          :  90.00\% ... 111.11\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass
 #   Point estimate     : 102.26\%
-#                        ├───────■──┼─◊─────■───┤
 }

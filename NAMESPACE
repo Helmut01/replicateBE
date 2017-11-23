@@ -1,4 +1,3 @@
-# Import selectively only the used functions (good practice)
 importFrom(grDevices, graphics.off, dev.off, png)
 importFrom(readxl, read_excel)
 importFrom(utils, read.csv, head, capture.output,

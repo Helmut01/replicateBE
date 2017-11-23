@@ -27,21 +27,23 @@ Data sets for replicate design from the public domain, edited, or obtained by si
   TRTR|RTRT \tab full \tab \code{rds13} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRTR|RTRT \tab full \tab \code{rds15} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRTR|RTRT \tab full \tab \code{rds25} \tab 70 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-  TRTR|RTRT \tab full \tab \code{rds25} \tab 70 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRRT|RTTR \tab full \tab \code{rds26} \tab 54 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRRT|RTTR \tab full \tab \code{rds11} \tab 37 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRRT|RTTR \tab full \tab \code{rds16} \tab 38 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TTRR|RRTT \tab full \tab \code{rds28} \tab 64 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
   TRTR|RTRT|TRRT|RTTR \tab full \tab \code{rds23} \tab 22 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRRT|RTTR|TTRR|RRTT \tab full \tab \code{rds24} \tab 39 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRT|RTR \tab full \tab \code{rds03} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRT|RTR \tab full \tab \code{rds17} \tab 19 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTT \tab full \tab \code{rds10} \tab 18 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
+  TR|RT|TT|RR \tab Balaam\enc{’}{'}s \tab \code{rds27} \tab 312 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTR|RRT \tab partial \tab \code{rds02} \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
   TRR|RTR|RRT \tab partial \tab \code{rds04} \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTR|RRT \tab partial \tab \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTR \tab partial \tab \code{rds22} \tab 36 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 In full replicate designs \emph{both} R and T are administered twice (in 3-period designs to \enc{½}{1/2} of the subjects).\cr
+Balaam\enc{’}{'}s design is a mixture of a conventional crossover (\enc{½}{1/2} of the subjects) and a replicate design (\enc{¼}{1/4} of the subjects receive \emph{either} R \emph{or} T twice).\cr
 In partial replicate designs \emph{only} R is administered twice.
 }
 
@@ -65,11 +67,13 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds05} \tab \ifelse{html}{\out{Metzler&nbsp;&amp;&nbsp;Shumaker}}{Metzler~&~Shumaker} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in the Appendix.\cr
     \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Table 9.6.\cr
     \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 14a.\cr
+    \code{rds28} \tab R \tab Simulated with homoscedasticity.\cr
     \code{rds23} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 7.\cr
     \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 1.\cr
     \code{rds03} \tab \code{rds01} edited \tab Period 4 removed.\cr
     \code{rds17} \tab \code{rds03} edited \tab Highly unbalanced (twelve subjects in RTR and seven in TRT).\cr
     \code{rds10} \tab Chow & Liu \tab AUC data given in Table 9.3.3.\cr
+    \code{rds27} \tab R \tab Simulated with homoscedasticity.\cr
     \code{rds02} \tab EMA, CHMP \tab Data set II.\cr
     \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Table II.\cr
     \code{rds07} \tab R \tab Simulated with homoscedasticity.\cr
@@ -102,7 +106,9 @@ Rockville, 1997. \href{https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM30
 
 \seealso{
   4-period full replicates\cr
-  {\link[replicateBE]{TRTR.RTRT}}, {\link[replicateBE]{TRRT.RTTR}}, {\link[replicateBE]{TRTR.RTRT.TRRT.RTTR}}, {\link[replicateBE]{TRRT.RTTR.TTRR.RRTT}}\cr
+  {\link[replicateBE]{TRTR.RTRT}}, {\link[replicateBE]{TRRT.RTTR}}, {\link[replicateBE]{TTRR.RRTT}}, {\link[replicateBE]{TRTR.RTRT.TRRT.RTTR}}, {\link[replicateBE]{TRRT.RTTR.TTRR.RRTT}}\cr
+  2-period replicate (Balaam\enc{’}{'}s design)\cr
+  {\link[replicateBE]{TR.RT.TT.RR}}\cr
   3-period full replicates\cr
   {\link[replicateBE]{TRT.RTR}}, {\link[replicateBE]{TRR.RTT}}\cr
   3-period partial replicates\cr
@@ -115,11 +121,13 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael 
 
 \examples{
 # show structure of all data sets
-ds <- sprintf("rds\%02i", 1:26)
+\dontrun{
+ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))),
+                  value=TRUE), 1, 5)
 for (i in seq_along(ds)) {
   cat(ds[i], "\n")
   str(eval(parse(text=ds[i])))
-}
+}}
 }
 
 \keyword{datasets}

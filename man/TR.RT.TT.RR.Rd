@@ -1,0 +1,55 @@
+\encoding{utf-8}
+\name{TR.RT.TT.RR}
+\alias{TR.RT.TT.RR}
+\alias{rds27}
+\docType{data}
+\title{
+Reference Data Set for TR\enc{|}{,}RT\enc{|}{,}TT\enc{|}{,}RR Replicate Designs
+}
+
+\description{
+Data set for Balaam\enc{’}{'}s design simulated to be evaluated by \code{method.A()}, \code{method.B()}.
+}
+
+\usage{rds27}
+
+\details{
+   \tabular{crcl}{
+  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+    \code{rds27} \tab 312 \tab >30 \tab \code{method.A()}, \code{method.B()}}
+}
+
+\format{
+  \itemize{
+    \item Reference Data Set 27 (\code{rds27})\cr
+    Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 35\%, \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bR}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 75\% GMR 0.90. 312 subjects.
+    \describe{
+      A data frame with 624 observations on the following 5 variables:
+      \tabular{ll}{
+      \code{subject} \tab a factor with 18 levels: 1, 2, \ldots, 18\cr
+      \code{period} \tab a factor with 2 levels: 1, 2\cr
+      \code{sequence} \tab a factor with 4 levels: TR, RT, TT, RR\cr
+      \code{treatment} \tab a factor with 2 levels: T, R\cr
+      \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+      }
+      Balanced (78 subjects in each of the four sequences) and incomplete (T of subject 111 missing in period 2 of sequence RT). No outliers.
+    }
+  }
+}
+
+\author{
+Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes)
+}
+
+\note{
+In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RR", "RT", "TR", "TT"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.
+}
+
+\examples{
+str(rds27)
+row <- c(1:2, 157:158, 313:314, 469:470)
+rds27[row, ]
+summary(rds27[2:5])
+}
+
+\keyword{datasets}
