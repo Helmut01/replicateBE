@@ -42,7 +42,7 @@ Tested designs
 
 ¹ Confounded effects (design _not recommended_).
 
-² Balaam’s design (not recommended due to poor power characteristics).
+² Balaam’s design (_not recommended_ due to poor power characteristics).
 
 ³ Extra-reference design; biased in the presence of period effects (design _not recommended_).
 
