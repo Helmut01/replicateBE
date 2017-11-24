@@ -1,7 +1,7 @@
 Encoding: UTF-8
 Package: replicateBE
 Version: 1.0.5.9000
-Date: 2017-11-23
+Date: 2017-11-24
 Title: Average Bioequivalence with Expanding Limits (ABEL)
 Authors@R: c(person("Helmut", "Schütz",
                role = c("aut", "cre"), email = "helmut.schuetz@bebac.at"),
@@ -18,6 +18,8 @@ Description: Performs comparative bioavailability-calculations for the
              outliers. If the design allows, assessment of the empiric
              Type I Error and iteratively adjusting α to preserve the
              consumer risk.
+             Average Bioequivalence (ABE) - optionally with tighter limits
+             required for NTIDs - is implemented as well.
 License: GPL (>=3)
 ByteCompile: no
 LazyData: true
