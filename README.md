@@ -22,7 +22,8 @@ The library supports methods given in the EMA’s [Q&A document](http://www.ema.
     - Estimated via function ```lmer()``` of library ```lmerTest```. Uses Satterthwaite’s degrees of freedom.
 
 
-- Conventional (unscaled) Average Bioequivalence (ABE) can be calculated as well.
+- Conventional (unscaled) Average Bioequivalence (ABE) – optionally with tighter limits
+             required for NTIDs – can be calculated as well.
 
 Tested designs
 - 4-period (full) replicates
