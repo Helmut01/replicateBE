@@ -369,11 +369,12 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
 # Importing from a CSV-file, using most of the defaults: variable
 # separator colon, decimal separator period, no outlier-analyis,
 # print to file.
-# Note: You must adapt the path-variables. Write-permissions must
-# be granted for 'path.out' in order to save the result file. If
-# 'path.out' is not specified, results are written to the home folder.
-path.in <- paste0(find.package("replicateBE"), "/extdata/")
-method.B(path.in = path.in, file = "DS", set = "01", ext = "csv")
+# Note: You must adapt the path-variables. The example reads from
+# the data provided by the library. Write-permissions must be granted
+# for 'path.out' in order to save the result file. If 'path.out' is
+# not specified, results are written to the home folder.
+# path.in <- paste0(find.package("replicateBE"), "/extdata/")
+# method.B(path.in = path.in, file = "DS", set = "01", ext = "csv")
 # Should result in:
 #   CVwT               :  35.16\%
 #   swT                :   0.34138
@@ -407,29 +408,32 @@ method.B(ola = TRUE, verbose = TRUE, data = rds01)
 x <- method.B(ola = TRUE, print = FALSE, details = TRUE, data = rds01)
 print(x, row.names = FALSE)
 # Compare Method B with Method A for all reference data sets.
-\dontrun{
-ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))),
-                  value=TRUE), 1, 5)
-for (i in seq_along(ds)) {
-  A <- method.A(print=FALSE, details=TRUE,
-                data=eval(parse(text=ds[i])))$BE
-  B <- method.B(print=FALSE, details=TRUE,
-                data=eval(parse(text=ds[i])))$BE
-  r <- paste0("A ", A, ", B ", B, " \u2013 ")
-  cat(paste0(ds[i], ":"), r)
-  if (A == B) {
-    cat("Method A and B agree.\n")
-  } else {
-    if (A == "fail" & B == "pass") {
-      cat("Method A is conservative.\n")
-    } else {
-      cat("Method B is conservative.\n")
-    }
-  }
-}}
+# Remove the hash-character leading all lines before copying to the
+# R-console.
+# ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))),
+#                   value=TRUE), 1, 5)
+# for (i in seq_along(ds)) {
+#   A <- method.A(print=FALSE, details=TRUE,
+#                 data=eval(parse(text=ds[i])))$BE
+#   B <- method.B(print=FALSE, details=TRUE,
+#                 data=eval(parse(text=ds[i])))$BE
+#   r <- paste0("A ", A, ", B ", B, " \u2013 ")
+#   cat(paste0(ds[i], ":"), r)
+#   if (A == B) {
+#     cat("Methods A and B agree.\n")
+#   } else {
+#     if (A == "fail" & B == "pass") {
+#       cat("Method A is conservative.\n")
+#     } else {
+#       cat("Method B is conservative.\n")
+#     }
+#   }
+# }
 # should give
-#   rds01: A pass, B pass – Method A and B agree.
-#   rds02: A pass, B pass – Method A and B agree.
+#   rds01: A pass, B pass – Methods A and B agree.
+#   ...
+#   rds04: A fail, B fail – Methods A and B agree.
 #   ...
 #   rds14: A pass, B fail – Method B is conservative.
+#   ...
 }

@@ -365,17 +365,18 @@ Pharm Res. 2016;33(11):2805--14. \doi{10.1007/s11095-016-2006-1}
 # Importing from a CSV-file, using most of the defaults: variable
 # separator colon, decimal separator period, no outlier-analyis,
 # print to file.
-# Note: You must adapt the path-variables. Write-permissions must
-# be granted for 'path.out' in order to save the result file. If
-# 'path.out' is not specified, results are written to the home folder.
-path.in <- paste0(find.package("replicateBE"), "/extdata/")
-method.A(path.in = path.in, file = "DS", set = "01", ext = "csv")
+# Note: You must adapt the path-variables. The example reads from
+# the data provided by the library. Write-permissions must be granted
+# for 'path.out' in order to save the result file. If 'path.out' is
+# not specified, results are written to the home folder.
+# path.in <- paste0(find.package("replicateBE"), "/extdata/")
+# method.A(path.in = path.in, file = "DS", set = "01", ext = "csv")
 # Should result in:
 #   CVwT               :  35.16\%
 #   swT                :   0.34138
 #   CVwR               :  46.96\% (reference-scaling applicable)
 #   swR                :   0.44645
-#   Expanded limits    :  71.23\% ... 140.40\% [100exp(?0.760?swR)]
+#   Expanded limits    :  71.23\% ... 140.40\% [100exp(±0.760·swR)]
 #   swT / swR          :   0.7647 (similar variabilities of T and R)
 #   sw-ratio (upper CL):   0.9324 (comparable variabilities of T and R)
 #   Confidence interval: 107.11\% ... 124.89\%  pass
@@ -391,7 +392,7 @@ method.A(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 #   Recalculation due to presence of 2 outliers (subj. 45|52)
 #   CVwR (outl. excl.) :  32.16\% (reference-scaling applicable)
 #   swR (recalculated) :   0.31374
-#   Expanded limits    :  78.79\% ... 126.93\% [100exp(?0.760?swR)]
+#   Expanded limits    :  78.79\% ... 126.93\% [100exp(±0.760·swR)]
 #   swT / swR (recalc.):   1.0881 (similar variabilities of T and R)
 #   sw-ratio (upper CL):   1.3282 (comparable variabilities of T and R)
 #   Confidence interval: pass
