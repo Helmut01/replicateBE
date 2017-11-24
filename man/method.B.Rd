@@ -411,7 +411,7 @@ print(x, row.names = FALSE)
 # Remove the hash-character leading all lines before copying to the
 # R-console.
 # ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))),
-#                   value=TRUE), 1, 5)
+#                   value=TRUE), start=1, stop=5)
 # for (i in seq_along(ds)) {
 #   A <- method.A(print=FALSE, details=TRUE,
 #                 data=eval(parse(text=ds[i])))$BE
