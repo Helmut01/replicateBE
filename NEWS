@@ -1,5 +1,5 @@
 Version 1.0.5.9000
-Published on GitHub 2017-11-24
+Published on GitHub 2017-11-25
     - TODO: CHECK throws a WARNING
       checking for unstated dependencies in examples ... WARNING
       Warning in parse(file = files, n = -1L) :
@@ -49,7 +49,8 @@ Published on GitHub 2017-11-24
       sequence to the reordered sequences in get.data(). Calculation was
       correct but output in result-files wrong.
     - New function info.design(). Sorts sequences according to the
-      preferred order and throws a message if the design is untested.
+      preferred order (T first) and throws a message if the design is
+      untested.
     - Changed TRTR|TRRT|RTTR|RTRT to TRTR|RTRT|TRRT|RTTR. More logical
       (stacking sequences of the other full replicates). Adapted
       scripts and man pages accordingly.
@@ -62,7 +63,7 @@ Published on GitHub 2017-11-24
     - Introduced aliases in man pages for all data sets. Otherwise,
       warnings in CHECK about undocumented objects.
     - Identify internal data sets based on their attribute. Uses now
-      info.data(). THX to Detlew. which.data() removed.
+      info.data(). THX to Detlew. Function which.data() removed.
     - Man pages reworked. [DL]
     - method.A(adjust=TRUE) assesses additionally the TIE based on
       the recalculated CVwR (if applicable).
