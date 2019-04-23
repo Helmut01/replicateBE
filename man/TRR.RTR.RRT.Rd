@@ -92,7 +92,7 @@ Data sets from the public domain or edited to be evaluated by \code{method.A()},
 
 \references{
 European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).}\cr
-London, 19 November 2015. \href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf}{EMA/618604/2008 Rev. 13}
+London, 19 November 2015. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf}{EMA/618604/2008 Rev. 13}
 
 Patterson SD, Jones B. \emph{Viewpoint: observations on scaled average bioequivalence.}\cr
 Pharm Stat. 2012;11(1):1--7. \doi{10.1002/pst.498}

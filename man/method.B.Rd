@@ -243,22 +243,22 @@ If \code{ola=TRUE} and at least one outlier was detected:
 European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
 \emph{Guideline on the Investigation of Bioequivalence}\cr
 London, 20 January 2010.
-\href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2010/01/WC500070039.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
+\href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
 
 3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} \acronym{EGA} Symposium on Bioequivalence\cr
 \emph{Questions and Answers on the Revised \acronym{EMA} Bioequivalence Guideline}\cr
 London, 1 June 2010.
-\href{http://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf}{open access}
+\href{https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf}{open access}
 
 European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
 \emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP)}\cr
 London, 19 November 2015.
-\href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf}{EMA/618604/2008 Rev. 13}
+\href{https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf}{EMA/618604/2008 Rev. 13}
 
 European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
 \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms}\cr
 London, 20 November 2014.
-\href{http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2014/11/WC500177884.pdf}{EMA/CPMP/EWP/280/96 Corr1}
+\href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{EMA/CPMP/EWP/280/96 Corr1}
 
 World Health Organization, Prequalification Team: medicines\cr
 \emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm}\cr
