@@ -1,5 +1,5 @@
 # Data set II given by the EMA (Q&A document) available at
-# http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf
+# https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf
 subject,period,sequence,treatment,PK,logPK
 1,1,RTR,R,4053.6,8.307361
 1,2,RTR,T,3970.4,8.286622
