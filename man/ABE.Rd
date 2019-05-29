@@ -231,6 +231,7 @@ London, 20 November 2014.
 }
 
 \examples{
+\dontrun{
 # Importing from a CSV-file, using most of the defaults: variable
 # separator colon, decimal separator period, print to file.
 # Note: You must adapt the path-variables. The example reads from
@@ -242,16 +243,16 @@ London, 20 November 2014.
 # Should result in:
 #   BE-limits          :  80.00\% ... 125.00\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass
-#   Point estimate     : 102.26\%
-#
+#   Point estimate     : 102.26\%}
 # Generate the data.frame of results (7-digits precision) and show
 # in the console. Use an internal data set.
 x <- ABE(details = TRUE, print = FALSE, data = rds02)
 print(x, row.names = FALSE)
+\dontrun{
 # Assuming a NTID and assess BE with narrower limits.
 ABE(data = rds02, theta1 = 0.90)
 # Should result in:
 #   BE-limits          :  90.00\% ... 111.11\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass
-#   Point estimate     : 102.26\%
+#   Point estimate     : 102.26\%}
 }

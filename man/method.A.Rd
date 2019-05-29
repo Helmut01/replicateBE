@@ -362,6 +362,7 @@ Pharm Res. 2016;33(11):2805--14. \doi{10.1007/s11095-016-2006-1}
 }
 
 \examples{
+\dontrun{
 # Importing from a CSV-file, using most of the defaults: variable
 # separator colon, decimal separator period, no outlier-analyis,
 # print to file.
@@ -398,9 +399,8 @@ method.A(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 #   Confidence interval: pass
 #   Point estimate     : pass
 #   Mixed (CI & PE)    : pass
-#
 # Same data set. Show information about outliers and the ANOVA-table.
-method.A(ola = TRUE, verbose = TRUE, data = rds01)
+method.A(ola = TRUE, verbose = TRUE, data = rds01)}
 # Generate the data.frame of results (7-digits precision) and show
 # in the console
 x <- method.A(ola = TRUE, details = TRUE, print = FALSE, data = rds01)

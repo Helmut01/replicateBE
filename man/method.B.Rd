@@ -366,6 +366,7 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
 }
 
 \examples{
+\dontrun{
 # Importing from a CSV-file, using most of the defaults: variable
 # separator colon, decimal separator period, no outlier-analyis,
 # print to file.
@@ -403,20 +404,18 @@ method.B(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 #   Mixed (CI & PE)    : pass
 #
 # Same data set. Show information about outliers and the model-table.
-method.B(ola = TRUE, verbose = TRUE, data = rds01)
+method.B(ola = TRUE, verbose = TRUE, data = rds01)}
 # data.frame of results (7-digits precision) shown in the console.
 x <- method.B(ola = TRUE, print = FALSE, details = TRUE, data = rds01)
 print(x, row.names = FALSE)
 # Compare Method B with Method A for all reference data sets.
 # Remove the hash-character leading all lines before copying to the
 # R-console.
-# ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))),
-#                   value=TRUE), start=1, stop=5)
+# ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))), value=TRUE),
+#              start=1, stop=5)
 # for (i in seq_along(ds)) {
-#   A <- method.A(print=FALSE, details=TRUE,
-#                 data=eval(parse(text=ds[i])))$BE
-#   B <- method.B(print=FALSE, details=TRUE,
-#                 data=eval(parse(text=ds[i])))$BE
+#   A <- method.A(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
+#   B <- method.B(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
 #   r <- paste0("A ", A, ", B ", B, " \u2013 ")
 #   cat(paste0(ds[i], ":"), r)
 #   if (A == B) {
