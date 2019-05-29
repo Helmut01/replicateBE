@@ -2,7 +2,7 @@
 \name{method.B}
 \alias{method.B}
 \title{
-Comparative BA-calculation of Average Bioequivalence with Expanding Limits by the EMA\enc{’}{'}s \enc{‘}{'}Method B\enc{’}{'}
+Comparative BA-calculation of Average Bioequivalence with Expanding Limits by the EMA's 'Method B'
 }
 \description{
   This function performs the required calculations for the mixed (or aggregate)
@@ -268,7 +268,7 @@ Geneva, 9 June 2017.
 Food and Drug Administration, Office of Generic Drugs.\cr
 \emph{Draft Guidance on Warfarin Sodium}\cr
 December 2012.
-\href{https://www.fda.gov/downloads/drugs/guidancecomplianceregulatoryinformation/guidances/ucm201283.pdf}{open access}
+\href{https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf}{open access}
 }
 
 \author{

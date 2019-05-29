@@ -2,7 +2,7 @@
 \name{method.A}
 \alias{method.A}
 \title{
-  Comparative BA-calculation of Average Bioequivalence with Expanding Limits by the EMA\enc{’}{'}s \enc{‘}{'}Method A\enc{’}{'}
+  Comparative BA-calculation of Average Bioequivalence with Expanding Limits by the EMA's 'Method A'
 }
 
 \description{
@@ -294,7 +294,7 @@ If \code{ola=TRUE} and at least one outlier was detected:
   The \acronym{EMA}\enc{’}{'}s method of reference-scaling for highly
   variable drugs / drug products is currently recommended in other jurisdictions
   as well (\emph{e.g.}, the \acronym{WHO}; \acronym{ASEAN} States, Australia,
-  Brazil, Egypt, the Russian Federation, the Eurasian Economic Union, New Zealand).\cr\cr
+  Brazil, Egypt, the Russian Federation, the Eurasian Economic Union, the East African Community, New Zealand).\cr\cr
   The \acronym{WHO} opened a pilot phase exploring reference-scaling
   for AUC (4-period full replicate studies are mandatory in order to assess
   the variability associated with each product). It is an open issue how this
@@ -346,7 +346,7 @@ Geneva, 9 June 2017.
 Food and Drug Administration, Office of Generic Drugs.\cr
 \emph{Draft Guidance on Warfarin Sodium}\cr
 December 2012.
-\href{https://www.fda.gov/downloads/drugs/guidancecomplianceregulatoryinformation/guidances/ucm201283.pdf}{open access}
+\href{https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf}{open access}
 
 Labes D, \enc{Schütz}{Schuetz} H.\cr
 \emph{Inflation of Type I Error in the Evaluation of Scaled Average Bioequivalence,
