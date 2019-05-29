@@ -1,5 +1,5 @@
 # Drug 14a, Cmax data: MAO inhibitor- IR of the FDA's bioequivalence study files; available at
-# https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip.
+# https://web.archive.org/web/20170723175533/https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip.
 subject,period,sequence,treatment,PK
 1,1,RTTR,R,0.2813
 1,2,RTTR,T,0.2947
