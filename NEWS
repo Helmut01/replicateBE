@@ -1,6 +1,7 @@
 Version 1.0.5.9002
 Published on GitHub 2019-05-29
     - Updated links in man-pages to reflect changes in the FDA's site.
+    - Updated links to reference data in info.data.R
 
 Version 1.0.5.9001
 Published on GitHub 2019-04-23

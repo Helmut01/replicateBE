@@ -8,8 +8,8 @@ info.data <- function(data = NULL) {
   if (missing(data) | is.null(data)) stop()
   sets     <- 28
   descr    <- c("Data set I given by the EMA (Q&A document) available at
- http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf",
-                "Data set II given by the EMA (Q&A document) available at http://www.ema.europa.eu/docs/en_GB/document_library/Scientific_guideline/2009/09/WC500002963.pdf",
+ https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf",
+                "Data set II given by the EMA (Q&A document) available at https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf",
                 "Modified Data set I given by the EMA (Q&A document): Period\u00A03 removed.",
                 "Cmax data of Table II from Patterson SD, Jones B. Viewpoint: observations on scaled average bioequivalence. Pharm Stat. 2012:11(1):1\u20137. doi:10.1002/pst.498",
                 "Cmax data of the Appendix from Metzler CM, Shumaker RC. The Phenytoin Trial is a Case Study of \u2018Individual\u2019 Bioequivalence. Drug Inf J. 1998:32:1063\u201372.",
@@ -23,7 +23,7 @@ info.data <- function(data = NULL) {
                 "Highly incomplete data set (based of rds08: Approx. 50% of period\u00A04 data deleted).",
                 "Data set simulated with extreme intra- and intersubject variability, GMR\u00A0= 1. Dropouts as a hazard function growing with period.",
                 "Highly incomplete data set (based of rds08: Approx. 50% of period\u00A04 data are coded as missing '.').",
-                "Drug 14a, Cmax data: MAO inhibitor\u00A0- IR of the FDA\u2019s bioequivalence study files: available at https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip.",
+                "Drug 14a, Cmax data: MAO inhibitor\u00A0- IR of the FDA\u2019s bioequivalence study files: available at https://wayback.archive-it.org/7993/20170723175533/https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip.",
                 "Highly unbalanced data set (based on rds03: 12 subjects in RTR and 7 in TRT).",
                 "Highly incomplete data set (based on rds14: T data of subjects 63\u201378 removed).",
                 "Highly incomplete data set (based on rds18: Data of subjects 63\u201378 removed).",
