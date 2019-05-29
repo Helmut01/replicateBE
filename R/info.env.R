@@ -43,7 +43,7 @@ info.env <- function(fun, option=NA, path.in, path.out,
                    "terms of the GNU General Public License as published by the Free Software Foun-\n",
                    "dation; either version 3, or (at your option) any later version. See the GNU\n",
                    "GPL for more details. Copies of the GPL-3 versions are available at:\n",
-                   "http://www.gnu.org/licenses/gpl-3.0.html")
+                   "https://www.gnu.org/licenses/gpl-3.0.html")
   discl  <- paste0("\n\u2554", paste0(rep("\u2550", 76), collapse=""), "\u2557\n",
                    "\u2551 Program offered for Use without any Guarantees and Absolutely No Warranty. \u2551\n",
                    "\u2551 No Liability is accepted for any Loss and Risk to Public Health Resulting  \u2551\n",

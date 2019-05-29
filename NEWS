@@ -3,6 +3,9 @@ Published on GitHub 2019-05-29
     - Updated links in man-pages to reflect changes in the FDA's site.
     - Updated links to reference data in info.data.R
     - Updated links in CSV-files
+    - The warning in CHECK dissappeared in R 3.6.0. Yet throws other ones:
+      Found the following significant warnings:
+       Warning: working directory was changed to 'E:/Users/HS/Documents', resetting
 
 Version 1.0.5.9001
 Published on GitHub 2019-04-23
