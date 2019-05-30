@@ -2,7 +2,7 @@
 # function to show the  #
 # BE-limits, CI, and PE #
 #########################
-draw.line <- function(called.from, L, U, lo, hi, PE, theta1, theta2) {
+repBE.draw.line <- function(called.from, L, U, lo, hi, PE, theta1, theta2) {
   # unicode symbols:
   # confidence interval:   filled black square
   #                        ]max.range[ left and/or right triangle

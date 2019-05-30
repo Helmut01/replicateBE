@@ -231,8 +231,8 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                 "              ", res$GMR,
                 "\nMixed (CI & PE)    :                      ", res$BE, "\n")
   txt <- paste0(txt,
-                draw.line(called.from="ABEL",
-                          L=ret$BE1, U=ret$BE2, lo=CI[1], hi=CI[2], PE=PE), "\n")
+                repBE.draw.line(called.from="ABEL", L=ret$BE1, U=ret$BE2,
+                                lo=CI[1], hi=CI[2], PE=PE), "\n")
   if (!is.na(res$"CVwR.new(%)")) {
     txt1 <- paste0("\nAssessment based on recalculated CVwR",
                    sprintf(" %.2f%%", res$"CVwR.new(%)"))
@@ -241,8 +241,8 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                   "\nPoint estimate     : ", res$GMR.new,
                   "\nMixed (CI & PE)    : ", res$BE.new, "\n")
     txt <- paste0(txt,
-                  draw.line(called.from="ABEL",
-                            L=ret$BE.new1, U=ret$BE.new2, lo=CI[1], hi=CI[2], PE=PE), "\n")
+                  repBE.draw.line(called.from="ABEL", L=ret$BE.new1, U=ret$BE.new2,
+                                  lo=CI[1], hi=CI[2], PE=PE), "\n")
   }
   if (res$Design == "TRR|RTR")
     txt <- paste0(txt, "Note: The extra-reference design assumes lacking period effects. ",

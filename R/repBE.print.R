@@ -2,7 +2,7 @@
 # S3 method for printing results of #
 # ABE(), method.A(), and method.B() #
 #####################################
-print.repBE <- function(x, ...) {
+repBE.print <- function(x, ...) {
   # easier to assign results to new variables
   # and get rid of the factors
   #browser()
@@ -54,12 +54,12 @@ print.repBE <- function(x, ...) {
   cat("\nCI =", sprintf("%6.2f%%", CI))
   if (method == "ABE") {
     cat(": BE =", BE.ass, "\n",
-        draw.line(called.from="ABE", L=BE.lim[1]/100, U=BE.lim[2]/100,
-                  lo=CI[1]/100, hi=CI[2]/100, PE=PE/100))
+        repBE.draw.line(called.from="ABE", L=BE.lim[1]/100, U=BE.lim[2]/100,
+                        lo=CI[1]/100, hi=CI[2]/100, PE=PE/100))
   } else {
     cat(": CI =", CI.ass, " GMR =", GMR.ass, " BE =", BE.ass, "\n",
-        draw.line(called.from="ABEL", L=EL[1]/100, U=EL[2]/100,
-                  lo=CI[1]/100, hi=CI[2]/100, PE=PE/100))
+        repBE.draw.line(called.from="ABEL", L=EL[1]/100, U=EL[2]/100,
+                        lo=CI[1]/100, hi=CI[2]/100, PE=PE/100))
   }
   cat("\n\n")
 }

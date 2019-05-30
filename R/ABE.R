@@ -116,9 +116,9 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                 res$"CI.lo(%)", res$"CI.hi(%)"), "  ", res$BE,
                 "\nPoint estimate     : ", sprintf("%6.2f%%", res$"PE(%)"), "\n")
   txt <- paste0(txt,
-                draw.line(called.from="ABE",
-                          L=ret$BE1, U=ret$BE2, lo=CI[1], hi=CI[2], PE=PE,
-                          theta1=theta1, theta2=theta2), "\n")
+                repBE.draw.line(called.from="ABE", L=ret$BE1, U=ret$BE2,
+                                lo=CI[1], hi=CI[2], PE=PE,
+                                theta1=theta1, theta2=theta2), "\n")
   if (res$Design == "TRR|RTR")
     txt <- paste0(txt, "\nNote: The extra-reference design assumes lacking period effects. ",
                   "The treatment\ncomparison will be biased in the presence of a ",

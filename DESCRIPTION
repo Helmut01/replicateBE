@@ -1,7 +1,7 @@
 Encoding: UTF-8
 Package: replicateBE
 Version: 1.0.5.9002
-Date: 2019-05-29
+Date: 2019-05-30
 Title: Average Bioequivalence with Expanding Limits (ABEL)
 Authors@R: c(person("Helmut", "Schütz",
                role = c("aut", "cre"), email = "helmut.schuetz@bebac.at"),
@@ -10,18 +10,20 @@ Authors@R: c(person("Helmut", "Schütz",
              person("Detlew", "Labes",
                role = c("ctb"), email = "DetlewLabes@gmx.de"))
 Maintainer: Helmut Schütz <helmut.schuetz@bebac.at>
-Imports: readxl (>= 1.0.0), PowerTOST, lmerTest, nlme, graphics,
-         grDevices
 Description: Performs comparative bioavailability-calculations for the
              EMA’s Average Bioequivalence with Expanding Limits (ABEL).
              Implemented are ‘Method A’ and ‘Method B’, detection of
              outliers. If the design allows, assessment of the empiric
-             Type I Error and iteratively adjusting α to preserve the
+             Type I Error and iteratively adjusting a to preserve the
              consumer risk.
              Average Bioequivalence (ABE) - optionally with tighter limits
              required for NTIDs - is implemented as well.
+Imports: readxl (>= 1.0.0), PowerTOST, lmerTest, nlme, graphics,
+         grDevices
+Suggests: knitr, rmarkdown
 License: GPL (>=3)
-ByteCompile: no
+ByteCompile: yes
 LazyData: true
+VignetteBuilder: knitr
 URL: https://github.com/Helmut01/replicateBE
 BugReports: https://github.com/Helmut01/replicateBE/issues

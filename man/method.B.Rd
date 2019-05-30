@@ -339,7 +339,7 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
   variable drugs / drug products is currently recommended in other
   jurisdictions as well (\emph{e.g.}, the \acronym{WHO}; \acronym{ASEAN}
   States, Australia, Brazil, Egypt, the Russian Federation, the Eurasian
-  Economic Union, New Zealand).\cr
+  Economic Union, the East African Community, New Zealand).\cr
   The \acronym{WHO} opened a pilot phase exploring reference-scaling for
   \acronym{AUC} (4-period full replicate studies are mandatory in order
   to assess the variability associated with each product). It is an open
