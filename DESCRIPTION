@@ -20,7 +20,7 @@ Description: Performs comparative bioavailability-calculations for the
              required for NTIDs - is implemented as well.
 Imports: readxl (>= 1.0.0), PowerTOST, lmerTest, nlme, graphics,
          grDevices
-Suggests: knitr, rmarkdown, testthat
+Suggests: knitr, rmarkdown, testthat, devtools
 License: GPL (>=3)
 ByteCompile: yes
 LazyData: true
