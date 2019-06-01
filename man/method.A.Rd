@@ -370,8 +370,8 @@ Pharm Res. 2016;33(11):2805--14. \doi{10.1007/s11095-016-2006-1}
 # the data provided by the library. Write-permissions must be granted
 # for 'path.out' in order to save the result file. If 'path.out' is
 # not specified, results are written to the home folder.
-# path.in <- paste0(find.package("replicateBE"), "/extdata/")
-# method.A(path.in = path.in, file = "DS", set = "01", ext = "csv")
+path.in <- paste0(find.package("replicateBE"), "/extdata/")
+method.A(path.in = path.in, file = "DS", set = "01", ext = "csv")
 # Should result in:
 #   CVwT               :  35.16\%
 #   swT                :   0.34138

@@ -1,6 +1,11 @@
+Version 1.0.5.9003
+Published on GitHub 2019-06-01
+    - Added \tests for testthat()
+    - First version of vignette. Why is it not included in the package?
+
 Version 1.0.5.9002
 Published on GitHub 2019-05-30
-    - Updated links in man-pages to reflect changes in the FDA's site.
+    - Updated links in man-pages to reflect changes in the FDA's site
     - Updated links to reference data in info.data.R
     - Updated links in CSV-files
     - The warning in CHECK dissappeared in R 3.6.0. Throws other ones
@@ -8,7 +13,7 @@ Published on GitHub 2019-05-30
       \dontrun{}
     - Renamed S3 methods (prefixed with 'repBE') acc. to
       https://github.com/r-lib/rlang/issues/669 THX to MT!
-      However, doesn't help.
+      However, doesn't help. TODO!
 
 Version 1.0.5.9001
 Published on GitHub 2019-04-23

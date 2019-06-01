@@ -1,7 +1,7 @@
 Encoding: UTF-8
 Package: replicateBE
-Version: 1.0.5.9002
-Date: 2019-05-30
+Version: 1.0.5.9003
+Date: 2019-06-01
 Title: Average Bioequivalence with Expanding Limits (ABEL)
 Authors@R: c(person("Helmut", "Schütz",
                role = c("aut", "cre"), email = "helmut.schuetz@bebac.at"),
@@ -20,7 +20,7 @@ Description: Performs comparative bioavailability-calculations for the
              required for NTIDs - is implemented as well.
 Imports: readxl (>= 1.0.0), PowerTOST, lmerTest, nlme, graphics,
          grDevices
-Suggests: knitr, rmarkdown
+Suggests: knitr, rmarkdown, testthat
 License: GPL (>=3)
 ByteCompile: yes
 LazyData: true

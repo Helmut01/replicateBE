@@ -409,25 +409,24 @@ method.B(ola = TRUE, verbose = TRUE, data = rds01)}
 x <- method.B(ola = TRUE, print = FALSE, details = TRUE, data = rds01)
 print(x, row.names = FALSE)
 # Compare Method B with Method A for all reference data sets.
-# Remove the hash-character leading all lines before copying to the
-# R-console.
-# ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))), value=TRUE),
-#              start=1, stop=5)
-# for (i in seq_along(ds)) {
-#   A <- method.A(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
-#   B <- method.B(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
-#   r <- paste0("A ", A, ", B ", B, " \u2013 ")
-#   cat(paste0(ds[i], ":"), r)
-#   if (A == B) {
-#     cat("Methods A and B agree.\n")
-#   } else {
-#     if (A == "fail" & B == "pass") {
-#       cat("Method A is conservative.\n")
-#     } else {
-#       cat("Method B is conservative.\n")
-#     }
-#   }
-# }
+\dontrun{
+ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))),
+                  value=TRUE), start=1, stop=5)
+for (i in seq_along(ds)) {
+  A <- method.A(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
+  B <- method.B(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
+  r <- paste0("A ", A, ", B ", B, " \u2013 ")
+  cat(paste0(ds[i], ":"), r)
+  if (A == B) {
+    cat("Methods A and B agree.\n")
+  } else {
+    if (A == "fail" & B == "pass") {
+      cat("Method A is conservative.\n")
+    } else {
+      cat("Method B is conservative.\n")
+    }
+  }
+}}
 # should give
 #   rds01: A pass, B pass – Methods A and B agree.
 #   ...

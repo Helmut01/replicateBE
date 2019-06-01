@@ -1,0 +1,686 @@
+#######
+# ABE #
+#######
+test_that("ABE (90% CI, PE) of rds01", { 
+  # 298 observations, runtime 0.03 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds01) 
+  expect_equivalent(x[15:17], 
+                    expected=c(107.1057, 124.8948, 115.6587), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds02", { 
+  # 72 observations, runtime 0.01 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds02) 
+  expect_equivalent(x[15:17], 
+                    expected=c(97.31555, 107.4649, 102.2644), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds03", { 
+  # 223 observations, runtime 0.03 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds03) 
+  expect_equivalent(x[15:17], 
+                    expected=c(113.0492, 136.4254, 124.1885), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds04", { 
+  # 153 observations, runtime 0.02 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds04) 
+  expect_equivalent(x[15:17], 
+                    expected=c(117.9016, 159.6893, 137.2138), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds05", { 
+  # 104 observations, runtime 0.02 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds05) 
+  expect_equivalent(x[15:17], 
+                    expected=c(103.8242, 112.0357, 107.8518), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds06", { 
+  # 298 observations, runtime 0.03 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds06) 
+  expect_equivalent(x[15:17], 
+                    expected=c(80.06738, 93.36574, 86.46127), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds07", { 
+  # 1080 observations, runtime 6.97 seconds 
+  skip_on_cran() 
+  x <- ABE(details=TRUE, print=FALSE, data=rds07) 
+  expect_equivalent(x[15:17], 
+                    expected=c(86.45598, 92.81029, 89.57681), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds08", { 
+  # 888 observations, runtime 0.36 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds08) 
+  expect_equivalent(x[15:17], 
+                    expected=c(75.69153, 87.59971, 81.42823), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds09", { 
+  # 888 observations, runtime 0.33 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds09) 
+  expect_equivalent(x[15:17], 
+                    expected=c(75.69153, 87.59971, 81.42823), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds10", { 
+  # 54 observations, runtime 0.01 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds10) 
+  expect_equivalent(x[15:17], 
+                    expected=c(96.26997, 107.5861, 101.7709), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds11", { 
+  # 148 observations, runtime 0.02 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds11) 
+  expect_equivalent(x[15:17], 
+                    expected=c(80.63656, 100.3801, 89.96836), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds12", { 
+  # 298 observations, runtime 0.03 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds12) 
+  expect_equivalent(x[15:17], 
+                    expected=c(90.82107, 158.9575, 120.1528), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds13", { 
+  # 776 observations, runtime 0.3 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds13) 
+  expect_equivalent(x[15:17], 
+                    expected=c(72.71128, 85.35728, 78.78094), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds14", { 
+  # 273 observations, runtime 0.03 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds14) 
+  expect_equivalent(x[15:17], 
+                    expected=c(69.98855, 123.1679, 92.84581), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds15", { 
+  # 888 observations, runtime 0.31 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds15) 
+  expect_equivalent(x[15:17], 
+                    expected=c(72.71128, 85.35728, 78.78094), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds16", { 
+  # 152 observations, runtime 0 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds16) 
+  expect_equivalent(x[15:17], 
+                    expected=c(69.53983, 89.36796, 78.83294), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds17", { 
+  # 56 observations, runtime 0.03 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds17) 
+  expect_equivalent(x[15:17], 
+                    expected=c(116.0171, 155.1944, 134.1835), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds18", { 
+  # 245 observations, runtime 0.02 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds18) 
+  expect_equivalent(x[15:17], 
+                    expected=c(54.15838, 99.45727, 73.3924), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds19", { 
+  # 216 observations, runtime 0.03 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds19) 
+  expect_equivalent(x[15:17], 
+                    expected=c(54.17604, 100.0003, 73.60448), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds20", { 
+  # 216 observations, runtime 0.01 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds20) 
+  expect_equivalent(x[15:17], 
+                    expected=c(51.17198, 96.74928, 70.36229), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds21", { 
+  # 298 observations, runtime 0.05 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds21) 
+  expect_equivalent(x[15:17], 
+                    expected=c(111.7245, 127.7421, 119.4652), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds22", { 
+  # 126 observations, runtime 0.01 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds22) 
+  expect_equivalent(x[15:17], 
+                    expected=c(77.98481, 106.0858, 90.95646), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds23", { 
+  # 88 observations, runtime 0.02 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds23) 
+  expect_equivalent(x[15:17], 
+                    expected=c(97.12989, 128.4137, 111.6817), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds24", { 
+  # 160 observations, runtime 0.02 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds24) 
+  expect_equivalent(x[15:17], 
+                    expected=c(87.23787, 109.8533, 97.89466), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds25", { 
+  # 280 observations, runtime 0.01 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds25) 
+  expect_equivalent(x[15:17], 
+                    expected=c(77.92805, 98.10162, 87.43493), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds26", { 
+  # 216 observations, runtime 0.03 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds26) 
+  expect_equivalent(x[15:17], 
+                    expected=c(133.5157, 171.4202, 151.2854), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds27", { 
+  # 624 observations, runtime 6.34 seconds 
+  skip_on_cran() 
+  x <- ABE(details=TRUE, print=FALSE, data=rds27) 
+  expect_equivalent(x[15:17], 
+                    expected=c(78.64846, 89.05791, 83.69151), 
+                    tolerance=0.001, scale=1) 
+})
+
+test_that("ABE (90% CI, PE) of rds28", { 
+  # 256 observations, runtime 0.04 seconds 
+  x <- ABE(details=TRUE, print=FALSE, data=rds28) 
+  expect_equivalent(x[15:17], 
+                    expected=c(87.86358, 100.0704, 93.76858), 
+                    tolerance=0.001, scale=1) 
+})
+
+###################
+# ABEL (Method A) #
+###################
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds01", { 
+  # 298 observations, runtime 0.03 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds01) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(46.96431, 71.22698, 140.3962, 107.1057, 124.8948, 115.6587),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds02", { 
+  # 72 observations, runtime 0.01 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds02) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(11.17076, 80, 125, 97.31555, 107.4649, 102.2644),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds03", { 
+  # 223 observations, runtime 0.03 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds03) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(58.34494, 69.83678, 143.191, 113.0492, 136.4254, 124.1885),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds04", { 
+  # 153 observations, runtime 0.02 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds04) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(61.21664, 69.83678, 143.191, 117.9016, 159.6893, 137.2138),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds05", { 
+  # 104 observations, runtime 0.01 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds05) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(11.92193, 80, 125, 103.8242, 112.0357, 107.8518),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds06", { 
+  # 298 observations, runtime 0.04 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds06) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(35.15709, 77.14772, 129.6215, 80.06738, 93.36574, 86.46127),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds07", { 
+  # 1080 observations, runtime 6.97 seconds 
+  skip_on_cran() 
+  x <- method.A(details=TRUE, print=FALSE, data=rds07) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(34.18815, 77.67137, 128.7476, 86.45598, 92.81029, 89.57681),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds08", { 
+  # 888 observations, runtime 0.34 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds08) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(77.61894, 69.83678, 143.191, 75.69153, 87.59971, 81.42823),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds09", { 
+  # 888 observations, runtime 0.35 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds09) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(77.61894, 69.83678, 143.191, 75.69153, 87.59971, 81.42823),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds10", { 
+  # 54 observations, runtime 0.03 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds10) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(9.506099, 80, 125, 96.26997, 107.5861, 101.7709),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds11", { 
+  # 148 observations, runtime 0 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds11) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(36.23019, 76.57463, 130.5916, 80.63656, 100.3801, 89.96836),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds12", { 
+  # 298 observations, runtime 0.03 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds12) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(221.5472, 69.83678, 143.191, 90.82107, 158.9575, 120.1528),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds13", { 
+  # 776 observations, runtime 0.31 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds13) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(79.58209, 69.83678, 143.191, 72.71128, 85.35728, 78.78094),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds14", { 
+  # 273 observations, runtime 0.03 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds14) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(125.9951, 69.83678, 143.191, 69.98855, 123.1679, 92.84581),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds15", { 
+  # 888 observations, runtime 0.3 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds15) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(79.58209, 69.83678, 143.191, 72.71128, 85.35728, 78.78094),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds16", { 
+  # 152 observations, runtime 0.03 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds16) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(49.71545, 69.96489, 142.9288, 69.53983, 89.36796, 78.83294),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds17", { 
+  # 56 observations, runtime 0 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds17) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(30.38521, 79.7839, 125.3386, 116.0171, 155.1944, 134.1835),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds18", { 
+  # 245 observations, runtime 0.05 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds18) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(125.9951, 69.83678, 143.191, 54.15838, 99.45727, 73.3924),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds19", { 
+  # 216 observations, runtime 0.03 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds19) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(115.231, 69.83678, 143.191, 54.17604, 100.0003, 73.60448),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds20", { 
+  # 216 observations, runtime 0.01 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds20) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(135.9316, 69.83678, 143.191, 51.17198, 96.74928, 70.36229),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds21", { 
+  # 298 observations, runtime 0.05 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds21) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(32.16196, 78.7855, 126.9269, 111.7245, 127.7421, 119.4652),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds22", { 
+  # 126 observations, runtime 0 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds22) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(45.28325, 72.01939, 138.8515, 77.98481, 106.0858, 90.95646),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds23", { 
+  # 88 observations, runtime 0.03 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds23) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(49.60714, 70.01378, 142.829, 97.12989, 128.4137, 111.6817),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds24", { 
+  # 160 observations, runtime 0.02 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds24) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(54.24018, 69.83678, 143.191, 87.23787, 109.8533, 97.89466),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds25", { 
+  # 280 observations, runtime 0.03 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds25) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(82.80518, 69.83678, 143.191, 77.92805, 98.10162, 87.43493),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds26", { 
+  # 216 observations, runtime 0.01 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds26) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(60.25584, 69.83678, 143.191, 133.5157, 171.4202, 151.2854),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds27", { 
+  # 624 observations, runtime 6.37 seconds 
+  skip_on_cran() 
+  x <- method.A(details=TRUE, print=FALSE, data=rds27) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(35.76263, 76.82345, 130.1686, 78.64846, 89.05791, 83.69151),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds28", { 
+  # 256 observations, runtime 0.03 seconds 
+  x <- method.A(details=TRUE, print=FALSE, data=rds28) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(28.74524, 80, 125, 87.86358, 100.0704, 93.76858),
+                    tolerance=0.001, scale=1)
+})
+
+###################
+# ABEL (Method B) #
+###################
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds01", { 
+  # 298 observations, runtime 0.03 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds01) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(46.96431, 71.22698, 140.3962, 107.1707, 124.9725, 115.7298),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds02", { 
+  # 72 observations, runtime 0.04 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds02) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(11.17076, 80, 125, 97.31555, 107.4649, 102.2644),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds03", { 
+  # 223 observations, runtime 0.01 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds03) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(58.34494, 69.83678, 143.191, 113.3136, 136.7324, 124.4734),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds04", { 
+  # 153 observations, runtime 0.03 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds04) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(61.21664, 69.83678, 143.191, 117.9016, 159.6893, 137.2138),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds05", { 
+  # 104 observations, runtime 0.03 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds05) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(11.92193, 80, 125, 103.8242, 112.0357, 107.8518),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds06", { 
+  # 298 observations, runtime 0.03 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds06) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(35.15709, 77.14772, 129.6215, 80.01762, 93.30905, 86.40815),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds07", { 
+  # 1080 observations, runtime 2.7 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds07) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(34.18815, 77.67137, 128.7476, 86.45598, 92.81029, 89.57681),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds08", { 
+  # 888 observations, runtime 0.13 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds08) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(77.61894, 69.83678, 143.191, 75.69153, 87.59971, 81.42823),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds09", { 
+  # 888 observations, runtime 0.15 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds09) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(77.61894, 69.83678, 143.191, 75.69153, 87.59971, 81.42823),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds10", { 
+  # 54 observations, runtime 0.02 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds10) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(9.506099, 80, 125, 96.26997, 107.5861, 101.7709),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds11", { 
+  # 148 observations, runtime 0.03 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds11) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(36.23019, 76.57463, 130.5916, 80.63656, 100.3801, 89.96836),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds12", { 
+  # 298 observations, runtime 0.03 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds12) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(221.5472, 69.83678, 143.191, 90.34419, 157.8835, 119.4314),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds13", { 
+  # 776 observations, runtime 0.14 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds13) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(79.58209, 69.83678, 143.191, 72.86789, 85.51224, 78.9373),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds14", { 
+  # 273 observations, runtime 0.03 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds14) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(125.9951, 69.83678, 143.191, 69.21029, 121.2766, 91.61655),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds15", { 
+  # 888 observations, runtime 0.14 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds15) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(79.58209, 69.83678, 143.191, 72.86789, 85.51224, 78.9373),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds16", { 
+  # 152 observations, runtime 0.02 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds16) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(49.71545, 69.96489, 142.9288, 69.53983, 89.36796, 78.83294),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds17", { 
+  # 56 observations, runtime 0.03 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds17) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(30.38521, 79.7839, 125.3386, 115.9678, 155.0942, 134.1116),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds18", { 
+  # 245 observations, runtime 0.03 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds18) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(125.9951, 69.83678, 143.191, 59.12418, 107.2187, 79.61922),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds19", { 
+  # 216 observations, runtime 0.03 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds19) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(115.231, 69.83678, 143.191, 53.84191, 98.77551, 72.92641),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds20", { 
+  # 216 observations, runtime 0.03 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds20) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(135.9316, 69.83678, 143.191, 50.918, 95.62665, 69.77906),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds21", { 
+  # 298 observations, runtime 0.05 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds21) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(32.16196, 78.7855, 126.9269, 111.7166, 127.7332, 119.4568),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds22", { 
+  # 126 observations, runtime 0.02 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds22) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(45.28325, 72.01939, 138.8515, 77.98481, 106.0858, 90.95646),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds23", { 
+  # 88 observations, runtime 0.03 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds23) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(49.60714, 70.01378, 142.829, 97.12989, 128.4137, 111.6817),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds24", { 
+  # 160 observations, runtime 0.01 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds24) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(54.24018, 69.83678, 143.191, 87.23787, 109.8533, 97.89466),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds25", { 
+  # 280 observations, runtime 0.03 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds25) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(82.80518, 69.83678, 143.191, 77.92805, 98.10162, 87.43493),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds26", { 
+  # 216 observations, runtime 0.04 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds26) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(60.25584, 69.83678, 143.191, 133.5121, 171.4248, 151.2854),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds27", { 
+  # 624 observations, runtime 0.35 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds27) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(35.76263, 76.82345, 130.1686, 78.85772, 89.3044, 83.91866),
+                    tolerance=0.001, scale=1)
+})
+
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds28", { 
+  # 256 observations, runtime 0.04 seconds 
+  x <- method.B(details=TRUE, print=FALSE, data=rds28) 
+  expect_equivalent(x[, c(12, 15:19)], 
+                    expected=c(28.74524, 80, 125, 87.86358, 100.0704, 93.76858),
+                    tolerance=0.001, scale=1)
+})
