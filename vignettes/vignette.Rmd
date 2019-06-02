@@ -33,6 +33,9 @@ suppressMessages(library(replicateBE))
     * [Two period (full) replicate](#per2_full)
     * [Three period (partial) replicates](#per3_part)
 * [Data structure](#data_struct)
+    * [Incomplete data](#incomplete)
+      * [Estimation of _CV~w~_](#setCW)
+      * [Assessment of BE](#setBE)
 * [Notes on the methods](#notes)
     * [Estimation of intra-subject variability](#cv)
     * [Model structure](#model_struc)
@@ -54,7 +57,7 @@ The library provides data sets (internal `.rda` and in CSV-format in `/extdata/`
 The methods given in the EMA’s [Q&A document](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf) for reference-scaling according to the EMA’s [Guideline on the Investigation of Bioequivalence](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf) are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint [EGA/EMA workshop](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf).
 
 ### Methods{#methods}
-#### Method A{#methodA}
+#### function `method.A()`{#methodA}
 A linear model of log-transformed PK responses and effects\
    _sequence_, _subject(sequence)_, _period_, _treatment_\
 where all effects are fixed (_i.e._, ANOVA). Estimated via function `lm()` of library `stats`.
@@ -63,7 +66,7 @@ where all effects are fixed (_i.e._, ANOVA). Estimated via function `lm()` of li
 log(PK) ~ sequence + subject(sequence) + period + treatment, data = data
 ```
 
-#### Method B{#methodB}
+#### function `method.B()`{#methodB}
 A linear model of log-transformed PK responses and effects\
    _sequence_, _subject(sequence)_, _period_, _treatment_\
 where _subject(sequence)_ is a random effect and all others are fixed.
@@ -74,12 +77,13 @@ log(PK) ~ sequence +  period + treatment, random = ~1|subject, data = data
 Two options are provided
 
 1.  Estimated via function `lmer()` of library `lmerTest`. Uses Satterthwaite’s degrees of freedom.\
-`method.B(..., option=1)`
+`method.B(..., option = 1)`
 2.  Estimated via function `lme()` of library `nlme`. Uses degrees of freedom equivalent to SAS’ `DDFM=CONTAIN` and Phoenix/WinNonlin’s `DF Residual`. Implicitly preferred according to the Q&A document.\
-`method.B(..., option=2)`, the default.
+`method.B(..., option = 2)`, the default.
 
-#### ABE {#ABE}
-Conventional Average Bioequivalence – optionally with tighter limits required for narrow therapeutic index drugs – can be calculated as well. The model is identical to [Method A](#methodA).
+#### function `ABE()`{#ABE}
+Conventional Average Bioequivalence, where the model is identical to [Method A](#methodA). Tighter limits for narrow therapeutic index drugs (EMA 90.00 – 111.11%) or wider limits (75.00 – 133.33% for C~max~ according to the guideline of the GCC^[Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, and the United Arab Emirates.]) can be specified.
+
 
 ### Tested designs{#designs}
 #### Four period (full) replicates{#per4_full}
@@ -113,11 +117,38 @@ The test treatment is administered once and the reference treatment at least onc
 Columns must have the headers `subject`, `period`, `sequence`, `treatment`, `PK`, and/or `logPK`.^[Naperian logarithm (base _e_). The decadic logarithm (base 10) is not supported).] Any order of columns is acceptable. Uppercase and mixed case headers will be internally converted to lowercase headers.
 
 | variable | format |
-|-|------|
+|-|---------|
 | `subject` | Integer numbers or any combination of alphanumerics (A-Z, a-z, -, _, #, 0-9) |
 | `period` | Integer numbers |
-| `sequence` | Contained in the [tested designs](#designs). Numbers or _e.g._, `ABAB` are not acceptable |
-| `treatment` | The Test must be coded `T` and the Reference `R` |
+| `sequence` | Contained in the [tested designs](#designs). Numbers or _e.g._, `ABAB` are not acceptable. |
+| `treatment` | The Test treatment must be coded `T` and the Reference `R` (both uppercase). |
+
+Relevant data are used for the estimation of _CV~wR~_ (and _CV~wT~_ in full replicate designs) and BE, _i.e._, the data sets might be different. Is is good practice to state that in the SAP.
+
+
+#### Incomplete data{#incomplete}
+##### Estimation of _CV~w~_{#setCW}
+If a subject drops out from the study in a higher period, data of repeated administrations will still be used for the estimation of _CV~w~_, although data of the other treatment might be missing. Examples for the estimation of _CV~wR~_ (missings denoted by `.`):\
+`RTRT` → `RTR.`  
+`TRRT` → `TRR.`  
+`RRTT` → `RRT.` or `RR..`  
+`RRT` → `RR..`  
+
+
+##### Assessment of BE{#setBE}
+If a subject drops out from the study in a higher period, data with at least one administration of the Test and Reference will be used in the assessment of BE. Examples (missings denoted by `.`):\
+
+`TRTR` → `TRT.` or → `TR..`  
+`RTRT` → `RTR.` or → `RT..`  
+`TRRT` → `TRR.` or → `TR..`  
+`RTTR` → `RTT.` or → `RT..`  
+`TTRR` → `TTR.`  
+`TRT` → `TR.`  
+`RTR` → `RT.`  
+`TRR` → `TR.`  
+`RTR` → `RT.`  
+`RTT` → `RT.`  
+
 
 ### Notes on the methods{#notes}
 #### Estimation of intra-subject variability{#cv}
@@ -127,7 +158,17 @@ where all effects are fixed. Estimated via function `lm()` of library `stats`.
 ```
 log(PK) ~ sequence + subject(sequence) + period, data = data$R
 ```
-Though not stated by the EMA, for informational purposes in full replicate designs (required for the WHO) the same model is additionaly run with `data = data$T`.
+For informational purposes in full replicate designs (required by the WHO for reference-scaling of AUC) the same model is additionaly run with `data = data$T`.
+
+Special conditions for the sample size in three period full replicate designs:
+
+> _The question raised asks if it is possible to use a design where subjects are randomised to receive treatments in the order of TRT or RTR._
+> 
+> _[…] if a 3-period replicate design, where treatments are given in the order TRT or RTR, is to be used to justify widening of a confidence interval for C~max~ then it is considered that at least 12 patients would need to provide data from the RTR arm. This implies a study with at least 24 patients in total would be required if equal number of subjects are allocated to the 2 treatment sequences._
+> 
+> --- [Q&A document](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf) (June 2015 and later revisions)
+
+If less than twelve subjects remain in sequence `RTR` of a `TRT | RTR` design (and in analogy in sequence `TRR` of a `TRR | RTT` design), the user is notified about the uncertain estimate of _CV~wR~_. However, in a sufficiently powered study such a case is [extremely unlikely](https://forum.bebac.at/mix_entry.php?id=15139).
 
 
 #### Model structure{#model_struc}
@@ -137,46 +178,72 @@ The nested structure _subject(sequence)_ leads to an over-specificed model.^[Suc
    _sequence_, _subject_, _period_, _treatment_\
 gives identical estimates of the residual variance and the treatment effect and hence, its confidence interval.
 
+The same holds true for the [EMA’s model](#cv) to estimate _CV~wR~_. The simple model\
+   _subject_, _period_\
+gives an identical estimate of the residual variance.
+
 Reference-scaling is acceptable for C~max~ (immediate release products^[[EMA 2010](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf#page=17)]) and C~max~, C~max,ss~, C~τ,ss~, ~partial~AUC (modified release products^[[EMA 2014](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf#page=27)]) if high variability of the reference product (_CV~wR~_ >30%) was demonstrated.
 
-The intention to widen the limits has to be stated in the protocol and – contrary to the FDA’s RSABE – a clinical justification has to be provided.
+The intention to widen the limits has to be stated in the protocol and – contrary to the FDA’s RSABE – a clinical justification provided.
 
 > _Those HVDP for which a wider difference in C~max~ is considered clinically irrelevant based on a sound clinical justification can be assessed with a widened acceptance range.
 > The request for widened inter­val must be prospectively specified in the protocol._
 > 
-> --- [BE Guideline](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf)
+> --- [BE Guideline](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf) (January 2010)
 
 #### ABE limits, rounding issues{#BElim}
-The limits can be expanded according to $\left[ {L,U} \right] = 100{e^{ \mp 0.760 \cdot {s_{wR}}}}$ by following these rules (based on _CV~wR~_):
+The limits can be expanded based on _CV~wR~_.
 
 * _CV~wR~_ ≤ 30%\
-    Conventional limits [_L_,_U_] = 80.00 – 125.00%
+    Lower cap, _i.e._, no scaling, conventional limits:\
+    <small>$\left[ {L,U} \right] = {80.00 - 125.00\%}$</small>
 * 30% < _CV~wR~_ ≤ 50%\
-    Expanded limits based on _s~wR~_
+    Expanded limits based on $s_{wR}$:\
+    <small>$\left[ {L,U} \right] = 100{e^{ \mp 0.760 \cdot {s_{wR}}}}$</small>
 * _CV~wR~_ > 50%\
-    As if _CV~wR~_ = 50%, _i.e._, applying _s~wR~_ = √log(0.50^2^+1)
+    Upper cap, _i.e._, applying <small>$s^*_{wR}=\sqrt{log(0.50^2+1)}$</small> in the expansion formula or\
+    <small>$\left[ {L,U} \right] = {69.84 - 143.19\%}$</small>.
 
-In order to avoid small discontinuities at _CV~wR~_ ≈ 30% and 50% (due to double rounding), the expanded limits are calculated in full numeric precision and only the CI is rounded according to the GL. Like in all methods for reference-scaling a so-called _mixed criterion_ is applied. In order to pass BE both the CI has to lie entirely within the acceptance range _and_ the PE has to lie within 80.00 – 125.00%.
+In order to avoid small discontinuities at _CV~wR~_ ≈ 30% and 50% (due to double rounding), the expanded limits are calculated in full numeric precision and only the CI is rounded according to the GL.
+
+```{r}
+# Calculate limits with library PowerTOST
+CV <- c(29, seq(30, 50, by = 5), 51)
+df <- data.frame(CV = CV, L = NA, U = NA, cap = "",
+                 stringsAsFactors = FALSE)
+for (i in seq_along(CV)) {
+  df[i, 2:3] <- sprintf("%.8f", PowerTOST:::scABEL(CV[i]/100)*100)
+}
+df$cap[df$CV <= 30] <- "lower"
+df$cap[df$CV >= 50] <- "upper"
+names(df)[1:3] <- c("CV(%)", "L(%)", "U(%)")
+print(df, row.names = FALSE)
+```
+
+In reference-scaling a so-called _mixed_ (a.k.a. _aggregate_) criterion is applied. In order to pass BE,
+
+* the 90% confidence interval has to lie entirely within the acceptance range _and_
+* the point estimate has to lie within 80.00 – 125.00%.
 
 #### Degrees of freedom, comparison of methods{#df_comp}
-The SAS code provided by the EMA in the Q&A document does not specify how the degrees of freedom should be calculated in ‘Method B’. Hence, the default in `PROC MIXED`, namely `DDFM=CONTAIN` is applied, _i.e._, `method.B(..., option=2`). For incomplete data (missing periods) Satterthwaite’s approximation of the degrees of freedom, _i.e._, `method.B(..., option=1)` might be a better choice – if stated as such in the statistical analysis plan.
+The SAS code provided by the EMA in the Q&A document does not specify how the degrees of freedom should be calculated in ‘Method B’. Hence, the default in `PROC MIXED`, namely `DDFM=CONTAIN` is applied, _i.e._, `method.B(..., option = 2`). For incomplete data (missing periods) Satterthwaite’s approximation of the degrees of freedom, _i.e._, `method.B(..., option = 1)` might be a better choice – if stated as such in the statistical analysis plan.
 
 The EMA seemingly prefers ‘Method A’:
 
 > _A simple linear mixed model, which assumes identical within-subject variability (Method B), may be acceptable as long as results obtained with the two methods do not lead to different regulatory decisions. However, in borderline cases […] additional analysis using Method A might be required._
 > 
-> --- [Q&A document](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf)
+> --- [Q&A document](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf) (January 2011 and later revisions)
 
-The half-width of the confidence interval in log-scale allows a comparison of methods (B _v.s._ A) where a higher value _might_ point towards a more conservative decision.^[Of course, only if the GMRs are identical.] In the provided example data sets – with one exception – the con­clusion of BE (based on the mixed CI and GMR criteria) agrees between ‘Method A’ and ‘Method B’.\
+The half-width of the confidence interval in log-scale allows a comparison of methods (B _v.s._ A) where a higher value _might_ point towards a more conservative decision.^[Of course, only if the GMRs are identical.] In the provided example data sets – with one exception – the con­clusion of BE (based on the mixed criterion) agrees between ‘Method A’ and ‘Method B’.\
 However, for the highly incomplete data set 14 ‘Method B’ was _liberal_ (passing by ANOVA but failing by the mixed effects model):
 
 ```{r}
 # Compare Method B acc. to the GL with Method A for all reference data sets.
-ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))),
-                  value=TRUE), start=1, stop=5)
+ds <- substr(grep("rds", unname(unlist(data(package = "replicateBE"))),
+                  value = TRUE), start = 1, stop = 5)
 for (i in seq_along(ds)) {
-  A <- method.A(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
-  B <- method.B(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
+  A <- method.A(print=FALSE, details = TRUE, data = eval(parse(text = ds[i])))$BE
+  B <- method.B(print=FALSE, details = TRUE, data = eval(parse(text = ds[i])))$BE
   r <- paste0("A ", A, ", B ", B, " \u2013 ")
   cat(paste0(ds[i], ":"), r)
   if (A == B) {
@@ -191,22 +258,22 @@ for (i in seq_along(ds)) {
 }
 ```
 
-Details of data set 14:
+Exploring data set 14:
 ```{r}
-A  <- method.A(print=FALSE, details=TRUE, data=rds14)
-B2 <- method.B(print=FALSE, details=TRUE, data=rds14, option=2)
-B1 <- method.B(print=FALSE, details=TRUE, data=rds14, option=1)
-# Rounding according to the GL
+A  <- method.A(print = FALSE, details = TRUE, data = rds14)
+B2 <- method.B(print = FALSE, details = TRUE, data = rds14, option = 2)
+B1 <- method.B(print = FALSE, details = TRUE, data = rds14, option = 1)
+# Rounding of CI according to the GL
 A[15:19]  <- round(A[15:19],  2) # all effects fixed
 B1[15:19] <- round(B1[15:19], 2) # Satterthwaite's df
 B2[15:19] <- round(B2[15:19], 2) # df acc. to Q&A
-comp <- rbind(A[c(2, 15:23)], B1[c(2, 15:23)], B2[c(2, 15:23)])
-names(comp)[c(1, 10)] <- c("Meth.", "hw")
-comp$hw <- signif(comp$hw, 5)
-print(comp[order(comp$BE, comp$hw, decreasing=c(FALSE, TRUE)), ],
-      row.names=FALSE)
+df <- rbind(A[c(2, 15:23)], B1[c(2, 15:23)], B2[c(2, 15:23)])
+names(df)[c(1, 10)] <- c("Meth.", "hw")
+df$hw <- signif(df$hw, 5)
+print(df[order(df$BE, df$hw, decreasing = c(FALSE, TRUE)), ],
+      row.names = FALSE)
 ```
-Both variants of ‘Method B’ are more conservative than ‘Method A’. Before rounding the confidence interval, `option=2` with 192 degrees of freedom would be more conservative (lower CL 69.21029) than `option=2` with 197.44 degrees of freedom (lower CL 69.21286). However, given the incompleteness of this data set (4 missings in period 2, 12 in period 3, and 19 in period 4), Satterthwaite’s degrees of freedom probably are the better choice.
+Both variants of ‘Method B’ are more conservative than ‘Method A’. Before rounding the confidence interval, `option = 2` with 192 degrees of freedom would be more conservative (lower CL 69.21029) than `option = 1` with 197.44 degrees of freedom (lower CL 69.21286). However, given the incompleteness of this data set (four missings in period 2, twelve in period 3, and 19 in period 4), Satterthwaite’s degrees of freedom probably are the better choice.
 
 
 #### Outlier analysis{#ola}
@@ -214,7 +281,7 @@ It is an open issue how outliers should be handled.
 
 > _The applicant should justify that the calculated intra-subject variability is a reliable estimate and that it is not the result of outliers._
 > 
-> --- [BE Guideline](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf#page=17)
+> --- [BE Guideline](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf#page=17) (January 2010)
 
 Box plots were ‘suggested’ by the author as a joke [_sic_] at the EGA/EMA workshop, being aware of their nonparametric nature and the EMA’s reluctance towards robust methods. Unfortunately, this _joke_ was included in the Q&A document.
 
@@ -222,11 +289,11 @@ Box plots were ‘suggested’ by the author as a joke [_sic_] at the EGA/EMA wo
 >
 > _An outlier test is not an expectation of the medicines agencies but outliers could be shown by a box plot. This would allow the medicines agencies to compare the data between them._
 >
-> --- [EGA/EMA workshop, Q&A](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf)
+> --- [EGA/EMA workshop, Q&A](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf) (June 2010)
 
 
-In `method.A(..., ola=TRUE)` and `method.B(..., ola=TRUE)` the default `fence=2`^[The fences are the lowest data value still within 2×IQR of the lower quartile, and the highest value still within 2×IQR of the upper quartile, where IQR is the interquartile range (the difference between the third and first quartiles). Data outside the fences are considered outliers. Decreasing the multiplier to _e.g._, 1.5 might result in many outliers whereas increasing the multiplier in only a few.] is used (in `ABE()` assessment of outliers is not acceptable).\
-With the argument `ola=TRUE` the outlier analysis is performed and additionally to the scaled limits based on the complete reference data, tighter limits are calculated based on _CV~wR~_ after exclusion of outlier(s).
+In `method.A(..., ola = TRUE)` and `method.B(..., ola = TRUE)` the default `fence = 2`^[The fences are the lowest data value still within 2×IQR of the lower quartile, and the highest value still within 2×IQR of the upper quartile, where IQR is the interquartile range (the difference between the third and first quartiles). Data outside the fences are considered outliers. Decreasing the multiplier to _e.g._, 1.5 might result in many outliers whereas increasing the multiplier in only a few.] is used (in `ABE()` assessment of outliers is not acceptable).\
+With the argument `ola = TRUE` the outlier analysis is performed and additionally to the scaled limits based on the complete reference data, tighter limits are calculated based on _CV~wR~_ after exclusion of outlier(s).
 
 ### Applicability, outlook{#app_out}
 The EMA’s approach of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (_e.g._, the WHO; ASEAN States, Australia, Brazil, Egypt, the Russian Federation, the Eurasian Economic Union, the East African Community, New Zealand).
@@ -247,6 +314,6 @@ Results of reference data sets agree with ones obtained in SAS (9.3, 9.4) and Ph
 Inspect this information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.
 
 ```{r, sessioninfo}
-options(width = 100)
+options(width = 80)
 devtools::session_info()
 ```
