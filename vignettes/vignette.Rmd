@@ -36,6 +36,8 @@ suppressMessages(library(replicateBE))
     * [Incomplete data](#incomplete)
       * [Estimation of _CV~w~_](#setCW)
       * [Assessment of BE](#setBE)
+      * [Example of different data sets](#setexpl)
+
 * [Notes on the methods](#notes)
     * [Estimation of intra-subject variability](#cv)
     * [Model structure](#model_struc)
@@ -52,14 +54,15 @@ suppressMessages(library(replicateBE))
 **Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.**
 
 ### Introduction{#intro}
-The library provides data sets (internal `.rda` and in CSV-format in `/extdata/`) given by Schütz _et al_.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. _Reference Datasets for Studies in a Replicate Design intended for Average Bioequivalence with Expanding Limits._ In preparation 2019.] which support users in a black-box performance qualification (PQ) of their software installations.
+The library provides data sets (internal `.rda` and in CSV-format in `/extdata/`) given by Schütz _et al_.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. _Reference Data­sets for Studies in a Replicate Design intended for Average Bioequivalence with Expanding Limits._ Manu­script in pre­paration 2019.] which support users in a black-box performance qualification (PQ) of their software installations.
 
-The methods given in the EMA’s [Q&A document](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf) for reference-scaling according to the EMA’s [Guideline on the Investigation of Bioequivalence](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf) are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint [EGA/EMA workshop](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf).
+
+The methods given in the EMA’s [Q&A document](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf "EMA, January 2011 and later revisions") for reference-scaling according to the EMA’s [Guideline on the Investigation of Bioequivalence](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf "EMA, January 2010") are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint [EGA/EMA workshop](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf "London, June 2010").
 
 ### Methods{#methods}
 #### function `method.A()`{#methodA}
 A linear model of log-transformed PK responses and effects\
-   _sequence_, _subject(sequence)_, _period_, _treatment_\
+    _sequence_, _subject(sequence)_, _period_, _treatment_\
 where all effects are fixed (_i.e._, ANOVA). Estimated via function `lm()` of library `stats`.
 
 ```
@@ -68,7 +71,7 @@ log(PK) ~ sequence + subject(sequence) + period + treatment, data = data
 
 #### function `method.B()`{#methodB}
 A linear model of log-transformed PK responses and effects\
-   _sequence_, _subject(sequence)_, _period_, _treatment_\
+    _sequence_, _subject(sequence)_, _period_, _treatment_\
 where _subject(sequence)_ is a random effect and all others are fixed.
 
 ```
@@ -117,10 +120,10 @@ The test treatment is administered once and the reference treatment at least onc
 Columns must have the headers `subject`, `period`, `sequence`, `treatment`, `PK`, and/or `logPK`.^[Naperian logarithm (base _e_). The decadic logarithm (base 10) is not supported).] Any order of columns is acceptable. Uppercase and mixed case headers will be internally converted to lowercase headers.
 
 | variable | format |
-|-|---------|
+|-|----------|
 | `subject` | Integer numbers or any combination of alphanumerics (A-Z, a-z, -, _, #, 0-9) |
 | `period` | Integer numbers |
-| `sequence` | Contained in the [tested designs](#designs). Numbers or _e.g._, `ABAB` are not acceptable. |
+| `sequence` | Numbers or any other literal sequences not listed in the [tested designs](#designs) are not accepted (_e.g._, `ABAB`). |
 | `treatment` | The Test treatment must be coded `T` and the Reference `R` (both uppercase). |
 
 Relevant data are used for the estimation of _CV~wR~_ (and _CV~wT~_ in full replicate designs) and BE, _i.e._, the data sets might be different. Is is good practice to state that in the SAP.
@@ -129,31 +132,45 @@ Relevant data are used for the estimation of _CV~wR~_ (and _CV~wT~_ in full repl
 #### Incomplete data{#incomplete}
 ##### Estimation of _CV~w~_{#setCW}
 If a subject drops out from the study in a higher period, data of repeated administrations will still be used for the estimation of _CV~w~_, although data of the other treatment might be missing. Examples for the estimation of _CV~wR~_ (missings denoted by `.`):\
-`RTRT` → `RTR.`  
-`TRRT` → `TRR.`  
-`RRTT` → `RRT.` or `RR..`  
-`RRT` → `RR..`  
+`RTRT` → `RTR.`\
+`TRRT` → `TRR.`\
+`RRTT` → `RRT.` or `RR..`\
+`RRT` → `RR..`\
 
 
 ##### Assessment of BE{#setBE}
 If a subject drops out from the study in a higher period, data with at least one administration of the Test and Reference will be used in the assessment of BE. Examples (missings denoted by `.`):\
 
-`TRTR` → `TRT.` or → `TR..`  
-`RTRT` → `RTR.` or → `RT..`  
-`TRRT` → `TRR.` or → `TR..`  
-`RTTR` → `RTT.` or → `RT..`  
-`TTRR` → `TTR.`  
-`TRT` → `TR.`  
-`RTR` → `RT.`  
-`TRR` → `TR.`  
-`RTR` → `RT.`  
-`RTT` → `RT.`  
+`TRTR` → `TRT.` or → `TR..`\
+`RTRT` → `RTR.` or → `RT..`\
+`TRRT` → `TRR.` or → `TR..`\
+`RTTR` → `RTT.` or → `RT..`\
+`TTRR` → `TTR.`\
+`TRT` → `TR.`\
+`RTR` → `RT.`\
+`TRR` → `TR.`\
+`RTR` → `RT.`\
+`RTT` → `RT.`\
+
+
+##### Example of different data sets{#setexpl}
+16 subjects included. In sequence `RTRT` one dropout in the 2^nd^ period and one in the 4^th^ period. In sequence `TRTR` one dropout in the 3^rd^ period and one in the 4^th^.\
+
+`1  RTR.    5  RTRT    9  TRTR   13  RTRT`\
+`2  RTRT    6  TR..   10  TRTR   14  TRT.`\
+`3  RTRT    7  RTRT   11  RTRT   15  TRTR`\
+`4  TRTR    8  R...   12  TRTR   16  TRTR`  
+
+We obtain two data sets:
+
+1. 13 subjects for the estimation of _CV~wR~_ (insufficient data of subjects 6, 8, and 14).
+2. 15 subjects who received at least one treatment `T` and `R` for the assessment of BE (all except subject 8).
 
 
 ### Notes on the methods{#notes}
 #### Estimation of intra-subject variability{#cv}
 The EMA proposed a linear model of log-transformed PK responses of the reference\
-   _sequence_, _subject(sequence)_, _period_\
+    _sequence_, _subject(sequence)_, _period_\
 where all effects are fixed. Estimated via function `lm()` of library `stats`.
 ```
 log(PK) ~ sequence + subject(sequence) + period, data = data$R
@@ -168,21 +185,21 @@ Special conditions for the sample size in three period full replicate designs:
 > 
 > --- [Q&A document](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf) (June 2015 and later revisions)
 
-If less than twelve subjects remain in sequence `RTR` of a `TRT | RTR` design (and in analogy in sequence `TRR` of a `TRR | RTT` design), the user is notified about the uncertain estimate of _CV~wR~_. However, in a sufficiently powered study such a case is [extremely unlikely](https://forum.bebac.at/mix_entry.php?id=15139).
+If less than twelve subjects remain in sequence `RTR` of a `TRT | RTR` design (and in analogy in sequence `TRR` of a `TRR | RTT` design), the user is notified about the uncertain estimate of _CV~wR~_. However, in a sufficiently powered study such a case is [extremely unlikely](https://forum.bebac.at/mix_entry.php?id=15139 "BEBA Forum, July 2015").
 
 
 #### Model structure{#model_struc}
-The EMA’s models assumes equal [_sic_] intra-subject variances of Test and Reference (like in 2×2×2 trials) – even if proven false in one of the full replicate designs (were _both_ _CV~wT~_ and _CV~wR~_ can be estimated). Hence, amongst bio­statis­ticians it is called the “crippled model”.
+The EMA’s models assumes equal [_sic_] intra-subject variances of Test and Reference (like in 2×2×2 trials) – even if proven false in one of the full replicate designs (were _both_ _CV~wT~_ and _CV~wR~_ can be estimated). Hence, amongst bio­statis­ticians it is called the ‘crippled model’ because the replicative nature of the study is ignored.
 
-The nested structure _subject(sequence)_ leads to an over-specificed model.^[Such a nesting is superfluous since in BE trials subjects are uniquely coded. If, say, subject `1` is allocated to sequence `TRTR` there is not “another” subject `1` allocated to sequence `RTRT`. This explains the many lines in SAS `PROC GML` given with `.` and in Phoenix/WinNonlin as `not estimable`.] The simple model\
-   _sequence_, _subject_, _period_, _treatment_\
+The nested structure _subject(sequence)_ leads to an over-specificed model.^[Contradics the law of simplicity. Such a nesting is superfluous since in BE trials subjects are uniquely coded. If, say, subject `1` is allocated to sequence `TRTR` there is not yet ‘another’ subject `1` allocated to sequence `RTRT`. This explains the many lines in SAS `PROC GML` given with `.` and in Phoenix/WinNonlin as `not estimable`.] The simple model\
+    _sequence_, _subject_, _period_, _treatment_\
 gives identical estimates of the residual variance and the treatment effect and hence, its confidence interval.
 
 The same holds true for the [EMA’s model](#cv) to estimate _CV~wR~_. The simple model\
-   _subject_, _period_\
+    _subject_, _period_\
 gives an identical estimate of the residual variance.
 
-Reference-scaling is acceptable for C~max~ (immediate release products^[[EMA 2010](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf#page=17)]) and C~max~, C~max,ss~, C~τ,ss~, ~partial~AUC (modified release products^[[EMA 2014](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf#page=27)]) if high variability of the reference product (_CV~wR~_ >30%) was demonstrated.
+Reference-scaling is acceptable for C~max~ (immediate release products^[[Guideline on the Investigation of Bioequivalence](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf#page=17 "EMA, 20 January 2010")]) and C~max~, C~max,ss~, C~τ,ss~, ~partial~AUC (modified release products^[[Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf#page=27 "EMA, 20 November 2014")]) if high variability of the reference product (_CV~wR~_ >30%) was demonstrated.
 
 The intention to widen the limits has to be stated in the protocol and – contrary to the FDA’s RSABE – a clinical justification provided.
 
@@ -222,7 +239,7 @@ print(df, row.names = FALSE)
 
 In reference-scaling a so-called _mixed_ (a.k.a. _aggregate_) criterion is applied. In order to pass BE,
 
-* the 90% confidence interval has to lie entirely within the acceptance range _and_
+* the 90% confidence interval has to lie entirely within the acceptance range <small>$\left[ {L,U} \right]$</small> _and_
 * the point estimate has to lie within 80.00 – 125.00%.
 
 #### Degrees of freedom, comparison of methods{#df_comp}
@@ -230,11 +247,11 @@ The SAS code provided by the EMA in the Q&A document does not specify how the de
 
 The EMA seemingly prefers ‘Method A’:
 
-> _A simple linear mixed model, which assumes identical within-subject variability (Method B), may be acceptable as long as results obtained with the two methods do not lead to different regulatory decisions. However, in borderline cases […] additional analysis using Method A might be required._
+> _A simple linear mixed model, which assumes identical within-subject variability (Method B), may be acceptable as long as results obtained with the two methods do not lead to different regu­la­tory decisions. However, in borderline cases […] additional analysis using Method A might be required._
 > 
 > --- [Q&A document](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf) (January 2011 and later revisions)
 
-The half-width of the confidence interval in log-scale allows a comparison of methods (B _v.s._ A) where a higher value _might_ point towards a more conservative decision.^[Of course, only if the GMRs are identical.] In the provided example data sets – with one exception – the con­clusion of BE (based on the mixed criterion) agrees between ‘Method A’ and ‘Method B’.\
+The half-width of the confidence interval in log-scale allows a comparison of methods (B _v.s._ A) where a higher value _might_ point towards a more conservative decision.^[Of course, only if the point estimates are identical.] In the provided example data sets – with one exception – the con­clusion of BE (based on the mixed criterion) agrees between ‘Method A’ and ‘Method B’.\
 However, for the highly incomplete data set 14 ‘Method B’ was _liberal_ (passing by ANOVA but failing by the mixed effects model):
 
 ```{r}
@@ -281,24 +298,81 @@ It is an open issue how outliers should be handled.
 
 > _The applicant should justify that the calculated intra-subject variability is a reliable estimate and that it is not the result of outliers._
 > 
-> --- [BE Guideline](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf#page=17) (January 2010)
+> --- [BE Guideline](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf#page=17 "EMA, January 2010")
 
-Box plots were ‘suggested’ by the author as a joke [_sic_] at the EGA/EMA workshop, being aware of their nonparametric nature and the EMA’s reluctance towards robust methods. Unfortunately, this _joke_ was included in the Q&A document.
+Box plots were ‘suggested’ by the author as a joke [_sic_] at the EGA/EMA workshop, being aware of their non­para­metric nature and the EMA’s reluctance towards robust methods. Unfortunately, this _joke_ was included in the Q&A document.
 
 > _[…] a study could be acceptable if the bioequivalence requirements are met both including the outlier subject (using the scaled average bioequivalence approach and the within-subject CV with this sub­ject) and after exclusion of the outlier (using the within-subject CV without this subject)._
 >
 > _An outlier test is not an expectation of the medicines agencies but outliers could be shown by a box plot. This would allow the medicines agencies to compare the data between them._
 >
-> --- [EGA/EMA workshop, Q&A](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf) (June 2010)
+> --- [Q&A](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf "EGA/EMA workshop, June 2010")
 
 
-In `method.A(..., ola = TRUE)` and `method.B(..., ola = TRUE)` the default `fence = 2`^[The fences are the lowest data value still within 2×IQR of the lower quartile, and the highest value still within 2×IQR of the upper quartile, where IQR is the interquartile range (the difference between the third and first quartiles). Data outside the fences are considered outliers. Decreasing the multiplier to _e.g._, 1.5 might result in many outliers whereas increasing the multiplier in only a few.] is used (in `ABE()` assessment of outliers is not acceptable).\
-With the argument `ola = TRUE` the outlier analysis is performed and additionally to the scaled limits based on the complete reference data, tighter limits are calculated based on _CV~wR~_ after exclusion of outlier(s).
+With the additional argument `ola = TRUE` in `method.A()` and `method.B()` an outlier analysis is performed, where the default `fence = 2`^[The fences are the lowest data value still within _m_×IQR of the lower quartile, and the highest value still within _m_×IQR of the upper quartile, where IQR is the interquartile range (difference between the 3^rd^ and 1^st^ quartiles). Data outside fences are considered outliers. Decreasing the multiplier _m_ to _e.g._, 1.5 might result in many outliers whereas increasing the multiplier in only a few.  
+Note that different methods exist to calculate quartiles (seven are available in R, where the default is `type = 7`). R’s default is used by S+ and Excel. Phoenix/WinNonlin, Minitab, and SPSS use `type = 6`, whereas the default in SAS is `type = 2` (though others are available as well).] is used.
+
+
+* Box plots of studentized^[_Externally_ studentized: $\widehat{\sigma}_{(i)}^2={1 \over n-m-1}\sum_{\begin{smallmatrix}j = 1\\j \ne i\end{smallmatrix}}^n \widehat{\varepsilon\,}_j^{\,2}$] and standarized^[_Internally_ studentized: $\widehat{\sigma}^2={1 \over n-m}\sum_{j=1}^n \widehat{\varepsilon\,}_j^{\,2}$] model residuals are constructed.^[Both are available in SAS and R, whereas only the latter in _e.g._, Phoenix/WinNonlin. In general the former are slightly more restrictive. Which one will be used has to be stated in the SAP.]
+* Potential outliers are flagged based on the argument `fence` provided by the user.
+* With the additional argument `verbose = TRUE` detailed information is shown in the console.
+
+
+Example for the reference data set 01:
+```
+Outlier analysis
+ (externally) studentized residuals
+ Limits (2×IQR whiskers): -1.717435, 1.877877
+ Outliers:
+ subject sequence  stud.res
+      45     RTRT -6.656940
+      52     RTRT  3.453122
+
+ standarized (internally studentized) residuals
+ Limits (2×IQR whiskers): -1.69433, 1.845333
+ Outliers:
+ subject sequence stand.res
+      45     RTRT -5.246293
+      52     RTRT  3.214663
+```
+
+
+If based on studentized residuals outliers are detected, additionally to the scaled limits based on the complete reference data, tighter limits are calculated based on _CV~wR~_ after exclusion of outliers and BE assessed with the new limits.
+
+Output for the reference data set 01 (re-ordered for clarity):
+```
+CVwR               :  46.96% (reference-scaling applicable)
+swR                :   0.44645
+Expanded limits    :  71.23% ... 140.40% [100exp(±0.760·swR)]
+Assessment based on original CVwR 46.96%
+────────────────────────────────────────
+Confidence interval: 107.11% ... 124.89%  pass
+Point estimate     : 115.66%              pass
+Mixed (CI & PE)    :                      pass
+ ╟────────┼─────────────────────┼───────■────────◊─────────■───────────────╢
+
+Outlier fence      :  2×IQR of studentized residuals.
+Recalculation due to presence of 2 outliers (subj. 45|52)
+─────────────────────────────────────────────────────────
+CVwR (outl. excl.) :  32.16% (reference-scaling applicable)
+swR (recalculated) :   0.31374
+Expanded limits    :  78.79% ... 126.93% [100exp(±0.760·swR)]
+Assessment based on recalculated CVwR 32.16%
+────────────────────────────────────────────
+Confidence interval: pass
+Point estimate     : pass
+Mixed (CI & PE)    : pass
+         ╟┼─────────────────────┼───────■────────◊─────────■─╢
+```
+Note that the PE and its CI are not affected since the entire data are used and therefore, these values not reported in the second analysis (only the conclusion of the assessement).\
+The line plot is given for informational puposes (its resolution is only \~0.5%). The filled squares ` ■ ` are the lower and upper 90% confidence limits, the rhombus ` ◊ ` the point estimate, the vertical lines ` │ ` at 100% and the PE restriction (80.00 – 125.00%), and the double vertical lines ` ║ ` the expanded limits. The PE and CI take pre­se­dence over other symbols. In this case the upper limit of the PE restriction is not visible.\
+Since both analyses arrive at the same conclusion, the study should be acceptable according to the Q&A document.
+
 
 ### Applicability, outlook{#app_out}
 The EMA’s approach of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (_e.g._, the WHO; ASEAN States, Australia, Brazil, Egypt, the Russian Federation, the Eurasian Economic Union, the East African Community, New Zealand).
 
-The WHO opened a [pilot phase](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_June2017.pdf) exploring reference-scaling for AUC (four period full replicate studies are mandatory in order to assess the variability associated with each product). It is not evident how this assessment should be done. In Population Bioequivalence (PBE) and Individual Bioequivalence (IBE) the _s~wT~_/_s~wR~_ ratio was assessed and similar variability was concluded for a ratio within 0.667 – 1.500. However, the power of comparing variabilities in a study designed to demonstrate ABE is low. This was the main reason why PBE and IBE were not implemented in regulatory practice. An alternative approach is given in the FDA’s [guidance on warfarin](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf). Variabilities are considered comparable if the upper confidence limit of _σ~wT~_/_σ~wR~_ is ≤2.5.
+The WHO opened a [pilot phase](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_June2017.pdf "Guidance Document 09 June 2017") exploring reference-scaling for AUC (four period full replicate studies are mandatory in order to assess the variability associated with each product). It is not evident how this assessment should be done. In Population Bioequivalence (PBE) and Individual Bioequivalence (IBE) the _s~wT~_/_s~wR~_ ratio was assessed and similar variability was concluded for a ratio within 0.667 – 1.500. However, the power of comparing variabilities in a study designed to demonstrate ABE is low. This was the main reason why PBE and IBE were not implemented in regulatory practice. An alternative approach is given in the FDA’s [guidance on warfarin](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf "Draft recommended Dec 2012"). Variabilities are considered comparable if the upper confidence limit of _σ~wT~_/_σ~wR~_ is ≤2.5.
 
 
 ### Cross-validation{#cross}
@@ -316,4 +390,3 @@ Inspect this information for reproducibility. Of particular importance are the v
 ```{r, sessioninfo}
 options(width = 80)
 devtools::session_info()
-```

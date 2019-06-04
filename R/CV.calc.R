@@ -93,8 +93,8 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
         ifelse (length(ol.value1) == 1,
           lab.txt <- "1 outlier",
           lab.txt <- paste(length(ol.value1), "outliers"))
-      }
-      mtext(paste0("studentized\n(R, SAS)\n\n", lab.txt), 1, line=4, at=1)
+      } # Note: not /exactly/ equal. SAS uses 'type=2'
+      mtext(paste0("studentized\n(R, ~SAS)\n\n", lab.txt), 1, line=4, at=1)
       text(rep(1.1, 2), bp1$stats[c(1, 5)], adj=c(0, 0.25), cex=0.8,
            sprintf("%+.3f", bp1$stats[c(1, 5)]))
       if (!identical(ol.value1, numeric(0))) { # only if stud. outlier
@@ -110,8 +110,8 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
         ifelse (length(ol.value2) == 1,
           lab.txt <- "1 outlier",
           lab.txt <- paste(length(ol.value2), "outliers"))
-      } # Note: not /exactly/ equal to PHX/WNL
-      mtext(paste0("standardized\n(R, SAS,\n~Phoenix WinNonlin)\n", lab.txt), 1, line=4, at=2)
+      } # Note: not /exactly/ equal. SAS uses 'type=2' and PHX/WNL 'type=6'
+      mtext(paste0("standardized\n(R, ~SAS,\n~Phoenix WinNonlin)\n", lab.txt), 1, line=4, at=2)
       text(rep(2.1, 2), bp2$stats[c(1, 5)], adj=c(0, 0.25), cex=0.8,
            sprintf("%+.3f", bp2$stats[c(1, 5)]))
       if (!identical(ol.value2, numeric(0))) { # only if stand. outlier
