@@ -65,24 +65,31 @@ A linear model of log-transformed PK responses and effects\
     _sequence_, _subject(sequence)_, _period_, _treatment_\
 where all effects are fixed (_i.e._, ANOVA). Estimated via function `lm()` of library `stats`.
 
-```
-log(PK) ~ sequence + subject(sequence) + period + treatment, data = data
+```{r eval=FALSE}
+modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
+                     data = data)
 ```
 
 #### function `method.B()`{#methodB}
 A linear model of log-transformed PK responses and effects\
     _sequence_, _subject(sequence)_, _period_, _treatment_\
-where _subject(sequence)_ is a random effect and all others are fixed.
-
-```
-log(PK) ~ sequence +  period + treatment, random = ~1|subject, data = data
-```
+where _subject(sequence)_ is a random effect and all others are fixed.  
 Two options are provided
 
 1.  Estimated via function `lmer()` of library `lmerTest`. Uses Satterthwaite’s degrees of freedom.\
 `method.B(..., option = 1)`
+```{r eval=FALSE}
+modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
+                       data = data)
+```
+
 2.  Estimated via function `lme()` of library `nlme`. Uses degrees of freedom equivalent to SAS’ `DDFM=CONTAIN` and Phoenix/WinNonlin’s `DF Residual`. Implicitly preferred according to the Q&A document.\
-`method.B(..., option = 2)`, the default.
+`method.B(..., option = 2)`, the default.\
+```{r eval=FALSE}
+modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
+                     data = data)
+```
+
 
 #### function `ABE()`{#ABE}
 Conventional Average Bioequivalence, where the model is identical to [Method A](#methodA). Tighter limits for narrow therapeutic index drugs (EMA 90.00 – 111.11%) or wider limits (75.00 – 133.33% for C~max~ according to the guideline of the GCC^[Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, and the United Arab Emirates.]) can be specified.
@@ -126,7 +133,7 @@ Columns must have the headers `subject`, `period`, `sequence`, `treatment`, `PK`
 | `sequence` | Numbers or any other literal sequences not listed in the [tested designs](#designs) are not accepted (_e.g._, `ABAB`). |
 | `treatment` | The Test treatment must be coded `T` and the Reference `R` (both uppercase). |
 
-Relevant data are used for the estimation of _CV~wR~_ (and _CV~wT~_ in full replicate designs) and BE, _i.e._, the data sets might be different. Is is good practice to state that in the SAP.
+Relevant data are used for the estimation of _CV~wR~_ (and _CV~wT~_ in full replicate designs) and BE, _i.e._, the data sets might be different. It is good practice to state that in the SAP.
 
 
 #### Incomplete data{#incomplete}
@@ -171,11 +178,12 @@ We obtain two data sets:
 #### Estimation of intra-subject variability{#cv}
 The EMA proposed a linear model of log-transformed PK responses of the reference\
     _sequence_, _subject(sequence)_, _period_\
-where all effects are fixed. Estimated via function `lm()` of library `stats`.
+where all effects are fixed. Estimated via function `lm()` of library `stats`:
+```{r eval=FALSE}
+modCV <- lm(log(PK) ~ sequence + subject%in%sequence + period,
+                      data = data[data$treatment = "R", ])
 ```
-log(PK) ~ sequence + subject(sequence) + period, data = data$R
-```
-For informational purposes in full replicate designs (required by the WHO for reference-scaling of AUC) the same model is additionaly run with `data = data$T`.
+For informational purposes in full replicate designs (required by the WHO for reference-scaling of AUC) the same model is additionaly run with `data = data[data$treatment = "T", ]`.
 
 Special conditions for the sample size in three period full replicate designs:
 
@@ -310,8 +318,26 @@ Box plots were ‘suggested’ by the author as a joke [_sic_] at the EGA/EMA wo
 
 
 With the additional argument `ola = TRUE` in `method.A()` and `method.B()` an outlier analysis is performed, where the default `fence = 2`^[The fences are the lowest data value still within _m_×IQR of the lower quartile, and the highest value still within _m_×IQR of the upper quartile, where IQR is the interquartile range (difference between the 3^rd^ and 1^st^ quartiles). Data outside fences are considered outliers. Decreasing the multiplier _m_ to _e.g._, 1.5 might result in many outliers whereas increasing the multiplier in only a few.  
-Note that different methods exist to calculate quartiles (seven are available in R, where the default is `type = 7`). R’s default is used by S+ and Excel. Phoenix/WinNonlin, Minitab, and SPSS use `type = 6`, whereas the default in SAS is `type = 2` (though others are available as well).] is used.
+Note that different methods exist to calculate quartiles (nine are available in R, where the default is `type = 7`). R’s default is used by S, MATLAB, and Excel. Phoenix/WinNonlin, Minitab, and SPSS use `type = 6`, ScyPy uses `type = 4`, whereas the default in SAS and Stata is `type = 2` (though others are available as well).] is used.  
 
+Note that results might slightly differ depending on software’s algorithms. Example with methods implemented in R:
+```{r}
+### Compare different types with some random data
+x <- rnorm(48)
+p <- c(25, 50, 75)/100
+q <- matrix(data = "", nrow = 9, ncol = 4,
+            dimnames=list(paste("type", 1:9),
+                          c("1st quart.", "median", "3rd quart.",
+                            "software / default")))
+for (i in 1:9) {
+  q[i, 1:3] <- sprintf("%.5f", quantile(x, prob = p, type = i))
+}
+q[c(2, 4:8), 4] <- c("SAS, Stata", "SciPy", "",
+                     "Phoenix, Minitab, SPSS",
+                     "R, S, MATLAB, Excel",
+                     "Maple")
+print(as.data.frame(q))
+```
 
 * Box plots of studentized^[_Externally_ studentized: $\widehat{\sigma}_{(i)}^2={1 \over n-m-1}\sum_{\begin{smallmatrix}j = 1\\j \ne i\end{smallmatrix}}^n \widehat{\varepsilon\,}_j^{\,2}$] and standarized^[_Internally_ studentized: $\widehat{\sigma}^2={1 \over n-m}\sum_{j=1}^n \widehat{\varepsilon\,}_j^{\,2}$] model residuals are constructed.^[Both are available in SAS and R, whereas only the latter in _e.g._, Phoenix/WinNonlin. In general the former are slightly more restrictive. Which one will be used has to be stated in the SAP.]
 * Potential outliers are flagged based on the argument `fence` provided by the user.
@@ -337,7 +363,7 @@ Outlier analysis
 ```
 
 
-If based on studentized residuals outliers are detected, additionally to the scaled limits based on the complete reference data, tighter limits are calculated based on _CV~wR~_ after exclusion of outliers and BE assessed with the new limits.
+If based on studentized residuals outliers are detected, additionally to the scaled limits based on the complete reference data, tighter limits are calculated based on _CV~wR~_ after exclusion of outliers and BE assessed with the new limits. Standardized residuals are shown for informational purposes only and are not used for exclusion of outliers.
 
 Output for the reference data set 01 (re-ordered for clarity):
 ```
