@@ -229,7 +229,7 @@ The limits can be expanded based on _CV~wR~_.
     Upper cap, _i.e._, applying <small>$s^*_{wR}=\sqrt{log(0.50^2+1)}$</small> in the expansion formula or\
     <small>$\left[ {L,U} \right] = {69.84 - 143.19\%}$</small>.
 
-In order to avoid small discontinuities at _CV~wR~_ ≈ 50% (due to double rounding), the expanded limits are calculated in full numeric precision and only the CI is rounded according to the GL.
+In order to avoid discontinuities due to double rounding, expanded limits are calculated in full numeric precision and only the CI is rounded according to the GL.
 
 ```{r}
 # Calculate limits with library PowerTOST
@@ -244,6 +244,8 @@ df$cap[df$CV >= 50] <- "upper"
 names(df)[1:3] <- c("CV(%)", "L(%)", "U(%)")
 print(df, row.names = FALSE)
 ```
+
+![Discrete limits resulting from rounding](figure1.png){width=80%}
 
 In reference-scaling a so-called _mixed_ (a.k.a. _aggregate_) criterion is applied. In order to pass BE,
 
