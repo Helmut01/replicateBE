@@ -1,9 +1,11 @@
 Version 1.0.5.9003
-Published on GitHub 2019-06-04
+Published on GitHub 2019-06-07
+    - StartupWarnings seemingly unavoidable until rlang will
+      be corrected
     - Small correction in text of box plot of CV.calc.R
       Studentized/standardized does not exactly agree with SAS
       (uses type=2 by default)
-    - First version of vignette. Why is it not included in the package?
+    - First version of vignette.
     - Added \tests for testthat()
 
 Version 1.0.5.9002

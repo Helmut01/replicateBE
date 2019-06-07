@@ -124,7 +124,7 @@ The test treatment is administered once and the reference treatment at least onc
 
 
 ### Data structure{#data_struct}
-Columns must have the headers `subject`, `period`, `sequence`, `treatment`, `PK`, and/or `logPK`.^[Naperian logarithm (base _e_). The decadic logarithm (base 10) is not supported).] Any order of columns is acceptable. Uppercase and mixed case headers will be internally converted to lowercase headers.
+Columns must have the headers `subject`, `period`, `sequence`, `treatment`, `PK`, and/or `logPK`.^[Napierian logarithm (base _e_). The decadic logarithm (base 10) is not supported).] Any order of columns is acceptable. Uppercase and mixed case headers will be internally converted to lowercase headers.
 
 | variable | format |
 |-|----------|
@@ -199,7 +199,7 @@ If less than twelve subjects remain in sequence `RTR` of a `TRT | RTR` design (
 #### Model structure{#model_struc}
 The EMA’s models assumes equal [_sic_] intra-subject variances of Test and Reference (like in 2×2×2 trials) – even if proven false in one of the full replicate designs (were _both_ _CV~wT~_ and _CV~wR~_ can be estimated). Hence, amongst bio­statis­ticians it is called the ‘crippled model’ because the replicative nature of the study is ignored.
 
-The nested structure _subject(sequence)_ leads to an over-specificed model.^[Contradics the law of simplicity. Such a nesting is superfluous since in BE trials subjects are uniquely coded. If, say, subject `1` is allocated to sequence `TRTR` there is not yet ‘another’ subject `1` allocated to sequence `RTRT`. This explains the many lines in SAS `PROC GML` given with `.` and in Phoenix/WinNonlin as `not estimable`.] The simple model\
+The nested structure _subject(sequence)_ of the [methods](#methods) leads to an over-specificed model.^[Contradics the law of simplicity. Such a nesting is superfluous since in BE trials subjects are uniquely coded. If, say, subject `1` is allocated to sequence `TRTR` there is not yet ‘another’ subject `1` allocated to sequence `RTRT`. This explains the many lines in SAS `PROC GML` given with `.` and in Phoenix/WinNonlin as `not estimable`.] The simple model\
     _sequence_, _subject_, _period_, _treatment_\
 gives identical estimates of the residual variance and the treatment effect and hence, its confidence interval.
 
@@ -229,11 +229,11 @@ The limits can be expanded based on _CV~wR~_.
     Upper cap, _i.e._, applying <small>$s^*_{wR}=\sqrt{log(0.50^2+1)}$</small> in the expansion formula or\
     <small>$\left[ {L,U} \right] = {69.84 - 143.19\%}$</small>.
 
-In order to avoid small discontinuities at _CV~wR~_ ≈ 30% and 50% (due to double rounding), the expanded limits are calculated in full numeric precision and only the CI is rounded according to the GL.
+In order to avoid small discontinuities at _CV~wR~_ ≈ 50% (due to double rounding), the expanded limits are calculated in full numeric precision and only the CI is rounded according to the GL.
 
 ```{r}
 # Calculate limits with library PowerTOST
-CV <- c(29, seq(30, 50, by = 5), 51)
+CV <- c(29, 30, 40, 50, 51)
 df <- data.frame(CV = CV, L = NA, U = NA, cap = "",
                  stringsAsFactors = FALSE)
 for (i in seq_along(CV)) {
