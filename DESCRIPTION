@@ -1,7 +1,7 @@
 Encoding: UTF-8
 Package: replicateBE
 Version: 1.0.5.9003
-Date: 2019-06-07
+Date: 2019-06-09
 Title: Average Bioequivalence with Expanding Limits (ABEL)
 Authors@R: c(person("Helmut", "Schütz",
                role = c("aut", "cre"), email = "helmut.schuetz@bebac.at"),
@@ -16,7 +16,7 @@ Description: Performs comparative bioavailability-calculations for the
              outliers. If the design allows, assessment of the empiric
              Type I Error and iteratively adjusting a to preserve the
              consumer risk.
-             Average Bioequivalence (ABE) - optionally with tighter limits
+             Average Bioequivalence (ABE) - optionally with tighter
              (EMA: NTIDs) or wider limits (GCC: Cmax) - is implemented
              as well.
 Imports: readxl (>= 1.0.0), PowerTOST, lmerTest, nlme, graphics,

@@ -41,7 +41,7 @@ suppressMessages(library(replicateBE))
 * [Notes on the methods](#notes)
     * [Estimation of intra-subject variability](#cv)
     * [Model structure](#model_struc)
-    * [ABE limits, rounding issues](#BElim)
+    * [BE limits, PE restriction, rounding issues](#BElim)
     * [Degrees of freedom, comparison of methods](#df_comp)
     * [Outlier analysis](#ola)
 * [Applicability, outlook](#app_out)
@@ -96,6 +96,11 @@ Conventional Average Bioequivalence, where the model is identical to [Method A]
 
 
 ### Tested designs{#designs}
+Details about the reference data sets:
+```{r eval=FALSE}
+help("data", package = "replicateBE")
+?replicateBE::data
+```
 #### Four period (full) replicates{#per4_full}
 Both the test and the reference treatments are administered at least once.
 
@@ -133,8 +138,7 @@ Columns must have the headers `subject`, `period`, `sequence`, `treatment`, `PK`
 | `sequence` | Numbers or any other literal sequences not listed in the [tested designs](#designs) are not accepted (_e.g._, `ABAB`). |
 | `treatment` | The Test treatment must be coded `T` and the Reference `R` (both uppercase). |
 
-Relevant data are used for the estimation of _CV~wR~_ (and _CV~wT~_ in full replicate designs) and BE, _i.e._, the data sets might be different. It is good practice to state that in the SAP.
-
+Relevant data are used for the estimation of _CV~wR~_ (and _CV~wT~_ in full replicate designs) and BE, _i.e._, the data sets might be different (see the [example](#setexpl)). It is good practice to state that in the Statistical Analysis Plan (SAP).
 
 #### Incomplete data{#incomplete}
 ##### Estimation of _CV~w~_{#setCW}
@@ -161,29 +165,32 @@ If a subject drops out from the study in a higher period, data with at least one
 
 
 ##### Example of different data sets{#setexpl}
-16 subjects included. In sequence `RTRT` one dropout in the 2^nd^ period and one in the 4^th^ period. In sequence `TRTR` one dropout in the 3^rd^ period and one in the 4^th^.\
+Study started with 16 subjects. In sequence `RTRT` one dropout in the 2^nd^ period and one in the 4^th^ period. In sequence `TRTR` one dropout in the 3^rd^ period and one in the 4^th^.\
 
 `1  RTR.    5  RTRT    9  TRTR   13  RTRT`\
 `2  RTRT    6  TR..   10  TRTR   14  TRT.`\
 `3  RTRT    7  RTRT   11  RTRT   15  TRTR`\
 `4  TRTR    8  R...   12  TRTR   16  TRTR`  
 
-We obtain two data sets:
+We obtain these data sets:
 
-1. 13 subjects for the estimation of _CV~wR~_ (insufficient data of subjects 6, 8, and 14).
-2. 15 subjects who received at least one treatment `T` and `R` for the assessment of BE (all except subject 8).
+| purpose | included subjects | excluded |
+|-----|----------|---|
+| Estimation of _CV~wR~_ | 13 who received 2 treatments `R` | 6, 8, 14 |
+| Estimation of _CV~wT~_ | 12 who received 2 treatments `T` | 1, 6, 8 |
+| Assessment of BE | 15 who received ≥1 treatment `T` _and_ `R` | 8 |
 
 
 ### Notes on the methods{#notes}
 #### Estimation of intra-subject variability{#cv}
-The EMA proposed a linear model of log-transformed PK responses of the reference\
+The EMA proposed a linear model of log-transformed PK responses of the reference treatment\
     _sequence_, _subject(sequence)_, _period_\
 where all effects are fixed. Estimated via function `lm()` of library `stats`:
 ```{r eval=FALSE}
 modCV <- lm(log(PK) ~ sequence + subject%in%sequence + period,
                       data = data[data$treatment = "R", ])
 ```
-For informational purposes in full replicate designs (required by the WHO for reference-scaling of AUC) the same model is additionaly run with `data = data[data$treatment = "T", ]`.
+For informational purposes in full replicate designs (required by the WHO for reference-scaling of AUC) the same model is run with `data = data[data$treatment = "T", ]`.
 
 Special conditions for the sample size in three period full replicate designs:
 
@@ -216,7 +223,7 @@ The intention to widen the limits has to be stated in the protocol and – cont
 > 
 > --- [BE Guideline](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf) (January 2010)
 
-#### ABE limits, rounding issues{#BElim}
+#### BE limits, PE restriction, rounding issues{#BElim}
 The limits can be expanded based on _CV~wR~_.
 
 * _CV~wR~_ ≤ 30%\
@@ -229,7 +236,13 @@ The limits can be expanded based on _CV~wR~_.
     Upper cap, _i.e._, applying <small>$s^*_{wR}=\sqrt{log(0.50^2+1)}$</small> in the expansion formula or\
     <small>$\left[ {L,U} \right] = {69.84 - 143.19\%}$</small>.
 
-In order to avoid discontinuities due to double rounding, expanded limits are calculated in full numeric precision and only the CI is rounded according to the GL.
+In reference-scaling a so-called _mixed_ (a.k.a. _aggregate_) criterion is applied. In order to pass BE,
+
+* the 90% confidence interval has to lie entirely within the acceptance range <small>$\left[ {L,U} \right]$</small> _and_
+* the point estimate has to lie within 80.00 – 125.00%.
+
+
+In order to avoid discontinuities due to double rounding, expanded limits are calculated in full numeric precision and only the confidence interval is rounded according to the GL.
 
 ```{r}
 # Calculate limits with library PowerTOST
@@ -247,13 +260,9 @@ print(df, row.names = FALSE)
 
 ![Discrete limits resulting from rounding](figure1.png){width=80%}
 
-In reference-scaling a so-called _mixed_ (a.k.a. _aggregate_) criterion is applied. In order to pass BE,
-
-* the 90% confidence interval has to lie entirely within the acceptance range <small>$\left[ {L,U} \right]$</small> _and_
-* the point estimate has to lie within 80.00 – 125.00%.
 
 #### Degrees of freedom, comparison of methods{#df_comp}
-The SAS code provided by the EMA in the Q&A document does not specify how the degrees of freedom should be calculated in ‘Method B’. Hence, the default in `PROC MIXED`, namely `DDFM=CONTAIN` is applied, _i.e._, `method.B(..., option = 2`). For incomplete data (missing periods) Satterthwaite’s approximation of the degrees of freedom, _i.e._, `method.B(..., option = 1)` might be a better choice – if stated as such in the statistical analysis plan.
+The SAS code provided by the EMA in the Q&A document does not specify how the degrees of freedom should be calculated in ‘Method B’. Hence, the default in `PROC MIXED`, namely `DDFM=CONTAIN` is applied, _i.e._, `method.B(..., option = 2`). For incomplete data (missing periods) Satterthwaite’s approximation of the degrees of freedom, _i.e._, `method.B(..., option = 1)` might be a better choice – if stated as such in the SAP.
 
 The EMA seemingly prefers ‘Method A’:
 
@@ -319,10 +328,10 @@ Box plots were ‘suggested’ by the author as a joke [_sic_] at the EGA/EMA wo
 > --- [Q&A](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf "EGA/EMA workshop, June 2010")
 
 
-With the additional argument `ola = TRUE` in `method.A()` and `method.B()` an outlier analysis is performed, where the default `fence = 2`^[The fences are the lowest data value still within _m_×IQR of the lower quartile, and the highest value still within _m_×IQR of the upper quartile, where IQR is the interquartile range (difference between the 3^rd^ and 1^st^ quartiles). Data outside fences are considered outliers. Decreasing the multiplier _m_ to _e.g._, 1.5 might result in many outliers whereas increasing the multiplier in only a few.  
-Note that different methods exist to calculate quartiles (nine are available in R, where the default is `type = 7`). R’s default is used by S, MATLAB, and Excel. Phoenix/WinNonlin, Minitab, and SPSS use `type = 6`, ScyPy uses `type = 4`, whereas the default in SAS and Stata is `type = 2` (though others are available as well).] is used.  
+With the additional argument `ola = TRUE` in `method.A()` and `method.B()` an outlier analysis is performed, where the default `fence = 2`^[The fences are given by the lowest datum still within _m_×IQR of the lower quartile, and the highest datum still within _m_×IQR of the upper quartile, where IQR is the interquartile range (difference between the 3^rd^ and 1^st^ quartiles). Data outside fences are considered outliers. Decreasing the multiplier _m_ to _e.g._, 1.5 might result in many outliers whereas increasing the multiplier in only a few.  
+Different methods exist to calculate quartiles (nine are available in R, where the default is `type = 7`). R’s default is used by S, MATLAB, and Excel. Phoenix/WinNonlin, Minitab, and SPSS use `type = 6`, ScyPy uses `type = 4`, whereas the default in SAS and Stata is `type = 2` (though others are available as well).] is used.  
 
-Note that results might slightly differ depending on software’s algorithms. Example with methods implemented in R:
+Results slightly differ depending on software’s algorithms to calculate the median and quartiles. Example with the methods implemented in R:
 ```{r}
 ### Compare different types with some random data
 x <- rnorm(48)
@@ -336,8 +345,7 @@ for (i in 1:9) {
 }
 q[c(2, 4:8), 4] <- c("SAS, Stata", "SciPy", "",
                      "Phoenix, Minitab, SPSS",
-                     "R, S, MATLAB, Excel",
-                     "Maple")
+                     "R, S, MATLAB, Excel", "Maple")
 print(as.data.frame(q))
 ```
 
@@ -400,7 +408,7 @@ Since both analyses arrive at the same conclusion, the study should be acceptabl
 ### Applicability, outlook{#app_out}
 The EMA’s approach of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (_e.g._, the WHO; ASEAN States, Australia, Brazil, Egypt, the Russian Federation, the Eurasian Economic Union, the East African Community, New Zealand).
 
-The WHO opened a [pilot phase](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_June2017.pdf "Guidance Document 09 June 2017") exploring reference-scaling for AUC (four period full replicate studies are mandatory in order to assess the variability associated with each product). It is not evident how this assessment should be done. In Population Bioequivalence (PBE) and Individual Bioequivalence (IBE) the _s~wT~_/_s~wR~_ ratio was assessed and similar variability was concluded for a ratio within 0.667 – 1.500. However, the power of comparing variabilities in a study designed to demonstrate ABE is low. This was the main reason why PBE and IBE were not implemented in regulatory practice. An alternative approach is given in the FDA’s [guidance on warfarin](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf "Draft recommended Dec 2012"). Variabilities are considered comparable if the upper confidence limit of _σ~wT~_/_σ~wR~_ is ≤2.5.
+The WHO opened a [pilot phase](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_June2017.pdf "Guidance Document 09 June 2017") exploring reference-scaling for AUC (four period full replicate studies are mandatory in order to assess the vari­ability associated with each product). It is not evident how this assessment should be done. In Population Bioequivalence (PBE) and Individual Bioequivalence (IBE) the _s~wT~_/_s~wR~_ ratio was assessed and similar variability was concluded for a ratio within 0.667 – 1.500. However, the power of comparing variabilities in a study designed to demonstrate ABE is low. This was one of the reasons why PBE and IBE were not implemented in regu­la­tory practice. An alternative approach is given in the FDA’s [guidance on warfarin](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf "Draft recommended Dec 2012") where variabilities are considered compar­able if the upper confidence limit of _σ~wT~_/_σ~wR~_ is ≤2.5.
 
 
 ### Cross-validation{#cross}

@@ -281,7 +281,7 @@ In the source evaluated by \acronym{SAS} for \acronym{ABEL}. Reported results (M
     \code{rds20} \tab \code{rds19} edited \tab Outlier of R (subject 1) introduced: original value ×100.\cr
     \code{rds21} \tab \code{rds01} edited \tab One extreme result of subjects 45 & 52 set to NA.\cr
     \code{rds25} \tab R \tab Simulated data set with heteroscedasticity.\cr
-    \code{rds26} \tab \ifelse{html}{\out{Patterson&nbsp;&&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C\textsubscript}{max}} data given in Table 4.4.
+    \code{rds26} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Table 4.4.
   }
 }
 

@@ -15,7 +15,7 @@ Data set simulated to be evaluated by \code{method.A()}, \code{method.B()}.
 
 \details{
    \tabular{crcl}{
-  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C\textsubscript}{wR}} (\%) \tab Evaluation\cr
+  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C_{wR}}} (\%) \tab Evaluation\cr
     \code{rds22} \tab 42 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 }
