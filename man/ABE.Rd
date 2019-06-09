@@ -180,7 +180,7 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
   If a confidence limit exceeds the drawing range, it is shown as a triangle.
   The \acronym{BE} limits and 100\% are given with single vertical lines. The
   \sQuote{resolution} is approximatelly 0.5\% and therefore, not all symbols
-  might be shown. The \acronym{CI} takes presedence over the limits.
+  might be shown. The \acronym{CI} and \acronym{PE} take presedence over the limits.
 }
 
 \note{
@@ -189,7 +189,8 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
   even if proven false in one of the full replicate designs (were \emph{both}
   \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}{CVwT}} and
   \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}{CVwR}} can be estimated).
-  Hence, amongst biostatisticians it is called the \dQuote{crippled model}.\cr
+  Hence, amongst biostatisticians it is called the \dQuote{crippled model}
+  because the replicative nature of the study is ignored.\cr
   Conventional unscaled \acronym{ABE} has to be employed for
   \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} (if widening of the
   acceptance range is clinically not justifiable),
@@ -238,8 +239,8 @@ London, 20 November 2014.
 # the data provided by the library. Write-permissions must be granted
 # for 'path.out' in order to save the result file. If 'path.out' is
 # not specified, results are written to the home folder.
-# path.in <- paste0(find.package("replicateBE"), "/extdata/")
-# ABE(path.in = path.in, file = "DS", set = "02", ext = "csv")
+path.in <- paste0(find.package("replicateBE"), "/extdata/")
+ABE(path.in = path.in, file = "DS", set = "02", ext = "csv")
 # Should result in:
 #   BE-limits          :  80.00\% ... 125.00\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass

@@ -25,7 +25,7 @@ Data sets from the public domain to be evaluated by \code{method.A()}, \code{met
 \source{
   \tabular{cll}{
     \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
-    \code{rds05} \tab \ifelse{html}{\out{Metzler&nbsp;&amp;&nbsp;Shumaker}}{Metzler~&~Shumaker} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in the Appendix.\cr
+    \code{rds05} \tab \ifelse{html}{\out{Shumaker&nbsp;&amp;&nbsp;Metzler}}{Shumaker~&~Metzler} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in the Appendix.\cr
     \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Table 9.6.\cr
     \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 14a.
   }
@@ -34,7 +34,7 @@ Data sets from the public domain to be evaluated by \code{method.A()}, \code{met
 \format{
   \itemize{
     \item Reference Data Set 05 (\code{rds05})\cr
-    Data set given in the Appendix of Metzler & Shumaker. 26 subjects.
+    Data set given in the Appendix of Shumaker & Metzler. 26 subjects.
       \describe{
           A data frame with 104 observations on the following 5 variables:
           \tabular{ll}{
@@ -94,8 +94,8 @@ In software sequences and treatments are ranked in lexical order. Hence, executi
 }
 
 \references{
-Metzler CM, Shumaker RC. \emph{The Phenytoin Trial is a Case Study of \sQuote{Individual} Bioequivalence.}\cr
-Drug Inf J. 1998;32:1063--72
+Shumaker RC, Metzler CM. \emph{The Phenytoin Trial is a Case Study of \sQuote{Individual} Bioequivalence.}\cr
+Drug Inf J. 1998;32(4):1063--72. \doi{10.1177/009286159803200426}
 
 Hauschke D, Steinijans VW, Pigeot I. \emph{Bioequivalence Studies in Drug Development.}\cr
 Chichester: John Wiley; 2007. p216.

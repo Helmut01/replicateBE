@@ -252,7 +252,7 @@ If \code{ola=TRUE} and at least one outlier was detected:
   shown as a triangle. Expanded limits are given as double vertical lines.
   Unscaled limits, the \acronym{GMR} restriction, and 100\% are given with
   single vertical lines. The \sQuote{resolution} is approximatelly 0.5\% and
-  therefore, not all symbols might be shown. The \acronym{CI} takes presedence
+  therefore, not all symbols might be shown. The \acronym{CI} and \acronym{PE} take presedence
   over the limits and the expanded limits over unscaled ones.
 }
 
@@ -263,7 +263,8 @@ If \code{ola=TRUE} and at least one outlier was detected:
   trials) -- even if proven false in one of the full replicate designs (were
   \emph{both} \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}{CVwT}} and
   \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}{CVwR}} can be estimated).
-  Hence, amongst biostatisticians it is called the \dQuote{crippled model}.\cr
+  Hence, amongst biostatisticians it is called the \dQuote{crippled model}
+  because the replicative nature of the study is ignored.\cr
   The half-width of the \acronym{CI} in log-scale allows a comparison of
   methods (B \emph{v.s.} A) where a higher value \emph{might} point towards
   a more conservative decision. In the provided example data sets -- with
@@ -294,17 +295,17 @@ If \code{ola=TRUE} and at least one outlier was detected:
   The \acronym{EMA}\enc{’}{'}s method of reference-scaling for highly
   variable drugs / drug products is currently recommended in other jurisdictions
   as well (\emph{e.g.}, the \acronym{WHO}; \acronym{ASEAN} States, Australia,
-  Brazil, Egypt, the Russian Federation, the Eurasian Economic Union, the East African Community, New Zealand).\cr\cr
-  The \acronym{WHO} opened a pilot phase exploring reference-scaling
-  for AUC (4-period full replicate studies are mandatory in order to assess
-  the variability associated with each product). It is an open issue how this
-  assessment should be done. In Population Bioequivalence (\acronym{PBE}) and
-  Individual Bioequivalence (\acronym{IBE}) the
+  Brazil, Egypt, the Russian Federation, the Eurasian Economic Union,
+  the East African Community, New Zealand).\cr\cr
+  The \acronym{WHO} accepts reference-scaling for AUC (4-period full replicate
+  studies are mandatory in order to assess the variability associated with each product).
+  It is an open issue how this assessment should be done. In Population Bioequivalence (\acronym{PBE})
+  and Individual Bioequivalence (\acronym{IBE}) the
   \ifelse{html}{\out{<em>s<sub>wT</sub></em>}}{\eqn{s_{wT}}}/\ifelse{html}{\out{<em>s<sub>wR</sub></em>}}{\eqn{s_{wR}}}
   ratio was assessed and similar variability was concluded for a ratio
-  within 0.667 -- 1.500. However, the power of comparing variabilities
-  in a study designed to demonstrate \acronym{ABE} is low. This was the
-  main reason why \acronym{PBE} and \acronym{IBE} were not implemented
+  within 0.667\enc{–}{-}1.500. However, the power of comparing variabilities
+  in a study designed to demonstrate \acronym{ABE} is low. This was one of the
+  reasons why \acronym{PBE} and \acronym{IBE} were not implemented
   in regulatory practice. An alternative approach is given in the
   \acronym{FDA}\enc{’}{'}s guidance on warfarin. Variabilities are
   considered comparable if the upper confidence limit of
@@ -340,8 +341,8 @@ London, 20 November 2014.
 
 World Health Organization, Prequalification Team: medicines\cr
 \emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm}\cr
-Geneva, 9 June 2017.
-\href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_June2017.pdf}{open access}
+Geneva, 22 November 2018.
+\href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf}{open access}
 
 Food and Drug Administration, Office of Generic Drugs.\cr
 \emph{Draft Guidance on Warfarin Sodium}\cr

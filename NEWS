@@ -1,5 +1,10 @@
 Version 1.0.5.9003
-Published on GitHub 2019-06-07
+Published on GitHub 2019-06-10
+    - Updated WHO-reference
+    - changed {\eqn{foo\textsubscript}{bar}} to simple {\eqn{foo_{bar}}
+      in two man pages.
+      Created another project where all conditional html/latex-statements
+      were removed. Still tons of errors in creating the PDF manual.
     - StartupWarnings seemingly unavoidable until rlang will
       be corrected
     - Small correction in text of box plot of CV.calc.R

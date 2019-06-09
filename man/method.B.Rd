@@ -282,7 +282,7 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
   shown as a triangle. Expanded limits are given as double vertical lines.
   Unscaled limits, the \acronym{GMR} restriction, and 100\% are given with
   single vertical lines. The \sQuote{resolution} is approximatelly 0.5\% and
-  therefore, not all symbols might be shown. The \acronym{CI} takes presedence
+  therefore, not all symbols might be shown. The \acronym{CI} and \acronym{PE} take presedence
   over the limits and the expanded limits over unscaled ones.
 }
 
@@ -293,7 +293,8 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
   trials) -- even if proven false in one of the full replicate designs (were
   \emph{both} \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}{CVwT}} and
   \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}{CVwR}} can be estimated).
-  Hence, amongst biostatisticians it is called the \dQuote{crippled model}.\cr
+  Hence, amongst biostatisticians it is called the \dQuote{crippled model}
+  because the replicative nature of the study is ignored.\cr
   The method for calculating the degrees of freedom is not specified in the
   \acronym{SAS} code provided by the \acronym{EMA} in the Q&A document. Hence,
   the default in \code{PROC MIXED}, namely \code{DDFM=CONTAIN} is applied.
@@ -336,20 +337,19 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
     outliers could be shown by a box plot. This would allow the medicines
     agencies to compare the data between them.}
   The \acronym{EMA}\enc{’}{'}s method of reference-scaling for highly
-  variable drugs / drug products is currently recommended in other
-  jurisdictions as well (\emph{e.g.}, the \acronym{WHO}; \acronym{ASEAN}
-  States, Australia, Brazil, Egypt, the Russian Federation, the Eurasian
-  Economic Union, the East African Community, New Zealand).\cr
-  The \acronym{WHO} opened a pilot phase exploring reference-scaling for
-  \acronym{AUC} (4-period full replicate studies are mandatory in order
-  to assess the variability associated with each product). It is an open
-  issue how this assessment should be done. In Population Bioequivalence
-  (\acronym{PBE}) and Individual Bioequivalence (\acronym{IBE}) the
+  variable drugs / drug products is currently recommended in other jurisdictions
+  as well (\emph{e.g.}, the \acronym{WHO}; \acronym{ASEAN} States, Australia,
+  Brazil, Egypt, the Russian Federation, the Eurasian Economic Union,
+  the East African Community, New Zealand).\cr\cr
+  The \acronym{WHO} accepts reference-scaling for AUC (4-period full replicate
+  studies are mandatory in order to assess the variability associated with each product).
+  It is an open issue how this assessment should be done. In Population Bioequivalence (\acronym{PBE})
+  and Individual Bioequivalence (\acronym{IBE}) the
   \ifelse{html}{\out{<em>s<sub>wT</sub></em>}}{\eqn{s_{wT}}}/\ifelse{html}{\out{<em>s<sub>wR</sub></em>}}{\eqn{s_{wR}}}
   ratio was assessed and similar variability was concluded for a ratio
-  within 0.667 -- 1.500. However, the power of comparing variabilities
-  in a study designed to demonstrate \acronym{ABE} is low. This was the
-  main reason why \acronym{PBE} and \acronym{IBE} were not implemented
+  within 0.667\enc{–}{-}1.500. However, the power of comparing variabilities
+  in a study designed to demonstrate \acronym{ABE} is low. This was one of the
+  reasons why why \acronym{PBE} and \acronym{IBE} were not implemented
   in regulatory practice. An alternative approach is given in the
   \acronym{FDA}\enc{’}{'}s guidance on warfarin. Variabilities are
   considered comparable if the upper confidence limit of
@@ -374,8 +374,8 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
 # the data provided by the library. Write-permissions must be granted
 # for 'path.out' in order to save the result file. If 'path.out' is
 # not specified, results are written to the home folder.
-# path.in <- paste0(find.package("replicateBE"), "/extdata/")
-# method.B(path.in = path.in, file = "DS", set = "01", ext = "csv")
+path.in <- paste0(find.package("replicateBE"), "/extdata/")
+method.B(path.in = path.in, file = "DS", set = "01", ext = "csv")
 # Should result in:
 #   CVwT               :  35.16\%
 #   swT                :   0.34138
