@@ -262,8 +262,8 @@ London, 20 November 2014.
 
 World Health Organization, Prequalification Team: medicines\cr
 \emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm}\cr
-Geneva, 9 June 2017.
-\href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_June2017.pdf}{open access}
+Geneva, 22 November 2018.
+\href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf}{open access}
 
 Food and Drug Administration, Office of Generic Drugs.\cr
 \emph{Draft Guidance on Warfarin Sodium}\cr

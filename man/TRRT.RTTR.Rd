@@ -95,11 +95,7 @@ In software sequences and treatments are ranked in lexical order. Hence, executi
 
 \references{
 Shumaker RC, Metzler CM. \emph{The Phenytoin Trial is a Case Study of \sQuote{Individual} Bioequivalence.}\cr
-<<<<<<< HEAD
 Drug Inf J. 1998;32(4):1063--72. \doi{10.1177/009286159803200426}
-=======
-Drug Inf J. 1998;32:1063--72. \doi{10.1177/009286159803200426}
->>>>>>> 83ca1617c1092baa7b625ce2c62188840ddf0cdd
 
 Hauschke D, Steinijans VW, Pigeot I. \emph{Bioequivalence Studies in Drug Development.}\cr
 Chichester: John Wiley; 2007. p216.

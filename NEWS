@@ -1,10 +1,6 @@
 Version 1.0.5.9003
-<<<<<<< HEAD
 Published on GitHub 2019-06-10
     - Updated WHO-reference
-=======
-Published on GitHub 2019-06-09
->>>>>>> 83ca1617c1092baa7b625ce2c62188840ddf0cdd
     - changed {\eqn{foo\textsubscript}{bar}} to simple {\eqn{foo_{bar}}
       in two man pages.
       Created another project where all conditional html/latex-statements
