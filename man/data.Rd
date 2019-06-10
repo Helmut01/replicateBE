@@ -90,7 +90,11 @@ Patterson SD, Jones B. \emph{Viewpoint: observations on scaled average bioequiva
 Pharm Stat. 2012;11(1):1--7. \doi{10.1002/pst.498}
 
 Shumaker RC, Metzler CM. \emph{The Phenytoin Trial is a Case Study of \sQuote{Individual} Bioequivalence.}\cr
+<<<<<<< HEAD
 Drug Inf J. 1998;32(4):1063--72. \doi{10.1177/009286159803200426}
+=======
+Drug Inf J. 1998;32:1063--72. \doi{10.1177/009286159803200426}
+>>>>>>> 83ca1617c1092baa7b625ce2c62188840ddf0cdd
 
 Chow SC, Liu JP. \emph{Design and Analysis of Bioavailability and Bioequivalence Studies.}\cr
 Boca Raton: CRC Press; 3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} edition 2009. p275.
