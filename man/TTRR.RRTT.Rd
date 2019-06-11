@@ -4,23 +4,16 @@
 \alias{rds28}
 \docType{data}
 \title{
-Reference Data Sets for TTRR\enc{|}{,}RRTT Designs
+Reference Datasets for TTRR\enc{|}{,}RRTT Designs
 }
 
 \description{
-Data set obtained by simulations to be evaluated by \code{method.A()} and/or \code{method.B()}.
-}
-
-\details{
-  \tabular{crcl}{
-    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
-    \code{rds28} \tab 64 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}
-  }
+Dataset obtained by simulations to be evaluated by \code{method.A()} and/or \code{method.B()}.
 }
 
 \format{
   \itemize{
-    \item Reference Data Set 28 (\code{rds28})\cr
+    \item Reference Dataset 28 (\code{rds28})\cr
     64 subjects.
     \describe{
       A data frame with 256 observations on the following 5 variables:
@@ -36,10 +29,10 @@ Data set obtained by simulations to be evaluated by \code{method.A()} and/or \co
   }
 }
 
-\source{
-  \tabular{cll}{
-    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
-    \code{rds28} \tab R \tab Simulated data set with homoscedasticity.
+\details{
+  \tabular{crcl}{
+    Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+    \code{rds28} \tab 64 \tab <30 \tab \code{method.A()}, \code{method.B()}
   }
 }
 
@@ -49,6 +42,13 @@ In software sequences and treatments are ranked in lexical order. Hence, executi
 
 \author{
 Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes)
+}
+
+\source{
+  \tabular{cll}{
+    Dataset \tab Origin \tab Description\cr
+    \code{rds28} \tab R \tab Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 35\%, \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bR}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 75\%, GMR 0.90.
+  }
 }
 
 \examples{

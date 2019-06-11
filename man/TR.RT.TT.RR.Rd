@@ -4,25 +4,19 @@
 \alias{rds27}
 \docType{data}
 \title{
-Reference Data Set for TR\enc{|}{,}RT\enc{|}{,}TT\enc{|}{,}RR Replicate Designs
+Reference Dataset for TR\enc{|}{,}RT\enc{|}{,}TT\enc{|}{,}RR Replicate Designs
 }
 
 \description{
-Data set for Balaam\enc{’}{'}s design simulated to be evaluated by \code{method.A()}, \code{method.B()}.
+Dataset for Balaam’s design obtained by simulations to be evaluated by \code{method.A()}, \code{method.B()}.
 }
 
 \usage{rds27}
 
-\details{
-   \tabular{crcl}{
-  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
-    \code{rds27} \tab 312 \tab >30 \tab \code{method.A()}, \code{method.B()}}
-}
-
 \format{
   \itemize{
-    \item Reference Data Set 27 (\code{rds27})\cr
-    Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 35\%, \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bR}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 75\% GMR 0.90. 312 subjects.
+    \item Reference Dataset 27 (\code{rds27})\cr
+    312 subjects.
     \describe{
       A data frame with 624 observations on the following 5 variables:
       \tabular{ll}{
@@ -37,12 +31,25 @@ Data set for Balaam\enc{’}{'}s design simulated to be evaluated by \code{metho
   }
 }
 
-\author{
-Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes)
+\details{
+   \tabular{crcl}{
+  Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+    \code{rds27} \tab 312 \tab >30 \tab \code{method.A()}, \code{method.B()}}
 }
 
 \note{
 In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RR", "RT", "TR", "TT"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.
+}
+
+\author{
+Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes)
+}
+
+\source{
+  \tabular{cll}{
+    Dataset \tab Origin \tab Description\cr
+    \code{rds27} \tab R \tab Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 35\%, \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bR}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 75\%, GMR 0.90.
+  }
 }
 
 \examples{

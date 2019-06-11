@@ -343,7 +343,7 @@ q <- matrix(data = "", nrow = 9, ncol = 4,
 for (i in 1:9) {
   q[i, 1:3] <- sprintf("%.5f", quantile(x, prob = p, type = i))
 }
-q[c(2, 4:8), 4] <- c("SAS, Stata", "SciPy", "",
+q[c(2, 4:8), 4] <- c("SAS, STaTa", "SciPy", "",
                      "Phoenix, Minitab, SPSS",
                      "R, S, MATLAB, Excel", "Maple")
 print(as.data.frame(q))

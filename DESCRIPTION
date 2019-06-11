@@ -1,15 +1,25 @@
 Encoding: UTF-8
 Package: replicateBE
 Version: 1.0.5.9003
-Date: 2019-06-10
+Date: 2019-06-11
 Title: Average Bioequivalence with Expanding Limits (ABEL)
 Authors@R: c(person("Helmut", "Schütz",
-               role = c("aut", "cre"), email = "helmut.schuetz@bebac.at"),
+               email = "helmut.schuetz@bebac.at",
+               role = c("aut", "cre"),
+               comment = c(ORCID = "0000-0002-1167-7880")),
              person("Michael", "Tomashevskiy",
-               role = c("ctb"), email = "mittyright@yandex.ru"),
+               email = "mittyright@yandex.ru",
+               role = "ctb"),
              person("Detlew", "Labes",
-               role = c("ctb"), email = "DetlewLabes@gmx.de"))
+               email = "DetlewLabes@gmx.de",
+               role = "ctb"))
+Author: Helmut Schütz [aut, cre],
+  Michael Tomashevskiy [ctb],
+  Detlew Labes [ctb]
 Maintainer: Helmut Schütz <helmut.schuetz@bebac.at>
+Imports: readxl (>= 1.0.0), PowerTOST, lmerTest, nlme, graphics,
+         grDevices
+Suggests: knitr, rmarkdown, testthat, devtools
 Description: Performs comparative bioavailability-calculations for the
              EMA’s Average Bioequivalence with Expanding Limits (ABEL).
              Implemented are ‘Method A’ and ‘Method B’, detection of
@@ -19,9 +29,6 @@ Description: Performs comparative bioavailability-calculations for the
              Average Bioequivalence (ABE) - optionally with tighter
              (EMA: NTIDs) or wider limits (GCC: Cmax) - is implemented
              as well.
-Imports: readxl (>= 1.0.0), PowerTOST, lmerTest, nlme, graphics,
-         grDevices
-Suggests: knitr, rmarkdown, testthat, devtools
 License: GPL (>=3)
 ByteCompile: yes
 LazyData: true

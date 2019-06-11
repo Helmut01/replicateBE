@@ -17,36 +17,16 @@
 \alias{rds26}
 \docType{data}
 \title{
-Reference Data Sets for TRTR\enc{|}{,}RTRT Designs
+Reference Datasets for TRTR|RTRT Designs
 }
 
 \description{
-Data sets from the public domain, edited, or obtained by simulations to be evaluated by \code{method.A()} and/or \code{method.B()}.
-}
-
-\details{
-  \tabular{crcl}{
-    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
-    \code{rds01} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds06} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds08} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds09} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds12} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds13} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds14} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds15} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds18} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds19} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds20} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds21} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds25} \tab 70 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds26} \tab 54 \tab >30 \tab \code{method.A()}, \code{method.B()}
-  }
+Datasets from the public domain, edited, or obtained by simulations to be evaluated by \code{method.A()} and/or \code{method.B()}.
 }
 
 \format{
   \itemize{
-    \item Reference Data Set 01 (\code{rds01})\cr
+    \item Reference dataset 01 (\code{rds01})\cr
     77 subjects.
     \describe{
       A data frame with 298 observations on the following 6 variables:
@@ -67,7 +47,7 @@ In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported resul
     }
   }
 
-    \item Reference Data Set 06 (\code{rds06})\cr
+    \item Reference dataset 06 (\code{rds06})\cr
     Based on \code{rds01}. 77 subjects. Responses of T and R switched.\cr
     \describe{
       A data frame with 298 observations on the following 6 variables:
@@ -82,7 +62,7 @@ In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported resul
       Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and three in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. No outliers.
     }
 
-    \item Reference Data Set 08 (\code{rds08})\cr
+    \item Reference dataset 08 (\code{rds08})\cr
     Simulated with slight heteroscedasticity (\ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = 70\%, \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 80\%), \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 150\%, GMR = 0.85. 222 subjects.\cr
     \describe{
       A data frame with 888 observations on the following 5 variables:
@@ -97,7 +77,7 @@ In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported resul
 The extreme sample size results from high variability, an assumed true GMR 0.85, and target power 90\%.
     }
 
-    \item Reference Data Set 09 (\code{rds09})\cr
+    \item Reference dataset 09 (\code{rds09})\cr
     Based on \code{rds08}. Wide numeric range (data of last 37 subjects multiplied by 1,000,000). 222 subjects.\cr
     \describe{
       A data frame with 888 observations on the following 5 variables:
@@ -111,8 +91,8 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
       Balanced (222 subjects in both sequences) and complete. No outliers.
     }
 
-    \item Reference Data Set 12 (\code{rds12})\cr
-    Data set simulated with extreme intra- and intersubject variability, GMR = 1.6487. 77 subjects.\cr
+    \item Reference dataset 12 (\code{rds12})\cr
+    Simulated with extreme intra- and intersubject variability, GMR = 1.6487. 77 subjects.\cr
     \describe{
       A data frame with 298 observations on the following 6 variables:
       \tabular{ll}{
@@ -126,7 +106,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
       Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and three in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. No outliers.
     }
 
-    \item Reference Data Set 13 (\code{rds13})\cr
+    \item Reference dataset 13 (\code{rds13})\cr
     Based on \code{rds08}. Highly incomplete (approx. 50\% of period 4 data deleted). 222 subjects.\cr
     \describe{
       A data frame with 776 observations on the following 5 variables:
@@ -140,8 +120,8 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
       Balanced (111 subjects in both sequences) and incomplete (56 missings in both sequences). Missings / period: 0/0, 0/0, 0/0, 112/4. No outliers.
     }
 
-    \item Reference Data Set 14 (\code{rds14})\cr
-    Data set simulated with high variability, GMR = 1. Dropouts as a hazard function growing with period. 77 subjects.
+    \item Reference dataset 14 (\code{rds14})\cr
+    Simulated with high variability, GMR = 1. Dropouts as a hazard function growing with period. 77 subjects.
     \describe{
       A data frame with 273 observations on the following 6 variables:
       \tabular{ll}{
@@ -155,7 +135,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
       Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (18 missings in sequence TRTR and 17 in sequence RTRT). Missings / period: 0/1, 4/2, 12/3, 19/4. No outliers.
     }
 
-    \item Reference Data Set 15 (\code{rds15})\cr
+    \item Reference dataset 15 (\code{rds15})\cr
     Based on \code{ref08}. Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}). 222 subjects.
     \describe{
      A data frame with 888 observations (112 \code{NA}) on the following 5 variables:
@@ -169,7 +149,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
       Balanced (111 subjects in both sequences) and incomplete (56 missings in both sequences). Missings / period: 0/1, 0/2, 0/3, 112/4. No outliers.
     }
 
-    \item Reference Data Set 18 (\code{rds18})\cr
+    \item Reference dataset 18 (\code{rds18})\cr
     Data set based on \code{rds14}. Removed T data of subjects 63–78. 77 subjects.
     \describe{
      A data frame with 245 observations on the following 6 variables:
@@ -184,7 +164,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
       Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (32 missings in sequence TRTR and 31 in sequence RTRT). Missings / period: 8/1, 12/2, 18/3, 25/4. No outliers.
     }
 
-    \item Reference Data Set 19 (\code{rds19})\cr
+    \item Reference dataset 19 (\code{rds19})\cr
     Data set based on \code{rds18}. Removed data of subjects 63–78. 61 subjects.
     \describe{
      A data frame with 216 observations on the following 6 variables:
@@ -199,7 +179,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
       Unbalanced (31 subjects in sequence TRTR and 30 in RTRT) and incomplete (14 missings in both sequences). Missings / period: 0/1, 4/2, 9/3, 15/4. Two outliers (subjects 18 and 51 in sequence RTRT).
     }
 
-    \item Reference Data Set 20 (\code{rds20})\cr
+    \item Reference dataset 20 (\code{rds20})\cr
     Data set based on \code{rds19}. Extreme outlier of R (subject 1) introduced: original value ×100). 61 subjects.
     \describe{
      A data frame with 216 observations on the following 6 variables:
@@ -214,7 +194,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
       Unbalanced (31 subjects in sequence TRTR and 30 in RTRT) and incomplete (14 missings in both sequences). Missings / period: 0/1, 4/2, 9/3, 15/4. Two outliers (subjects 1 and 51 in sequence RTRT).
     }
 
-    \item Reference Data Set 21 (\code{rds21})\cr
+    \item Reference dataset 21 (\code{rds21})\cr
     Based on \code{ds01}. 77 subjects. One extreme result of subjects 45 & 52 set to NA.
     \describe{
      A data frame with 298 observations (2 NA) on the following 6 variables:
@@ -229,8 +209,8 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
       Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and five in sequence RTRT). Missings / period: 1/1, 1/2, 8/3, 2/4. No outliers.
     }
 
-    \item Reference Data Set 25 (\code{rds25})\cr
-    Simulated with heteroscedasticity (\ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = 50\%, \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 80\%), \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 130\%, GMR = 0.90. 70 subjects.\cr
+    \item Reference dataset 25 (\code{rds25})\cr
+    Simulated with heteroscedasticity (\ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = 50\%, \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 80\%), \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 130\%, GMR = 0.85. 70 subjects.\cr
     \describe{
       A data frame with 280 observations on the following 5 variables:
       \tabular{ll}{
@@ -243,7 +223,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
       Balanced (70 subjects in both sequences) and complete. No outliers.
     }
 
-    \item Reference Data Set 26 (\code{rds26})\cr
+    \item Reference dataset 26 (\code{rds26})\cr
     54 subjects.\cr
     \describe{
       A data frame with 216 observations on the following 5 variables:
@@ -265,32 +245,24 @@ In the source evaluated by \acronym{SAS} for \acronym{ABEL}. Reported results (M
   }
 }
 
-\source{
-  \tabular{cll}{
-    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
-    \code{rds01} \tab EMA, CHMP \tab Data set I.\cr
-    \code{rds06} \tab \code{rds01} edited \tab T and R switched.\cr
-    \code{rds08} \tab R \tab Large simulated data set with slight heteroscedasticity.\cr
-    \code{rds09} \tab \code{rds08} \tab Wide numeric range (data of last 37 subjects multiplied by 1,000,000).\cr
-    \code{rds12} \tab \ifelse{html}{\out{Phoenix&nbsp;NLME}}{Phoenix~NLME} \tab Simulated data set with extreme intra- and intersubject variability.\cr
-    \code{rds13} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data deleted).\cr
-    \code{rds14} \tab \ifelse{html}{\out{Phoenix&nbsp;NLME}}{Phoenix~NLME} \tab Simulated data set with high intra- and intersubject and number of dropouts increasing with period.\cr
-    \code{rds15} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}).\cr
-    \code{rds18} \tab \code{rds14} edited \tab Removed T data of subjects 63–78.\cr
-    \code{rds19} \tab \code{rds18} edited \tab Removed data of subjects 63–78.\cr
-    \code{rds20} \tab \code{rds19} edited \tab Outlier of R (subject 1) introduced: original value ×100.\cr
-    \code{rds21} \tab \code{rds01} edited \tab One extreme result of subjects 45 & 52 set to NA.\cr
-    \code{rds25} \tab R \tab Simulated data set with heteroscedasticity.\cr
-    \code{rds26} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Table 4.4.
+\details{
+  \tabular{crcl}{
+    Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+    \code{rds01} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds06} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds08} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds09} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds12} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds13} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds14} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds15} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds18} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds19} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds20} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds21} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds25} \tab 70 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds26} \tab 54 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
-}
-
-\references{
-European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).}\cr
-London, 19 November 2015. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf}{EMA/618604/2008 Rev. 13}
-
-Patterson SD, Jones B. \emph{Bioequivalence and Statistics in Clinical Pharmacology.}\cr
-Boca Raton: CRC Press; 2\ifelse{html}{\out{<sup>nd</sup>}}{\eqn{^{nd}}} edition 2016. p275--6.
 }
 
 \note{
@@ -299,6 +271,34 @@ In software sequences and treatments are ranked in lexical order. Hence, executi
 
 \author{
 Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael Tomashevskiy (simulations in Phoenix NLME)
+}
+
+\source{
+  \tabular{cll}{
+    Dataset \tab Origin \tab Description\cr
+    \code{rds01} \tab EMA, CHMP \tab Data set I.\cr
+    \code{rds06} \tab \code{rds01} edited \tab T and R switched.\cr
+    \code{rds08} \tab R \tab Large simulated data set with slight heteroscedasticity.\cr
+    \code{rds09} \tab \code{rds08} \tab Wide numeric range (data of last 37 subjects multiplied by 1,000,000).\cr
+    \code{rds12} \tab \ifelse{html}{\out{Phoenix&nbsp;NLME}}{Phoenix~NLME} \tab Simulated with extreme intra- and intersubject variability.\cr
+    \code{rds13} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data deleted).\cr
+    \code{rds14} \tab \ifelse{html}{\out{Phoenix&nbsp;NLME}}{Phoenix~NLME} \tab Simulated with high intra- and intersubject and number of dropouts increasing with period.\cr
+    \code{rds15} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}).\cr
+    \code{rds18} \tab \code{rds14} edited \tab Removed T data of subjects 63–78.\cr
+    \code{rds19} \tab \code{rds18} edited \tab Removed data of subjects 63–78.\cr
+    \code{rds20} \tab \code{rds19} edited \tab Outlier of R (subject 1) introduced: original value ×100.\cr
+    \code{rds21} \tab \code{rds01} edited \tab One extreme result of subjects 45 & 52 set to NA.\cr
+    \code{rds25} \tab R \tab Simulated with heteroscedasticity.\cr
+    \code{rds26} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Tables 4.40 and 4.31.
+  }
+}
+
+\references{
+European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).}\cr
+London, 19 November 2015. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf}{EMA/618604/2008 Rev. 13}
+
+Patterson SD, Jones B. \emph{Bioequivalence and Statistics in Clinical Pharmacology.}\cr
+Boca Raton: CRC Press; 2\ifelse{html}{\out{<sup>nd</sup>}}{\eqn{^{nd}}} edition 2016. p105--6.
 }
 
 \examples{

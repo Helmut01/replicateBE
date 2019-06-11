@@ -2,20 +2,21 @@
 \name{method.B}
 \alias{method.B}
 \title{
-Comparative BA-calculation of Average Bioequivalence with Expanding Limits by the EMA's 'Method B'
+Comparative BA-calculation for Average Bioequivalence with Expanding Limits by the EMA's 'Method B'
 }
 \description{
   This function performs the required calculations for the mixed (or aggregate)
   \acronym{BE} decision via Average Bioequivalence with Expanding Limits
   (\acronym{ABEL}) based on a linear mixed effects model with subjects as a
-  random effect (\sQuote{Method B}) as recommended in the \acronym{EMA}\enc{’}{'}s
+  random effect (\sQuote{Method B}) as recommended in the \acronym{EMA}’s
   Q&A-document.
 }
 \usage{
-method.B(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
-         ext, na = ".", sep = ",", dec = ".", logtrans = TRUE,
-         ola = FALSE, print = TRUE, details = FALSE, verbose = FALSE,
-         ask = FALSE, plot.bxp = FALSE, fence = 2, data = NULL, option = 2)
+method.B(alpha = 0.05, path.in = NULL, path.out = NULL,
+         file, set = "", ext, na = ".", sep = ",", dec = ".",
+         logtrans = TRUE, ola = FALSE, print = TRUE, details = FALSE,
+         verbose = FALSE, ask = FALSE, plot.bxp = FALSE,
+         fence = 2, data = NULL, option = 2)
 }
 \arguments{
   \item{alpha}{
@@ -26,12 +27,12 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
   }
   \item{path.in}{
     Path to the data file for import. If missing or not existing the
-    user\enc{’}{'}s home folder \verb{"~/"} will be used.
+    user’s home folder \verb{"~/"} will be used.
   }
   \item{path.out}{
     Path to safe the result file if \code{print=TRUE}. The user must have
     write-permission to the directory. If missing or not existing the
-    user\enc{’}{'}s home folder \verb{"~/"} will be used.
+    user’s home folder \verb{"~/"} will be used.
   }
   \item{file}{
     Name of the data set for import (\emph{without} extension). Must be
@@ -105,7 +106,7 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
     will be detected with higher values (not recommended).
   }
   \item{data}{
-    Specification of one of the internal reference data sets (\verb{rds01}
+    Specification of one of the internal reference datasets (\verb{rds01}
     -- \verb{rds26}). If given, \verb{path.in}, \verb{file}, \verb{set},
     and \verb{ext} are ignored. For its use see the examples.\cr
     If not given, defaults to \code{NULL} (\emph{i.e.}, import data
@@ -115,11 +116,11 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
     If \code{2} (default), the model will be evaluated by \verb{lme()} of
     package \verb{nlme}. The degrees of freedom of the treatment comparison
     will be equivalent to \acronym{SAS}\enc{’}{'} \verb{DDFM=CONTAIN} and
-    Phoenix WinNonlin\enc{’}{'}s \verb{Residual}.\cr
+    Phoenix WinNonlin’s \verb{Residual}.\cr
     If \code{1}, the model will be evaluated by \verb{lmer()} of package
     \verb{lmerTest}. The degrees of freedom of the treatment comparison
     will be equivalent to \acronym{SAS}\enc{’}{'} \verb{DDFM=SATTERTHWAITE}
-    and Phoenix WinNonlin\enc{’}{'}s \verb{Satterthwaite}.
+    and Phoenix WinNonlin’s \verb{Satterthwaite}.
   }
 }
 
@@ -138,7 +139,7 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
       \verb{TRRT | RTTR}\cr
       \verb{TTRR | RRTT}
     \item 2-period 4-sequence replicate:\cr
-      \verb{TR | RT | TT | RR } (Balaam\enc{’}{'}s design)
+      \verb{TR | RT | TT | RR } (Balaam’s design)
     \item 4-period 4-sequence full replicates:\cr
       \verb{TRTR | RTRT | TRRT | RTTR}\cr
       \verb{TRRT | RTTR | TTRR | RRTT}
@@ -287,7 +288,7 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
 }
 
 \note{
-  The \acronym{EMA}\enc{’}{'}s model specified in \sQuote{Method B} assumes
+  The \acronym{EMA}’s model specified in \sQuote{Method B} assumes
   equal [sic!] intra-subject variances of test and reference (like in
   \ifelse{html}{\out{2&times;2&times;2}}{\eqn{2 \times 2 \times 2}{2x2x2}}
   trials) -- even if proven false in one of the full replicate designs (were
@@ -298,19 +299,17 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
   The method for calculating the degrees of freedom is not specified in the
   \acronym{SAS} code provided by the \acronym{EMA} in the Q&A document. Hence,
   the default in \code{PROC MIXED}, namely \code{DDFM=CONTAIN} is applied.
-  For incomplete data (\emph{i.e.}, missing periods) Satterthwaite\enc{’}{'}s
+  For incomplete data (\emph{i.e.}, missing periods) Satterthwaite’s
   approximation of the degrees of freedom (\code{option=1}) might be a better
   choice -- if stated as such in the statistical analysis plan.\cr
   The half-width of the CI in log-scale allows a comparison of methods (B
   \emph{v.s.} A) or options (2 \emph{v.s.} 1). A higher value \emph{might}
-  point towards a more conservative decision. Quoting the Q&A-document:
-  \itemize{
-    \item A simple linear mixed model, which assumes identical within-subject
+  point towards a more conservative decision. Quoting the Q&A-document:\cr
+  \cite{A simple linear mixed model, which assumes identical within-subject
     variability (Method B), may be acceptable as long as results obtained
     with the two methods do not lead to different regulatory decisions.
     However, in borderline cases [\ldots] additional analysis using Method
-    A might be required.
-  }
+    A might be required.}\cr
   In the provided example data sets -- with one exception -- the conclusion
   of \acronym{BE} (based on the mixed \acronym{CI} and \acronym{GMR} criteria)
   agrees between \sQuote{Method A} and \sQuote{Method B}. However, for the
@@ -321,22 +320,20 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
   products) and \ifelse{html}{\out{C<sub>max,ss</sub>}}{\eqn{C_{max,ss}}},
   \ifelse{html}{\out{C<sub>&tau;,ss</sub>}}{\eqn{C_{\tau,ss}}}, and
   \ifelse{html}{\out{<sub>partial</sub>AUC}}{\eqn{_{partial}AUC}} (modified
-  release products). However, quoting the \acronym{BE} guideline:
-  \itemize{
-    \item The applicant should justify that the calculated intra-subject
+  release products). However, quoting the \acronym{BE} guideline:\cr
+    \cite{The applicant should justify that the calculated intra-subject
     variability is a reliable estimate and that it is not the result of
-    outliers.}
-    Quoting the Q&A on the Revised EMA Bioequivalence Guideline:
-  \itemize{
-    \item [\ldots] a study could be acceptable if the bioequivalence
+    outliers.}\cr
+  Quoting the Q&A on the Revised EMA Bioequivalence Guideline:\cr
+    \cite{\ldots a study could be acceptable if the bioequivalence
     requirements are met both including the outlier subject (using the
     scaled average bioequivalence approach and the within-subject CV with
     this subject) and after exclusion of the outlier (using the within-subject
     CV without this subject).\cr
     An outlier test is not an expectation of the medicines agencies but
     outliers could be shown by a box plot. This would allow the medicines
-    agencies to compare the data between them.}
-  The \acronym{EMA}\enc{’}{'}s method of reference-scaling for highly
+    agencies to compare the data between them.  }\cr\cr
+  The \acronym{EMA}’s method of reference-scaling for highly
   variable drugs / drug products is currently recommended in other jurisdictions
   as well (\emph{e.g.}, the \acronym{WHO}; \acronym{ASEAN} States, Australia,
   Brazil, Egypt, the Russian Federation, the Eurasian Economic Union,
@@ -351,7 +348,7 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
   in a study designed to demonstrate \acronym{ABE} is low. This was one of the
   reasons why why \acronym{PBE} and \acronym{IBE} were not implemented
   in regulatory practice. An alternative approach is given in the
-  \acronym{FDA}\enc{’}{'}s guidance on warfarin. Variabilities are
+  \acronym{FDA}’s guidance on warfarin. Variabilities are
   considered comparable if the upper confidence limit of
   \ifelse{html}{\out{<em>&sigma;<sub>wT</sub></em>}}{\eqn{\sigma_{wT}}}/\ifelse{html}{\out{<em>&sigma;<sub>wR</sub></em>}}{\eqn{\sigma_{wR}}} is less than or equal to 2.5.\cr\cr
   \strong{Program offered for Use without any Guarantees and Absolutely No Warranty.\cr

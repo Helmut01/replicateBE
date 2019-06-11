@@ -5,33 +5,17 @@
 \alias{rds17}
 \docType{data}
 \title{
-Reference Data Sets for TRT\enc{|}{,}RTR Replicate Designs
+Reference Datasets for TRT|RTR Replicate Designs
 }
 
 \description{
-Data sets from the public domain and edited to be evaluated by \code{method.A()} and/or \code{method.B()}.
-}
-
-\details{
-  \tabular{crcl}{
-    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
-    \code{rds03} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds17} \tab 19 \tab >30 \tab \code{method.A()}, \code{method.B()}
-  }
-}
-
-\source{
-  \tabular{cll}{
-    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
-    \code{rds03} \tab \code{rds01} edited \tab Period 4 removed.\cr
-    \code{rds17} \tab \code{rds03} edited \tab Highly unbalanced (seven subjects in TRT and twelve in RTR).
-  }
+Datasets from the public domain and edited to be evaluated by \code{method.A()} and/or \code{method.B()}.
 }
 
 \format{
   \itemize{
-    \item Reference Data Set 03 (\code{rds03})\cr
-    Based on \code{ds01}. Removed all data of period 4. 77 subjects.
+    \item Reference dataset 03 (\code{rds03})\cr
+    Based on \code{rds01}. Removed all data of period 4. 77 subjects.
       \describe{
           A data frame with 223 observations on the following 6 variables:
           \tabular{ll}{
@@ -45,7 +29,7 @@ Data sets from the public domain and edited to be evaluated by \code{method.A()}
           Unbalanced (39 subjects in sequence TRT and 38 in RTR) and incomplete (six missings in sequence TRT and two in RTR). Missings / period: 0/1, 1/2, 7/3. Two outliers (subjects 45 and 52) in sequence RTR.
        }
 
-    \item Reference Data Set 17 (\code{rds17})\cr
+    \item Reference dataset 17 (\code{rds17})\cr
     Based on \code{rds03}. 19 subjects.
       \describe{
           A data frame with 56 observations on the following 6 variables:
@@ -62,12 +46,28 @@ Data sets from the public domain and edited to be evaluated by \code{method.A()}
   }
 }
 
+\details{
+  \tabular{crcl}{
+    Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+    \code{rds03} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds17} \tab 19 \tab >30 \tab \code{method.A()}, \code{method.B()}
+  }
+}
+
 \note{
 In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTR", "TRT"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.
 }
 
 \author{
 Helmut \enc{Schütz}{Schuetz}
+}
+
+\source{
+  \tabular{cll}{
+    Dataset \tab Origin \tab Description\cr
+    \code{rds03} \tab \code{rds01} edited \tab Period 4 removed.\cr
+    \code{rds17} \tab \code{rds03} edited \tab Highly unbalanced (seven subjects in TRT and twelve in RTR).
+  }
 }
 
 \examples{

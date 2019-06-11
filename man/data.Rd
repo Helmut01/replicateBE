@@ -4,11 +4,11 @@
 \docType{data}
 
 \title{
-Reference Data Sets
+Reference Datasets
 }
 
 \description{
-Data sets for replicate design from the public domain, edited, or obtained by simulations to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
+Datasets for replicate design from the public domain, edited, or obtained by simulations to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
 }
 
 \details{
@@ -37,20 +37,20 @@ Data sets for replicate design from the public domain, edited, or obtained by si
   TRT|RTR \tab full \tab \code{rds03} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRT|RTR \tab full \tab \code{rds17} \tab 19 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTT \tab full \tab \code{rds10} \tab 18 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
-  TR|RT|TT|RR \tab Balaam\enc{’}{'}s \tab \code{rds27} \tab 312 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TR|RT|TT|RR \tab Balaam’s \tab \code{rds27} \tab 312 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTR|RRT \tab partial \tab \code{rds02} \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
   TRR|RTR|RRT \tab partial \tab \code{rds04} \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTR|RRT \tab partial \tab \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTR \tab partial \tab \code{rds22} \tab 36 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 In full replicate designs \emph{both} R and T are administered twice (in 3-period designs to \enc{½}{1/2} of the subjects).\cr
-Balaam\enc{’}{'}s design is a mixture of a conventional crossover (\enc{½}{1/2} of the subjects) and a replicate design (\enc{¼}{1/4} of the subjects receive \emph{either} R \emph{or} T twice).\cr
+Balaam’s design is a mixture of a conventional crossover (\enc{½}{1/2} of the subjects) and a replicate design (\enc{¼}{1/4} of the subjects receive \emph{either} R \emph{or} T twice).\cr
 In partial replicate designs \emph{only} R is administered twice.
 }
 
 \source{
   \tabular{cll}{
-    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
+    Dataset \tab Origin \tab Description\cr
     \code{rds01} \tab EMA, CHMP \tab Data set I.\cr
     \code{rds06} \tab \code{rds01} edited \tab T and R switched.\cr
     \code{rds12} \tab Phoenix NLME \tab Simulated with extreme intra- and intersubject variability.\cr
@@ -64,7 +64,7 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds13} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data deleted).\cr
     \code{rds15} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}).\cr
     \code{rds25} \tab R \tab Simulated with heteroscedasticity.\cr
-    \code{rds26} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Table 4.4.\cr
+    \code{rds26} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} 2016 \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Tables 4.30-31.\cr
     \code{rds05} \tab \ifelse{html}{\out{Shumaker&nbsp;&amp;&nbsp;Metzler}}{Shumaker~&~Metzler} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in the Appendix.\cr
     \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Table 9.6.\cr
     \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 14a.\cr
@@ -76,7 +76,7 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds10} \tab \ifelse{html}{\out{Chow&nbsp;&amp;&nbsp;Liu}}{Chow~&~Liu} \tab AUC data given in Table 9.3.3.\cr
     \code{rds27} \tab R \tab Simulated with homoscedasticity.\cr
     \code{rds02} \tab EMA, CHMP \tab Data set II.\cr
-    \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Table II.\cr
+    \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} 2012 \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Table II.\cr
     \code{rds07} \tab R \tab Simulated with homoscedasticity.\cr
     \code{rds22} \tab R \tab Simulated with homoscedasticity.
   }
@@ -99,7 +99,7 @@ Hauschke D, Steinijans VW, Pigeot I. \emph{Bioequivalence Studies in Drug Develo
 Chichester: John Wiley; 2007. p216.
 
 Patterson SD, Jones B. \emph{Bioequivalence and Statistics in Clinical Pharmacology.}\cr
-Boca Raton: CRC Press; 2\ifelse{html}{\out{<sup>nd</sup>}}{\eqn{^{nd}}} edition 2016. p275--6.
+Boca Raton: CRC Press; 2\ifelse{html}{\out{<sup>nd</sup>}}{\eqn{^{nd}}} edition 2016. p105--6.
 
 \acronym{U.S.} Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Bioequivalence Studies.}\cr
 Rockville, 1997. \href{https://web.archive.org/web/20170723175533/https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip
@@ -109,7 +109,7 @@ Rockville, 1997. \href{https://web.archive.org/web/20170723175533/https://www.fd
 \seealso{
   4-period full replicates\cr
   {\link[replicateBE]{TRTR.RTRT}}, {\link[replicateBE]{TRRT.RTTR}}, {\link[replicateBE]{TTRR.RRTT}}, {\link[replicateBE]{TRTR.RTRT.TRRT.RTTR}}, {\link[replicateBE]{TRRT.RTTR.TTRR.RRTT}}\cr
-  2-period replicate (Balaam\enc{’}{'}s design)\cr
+  2-period replicate (Balaam’s design)\cr
   {\link[replicateBE]{TR.RT.TT.RR}}\cr
   3-period full replicates\cr
   {\link[replicateBE]{TRT.RTR}}, {\link[replicateBE]{TRR.RTT}}\cr

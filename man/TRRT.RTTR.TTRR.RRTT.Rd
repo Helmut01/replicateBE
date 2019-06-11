@@ -4,23 +4,16 @@
 \alias{rds24}
 \docType{data}
 \title{
-Reference Data Set for TRRT\enc{|}{,}RTTR\enc{|}{,}TTRR\enc{|}{,}RRTT Designs
+Reference Dataset for TRRT|RTTR|TTRR|RRTT Designs
 }
 
 \description{
-Data set from the public domain to be evaluated by \code{method.A()} and/or \code{method.B()}.
-}
-
-\details{
-  \tabular{crcl}{
-    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
-    \code{rds24} \tab 39 \tab >30 \tab \code{method.A()}, \code{method.B()}
-  }
+Dataset from the public domain to be evaluated by \code{method.A()} and/or \code{method.B()}.
 }
 
 \format{
   \itemize{
-    \item Reference Data Set 24 (\code{rds24})\cr
+    \item Reference Dataset 24 (\code{rds24})\cr
     40 subjects (one completely missing).
     \describe{
       A data frame with 160 observations on the following 5 variables:
@@ -36,15 +29,22 @@ Data set from the public domain to be evaluated by \code{method.A()} and/or \cod
   }
 }
 
-\source{
-  \tabular{cll}{
-  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
-  \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 1.
+\details{
+  \tabular{crcl}{
+    Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+    \code{rds24} \tab 39 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 }
 
 \note{
 In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RRTT", "RTTR", "TRRT", "TTRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.
+}
+
+\source{
+  \tabular{cll}{
+  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
+  \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 1.
+  }
 }
 
 \references{

@@ -2,18 +2,18 @@
 \name{ABE}
 \alias{ABE}
 \title{
-Comparative BA-calculation of Average Bioequivalence
+Comparative BA-calculation for Average Bioequivalence
 }
 \description{
   This function performs the required calculations for the \acronym{BE}
   decision via conventional (unscaled) Average Bioequivalence based on
-  ANOVA as recommended in the \acronym{EMA}\enc{’}{'}s guideline.
+  ANOVA as recommended in the \acronym{EMA}’s guideline.
 }
 \usage{
-ABE(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
-    ext, na = ".", sep = ",", dec = ".", logtrans = TRUE,
-    print = TRUE, details = FALSE, verbose = FALSE, ask = FALSE,
-    data = NULL, theta1, theta2)
+ABE(alpha = 0.05, path.in = NULL, path.out = NULL,
+    file, set = "", ext, na = ".", sep = ",", dec = ".",
+    logtrans = TRUE, print = TRUE, details = FALSE,
+    verbose = FALSE, ask = FALSE, data = NULL, theta1, theta2)
 }
 
 \arguments{
@@ -25,12 +25,12 @@ ABE(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
   }
   \item{path.in}{
     Path to the data file for import. If missing or not existing the
-    user\enc{’}{'}s home folder \verb{"~/"} will be used.
+    user’s home folder \verb{"~/"} will be used.
   }
   \item{path.out}{
     Path to safe the result file if \code{print=TRUE}. The user must have
     write-permission to the directory. If missing or not existing the
-    user\enc{’}{'}s home folder \verb{"~/"} will be used.
+    user’s home folder \verb{"~/"} will be used.
   }
   \item{file}{
     Name of the data set for import (\emph{without} extension). Must be
@@ -86,7 +86,7 @@ ABE(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
     whether an already existing result file should be overwritten.
   }
   \item{data}{
-    Specification of one of the internal reference data sets (\verb{rds01}
+    Specification of one of the internal reference datasets (\verb{rds01}
     -- \verb{rds26}). If given, \verb{path.in}, \verb{file}, \verb{set},
     and \verb{ext} are ignored. For its use see the examples.\cr
     If not given, defaults to \code{NULL} (\emph{i.e.}, import data
@@ -113,7 +113,7 @@ ABE(alpha = 0.05, path.in = NULL, path.out = NULL, file, set = "",
       \verb{TRRT | RTTR}\cr
       \verb{TTRR | RRTT}
     \item 2-period 4-sequence replicate:\cr
-      \verb{TR | RT | TT | RR } (Balaam\enc{’}{'}s design)
+      \verb{TR | RT | TT | RR } (Balaam’s design)
     \item 4-period 4-sequence full replicates:\cr
       \verb{TRTR | RTRT | TRRT | RTTR}\cr
       \verb{TRRT | RTTR | TTRR | RRTT}
@@ -184,7 +184,7 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
 }
 
 \note{
-  The \acronym{EMA}\enc{’}{'}s model assumes equal [sic!] intra-subject
+  The \acronym{EMA}’s model assumes equal [sic!] intra-subject
   variances of test and reference (like in \enc{2×2×2}{2x2x2} trials) --
   even if proven false in one of the full replicate designs (were \emph{both}
   \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}{CVwT}} and

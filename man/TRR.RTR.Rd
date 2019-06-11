@@ -4,25 +4,18 @@
 \alias{rds22}
 \docType{data}
 \title{
-Reference Data Set for TRR\enc{|}{,}RTR (extra-reference) Designs
+Reference Dataset for TRR|RTR (extra-reference) Designs
 }
 
 \description{
-Data set simulated to be evaluated by \code{method.A()}, \code{method.B()}.
+Dataset simulated to be evaluated by \code{method.A()}, \code{method.B()}.
 }
 
 \usage{rds22}
 
-\details{
-   \tabular{crcl}{
-  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C_{wR}}} (\%) \tab Evaluation\cr
-    \code{rds22} \tab 42 \tab >30 \tab \code{method.A()}, \code{method.B()}
-  }
-}
-
 \format{
   \itemize{
-    \item Reference Data Set 22 (\code{rds22})\cr
+    \item Reference dataset 22 (\code{rds22})\cr
     Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 45\%, \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 100\% GMR 0.90. 42 subjects.
     \describe{
       A data frame with 126 observations on the following 5 variables:
@@ -39,20 +32,27 @@ Data set simulated to be evaluated by \code{method.A()}, \code{method.B()}.
   }
 }
 
-\source{
-  \tabular{cll}{
-  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
-    \code{rds22} \tab R \tab Simulated data set with homoscedasticity.
+\details{
+   \tabular{crcl}{
+  Dataset \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C_{wR}}} (\%) \tab Evaluation\cr
+    \code{rds22} \tab 42 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 }
 
 \note{
 In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTR", "TRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.\cr
-This partial replicate design is also known as the \sQuote{extra-reference design}. Since the Test is not administered in all periods, lacking period effects must be assumed. In the presence of a \emph{true} period effect the treatment comparison will be biased. Hence, this design is not recommended.
+This partial replicate design is also known as the \sQuote{extra-reference design}. Since the Test is not administered in all periods, lacking period effects must be assumed. In the presence of \emph{true} period effects the treatment comparison will be biased. Hence, this design is not recommended.
 }
 
 \author{
 Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes)
+}
+
+\source{
+  \tabular{cll}{
+  Dataset \tab Origin \tab Description\cr
+    \code{rds22} \tab R \tab Simulated with homoscedasticity.
+  }
 }
 
 \examples{

@@ -1,5 +1,8 @@
 Version 1.0.5.9003
-Published on GitHub 2019-06-10
+Published on GitHub 2019-06-11
+    - Simplified and reordered sources of man-pages
+    - Added Autor and Maintainer to DESCRIPTION (otherwise CHECK laments)
+      Remove when submitting to CRAN!
     - Updated WHO-reference
     - changed {\eqn{foo\textsubscript}{bar}} to simple {\eqn{foo_{bar}}
       in two man pages.

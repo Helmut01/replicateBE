@@ -6,35 +6,17 @@
 \alias{rds07}
 \docType{data}
 \title{
-Reference Data Sets for TRR\enc{|}{,}RTR\enc{|}{,}RRT (partial) Replicate Designs
+Reference Datasets for TRR|RTR|RRT (partial) Replicate Designs
 }
 
 \description{
-Data sets from the public domain or edited to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
-}
-
-\details{
-   \tabular{crcl}{
-      \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
-      \code{rds02} \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
-      \code{rds04} \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-      \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}
-  }
-}
-
-\source{
-  \tabular{cll}{
-    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
-    \code{rds02} \tab EMA, CHMP \tab Data set II.\cr
-    \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Table II.\cr
-    \code{rds07} \tab R \tab Large simulated data set with homoscedasticity.
-  }
+Datasets from the public domain or edited to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
 }
 
 \format{
   \itemize{
-    \item Reference Data Set 02 (\code{rds02})\cr
-    Data set II of the EMA\enc{’}{'}s Q&A document. 24 subjects.
+    \item Reference Dataset 02 (\code{rds02})\cr
+    Data set II of the EMA’s Q&A document. 24 subjects.
       \describe{
           A data frame with 72 observations on the following 6 variables:
           \tabular{ll}{
@@ -54,7 +36,7 @@ Data sets from the public domain or edited to be evaluated by \code{method.A()},
           }
        }
 
-    \item Reference Data Set 04 (\code{rds04})\cr
+    \item Reference Dataset 04 (\code{rds04})\cr
     Data set of Table II given by Patterson & Jones. 51 subjects.
       \describe{
           A data frame with 153 observations on the following 5 variables:
@@ -66,7 +48,7 @@ Data sets from the public domain or edited to be evaluated by \code{method.A()},
             \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
           }
           Balanced (17 subjects in each of the three sequences) and complete. No outliers.\cr\cr
-          In the source evaluated by \acronym{SAS} 9.1 for the \acronym{FDA}\enc{’}{'}s mixed effects model (\sQuote{Method C}; \strong{not} acceptable for the \acronym{EMA}). Reported results:
+          In the source evaluated by \acronym{SAS} with the \acronym{FDA}’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:
             \tabular{ll}{
               \code{CVwR} \tab 61\%\cr
               \code{PE} \tab 137\%\cr
@@ -74,7 +56,7 @@ Data sets from the public domain or edited to be evaluated by \code{method.A()},
             }
       }
 
-    \item Reference Data Set 07 (\code{rds07})\cr
+    \item Reference Dataset 07 (\code{rds07})\cr
     Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 35\%, GMR 0.90. 360 subjects.
       \describe{
           A data frame with 1,080 observations on the following 5 variables:
@@ -90,12 +72,13 @@ Data sets from the public domain or edited to be evaluated by \code{method.A()},
   }
 }
 
-\references{
-European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).}\cr
-London, 19 November 2015. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf}{EMA/618604/2008 Rev. 13}
-
-Patterson SD, Jones B. \emph{Viewpoint: observations on scaled average bioequivalence.}\cr
-Pharm Stat. 2012;11(1):1--7. \doi{10.1002/pst.498}
+\details{
+   \tabular{crcl}{
+      Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+      \code{rds02} \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
+      \code{rds04} \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+      \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}
+  }
 }
 
 \note{
@@ -104,6 +87,23 @@ In software sequences and treatments are ranked in lexical order. Hence, executi
 
 \author{
 Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes)
+}
+
+\source{
+  \tabular{cll}{
+    Dataset \tab Origin \tab Description\cr
+    \code{rds02} \tab EMA, CHMP \tab Data set II.\cr
+    \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Table II.\cr
+    \code{rds07} \tab R \tab Large simulated data set with homoscedasticity.
+  }
+}
+
+\references{
+European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).}\cr
+London, 19 November 2015. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf}{EMA/618604/2008 Rev. 13}
+
+Patterson SD, Jones B. \emph{Viewpoint: observations on scaled average bioequivalence.}\cr
+Pharm Stat. 2012;11(1):1--7. \doi{10.1002/pst.498}
 }
 
 \examples{

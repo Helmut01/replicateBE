@@ -4,25 +4,18 @@
 \alias{rds10}
 \docType{data}
 \title{
-Reference Data Set for TRR\enc{|}{,}RTT Replicate Designs
+Reference Dataset for TRR|RTT Replicate Designs
 }
 
 \description{
-Data set from the public domain to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
+Dataset from the public domain to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
 }
 
 \usage{rds10}
 
-\details{
-   \tabular{crcl}{
-  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
-    \code{rds10} \tab 36 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}
-  }
-}
-
 \format{
   \itemize{
-    \item Reference Data Set 10 (\code{rds10})\cr
+    \item Reference Dataset 10 (\code{rds10})\cr
     18 subjects.
     \describe{
       A data frame with 54 observations on the following 5 variables:
@@ -38,16 +31,23 @@ Data set from the public domain to be evaluated by \code{method.A()}, \code{meth
   }
 }
 
-\source{
-  \tabular{cll}{
-  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
-  \code{rds10} \tab Chow & Liu \tab AUC data given in Table 9.3.3.
+\details{
+   \tabular{crcl}{
+  Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+    \code{rds10} \tab 36 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}
   }
 }
 
 \note{
 In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTT", "TRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.\cr
-In analogy to the \acronym{EMA}\enc{’}{'}s Q&A: Uncertain estimate of \code{CVwR} since less than twelve subjects in sequence TRR.
+In analogy to the \acronym{EMA}’s Q&A: Uncertain estimate of \code{CVwR} since less than twelve subjects in sequence TRR.
+}
+
+\source{
+  \tabular{cll}{
+  Dataset \tab Origin \tab Description\cr
+  \code{rds10} \tab Chow & Liu \tab AUC data given in Table 9.3.3.
+  }
 }
 
 \references{

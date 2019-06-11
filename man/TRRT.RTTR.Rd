@@ -6,35 +6,17 @@
 \alias{rds16}
 \docType{data}
 \title{
-Reference Data Sets for TRRT\enc{|}{,}RTTR Replicate Designs
+Reference Datasets for TRRT|RTTR Replicate Designs
 }
 
 \description{
-Data sets from the public domain to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
-}
-
-\details{
-  \tabular{crcl}{
-    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
-    \code{rds05} \tab 26 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
-    \code{rds11} \tab 37 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds16} \tab 38 \tab >30 \tab \code{method.A()}, \code{method.B()}
-  }
-}
-
-\source{
-  \tabular{cll}{
-    \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
-    \code{rds05} \tab \ifelse{html}{\out{Shumaker&nbsp;&amp;&nbsp;Metzler}}{Shumaker~&~Metzler} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in the Appendix.\cr
-    \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Table 9.6.\cr
-    \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 14a.
-  }
+Datasets from the public domain to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
 }
 
 \format{
   \itemize{
-    \item Reference Data Set 05 (\code{rds05})\cr
-    Data set given in the Appendix of Shumaker & Metzler. 26 subjects.
+    \item Reference Dataset 05 (\code{rds05})\cr
+    26 subjects.
       \describe{
           A data frame with 104 observations on the following 5 variables:
           \tabular{ll}{
@@ -45,7 +27,7 @@ Data sets from the public domain to be evaluated by \code{method.A()}, \code{met
             \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
           }
           Balanced (13 subjects in both sequences) and complete. No outliers.\cr\cr
-          In the source evaluated by SAS for the FDA\enc{’}{'}s mixed effects model (\sQuote{Method C}; \strong{not} acceptable for the \acronym{EMA}). Reported results:
+          In the source evaluated by SAS with the FDA’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:
             \tabular{ll}{
               \code{CVwR} \tab 5.47\%\cr
               \code{CVwT} \tab 6.75\%\cr
@@ -54,8 +36,8 @@ Data sets from the public domain to be evaluated by \code{method.A()}, \code{met
             }
        }
 
-    \item Reference Data Set 11 (\code{rds11})\cr
-    Data set given in Table 9.6 of Hauschke \emph{et al.} 37 subjects.
+    \item Reference Dataset 11 (\code{rds11})\cr
+    37 subjects.
       \describe{
           A data frame with 148 observations on the following 5 variables:
           \tabular{ll}{
@@ -66,15 +48,15 @@ Data sets from the public domain to be evaluated by \code{method.A()}, \code{met
             \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
           }
           Unbalanced (18 subjects in sequence TRRT and 19 subjects in RTTR) and complete. No outliers.\cr\cr
-          In the source evaluated by the FDA\enc{’}{'}s mixed effects model (\sQuote{Method C}; \strong{not} acceptable for the \acronym{EMA}). Reported results:
+          In the source evaluated by \acronym{SAS} with the \acronym{FDA}’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:
             \tabular{ll}{
               \code{PE} \tab 90.0\%\cr
               \code{90\% CI} \tab 79.6\% – 101.7\%
             }
       }
 
-    \item Reference Data Set 16 (\code{rds16})\cr
-    Data set given by the \acronym{FDA}. 38 subjects.
+    \item Reference Dataset 16 (\code{rds16})\cr
+    38 subjects.
       \describe{
           A data frame with 152 observations on the following 5 variables:
           \tabular{ll}{
@@ -89,8 +71,26 @@ Data sets from the public domain to be evaluated by \code{method.A()}, \code{met
     }
 }
 
+\details{
+  \tabular{crcl}{
+    Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+    \code{rds05} \tab 26 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
+    \code{rds11} \tab 37 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds16} \tab 38 \tab >30 \tab \code{method.A()}, \code{method.B()}
+  }
+}
+
 \note{
 In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTTR", "TRRT"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.
+}
+
+\source{
+  \tabular{cll}{
+    Dataset \tab Origin \tab Description\cr
+    \code{rds05} \tab \ifelse{html}{\out{Shumaker&nbsp;&amp;&nbsp;Metzler}}{Shumaker~&~Metzler} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in the Appendix.\cr
+    \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Table 9.6.\cr
+    \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 14a.
+  }
 }
 
 \references{
