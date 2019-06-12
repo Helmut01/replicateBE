@@ -107,7 +107,7 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL,
   }
   \item{data}{
     Specification of one of the internal reference datasets (\verb{rds01}
-    -- \verb{rds26}). If given, \verb{path.in}, \verb{file}, \verb{set},
+    -- \verb{rds28}). If given, \verb{path.in}, \verb{file}, \verb{set},
     and \verb{ext} are ignored. For its use see the examples.\cr
     If not given, defaults to \code{NULL} (\emph{i.e.}, import data
     from a file).
@@ -132,7 +132,7 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL,
   \verb{   log(response) ~ sequence + subject(sequence) + period + treatment}\cr
   where \verb{sequence}, \verb{period}, and \verb{treatment} are
   fixed effects and \verb{subject(sequence)} is a random effect.\cr\cr
-  Tested designs:
+  Tested designs
   \itemize{
     \item 4-period 2-sequence full replicates\cr
       \verb{TRTR | RTRT}\cr
@@ -150,7 +150,7 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL,
       \verb{TRR | RTR | RRT}\cr
       \verb{TRR | RTR } (extra-reference design)
   }
-  Data structure:
+  Data structure
   \itemize{
     \item Columns must have the headers \code{subject}, \code{period},
     \code{sequence}, \code{treatment}, \code{PK}, and/or \code{logPK}.\cr
@@ -355,8 +355,7 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
   \acronym{FDA}’s guidance on warfarin. Variabilities are
   considered comparable if the upper confidence limit of
   \ifelse{html}{\out{<em>&sigma;<sub>wT</sub></em>}}{\eqn{\sigma_{wT}}}/\ifelse{html}{\out{<em>&sigma;<sub>wR</sub></em>}}{\eqn{\sigma_{wR}}} is less than or equal to 2.5.\cr\cr
-  \strong{Program offered for Use without any Guarantees and Absolutely No Warranty.\cr
-  No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.}
+  \strong{Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.}
 }
 
 \seealso{

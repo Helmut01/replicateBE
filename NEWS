@@ -1,5 +1,7 @@
 Version 1.0.5.9003
 Published on GitHub 2019-06-12
+    - Solution: text between \list{}{}
+      Discouraged acc. R-Extension Manual 2.1.1!
     - LaTeX problems partly fixed (THX to Duncan Murdoch on r-help)
     - Simplified and reordered sources of man-pages
     - Updated WHO-reference

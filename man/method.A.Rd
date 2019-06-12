@@ -135,7 +135,7 @@ method.A(alpha = 0.05, path.in = NULL, path.out = NULL,
   The model for the treatment comparison is\cr
   \verb{   log(response) ~ sequence + subject(sequence) + period + treatment}\cr
   where all effects are fixed.\cr\cr
-  Tested designs:
+  Tested designs
   \itemize{
     \item 4-period 2-sequence full replicates\cr
       \verb{TRTR | RTRT}\cr
@@ -153,7 +153,7 @@ method.A(alpha = 0.05, path.in = NULL, path.out = NULL,
       \verb{TRR | RTR | RRT}\cr
       \verb{TRR | RTR } (extra-reference design)
   }
-  Data structure:
+  Data structure
   \itemize{
     \item Columns must have the headers \code{subject}, \code{period},
     \code{sequence}, \code{treatment}, \code{PK}, and/or \code{logPK}.\cr
@@ -312,8 +312,7 @@ If \code{ola=TRUE} and at least one outlier was detected:
   \acronym{FDA}’s guidance on warfarin. Variabilities are
   considered comparable if the upper confidence limit of
   \ifelse{html}{\out{<em>&sigma;<sub>wT</sub></em>}}{\eqn{\sigma_{wT}}}/\ifelse{html}{\out{<em>&sigma;<sub>wR</sub></em>}}{\eqn{\sigma_{wR}}} is less than or equal to 2.5.\cr\cr
-  \strong{Program offered for Use without any Guarantees and Absolutely No Warranty.\cr
-  No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.}
+  \strong{Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.}
 }
 
 \author{

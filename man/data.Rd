@@ -8,7 +8,7 @@ Reference Datasets
 }
 
 \description{
-Datasets for replicate design from the public domain, edited, or obtained by simulations to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
+Datasets of replicate designs from the public domain, edited, or obtained by simulations to be evaluated by \code{method.A()}, \code{method.B()}, or \code{ABE()}.
 }
 
 \details{

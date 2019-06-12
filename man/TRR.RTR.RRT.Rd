@@ -16,9 +16,11 @@ Datasets from the public domain or edited to be evaluated by \code{method.A()}, 
 \format{
   \itemize{
     \item Reference Dataset 02 (\code{rds02})\cr
-    Data set II of the EMA’s Q&A document. 24 subjects.
+    Data set II of the EMA’s Q&A document. 24 subjects.\cr
+    Balanced (eight subjects in each of the three sequences) and complete (no missing data). No outliers.\cr
+    A data frame with 72 observations on the following 6 variables:
       \describe{
-          \item{A data frame with 72 observations on the following 6 variables:}{
+          \item{}{
             \tabular{ll}{
               \code{subject} \tab a factor with 24 levels: 1, 2, \ldots, 24\cr
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
@@ -28,20 +30,22 @@ Datasets from the public domain or edited to be evaluated by \code{method.A()}, 
               \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
             }
           }
-          \item{Balanced (eight subjects in each of the three sequences) and complete (no missing data). No outliers.\cr\cr
-            In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported results:}{
+          In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported results:
+          \item{}{
             \tabular{ll}{
               \code{CVwR} \tab 11.2\%\cr
-              \code{PE} \tab 102.26\% (Method A)\cr\tab 102.26\% (Method B)\cr
-              \code{90\% CI} \tab 97.32\% – 107.46\% (Method A)\cr\tab 97.32\% – 107.46\% (Method B)
+              \code{PE} \tab 102.26\% (Method A and B)\cr
+              \code{90\% CI} \tab 97.32\% – 107.46\% (Method A and B)
             }
           }
        }
 
     \item Reference Dataset 04 (\code{rds04})\cr
-    Data set of Table II given by Patterson & Jones. 51 subjects.
+    Data set of Table II given by Patterson & Jones. 51 subjects.\cr
+    Balanced (17 subjects in each of the three sequences) and complete. No outliers.\cr
+    A data frame with 153 observations on the following 5 variables:
       \describe{
-          \item{A data frame with 153 observations on the following 5 variables:}{
+          \item{}{
             \tabular{ll}{
               \code{subject} \tab a factor with 51 levels: 1, 2, \ldots, 56\cr
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
@@ -50,8 +54,8 @@ Datasets from the public domain or edited to be evaluated by \code{method.A()}, 
               \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
             }
           }
-          \item{Balanced (17 subjects in each of the three sequences) and complete. No outliers.\cr\cr
-          In the source evaluated by \acronym{SAS} with the \acronym{FDA}’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:}{
+          In the source evaluated by \acronym{SAS} with the \acronym{FDA}’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:
+          \item{}{
             \tabular{ll}{
               \code{CVwR} \tab 61\%\cr
               \code{PE} \tab 137\%\cr
@@ -61,9 +65,11 @@ Datasets from the public domain or edited to be evaluated by \code{method.A()}, 
       }
 
     \item Reference Dataset 07 (\code{rds07})\cr
-    Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 35\%, GMR 0.90. 360 subjects.
+    Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 35\%, GMR 0.90. 360 subjects.\cr
+    Balanced (120 subjects in each of the three sequences) and complete. No outliers.\cr
+    A data frame with 1,080 observations on the following 5 variables:
       \describe{
-          \item{A data frame with 1,080 observations on the following 5 variables:}{
+          \item{}{
             \tabular{ll}{
               \code{subject} \tab a factor with 360 levels: 1, 2, \ldots, 360\cr
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
@@ -72,7 +78,6 @@ Datasets from the public domain or edited to be evaluated by \code{method.A()}, 
               \code{PK} \tab a numeric vector of pharmacokinetic responses (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
             }
           }
-          \item{Balanced (120 subjects in each of the three sequences) and complete. No outliers.}{}
       }
   }
 }

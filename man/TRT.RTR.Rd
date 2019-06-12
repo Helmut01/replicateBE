@@ -15,9 +15,11 @@ Datasets from the public domain and edited to be evaluated by \code{method.A()} 
 \format{
   \itemize{
     \item Reference dataset 03 (\code{rds03})\cr
-    Based on \code{rds01}. Removed all data of period 4. 77 subjects.
+    Based on \code{rds01}. Removed all data of period 4. 77 subjects.\cr
+    Unbalanced (39 subjects in sequence TRT and 38 in RTR) and incomplete (six missings in sequence TRT and two in RTR). Missings / period: 0/1, 1/2, 7/3. Two outliers (subjects 45 and 52) in sequence RTR.\cr
+    A data frame with 223 observations on the following 6 variables:
       \describe{
-          \item{A data frame with 223 observations on the following 6 variables:}{
+          \item{}{
             \tabular{ll}{
               \code{subject} \tab a factor with 77 levels: 1, 2, \ldots, 78\cr
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
@@ -27,13 +29,14 @@ Datasets from the public domain and edited to be evaluated by \code{method.A()} 
               \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
             }
           }
-          \item{Unbalanced (39 subjects in sequence TRT and 38 in RTR) and incomplete (six missings in sequence TRT and two in RTR). Missings / period: 0/1, 1/2, 7/3. Two outliers (subjects 45 and 52) in sequence RTR.}{}
        }
 
     \item Reference dataset 17 (\code{rds17})\cr
-    Based on \code{rds03}. 19 subjects.
+    Based on \code{rds03}. 19 subjects.\cr
+    Unbalanced (seven subjects in sequence TRT and twelve in RTR) and incomplete (one missing in sequence TRT). Missings / period: 0/1, 0/2, 1/3. One outlier (subject 18) in sequence RTR.\cr
+    A data frame with 56 observations on the following 6 variables:
       \describe{
-          \item{A data frame with 56 observations on the following 6 variables:}{
+          \item{}{
             \tabular{ll}{
               \code{subject} \tab a factor with 19 levels: 1, 2, \ldots, 22\cr
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
@@ -43,7 +46,6 @@ Datasets from the public domain and edited to be evaluated by \code{method.A()} 
               \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
             }
           }
-          \item{Unbalanced (seven subjects in sequence TRT and twelve in RTR) and incomplete (one missing in sequence TRT). Missings / period: 0/1, 0/2, 1/3. One outlier (subject 18) in sequence RTR.}{}
        }
   }
 }

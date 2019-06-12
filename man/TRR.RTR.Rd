@@ -16,9 +16,11 @@ Dataset simulated to be evaluated by \code{method.A()}, \code{method.B()}.
 \format{
   \itemize{
     \item Reference dataset 22 (\code{rds22})\cr
-    Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 45\%, \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 100\% GMR 0.90. 42 subjects.
+    Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 45\%, \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 100\% GMR 0.90. 42 subjects.\cr
+    Balanced (21 subjects in each of the sequences) and complete (no missing data). No outliers.\cr
+    A data frame with 126 observations on the following 5 variables:
     \describe{
-      \item{A data frame with 126 observations on the following 5 variables:}{
+      \item{}{
         \tabular{ll}{
         \code{subject} \tab a factor with 42 levels: 1, 2, \ldots, 42\cr
         \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
@@ -28,7 +30,6 @@ Dataset simulated to be evaluated by \code{method.A()}, \code{method.B()}.
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
         }
       }
-      \item{Balanced (21 subjects in each of the sequences) and complete (no missing data). No outliers.}{}
     }
   }
 }

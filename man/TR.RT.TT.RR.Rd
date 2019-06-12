@@ -16,9 +16,10 @@ Dataset for Balaam’s design obtained by simulations to be evaluated by \code{m
 \format{
   \itemize{
     \item Reference Dataset 27 (\code{rds27})\cr
-    312 subjects.
+    312 subjects. Balanced (78 subjects in each of the four sequences) and incomplete (T of subject 111 missing in period 2 of sequence RT). No outliers.\cr
+    A data frame with 624 observations on the following 5 variables:
     \describe{
-      \item{A data frame with 624 observations on the following 5 variables:}{
+      \item{}{
           \tabular{ll}{
             \code{subject} \tab a factor with 18 levels: 1, 2, \ldots, 18\cr
             \code{period} \tab a factor with 2 levels: 1, 2\cr
@@ -27,7 +28,6 @@ Dataset for Balaam’s design obtained by simulations to be evaluated by \code{m
             \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
           }
         }
-      \item{Balanced (78 subjects in each of the four sequences) and incomplete (T of subject 111 missing in period 2 of sequence RT). No outliers.}{}
     }
   }
 }

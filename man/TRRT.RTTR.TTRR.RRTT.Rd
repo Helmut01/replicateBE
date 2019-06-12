@@ -14,9 +14,11 @@ Dataset from the public domain to be evaluated by \code{method.A()} and/or \code
 \format{
   \itemize{
     \item Reference Dataset 24 (\code{rds24})\cr
-    40 subjects (one completely missing).
+    40 subjects (one completely missing).\cr
+    Unbalanced (nine subjects in sequence TRRT and ten in each of the other three) and complete. Two outliers (subject 3 in sequence RTTR and subject 30 in sequence TTRR).\cr
+    A data frame with 160 observations on the following 5 variables:
     \describe{
-      \item{ A data frame with 160 observations on the following 5 variables:}{
+      \item{}{
         \tabular{ll}{
           \code{subject} \tab a factor with 40 levels: 1, 2, \ldots, 932\cr
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
@@ -25,7 +27,6 @@ Dataset from the public domain to be evaluated by \code{method.A()} and/or \code
           \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
           }
       }
-      \item{Unbalanced (nine subjects in sequence TRRT and ten in each of the other three) and complete. Two outliers (subject 3 in sequence RTTR and subject 30 in sequence TTRR).}{}
     }
   }
 }
