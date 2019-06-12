@@ -1,3 +1,5 @@
+Version 1.0.6
+    - Ready for CRAN submission (passed checks at R-release and R-devel)
 Version 1.0.5.9003
 Published on GitHub 2019-06-12
     - Solution: text between \list{}{}
