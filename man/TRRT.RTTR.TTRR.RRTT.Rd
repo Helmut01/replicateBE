@@ -16,15 +16,16 @@ Dataset from the public domain to be evaluated by \code{method.A()} and/or \code
     \item Reference Dataset 24 (\code{rds24})\cr
     40 subjects (one completely missing).
     \describe{
-      A data frame with 160 observations on the following 5 variables:
-      \tabular{ll}{
-        \code{subject} \tab a factor with 40 levels: 1, 2, \ldots, 932\cr
-        \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
-        \code{sequence} \tab a factor with 4 levels: TRRT, RTTR, TTRR, RRTT\cr
-        \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
-        }
-      Unbalanced (nine subjects in sequence TRRT and ten in each of the other three) and complete. Two outliers (subject 3 in sequence RTTR and subject 30 in sequence TTRR).
+      \item{ A data frame with 160 observations on the following 5 variables:}{
+        \tabular{ll}{
+          \code{subject} \tab a factor with 40 levels: 1, 2, \ldots, 932\cr
+          \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
+          \code{sequence} \tab a factor with 4 levels: TRRT, RTTR, TTRR, RRTT\cr
+          \code{treatment} \tab a factor with 2 levels: T, R\cr
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          }
+      }
+      \item{Unbalanced (nine subjects in sequence TRRT and ten in each of the other three) and complete. Two outliers (subject 3 in sequence RTTR and subject 30 in sequence TTRR).}{}
     }
   }
 }
@@ -42,14 +43,15 @@ In software sequences and treatments are ranked in lexical order. Hence, executi
 
 \source{
   \tabular{cll}{
-  \ifelse{html}{\out{Data&nbsp;set}}{Data~set} \tab Origin \tab Description\cr
+  Dataset \tab Origin \tab Description\cr
   \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 1.
   }
 }
 
 \references{
 \acronym{U.S.} Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Bioequivalence Studies.}\cr
-Rockville, 1997. \href{https://web.archive.org/web/20170723175533/https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip
+Rockville, 1997.
+\href{https://web.archive.org/web/20170723175533/https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip
 }{bioequivalence study files} (archived 2017-07-23)
 }
 

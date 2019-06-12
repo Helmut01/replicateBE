@@ -16,15 +16,16 @@ Dataset from the public domain to be evaluated by \code{method.A()} and/or \code
     \item Reference Dataset 23 (\code{rds23})\cr
     22 subjects.
     \describe{
-      A data frame with 88 observations on the following 5 variables:
-      \tabular{ll}{
-        \code{subject} \tab a factor with 22 levels: 1, 2, \ldots, 27\cr
-        \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
-        \code{sequence} \tab a factor with 4 levels: TRTR, RTRT, TRRT, RTTR\cr
-        \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
-        }
-      Unbalanced (four subjects in sequence RTRT and six in each of the other three) and complete. Two outliers (subjects 8 and 17) in sequence TRTR.
+      \item{A data frame with 88 observations on the following 5 variables:}{
+        \tabular{ll}{
+          \code{subject} \tab a factor with 22 levels: 1, 2, \ldots, 27\cr
+          \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
+          \code{sequence} \tab a factor with 4 levels: TRTR, RTRT, TRRT, RTTR\cr
+          \code{treatment} \tab a factor with 2 levels: T, R\cr
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          }
+      }
+      \item{Unbalanced (four subjects in sequence RTRT and six in each of the other three) and complete. Two outliers (subjects 8 and 17) in sequence TRTR.}{}
     }
   }
 }
@@ -49,7 +50,8 @@ In software sequences and treatments are ranked in lexical order. Hence, executi
 
 \references{
 \acronym{U.S.} Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Bioequivalence Studies.}\cr
-Rockville, 1997. \href{https://web.archive.org/web/20170723175533/https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip
+Rockville, 1997.
+\href{https://web.archive.org/web/20170723175533/https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip
 }{bioequivalence study files} (archived 2017-07-23)
 }
 

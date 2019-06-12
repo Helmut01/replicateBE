@@ -18,55 +18,60 @@ Datasets from the public domain to be evaluated by \code{method.A()}, \code{meth
     \item Reference Dataset 05 (\code{rds05})\cr
     26 subjects.
       \describe{
-          A data frame with 104 observations on the following 5 variables:
-          \tabular{ll}{
-            \code{subject} \tab a factor with 26 levels: 1, 2, \ldots, 26\cr
-            \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
-            \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
-            \code{treatment} \tab a factor with 2 levels: T, R\cr
-            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \item{A data frame with 104 observations on the following 5 variables:}{
+            \tabular{ll}{
+              \code{subject} \tab a factor with 26 levels: 1, 2, \ldots, 26\cr
+              \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
+              \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
+              \code{treatment} \tab a factor with 2 levels: T, R\cr
+              \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+            }
           }
-          Balanced (13 subjects in both sequences) and complete. No outliers.\cr\cr
-          In the source evaluated by SAS with the FDA’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:
+          \item{Balanced (13 subjects in both sequences) and complete. No outliers.\cr\cr
+          In the source evaluated by SAS with the FDA’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:}{
             \tabular{ll}{
               \code{CVwR} \tab 5.47\%\cr
               \code{CVwT} \tab 6.75\%\cr
               \code{PE} \tab 107.90\%\cr
               \code{90\% CI} \tab 103.66\% – 112.2\%
             }
+          }
        }
 
     \item Reference Dataset 11 (\code{rds11})\cr
     37 subjects.
       \describe{
-          A data frame with 148 observations on the following 5 variables:
-          \tabular{ll}{
-            \code{subject} \tab a factor with 37 levels: 1, 2, \ldots, 37\cr
-            \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
-            \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
-            \code{treatment} \tab a factor with 2 levels: T, R\cr
-            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \item{A data frame with 148 observations on the following 5 variables:}{
+            \tabular{ll}{
+              \code{subject} \tab a factor with 37 levels: 1, 2, \ldots, 37\cr
+              \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
+              \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
+              \code{treatment} \tab a factor with 2 levels: T, R\cr
+              \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+            }
           }
-          Unbalanced (18 subjects in sequence TRRT and 19 subjects in RTTR) and complete. No outliers.\cr\cr
-          In the source evaluated by \acronym{SAS} with the \acronym{FDA}’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:
+          \item{Unbalanced (18 subjects in sequence TRRT and 19 subjects in RTTR) and complete. No outliers.\cr\cr
+          In the source evaluated by \acronym{SAS} with the \acronym{FDA}’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:}{
             \tabular{ll}{
               \code{PE} \tab 90.0\%\cr
               \code{90\% CI} \tab 79.6\% – 101.7\%
             }
+          }
       }
 
     \item Reference Dataset 16 (\code{rds16})\cr
     38 subjects.
       \describe{
-          A data frame with 152 observations on the following 5 variables:
-          \tabular{ll}{
-            \code{subject} \tab a factor with 38 levels: 1, 2, \ldots, 38\cr
-            \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
-            \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
-            \code{treatment} \tab a factor with 2 levels: T, R\cr
-            \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \item{A data frame with 152 observations on the following 5 variables:}{
+            \tabular{ll}{
+              \code{subject} \tab a factor with 38 levels: 1, 2, \ldots, 38\cr
+              \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
+              \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
+              \code{treatment} \tab a factor with 2 levels: T, R\cr
+              \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+            }
           }
-          Unbalanced (18 subjects in sequence TRRT and 20 in RTTR) and complete. No outliers.
+          \item{Unbalanced (18 subjects in sequence TRRT and 20 in RTTR) and complete. No outliers.}{}
       }
     }
 }

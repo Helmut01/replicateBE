@@ -16,15 +16,16 @@ Dataset obtained by simulations to be evaluated by \code{method.A()} and/or \cod
     \item Reference Dataset 28 (\code{rds28})\cr
     64 subjects.
     \describe{
-      A data frame with 256 observations on the following 5 variables:
-      \tabular{ll}{
-        \code{subject} \tab a factor with 64 levels: 1, 2, \ldots, 64\cr
-        \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
-        \code{sequence} \tab a factor with 2 levels: TTRR, RRTT\cr
-        \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+      \item{A data frame with 256 observations on the following 5 variables:}{
+        \tabular{ll}{
+          \code{subject} \tab a factor with 64 levels: 1, 2, \ldots, 64\cr
+          \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
+          \code{sequence} \tab a factor with 2 levels: TTRR, RRTT\cr
+          \code{treatment} \tab a factor with 2 levels: T, R\cr
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+        }
       }
-      Balanced (64 subjects in both sequences) and complete. No outliers.
+      \item{Balanced (64 subjects in both sequences) and complete. No outliers.}{}
     }
   }
 }

@@ -18,15 +18,16 @@ Dataset from the public domain to be evaluated by \code{method.A()}, \code{metho
     \item Reference Dataset 10 (\code{rds10})\cr
     18 subjects.
     \describe{
-      A data frame with 54 observations on the following 5 variables:
-      \tabular{ll}{
-      \code{subject} \tab a factor with 18 levels: 1, 2, \ldots, 18\cr
-      \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
-      \code{sequence} \tab a factor with 2 levels: TRR, RTT\cr
-      \code{treatment} \tab a factor with 2 levels: T, R\cr
-      \code{PK} \tab a numeric vector of pharmacokinetic responses (here AUC)
+      \item{A data frame with 54 observations on the following 5 variables:}{
+        \tabular{ll}{
+        \code{subject} \tab a factor with 18 levels: 1, 2, \ldots, 18\cr
+        \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
+        \code{sequence} \tab a factor with 2 levels: TRR, RTT\cr
+        \code{treatment} \tab a factor with 2 levels: T, R\cr
+        \code{PK} \tab a numeric vector of pharmacokinetic responses (here AUC)
+        }
       }
-      Balanced (nine subjects in both sequences) and complete. No outliers.
+      \item{Balanced (nine subjects in both sequences) and complete. No outliers.}{}
     }
   }
 }

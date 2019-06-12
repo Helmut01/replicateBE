@@ -35,7 +35,7 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL,
     user’s home folder \verb{"~/"} will be used.
   }
   \item{file}{
-    Name of the data set for import (\emph{without} extension). Must be
+    Name of the dataset for import (\emph{without} extension). Must be
     a string (\emph{i.e.}, enclosed in single or double quotation marks).
   }
   \item{set}{
@@ -91,13 +91,13 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL,
   }
   \item{ask}{
     Defaults to \code{FALSE}. If \code{TRUE} the user will be asked whether
-    an already existing result file (and if outliers are found, the boxplot)
+    an already existing result file (and if outliers are found, the box plot)
     should be overwritten.
   }
   \item{plot.bxp}{
     Only observed if \code{ola=TRUE} and at least one outlier is found.
-    If \code{FALSE} (default) the boxplot will be shown in the graphics
-    device. If \code{TRUE} the boxplot will be saved in \acronym{PNG} format
+    If \code{FALSE} (default) the box plot will be shown in the graphics
+    device. If \code{TRUE} the box plot will be saved in \acronym{PNG} format
     to \code{path.out}.
   }
   \item{fence}{
@@ -115,11 +115,11 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL,
   \item{option}{
     If \code{2} (default), the model will be evaluated by \verb{lme()} of
     package \verb{nlme}. The degrees of freedom of the treatment comparison
-    will be equivalent to \acronym{SAS}\enc{’}{'} \verb{DDFM=CONTAIN} and
+    will be equivalent to \acronym{SAS}’ \verb{DDFM=CONTAIN} and
     Phoenix WinNonlin’s \verb{Residual}.\cr
     If \code{1}, the model will be evaluated by \verb{lmer()} of package
     \verb{lmerTest}. The degrees of freedom of the treatment comparison
-    will be equivalent to \acronym{SAS}\enc{’}{'} \verb{DDFM=SATTERTHWAITE}
+    will be equivalent to \acronym{SAS}’ \verb{DDFM=SATTERTHWAITE}
     and Phoenix WinNonlin’s \verb{Satterthwaite}.
   }
 }
@@ -134,19 +134,19 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL,
   fixed effects and \verb{subject(sequence)} is a random effect.\cr\cr
   Tested designs:
   \itemize{
-    \item 4-period 2-sequence full replicates:\cr
+    \item 4-period 2-sequence full replicates\cr
       \verb{TRTR | RTRT}\cr
       \verb{TRRT | RTTR}\cr
       \verb{TTRR | RRTT}
-    \item 2-period 4-sequence replicate:\cr
+    \item 2-period 4-sequence replicate\cr
       \verb{TR | RT | TT | RR } (Balaam’s design)
-    \item 4-period 4-sequence full replicates:\cr
+    \item 4-period 4-sequence full replicates\cr
       \verb{TRTR | RTRT | TRRT | RTTR}\cr
       \verb{TRRT | RTTR | TTRR | RRTT}
-    \item 3-period 2-sequence full replicates:\cr
+    \item 3-period 2-sequence full replicates\cr
       \verb{TRT | RTR}\cr
       \verb{TRR | RTT}
-    \item 3-period (partial) replicates:\cr
+    \item 3-period (partial) replicates\cr
       \verb{TRR | RTR | RRT}\cr
       \verb{TRR | RTR } (extra-reference design)
   }
@@ -185,16 +185,18 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     \code{sw.ratio.CL} \tab upper confidence limit of \code{sw.ratio} (full replicates only)
   }
 \itemize{
-  \item If reference-scaling is applicable (\emph{i.e.}, \code{CVwR(\%)} >30\%):
+  \item{If reference-scaling is applicable (\emph{i.e.}, \code{CVwR(\%)} >30\%):}{
     \tabular{ll}{
       \code{EL.lo(\%)} \tab lower expanded limit\cr
       \code{EL.hi(\%)} \tab upper expanded limit
     }
-  \item If reference-scaling is not applicable (\emph{i.e.}, \ifelse{html}{\out{&le;}}{\eqn{\leq}}30\%):
+  }
+  \item{If reference-scaling is not applicable (\emph{i.e.}, \ifelse{html}{\out{&le;}}{\eqn{\leq}}30\%):}{
     \tabular{ll}{
       \code{BE.lo(\%)} \tab conventional lower limit (\emph{i.e.}, \verb{ 80})\cr
       \code{BE.hi(\%)} \tab conventional upper limit (\emph{i.e.}, \verb{125})
     }
+  }
 }
   \tabular{ll}{
     \code{CI.lo(\%)} \tab lower confidence limit of the treatment comparison\cr
@@ -204,26 +206,28 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
 \eqn{\alpha}{alpha})} \acronym{CI} lies entirely within the acceptance range (\verb{pass|fail})\cr
     \code{GMR} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%\enc{–}{-}125.00\% (\verb{pass|fail})\cr
     \code{BE} \tab mixed (aggregate) assessment whether the study demonstrates bioequivalence (\verb{pass|fail})\cr
-    \code{log.half-width} \tab half-width of the \acronym{CI} in log-scale
+    \code{log.half-width} \tab half-width of the confidence interval in log-scale
   }
 If \code{ola=TRUE} and at least one outlier was detected:
   \tabular{ll}{
     \code{outlier} \tab outlying subject(s)\cr
-    \code{CVwR.new(\%)} \tab intra-subject coefficient of variation of the reference treament; recalculated after exclusion of outlier(s)\cr
+    \code{CVwR.new(\%)} \tab intra-subject coefficient of variation of \code{R}; recalculated after exclusion of outlier(s)\cr
     \code{sw.ratio.new} \tab ratio of intrasubject variabilities of \code{T} and \code{R} after exclusion of outlier(s); full replicates only\cr
     \code{sw.ratio.new.CL} \tab upper confidence limit of \code{sw.ratio.new} (full replicates only)
   }
 \itemize{
-  \item If reference-scaling is applicable (\emph{i.e.}, \code{CVwR.new(\%)} >30\%):
+  \item{If reference-scaling is applicable (\emph{i.e.}, \code{CVwR.new(\%)} >30\%):}{
     \tabular{ll}{
       \code{EL.new.lo(\%)} \tab recalculated lower expanded limit\cr
       \code{EL.newhi(\%)} \tab recalculated upper expanded limit
     }
-  \item If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR.new(\%)} \ifelse{html}{\out{&le;}}{\eqn{\leq}}30\%):
+  }
+  \item{If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR.new(\%)} \ifelse{html}{\out{&le;}}{\eqn{\leq}}30\%):}{
     \tabular{ll}{
       \code{BE.new.lo(\%)} \tab conventional lower limit (\emph{i.e.}, \verb{ 80})\cr
       \code{BE.new.hi(\%)} \tab conventional upper limit (\emph{i.e.}, \verb{125})
     }
+  }
 }
   \tabular{ll}{
     \code{CI.new} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2
@@ -241,34 +245,34 @@ If \code{ola=TRUE} and at least one outlier was detected:
 }
 
 \references{
-European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
-\emph{Guideline on the Investigation of Bioequivalence}\cr
+European Medicines Agency, Committee for Medicinal Products for Human Use.
+\emph{Guideline on the Investigation of Bioequivalence.}\cr
 London, 20 January 2010.
 \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
 
-3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} \acronym{EGA} Symposium on Bioequivalence\cr
-\emph{Questions and Answers on the Revised \acronym{EMA} Bioequivalence Guideline}\cr
+3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} \acronym{EGA} Symposium on Bioequivalence.
+\emph{Questions and Answers on the Revised \acronym{EMA} Bioequivalence Guideline.}\cr
 London, 1 June 2010.
 \href{https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf}{open access}
 
-European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
-\emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP)}\cr
+European Medicines Agency, Committee for Medicinal Products for Human Use.
+\emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).}\cr
 London, 19 November 2015.
 \href{https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf}{EMA/618604/2008 Rev. 13}
 
-European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
-\emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms}\cr
+European Medicines Agency, Committee for Medicinal Products for Human Use.
+\emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.}\cr
 London, 20 November 2014.
 \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{EMA/CPMP/EWP/280/96 Corr1}
 
-World Health Organization, Prequalification Team: medicines\cr
-\emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm}\cr
+World Health Organization, Prequalification Team: medicines.
+\emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm.}\cr
 Geneva, 22 November 2018.
 \href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf}{open access}
 
-Food and Drug Administration, Office of Generic Drugs.\cr
-\emph{Draft Guidance on Warfarin Sodium}\cr
-December 2012.
+Food and Drug Administration, Office of Generic Drugs.
+\emph{Draft Guidance on Warfarin Sodium.}\cr
+Rockville, December 2012.
 \href{https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf}{open access}
 }
 
@@ -289,7 +293,7 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
 
 \note{
   The \acronym{EMA}’s model specified in \sQuote{Method B} assumes
-  equal [sic!] intra-subject variances of test and reference (like in
+  equal [\emph{sic!}] intra-subject variances of test and reference (like in
   \ifelse{html}{\out{2&times;2&times;2}}{\eqn{2 \times 2 \times 2}{2x2x2}}
   trials) -- even if proven false in one of the full replicate designs (were
   \emph{both} \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}{CVwT}} and
@@ -302,7 +306,7 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
   For incomplete data (\emph{i.e.}, missing periods) Satterthwaite’s
   approximation of the degrees of freedom (\code{option=1}) might be a better
   choice -- if stated as such in the statistical analysis plan.\cr
-  The half-width of the CI in log-scale allows a comparison of methods (B
+  The half-width of the confidence interval in log-scale allows a comparison of methods (B
   \emph{v.s.} A) or options (2 \emph{v.s.} 1). A higher value \emph{might}
   point towards a more conservative decision. Quoting the Q&A-document:\cr
   \cite{A simple linear mixed model, which assumes identical within-subject
@@ -310,10 +314,10 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
     with the two methods do not lead to different regulatory decisions.
     However, in borderline cases [\ldots] additional analysis using Method
     A might be required.}\cr
-  In the provided example data sets -- with one exception -- the conclusion
+  In the provided reference datasets -- with one exception -- the conclusion
   of \acronym{BE} (based on the mixed \acronym{CI} and \acronym{GMR} criteria)
   agrees between \sQuote{Method A} and \sQuote{Method B}. However, for the
-  highly incomplete data set 14 \sQuote{Method A} was \emph{liberal} (passing
+  highly incomplete dataset 14 \sQuote{Method A} was \emph{liberal} (passing
   by \acronym{ANOVA} but failing by the mixed effects model).\cr\cr
   Reference-scaling is acceptable for
   \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} (immediate release
@@ -344,7 +348,7 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
   and Individual Bioequivalence (\acronym{IBE}) the
   \ifelse{html}{\out{<em>s<sub>wT</sub></em>}}{\eqn{s_{wT}}}/\ifelse{html}{\out{<em>s<sub>wR</sub></em>}}{\eqn{s_{wR}}}
   ratio was assessed and similar variability was concluded for a ratio
-  within 0.667\enc{–}{-}1.500. However, the power of comparing variabilities
+  within 0.667–1.500. However, the power of comparing variabilities
   in a study designed to demonstrate \acronym{ABE} is low. This was one of the
   reasons why why \acronym{PBE} and \acronym{IBE} were not implemented
   in regulatory practice. An alternative approach is given in the
@@ -385,8 +389,8 @@ method.B(path.in = path.in, file = "DS", set = "01", ext = "csv")
 #   Point estimate     : 115.73\%              pass
 #   Mixed (CI & PE)    :                      pass
 #
-# Internal reference data set 01 used and results to the home
-# folder. Additional outlier-analyis and boxplot saved as PNG
+# Internal reference dataset 01 used and results to the home
+# folder. Additional outlier-analyis and box plot saved as PNG
 # (accidental overwriting prevented).
 method.B(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 # Should give the same as above. Additionally:
@@ -400,12 +404,12 @@ method.B(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 #   Point estimate     : pass
 #   Mixed (CI & PE)    : pass
 #
-# Same data set. Show information about outliers and the model-table.
+# Same dataset. Show information about outliers and the model-table.
 method.B(ola = TRUE, verbose = TRUE, data = rds01)}
 # data.frame of results (7-digits precision) shown in the console.
 x <- method.B(ola = TRUE, print = FALSE, details = TRUE, data = rds01)
 print(x, row.names = FALSE)
-# Compare Method B with Method A for all reference data sets.
+# Compare Method B with Method A for all reference datasets.
 \dontrun{
 ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))),
                   value=TRUE), start=1, stop=5)

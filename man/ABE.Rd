@@ -7,7 +7,7 @@ Comparative BA-calculation for Average Bioequivalence
 \description{
   This function performs the required calculations for the \acronym{BE}
   decision via conventional (unscaled) Average Bioequivalence based on
-  ANOVA as recommended in the \acronym{EMA}’s guideline.
+  \acronym{ANOVA} as recommended in the \acronym{EMA}’s guideline.
 }
 \usage{
 ABE(alpha = 0.05, path.in = NULL, path.out = NULL,
@@ -33,7 +33,7 @@ ABE(alpha = 0.05, path.in = NULL, path.out = NULL,
     user’s home folder \verb{"~/"} will be used.
   }
   \item{file}{
-    Name of the data set for import (\emph{without} extension). Must be
+    Name of the dataset for import (\emph{without} extension). Must be
     a string (\emph{i.e.}, enclosed in single or double quotation marks).
   }
   \item{set}{
@@ -108,19 +108,19 @@ ABE(alpha = 0.05, path.in = NULL, path.out = NULL,
   where all effects are fixed.\cr\cr
   Tested designs:
   \itemize{
-    \item 4-period 2-sequence full replicates:\cr
+    \item 4-period 2-sequence full replicates\cr
       \verb{TRTR | RTRT}\cr
       \verb{TRRT | RTTR}\cr
       \verb{TTRR | RRTT}
-    \item 2-period 4-sequence replicate:\cr
+    \item 2-period 4-sequence replicate\cr
       \verb{TR | RT | TT | RR } (Balaam’s design)
-    \item 4-period 4-sequence full replicates:\cr
+    \item 4-period 4-sequence full replicates\cr
       \verb{TRTR | RTRT | TRRT | RTTR}\cr
       \verb{TRRT | RTTR | TTRR | RRTT}
-    \item 3-period 2-sequence full replicates:\cr
+    \item 3-period 2-sequence full replicates\cr
       \verb{TRT | RTR}\cr
       \verb{TRR | RTT}
-    \item 3-period (partial) replicates:\cr
+    \item 3-period (partial) replicates\cr
       \verb{TRR | RTR | RRT}\cr
       \verb{TRR | RTR } (extra-reference design)
   }
@@ -184,7 +184,7 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
 }
 
 \note{
-  The \acronym{EMA}’s model assumes equal [sic!] intra-subject
+  The \acronym{EMA}’s model assumes equal [\emph{sic!}] intra-subject
   variances of test and reference (like in \enc{2×2×2}{2x2x2} trials) --
   even if proven false in one of the full replicate designs (were \emph{both}
   \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}{CVwT}} and
@@ -213,13 +213,13 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
 Helmut \enc{Schütz}{Schuetz}
 }
 \references{
-European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
-\emph{Guideline on the Investigation of Bioequivalence}\cr
+European Medicines Agency, Committee for Medicinal Products for Human Use.
+\emph{Guideline on the Investigation of Bioequivalence.}\cr
 London, 20 January 2010.
 \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
 
-European Medicines Agency, Committee for Medicinal Products for Human Use.\cr
-\emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms}\cr
+European Medicines Agency, Committee for Medicinal Products for Human Use.
+\emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.}\cr
 London, 20 November 2014.
 \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{EMA/CPMP/EWP/280/96 Corr1}
 }
@@ -246,7 +246,7 @@ ABE(path.in = path.in, file = "DS", set = "02", ext = "csv")
 #   Confidence interval:  97.32\% ... 107.46\%  pass
 #   Point estimate     : 102.26\%}
 # Generate the data.frame of results (7-digits precision) and show
-# in the console. Use an internal data set.
+# in the console. Use an internal dataset.
 x <- ABE(details = TRUE, print = FALSE, data = rds02)
 print(x, row.names = FALSE)
 \dontrun{

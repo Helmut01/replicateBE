@@ -1,8 +1,7 @@
 Version 1.0.5.9003
-Published on GitHub 2019-06-11
+Published on GitHub 2019-06-12
+    - LaTeX problems partly fixed (THX to Duncan Murdoch on r-help)
     - Simplified and reordered sources of man-pages
-    - Added Autor and Maintainer to DESCRIPTION (otherwise CHECK laments)
-      Remove when submitting to CRAN!
     - Updated WHO-reference
     - changed {\eqn{foo\textsubscript}{bar}} to simple {\eqn{foo_{bar}}
       in two man pages.
@@ -21,12 +20,12 @@ Published on GitHub 2019-05-30
     - Updated links in man-pages to reflect changes in the FDA's site
     - Updated links to reference data in info.data.R
     - Updated links in CSV-files
-    - The warning in CHECK dissappeared in R 3.6.0. Throws other ones
-      in examples which change the working directory. All changed to
-      \dontrun{}
     - Renamed S3 methods (prefixed with 'repBE') acc. to
       https://github.com/r-lib/rlang/issues/669 THX to MT!
       However, doesn't help. TODO!
+    - The warning in CHECK dissappeared in R 3.6.0. Throws other ones
+      in examples which change the working directory. All changed to
+      \dontrun{}
 
 Version 1.0.5.9001
 Published on GitHub 2019-04-23

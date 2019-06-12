@@ -18,15 +18,16 @@ Dataset for Balaam’s design obtained by simulations to be evaluated by \code{m
     \item Reference Dataset 27 (\code{rds27})\cr
     312 subjects.
     \describe{
-      A data frame with 624 observations on the following 5 variables:
-      \tabular{ll}{
-      \code{subject} \tab a factor with 18 levels: 1, 2, \ldots, 18\cr
-      \code{period} \tab a factor with 2 levels: 1, 2\cr
-      \code{sequence} \tab a factor with 4 levels: TR, RT, TT, RR\cr
-      \code{treatment} \tab a factor with 2 levels: T, R\cr
-      \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
-      }
-      Balanced (78 subjects in each of the four sequences) and incomplete (T of subject 111 missing in period 2 of sequence RT). No outliers.
+      \item{A data frame with 624 observations on the following 5 variables:}{
+          \tabular{ll}{
+            \code{subject} \tab a factor with 18 levels: 1, 2, \ldots, 18\cr
+            \code{period} \tab a factor with 2 levels: 1, 2\cr
+            \code{sequence} \tab a factor with 4 levels: TR, RT, TT, RR\cr
+            \code{treatment} \tab a factor with 2 levels: T, R\cr
+            \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          }
+        }
+      \item{Balanced (78 subjects in each of the four sequences) and incomplete (T of subject 111 missing in period 2 of sequence RT). No outliers.}{}
     }
   }
 }

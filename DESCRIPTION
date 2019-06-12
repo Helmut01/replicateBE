@@ -1,7 +1,7 @@
 Encoding: UTF-8
 Package: replicateBE
 Version: 1.0.5.9003
-Date: 2019-06-11
+Date: 2019-06-12
 Title: Average Bioequivalence with Expanding Limits (ABEL)
 Authors@R: c(person("Helmut", "Schütz",
                email = "helmut.schuetz@bebac.at",
@@ -13,10 +13,6 @@ Authors@R: c(person("Helmut", "Schütz",
              person("Detlew", "Labes",
                email = "DetlewLabes@gmx.de",
                role = "ctb"))
-Author: Helmut Schütz [aut, cre],
-  Michael Tomashevskiy [ctb],
-  Detlew Labes [ctb]
-Maintainer: Helmut Schütz <helmut.schuetz@bebac.at>
 Imports: readxl (>= 1.0.0), PowerTOST, lmerTest, nlme, graphics,
          grDevices
 Suggests: knitr, rmarkdown, testthat, devtools
