@@ -3,7 +3,7 @@
 
 The library supports methods given in the EMA’s [Q&A document](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf) for reference-scaling according to the EMA’s [Guideline on the Investigation of Bioequivalence](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf). Potential influence of outliers on the variability of the reference treatment can be assessed by box plots of studentized and standardized residuals as suggested at a joint [EGA/EMA workshop](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf).
 
-In full replicate designs the variability of test and reference treatment can be assessed by _s<sub>wT</sub>_/_s<sub>wR</sub>_ and the upper confidence limit of <em>σ<sub>wT</sub></em>²/<em>σ<sub>wR</sub></em>² (required for the [WHO’s approach](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf) for reference-scaling of _AUC_).
+In full replicate designs the variability of test and reference treatment can be assessed by _s<sub>wT</sub>_/_s<sub>wR</sub>_ and the upper confidence limit of <em>σ<sub>wT</sub></em>/<em>σ<sub>wR</sub></em> (required for the [WHO’s approach](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf) for reference-scaling of _AUC_).
 
 
 - Estimation of <em>CV<sub>wR</sub></em> (and <em>CV<sub>wT</sub></em> in full replicates)
