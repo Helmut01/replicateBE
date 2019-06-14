@@ -10,8 +10,8 @@ In full replicate designs the variability of test and reference treatment can be
 
   A linear model of log-transformed PK responses and effects _sequence_, _subject(sequence)_, _period_&nbsp;– where all effects are fixed (_i.e._, ANOVA). Estimated via function ```lm()``` of library ```stats```.
   ```Rscript
-  modCVwR <- lm(log(PK) ~ sequence + subject%in%sequence + period, data = data[data$treatment == "R")
-  modCVwT <- lm(log(PK) ~ sequence + subject%in%sequence + period, data = data[data$treatment == "T")
+  modCVwR <- lm(log(PK) ~ sequence + subject%in%sequence + period, data = data[data$treatment == "R", ])
+  modCVwT <- lm(log(PK) ~ sequence + subject%in%sequence + period, data = data[data$treatment == "T", ])
   ```
  
 
