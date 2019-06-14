@@ -364,7 +364,7 @@ Pharm Res. 2016;33(11):2805--14. \doi{10.1007/s11095-016-2006-1}
 }
 
 \examples{
-\dontrun{
+\donttest{
 # Importing from a CSV-file, using most of the defaults: variable
 # separator colon, decimal separator period, no outlier-analyis,
 # print to file.
@@ -410,7 +410,7 @@ print(x, row.names = FALSE)
 #
 # Assess the Type I Error and iteratively adjust alpha if necessary.
 # Not run: due to timing policy of CRAN for examples
-\dontrun{
+\donttest{
 method.A(adjust = TRUE, data = rds01)}
 # Should give in the result file:
 #   Assessment of the empiric Type I Error (TIE); 1,000,000 studies simulated.
@@ -418,7 +418,7 @@ method.A(adjust = TRUE, data = rds01)}
 #
 # Same with recalculation based on outliers, iteratively adjust alpha
 # if necessary
-\dontrun{
+\donttest{
 method.A(ola = TRUE, adjust = TRUE, data = rds01)}
 # Should give in the result file:
 #   Assessment of the empiric Type I Error (TIE) based on original CVwR;
@@ -430,7 +430,7 @@ method.A(ola = TRUE, adjust = TRUE, data = rds01)}
 #     TIE for adjusted alpha 0.033416: 0.05000
 #
 # Repeat the evaluation with the adjusted alpha.
-\dontrun{
+\donttest{
 method.A(alpha = 0.033416, ola = TRUE, adjust = TRUE, data = rds01)}
 # Should give in the result file:
 #   alpha              :   0.033416 (93.3168\% CI)

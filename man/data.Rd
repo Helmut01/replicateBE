@@ -131,12 +131,12 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael 
 
 \examples{
 # show structure of all data sets
-\dontrun{
 ds <- substr(grep("rds", unname(unlist(data(package = "replicateBE"))),
                   value = TRUE), start = 1, stop = 5)
 for (i in seq_along(ds)) {
- cat(ds[i], "\n")
- str(eval(parse(text = ds[i])))
-}}}
+  cat(ds[i], "\n")
+  str(eval(parse(text = ds[i])))
+}
+}
 
 \keyword{datasets}

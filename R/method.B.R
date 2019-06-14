@@ -258,4 +258,5 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     writeBin(charToRaw(res.str), res.file)
     close(res.file)
   }
+  on.exit(ow) # ensure that options are reset
 } # end of function method.B()

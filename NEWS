@@ -1,3 +1,8 @@
+Version 1.0.7
+Published on Github 2019-06-14
+    - Fixes suggested by <cran-submissions@r-project.org>
+      Resubmitted to CRAN
+
 Version 1.0.6
 Published on Github 2019-06-12
     - Submitted to CRAN (passed checks at R-release and R-devel)

@@ -366,7 +366,7 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
 }
 
 \examples{
-\dontrun{
+\donttest{
 # Importing from a CSV-file, using most of the defaults: variable
 # separator colon, decimal separator period, no outlier-analyis,
 # print to file.
@@ -409,7 +409,7 @@ method.B(ola = TRUE, verbose = TRUE, data = rds01)}
 x <- method.B(ola = TRUE, print = FALSE, details = TRUE, data = rds01)
 print(x, row.names = FALSE)
 # Compare Method B with Method A for all reference datasets.
-\dontrun{
+\donttest{
 ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))),
                   value=TRUE), start=1, stop=5)
 for (i in seq_along(ds)) {

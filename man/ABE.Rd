@@ -231,7 +231,7 @@ London, 20 November 2014.
 }
 
 \examples{
-\dontrun{
+\donttest{
 # Importing from a CSV-file, using most of the defaults: variable
 # separator colon, decimal separator period, print to file.
 # Note: You must adapt the path-variables. The example reads from
@@ -248,7 +248,7 @@ ABE(path.in = path.in, file = "DS", set = "02", ext = "csv")
 # in the console. Use an internal dataset.
 x <- ABE(details = TRUE, print = FALSE, data = rds02)
 print(x, row.names = FALSE)
-\dontrun{
+\donttest{
 # Assuming a NTID and assess BE with narrower limits.
 ABE(data = rds02, theta1 = 0.90)
 # Should result in:

@@ -294,4 +294,5 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                                      sw.ratio.new.CI[["upper"]], NA),
            BE.new=BE.new)
   return(ret)
+  on.exit(ow) # ensure that options are reset
 } # end of function CV.calc()

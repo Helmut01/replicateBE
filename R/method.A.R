@@ -294,4 +294,5 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
       }
     }
   } # end of iteratively adjusting alpha
+  on.exit(ow) # ensure that options are reset
 } # end of function method.A()
