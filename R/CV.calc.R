@@ -160,7 +160,6 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
       } # EO verbose
     } # EO >= 1 outlier
   } # EO outlier analysis (only if called from method.A()/method.B() & ola=TRUE)
-  options(ow) # restore options
   if (!called.from == "ABE") {
     reg_set <- reg_const("EMA")
     BE <- as.numeric(scABEL(CV=CVwR, regulator="EMA"))

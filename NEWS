@@ -1,25 +1,29 @@
+Vesrion 1.0.8.9000
+    - Removed superfluous options(ow) after models (THX to DL).
+    - Minor fix in man-page of method.A
+
 Version 1.0.8
 Published on Github 2019-06-14
-    - Another fix (THX to Uwe Liges @CRAN)
-      Resubmitted to CRAN
+    - Another fix (THX to Uwe Ligges @CRAN).
+      Resubmitted to CRAN.
 
 Version 1.0.7
 Published on Github 2019-06-14
     - Fixes suggested by <cran-submissions@r-project.org>
-      Resubmitted to CRAN
+      Resubmitted to CRAN.
 
 Version 1.0.6
 Published on Github 2019-06-12
-    - Submitted to CRAN (passed checks at R-release and R-devel)
+    - Submitted to CRAN (passed checks at R-release and R-devel).
 
 Version 1.0.5.9003
 Published on GitHub 2019-06-12
     - Solution: text between \list{}{}
       Discouraged acc. R-Extension Manual 2.1.1!
-    - LaTeX problems partly fixed (THX to Duncan Murdoch on r-help)
-    - Simplified and reordered sources of man-pages
-    - Updated WHO-reference
-    - changed {\eqn{foo\textsubscript}{bar}} to simple {\eqn{foo_{bar}}
+    - LaTeX problems partly fixed (THX to Duncan Murdoch on r-help).
+    - Simplified and reordered sources of man-pages.
+    - Updated WHO-reference.
+    - Changed {\eqn{foo\textsubscript}{bar}} to simple {\eqn{foo_{bar}}
       in two man pages.
       Created another project where all conditional html/latex-statements
       were removed. Still tons of errors in creating the PDF manual.
@@ -27,15 +31,15 @@ Published on GitHub 2019-06-12
       be corrected
     - Small correction in text of box plot of CV.calc.R
       Studentized/standardized does not exactly agree with SAS
-      (uses type=2 by default)
+      (uses type=2 by default).
     - First version of vignette.
-    - Added \tests for testthat()
+    - Added \tests for testthat().
 
 Version 1.0.5.9002
 Published on GitHub 2019-05-30
-    - Updated links in man-pages to reflect changes in the FDA's site
+    - Updated links in man-pages to reflect changes in the FDA's site.
     - Updated links to reference data in info.data.R
-    - Updated links in CSV-files
+    - Updated links in CSV-files.
     - Renamed S3 methods (prefixed with 'repBE') acc. to
       https://github.com/r-lib/rlang/issues/669 THX to MT!
       However, doesn't help. TODO!
@@ -49,7 +53,7 @@ Published on GitHub 2019-04-23
 
 Version 1.0.5.9000
 Published on GitHub 2017-11-25
-    - TODO: CHECK throws a WARNING
+    - TODO: CHECK throws a WARNING.
       checking for unstated dependencies in examples ... WARNING
       Warning in parse(file = files, n = -1L) :
         invalid input found on input connection 'replicateBE-Ex.R'

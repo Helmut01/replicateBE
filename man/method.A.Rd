@@ -364,7 +364,6 @@ Pharm Res. 2016;33(11):2805--14. \doi{10.1007/s11095-016-2006-1}
 }
 
 \examples{
-\donttest{
 # Importing from a CSV-file, using most of the defaults: variable
 # separator colon, decimal separator period, no outlier-analyis,
 # print to file.
@@ -372,8 +371,9 @@ Pharm Res. 2016;33(11):2805--14. \doi{10.1007/s11095-016-2006-1}
 # the data provided by the library. Write-permissions must be granted
 # for 'path.out' in order to save the result file. If 'path.out' is
 # not specified, results are written to the home folder.
+\donttest{
 path.in <- paste0(find.package("replicateBE"), "/extdata/")
-method.A(path.in = path.in, file = "DS", set = "01", ext = "csv")
+method.A(path.in = path.in, file = "DS", set = "01", ext = "csv")}
 # Should result in:
 #   CVwT               :  35.16\%
 #   swT                :   0.34138
@@ -389,7 +389,8 @@ method.A(path.in = path.in, file = "DS", set = "01", ext = "csv")
 # Internal reference dataset 01 used and results to the home
 # folder. Additional outlier-analyis and box plot saved as PNG
 # (accidental overwriting prevented).
-method.A(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
+\donttest{
+method.A(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)}
 # Should give the same as above. Additionally:
 #   Outlier fence      :  2×IQR of studentized residuals.
 #   Recalculation due to presence of 2 outliers (subj. 45|52)
@@ -402,24 +403,22 @@ method.A(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 #   Point estimate     : pass
 #   Mixed (CI & PE)    : pass
 # Same dataset. Show information about outliers and the ANOVA-table.
-method.A(ola = TRUE, verbose = TRUE, data = rds01)}
+\donttest{
+method.A(ola = TRUE, verbose = TRUE, data = rds01)
 # Generate the data.frame of results (7-digits precision) and show
-# in the console
+# in the console.
 x <- method.A(ola = TRUE, details = TRUE, print = FALSE, data = rds01)
 print(x, row.names = FALSE)
 #
 # Assess the Type I Error and iteratively adjust alpha if necessary.
-# Not run: due to timing policy of CRAN for examples
-\donttest{
-method.A(adjust = TRUE, data = rds01)}
+method.A(adjust = TRUE, data = rds01)
 # Should give in the result file:
 #   Assessment of the empiric Type I Error (TIE); 1,000,000 studies simulated.
 #     TIE not > nominal 0.05; consumer risk is controlled.
 #
 # Same with recalculation based on outliers, iteratively adjust alpha
-# if necessary
-\donttest{
-method.A(ola = TRUE, adjust = TRUE, data = rds01)}
+# if necessary (takes a couple of seconds).
+method.A(ola = TRUE, adjust = TRUE, data = rds01)
 # Should give in the result file:
 #   Assessment of the empiric Type I Error (TIE) based on original CVwR;
 #   1,000,000 studies simulated.
@@ -429,8 +428,7 @@ method.A(ola = TRUE, adjust = TRUE, data = rds01)}
 #     TIE for alpha 0.050000         : 0.07018
 #     TIE for adjusted alpha 0.033416: 0.05000
 #
-# Repeat the evaluation with the adjusted alpha.
-\donttest{
+# Repeat the evaluation with the adjusted alpha (takes a couple of seconds).
 method.A(alpha = 0.033416, ola = TRUE, adjust = TRUE, data = rds01)}
 # Should give in the result file:
 #   alpha              :   0.033416 (93.3168\% CI)

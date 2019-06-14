@@ -152,7 +152,6 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     if (res$CI.new == "pass" & res$GMR.new == "pass")
       res$BE.new <- "pass"  # if passing both, conclude BE
   }
-  options(ow) # restore options
   if (details) { # results in default (7 digits) precision
     ret <- res
     if (as.character(res$outlier) == "NA") {
