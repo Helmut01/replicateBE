@@ -16,6 +16,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                     plot.bxp=plot.bxp, data=data)
   ow <- options("digits")
   options(digits=12) # more digits for anova
+  on.exit(ow)        # ensure that options are reset if an error occurs
   if (logtrans) {    # use raw data and log-transform internally
     modCVR <- lm(log(PK) ~ sequence + subject%in%sequence + period,
                            data=ret$ref)
@@ -294,5 +295,4 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                                      sw.ratio.new.CI[["upper"]], NA),
            BE.new=BE.new)
   return(ret)
-  on.exit(ow) # ensure that options are reset
 } # end of function CV.calc()

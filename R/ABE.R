@@ -37,9 +37,10 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     ext   <- ""
   }
   logtrans <- ret$transf
-  os <- Sys.info()[[1]] # get OS for line-endings in output (Win: CRLF)
+  os <- Sys.info()[[1]]   # get OS for line-endings in output (Win: CRLF)
   ow <- options("digits") # save options
-  options(digits=12)    # increase digits for anova()
+  options(digits=12)      # increase digits for anova()
+  on.exit(ow)             # ensure that options are reset if an error occurs
   if (logtrans) { # use the raw data and log-transform internally
     mod <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
                         data=ret$data)
@@ -134,5 +135,4 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     writeBin(charToRaw(res.str), res.file)
     close(res.file)
   }
-  on.exit(ow) # ensure that options are reset
 } # end of function ABE()

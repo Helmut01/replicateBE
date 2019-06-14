@@ -29,10 +29,11 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   os <- Sys.info()[[1]] # get OS for line-endings in output (Win: CRLF)
   ow <- options()       # save options
   options(digits=12)    # increase digits for anova()
-  if (logtrans) { # use the raw data and log-transform internally
+  on.exit(ow)           # ensure that options are reset if an error occurs
+  if (logtrans) {       # use the raw data and log-transform internally
     modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
                          data=ret$data)
-  } else {        # use the already log-transformed data
+  } else {              # use the already log-transformed data
     modA <- lm(logPK ~ sequence + subject%in%sequence + period + treatment,
                        data=ret$data)
   }
@@ -294,5 +295,4 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
       }
     }
   } # end of iteratively adjusting alpha
-  on.exit(ow) # ensure that options are reset
 } # end of function method.A()
