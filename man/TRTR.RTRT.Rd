@@ -314,16 +314,16 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael 
     \code{rds06} \tab \code{rds01} edited \tab T and R switched.\cr
     \code{rds08} \tab R \tab Large simulated data set with slight heteroscedasticity.\cr
     \code{rds09} \tab \code{rds08} \tab Wide numeric range (data of last 37 subjects multiplied by 1,000,000).\cr
-    \code{rds12} \tab \ifelse{html}{\out{Phoenix&nbsp;NLME}}{Phoenix~NLME} \tab Simulated with extreme intra- and intersubject variability.\cr
+    \code{rds12} \tab Phoenix NLME \tab Simulated with extreme intra- and intersubject variability.\cr
     \code{rds13} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data deleted).\cr
-    \code{rds14} \tab \ifelse{html}{\out{Phoenix&nbsp;NLME}}{Phoenix~NLME} \tab Simulated with high intra- and intersubject and number of dropouts increasing with period.\cr
+    \code{rds14} \tab Phoenix NLME \tab Simulated with high intra- and intersubject and number of dropouts increasing with period.\cr
     \code{rds15} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}).\cr
     \code{rds18} \tab \code{rds14} edited \tab Removed T data of subjects 63–78.\cr
     \code{rds19} \tab \code{rds18} edited \tab Removed data of subjects 63–78.\cr
     \code{rds20} \tab \code{rds19} edited \tab Outlier of R (subject 1) introduced: original value ×100.\cr
     \code{rds21} \tab \code{rds01} edited \tab One extreme result of subjects 45 & 52 set to NA.\cr
     \code{rds25} \tab R \tab Simulated with heteroscedasticity.\cr
-    \code{rds26} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Tables 4.40 and 4.31.
+    \code{rds26} \tab Patterson & Jones \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Tables 4.40 and 4.31.
   }
 }
 

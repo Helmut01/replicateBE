@@ -46,7 +46,7 @@ method.A(alpha = 0.05, path.in = NULL, path.out = NULL,
   }
   \item{ext}{
     File-extension enclosed in single or double quotation marks.
-    Acceptable are \verb{"CSV"} and \verb{"csv"} for character-separated
+    Acceptable are \verb{"CSV"} and \verb{"csv"} for comma delimited
     variables (\acronym{CSV}) or \verb{"XLS"}, \verb{"xls"}, \verb{"XLSX"},
     and \verb{"xlsx"} for Excel-files.
   }
@@ -59,12 +59,12 @@ method.A(alpha = 0.05, path.in = NULL, path.out = NULL,
   }
   \item{sep}{
     Variable separator in the \acronym{CSV}-file. Acceptable are \verb{","}
-    (colon -- \verb{ASCII 44}), \verb{";"} (semicolon -- \verb{ASCII 59}),
+    (comma -- \verb{ASCII 44}), \verb{";"} (semicolon -- \verb{ASCII 59}),
     and \verb{"\\t"} (tabulator -- \verb{ASCII 9}). Defaults to \verb{","}.
   }
   \item{dec}{
     Decimal separator in the \acronym{CSV}-file. Acceptable are \verb{"."}
-    (period -- \verb{ASCII 46}) or \verb{","} (colon -- \verb{ASCII 44}).
+    (period -- \verb{ASCII 46}) or \verb{","} (comma -- \verb{ASCII 44}).
     Defaults to \verb{"."}.
   }
   \item{logtrans}{
@@ -365,7 +365,7 @@ Pharm Res. 2016;33(11):2805--14. \doi{10.1007/s11095-016-2006-1}
 
 \examples{
 # Importing from a CSV-file, using most of the defaults: variable
-# separator colon, decimal separator period, no outlier-analyis,
+# separator comma, decimal separator period, no outlier-analyis,
 # print to file.
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted

@@ -42,7 +42,7 @@ ABE(alpha = 0.05, path.in = NULL, path.out = NULL,
   }
   \item{ext}{
     File-extension enclosed in single or double quotation marks.
-    Acceptable are \verb{"CSV"} and \verb{"csv"} for character-separated
+    Acceptable are \verb{"CSV"} and \verb{"csv"} for comma delimited
     variables (\acronym{CSV}) or \verb{"XLS"}, \verb{"xls"}, \verb{"XLSX"},
     and \verb{"xlsx"} for Excel-files.
   }
@@ -55,13 +55,13 @@ ABE(alpha = 0.05, path.in = NULL, path.out = NULL,
   }
   \item{sep}{
     Variable separator in the \acronym{CSV}-file. Acceptable are \verb{","}
-    (colon -- \verb{ASCII 44}), \verb{";"} (semicolon -- \verb{ASCII 59}),
+    (comma -- \verb{ASCII 44}), \verb{";"} (semicolon -- \verb{ASCII 59}),
     and \verb{"\\t"} (tabulator -- \verb{ASCII 9}). Defaults to \verb{","}.
   }
   \item{dec}{
     Decimal separator in the \acronym{CSV}-file. Acceptable are
     \verb{"."} (period -- \verb{ASCII 46}) or \verb{","}
-    (colon -- \verb{ASCII 44}). Defaults to \verb{"."}.
+    (comma -- \verb{ASCII 44}). Defaults to \verb{"."}.
   }
   \item{logtrans}{
     If \code{TRUE} (default) the raw data (provided in column \verb{PK})
@@ -233,7 +233,7 @@ London, 20 November 2014.
 \examples{
 \donttest{
 # Importing from a CSV-file, using most of the defaults: variable
-# separator colon, decimal separator period, print to file.
+# separator comma, decimal separator period, print to file.
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
 # for 'path.out' in order to save the result file. If 'path.out' is

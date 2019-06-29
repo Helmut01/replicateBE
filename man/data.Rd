@@ -65,7 +65,7 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds15} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'})\cr
     \code{rds25} \tab R \tab Simulated with heteroscedasticity\cr
     \code{rds26} \tab Patterson & Jones 2016 \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Tables 4.30 & 4.31\cr
-    \code{rds05} \tab Shumaker &Metzler \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in the Appendix\cr
+    \code{rds05} \tab Shumaker & Metzler \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in the Appendix\cr
     \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Table 9.6.\cr
     \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 14a\cr
     \code{rds28} \tab R \tab Simulated with homoscedasticity\cr
@@ -73,7 +73,7 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 1\cr
     \code{rds03} \tab \code{rds01} edited \tab Period 4 removed\cr
     \code{rds17} \tab \code{rds03} edited \tab Highly unbalanced (twelve subjects in RTR and seven in TRT)\cr
-    \code{rds10} \tab \ifelse{html}{\out{Chow&nbsp;&amp;&nbsp;Liu}}{Chow~&~Liu} \tab AUC data given in Table 9.3.3.\cr
+    \code{rds10} \tab Chow & Liu \tab AUC data given in Table 9.3.3.\cr
     \code{rds27} \tab R \tab Simulated with homoscedasticity\cr
     \code{rds02} \tab EMA, CHMP \tab Data set II\cr
     \code{rds04} \tab Patterson & Jones 2012 \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Table II\cr
@@ -81,7 +81,6 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds22} \tab R \tab Simulated with homoscedasticity
   }
 }
-
 \references{
 European Medicines Agency, Committee for Medicinal Products for Human Use.
 \emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).}\cr

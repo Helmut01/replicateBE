@@ -1,7 +1,7 @@
 Encoding: UTF-8
 Package: replicateBE
 Version: 1.0.8.9000
-Date: 2019-06-14
+Date: 2019-06-29
 Title: Average Bioequivalence with Expanding Limits (ABEL)
 Authors@R: c(person("Helmut", "Schütz",
                email = "helmut.schuetz@bebac.at",
@@ -20,7 +20,7 @@ Description: Performs comparative bioavailability-calculations for the
              EMA's Average Bioequivalence with Expanding Limits (ABEL).
              Implemented are 'Method A' and 'Method B', detection of
              outliers. If the design allows, assessment of the empiric
-             Type I Error and iteratively adjusting alpha to preserve the
+             Type I Error and iteratively adjusting alpha to control the
              consumer risk.
              Average Bioequivalence (ABE) - optionally with tighter
              (EMA: NTIDs) or wider limits (GCC: Cmax) - is implemented

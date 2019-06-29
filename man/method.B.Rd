@@ -44,7 +44,7 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL,
   }
   \item{ext}{
     File-extension enclosed in single or double quotation marks.
-    Acceptable are \verb{"CSV"} and \verb{"csv"} for character-separated
+    Acceptable are \verb{"CSV"} and \verb{"csv"} for comma delimited
     variables (\acronym{CSV}) or \verb{"XLS"}, \verb{"xls"}, \verb{"XLSX"},
     and \verb{"xlsx"} for Excel-files.
   }
@@ -57,12 +57,12 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL,
   }
   \item{sep}{
     Variable separator in the \acronym{CSV}-file. Acceptable are \verb{","}
-    (colon -- \verb{ASCII 44}), \verb{";"} (semicolon -- \verb{ASCII 59}), and
+    (comma -- \verb{ASCII 44}), \verb{";"} (semicolon -- \verb{ASCII 59}), and
     \verb{"\\t"} (tabulator -- \verb{ASCII 9}). Defaults to \verb{","}.
   }
   \item{dec}{
     Decimal separator in the \acronym{CSV}-file. Acceptable are
-    \verb{"."} (period -- \verb{ASCII 46}) or \verb{","} (colon -- \verb{ASCII 44}).
+    \verb{"."} (period -- \verb{ASCII 46}) or \verb{","} (comma -- \verb{ASCII 44}).
     Defaults to \verb{"."}.
   }
   \item{logtrans}{
@@ -117,10 +117,11 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL,
     package \verb{nlme}. The degrees of freedom of the treatment comparison
     will be equivalent to \acronym{SAS}’ \verb{DDFM=CONTAIN} and
     Phoenix WinNonlin’s \verb{Residual}.\cr
-    If \code{1}, the model will be evaluated by \verb{lmer()} of package
-    \verb{lmerTest}. The degrees of freedom of the treatment comparison
+    If \code{1} or \code{3}, the model will be evaluated by \verb{lmer()} of package
+    \verb{lmerTest}. With \code{1} the degrees of freedom of the treatment comparison
     will be equivalent to \acronym{SAS}’ \verb{DDFM=SATTERTHWAITE}
-    and Phoenix WinNonlin’s \verb{Satterthwaite}.
+    and Phoenix WinNonlin’s \verb{Satterthwaite}.\cr
+    \code{3} uses the Kenward-Roger approximation (the only one available in \acronym{JMP}).
   }
 }
 
@@ -302,10 +303,10 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
   because the replicative nature of the study is ignored.\cr
   The method for calculating the degrees of freedom is not specified in the
   \acronym{SAS} code provided by the \acronym{EMA} in the Q&A document. Hence,
-  the default in \code{PROC MIXED}, namely \code{DDFM=CONTAIN} is applied.
+  the default in \code{PROC MIXED}, namely \code{DDFM=CONTAIN} is applied.\cr
   For incomplete data (\emph{i.e.}, missing periods) Satterthwaite’s
-  approximation of the degrees of freedom (\code{option=1}) might be a better
-  choice -- if stated as such in the statistical analysis plan.\cr
+  approximation of the degrees of freedom (\code{option=1}) or Kenward-Roger (\code{option=3})
+  might be better choices -- if stated as such in the statistical analysis plan.\cr
   The half-width of the confidence interval in log-scale allows a comparison of methods (B
   \emph{v.s.} A) or options (2 \emph{v.s.} 1). A higher value \emph{might}
   point towards a more conservative decision. Quoting the Q&A-document:\cr
@@ -368,7 +369,7 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
 \examples{
 \donttest{
 # Importing from a CSV-file, using most of the defaults: variable
-# separator colon, decimal separator period, no outlier-analyis,
+# separator comma, decimal separator period, no outlier-analyis,
 # print to file.
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
@@ -408,6 +409,19 @@ method.B(ola = TRUE, verbose = TRUE, data = rds01)}
 # data.frame of results (7-digits precision) shown in the console.
 x <- method.B(ola = TRUE, print = FALSE, details = TRUE, data = rds01)
 print(x, row.names = FALSE)
+
+# Compare all methods for the highly incomplete dataset rds18.
+a  <- method.A(print=FALSE, details=TRUE, data=rds18)
+b2 <- method.B(print=FALSE, details=TRUE, data=rds18, option=2) # GL
+b1 <- method.B(print=FALSE, details=TRUE, data=rds18, option=1) # Satt.
+b3 <- method.B(print=FALSE, details=TRUE, data=rds18, option=3) # KR
+cs <- c(2, 10, 17:18)
+x  <- rbind(a[, cs], b2[, cs], b1[, cs], b3[, cs])
+x[, 3:4] <- round(x[, 3:4], 4)
+x$detail <- c("GL (fixed)", "GL (random)",
+              "Satterthwaite", "Kenward-Roger")
+print(x, row.names=FALSE)
+
 # Compare Method B with Method A for all reference datasets.
 \donttest{
 ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))),

@@ -18,8 +18,10 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                   print=print, verbose=verbose, ask=ask,
                   plot.bxp=plot.bxp, fence=fence, data=data)
   # Add description of the degrees of freedom to the result file
-  results  <- paste0(ret$res.file, "_MethodB",
-                     ifelse(option == 2, "_DF_GL", "_DF_Satt"), ".txt")
+  if (option == 1) DF.suff <- "Satt"
+  if (option == 2) DF.suff <- "GL"
+  if (option == 3) DF.suff <- "KR"
+  results  <- paste0(ret$res.file, "_MethodB_DF_", DF.suff, ".txt")
   # generate variables based on the attribute
   # 2nd condition: Otherwise, the header from a CSV file will be overwritten
   if (!is.null(data) & missing(ext)) {
@@ -62,7 +64,7 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
       print(signif(EMA.B$tTable["treatmentT", ], 7))
       cat("\n")
     }
-  } else {              # by lmer/lmerTest (Satterthwaite's DF)
+  } else {              # by lmer/lmerTest (Satterthwaite's or Kenward-Roger DF)
     if (logtrans) {     # use the raw data and log-transform internally
       modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                              data=ret$data)
@@ -70,7 +72,11 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
       modB <- lmer(logPK ~ sequence + period + treatment + (1|subject),
                            data=ret$data)
     }
-    EMA.B <- summary(modB) # Satterthwaite's DF by default
+    if (option == 1) {
+      EMA.B <- summary(modB, ddf="Satterthwaite")
+    } else {
+      EMA.B <- summary(modB, ddf="Kenward-Roger")
+    }
     PE    <- EMA.B$coefficients["treatmentT", "Estimate"]
     CI    <- exp(PE + c(-1, +1) *
                  qt(1-alpha, EMA.B$coef["treatmentT", "df"]) *
@@ -86,7 +92,7 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
       print(signif(EMA.B$coefficients["treatmentT", ], 7))
       cat("\n")
     }
-  } # end of evaluation by option=2 (lme) or option=1 (lmer)
+  } # end of evaluation by option=2 (lme) or option=1/3 (lmer)
   PE  <- exp(PE)
   res <- data.frame(ret$type, paste0("B-", option), ret$n, ret$nTT, ret$nRR,
                     paste0(ret$Sub.Seq, collapse="|"),
@@ -210,11 +216,9 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   left.str   <- substr(ret$txt, 1, cut.pos-1)
   right.str  <- substr(ret$txt, cut.pos, nchar(ret$txt))
   insert.str <- "Degrees of freedom : "
-  if (option == 1) {
-    insert.str <- paste0(insert.str, sprintf("%7.3f (Satterthwaite)", DF))
-  } else {
-    insert.str <- paste0(insert.str, sprintf("%3i", DF))
-  }
+  if (option == 1) insert.str <- paste0(insert.str, sprintf("%7.3f (Satterthwaite)", DF))
+  if (option == 2) insert.str <- paste0(insert.str, sprintf("%3i", DF))
+  if (option == 3) insert.str <- paste0(insert.str, sprintf("%7.3f (Kenward-Roger)", DF))
   insert.str <- paste0(insert.str, "\nalpha              :   ", alpha,
                 " (", 100*(1-2*alpha), "% CI)\n")
   txt <- paste0(left.str, insert.str, right.str)

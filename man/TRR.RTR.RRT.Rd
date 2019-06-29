@@ -103,7 +103,7 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes)
   \tabular{cll}{
     Dataset \tab Origin \tab Description\cr
     \code{rds02} \tab EMA, CHMP \tab Data set II.\cr
-    \code{rds04} \tab \ifelse{html}{\out{Patterson&nbsp;&amp;&nbsp;Jones}}{Patterson~&~Jones} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Table II.\cr
+    \code{rds04} \tab Patterson & Jones \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Table II.\cr
     \code{rds07} \tab R \tab Large simulated data set with homoscedasticity.
   }
 }

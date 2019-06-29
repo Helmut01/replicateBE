@@ -21,7 +21,7 @@ Dataset for Balaam’s design obtained by simulations to be evaluated by \code{m
     \describe{
       \item{}{
           \tabular{ll}{
-            \code{subject} \tab a factor with 18 levels: 1, 2, \ldots, 18\cr
+            \code{subject} \tab a factor with 312 levels: 1, 2, \ldots, 18\cr
             \code{period} \tab a factor with 2 levels: 1, 2\cr
             \code{sequence} \tab a factor with 4 levels: TR, RT, TT, RR\cr
             \code{treatment} \tab a factor with 2 levels: T, R\cr
