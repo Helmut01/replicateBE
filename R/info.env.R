@@ -102,12 +102,12 @@ info.env <- function(fun, option=NA, path.in, path.out,
   info <- paste0(info, "\nPowerTOST version  : ",
                  sprintf("%-10s", packageVersion("PowerTOST")), year2)
   if (fun == "method.B") {
-    if (option == 1) {
-      info <- paste0(info, "\nlmerTest version   : ",
-                     sprintf("%-10s", packageVersion("lmerTest")), year4)
-    } else {
+    if (option == 2) {
       info <- paste0(info, "\nnlme version       : ",
                      sprintf("%-10s", packageVersion("nlme")), year3)
+    } else {
+      info <- paste0(info, "\nlmerTest version   : ",
+                     sprintf("%-10s", packageVersion("lmerTest")), year4)
     }
   }
   info <- paste0(info, "\nreplicateBE version: ",
@@ -122,9 +122,9 @@ info.env <- function(fun, option=NA, path.in, path.out,
     info <- paste0(info, " executed ", exec)
   } else {
     info <- paste0(info, "option=", option, "): ")
-    ifelse (option == 1,
-      info <- paste0(info, "lmerTest:lmer()\n"),
-      info <- paste0(info, "nlme:lme()\n"))
+    ifelse (option == 2,
+            info <- paste0(info, "nlme:lme()\n"),
+            info <- paste0(info, "lmerTest:lmer()\n"))
     info <- paste(info, "                    executed", exec)
   }
   if (fun %in% c("ABE", "method.A")) {
