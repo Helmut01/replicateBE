@@ -83,11 +83,18 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                  EMA.B$coef["treatmentT", "Std. Error"])
     DF    <- EMA.B$coefficients["treatmentT", "df"]
     if (verbose) {
-      cat("\nData set", paste0(file, set,
-          ": Method B by lmer (option=1; ",
-          "equivalent to SAS\u2019 DDFM=SATTERTHWAITE)"),
-          paste0("\n", paste0(rep("\u2500", 81), collapse="")), "\n")
-      print(anova(modB))
+      if (option == 1) {
+         cat("\nData set", paste0(file, set,
+             ": Method B by lmer (option=1; equivalent to SAS\u2019 DDFM=SATTERTHWAITE)"),
+            paste0("\n", paste0(rep("\u2500", 81), collapse="")), "\n")
+        print(anova(modB, ddf="Satterthwaite"))
+      } else {
+        df.txt <- "3; equivalent to SAS\u2019 DDFM=KENWARDROGER)"
+        cat("\nData set", paste0(file, set,
+            ": Method B by lmer (option=3; equivalent to SAS\u2019 DDFM=KENWARDROGER)"),
+            paste0("\n", paste0(rep("\u2500", 80), collapse="")), "\n")
+        print(anova(modB, ddf="Kenward-Roger"))
+     }
       cat("\ntreatment T \u2013 R:\n")
       print(signif(EMA.B$coefficients["treatmentT", ], 7))
       cat("\n")
@@ -98,12 +105,13 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                     paste0(ret$Sub.Seq, collapse="|"),
                     paste0(ret$Miss.seq, collapse="|"),
                     paste0(ret$Miss.per, collapse="|"), alpha,
-                    sprintf("%8.3f", DF), ret$CVwT, ret$CVwR, ret$sw.ratio,
+                    DF, ret$CVwT, ret$CVwR, ret$sw.ratio,
                     ret$sw.ratio.upper, ret$BE1, ret$BE2, CI[1], CI[2],
                     PE, "fail", "fail", "fail", log(CI[2])-log(PE),
                     paste0(ret$ol, collapse="|"), ret$CVwR.new,
                     ret$sw.ratio.new, ret$sw.ratio.new.upper, ret$BE.new1,
-                    ret$BE.new2, "fail", "fail", "fail")
+                    ret$BE.new2, "fail", "fail", "fail",
+                    stringsAsFactors=FALSE)
   names(res)<- c("Design", "Method", "n", "nTT", "nRR", "Sub/seq",
                  "Miss/seq", "Miss/per", "alpha", "DF", "CVwT(%)",
                  "CVwR(%)", "sw.ratio", "sw.ratio.CL", "EL.lo(%)",

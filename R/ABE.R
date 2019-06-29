@@ -64,8 +64,9 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                     paste0(ret$Sub.Seq, collapse="|"),
                     paste0(ret$Miss.seq, collapse="|"),
                     paste0(ret$Miss.per, collapse="|"), alpha,
-                    sprintf("%8.3f", DF), ret$CVwT, ret$CVwR,
-                    100*theta1, 100*theta2, CI[1], CI[2], PE, "fail")
+                    DF, ret$CVwT, ret$CVwR,
+                    100*theta1, 100*theta2, CI[1], CI[2], PE, "fail",
+                    stringsAsFactors=FALSE)
   names(res)<- c("Design", "Method", "n", "nTT", "nRR", "Sub/seq",
                  "Miss/seq", "Miss/per", "alpha", "DF", "CVwT(%)",
                  "CVwR(%)", "BE.lo(%)", "BE.hi(%)", "CI.lo(%)",

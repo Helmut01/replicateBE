@@ -369,7 +369,7 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
 \examples{
 \donttest{
 # Importing from a CSV-file, using most of the defaults: variable
-# separator comma, decimal separator period, no outlier-analyis,
+# separator colon, decimal separator period, no outlier-analyis,
 # print to file.
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
@@ -409,19 +409,6 @@ method.B(ola = TRUE, verbose = TRUE, data = rds01)}
 # data.frame of results (7-digits precision) shown in the console.
 x <- method.B(ola = TRUE, print = FALSE, details = TRUE, data = rds01)
 print(x, row.names = FALSE)
-
-# Compare all methods for the highly incomplete dataset rds18.
-a  <- method.A(print=FALSE, details=TRUE, data=rds18)
-b2 <- method.B(print=FALSE, details=TRUE, data=rds18, option=2) # GL
-b1 <- method.B(print=FALSE, details=TRUE, data=rds18, option=1) # Satt.
-b3 <- method.B(print=FALSE, details=TRUE, data=rds18, option=3) # KR
-cs <- c(2, 10, 17:18)
-x  <- rbind(a[, cs], b2[, cs], b1[, cs], b3[, cs])
-x[, 3:4] <- round(x[, 3:4], 4)
-x$detail <- c("GL (fixed)", "GL (random)",
-              "Satterthwaite", "Kenward-Roger")
-print(x, row.names=FALSE)
-
 # Compare Method B with Method A for all reference datasets.
 \donttest{
 ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))),
@@ -443,8 +430,6 @@ for (i in seq_along(ds)) {
 }}
 # should give
 #   rds01: A pass, B pass – Methods A and B agree.
-#   ...
-#   rds04: A fail, B fail – Methods A and B agree.
 #   ...
 #   rds14: A pass, B fail – Method B is conservative.
 #   ...

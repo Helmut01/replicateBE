@@ -1,5 +1,6 @@
 Version 1.0.8.9000
 Published on Github 2019-06-29
+    - stringsAsFactors=FALSE in res of all methods.
     - Added Kenward-Roger dfs to method.B (..., option=3)
     - Removed superfluous options(ow) after models (THX to DL).
     - Minor changes in man-page of method.A and the vignette.

@@ -490,3 +490,18 @@ test_that("method.B (CVwR, EL, 90% CI, PE) of rds28", {
                     expected=c(28.74524, 80, 125, 87.86358,
                                100.0704, 93.76858))
 })
+#####################################
+# ABEL (Method B) demanding dataset #
+#####################################
+test_that("method.B (Satterthwaite DF, CVwR, EL, 90% CI, PE) of rds18", {
+  x <- method.B(details=TRUE, print=FALSE, data=rds18, option=1)
+  expect_equivalent(x[, c(10, 12, 15:19)], tolerance=5e-7,
+                    expected=c(177.922, 125.9951, 69.83678, 143.19102,
+                               59.132003, 107.204568, 79.619224))
+})
+test_that("method.B (Kenward-Roger DF, CVwR, EL, 90% CI, PE) of rds18", {
+  x <- method.B(details=TRUE, print=FALSE, data=rds18, option=3)
+  expect_equivalent(x[, c(10, 12, 15:19)], tolerance=5e-7,
+                    expected=c(179.69018, 125.99509, 69.83678, 143.19102,
+                               59.107151, 107.24964, 79.619224))
+})
