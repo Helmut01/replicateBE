@@ -1,3 +1,3 @@
 library(testthat)
-suppressMessages(library(replicateBE))
+library(replicateBE)
 test_check("replicateBE")

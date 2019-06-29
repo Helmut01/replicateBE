@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-suppressMessages(library(replicateBE))
+library(replicateBE)
 ```
 
 * [Disclaimer](#disclaimer)
