@@ -26,12 +26,12 @@ In full replicate designs the variability of test and reference treatment can be
   
   A linear mixed model of log-transformed PK responses and effects _sequence_, _subject(sequence)_, _period_, _treatment_&nbsp;– where _subject(sequence)_ is a random effect and all others are fixed.
   
-  Two options
-    - Estimated via function ```lme()``` of library ```nlme```. Uses degrees of freedom equivalent to SAS’ ```DDFM=CONTAIN``` and Phoenix/WinNonlin’s ```DF Residual```. Implicitly preferred according to the Q&A document.
+  Three options
+    - Estimated via function ```lme()``` of library ```nlme```. The default (```option=2```) uses degrees of freedom equivalent to SAS’ ```DDFM=CONTAIN``` and Phoenix/WinNonlin’s ```DF Residual```. Implicitly preferred according to the Q&A document.
       ```Rscript
       modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject, data = data)
       ```    
-    - Estimated via function ```lmer()``` of library ```lmerTest```. Uses Satterthwaite’s degrees of freedom equivalent to SAS’ ```DDFM=SATTERTHWAITE``` and Phoenix/WinNonlin’s ```DF Satterthwaite```.
+    - Estimated via function ```lmer()``` of library ```lmerTest```. Uses Satterthwaite’s degrees of freedom equivalent to SAS’ ```DDFM=SATTERTHWAITE``` and Phoenix/WinNonlin’s ```DF Satterthwaite``` (```option=1```) or Kenward-Roger degrees of freedom (```option=3```) like in JMP.
       ```Rscript
       modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject), data = data)
       ```
