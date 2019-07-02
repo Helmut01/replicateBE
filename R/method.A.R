@@ -40,7 +40,7 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
   if (verbose) {
     name <-  paste0(file, set)
     cat("\nData set", name, "by Method A",
-        paste0("\n", paste0(rep("\u2500", 21+nchar(name)), collapse="")), "\n")
+        paste0("\n", paste0(rep("\u2500", 22+nchar(name)), collapse="")), "\n")
     print(stats::anova(modA)) # otherwise summary of lmerTest is used
     cat("\ntreatment T \u2013 R:\n")
     print(signif(summary(modA)$coefficients["treatmentT", ]), 7)

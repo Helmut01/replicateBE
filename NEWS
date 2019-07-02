@@ -1,5 +1,6 @@
 Version 1.0.8.9000
-Published on Github 2019-06-29
+Published on Github 2019-07-02
+    - Cosmetic changes in verbose output of method.A().
     - suppressMessages() no more needed (vignette and testthat).
       Issue orginating in rlang and ggplot2 resolved.
       Both don't contain a NEWS file. THX Hadley!
