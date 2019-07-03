@@ -7,58 +7,64 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
                      ext, na = ".", sep = ",", dec = ".",
                      logtrans = TRUE, print, plot.bxp, data) {
   graphics.off()
+  transf <- logtrans # default
   if (is.null(data)) { # checking external data
     ext.csv <- c("CSV", "csv")
     ext.xls <- c("XLS", "xls", "XLSX", "xlsx")
     if (missing(file))
-      stop("Argument \'file\' must be given.")
+      stop("Argument 'file' must be given.")
     if (is.numeric(file))
-      stop("Argument \'file\' must be a string (i.e., enclosed in single or double quotes).")
+      stop("Argument 'file' must be a string (i.e., enclosed in single or double quotes).")
     if (is.numeric(set))
-      stop("Argument \'set\' must be a string (i.e., enclosed in single or double quotes).")
+      stop("Argument 'set' must be a string (i.e., enclosed in single or double quotes).")
     if (missing(ext))
-      stop("Argument \'ext\' (extension of file) must be given.")
+      stop("Argument 'ext' (file-extension) must be given.")
     if (!ext %in% c(ext.csv, ext.xls))
       stop("Data format not supported (must be Character Separated Variables or Excel.")
     if (ext %in% ext.csv) {
       if (!sep %in% c(";", ",", "\t"))
-        stop(paste0("Reading CSV-file: Argument \'sep\' (variable separator) must be any of",
-                    "\n\';\' (semicolon), \',\' (comma), or \'\\t\' (tab)."))
+        stop(paste0("Reading CSV-file\n       Argument 'sep' (variable separator) must be any of",
+                    "\n       ',' (comma = default), ';' (semicolon), or '\\t' (tab)."))
       if (!dec %in% c(".", ","))
-        stop("Reading CSV-file: Argument \'dec\' (decimal separator) must be \'.\' (period) or \',\' (comma).")
+        stop("Reading CSV-file: Argument 'dec' (decimal separator) must be\n'.' (period = deafult) or ',' (comma).")
       if (sep == dec)
-        stop("Reading CSV-file: Arguments \'sep\' and decimal \'dec\' must be different.")
+        stop("Reading CSV-file\n       Arguments 'sep' and decimal 'dec' must be different.")
     }
     if (ext %in% ext.xls & (set == ""))
-      stop("Reading Excel: Argument \'set\' (name of sheet) must be given.")
+      stop("Reading Excel\n       Argument 'set' (name of worksheet) must be given.")
     if (is.null(path.in) | missing(path.in)) {
-      setwd("~/")
-      cat("No path for input given; home folder", getwd(), "used.\n")
-      path.in <- getwd()
+      home.path <- getwd()
+      setwd(home.path)
+      warning("'path.in' not given; home folder'", home.path, "' used.")
+      path.in <- home.path
     }
     if (!dir.exists(path.in)) {
-      setwd("~/")
-      cat("Path for input does not exist; home folder", getwd(), "used.\n")
-      path.in <- getwd()
+      home.path <- getwd()
+      setwd(home.path)
+      warning("Folder given in 'path.in' does not exist; home folder\n'", home.path, "' used.")
+      path.in <- home.path
     } # Adds trailing '/' to path if missing
     path.in <- ifelse(regmatches(path.in, regexpr(".$", path.in)) == "/",
                       path.in, paste0(path.in, "/"))
   } # EO checking external data
   if (print | plot.bxp) { # check only if necessary
     if (missing(path.out)) {
-      setwd("~/")
-      cat("No path for output given; output to", getwd(), "\n")
-      path.out <- getwd()
+      home.path <- getwd()
+      setwd(home.path)
+      warning("'path.out' not given; output to home folder\n'", home.path, "'.")
+      path.out <- home.path
     }
     if (is.null(path.out)) {
-      setwd("~/")
-      cat("No path for output given; output to", getwd(), "\n")
-      path.out <- getwd()
+      home.path <- getwd()
+      setwd(home.path)
+      warning("'path.out' not given; output to home folder\n'", home.path, "'.")
+      path.out <- home.path
     }
     if (!dir.exists(path.out)) {
-      setwd("~/")
-      cat("Path for output does not exist; output to", getwd(), "\n")
-      path.out <- getwd()
+      home.path <- getwd()
+      setwd(home.path)
+      warning("Folder given in 'path.out' does not exist; output to home folder\n'", home.path, "'.")
+      path.out <- home.path
     } # Adds trailing '/' to path if missing
     path.out <- ifelse(regmatches(path.out, regexpr(".$", path.out)) == "/",
                        path.out, paste0(path.out, "/"))
@@ -70,7 +76,8 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
       setwd(dirname(file.choose()))
       path.in <- paste0(getwd(), "/")
       full.name <- paste0(path.in, file, ".", ext)
-    }  # The entire content
+    }
+    # Read the entire content
     if (ext %in% ext.xls) { # read from Excel to the data frame
       datawithdescr <- as.data.frame(read_excel(path=full.name, sheet=set,
                                                 na=c("NA", "ND", ".", "", "Missing"),
@@ -81,16 +88,20 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
                                 stringsAsFactors=FALSE)
     }
     namesvector = c("subject", "period", "sequence", "treatment")
-    # looking for a row with namesvector, summing all its members, if all are there, marking as TRUE
+    # Looking for a row with namesvector, summing all its members and
+    # if all are there, mark as TRUE
     Nnamesdf <- c(t(apply(datawithdescr, 1, function(row, table) {
       sum(match(tolower(row), table=table), na.rm=TRUE)}, table=namesvector)) == 10)
     if (sum(Nnamesdf) == 0)
-      stop("Column names must be given as \'subject\', \'period\', \'sequence\', \'treatment\'.")
-    if (sum(Nnamesdf) > 1)
-      stop("More than 1 row with column names as \'subject\', \'period\', \'sequence\', \'treatment\' detected.")
-    # if there are some # comments in datafiles, collapse them
+      stop("Column names must be given as 'subject', 'period', 'sequence', 'treatment'.")
+    if (sum(Nnamesdf) > 1) {
+      err.msg <- paste("More than 1 row with column names 'subject', 'period'",
+                       "\n       'sequence', 'treatment' detected.")
+      stop(err.msg)
+    }
+    # If there are some # comments in datafiles, collapse them
     if (which(Nnamesdf == TRUE)-1) {
-      # selecting the rows before names of dataset
+      # Selecting rows before names of dataset
       if (!ext %in% ext.xls) {
         descr <- scan(file=full.name, what=character(), quiet = TRUE, sep = "\n",
                       nlines = (which(Nnamesdf == TRUE)-1))
@@ -110,7 +121,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
     facs  <- which(!names(data) %in% c("PK", "logPK")) # will be factors later
     names(data)[facs] <- tolower(names(data)[facs])
     PKcols <- which(names(data) %in% c("PK", "logPK")) # PK columns
-    for (j in seq_along(PKcols)) {                    # transform to numeric
+    for (j in seq_along(PKcols)) {                     # transform to numeric
       data[, PKcols[j]] <- as.numeric(data[, PKcols[j]])
     }
     # data[, PKcols] <- lapply(data[, PKcols], as.numeric) # throws warnings
@@ -120,14 +131,17 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
     # If the user erroneously asks for analysis of logPK - which does not
     # exist in the data set - change to internal log-transformation.
     if (logtrans == FALSE & !"logPK" %in% colnames(data)) {
-      warning(paste0("Column \'logPK\' does not exist in the data set.",
-                     "\nLog-transformed column \'PK'\ internally."))
+      warn.msg <- paste0("Requested analysis of already transformed data ('logtrans = FALSE')\n",
+                         "  not possible since column 'logPK' does not exist in the dataset.\n",
+                         "  Analysis of log-transformed column 'PK' instead.")
+      warning(warn.msg)
       logtrans <- TRUE
+      transf <- TRUE
     } # factorize variables except response(s)
     cols       <- c("subject", "period", "sequence", "treatment")
     data[cols] <- lapply(data[cols], factor)
     if (sum(!unique(data$treatment) %in% c("R", "T")) !=0)
-      stop("treatments must be given as \'R\' and \'T\'.")
+      stop("treatments must be given as 'R' and 'T'.")
   } else { # EO reading external data
     if (missing(ext)) { # get information of internal data set
       info  <- info.data(data)
@@ -135,6 +149,14 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
       set   <- info$set
       ref   <- info$ref
       descr <- info$descr
+      if (logtrans == FALSE & !"logPK" %in% colnames(data)) {
+        warn.msg <- paste0("Requested analysis of already transformed data ('logtrans = FALSE')\n",
+                           "  not possible since column 'logPK' does not exist in the dataset.\n",
+                           "  Analysis of log-transformed column 'PK' instead.")
+        warning(warn.msg)
+        logtrans <- TRUE
+        transf <- TRUE
+      }
     }
   }
   if (print) res.file <- paste0(path.out, file, set, "_ABEL")
@@ -170,8 +192,8 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
       if (Npers != 3) stop("3 periods required in this partial replicate design.")
       if (Nseqs != 3) stop("3 sequences required in this partial replicate design.")
     } else {
-      if (Npers != 2) stop("2 periods required in Balaam\'s design.")
-      if (Nseqs != 4) stop("4 sequences required in Balaam\'s design.")
+      if (Npers != 2) stop("2 periods required in Balaam's design.")
+      if (Nseqs != 4) stop("4 sequences required in Balaam's design.")
     }
   }
   # next line introduced for DS24 where all data of subject 16 are NA
@@ -283,7 +305,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
   ret <- list(data=data, ref=ref, RR=RR, test=test, type=type, n=n,
               nTT=ifelse(design == "full", nTT, NA), nRR=nRR,
               design=design, txt=txt, Sub.Seq=Nsub.seq,
-              Miss.seq=Miss.seq, Miss.per=Miss.per, transf=logtrans,
+              Miss.seq=Miss.seq, Miss.per=Miss.per, logtrans=transf,
               res.file=ifelse(print, res.file, NA),
               png.path=ifelse(plot.bxp, png.path, NA))
   return(ret)

@@ -1,7 +1,7 @@
-################################################
-# Conventional (unscaled) ABE by ANOVA         #
-# fixed: sequence, subjects, period, treatment #
-################################################
+#########################################################
+# Conventional (unscaled) ABE by ANOVA                  #
+# fixed: sequence, subject(sequence), period, treatment #
+#########################################################
 ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                 file, set = "", ext, na = ".", sep = ",",
                 dec = ".", logtrans = TRUE, print = TRUE,
@@ -15,6 +15,7 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                   dec=dec, logtrans=logtrans, ola=FALSE,
                   print=print, verbose=verbose, ask=ask,
                   theta1=theta1, theta2=theta2, data=data)
+  logtrans <- ret$logtrans
   if (print) { # change from "ABEL" to "ABE"
     if (theta1 <= 0.8) {
       results <- paste0(substr(ret$res.file, 1,
@@ -36,7 +37,6 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     descr <- info$descr
     ext   <- ""
   }
-  logtrans <- ret$transf
   os <- Sys.info()[[1]]   # get OS for line-endings in output (Win: CRLF)
   ow <- options("digits") # save options
   options(digits=12)      # increase digits for anova()

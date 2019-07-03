@@ -17,6 +17,7 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
                   dec=dec, logtrans=logtrans, ola=ola,
                   print=print, verbose=verbose, ask=ask,
                   plot.bxp=plot.bxp, fence=fence, data=data)
+  logtrans <- ret$logtrans
   # Add description of the degrees of freedom to the result file
   if (option == 1) DF.suff <- "Satt"
   if (option == 2) DF.suff <- "GL"
@@ -32,7 +33,6 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     descr <- info$descr
     ext   <- ""
   }
-  logtrans <- ret$transf
   os <- Sys.info()[[1]]   # get OS for line-endings in output (Win: CRLF)
   ow <- options("digits") # save options
   options(digits=12)      # increase digits for anova()

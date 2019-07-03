@@ -1,9 +1,13 @@
 Version 1.0.8.9000
-Published on Github 2019-07-02
+Published on Github 2019-07-03
+    - Bug fix: Forces logtrans=TRUE if a user asks for an
+      internal dataset without column logPK.
+    - Changed cat() if 'path.in' or 'path.out' not given or
+      folder does not exist to warning().
     - Cosmetic changes in verbose output of method.A().
     - suppressMessages() no more needed (vignette and testthat).
       Issue orginating in rlang and ggplot2 resolved.
-      Both don't contain a NEWS file. THX Hadley!
+      Both packages don't contain a NEWS file. THX Hadley!
     - stringsAsFactors=FALSE in res of all methods.
     - Added Kenward-Roger dfs to method.B (..., option=3)
     - Removed superfluous options(ow) after models (THX to DL).

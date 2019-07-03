@@ -14,6 +14,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                     set=set, ext=ext, na=na, sep=sep, dec=dec,
                     logtrans=logtrans, print=print,
                     plot.bxp=plot.bxp, data=data)
+  logtrans <- ret$logtrans
   ow <- options("digits")
   options(digits=12) # more digits for anova
   on.exit(ow)        # ensure that options are reset if an error occurs

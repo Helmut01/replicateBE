@@ -25,7 +25,7 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     descr <- info$descr
     ext   <- ""
   }
-  logtrans <- ret$transf
+  logtrans <- ret$logtrans
   os <- Sys.info()[[1]] # get OS for line-endings in output (Win: CRLF)
   ow <- options()       # save options
   options(digits=12)    # increase digits for anova()
