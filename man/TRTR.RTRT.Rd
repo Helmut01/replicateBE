@@ -63,8 +63,7 @@ Datasets from the public domain, edited, or obtained by simulations to be evalua
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
-          \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
         }
       }
       \item{}{}
@@ -114,8 +113,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
-          \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
         }
       }
     }
@@ -147,8 +145,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
-          \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
         }
       }
     }
@@ -180,8 +177,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
-          \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
         }
       }
     }
@@ -197,8 +193,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
-          \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
         }
       }
     }
@@ -214,8 +209,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
-          \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
         }
       }
     }
@@ -231,8 +225,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
-          \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
         }
       }
     }

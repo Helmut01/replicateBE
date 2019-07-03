@@ -1,15 +1,20 @@
 Version 1.0.8.9000
 Published on Github 2019-07-03
+    - Kept column logPK only in rds01 and rds02 because given by the
+      EMA. Removed in rds06, rds12, rds14, rds18, rds19, rds20, rds21
+      (TRTR|RTRR) and rds03, rds17 (TRT|RTR). Man-pages corrected.
+      Reduces the footprint of the library by 5%.
+      Depends now on R >= 3.5.0 (since .rda written with 3.6.0).
     - Bug fix: Forces logtrans=TRUE if a user asks for an
-      internal dataset without column logPK.
-    - Changed cat() if 'path.in' or 'path.out' not given or
-      folder does not exist to warning().
+      internal dataset which does not have the column logPK.
+    - If 'path.in' and/or 'path.out' not given or specified
+      folder does not exist: Changed cat() to warning().
     - Cosmetic changes in verbose output of method.A().
     - suppressMessages() no more needed (vignette and testthat).
       Issue orginating in rlang and ggplot2 resolved.
       Both packages don't contain a NEWS file. THX Hadley!
-    - stringsAsFactors=FALSE in res of all methods.
-    - Added Kenward-Roger dfs to method.B (..., option=3)
+    - stringsAsFactors=FALSE in res-list of all methods.
+    - Added Kenward-Roger degrees of freedom to method.B (..., option=3).
     - Removed superfluous options(ow) after models (THX to DL).
     - Minor changes in man-page of method.A and the vignette.
 

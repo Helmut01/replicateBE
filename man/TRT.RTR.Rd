@@ -25,8 +25,7 @@ Datasets from the public domain and edited to be evaluated by \code{method.A()} 
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
               \code{sequence} \tab a factor with 2 levels: TRT, RTR\cr
               \code{treatment} \tab a factor with 2 levels: T, R\cr
-              \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
-              \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
+              \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
             }
           }
        }
@@ -42,8 +41,7 @@ Datasets from the public domain and edited to be evaluated by \code{method.A()} 
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
               \code{sequence} \tab a factor with 2 levels: TRT, RTR\cr
               \code{treatment} \tab a factor with 2 levels: T, R\cr
-              \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
-              \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
+              \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
             }
           }
        }
@@ -76,7 +74,7 @@ Helmut \enc{Schütz}{Schuetz}
 
 \examples{
 head(rds03, 6)
-summary(rds03[2:6])
+summary(rds03[2:5])
 }
 
 \keyword{datasets}

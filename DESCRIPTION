@@ -13,6 +13,7 @@ Authors@R: c(person("Helmut", "Schütz",
              person("Detlew", "Labes",
                email = "DetlewLabes@gmx.de",
                role = "ctb"))
+Depends: R (>= 3.5.0)
 Imports: readxl (>= 1.0.0), PowerTOST (>= 1.3.3), lmerTest, nlme,
          graphics, grDevices
 Suggests: knitr, rmarkdown, testthat, devtools
