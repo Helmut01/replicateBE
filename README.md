@@ -62,6 +62,12 @@ Tested designs
 
 ³ Extra-reference design; biased in the presence of period effects (design _not recommended_).
 
-Cross-validation: Results of reference data sets agree with ones obtained in SAS (9.4), Phoenix/WinNonlin (6.4, 7.0, 8.0, 8.1), STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
+Cross-validation: Results of the 28 reference datasets agree with ones obtained in
+- SAS (9.4: 2013)
+- Phoenix/WinNonlin (6.4, 7.0, 8.0, 8.1: 2014–2018)
+- STATISTICA (13: 2017)
+- SPSS (22.0: 2014)
+- Stata (15.0: 2015)
+- JMP (10.0.2: 2012)
 
 **Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.**
