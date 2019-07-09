@@ -41,7 +41,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
     if (!dir.exists(path.in)) {
       home.path <- getwd()
       setwd(home.path)
-      warning("Folder given in 'path.in' does not exist; home folder\n'", home.path, "' used.")
+      warning("Folder given in 'path.in' does not exist; home folder\n  '", home.path, "' used.")
       path.in <- home.path
     } # Adds trailing '/' to path if missing
     path.in <- ifelse(regmatches(path.in, regexpr(".$", path.in)) == "/",
@@ -51,19 +51,19 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
     if (missing(path.out)) {
       home.path <- getwd()
       setwd(home.path)
-      warning("'path.out' not given; output to home folder\n'", home.path, "'.")
+      warning("'path.out' not given; output to home folder\n  '", home.path, "'.")
       path.out <- home.path
     }
     if (is.null(path.out)) {
       home.path <- getwd()
       setwd(home.path)
-      warning("'path.out' not given; output to home folder\n'", home.path, "'.")
+      warning("'path.out' not given; output to home folder\n  '", home.path, "'.")
       path.out <- home.path
     }
     if (!dir.exists(path.out)) {
       home.path <- getwd()
       setwd(home.path)
-      warning("Folder given in 'path.out' does not exist; output to home folder\n'", home.path, "'.")
+      warning("Folder given in 'path.out' does not exist; output to home folder\n  '", home.path, "'.")
       path.out <- home.path
     } # Adds trailing '/' to path if missing
     path.out <- ifelse(regmatches(path.out, regexpr(".$", path.out)) == "/",
@@ -120,9 +120,28 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
     # Convert eventual mixed or upper case variable names to lower case
     facs  <- which(!names(data) %in% c("PK", "logPK")) # will be factors later
     names(data)[facs] <- tolower(names(data)[facs])
+    # from demo(error.catching)
+    tryCatch.W.E <- function(expr) {
+      W <- NULL
+      w.handler <- function(w){ # warning handler
+        W <<- w
+        invokeRestart("muffleWarning")
+      }
+      list(value=withCallingHandlers(tryCatch(expr, error=function(e) e),
+                                     warning=w.handler), warning=W)
+    }
     PKcols <- which(names(data) %in% c("PK", "logPK")) # PK columns
     for (j in seq_along(PKcols)) {                     # transform to numeric
-      data[, PKcols[j]] <- as.numeric(data[, PKcols[j]])
+      msg1 <- tryCatch.W.E(data[, PKcols[j]] <- as.numeric(data[, PKcols[j]]))$warning
+      invisible(grepl("NAs introduced by coercion", msg1))
+      if (grepl("NAs introduced by coercion", msg1)) {
+        msg2 <- paste0("Import: Missing data according to your specifier na='", na, "'")
+        msg2 <- paste0(msg2, " not found\n  in column ", names(data)[PKcols[j]], ".")
+        msg2 <- paste0(msg2, " Any other non-numeric value was converted to NA.")
+        warning(msg2)
+      } else {
+        print(msg1)
+      }
     }
     # data[, PKcols] <- lapply(data[, PKcols], as.numeric) # throws warnings
     # EO reading file

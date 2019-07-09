@@ -1,5 +1,7 @@
 Version 1.0.8.9000
-Published on Github 2019-07-03
+Published on Github 2019-07-09
+    - More informative warning in get.data() if na-specifier does not
+      match the data in columns PK and/or logPK.
     - Kept column logPK only in rds01 and rds02 because given by the
       EMA. Removed in rds06, rds12, rds14, rds18, rds19, rds20, rds21
       (TRTR|RTRR) and rds03, rds17 (TRT|RTR). Man-pages corrected.
