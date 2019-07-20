@@ -51,7 +51,7 @@ In partial replicate designs \emph{only} R is administered twice.
 \source{
   \tabular{cll}{
     Dataset \tab Origin \tab Description\cr
-    \code{rds01} \tab EMA, CHMP \tab Data set I\cr
+    \code{rds01} \tab EMA \tab Data set in Annex II\cr
     \code{rds06} \tab \code{rds01} edited \tab T and R switched\cr
     \code{rds12} \tab Phoenix NLME \tab Simulated with extreme variability\cr
     \code{rds14} \tab Phoenix NLME \tab Simulated with high variability and number of dropouts increasing with period\cr
@@ -75,41 +75,26 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds17} \tab \code{rds03} edited \tab Highly unbalanced (twelve subjects in RTR and seven in TRT)\cr
     \code{rds10} \tab Chow & Liu \tab AUC data given in Table 9.3.3.\cr
     \code{rds27} \tab R \tab Simulated with homoscedasticity\cr
-    \code{rds02} \tab EMA, CHMP \tab Data set II\cr
+    \code{rds02} \tab EMA \tab Data set in Annex III\cr
     \code{rds04} \tab Patterson & Jones 2012 \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Table II\cr
     \code{rds07} \tab R \tab Simulated with homoscedasticity\cr
     \code{rds22} \tab R \tab Simulated with homoscedasticity
   }
 }
 \references{
-European Medicines Agency, Committee for Medicinal Products for Human Use.
-\emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).}\cr
-London, 19 November 2015. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf}{EMA/618604/2008 Rev. 13}
+European Medicines Agency. London, 21 September 2016. \href{https://www.ema.europa.eu/en/documents/other/31-annex-ii-statistical-analysis-bioequivalence-study-example-data-set_en.pdf}{\emph{Annex II}}, \href{https://www.ema.europa.eu/en/documents/other/statistical-method-equivalence-studies-annex-iii_en.pdf}{\emph{Annex III}}.
 
-Patterson SD, Jones B.
-\emph{Viewpoint: observations on scaled average bioequivalence.}\cr
-Pharm Stat. 2012;11(1):1--7. \doi{10.1002/pst.498}
+Patterson SD, Jones B. \emph{Viewpoint: observations on scaled average bioequivalence.} Pharm Stat. 2012; 11(1): 1--7. \doi{10.1002/pst.498}
 
-Shumaker RC, Metzler CM.
-\emph{The Phenytoin Trial is a Case Study of \sQuote{Individual} Bioequivalence.}\cr
-Drug Inf J. 1998;32(4):1063--72. \doi{10.1177/009286159803200426}
+Shumaker RC, Metzler CM. \emph{The Phenytoin Trial is a Case Study of \sQuote{Individual} Bioequivalence.} Drug Inf J. 1998; 32(4): 1063--72. \doi{10.1177/009286159803200426}
 
-Chow SC, Liu JP.
-\emph{Design and Analysis of Bioavailability and Bioequivalence Studies.}\cr
-Boca Raton: CRC Press; 3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} edition 2009. p275.
+Chow SC, Liu JP. \emph{Design and Analysis of Bioavailability and Bioequivalence Studies.} Boca Raton: CRC Press; 3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} edition 2009. p275.
 
-Hauschke D, Steinijans VW, Pigeot I.
-\emph{Bioequivalence Studies in Drug Development.}\cr
-Chichester: John Wiley; 2007. p216.
+Hauschke D, Steinijans VW, Pigeot I. \emph{Bioequivalence Studies in Drug Development.} Chichester: John Wiley; 2007. p216.
 
-Patterson SD, Jones B.
-\emph{Bioequivalence and Statistics in Clinical Pharmacology.}\cr
-Boca Raton: CRC Press; 2\ifelse{html}{\out{<sup>nd</sup>}}{\eqn{^{nd}}} edition 2016. p105--6.
+Patterson SD, Jones B. \emph{Bioequivalence and Statistics in Clinical Pharmacology.} Boca Raton: CRC Press; 2\ifelse{html}{\out{<sup>nd</sup>}}{\eqn{^{nd}}} edition 2016. p105--6.
 
-\acronym{U.S.} Food and Drug Administration, Center for Drug Evaluation and Research.
-\emph{Bioequivalence Studies.}\cr
-Rockville, 1997.
-\href{https://web.archive.org/web/20170723175533/https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip
+\acronym{U.S.} Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Bioequivalence Studies.} Rockville, 1997. \href{https://web.archive.org/web/20170723175533/https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip
 }{bioequivalence study files} (archived 2017-07-23)
 }
 

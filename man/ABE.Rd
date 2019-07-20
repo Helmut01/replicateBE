@@ -104,7 +104,7 @@ ABE(alpha = 0.05, path.in = NULL, path.out = NULL,
 
 \details{
   The model for the treatment comparison is\cr
-  \verb{   log(response) ~ sequence + subject(sequence) + period + treatment}\cr
+  \code{lm(log(PK) ~ sequence + subject\%in\%sequence + period + treatment, data = data)}\cr
   where all effects are fixed.\cr\cr
   Tested designs
   \itemize{
@@ -174,7 +174,7 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
   all lines preceding the column headers are treated as a comment.
 }
 
-\note{
+\section{Clarification}{
   The \sQuote{graphical} presentation in the result file gives the confidence
   limits with filled black squares and the point estimate as a white rhombus.
   If a confidence limit exceeds the drawing range, it is shown as a triangle.
@@ -211,16 +211,13 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
 \author{
 Helmut \enc{Schütz}{Schuetz}
 }
-\references{
-European Medicines Agency, Committee for Medicinal Products for Human Use.
-\emph{Guideline on the Investigation of Bioequivalence.}\cr
-London, 20 January 2010.
-\href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
 
-European Medicines Agency, Committee for Medicinal Products for Human Use.
-\emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.}\cr
-London, 20 November 2014.
+\references{
+  \enumerate{
+    \item European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the Investigation of Bioequivalence.} London, 20 January 2010. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
+    \item European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.} London, 20 November 2014.
 \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{EMA/CPMP/EWP/280/96 Corr1}
+  }
 }
 
 \seealso{

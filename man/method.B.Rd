@@ -8,8 +8,7 @@ Comparative BA-calculation for Average Bioequivalence with Expanding Limits by t
   This function performs the required calculations for the mixed (or aggregate)
   \acronym{BE} decision via Average Bioequivalence with Expanding Limits
   (\acronym{ABEL}) based on a linear mixed effects model with subjects as a
-  random effect (\sQuote{Method B}) as recommended in the \acronym{EMA}’s
-  Q&A-document.
+  random effect (\sQuote{Method B}) as specified in \emph{Annex I}.
 }
 \usage{
 method.B(alpha = 0.05, path.in = NULL, path.out = NULL,
@@ -127,12 +126,13 @@ method.B(alpha = 0.05, path.in = NULL, path.out = NULL,
 
 \details{
   The model for the estimation of \code{CVwR} is\cr
-  \verb{   log(response) ~ sequence + subject(sequence) + period}\cr
+  \code{lm(log(PK) ~ sequence + subject\%in\%sequence + period, data = data[data$treatment == "R", ])}\cr
   where all effects are fixed.\cr
-  The model for the treatment comparison is\cr
-  \verb{   log(response) ~ sequence + subject(sequence) + period + treatment}\cr
-  where \verb{sequence}, \verb{period}, and \verb{treatment} are
-  fixed effects and \verb{subject(sequence)} is a random effect.\cr\cr
+  The model for the treatment comparison is with the default \code{option=2}\cr
+  \code{lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject, data = data)}\cr
+  and with \code{option=1}, \code{option=3}\cr
+  \code{lmer(log(PK) ~ sequence + period + treatment + (1|subject), data = data)}\cr
+  where \code{sequence}, \code{period}, and \code{treatment} are fixed effects and \code{subject(sequence)} is a random effect.\cr\cr
   Tested designs
   \itemize{
     \item 4-period 2-sequence full replicates\cr
@@ -171,7 +171,7 @@ Prints results to a file if argument \code{print = TRUE} (default).\cr
 If argument \code{print = FALSE}, returns a data.frame with the elements:
   \tabular{ll}{
     \code{Design} \tab \emph{e.g.}, TRTR|RTRT\cr
-    \code{Method} \tab B-\code{option} (\code{1} or \code{2})\cr
+    \code{Method} \tab B-\code{option} (\code{1}, \code{2}, or \code{3})\cr
     \code{n} \tab total number of subjects\cr
     \code{nTT} \tab number of subjects with two treatments of \code{T} (full replicates only)\cr
     \code{nRR} \tab number of subjects with two treatments of \code{R}\cr
@@ -245,43 +245,7 @@ If \code{ola=TRUE} and at least one outlier was detected:
   all lines preceding the column headers are treated as a comment.
 }
 
-\references{
-European Medicines Agency, Committee for Medicinal Products for Human Use.
-\emph{Guideline on the Investigation of Bioequivalence.}\cr
-London, 20 January 2010.
-\href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
-
-3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} \acronym{EGA} Symposium on Bioequivalence.
-\emph{Questions and Answers on the Revised \acronym{EMA} Bioequivalence Guideline.}\cr
-London, 1 June 2010.
-\href{https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf}{open access}
-
-European Medicines Agency, Committee for Medicinal Products for Human Use.
-\emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).}\cr
-London, 19 November 2015.
-\href{https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf}{EMA/618604/2008 Rev. 13}
-
-European Medicines Agency, Committee for Medicinal Products for Human Use.
-\emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.}\cr
-London, 20 November 2014.
-\href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{EMA/CPMP/EWP/280/96 Corr1}
-
-World Health Organization, Prequalification Team: medicines.
-\emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm.}\cr
-Geneva, 22 November 2018.
-\href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf}{open access}
-
-Food and Drug Administration, Office of Generic Drugs.
-\emph{Draft Guidance on Warfarin Sodium.}\cr
-Rockville, December 2012.
-\href{https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf}{open access}
-}
-
-\author{
-Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
-}
-
-\note{
+\section{Clarification}{
   The \sQuote{graphical} presentation in the result file gives the confidence
   limits with filled black squares and the point estimate as a white rhombus.
   If a confidence limit exceeds the maximum possible expansion limit, it is
@@ -293,8 +257,8 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
 }
 
 \note{
-  The \acronym{EMA}’s model specified in \sQuote{Method B} assumes
-  equal [\emph{sic!}] intra-subject variances of test and reference (like in
+  The \acronym{EMA}’s model specified as \sQuote{Method B} in \emph{Annex I} assumes
+  equal [\emph{sic}] intra-subject variances of test and reference (like in
   \ifelse{html}{\out{2&times;2&times;2}}{\eqn{2 \times 2 \times 2}{2x2x2}}
   trials) -- even if proven false in one of the full replicate designs (were
   \emph{both} \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}{CVwT}} and
@@ -302,7 +266,7 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
   Hence, amongst biostatisticians it is called the \dQuote{crippled model}
   because the replicative nature of the study is ignored.\cr
   The method for calculating the degrees of freedom is not specified in the
-  \acronym{SAS} code provided by the \acronym{EMA} in the Q&A document. Hence,
+  \acronym{SAS} code provided by the \acronym{EMA} in \emph{Annex I}. Hence,
   the default in \code{PROC MIXED}, namely \code{DDFM=CONTAIN} is applied.\cr
   For incomplete data (\emph{i.e.}, missing periods) Satterthwaite’s
   approximation of the degrees of freedom (\code{option=1}) or Kenward-Roger (\code{option=3})
@@ -357,6 +321,22 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
   considered comparable if the upper confidence limit of
   \ifelse{html}{\out{<em>&sigma;<sub>wT</sub></em>}}{\eqn{\sigma_{wT}}}/\ifelse{html}{\out{<em>&sigma;<sub>wR</sub></em>}}{\eqn{\sigma_{wR}}} is less than or equal to 2.5.\cr\cr
   \strong{Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.}
+}
+
+\author{
+Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
+}
+
+\references{
+  \enumerate{
+  \item European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the Investigation of Bioequivalence.} London, 20 January 2010. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
+  \item 3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} \acronym{EGA} Symposium on Bioequivalence. \emph{Questions and Answers on the Revised \acronym{EMA} Bioequivalence Guideline.} London, 1 June 2010. \href{https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf}{open access}
+    \item European Medicines Agency. \emph{Annex I}. London, 21 September 2016. \href{https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf}{EMA/582648/2016}
+    \item European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).} London, 19 November 2015. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf}{EMA/618604/2008 Rev. 13}
+  \item European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.} London, 20 November 2014. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{EMA/CPMP/EWP/280/96 Corr1}
+  \item World Health Organization, Prequalification Team: medicines. \emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm.} Geneva, 22 November 2018. \href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf}{open access}
+  \item Food and Drug Administration, Office of Generic Drugs. \emph{Draft Guidance on Warfarin Sodium.} Rockville, December 2012. \href{https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf}{open access}
+  }
 }
 
 \seealso{

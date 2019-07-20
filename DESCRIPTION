@@ -1,18 +1,18 @@
 Encoding: UTF-8
 Package: replicateBE
 Version: 1.0.8.9000
-Date: 2019-07-09
+Date: 2019-07-20
 Title: Average Bioequivalence with Expanding Limits (ABEL)
 Authors@R: c(person("Helmut", "Schütz",
-               email = "helmut.schuetz@bebac.at",
-               role = c("aut", "cre"),
-               comment = c(ORCID = "0000-0002-1167-7880")),
+             email = "helmut.schuetz@bebac.at",
+             role = c("aut", "cre"),
+             comment = c(ORCID = "0000-0002-1167-7880")),
              person("Michael", "Tomashevskiy",
-               email = "mittyright@yandex.ru",
-               role = "ctb"),
+             email = "mittyright@yandex.ru",
+             role = "ctb"),
              person("Detlew", "Labes",
-               email = "DetlewLabes@gmx.de",
-               role = "ctb"))
+             email = "DetlewLabes@gmx.de",
+             role = "ctb"))
 Author: Helmut Schütz [aut, cre],
   Michael Tomashevskiy [ctb],
   Detlew Labes [ctb]

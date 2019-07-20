@@ -1,5 +1,6 @@
 Version 1.0.8.9000
-Published on Github 2019-07-09
+Published on Github 2019-07-20
+    - Updated links to EMA's documents (again...) in man-pages. Numbered references.
     - More informative warning in get.data() if na-specifier does not
       match the data in columns PK and/or logPK.
     - Kept column logPK only in rds01 and rds02 because given by the

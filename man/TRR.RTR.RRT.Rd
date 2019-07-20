@@ -16,7 +16,7 @@ Datasets from the public domain or edited to be evaluated by \code{method.A()}, 
 \format{
   \itemize{
     \item Reference Dataset 02 (\code{rds02})\cr
-    Data set II of the EMA’s Q&A document. 24 subjects.\cr
+    24 subjects.\cr
     Balanced (eight subjects in each of the three sequences) and complete (no missing data). No outliers.\cr
     A data frame with 72 observations on the following 6 variables:
       \describe{
@@ -102,19 +102,16 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes)
 \source{
   \tabular{cll}{
     Dataset \tab Origin \tab Description\cr
-    \code{rds02} \tab EMA, CHMP \tab Data set II.\cr
+    \code{rds02} \tab EMA \tab Annex III.\cr
     \code{rds04} \tab Patterson & Jones \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Table II.\cr
     \code{rds07} \tab R \tab Large simulated data set with homoscedasticity.
   }
 }
 
 \references{
-European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).}\cr
-London, 19 November 2015.
-\href{https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf}{EMA/618604/2008 Rev. 13}
+European Medicines Agency. London, 21 September 2016. \href{https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf}{\emph{Annex I}}, \href{https://www.ema.europa.eu/en/documents/other/statistical-method-equivalence-studies-annex-iii_en.pdf}{\emph{Annex III}}.
 
-Patterson SD, Jones B. \emph{Viewpoint: observations on scaled average bioequivalence.}\cr
-Pharm Stat. 2012;11(1):1--7. \doi{10.1002/pst.498}
+Patterson SD, Jones B. \emph{Viewpoint: observations on scaled average bioequivalence.} Pharm Stat. 2012; 11(1): 1--7. \doi{10.1002/pst.498}
 }
 
 \examples{
