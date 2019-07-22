@@ -9,7 +9,8 @@ importFrom(graphics, boxplot, bxp, mtext, text,
            abline, title)
 importFrom(PowerTOST, mse2CV, CV2se, scABEL, reg_const,
            scABEL.ad)
-importFrom(nlme, lme, intervals) # for method.B(option=2)
-import(lmerTest)                 # for method.B(option=1)
+importFrom(nlme, lme, intervals)
+import(lmerTest)
+importFrom(pbkrtest, getKR)
 # Export explicitly by name
 export(method.A, method.B, ABE)

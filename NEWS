@@ -1,5 +1,11 @@
+Version 1.0.9
+Published on Github 2019-07-22
+    - Submitted to CRAN.
+
 Version 1.0.8.9000
 Published on Github 2019-07-20
+    - importFrom(pbkrtest, getKR) since on win-builder.r-project.org error
+      'pbkrtest package required for Kenward-Roger's method' (not locally!)
     - Updated links to EMA's documents (again...) in man-pages. Numbered references.
     - More informative warning in get.data() if na-specifier does not
       match the data in columns PK and/or logPK.
