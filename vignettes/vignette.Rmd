@@ -57,7 +57,7 @@ library(replicateBE)
 The library provides data sets (internal `.rda` and in CSV-format in `/extdata/`) given by Schütz _et al_.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. _Reference Data­sets for Studies in a Replicate Design intended for Average Bioequivalence with Expanding Limits._ Manu­script in pre­paration 2019.] which support users in a black-box performance qualification (PQ) of their software installations.
 
 
-The methods given in the EMA’s [Q&A document](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf "EMA, January 2011 and later revisions") for reference-scaling according to the EMA’s [Guideline on the Investigation of Bioequivalence](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf "EMA, January 2010") are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint [EGA/EMA workshop](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf "London, June 2010").
+The methods given by the EMA in [Annex I](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf "EMA/582648/2016, 21 September 2016") for reference-scaling according to the EMA’s [Guideline on the Investigation of Bioequivalence](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf "EMA, January 2010") are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint [EGA/EMA workshop](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf "London, June 2010").
 
 ### Methods{#methods}
 #### function `method.A()`{#methodA}
@@ -83,7 +83,7 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
 ```
 
-2.  Estimated via function `lme()` of library `nlme`. Uses degrees of freedom equivalent to SAS’ `DDFM=CONTAIN` and Phoenix/WinNonlin’s `DF Residual`. Implicitly preferred according to the Q&A document.\
+2.  Estimated via function `lme()` of library `nlme`. Uses degrees of freedom equivalent to SAS’ `DDFM=CONTAIN` and Phoenix WinNonlin’s `DF Residual`. Implicitly preferred according to the Q&A document.\
 `method.B(..., option = 2)`, the default.\
 ```{r eval=FALSE}
 modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
@@ -206,7 +206,7 @@ If less than twelve subjects remain in sequence `RTR` of a `TRT | RTR` design (
 #### Model structure{#model_struc}
 The EMA’s models assumes equal [_sic_] intra-subject variances of Test and Reference (like in 2×2×2 trials) – even if proven false in one of the full replicate designs (were _both_ _CV~wT~_ and _CV~wR~_ can be estimated). Hence, amongst bio­statis­ticians it is called the ‘crippled model’ because the replicative nature of the study is ignored.
 
-The nested structure _subject(sequence)_ of the [methods](#methods) leads to an over-specificed model.^[Contradics the law of simplicity. Such a nesting is superfluous since in BE trials subjects are uniquely coded. If, say, subject `1` is allocated to sequence `TRTR` there is not yet ‘another’ subject `1` allocated to sequence `RTRT`. This explains the many lines in SAS `PROC GML` given with `.` and in Phoenix/WinNonlin as `not estimable`.] The simple model\
+The nested structure _subject(sequence)_ of the [methods](#methods) leads to an over-specificed model.^[Contradics the law of simplicity. Such a nesting is superfluous since in BE trials subjects are uniquely coded. If, say, subject `1` is allocated to sequence `TRTR` there is not yet ‘another’ subject `1` allocated to sequence `RTRT`. This explains the many lines in SAS `PROC GML` given with `.` and in Phoenix WinNonlin as `not estimable`.] The simple model\
     _sequence_, _subject_, _period_, _treatment_\
 gives identical estimates of the residual variance and the treatment effect and hence, its confidence interval.
 
@@ -332,7 +332,7 @@ Box plots were ‘suggested’ by the author as a joke [_sic_] at the EGA/EMA wo
 
 
 With the additional argument `ola = TRUE` in `method.A()` and `method.B()` an outlier analysis is performed, where the default `fence = 2`^[The fences are given by the lowest datum still within _m_×IQR of the lower quartile, and the highest datum still within _m_×IQR of the upper quartile, where IQR is the interquartile range (difference between the 3^rd^ and 1^st^ quartiles). Data outside fences are considered outliers. Decreasing the multiplier _m_ to _e.g._, 1.5 might result in many outliers whereas increasing the multiplier in only a few.  
-Different methods exist to calculate quartiles (nine are available in R, where the default is `type = 7`). R’s default is used by S, MATLAB, and Excel. Phoenix/WinNonlin, Minitab, and SPSS use `type = 6`, ScyPy uses `type = 4`, whereas the default in SAS and Stata is `type = 2` (though others are available as well).] is used.  
+Different methods exist to calculate quartiles (nine are available in R, where the default is `type = 7`). R’s default is used by S, MATLAB, Octave, and Excel. Phoenix WinNonlin, Minitab, and SPSS use `type = 6`, ScyPy uses `type = 4`, whereas the default in SAS and Stata is `type = 2` (though others are available as well).] is used.  
 
 Results slightly differ depending on software’s algorithms to calculate the median and quartiles. Example with the methods implemented in R:
 ```{r}
@@ -348,11 +348,11 @@ for (i in 1:9) {
 }
 q[c(2, 4:8), 4] <- c("SAS, STaTa", "SciPy", "",
                      "Phoenix, Minitab, SPSS",
-                     "R, S, MATLAB, Excel", "Maple")
+                     "R, S, MATLAB, Octave, Excel", "Maple")
 print(as.data.frame(q))
 ```
 
-* Box plots of studentized^[_Externally_ studentized: $\widehat{\sigma}_{(i)}^2={1 \over n-m-1}\sum_{\begin{smallmatrix}j = 1\\j \ne i\end{smallmatrix}}^n \widehat{\varepsilon\,}_j^{\,2}$] and standarized^[_Internally_ studentized: $\widehat{\sigma}^2={1 \over n-m}\sum_{j=1}^n \widehat{\varepsilon\,}_j^{\,2}$] model residuals are constructed.^[Both are available in SAS and R, whereas only the latter in _e.g._, Phoenix/WinNonlin. In general the former are slightly more restrictive. Which one will be used has to be stated in the SAP.]
+* Box plots of studentized^[_Externally_ studentized: $\widehat{\sigma}_{(i)}^2={1 \over n-m-1}\sum_{\begin{smallmatrix}j = 1\\j \ne i\end{smallmatrix}}^n \widehat{\varepsilon\,}_j^{\,2}$] and standarized^[_Internally_ studentized: $\widehat{\sigma}^2={1 \over n-m}\sum_{j=1}^n \widehat{\varepsilon\,}_j^{\,2}$] model residuals are constructed.^[Both are available in SAS and R, whereas only the latter in _e.g._, Phoenix WinNonlin. In general the former are slightly more restrictive. Which one will be used has to be stated in the SAP.]
 * Potential outliers are flagged based on the argument `fence` provided by the user.
 * With the additional argument `verbose = TRUE` detailed information is shown in the console.
 
@@ -415,7 +415,7 @@ The WHO accepts [reference-scaling for AUC](https://extranet.who.int/prequal/sit
 
 
 ### Cross-validation{#cross}
-Results of reference data sets agree with ones obtained in SAS (9.3, 9.4) and Phoenix/WinNonlin (6.4 – 8.1).
+Results of reference data sets agree with ones obtained in SAS (9.3, 9.4) and Phoenix WinNonlin (6.4 – 8.1).
 
 
 ### Contributors{#contr}

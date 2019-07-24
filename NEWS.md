@@ -1,6 +1,8 @@
-# replicateBE 1.0.9.9000
+# replicateBE 1.0.10
 
 Published on Github 2019-07-24
+
+  * Submitted to CRAN.
 
 ## Bug fixes
 
