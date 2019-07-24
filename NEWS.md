@@ -2,6 +2,8 @@
 
 Published on Github 2019-07-24
 
+  * On CRAN.
+
 ## Bug fixes
 
   * Stopped import when *no* missings according to the specifier `na`
@@ -234,7 +236,7 @@ Released to collaborators 2017-06-24
 
 Released to collaborators 2017-06-23
 
-# Issues
+## Issues
 
   * A user calls `foo(path.in=path.in, ...)` but the variable `path.in` is
     is not defined before. Gives `object 'path.in' not found in CV.calc()`.
