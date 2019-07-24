@@ -1,6 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^README\.md$
 ^GitHubIcon.ico$
 Check_scripts
 .Rhistory

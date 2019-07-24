@@ -7,13 +7,13 @@
 info.data <- function(data = NULL) {
   if (missing(data) | is.null(data)) stop()
   sets     <- 28
-  descr    <- c("Data set I given by the EMA (Q&A document) available at
- https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf",
-                "Data set II given by the EMA (Q&A document) available at https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf",
-                "Modified Data set I given by the EMA (Q&A document): Period\u00A03 removed.",
+  descr    <- c("Data set I given by the EMA available at
+ https://www.ema.europa.eu/en/documents/other/31-annex-ii-statistical-analysis-bioequivalence-study-example-data-set_en.pdf",
+                "Data set II given by the EMA (Q&A document) available at https://www.ema.europa.eu/en/documents/other/statistical-method-equivalence-studies-annex-iii_en.pdf",
+                "Modified Data set I given by the EMA: Period\u00A03 removed.",
                 "Cmax data of Table II from Patterson SD, Jones B. Viewpoint: observations on scaled average bioequivalence. Pharm Stat. 2012:11(1):1\u20137. doi:10.1002/pst.498",
                 "Cmax data of the Appendix from Metzler CM, Shumaker RC. The Phenytoin Trial is a Case Study of \u2018Individual\u2019 Bioequivalence. Drug Inf J. 1998:32:1063\u201372.",
-                "Modified Data set I given by the EMA (Q&A document): T and R switched.",
+                "Modified Data set I given by the EMA: T and R switched.",
                 "Data set simulated with CVwT\u00A0=\u00A0CVwR\u00A0=\u00A035%, GMR\u00A0=\u00A00.90.",
                 "Data set simulated with CVwT\u00A0=\u00A070%, CVwR\u00A0=\u00A080%, CVbT\u00A0=\u00A0CVbR\u00A0=\u00A0150%, GMR\u00A0=\u00A00.85.",
                 "Data set with wide numeric range (based of rds08: Data of last 37 subjects multiplied by 1,000,000).",
@@ -28,7 +28,7 @@ info.data <- function(data = NULL) {
                 "Highly incomplete data set (based on rds14: T data of subjects 63\u201378 removed).",
                 "Highly incomplete data set (based on rds18: Data of subjects 63\u201378 removed).",
                 "Highly incomplete data set (based on rds19: Outlier of R (subject\u00A01) introduced: original value \u00D7100).",
-                "Modified Data set I given by the EMA (Q&A document): One extreme result of subjects 45
+                "Modified Data set I given by the EMA: One extreme result of subjects 45
 & 52 set to NA.",
                 "Data set simulated with CVwT\u00A0= CVwR\u00A0=\u00A045%, CVbT\u00A0= CVbR\u00A0=\u00A0100%, GMR\u00A0=\u00A00.90.",
                 "Drug 7a, Cmax data: Beta-adrenergic blocking agent\u00A0- IR of the FDA\u2019s bioequivalence study files: available at https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip.",

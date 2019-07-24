@@ -108,8 +108,7 @@ Shumaker RC, Metzler CM. \emph{The Phenytoin Trial is a Case Study of \sQuote{In
 
 Hauschke D, Steinijans VW, Pigeot I. \emph{Bioequivalence Studies in Drug Development.} Chichester: John Wiley; 2007. p216.
 
-\acronym{U.S.} Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Bioequivalence Studies.} Rockville, 1997. \href{https://web.archive.org/web/20170723175533/https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip
-}{bioequivalence study files} (archived 2017-07-23)
+\acronym{U.S.} Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Bioequivalence Studies.} Rockville, 1997. \href{https://web.archive.org/web/20170723175533/https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip}{bioequivalence study files} (archived 2017-07-23)
 }
 
 \examples{

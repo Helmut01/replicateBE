@@ -134,13 +134,15 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
     for (j in seq_along(PKcols)) {                     # transform to numeric
       msg1 <- tryCatch.W.E(data[, PKcols[j]] <- as.numeric(data[, PKcols[j]]))$warning
       invisible(grepl("NAs introduced by coercion", msg1))
-      if (grepl("NAs introduced by coercion", msg1)) {
-        msg2 <- paste0("Import: Missing data according to your specifier na='", na, "'")
-        msg2 <- paste0(msg2, " not found\n  in column ", names(data)[PKcols[j]], ".")
-        msg2 <- paste0(msg2, " Any other non-numeric value was converted to NA.")
-        warning(msg2)
-      } else {
-        print(msg1)
+      if (!is.null(msg1)) { # NAs as specified in "na" or complete data
+        if (!grepl("NAs introduced by coercion", msg1)) {
+          msg2 <- paste0("Import: Missing data according to your specifier na='", na, "'")
+          msg2 <- paste0(msg2, " not found\n  in column ", names(data)[PKcols[j]], ".")
+          msg2 <- paste0(msg2, " Any other non-numeric value was converted to NA.")
+          warning(msg2)
+        } else {
+          print(msg1) # Problem
+        }
       }
     }
     # data[, PKcols] <- lapply(data[, PKcols], as.numeric) # throws warnings

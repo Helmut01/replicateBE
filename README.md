@@ -41,6 +41,7 @@ In full replicate designs the variability of test and reference treatment can be
              &nbsp;– can be calculated as well.
 
 Tested designs
+
 - 4-period (full) replicates
   - ```TRTR | RTRT```
   - ```TRRT | RTTR```

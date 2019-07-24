@@ -7,8 +7,8 @@ importFrom(stats, qt, df, qf, coef, confint, lm,
            complete.cases, na.omit, reshape)
 importFrom(graphics, boxplot, bxp, mtext, text,
            abline, title)
-importFrom(PowerTOST, mse2CV, CV2se, scABEL, reg_const,
-           scABEL.ad)
+importFrom(PowerTOST, mse2CV, CV2se, scABEL,
+           reg_const, scABEL.ad)
 importFrom(nlme, lme, intervals)
 import(lmerTest)
 importFrom(pbkrtest, getKR)
