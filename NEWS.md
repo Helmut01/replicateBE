@@ -2,11 +2,9 @@
 
 Published on Github 2019-07-24
 
-  * Submitted to CRAN.
-
 ## Bug fixes
 
-  * Stopped import when no missings according to the specifier `na`
+  * Stopped import when *no* missings according to the specifier `na`
     where found (THX to Igor Rubets).
 
 ## Minor changes
@@ -43,11 +41,11 @@ Published on Github 2019-07-20
   * Updated links to EMA's documents (again...) in man-pages. Numbered references.
   * More informative warning in `get.data()` if na-specifier does not
     match the data in columns PK and/or logPK.
-  * Kept column logPK only in rds01 and rds02 because given by the
-    EMA. Removed in rds06, rds12, rds14, rds18, rds19, rds20, rds21
-    (TRTR|RTRR) and rds03, rds17 (TRT|RTR). Man-pages corrected.
-    Reduces the footprint of the library by 5%.
-    Depends now on R >= 3.5.0 (since .rda written with 3.6.0).
+  * Depends now on R >= 3.5.0 (since .rda written with 3.6.0).
+  * Kept column logPK only in rds01 and rds02 because given by the EMA.
+    Removed in rds06, rds12, rds14, rds18, rds19, rds20, rds21 (TRTR|RTRR)
+    and rds03, rds17 (TRT|RTR). Man-pages corrected. Reduces the footprint
+    of the library by 5%.
   * If `path.in` and/or `path.out` not given or specified folder does
     not exist: Changed `cat()` to `warning()`.
   * Cosmetic changes in verbose output of `method.A()`.
@@ -557,7 +555,7 @@ Released to collaborators 2016-11-26
 
   * Added number of subjects/sequence and check for balance (not
     vectorized yet).
-  * Results of iteratively adj. alpha printed. Throws a warning if
+  * Results of iteratively adjusted alpha printed. Throws a warning if
     `adjust=TRUE` for an unsupported design.
 
 # replicateBE 0.2
@@ -567,9 +565,9 @@ Released to collaborators 2016-11-24
 ## Major changes
 
   * Use package `PowerTOST` for assessment of the Type I Error and (optional)
-    adjustment of alpha (only `Method A`). New argument `adj` (default `FALSE`).
-    Results only to the console.  Changed hard-coded parts to the respective
-    functions of `PowerTOST`.
+    adjustment of alpha (only `Method A`). New argument `adjust`
+    (default `FALSE`). Results only to the console. Changed hard-coded parts
+    to the respective functions of `PowerTOST`.
   * New argument `logtrans` (default `TRUE`). If `TRUE`, the raw data (PK)
     are internally log-transformed. If `FALSE` the already log-transformed
     data (logPK) will be used.

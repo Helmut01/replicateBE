@@ -323,7 +323,7 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael 
 \references{
 European Medicines Agency. London, 21 September 2016. \href{https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf}{\emph{Annex I}}, \href{https://www.ema.europa.eu/en/documents/other/31-annex-ii-statistical-analysis-bioequivalence-study-example-data-set_en.pdf}{\emph{Annex II}}.
 
-Patterson SD, Jones B. \emph{Bioequivalence and Statistics in Clinical Pharmacology.} Boca Raton: CRC Press; \ifelse{html}{\out{2<sup>nd</sup>}}{\eqn{2^{nd}}} edition 2016. p105--6.
+Patterson SD, Jones B. \emph{Bioequivalence and Statistics in Clinical Pharmacology.} Boca Raton: CRC Press; 2\ifelse{html}{\out{<sup>nd</sup>}}{\eqn{^{nd}}} edition 2016. p105--6.
 }
 
 \examples{

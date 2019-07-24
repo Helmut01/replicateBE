@@ -88,11 +88,11 @@ Patterson SD, Jones B. \emph{Viewpoint: observations on scaled average bioequiva
 
 Shumaker RC, Metzler CM. \emph{The Phenytoin Trial is a Case Study of \sQuote{Individual} Bioequivalence.} Drug Inf J. 1998; 32(4): 1063--72. \doi{10.1177/009286159803200426}
 
-Chow SC, Liu JP. \emph{Design and Analysis of Bioavailability and Bioequivalence Studies.} Boca Raton: CRC Press; \ifelse{html}{\out{3<sup>rd</sup>}}{\eqn{3^{rd}}} edition 2009. p275.
+Chow SC, Liu JP. \emph{Design and Analysis of Bioavailability and Bioequivalence Studies.} Boca Raton: CRC Press; 3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} edition 2009. p275.
 
 Hauschke D, Steinijans VW, Pigeot I. \emph{Bioequivalence Studies in Drug Development.} Chichester: John Wiley; 2007. p216.
 
-Patterson SD, Jones B. \emph{Bioequivalence and Statistics in Clinical Pharmacology.} Boca Raton: CRC Press; \ifelse{html}{\out{2<sup>nd</sup>}}{\eqn{2^{nd}}} edition 2016. p105--6.
+Patterson SD, Jones B. \emph{Bioequivalence and Statistics in Clinical Pharmacology.} Boca Raton: CRC Press; 2\ifelse{html}{\out{<sup>nd</sup>}}{\eqn{^{nd}}} edition 2016. p105--6.
 
 \acronym{U.S.} Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Bioequivalence Studies.} Rockville, 1997. \href{https://web.archive.org/web/20170723175533/https://www.fda.gov/downloads/Drugs/ScienceResearch/UCM301481.zip}{bioequivalence study files} (archived 2017-07-23)
 }

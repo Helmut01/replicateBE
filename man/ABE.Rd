@@ -19,8 +19,8 @@ ABE(alpha = 0.05, path.in = NULL, path.out = NULL,
 \arguments{
   \item{alpha}{
     Type I Error (\acronym{TIE}) probability (nominal level of the test).
-    Per convention commonly set to 0.05 which results in a
-    \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{100(1–2\eqn{\alpha}{alpha})}
+    Conventionally set to 0.05, resulting in a
+    \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{\eqn{100(1-2\alpha)}{100(1-2alpha)}}
     confidence interval.
   }
   \item{path.in}{
@@ -214,6 +214,7 @@ Helmut \enc{Schütz}{Schuetz}
 
 \references{
   European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the Investigation of Bioequivalence.} London, 20 January 2010. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
+
   European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.} London, 20 November 2014.
 \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{EMA/CPMP/EWP/280/96 Corr1}
 }
