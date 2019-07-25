@@ -1,3 +1,11 @@
+# replicateBE 1.0.10.9000
+
+Published on Github 2019-07-25
+
+## Minor changes
+
+  * README.Rmd knitted to README.md
+
 # replicateBE 1.0.10
 
 Published on Github 2019-07-24

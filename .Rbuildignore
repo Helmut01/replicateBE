@@ -4,3 +4,5 @@
 Check_scripts
 .Rhistory
 .RData
+README.Rmd
+cran-comments.md
