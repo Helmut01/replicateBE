@@ -1,6 +1,12 @@
 # replicateBE 1.0.10.9000
 
-Published on Github 2019-07-25
+Published on Github 2019-07-26
+
+## Minor changes
+
+  * `print(..., , digits=7)` if `verbose=TRUE` . No need for more
+    significant digits; results in the result data.frame in full
+    precision anyway.
 
 ## Minor changes
 

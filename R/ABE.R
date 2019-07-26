@@ -52,7 +52,7 @@ ABE <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     name <-  paste0(file, set)
     cat("\nData set", name, "by ABE",
         paste0("\n", paste0(rep("\u2500", 16+nchar(name)), collapse="")), "\n")
-    print(stats::anova(mod)) # otherwise summary of lmerTest is used
+    print(stats::anova(mod), digits=7) # otherwise summary of lmerTest is used
     cat("\ntreatment T \u2013 R:\n")
     print(signif(summary(mod)$coefficients["treatmentT", ]), 7)
     cat(anova(mod)["Residuals", "Df"], "Residual Degrees of Freedom\n\n")

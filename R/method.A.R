@@ -41,9 +41,9 @@ method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
     name <-  paste0(file, set)
     cat("\nData set", name, "by Method A",
         paste0("\n", paste0(rep("\u2500", 22+nchar(name)), collapse="")), "\n")
-    print(stats::anova(modA)) # otherwise summary of lmerTest is used
+    print(stats::anova(modA), digits=7) # otherwise summary of lmerTest is used
     cat("\ntreatment T \u2013 R:\n")
-    print(signif(summary(modA)$coefficients["treatmentT", ]), 7)
+    print(signif(summary(modA)$coefficients["treatmentT", ]), 6)
     cat(summary(modA)$df[2], "Residual Degrees of Freedom\n\n")
   }
   PE  <- exp(coef(modA)[["treatmentT"]])

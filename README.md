@@ -1,17 +1,15 @@
-README
+replicateBE
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## replicateBE
-
-### Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
+## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
 **Package offered for Use without any Guarantees and Absolutely No
 Warranty. No Liability is accepted for any Loss and Risk to Public
 Health Resulting from Use of this R-Code.**
 
-### Introduction
+## Introduction
 
 The library provides data sets (internal `.rda` and in CSV-format in
 `/extdata/`) which support users in a black-box performance
@@ -32,12 +30,12 @@ for the [WHO’s
 approach](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf "Geneva, November 2018")
 for reference-scaling of *AUC*).
 
-#### Methods
+### Methods
 
-##### Estimation of *CV<sub>wR</sub>* (and *CV<sub>wT</sub>* in full replicate designs)
+#### Estimation of *CV<sub>wR</sub>* (and *CV<sub>wT</sub>* in full replicate designs)
 
-A linear model of log-transformed pharmacokinetic (PK) responses and
-effects  
+Called internally by functions `method.A()` and `method.B()`. A linear
+model of log-transformed pharmacokinetic (PK) responses and effects  
     *sequence*, *subject(sequence)*, *period*  
 where all effects are fixed (*i.e.*, ANOVA). Estimated by the function
 `lm()` of library `stats`.
@@ -49,7 +47,7 @@ modCVwT <- lm(log(PK) ~ sequence + subject%in%sequence + period,
                         data = data[data$treatment == "T", ])
 ```
 
-##### Method A
+#### Method A
 
 Called by function `method.A()`. A linear model of log-transformed PK
 responses and effects  
@@ -62,7 +60,7 @@ modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
                      data = data)
 ```
 
-##### Method B
+#### Method B
 
 Called by function `method.B()`. A linear model of log-transformed PK
 responses and effects  
@@ -79,7 +77,7 @@ Three options are provided
 
 ``` r
 modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
-                     data = data)
+                      data = data)
 ```
 
 2.  Estimated by the function `lmer()` of library `lmerTest`. Employs
@@ -106,7 +104,7 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
 ```
 
-##### Average Bioequivalence
+#### Average Bioequivalence
 
 Called by function `ABE()`. The model is identical to
 [Method A](#methodA). Conventional BE limits (80.00 – 125.00%) are
@@ -116,9 +114,9 @@ employed by default. Tighter limits for narrow therapeutic index drugs
 Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, and the United Arab
 Emirates) can be specified.
 
-##### Tested designs
+#### Tested designs
 
-###### Four period (full) replicates
+##### Four period (full) replicates
 
 `TRTR | RTRT`  
 `TRRT | RTTR`  
@@ -128,23 +126,23 @@ recommended*)</small>
 `TRRT | RTTR | TTRR | RRTT` <small>(confounded effects, *not
 recommended*)</small>
 
-###### Three period (full) replicates
+##### Three period (full) replicates
 
 `TRT | RTR`  
 `TRR | RTT`
 
-###### Two period (full) replicate
+##### Two period (full) replicate
 
 `TR | RT | TT | RR` <small>(Balaam’s design; *not recommended* due to
 poor power characteristics)</small>
 
-###### Three period (partial) replicates
+##### Three period (partial) replicates
 
 `TRR | RTR | RRT`  
 `TRR | RTR` <small>(Extra-reference design; biased in the presence of
 period effects, *not recommended*)</small>
 
-##### Cross-validation
+#### Cross-validation
 
 Details about the reference datasets:
 
@@ -157,9 +155,9 @@ Results of the 28 reference datasets agree with ones obtained in SAS
 (9.4), Phoenix WinNonlin (6.4 – 8.1), STATISTICA (13), SPSS (22.0),
 Stata (15.0), and JMP (10.0.2).
 
-### Examples
+## Examples
 
-  - Evaluate the internal reference dataset 01 of [Annex
+  - Evaluation of the internal reference dataset 01 of [Annex
     II](https://www.ema.europa.eu/en/documents/other/31-annex-ii-statistical-analysis-bioequivalence-study-example-data-set_en.pdf "EMA, 21 September 2016")
     by Method A.
 
@@ -175,12 +173,12 @@ Data set DS01 by Method A
 Analysis of Variance Table
 
 Response: log(PK)
-                  Df       Sum Sq      Mean Sq  F value     Pr(>F)    
-sequence           1   0.00765193 0.0076519323  0.04783  0.8270958    
-period             3   0.69835077 0.2327835915  1.45494  0.2278285    
-treatment          1   1.76809800 1.7680979953 11.05095  0.0010405 ** 
-sequence:subject  75 214.12955908 2.8550607877 17.84467 < 2.22e-16 ***
-Residuals        217  34.71895377 0.1599951787                        
+                  Df    Sum Sq   Mean Sq  F value     Pr(>F)    
+sequence           1   0.00765 0.0076519  0.04783  0.8270958    
+period             3   0.69835 0.2327836  1.45494  0.2278285    
+treatment          1   1.76810 1.7680980 11.05095  0.0010405 ** 
+sequence:subject  75 214.12956 2.8550608 17.84467 < 2.22e-16 ***
+Residuals        217  34.71895 0.1599952                        
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
@@ -196,8 +194,8 @@ CVwR(%) EL.lo(%) EL.hi(%) CI.lo(%) CI.hi(%)  PE(%)
   46.96    71.23    140.4   107.11   124.89 115.66
 ```
 
-  - Same dataset evaluated by Method B. Perform outlier assessment,
-    recalculate *CV<sub>wR</sub>* after exclusion of outliers, new
+  - Same dataset evaluated by Method B. Outlier assessment,
+    recalculation of *CV<sub>wR</sub>* after exclusion of outliers, new
     expanded limits.
 
 <!-- end list -->
@@ -240,7 +238,7 @@ CVwR.new(%) EL.new.lo(%) EL.new.hi(%) CI.lo(%) CI.hi(%)  PE(%)
       32.16        78.79       126.93   107.17   124.97 115.73
 ```
 
-### Installation
+## Installation
 
 Install the released version from CRAN
 

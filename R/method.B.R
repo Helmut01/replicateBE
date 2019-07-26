@@ -59,7 +59,7 @@ method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
           ": Method B by lme (option=2; ",
           "equivalent to SAS\u2019 DDFM=CONTAIN)"),
           paste0("\n", paste0(rep("\u2500", 70+nchar(name)), collapse="")), "\n")
-      print(anova(modB))
+      print(anova(modB), digits=6)
       cat("\ntreatment T \u2013 R:\n")
       print(signif(EMA.B$tTable["treatmentT", ], 7))
       cat("\n")
