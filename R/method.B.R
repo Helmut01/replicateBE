@@ -5,7 +5,7 @@
 # option=1: nlme/lme (Satterthwaite's DF)       #
 # option=2: lmerTest/lmer (CONTAIN/Residual DF) #
 #################################################
-method.B <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
+method.B <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
                      file, set = "", ext, na = ".", sep = ",",
                      dec = ".", logtrans = TRUE, ola = FALSE,
                      print = TRUE, details = FALSE, verbose = FALSE,

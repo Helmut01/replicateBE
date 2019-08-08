@@ -3,7 +3,7 @@
 # internal data and generate    #
 # output common to all methods. #
 #################################
-get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
+get.data <- function(path.in, path.out, file, set = "",
                      ext, na = ".", sep = ",", dec = ".",
                      logtrans = TRUE, print, plot.bxp, data) {
   graphics.off()
@@ -26,7 +26,7 @@ get.data <- function(path.in = NULL, path.out = NULL, file, set = "",
         stop(paste0("Reading CSV-file\n       Argument 'sep' (variable separator) must be any of",
                     "\n       ',' (comma = default), ';' (semicolon), or '\\t' (tab)."))
       if (!dec %in% c(".", ","))
-        stop("Reading CSV-file: Argument 'dec' (decimal separator) must be\n'.' (period = deafult) or ',' (comma).")
+        stop("Reading CSV-file: Argument 'dec' (decimal separator) must be\n'.' (period = default) or ',' (comma).")
       if (sep == dec)
         stop("Reading CSV-file\n       Arguments 'sep' and decimal 'dec' must be different.")
     }

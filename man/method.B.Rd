@@ -11,7 +11,7 @@ Comparative BA-calculation for Average Bioequivalence with Expanding Limits by t
   random effect (\sQuote{Method B}) as specified in \emph{Annex I}.
 }
 \usage{
-method.B(alpha = 0.05, path.in = NULL, path.out = NULL,
+method.B(alpha = 0.05, path.in = "~/", path.out = "~/",
          file, set = "", ext, na = ".", sep = ",", dec = ".",
          logtrans = TRUE, ola = FALSE, print = TRUE, details = FALSE,
          verbose = FALSE, ask = FALSE, plot.bxp = FALSE,

@@ -2,7 +2,7 @@
 # EMA's 'Method A' (ANOVA)                              #
 # fixed: sequence, subject(sequence), period, treatment #
 #########################################################
-method.A <- function(alpha = 0.05, path.in = NULL, path.out = NULL,
+method.A <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
                      file, set = "", ext, na = ".", sep = ",",
                      dec = ".", logtrans = TRUE, ola = FALSE,
                      print = TRUE, details = FALSE, adjust = FALSE,

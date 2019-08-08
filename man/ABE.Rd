@@ -10,7 +10,7 @@ Comparative BA-calculation for Average Bioequivalence
   \acronym{ANOVA} as recommended in the \acronym{EMA}’s guideline.
 }
 \usage{
-ABE(alpha = 0.05, path.in = NULL, path.out = NULL,
+ABE(alpha = 0.05, path.in = "~/", path.out = "~/",
     file, set = "", ext, na = ".", sep = ",", dec = ".",
     logtrans = TRUE, print = TRUE, details = FALSE,
     verbose = FALSE, ask = FALSE, data = NULL, theta1, theta2)

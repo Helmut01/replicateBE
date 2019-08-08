@@ -1,7 +1,7 @@
 Encoding: UTF-8
 Package: replicateBE
 Version: 1.0.10.9000
-Date: 2019-07-26
+Date: 2019-08-08
 Title: Average Bioequivalence with Expanding Limits (ABEL)
 Authors@R: c(person("Helmut", "Schütz",
                role = c("aut", "cre"),
@@ -22,15 +22,11 @@ Depends: R (>= 3.5.0)
 Imports: readxl (>= 1.0.0), PowerTOST (>= 1.3.3), lmerTest, nlme,
   pbkrtest, graphics, grDevices
 Suggests: knitr, rmarkdown, testthat, devtools
-Description: Performs comparative bioavailability-calculations for the
-             EMA's Average Bioequivalence with Expanding Limits (ABEL).
-             Implemented are 'Method A' and 'Method B', detection of
-             outliers. If the design allows, assessment of the empiric
-             Type I Error and iteratively adjusting alpha to control the
-             consumer risk.
-             Average Bioequivalence (ABE) - optionally with tighter
-             (EMA: NTIDs) or wider limits (GCC: Cmax) - is implemented
-             as well.
+Description: Performs comparative bioavailability-calculations for the EMA's Average Bioequivalence
+  with Expanding Limits (ABEL). Implemented are 'Method A' and 'Method B', detection of outliers.
+  If the design allows, assessment of the empiric Type I Error and iteratively adjusting alpha to
+  control the consumer risk. Average Bioequivalence (ABE) - optionally with tighter (EMA: NTIDs) or
+  wider limits (GCC: Cmax) - is implemented as well.
 License: GPL (>=3)
 LazyData: true
 VignetteBuilder: knitr
