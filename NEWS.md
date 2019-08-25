@@ -1,6 +1,6 @@
 # replicateBE 1.0.11
 
-Published on Github 2019-08-25, submitted to CRAN.
+Published on Github 2019-08-25, on CRAN.
 
 # replicateBE 1.0.10.9000
 
