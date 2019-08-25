@@ -1,3 +1,11 @@
+# replicateBE 1.0.11.9000
+
+Published on Github 2019-08-25.
+
+## Minor changes
+
+  * Updated README.Rmd (added TOC).
+
 # replicateBE 1.0.11
 
 Published on Github 2019-08-25, on CRAN.
