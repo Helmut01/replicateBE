@@ -1,14 +1,14 @@
 # replicateBE 1.0.10.9000
 
-Published on Github 2019-08-08
+Published on Github 2019-08-25
 
-## Minor changes
+## Bug fixes
 
   * Changed default path-variables from `NULL` to the user’s home folder `"~/"`.
-  * `print(..., , digits=7)` if `verbose=TRUE`. No need for more significant digits; results in the result data.frame are given in full precision anyway.
 
 ## Minor changes
 
+  * `print(..., , digits=7)` if `verbose=TRUE`. More significant digits not needed since in the result data.frame given in full precision anyway.
   * README.Rmd knitted to README.md
 
 # replicateBE 1.0.10
