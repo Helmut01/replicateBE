@@ -3,7 +3,7 @@ title: "replicateBE"
 output:
   github_document:
     toc: true
-    toc_depth: 3
+    toc_depth: 4
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
