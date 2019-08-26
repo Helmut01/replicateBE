@@ -23,7 +23,7 @@ replicateBE
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-Built 2019-08-25 with R 3.6.1.
+Built 2019-08-26 with R 3.6.1.
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
