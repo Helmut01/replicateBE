@@ -1,10 +1,10 @@
 # replicateBE 1.0.11.9000
 
-Published on Github 2019-08-25.
+Published on Github 2019-08-26.
 
 ## Minor changes
 
-  * Updated README.Rmd (added TOC).
+  * TOCs in README.Rmd and vignette. THX to Yihui Xie on r-help for the latter.
 
 # replicateBE 1.0.11
 
