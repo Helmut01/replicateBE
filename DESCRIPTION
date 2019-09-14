@@ -1,7 +1,7 @@
 Encoding: UTF-8
 Package: replicateBE
 Version: 1.0.11.9000
-Date: 2019-08-27
+Date: 2019-09-14
 Title: Average Bioequivalence with Expanding Limits (ABEL)
 Authors@R: c(person("Helmut", "Schütz",
                role = c("aut", "cre"),
@@ -22,7 +22,7 @@ Depends: R (>= 3.5.0)
 Imports: readxl (>= 1.0.0), PowerTOST (>= 1.3.3), lmerTest, nlme,
   pbkrtest, graphics, grDevices
 Suggests: knitr, rmarkdown, testthat, devtools
-Description: Performs comparative bioavailability-calculations for the EMA's Average Bioequivalence
+Description: Performs comparative bioavailability calculations for the EMA's Average Bioequivalence
   with Expanding Limits (ABEL). Implemented are 'Method A' and 'Method B', detection of outliers.
   If the design allows, assessment of the empiric Type I Error and iteratively adjusting alpha to
   control the consumer risk.

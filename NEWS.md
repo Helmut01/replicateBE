@@ -1,13 +1,10 @@
 # replicateBE 1.0.11.9000
 
-Published on Github 2019-08-27.
-
-## Issues
-
-  * Neither knittr/markdown nor pandoc allow to specify the `lang` attribute in the `<html>` tag. IMHO, this is a bug. Hence, automatic hyphenation in the custom CSS (`body {hyphens:auto;}`) does not work since the browser does not ‘know’ which dictionary should be used. Added it manually as a workaround.
+Published on Github 2019-09-14.
 
 ## Minor changes
 
+  * Badges in README.
   * TOCs in README.Rmd and vignette. THX to Yihui Xie on r-help for the latter.
 
 # replicateBE 1.0.11
