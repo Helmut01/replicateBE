@@ -1,9 +1,10 @@
 # replicateBE 1.0.11.9000
 
-Published on Github 2019-09-14.
+Published on Github 2019-09-19.
 
 ## Minor changes
 
+  # Treats special case in verbose output of `CV.calc()` when >1 studenized outlier is detected but no standarized outlier.
   * Badges in README.
   * TOCs in README.Rmd and vignette. THX to Yihui Xie on r-help for the latter.
 
