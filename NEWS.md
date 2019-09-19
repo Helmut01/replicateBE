@@ -4,7 +4,11 @@ Published on Github 2019-09-19.
 
 ## Minor changes
 
+<<<<<<< HEAD
   * Cosmetic fix. Treats special case in verbose output of `CV.calc.R` when at least one studentized outlier is detected but no standarized outlier.
+=======
+  # Treats special case in verbose output of `CV.calc()` when >1 studenized outlier is detected but no standarized outlier.
+>>>>>>> 92356b502b7e6018f50adf5d6494d8dc11b483da
   * Badges in README.
   * TOCs in README.Rmd and vignette. THX to Yihui Xie on r-help for the latter.
 
