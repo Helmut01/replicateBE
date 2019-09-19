@@ -157,7 +157,14 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                    "\n Outliers:\n")); print(stud.res.outliers, row.names=FALSE)
         cat(paste0("\n standarized (internally studentized) residuals\n Limits (", fence, "\u00D7IQR whiskers): ",
                    stand.res.whiskers[1], ", ", stand.res.whiskers[2],
-                   "\n Outliers:\n")); print(stand.res.outliers, row.names=FALSE)
+                   "\n Outliers:\n"))
+        # since standardized residuals are more liberal,
+        # we have to deal with such a special case
+        if (nrow(stand.res.outliers) == 0) {
+          cat(" none detected\n")
+        } else {
+          print(stand.res.outliers, row.names=FALSE)
+        }
       } # EO verbose
     } # EO >= 1 outlier
   } # EO outlier analysis (only if called from method.A()/method.B() & ola=TRUE)

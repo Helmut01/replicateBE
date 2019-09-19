@@ -1,9 +1,10 @@
 # replicateBE 1.0.11.9000
 
-Published on Github 2019-09-14.
+Published on Github 2019-09-19.
 
 ## Minor changes
 
+  * Cosmetic fix. Treats special case in verbose output of `CV.calc.R` when at least one studentized outlier is detected but no standarized outlier.
   * Badges in README.
   * TOCs in README.Rmd and vignette. THX to Yihui Xie on r-help for the latter.
 
