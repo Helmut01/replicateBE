@@ -21,6 +21,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+<div class="top"><a class="toplink" href="#" title="▲ top"> </a></div>
 ```{r setup}
 library(replicateBE) # attach the library
 ```
@@ -31,8 +32,7 @@ The library provides data sets (internal `.rda` and in CSV-format in `/extdata/`
 
 The methods given by the European Medicines Agency (EMA) in Annex I^[European Medicines Agency. *Annex I.* London, 21 September 2016. [EMA/582648/2016](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf).] for reference-scaling according to the EMA’s Guideline on the Investigation of Bioequivalence^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the Investigation of Bioequivalence.* London, 20 January 2010. [CPMP/EWP/QWP/1401/98 Rev. 1/Corr **](https://www.ema.europa.eu/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf).] are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint <span title="European Generic Medicines Association">EGA</span>/EMA symposium.^[European Generic Medicines Association. *Revised EMA Bioequivalence Guideline. *3^rd^ EGA Symposium on Bioequivalence. London, 1 June 2010. [Questions & Answers](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf).]
 
-<small>[TOC ↩](#TOC)</small>
-
+<!--<small>[TOC ↩](#TOC)</small>-->
 # Functions{#methods}
 ## `method.A()`{#methodA}
 A linear model of log-transformed PK responses and effects\
@@ -43,8 +43,6 @@ where all effects are fixed (*i.e.*, ANOVA). Estimated via function `lm()` of li
 modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
                      data = data)
 ```
-
-<small>[TOC ↩](#TOC)</small>
 
 ## `method.B()`{#methodB}
 A linear model of log-transformed PK responses and effects\
@@ -77,12 +75,8 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
 
 Employs the Kenward-Roger approximation^[Kenward MG, Roger JH. *Small Sample Inference for Fixed Effects from Restricted Maximum Likelihood.* Biometrics. 1997; 53(3): 983–97. [doi:10.2307/2533558](https://doi.org/10.2307/2533558).] of the degrees of freedom `method.B(..., option = 3)` equivalent to SAS’ `DDFM=KENWARDROGER`. Note that this is the only available approximation in JMP.
 
-<small>[TOC ↩](#TOC)</small>
-
 ## `ABE()`{#ABE}
 Conventional Average Bioequivalence, where the model is identical to [Method A](#methodA). Tighter limits for narrow therapeutic index drugs (EMA 90.00 – 111.11%) or wider limits (75.00 – 133.33% for C~max~ according to the guideline of the <span title="Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, and the United Arab Emirates.">GCC</span>) can be specified by the arguments `theta1` (lower limit) and/or `theta2` (upper limit).
-
-<small>[TOC ↩](#TOC)</small>
 
 # Tested designs{#designs}
 Details about the reference data sets and their designs:
@@ -90,9 +84,6 @@ Details about the reference data sets and their designs:
 help("data", package = "replicateBE")
 ?replicateBE::data
 ```
-
-<small>[TOC ↩](#TOC)</small>
-
 ## Four period (full) replicates{#per4_full}
 Both the test and the reference treatments are administered at least once.
 
@@ -108,15 +99,11 @@ Both the test and the reference treatments are administered at least once.
 
 Although supported, these design are *not recommended* due to confounded effects.
 
-<small>[TOC ↩](#TOC)</small>
-
 ## Three period (full) replicates{#per3_full}
 The test treatment is administered at least once to ½ of the subjects and the reference treatment at least once to the respective other ½ of the subjects.
 
 `TRT | RTR`  
 `TRR | RTT`
-
-<small>[TOC ↩](#TOC)</small>
 
 ## Two period (full) replicate{#per2_full}
 The test and reference treatments are administered once to ½ of the subjects (for the estimation of the CI), *i.e.*, the first group of subjects follows a conventional 2×2×2 trial. In the second group the test and reference treatments are administered at least once to ¼ of the subjects, repectively (for the estimation of *CV~wT~* and *CV~wR~*).
@@ -125,8 +112,6 @@ The test and reference treatments are administered once to ½ of the subjects (f
 
 Although supported, Balaam’s design^[Balaam LN. *A Two-Period Design with t^2^ Experimental Units.* Biometrics. 1968; 24(1): 61–73. [doi:10.2307/2528460](https://doi.org/10.2307/2528460).] is _not recommended_ due to its poor power characteristics.
 
-<small>[TOC ↩](#TOC)</small>
-
 ## Three period (partial) replicates{#per3_part}
 The test treatment is administered once and the reference treatment at least once.
 
@@ -134,8 +119,6 @@ The test treatment is administered once and the reference treatment at least onc
 `TRR | RTR`
 
 The latter is the so-called extra-reference design^[Chow, SC, Shao J, Wang H. *Individual bioequivalence testing under 2×3 designs.* Stat Med. 2002; 21(5): 629–48. [doi:10.1002/sim.1056](https://doi.org/10.1002/sim.1056).] which is _not recommended_ since it is biased in the presence of period effects.
-
-<small>[TOC ↩](#TOC)</small>
 
 # Data structure{#data_struct}
 Columns must have the headers `subject`, `period`, `sequence`, `treatment`, `PK`, and/or `logPK`.^[Napierian logarithm (base _e_). The decadic logarithm (base 10) is not supported).] Any order of columns is acceptable. Uppercase and mixed case headers will be internally converted to lowercase headers.
@@ -152,8 +135,6 @@ Columns must have the headers `subject`, `period`, `sequence`, `treatment`, `PK`
 
 Relevant data are used for the estimation of *CV~wR~* (and *CV~wT~* in full replicate designs) and BE, *i.e.*, the data sets might be different (see the [example below](#setexpl)). It is good practice to state that in the Statistical Analysis Plan (SAP).
 
-<small>[TOC ↩](#TOC)</small>
-
 ## Incomplete data{#incomplete}
 ### Estimation of _CV~w~_{#setCW}
 If a subject drops out from the study in a higher period, data of repeated administrations will still be used for the estimation of _CV~w~_, although data of the other treatment might be missing. Examples for the estimation of *CV~wR~* (missings denoted by `.`):\
@@ -162,8 +143,6 @@ If a subject drops out from the study in a higher period, data of repeated admin
 `TRRT` | `TRR.`\
 `RRTT` | `RRT.` or `RR..`\
 `RRT` | `RR..`\
-
-<small>[TOC ↩](#TOC)</small>
 
 ### Assessment of BE{#setBE}
 If a subject drops out from the study in a higher period, data with at least one administration of the Test and Reference will be used in the assessment of BE. Examples (missings denoted by `.`):\
@@ -178,8 +157,6 @@ If a subject drops out from the study in a higher period, data with at least one
 `TRR` | `TR.`\
 `RTR` | `RT.`\
 `RTT` | `RT.`\
-
-<small>[TOC ↩](#TOC)</small>
 
 ### Example of different data sets{#setexpl}
 16 subjects enrolled in the study. In sequence `RTRT` one dropout in the 2^nd^ period and one in the 4^th^ period. In sequence `TRTR` one dropout in the 3^rd^ period and one in the 4^th^.\
@@ -196,8 +173,6 @@ We obtain these data sets:
 | Estimation of *CV~wR~* | 13 who received 2 treatments `R` | 6, 8, 14 |
 | Estimation of *CV~wT~* | 12 who received 2 treatments `T` | 1, 6, 8 |
 | Assessment of BE | 15 who received ≥1 treatment `T` _and_ ≥1 treatment `R` | 8 |
-
-<small>[TOC ↩](#TOC)</small>
 
 # Notes on the methods{#notes}
 ## Estimation of intra-subject variability{#cv}
@@ -239,8 +214,6 @@ round(100*PowerTOST::CVCL(CV = CV, df = 2*24-3, "2-sided"), 2) # 3-period
 
 It is unclear why the four period replicate is considered by the EMA to give a more ‘reliable’ estimate than the three period replicate.
 
-<small>[TOC ↩](#TOC)</small>
-
 ## Model structure{#model_struc}
 The EMA’s models assumes equal [_sic_] intra-subject variances of Test and Reference (like in 2×2×2 trials) – even if proven false in one of the full replicate designs (were _both_ *CV~wT~* and *CV~wR~* can be estimated). Hence, amongst biostatisticians they are called ‘crippled models’ because the replicative nature of the study is ignored.
 
@@ -259,7 +232,6 @@ Reference-scaling is acceptable for C~max~ (immediate release products: BE-Guide
 > 
 > --- BE Guideline
 
-<small>[TOC ↩](#TOC)</small>
 
 ## BE limits, PE restriction, rounding issues{#BElim}
 The limits can be expanded based on *CV~wR~*.
@@ -296,8 +268,6 @@ print(df, row.names = FALSE)
 ```
 
 ![Discrete limits resulting from rounding](figure1.png){width=80%}
-
-<small>[TOC ↩](#TOC)</small>
 
 ## Degrees of freedom, comparison of methods{#df_comp}
 The SAS code provided by the EMA in the Q&A document does not specify how the degrees of freedom should be calculated in ‘Method B’. Hence, the default in `PROC MIXED`, namely `DDFM=CONTAIN` is applied, *i.e.*, `method.B(..., option = 2`). For incomplete data (missing periods) Satterthwaite’s approximation of the degrees of freedom, *i.e.*, `method.B(..., option = 1)` or Kenward-Roger `method.B(..., option = 3)` might be a better choice – if stated as such in the SAP.
@@ -353,7 +323,6 @@ print(df[order(df$BE, df$hw, decreasing = c(FALSE, TRUE)), ],
 ```
 All variants of ‘Method B’ are more conservative than ‘Method A’. Before rounding the confidence interval, `option = 2` with 192 degrees of freedom would be more conservative (lower CL 69.21029) than `option = 1` with 197.44 degrees of freedom (lower CL 69.21286). Given the incompleteness of this data set (four missings in period 2, twelve in period 3, and 19 in period 4), Satterthwaite’s or Kenward-Roger degrees of freedom are probably the better choice.
 
-<small>[TOC ↩](#TOC)</small>
 
 ## Outlier analysis{#ola}
 It is an open issue how outliers should be handled.
@@ -364,7 +333,7 @@ It is an open issue how outliers should be handled.
 
 Box plots were ‘suggested’ by the author as a mere joke [*sic*] at the EGA/EMA symposium, being aware of their non­para­metric nature and the EMA’s reluctance towards robust methods. Alas, this _joke_ was included in the Q&A document.
 
-> _[â€¦] a study could be acceptable if the bioequivalence requirements are met both including the outlier subject (using the scaled average bioequivalence approach and the within-subject CV with this subject) and after exclusion of the outlier (using the within-subject CV without this subject)._
+> _[…] a study could be acceptable if the bioequivalence requirements are met both including the outlier subject (using the scaled average bioequivalence approach and the within-subject CV with this subject) and after exclusion of the outlier (using the within-subject CV without this subject)._
 >
 > _An outlier test is not an expectation of the medicines agencies but outliers could be shown by a box plot. This would allow the medicines agencies to compare the data between them._
 >
@@ -443,8 +412,6 @@ Note that the PE and its CI are not affected since the entire data are used and 
 The ‘line plot’ is given for informational purposes since its resolution is only \~0.5%. The filled squares `■` are the lower and upper 90% confidence limits, the rhombus `◊` the point estimate, the vertical lines `│` at 100% and the PE restriction (80.00 – 125.00%), and the double vertical lines `║` the expanded limits. The PE and CI take pre­se­dence over other symbols. In this case the upper limit of the PE restriction is not visible.\
 Since both analyses arrive at the same conclusion, the study should be acceptable according to the Q&A document.
 
-<small>[TOC ↩](#TOC)</small>
-
 # Applicability, caveats, outlook{#app_out}
 The EMA’s approach of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (*e.g.*, the WHO; ASEAN States, Australia, Brazil, the East African Community, Egypt, the Eurasian Economic Union, New Zealand, the Russian Federation).
 
@@ -461,25 +428,17 @@ Adjust *α* in library [PowerTOST](https://cran.r-project.org/package=PowerTOST)
 The WHO accepts [reference-scaling for AUC](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf "Guidance Document, 22 November 2018") (four period full replicate studies are mandatory in order to assess the vari­ability associated with each product). It is not evident how this assessment should be done./
 In Population Bioequivalence (PBE) and Individual Bioequivalence (IBE) the *s~wT~*/*s~wR~* ratio was assessed and ‘similar’ variability was concluded for a ratio within 0.667 – 1.500. However, the power of comparing variabilities in a study designed to demonstrate ABE is low. This was one of the reasons why PBE and IBE were not implemented in regulatory practice. An alternative approach is given in the FDA’s [guidance on warfarin](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf "Draft recommended Dec 2012") where variabilities are considered ‘comparable’ if the upper confidence limit of *σ~wT~*/*σ~wR~* is ≤2.5.
 
-<small>[TOC ↩](#TOC)</small>
-
 # Cross-validation{#cross}
 Results of all reference data sets agree with ones obtained in SAS (v9.4), Phoenix WinNonlin (v6.4 – v8.1), STATISTICA (v13), SPSS (v22.0), Stata (v15.0), and JMP (v10.0.2).
-
-<small>[TOC ↩](#TOC)</small>
 
 # Contributors{#contr}
 - Helmut Schütz (Author)
 - Michael Tomashevskiy (Contributor)
 - Detlew Labes (Contributor)
 
-<small>[TOC ↩](#TOC)</small>
-
 # Disclaimer{#disclaimer}
 **Program offered for Use without any Guarantees and Absolutely No Warranty.\
 No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.**
-
-<small>[TOC ↩](#TOC)</small>
 
 # Session Information{#session}
 Inspect this information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.
@@ -488,5 +447,3 @@ Inspect this information for reproducibility. Of particular importance are the v
 options(width = 80)
 devtools::session_info()
 ```
-<small>[TOC ↩](#TOC)</small>
-<div class="Inl" style="position:fixed;bottom:0;right:0;width:auto"><a class="toplink" href="" title="▲ top"> </a></div>
