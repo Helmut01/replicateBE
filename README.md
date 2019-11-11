@@ -4,20 +4,23 @@ replicateBE
   - [Comparative BA-calculation for the EMA’s Average Bioequivalence
     with Expanding Limits
     (ABEL)](#comparative-ba-calculation-for-the-emas-average-bioequivalence-with-expanding-limits-abel)
-  - [Introduction](#intro)
+  - [Introduction](#introduction)
       - [Methods](#methods)
           - [Estimation of *CV<sub>wR</sub>* (and *CV<sub>wT</sub>* in
             full replicate
             designs)](#estimation-of-cvwr-and-cvwt-in-full-replicate-designs)
-          - [Method A](#methodA)
-          - [Method B](#methodB)
-          - [Average Bioequivalence](#ABE)
-      - [Tested designs](#designs)
-          - [Four period (full) replicates](#per4_full)
-          - [Three period (full) replicates](#per3_full)
-          - [Two period (full) replicate](#per2_full)
-          - [Three period (partial) replicates](#per3_part)
-      - [Cross-validation](#cross)
+          - [Method A](#method-a)
+          - [Method B](#method-b)
+          - [Average Bioequivalence](#average-bioequivalence)
+      - [Tested designs](#tested-designs)
+          - [Four period (full)
+            replicates](#four-period-full-replicates)
+          - [Three period (full)
+            replicates](#three-period-full-replicates)
+          - [Two period (full) replicate](#two-period-full-replicate)
+          - [Three period (partial)
+            replicates](#three-period-partial-replicates)
+      - [Cross-validation](#cross-validation)
   - [Examples](#examples)
   - [Installation](#installation)
 
@@ -30,7 +33,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/last-month/replicateBE?color=green)](https://r-pkg.org/pkg/replicateBE)
 
-Built 2019-09-14 with R 3.6.1.
+Version 1.0.11.9000 built 2019-10-03 with R 3.6.1.
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
@@ -149,7 +152,7 @@ For details see the [man page](library/replicateBE/html/method.B.html).
 #### Average Bioequivalence
 
 Called by function `ABE()`. The model is identical to
-[Method A](#methodA). Conventional BE limits (80.00 – 125.00%) are
+[Method A](#method-a). Conventional BE limits (80.00 – 125.00%) are
 employed by default. Tighter limits for narrow therapeutic index drugs
 (EMA 90.00 – 111.11%) or wider limits (75.00 – 133.33% for
 *C<sub>max</sub>* according to the guideline of the Gulf Cooperation
@@ -294,7 +297,7 @@ CVwR.new(%) EL.new.lo(%) EL.new.hi(%) CI.lo(%) CI.hi(%)  PE(%)
 
 ## Installation
 
-Install the released version from CRAN
+Install the released version from CRAN:
 
 ``` r
 install.packages("replicateBE", repos = "https://cloud.r-project.org/")

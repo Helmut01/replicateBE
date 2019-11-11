@@ -45,6 +45,7 @@ h2{border-bottom:2px solid #f7f7f7;padding-top:10px;padding-bottom:2px;
   font-size:145%}
 h3{border-bottom:1px solid #f7f7f7;padding-top:10px;font-size:120%}
 h4{margin-left:8px;font-size:110%}
+.author{font-size:91%;margin-left:0;margin-bottom:0;font-style:normal}
 h5, h6{border-bottom:1px solid #ccc;font-size:105%}
 a{color:#0033dd;text-decoration:none}
 a:hover{color:#6666ff}
@@ -69,4 +70,11 @@ code > span.er{color:#a61717;background-color:#e3d2d2} /* ErrorTok */
 .top{display:inline;position:fixed;bottom:0px;right:0px;padding:0;font-size:108px;width:30px}
 .top img{border:none}
 a.toplink:link{background-image:url(toparrow.png);background-repeat:no-repeat;text-decoration:none;background-color:transparent;opacity:.6;filter:alpha(opacity=60);background-position:bottom 7px right;background-size:contain}
-a.toplink:hover,a.toplink:active{background-image:url(toparrow.png);background-repeat:no-repeat;text-decoration:none;background-color:transparent;opacity:.4;filter:alpha(opacity=40);background-position:bottom 7px right;background-size:contain}
+a.toplink:hover,a.toplink:active{text-decoration:none;background-color:transparent;opacity:.4;filter:alpha(opacity=40);background-position:bottom 7px right;background-size:contain}
+code span.co{font-style:normal}
+#nav{position:absolute;top:0;float:left;background-color:#084262;border:none}
+#nav ul{width:100%;list-style-type:none;text-align:center;color:#fff;font-size:.75em;letter-spacing:2px;font-weight:700;margin:0;padding:0}
+#nav ul li{display:inline}
+#nav ul li a,#nav ul li span{color:#fff;background-color:#084262;text-decoration:none;float:left;border-right:1px solid #7394B4;cursor:pointer;padding:.5em 11.5px}
+#nav ul li a:hover,#nav ul li span{color:#fff;background-color:#257B9D}
+@media print{#nav,#TOC,#TOC .toctitle,#TOC ul,#TOC ul ul,#TOC li{display:none}}

@@ -14,11 +14,10 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#"
 )
 ```
 <div class="top"><a class="toplink" href="#" title="▲ top"> </a></div>
@@ -28,11 +27,10 @@ library(replicateBE) # attach the library
 Version `r packageVersion("replicateBE")` built `r packageDate("replicateBE")` with R `r getRversion()`.\
 
 # Introduction{#intro}
-The library provides data sets (internal `.rda` and in CSV-format in `/extdata/`) which support users in a [black box](https://en.wikipedia.org/wiki/Black-box_testing) performance qualification (PQ) of their software installations.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. *Reference Data­sets for Studies in a Replicate Design intended for Average Bioequivalence with Expanding Limits.* Manu­script in pre­paration 2019.] Users can analyse own data imported from CSV- and Excel-files.  
+The library provides data sets (internal `.rda` and in CSV-format in `/extdata/`) which support users in a [black-box](https://en.wikipedia.org/wiki/Black-box_testing) performance qualification (PQ) of their software installations.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. *Reference Data­sets for Studies in a Replicate Design intended for Average Bioequivalence with Expanding Limits.* Manu­script in pre­paration 2019.] Users can analyse own data imported from CSV- and Excel-files.  
 
 The methods given by the European Medicines Agency (EMA) in Annex I^[European Medicines Agency. *Annex I.* London, 21 September 2016. [EMA/582648/2016](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf).] for reference-scaling according to the EMA’s Guideline on the Investigation of Bioequivalence^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the Investigation of Bioequivalence.* London, 20 January 2010. [CPMP/EWP/QWP/1401/98 Rev. 1/Corr **](https://www.ema.europa.eu/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf).] are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint <span title="European Generic Medicines Association">EGA</span>/EMA symposium.^[European Generic Medicines Association. *Revised EMA Bioequivalence Guideline. *3^rd^ EGA Symposium on Bioequivalence. London, 1 June 2010. [Questions & Answers](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf).]
 
-<!--<small>[TOC ↩](#TOC)</small>-->
 # Functions{#methods}
 ## `method.A()`{#methodA}
 A linear model of log-transformed PK responses and effects\
@@ -232,7 +230,6 @@ Reference-scaling is acceptable for C~max~ (immediate release products: BE-Guide
 > 
 > --- BE Guideline
 
-
 ## BE limits, PE restriction, rounding issues{#BElim}
 The limits can be expanded based on *CV~wR~*.
 
@@ -274,7 +271,7 @@ The SAS code provided by the EMA in the Q&A document does not specify how the de
 
 The EMA seemingly prefers ‘Method A’:
 
-> _A simple linear mixed model, which assumes identical within-subject variability (Method B), may be acceptable as long as results obtained with the two methods do not lead to different regulatory decisions. However, in borderline cases [â€¦] additional analysis using Method A might be required._
+> _A simple linear mixed model, which assumes identical within-subject variability (Method B), may be acceptable as long as results obtained with the two methods do not lead to different regulatory decisions. However, in borderline cases […] additional analysis using Method A might be required._
 > 
 > --- Q&A document (January 2011 and later revisions)
 

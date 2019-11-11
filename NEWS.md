@@ -1,10 +1,10 @@
 # replicateBE 1.0.11.9000
 
-Published on Github 2019-09-23.
+Published on Github 2019-10-03.
 
 ## Minor changes
 
-  * Replaced TOC-links in vignette by CSS-div (fixed backround image).
+  * Replaced TOC-links in vignette by CSS-div (fixed background image).
   * Cosmetic fix. Treats special case in verbose output of `CV.calc.R` when at least one studentized outlier is detected but no standarized outlier.
   * Badges in README.
   * TOCs in README.Rmd and vignette. THX to Yihui Xie on r-help for the latter.
