@@ -33,7 +33,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/last-month/replicateBE?color=green)](https://r-pkg.org/pkg/replicateBE)
 
-Version 1.0.11.9000 built 2019-10-03 with R 3.6.1.
+Version 1.0.12 built 2019-11-11 with R 3.6.1.
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
@@ -97,8 +97,6 @@ modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
                      data = data)
 ```
 
-For details see the [man page](library/replicateBE/html/method.A.html).
-
 <small>[TOC ↩](#readme)</small>
 
 #### Method B
@@ -145,8 +143,6 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
 ```
 
-For details see the [man page](library/replicateBE/html/method.B.html).
-
 <small>[TOC ↩](#readme)</small>
 
 #### Average Bioequivalence
@@ -158,8 +154,6 @@ employed by default. Tighter limits for narrow therapeutic index drugs
 *C<sub>max</sub>* according to the guideline of the Gulf Cooperation
 Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, and the United Arab
 Emirates) can be specified.
-
-For details see the [man page](library/replicateBE/html/ABE.html).
 
 <small>[TOC ↩](#readme)</small>
 

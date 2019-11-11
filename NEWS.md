@@ -1,3 +1,11 @@
+# replicateBE 1.0.12
+
+Published on Github 2019-11-11, on CRAN (carnival release).
+
+## Minor changes
+
+  * Updated CSS of vignette, fixes in README.
+
 # replicateBE 1.0.11.9000
 
 Published on Github 2019-10-03.

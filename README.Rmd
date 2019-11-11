@@ -50,8 +50,6 @@ modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
                      data = data)
 ```
 
-For details see the [man page](library/replicateBE/html/method.A.html).
-
 <small>[TOC ↩](#readme)</small>
 
 #### Method B
@@ -78,14 +76,10 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
 ```
 
-For details see the [man page](library/replicateBE/html/method.B.html).
-
 <small>[TOC ↩](#readme)</small>
 
 #### Average Bioequivalence
 Called by function `ABE()`. The model is identical to [Method A](#method-a). Conventional BE limits (80.00 – 125.00%) are employed by default. Tighter limits for narrow therapeutic index drugs (EMA 90.00 – 111.11%) or wider limits (75.00 – 133.33% for *C~max~* according to the guideline of the Gulf Cooperation Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, and the United Arab Emirates) can be specified.
-
-For details see the [man page](library/replicateBE/html/ABE.html).
 
 <small>[TOC ↩](#readme)</small>
 
