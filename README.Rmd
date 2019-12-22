@@ -23,7 +23,7 @@ Version `r packageVersion("replicateBE")` built `r packageDate("replicateBE")` w
 The library provides data sets (internal `.rda` and in CSV-format in `/extdata/`) which support users in a black-box performance qualification (PQ) of their software installations. Users can perform analysis of their own data imported from CSV- and Excel-files. The methods given by the EMA in [Annex I](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf "EMA/582648/2016, 21 September 2016") for reference-scaling according to the EMA’s [Guideline on the Investigation of Bioequivalence](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf "EMA, January 2010") are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint [EGA/EMA workshop](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf "London, June 2010").  
 In full replicate designs the variability of test and reference treatments can be assessed by _s~wT~_/_s~wR~_ and the upper confidence limit of _σ~wT~_/_σ~wR~_ (required for the [WHO’s approach](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf "Geneva, November 2018") for reference-scaling of _AUC_).
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ### Methods
 
@@ -38,7 +38,7 @@ modCVwT <- lm(log(PK) ~ sequence + subject%in%sequence + period,
                         data = data[data$treatment == "T", ])
 ```
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 #### Method A
 Called by function `method.A()`. A linear model of log-transformed PK responses and effects  
@@ -50,7 +50,7 @@ modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
                      data = data)
 ```
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 #### Method B
 Called by function `method.B()`. A linear model of log-transformed PK responses and effects  
@@ -76,12 +76,12 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
 ```
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 #### Average Bioequivalence
 Called by function `ABE()`. The model is identical to [Method A](#method-a). Conventional BE limits (80.00 – 125.00%) are employed by default. Tighter limits for narrow therapeutic index drugs (EMA 90.00 – 111.11%) or wider limits (75.00 – 133.33% for *C~max~* according to the guideline of the Gulf Cooperation Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, and the United Arab Emirates) can be specified.
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ### Tested designs
 #### Four period (full) replicates
@@ -102,7 +102,7 @@ Called by function `ABE()`. The model is identical to [Method A](#method-a). Co
 `TRR | RTR | RRT`  
 `TRR | RTR` <small>(Extra-reference design; biased in the presence of period effects, *not recommended*)</small>
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ### Cross-validation
 Details about the reference datasets:
@@ -112,7 +112,7 @@ help("data", package = "replicateBE")
 ```
 Results of the 28 reference datasets agree with ones obtained in SAS (9.4), Phoenix WinNonlin (6.4 – 8.1), STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ## Examples
   - Evaluation of the internal reference dataset 01 of [Annex II](https://www.ema.europa.eu/en/documents/other/31-annex-ii-statistical-analysis-bioequivalence-study-example-data-set_en.pdf "EMA, 21 September 2016") by Method A.
@@ -148,7 +148,7 @@ CVwR(%) EL.lo(%) EL.hi(%) CI.lo(%) CI.hi(%)  PE(%)
   46.96    71.23    140.4   107.11   124.89 115.66
 ```
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
   - Same dataset evaluated by Method B. Outlier assessment, recalculation of _CV~wR~_ after exclusion of outliers, new expanded limits.
 
@@ -190,7 +190,7 @@ CVwR.new(%) EL.new.lo(%) EL.new.hi(%) CI.lo(%) CI.hi(%)  PE(%)
       32.16        78.79       126.93   107.17   124.97 115.73
 ```
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ## Installation
 Install the released version from CRAN:
@@ -204,4 +204,4 @@ Install the development version from GitHub:
 devtools::install_github("Helmut01/replicateBE")
 ```
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>

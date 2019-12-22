@@ -27,7 +27,7 @@ library(replicateBE) # attach the library
 Version `r packageVersion("replicateBE")` built `r packageDate("replicateBE")` with R `r getRversion()`.\
 
 # Introduction{#intro}
-The library provides data sets (internal `.rda` and in CSV-format in `/extdata/`) which support users in a [black-box](https://en.wikipedia.org/wiki/Black-box_testing) performance qualification (PQ) of their software installations.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. *Reference Data­sets for Studies in a Replicate Design intended for Average Bioequivalence with Expanding Limits.* Manu­script in pre­paration 2019.] Users can analyse own data imported from CSV- and Excel-files.  
+The library provides data sets (internal `.rda` and in CSV-format in `/extdata/`) which support users in a [black-box](https://en.wikipedia.org/wiki/Black-box_testing) performance qualification (PQ) of their software installations.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. (2019). *Reference Data­sets for Studies in a Replicate Design intended for Average Bioequivalence with Expanding Limits.* Manuscript submitted for publication.] Users can analyse own data imported from CSV- and Excel-files.  
 
 The methods given by the European Medicines Agency (EMA) in Annex I^[European Medicines Agency. *Annex I.* London, 21 September 2016. [EMA/582648/2016](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf).] for reference-scaling according to the EMA’s Guideline on the Investigation of Bioequivalence^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the Investigation of Bioequivalence.* London, 20 January 2010. [CPMP/EWP/QWP/1401/98 Rev. 1/Corr **](https://www.ema.europa.eu/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf).] are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint <span title="European Generic Medicines Association">EGA</span>/EMA symposium.^[European Generic Medicines Association. *Revised EMA Bioequivalence Guideline. *3^rd^ EGA Symposium on Bioequivalence. London, 1 June 2010. [Questions & Answers](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf).]
 
@@ -75,6 +75,10 @@ Employs the Kenward-Roger approximation^[Kenward MG, Roger JH. *Small Sample Inf
 
 ## `ABE()`{#ABE}
 Conventional Average Bioequivalence, where the model is identical to [Method A](#methodA). Tighter limits for narrow therapeutic index drugs (EMA 90.00 – 111.11%) or wider limits (75.00 – 133.33% for C~max~ according to the guideline of the <span title="Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, and the United Arab Emirates.">GCC</span>) can be specified by the arguments `theta1` (lower limit) and/or `theta2` (upper limit).
+
+# Hypotheses{#hypotheses}
+The hypotheses are $$H_{0}:\theta_0\notin [L,U]\:vs\:H_{1}:L<\theta_0<U$$
+where <small>$\theta_0=\mu_T/\mu_R$</small> and the Null hypothesis is <u>in</u>equivalence. In Average Bioequivalence the limits <small>$[L,U]$</small> are fixed, whereas in ABEL they can be [scaled](#BElim) based on the variability of the reference treatment.
 
 # Tested designs{#designs}
 Details about the reference data sets and their designs:
@@ -223,7 +227,7 @@ The same holds true for the [EMA’s model](#cv) to estimate *CV~wR~*. The simpl
     _subject_, _period_\
 gives an identical estimate of the residual variance.
 
-Reference-scaling is acceptable for C~max~ (immediate release products: BE-Guideline) and C~max~, C~max,ss~, C~τ,ss~, ~partial~AUC (modified release products^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.* London, 20 November 2014. [EMA/CHMP/EWP/280/96](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf)]). The intention to widen the limits has to be stated in the protocol and – contrary to the FDA’s RSABE – a clinical justification provided.
+Reference-scaling is acceptable for C~max~ (immediate release products: BE-Guideline) and C~max~, C~max,ss~, C~τ,ss~, ~partial~AUC (modified release products^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.* London, 20 November 2014. [EMA/CHMP/EWP/280/96](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf)]). The intention to widen the limits has to be stated in the protocol and – contrary to the FDA’s <span title="Reference Scaled Average Bioequivalence">RSABE</span> – a clinical justification provided.
 
 > _Those HVDP for which a wider difference in C~max~ is considered clinically irrelevant based on a sound clinical justification can be assessed with a widened acceptance range.
 > The request for widened interval must be prospectively specified in the protocol._
@@ -275,7 +279,7 @@ The EMA seemingly prefers ‘Method A’:
 > 
 > --- Q&A document (January 2011 and later revisions)
 
-The half-width of the confidence interval in log-scale allows a comparison of methods (B *v.s.* A) where a higher value _might_ point towards a more conservative decision.^[Of course, only if the point estimates are identical.] In the provided example data sets – with one exception – the conclusion of BE (based on the mixed criterion) agrees between ‘Method A’ and ‘Method B’.\
+The half-width of the confidence interval in log-scale allows a comparison of methods (B *v.s.* A) where a higher value _might_ point towards a more conservative decision.^[Of course, only if point estimates are identical.] In the provided example data sets – with one exception – the conclusion of BE (based on the mixed criterion) agrees between ‘Method A’ and ‘Method B’.\
 However, for the highly incomplete data set 14 ‘Method A’ was _liberal_ (passing by ANOVA but failing by the random effects model):
 
 ```{r}

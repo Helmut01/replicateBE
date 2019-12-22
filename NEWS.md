@@ -1,10 +1,29 @@
+# replicateBE 1.0.12.9000
+
+Published on Github 2019-12-22.
+
+## Issues
+
+  * Importing from an external file throws  
+    `New names:`  
+    `* `` -> ...1`  
+    `* `` -> ...2`  
+    `* `` -> ...3`  
+    `* `` -> ...4`  
+    `* `` -> ...5`  
+    Results are correct but this output in the console is an annoyance.
+
+## Minor changes
+
+  * Added two small imbalanced and incomplete datasets: `rds29` (TRTR|TRTR), `rds30` (TRR|RTR|RRT). Requested by a reviewer of the manuscript.
+
 # replicateBE 1.0.12
 
 Published on Github 2019-11-11, on CRAN (carnival release).
 
 ## Minor changes
 
-  * Updated CSS of vignette, fixes in README.
+  * Updated CSS of vignette, fixes in `README`.
 
 # replicateBE 1.0.11.9000
 
@@ -14,8 +33,8 @@ Published on Github 2019-10-03.
 
   * Replaced TOC-links in vignette by CSS-div (fixed background image).
   * Cosmetic fix. Treats special case in verbose output of `CV.calc.R` when at least one studentized outlier is detected but no standarized outlier.
-  * Badges in README.
-  * TOCs in README.Rmd and vignette. THX to Yihui Xie on r-help for the latter.
+  * Badges in `README`.
+  * TOCs in `README.Rmd` and vignette. THX to Yihui Xie on r-help for the latter.
 
 # replicateBE 1.0.11
 
@@ -32,7 +51,7 @@ Published on Github 2019-08-25
 ## Minor changes
 
   * `print(..., , digits=7)` if `verbose=TRUE`. More significant digits not needed since in the result data.frame given in full precision anyway.
-  * README.Rmd knitted to README.md
+  * `README.Rmd` knitted to `README.md`.
 
 # replicateBE 1.0.10
 
@@ -50,8 +69,8 @@ Published on Github 2019-07-24
 
 ## Minor changes
 
-  * README.md included.
-  * NEWS.md instead of NEWS.
+  * `README.md` included.
+  * `NEWS.md` instead of `NEWS`.
   * Removed numbered references since CRAN converts URLs to footnotes in the PDF manual.
   * Updated links to the EMA’s datasets in `info.data()`.
 
@@ -79,7 +98,7 @@ Published on Github 2019-07-20
   * Updated links to EMA’s documents (again...) in man-pages. Numbered references.
   * More informative warning in `get.data()` if na-specifier does not match the data in columns `PK` and/or `logPK`.
   * Depends now on R >= 3.5.0 (since .rda saved with 3.6.0).
-  * Kept column `logPK` only in rds01 and rds02 because given by the EMA. Removed in rds06, rds12, rds14, rds18, rds19, rds20, rds21 (TRTR|RTRR) and rds03, rds17 (TRT|RTR). Man-pages corrected. Reduces the footprint of the library by 5%.
+  * Kept column `logPK` only in `rds01` and `rds02` because given by the EMA. Removed in `rds06`, `rds12`, `rds14`, `rds18`, `rds19`, `rds20`, `rds21` (TRTR|RTRR) and `rds03`, `rds17` (TRT|RTR). Man-pages corrected. Reduces the footprint of the library by 5%.
   * If `path.in` and/or `path.out` not given or specified folder does not exist: Changed `cat()` to `warning()`.
   * Cosmetic changes in verbose output of `method.A()`.
   * `suppressMessages()` no more needed (vignette and testthat). Issue orginating in `rlang` and `ggplot2` resolved. Both packages don't contain a NEWS file. THX Hadley!

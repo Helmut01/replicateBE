@@ -4,6 +4,7 @@
 \alias{rds02}
 \alias{rds04}
 \alias{rds07}
+\alias{rds30}
 \docType{data}
 \title{
 Reference Datasets for TRR|RTR|RRT (partial) Replicate Designs
@@ -79,7 +80,23 @@ Datasets from the public domain or edited to be evaluated by \code{method.A()}, 
             }
           }
       }
-  }
+
+    \item Reference Dataset 30 (\code{rds30})\cr
+    Simulated with heteroscedasticity (\ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = 14\%, \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 28\%), \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = 28\%, \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 56\%, GMR = 0.90. 14 subjects.\cr
+    Imbalanced (six subjects in sequence TRR, five in RTR, and three RRT) and incomplete (two missings in sequences TRR and RTR and three in sequence RRT). Missings / period: 0/1, 0/2, 7/3. No outliers.\cr
+    A data frame with 35 observations on the following 5 variables:
+      \describe{
+          \item{}{
+            \tabular{ll}{
+              \code{subject} \tab a factor with 14 levels: 1, 2, \ldots, 39\cr
+              \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
+              \code{sequence} \tab a factor with 3 levels: TRR, RTR, RRT\cr
+              \code{treatment} \tab a factor with 2 levels: T, R\cr
+              \code{PK} \tab a numeric vector of pharmacokinetic responses (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+            }
+          }
+      }
+   }
 }
 
 \details{
@@ -87,7 +104,8 @@ Datasets from the public domain or edited to be evaluated by \code{method.A()}, 
       Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
       \code{rds02} \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
       \code{rds04} \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-      \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}
+      \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+      \code{rds30} \tab 14 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}
   }
 }
 
@@ -104,7 +122,8 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes)
     Dataset \tab Origin \tab Description\cr
     \code{rds02} \tab EMA \tab Annex III.\cr
     \code{rds04} \tab Patterson & Jones \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Table II.\cr
-    \code{rds07} \tab R \tab Large simulated data set with homoscedasticity.
+    \code{rds07} \tab R \tab Large simulated data set with homoscedasticity.\cr
+    \code{rds30} \tab R \tab Simulated with heteroscedasticity; imbalanced and incomplete.
   }
 }
 

@@ -63,7 +63,7 @@ for the [WHO’s
 approach](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf "Geneva, November 2018")
 for reference-scaling of *AUC*).
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ### Methods
 
@@ -82,7 +82,7 @@ modCVwT <- lm(log(PK) ~ sequence + subject%in%sequence + period,
                         data = data[data$treatment == "T", ])
 ```
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 #### Method A
 
@@ -97,7 +97,7 @@ modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
                      data = data)
 ```
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 #### Method B
 
@@ -143,7 +143,7 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
 ```
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 #### Average Bioequivalence
 
@@ -155,7 +155,7 @@ employed by default. Tighter limits for narrow therapeutic index drugs
 Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, and the United Arab
 Emirates) can be specified.
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ### Tested designs
 
@@ -185,7 +185,7 @@ poor power characteristics)</small>
 `TRR | RTR` <small>(Extra-reference design; biased in the presence of
 period effects, *not recommended*)</small>
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ### Cross-validation
 
@@ -200,7 +200,7 @@ Results of the 28 reference datasets agree with ones obtained in SAS
 (9.4), Phoenix WinNonlin (6.4 – 8.1), STATISTICA (13), SPSS (22.0),
 Stata (15.0), and JMP (10.0.2).
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ## Examples
 
@@ -241,7 +241,7 @@ CVwR(%) EL.lo(%) EL.hi(%) CI.lo(%) CI.hi(%)  PE(%)
   46.96    71.23    140.4   107.11   124.89 115.66
 ```
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
   - Same dataset evaluated by Method B. Outlier assessment,
     recalculation of *CV<sub>wR</sub>* after exclusion of outliers, new
@@ -287,7 +287,7 @@ CVwR.new(%) EL.new.lo(%) EL.new.hi(%) CI.lo(%) CI.hi(%)  PE(%)
       32.16        78.79       126.93   107.17   124.97 115.73
 ```
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ## Installation
 
@@ -304,4 +304,4 @@ Install the development version from GitHub:
 devtools::install_github("Helmut01/replicateBE")
 ```
 
-<small>[TOC ↩](#readme)</small>
+<small>[TOC ↩](#replicatebe)</small>

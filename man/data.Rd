@@ -27,6 +27,7 @@ Datasets of replicate designs from the public domain, edited, or obtained by sim
   TRTR|RTRT \tab full \tab \code{rds13} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRTR|RTRT \tab full \tab \code{rds15} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRTR|RTRT \tab full \tab \code{rds25} \tab 70 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRTR|RTRT \tab full \tab \code{rds29} \tab 12 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
   TRRT|RTTR \tab full \tab \code{rds26} \tab 54 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRRT|RTTR \tab full \tab \code{rds05} \tab 26 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
   TRRT|RTTR \tab full \tab \code{rds11} \tab 37 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
@@ -41,6 +42,7 @@ Datasets of replicate designs from the public domain, edited, or obtained by sim
   TRR|RTR|RRT \tab partial \tab \code{rds02} \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
   TRR|RTR|RRT \tab partial \tab \code{rds04} \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
   TRR|RTR|RRT \tab partial \tab \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+  TRR|RTR|RRT \tab partial \tab \code{rds30} \tab 14 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
   TRR|RTR \tab partial \tab \code{rds22} \tab 36 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 In full replicate designs \emph{both} R and T are administered twice (in 3-period designs to \enc{½}{1/2} of the subjects).\cr
@@ -64,6 +66,7 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds13} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data deleted)\cr
     \code{rds15} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'})\cr
     \code{rds25} \tab R \tab Simulated with heteroscedasticity\cr
+    \code{rds29} \tab R \tab Simulated with heteroscedasticity; imbalanced and incomplete\cr
     \code{rds26} \tab Patterson & Jones 2016 \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Tables 4.30 & 4.31\cr
     \code{rds05} \tab Shumaker & Metzler \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in the Appendix\cr
     \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Table 9.6.\cr
@@ -78,6 +81,7 @@ In partial replicate designs \emph{only} R is administered twice.
     \code{rds02} \tab EMA \tab Data set in Annex III\cr
     \code{rds04} \tab Patterson & Jones 2012 \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Table II\cr
     \code{rds07} \tab R \tab Simulated with homoscedasticity\cr
+    \code{rds30} \tab R \tab Simulated with heteroscedasticity; imbalanced and incomplete\cr
     \code{rds22} \tab R \tab Simulated with homoscedasticity
   }
 }

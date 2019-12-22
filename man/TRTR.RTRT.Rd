@@ -15,6 +15,7 @@
 \alias{rds21}
 \alias{rds25}
 \alias{rds26}
+\alias{rds29}
 \docType{data}
 \title{
 Reference Datasets for TRTR|RTRT Designs
@@ -269,6 +270,22 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
         }
       }
     }
+
+    \item Reference dataset 29 (\code{rds29})\cr
+    Simulated with heteroscedasticity (\ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = 14\%, \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 28\%), \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = 28\%, \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 56\%, GMR = 0.90. 12 subjects.\cr
+    Imbalanced (five subjects in sequence TRTR and seven in sequence RTRT) and incomplete (three missings in sequence TRTR and four in sequence RTRT). Missings / period: 0/1, 1/2, 2/3, 4/4. One outlier (subject 11) in sequence RTRT.\cr
+    A data frame with 41 observations on the following 5 variables:
+    \describe{
+      \item{}{
+        \tabular{ll}{
+          \code{subject} \tab a factor with 12 levels: 1, 2, \ldots, 20\cr
+          \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
+          \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
+          \code{treatment} \tab a factor with 2 levels: T, R\cr
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+        }
+      }
+    }
   }
 }
 
@@ -288,7 +305,8 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
     \code{rds20} \tab 61 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
     \code{rds21} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
     \code{rds25} \tab 70 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
-    \code{rds26} \tab 54 \tab >30 \tab \code{method.A()}, \code{method.B()}
+    \code{rds26} \tab 54 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
+    \code{rds29} \tab 12 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}
   }
 }
 
@@ -316,7 +334,8 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael 
     \code{rds20} \tab \code{rds19} edited \tab Outlier of R (subject 1) introduced: original value ×100.\cr
     \code{rds21} \tab \code{rds01} edited \tab One extreme result of subjects 45 & 52 set to NA.\cr
     \code{rds25} \tab R \tab Simulated with heteroscedasticity.\cr
-    \code{rds26} \tab Patterson & Jones \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Tables 4.40 and 4.31.
+    \code{rds26} \tab Patterson & Jones \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Tables 4.40 and 4.31.\cr
+    \code{rds29} \tab R \tab Simulated with heteroscedasticity; imbalanced and incomplete.
   }
 }
 

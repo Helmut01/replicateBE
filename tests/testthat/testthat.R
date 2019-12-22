@@ -144,6 +144,16 @@ test_that("ABE (90% CI, PE) of rds28", {
   expect_equivalent(x[15:17], tolerance=5e-7,
                     expected=c(87.86358, 100.0704, 93.76858))
 })
+test_that("ABE (90% CI, PE) of rds29", {
+  x <- ABE(details=TRUE, print=FALSE, data=rds29)
+  expect_equivalent(x[15:17], tolerance=5e-7,
+                    expected=c(88.28064, 121.3064, 103.4843))
+})
+test_that("ABE (90% CI, PE) of rds30", {
+  x <- ABE(details=TRUE, print=FALSE, data=rds30)
+  expect_equivalent(x[15:17], tolerance=5e-7,
+                    expected=c(79.60345, 108.0298, 92.73371))
+})
 ###################
 # ABEL (Method A) #
 ###################
@@ -318,6 +328,20 @@ test_that("method.A (CVwR, EL, 90% CI, PE) of rds28", {
                     expected=c(28.74524, 80, 125, 87.86358,
                                100.0704, 93.76858))
 })
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds29", {
+  x <- method.A(details=TRUE, print=FALSE, data=rds29)
+  expect_equivalent(x[, c(12, 15:19)],
+                    tolerance=5e-7,
+                    expected=c(20.1358, 80, 125, 88.28064,
+                               121.3064, 103.4843))
+})
+test_that("method.A (CVwR, EL, 90% CI, PE) of rds30", {
+  x <- method.A(details=TRUE, print=FALSE, data=rds30)
+  expect_equivalent(x[, c(12, 15:19)],
+                    tolerance=5e-7,
+                    expected=c(25.2277, 80, 125, 79.60345,
+                               108.0298, 92.73371))
+})
 ###################
 # ABEL (Method B) #
 ###################
@@ -489,6 +513,18 @@ test_that("method.B (CVwR, EL, 90% CI, PE) of rds28", {
   expect_equivalent(x[, c(12, 15:19)], tolerance=5e-7,
                     expected=c(28.74524, 80, 125, 87.86358,
                                100.0704, 93.76858))
+})
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds29", {
+  x <- method.B(details=TRUE, print=FALSE, data=rds29)
+  expect_equivalent(x[, c(12, 15:19)], tolerance=5e-7,
+                    expected=c(20.1358, 80, 125, 88.43538,
+                               121.5846, 103.6937))
+})
+test_that("method.B (CVwR, EL, 90% CI, PE) of rds30", {
+  x <- method.B(details=TRUE, print=FALSE, data=rds30)
+  expect_equivalent(x[, c(12, 15:19)], tolerance=5e-7,
+                    expected=c(25.2277, 80, 125, 79.58054,
+                               108.0608, 92.73371))
 })
 #####################################
 # ABEL (Method B) demanding dataset #
