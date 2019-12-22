@@ -33,7 +33,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/last-month/replicateBE?color=green)](https://r-pkg.org/pkg/replicateBE)
 
-Version 1.0.12 built 2019-11-11 with R 3.6.1.
+Version 1.0.12.9000 built 2019-12-22 with R 3.6.2.
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
@@ -196,7 +196,7 @@ help("data", package = "replicateBE")
 ?replicateBE::data
 ```
 
-Results of the 28 reference datasets agree with ones obtained in SAS
+Results of the 30 reference datasets agree with ones obtained in SAS
 (9.4), Phoenix WinNonlin (6.4 – 8.1), STATISTICA (13), SPSS (22.0),
 Stata (15.0), and JMP (10.0.2).
 
