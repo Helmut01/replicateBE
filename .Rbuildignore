@@ -5,3 +5,5 @@ stuff
 .Rhistory
 .RData
 README.Rmd
+^doc$
+^Meta$

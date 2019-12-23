@@ -526,18 +526,35 @@ test_that("method.B (CVwR, EL, 90% CI, PE) of rds30", {
                     expected=c(25.2277, 80, 125, 79.58054,
                                108.0608, 92.73371))
 })
-#####################################
-# ABEL (Method B) demanding dataset #
-#####################################
-test_that("method.B (Satterthwaite DF, CVwR, EL, 90% CI, PE) of rds18", {
-  x <- method.B(details=TRUE, print=FALSE, data=rds18, option=1)
+############################################################
+# ABEL (Method B) small imbalanced and incomplete datasets #
+############################################################
+# option = 1 (Satterthwaite's degrees of freedom) #
+###################################################
+test_that("method.B (Satterthwaite DF, CVwR, EL, 90% CI, PE) of rds29", {
+  x <- method.B(details=TRUE, print=FALSE, data=rds29, option=1)
   expect_equivalent(x[, c(10, 12, 15:19)], tolerance=5e-7,
-                    expected=c(177.922, 125.9951, 69.83678, 143.19102,
-                               59.132003, 107.204568, 79.619224))
+                    expected=c(24.86467, 20.1358, 80, 125,
+                               88.43243, 121.5886, 103.6937))
 })
-test_that("method.B (Kenward-Roger DF, CVwR, EL, 90% CI, PE) of rds18", {
-  x <- method.B(details=TRUE, print=FALSE, data=rds18, option=3)
+test_that("method.B (Satterthwaite DF, CVwR, EL, 90% CI, PE) of rds30", {
+  x <- method.B(details=TRUE, print=FALSE, data=rds30, option=1)
   expect_equivalent(x[, c(10, 12, 15:19)], tolerance=5e-7,
-                    expected=c(179.69018, 125.99509, 69.83678, 143.19102,
-                               59.107151, 107.24964, 79.619224))
+                    expected=c(17.86418, 25.2277, 80, 125,
+                               79.57553, 108.0676, 92.73371))
+})
+#################################################
+# option = 3 (Kenward-Roger degrees of freedom) #
+#################################################
+test_that("method.B (Kenward-Roger DF, CVwR, EL, 90% CI, PE) of rds29", {
+  x <- method.B(details=TRUE, print=FALSE, data=rds29, option=3)
+  expect_equivalent(x[, c(10, 12, 15:19)], tolerance=5e-7,
+                    expected=c(25.15961, 20.1358, 80, 125,
+                               88.42778, 121.595, 103.6937))
+})
+test_that("method.B (Kenward-Roger DF, CVwR, EL, 90% CI, PE) of rds30", {
+  x <- method.B(details=TRUE, print=FALSE, data=rds30, option=3)
+  expect_equivalent(x[, c(10, 12, 15:19)], tolerance=5e-7,
+                    expected=c(18.00203, 25.2277, 80, 125,
+                               79.58062, 108.0607, 92.73371))
 })

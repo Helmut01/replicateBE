@@ -1,8 +1,6 @@
 ---
 title: "replicateBE"
 subtitle: "Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)"
-author: "Helmut Schütz"
-date: "`r Sys.Date()`"
 lang: "en"
 output:
   rmarkdown::html_vignette:
@@ -27,7 +25,7 @@ library(replicateBE) # attach the library
 Version `r packageVersion("replicateBE")` built `r packageDate("replicateBE")` with R `r getRversion()`.\
 
 # Introduction{#intro}
-The library provides data sets (internal `.rda` and in CSV-format in `/extdata/`) which support users in a [black-box](https://en.wikipedia.org/wiki/Black-box_testing) performance qualification (PQ) of their software installations.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. (2019). *Reference Data­sets for Studies in a Replicate Design intended for Average Bioequivalence with Expanding Limits.* Manuscript submitted for publication.] Users can analyse own data imported from CSV- and Excel-files.  
+The library provides datasets (internal `.rda` and in CSV-format in `/extdata/`) which support users in a [black-box](https://en.wikipedia.org/wiki/Black-box_testing) performance qualification (PQ) of their software installations.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. (2019). *Reference Datasets for Studies in a Replicate Design intended for Average Bioequivalence with Expanding Limits.* Manuscript submitted for publication.] Users can analyse own data imported from CSV- and Excel-files.  
 
 The methods given by the European Medicines Agency (EMA) in Annex I^[European Medicines Agency. *Annex I.* London, 21 September 2016. [EMA/582648/2016](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf).] for reference-scaling according to the EMA’s Guideline on the Investigation of Bioequivalence^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the Investigation of Bioequivalence.* London, 20 January 2010. [CPMP/EWP/QWP/1401/98 Rev. 1/Corr **](https://www.ema.europa.eu/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf).] are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint <span title="European Generic Medicines Association">EGA</span>/EMA symposium.^[European Generic Medicines Association. *Revised EMA Bioequivalence Guideline. *3^rd^ EGA Symposium on Bioequivalence. London, 1 June 2010. [Questions & Answers](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf).]
 
@@ -78,10 +76,10 @@ Conventional Average Bioequivalence, where the model is identical to [Method A]
 
 # Hypotheses{#hypotheses}
 The hypotheses are $$H_{0}:\theta_0\notin [L,U]\:vs\:H_{1}:L<\theta_0<U$$
-where <small>$\theta_0=\mu_T/\mu_R$</small> and the Null hypothesis is <u>in</u>equivalence. In Average Bioequivalence the limits <small>$[L,U]$</small> are fixed, whereas in ABEL they can be [scaled](#BElim) based on the variability of the reference treatment.
+where <small>$\theta_0=\mu_T/\mu_R$</small> and the Null hypothesis is <u>in</u>equivalence. In Average Bioequivalence the limits <small>$[L,U]$</small> are fixed, whereas in ABEL they can be [expanded](#BElim) based on the variability of the reference treatment.
 
 # Tested designs{#designs}
-Details about the reference data sets and their designs:
+Details about the reference datasets and their designs:
 ```{r eval=FALSE}
 help("data", package = "replicateBE")
 ?replicateBE::data
@@ -135,7 +133,7 @@ Columns must have the headers `subject`, `period`, `sequence`, `treatment`, `PK`
 | `PK` | Real <span title="zero is not acceptable">positive</span> numbers of PK responses. |
 | `logPK` | Real numbers of already log~e~-transformed PK responses (optional and rarely needed). |
 
-Relevant data are used for the estimation of *CV~wR~* (and *CV~wT~* in full replicate designs) and BE, *i.e.*, the data sets might be different (see the [example below](#setexpl)). It is good practice to state that in the Statistical Analysis Plan (SAP).
+Relevant data are used for the estimation of *CV~wR~* (and *CV~wT~* in full replicate designs) and BE, *i.e.*, the datasets might be different (see the [example below](#setexpl)). It is good practice to state that in the Statistical Analysis Plan (SAP).
 
 ## Incomplete data{#incomplete}
 ### Estimation of _CV~w~_{#setCW}
@@ -160,7 +158,7 @@ If a subject drops out from the study in a higher period, data with at least one
 `RTR` | `RT.`\
 `RTT` | `RT.`\
 
-### Example of different data sets{#setexpl}
+### Example of different datasets{#setexpl}
 16 subjects enrolled in the study. In sequence `RTRT` one dropout in the 2^nd^ period and one in the 4^th^ period. In sequence `TRTR` one dropout in the 3^rd^ period and one in the 4^th^.\
 
 `1  RTR.    5  RTRT    9  TRTR   13  RTRT`\
@@ -168,7 +166,7 @@ If a subject drops out from the study in a higher period, data with at least one
 `3  RTRT    7  RTRT   11  RTRT   15  TRTR`\
 `4  TRTR    8  R...   12  TRTR   16  TRTR`  
 
-We obtain these data sets:
+We obtain these datasets:
 
 | Purpose | included | excluded |
 |-----|----------|:---:|
@@ -227,7 +225,7 @@ The same holds true for the [EMA’s model](#cv) to estimate *CV~wR~*. The simpl
     _subject_, _period_\
 gives an identical estimate of the residual variance.
 
-Reference-scaling is acceptable for C~max~ (immediate release products: BE-Guideline) and C~max~, C~max,ss~, C~τ,ss~, ~partial~AUC (modified release products^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.* London, 20 November 2014. [EMA/CHMP/EWP/280/96](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf)]). The intention to widen the limits has to be stated in the protocol and – contrary to the FDA’s <span title="Reference Scaled Average Bioequivalence">RSABE</span> – a clinical justification provided.
+Reference-scaling is acceptable for C~max~ (immediate release products: BE-Guideline) and C~max~, C~max,ss~, C~Ï„,ss~, ~partial~AUC (modified release products^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.* London, 20 November 2014. [EMA/CHMP/EWP/280/96](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf)]). The intention to widen the limits has to be stated in the protocol and – contrary to the FDA’s <span title="Reference Scaled Average Bioequivalence">RSABE</span> – a clinical justification provided.
 
 > _Those HVDP for which a wider difference in C~max~ is considered clinically irrelevant based on a sound clinical justification can be assessed with a widened acceptance range.
 > The request for widened interval must be prospectively specified in the protocol._
@@ -275,15 +273,15 @@ The SAS code provided by the EMA in the Q&A document does not specify how the de
 
 The EMA seemingly prefers ‘Method A’:
 
-> _A simple linear mixed model, which assumes identical within-subject variability (Method B), may be acceptable as long as results obtained with the two methods do not lead to different regulatory decisions. However, in borderline cases […] additional analysis using Method A might be required._
+> _A simple linear mixed model, which assumes identical within-subject variability (Method B), may be acceptable as long as results obtained with the two methods do not lead to different regulatory decisions. However, in borderline cases [â€¦] additional analysis using Method A might be required._
 > 
 > --- Q&A document (January 2011 and later revisions)
 
-The half-width of the confidence interval in log-scale allows a comparison of methods (B *v.s.* A) where a higher value _might_ point towards a more conservative decision.^[Of course, only if point estimates are identical.] In the provided example data sets – with one exception – the conclusion of BE (based on the mixed criterion) agrees between ‘Method A’ and ‘Method B’.\
-However, for the highly incomplete data set 14 ‘Method A’ was _liberal_ (passing by ANOVA but failing by the random effects model):
+The half-width of the confidence interval in log-scale allows a comparison of methods (B *v.s.* A) where a higher value _might_ point towards a more conservative decision.^[Of course, only if point estimates are identical.] In the provided example datasets – with one exception – the conclusion of BE (based on the mixed criterion) agrees between ‘Method A’ and ‘Method B’.\
+However, for the highly incomplete dataset 14 ‘Method A’ was _liberal_ (passing by ANOVA but failing by the random effects model):
 
 ```{r}
-# Compare Method B acc. to the GL with Method A for all reference data sets.
+# Compare Method B acc. to the GL with Method A for all reference datasets.
 ds <- substr(grep("rds", unname(unlist(data(package = "replicateBE"))),
                   value = TRUE), start = 1, stop = 5)
 for (i in seq_along(ds)) {
@@ -303,7 +301,7 @@ for (i in seq_along(ds)) {
 }
 ```
 
-Exploring data set 14:
+Exploring dataset 14:
 ```{r}
 A  <- method.A(print = FALSE, details = TRUE, data = rds14)
 B1 <- method.B(print = FALSE, details = TRUE, data = rds14, option = 1)
@@ -322,7 +320,7 @@ df[, c(2, 11)] <- signif(df[, c(2, 11)], 5)
 print(df[order(df$BE, df$hw, decreasing = c(FALSE, TRUE)), ],
       row.names = FALSE)
 ```
-All variants of ‘Method B’ are more conservative than ‘Method A’. Before rounding the confidence interval, `option = 2` with 192 degrees of freedom would be more conservative (lower CL 69.21029) than `option = 1` with 197.44 degrees of freedom (lower CL 69.21286). Given the incompleteness of this data set (four missings in period 2, twelve in period 3, and 19 in period 4), Satterthwaite’s or Kenward-Roger degrees of freedom are probably the better choice.
+All variants of ‘Method B’ are more conservative than ‘Method A’. Before rounding the confidence interval, `option = 2` with 192 degrees of freedom would be more conservative (lower CL 69.21029) than `option = 1` with 197.44 degrees of freedom (lower CL 69.21286). Given the incompleteness of this dataset (four missings in period 2, twelve in period 3, and 19 in period 4), Satterthwaite’s or Kenward-Roger degrees of freedom are probably the better choice.
 
 
 ## Outlier analysis{#ola}
@@ -334,7 +332,7 @@ It is an open issue how outliers should be handled.
 
 Box plots were ‘suggested’ by the author as a mere joke [*sic*] at the EGA/EMA symposium, being aware of their non­para­metric nature and the EMA’s reluctance towards robust methods. Alas, this _joke_ was included in the Q&A document.
 
-> _[…] a study could be acceptable if the bioequivalence requirements are met both including the outlier subject (using the scaled average bioequivalence approach and the within-subject CV with this subject) and after exclusion of the outlier (using the within-subject CV without this subject)._
+> _[â€¦] a study could be acceptable if the bioequivalence requirements are met both including the outlier subject (using the scaled average bioequivalence approach and the within-subject CV with this subject) and after exclusion of the outlier (using the within-subject CV without this subject)._
 >
 > _An outlier test is not an expectation of the medicines agencies but outliers could be shown by a box plot. This would allow the medicines agencies to compare the data between them._
 >
@@ -364,7 +362,7 @@ print(as.data.frame(q))
 * Potential outliers are flagged based on the argument `fence` provided by the user.
 * With the additional argument `verbose = TRUE` detailed information is shown in the console.
 
-Example for the reference data set 01:
+Example for the reference dataset 01:
 ```
 Outlier analysis
  (externally) studentized residuals
@@ -384,11 +382,11 @@ Outlier analysis
 
 If based on studentized residuals outliers are detected, additionally to the expanded limits based on the complete reference data, tighter limits are calculated based on *CV~wR~* after exclusion of outliers and BE assessed with the new limits. Standardized residuals are shown for informational purposes only and are not used for exclusion of outliers.
 
-Output for the reference data set 01 (re-ordered for clarity):
+Output for the reference dataset 01 (re-ordered for clarity):
 ```
 CVwR               :  46.96% (reference-scaling applicable)
 swR                :   0.44645
-Expanded limits    :  71.23% ... 140.40% [100exp(±0.760·swR)]
+Expanded limits    :  71.23% ... 140.40% [100exp(±0.760Â·swR)]
 Assessment based on original CVwR 46.96%
 ────────────────────────────────────────
 Confidence interval: 107.11% ... 124.89%  pass
@@ -430,12 +428,16 @@ The WHO accepts [reference-scaling for AUC](https://extranet.who.int/prequal/sit
 In Population Bioequivalence (PBE) and Individual Bioequivalence (IBE) the *s~wT~*/*s~wR~* ratio was assessed and ‘similar’ variability was concluded for a ratio within 0.667 – 1.500. However, the power of comparing variabilities in a study designed to demonstrate ABE is low. This was one of the reasons why PBE and IBE were not implemented in regulatory practice. An alternative approach is given in the FDA’s [guidance on warfarin](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf "Draft recommended Dec 2012") where variabilities are considered ‘comparable’ if the upper confidence limit of *σ~wT~*/*σ~wR~* is ≤2.5.
 
 # Cross-validation{#cross}
-Results of all reference data sets agree with ones obtained in SAS (v9.4), Phoenix WinNonlin (v6.4 – v8.1), STATISTICA (v13), SPSS (v22.0), Stata (v15.0), and JMP (v10.0.2).
+Results of all reference datasets agree with ones obtained in SAS (v9.4), Phoenix WinNonlin (v6.4 – v8.1), STATISTICA (v13), SPSS (v22.0), Stata (v15.0), and JMP (v10.0.2).
 
 # Contributors{#contr}
 - Helmut Schütz (Author)
 - Michael Tomashevskiy (Contributor)
 - Detlew Labes (Contributor)
+
+# License
+<h4 class="author">Helmut Schütz `r Sys.Date()`</h4>
+[GPL-2](https://cran.r-project.org/web/licenses/GPL-2 "GNU General Public License, Version 2") | [GPL-3](https://cran.r-project.org/web/licenses/GPL-3 "GNU General Public License, Version 3")
 
 # Disclaimer{#disclaimer}
 **Program offered for Use without any Guarantees and Absolutely No Warranty.\

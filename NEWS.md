@@ -1,6 +1,6 @@
 # replicateBE 1.0.12.9000
 
-Published on Github 2019-12-22.
+Published on Github 2019-12-23.
 
 ## Issues
 
@@ -15,6 +15,7 @@ Published on Github 2019-12-22.
 
 ## Minor changes
 
+  * Adapted tests for `method.B()`. `rds29`and `rds30` instead of `rds18`: Satterthwaite DF `(..., option=1)` and Kenward-Roger `(..., option=3)`.
   * Added two small imbalanced and incomplete datasets: `rds29` (TRTR|TRTR), `rds30` (TRR|RTR|RRT). Requested by a reviewer of the manuscript.
 
 # replicateBE 1.0.12
