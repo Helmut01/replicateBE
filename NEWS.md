@@ -1,10 +1,10 @@
 # replicateBE 1.0.12.9000
 
-Published on Github 2019-12-24.
+Published on Github 2019-12-25.
 
 ## Bug fixes
 
-  * Use `suppressMessages(as.data.frame(read_excel(..., col_names = FALSE)))` in `get.data()`. Since the file may contain a header, we need `col_names = FALSE` and construct the names later. Results were correct but the message an annoyance.
+  * Use `as.data.frame(read_excel(..., col_names = FALSE, .name_repair = "minimal")))` in `get.data()` (THX to MT). Since the file may contain a header, we need `col_names = FALSE` and construct the names later. Results were correct but the message an annoyance.
 
 ## Minor changes
 
