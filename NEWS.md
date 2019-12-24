@@ -1,17 +1,10 @@
 # replicateBE 1.0.12.9000
 
-Published on Github 2019-12-23.
+Published on Github 2019-12-24.
 
-## Issues
+## Bug fixes
 
-  * Importing from an external file throws  
-    `New names:`  
-    `* `` -> ...1`  
-    `* `` -> ...2`  
-    `* `` -> ...3`  
-    `* `` -> ...4`  
-    `* `` -> ...5`  
-    Results are correct but this output in the console is an annoyance.
+  * Use `suppressMessages(as.data.frame(read_excel(..., col_names = FALSE)))` in `get.data()`. Since the file may contain a header, we need `col_names = FALSE` and construct the names later. Results were correct but the message an annoyance.
 
 ## Minor changes
 

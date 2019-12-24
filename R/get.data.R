@@ -79,15 +79,16 @@ get.data <- function(path.in, path.out, file, set = "",
     }
     # Read the entire content
     if (ext %in% ext.xls) { # read from Excel to the data frame
-      datawithdescr <- as.data.frame(read_excel(path=full.name, sheet=set,
+      datawithdescr <- suppressMessages(
+                         as.data.frame(read_excel(path=full.name, sheet=set,
                                                 na=c("NA", "ND", ".", "", "Missing"),
-                                                skip=0, col_names=FALSE))
+                                                skip=0, col_names=FALSE)))
     } else {
       datawithdescr <- read.csv(file=full.name, sep=sep, dec=dec, quote="", header=FALSE,
                                 strip.white=TRUE, na.strings=c("NA", "ND", ".", "", "Missing"),
                                 stringsAsFactors=FALSE)
     }
-    namesvector = c("subject", "period", "sequence", "treatment")
+    namesvector <- c("subject", "period", "sequence", "treatment")
     # Looking for a row with namesvector, summing all its members and
     # if all are there, mark as TRUE
     Nnamesdf <- c(t(apply(datawithdescr, 1, function(row, table) {
