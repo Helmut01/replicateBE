@@ -57,7 +57,7 @@ Published on Github 2019-07-24.
 
 ## Issues
 
-  * Seemingly the LaTeX-Installation on CRAN is corrupt (THX to Duncan Murdoch on r-package-devel). Either the file `hyperref.sty` is corrupt or missing (local rendering works on Windows and Linux). Therefore, URLs in references are converted to truncated (*i.e.*, wrong) URLs in footnotes in the PDF-manual. Notified Uwe Ligges.
+  * Seemingly the LaTeX-Installation on CRAN is corrupt (THX to Duncan Murdoch on r-package-devel). Either the file `hyperref.sty` is corrupt or missing (local rendering works on Windows and Linux). Therefore, on CRAN in the PDF-manual URLs in references are converted to truncated (*i.e.*, wrong) URLs in footnotes. Notified Uwe Ligges.
 
 ## Bug fixes
 
@@ -98,7 +98,7 @@ Published on Github 2019-07-20.
   * Kept column `logPK` only in `rds01` and `rds02` because given by the EMA. Removed in `rds06`, `rds12`, `rds14`, `rds18`, `rds19`, `rds20`, `rds21` (TRTR|RTRR) and `rds03`, `rds17` (TRT|RTR). Man-pages corrected. Reduces the footprint of the library by 5%.
   * If `path.in` and/or `path.out` not given or specified folder does not exist: Changed `cat()` to `warning()`.
   * Cosmetic changes in verbose output of `method.A()`.
-  * `suppressMessages()` no more needed (vignette and testthat). Issue orginating in `rlang` and `ggplot2` resolved. Both packages don't contain a NEWS file. THX Hadley for leaving us out in the dark!
+  * `suppressMessages()` no more needed (vignette and testthat). Issue orginating in `rlang` and `ggplot2` resolved. Both packages don't contain a `NEWS` file. THX Hadley for leaving us out in the dark!
   * `stringsAsFactors = FALSE` in res-list of all methods.
   * Removed superfluous `options(ow)` after models (THX to DL).
   * Updated man-page of `method.A()` and the vignette.
@@ -131,7 +131,7 @@ Published on GitHub 2019-06-12.
 
 ## Bug fixes
 
-  * LaTeX problems partly fixed (THX to Duncan Murdoch on r-help). Final solution: Text between `\list{}{}`. Note that this is discouraged acc. to the R-Extension Manual 2.1.1!
+  * LaTeX problems for the PDF-manual partly fixed (THX to Duncan Murdoch on r-help). Final solution: Text between `\list{}{}`. Note that this is *discouraged* acc. to the R-Extension Manual 2.1.1!
   * Updated WHO-reference in man-pages.
 
 ## Major changes
@@ -142,7 +142,7 @@ Published on GitHub 2019-06-12.
 ## Minor changes
 
   * Simplified and reordered sources of man-pages.
-  * Changed `{\eqn{foo\textsubscript}{bar}}` to simple `{\eqn{foo_{bar}}` in two man pages.
+  * Changed `{\eqn{foo\textsubscript}{bar}}` to the simple `{\eqn{foo_{bar}}` in two man pages.
   * `StartupWarnings` seemingly unavoidable until `rlang` will be corrected.
   * Small correction in text of box plot of `CV.calc()`. Studentized/standardized does not exactly agree with SAS (uses `type = 2` by default).
 
@@ -223,14 +223,14 @@ Published on GitHub 2017-11-25.
 
 ## Minor changes
 
-  * Rewrite of reading from file.
+  * Rewrite of reading from file. [MT]
     * The header is automatically identified (removed as an argument from the calling functions).
-    * Subject must no more be the first column. The word 'subject' is allowed in the header. [MT]
+    * Subject must no more be the first column. The word ‘subject’ is allowed in the header.
   * Argument `set` can be an empty string `""` to support reading from CSV- files. Only required for XLS (the name of the sheet) now.
   * Argument `fence` for box plots instead of the hard-coded 3 as a multiplier of IQR. The default 1.5 in most (all?) software packages detects *a lot* of outliers. 3 seems to be too liberal. The new default 2 is a compromise.
   * Changed TRTR|TRRT|RTTR|RTRT to TRTR|RTRT|TRRT|RTTR. More logical (stacking sequences of the other full replicates). Adapted scripts and man pages accordingly.
-  * Changed the lexical order of sequences (T before R) in conformity with package `PowerTOST` and Q&A DSII.
-  * Resolved [issue 1](https://github.com/Helmut01/replicateBE/issues/1): Introduced aliases in man pages for all data sets. Otherwise, warnings in CHECK about undocumented objects.
+  * Changed the lexical order of sequences (T before R) in conformity with package `PowerTOST` and the EMA’s Q&A dataset II.
+  * Resolved [issue 1](https://github.com/Helmut01/replicateBE/issues/1): Introduced aliases in man pages for all data sets. Otherwise, warnings in `CHECK` about undocumented objects.
   * Identify internal data sets based on their attribute. Uses now `info.data()` (THX to DL). Function `which.data()` removed.
   * Man pages reworked. [DL]
   * `method.A(adjust = TRUE)` assesses additionally the empiric type I error based on the
