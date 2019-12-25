@@ -1,6 +1,6 @@
 # replicateBE 1.0.12.9000
 
-Published on Github 2019-12-25.
+Published on Github 2019-12-25 (passed checks with R-release and R-devel on win-builder).
 
 ## Bug fixes
 
