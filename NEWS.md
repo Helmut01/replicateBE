@@ -38,7 +38,7 @@ Published on Github 2019-08-25, on CRAN.
 
 # replicateBE 1.0.10.9000
 
-Published on Github 2019-08-25
+Published on Github 2019-08-25.
 
 ## Bug fixes
 
@@ -51,7 +51,7 @@ Published on Github 2019-08-25
 
 # replicateBE 1.0.10
 
-Published on Github 2019-07-24
+Published on Github 2019-07-24.
 
   * On CRAN.
 
@@ -72,13 +72,13 @@ Published on Github 2019-07-24
 
 # replicateBE 1.0.9
 
-Published on Github 2019-07-22
+Published on Github 2019-07-22.
 
   * On CRAN.
 
 # replicateBE 1.0.8.9000
 
-Published on Github 2019-07-20
+Published on Github 2019-07-20.
 
 ## Bug fixes
 
@@ -105,7 +105,7 @@ Published on Github 2019-07-20
 
 # replicateBE 1.0.8
 
-Published on Github 2019-06-14
+Published on Github 2019-06-14.
 
 ## Bug fixes
 
@@ -113,7 +113,7 @@ Published on Github 2019-06-14
 
 # replicateBE 1.0.7
 
-Published on Github 2019-06-14
+Published on Github 2019-06-14.
 
 ## Bug fixes
 
@@ -121,13 +121,13 @@ Published on Github 2019-06-14
 
 # replicateBE 1.0.6
 
-Published on Github 2019-06-12
+Published on Github 2019-06-12.
 
   * Submitted to CRAN (passed checks at R-release and R-devel).
 
 # replicateBE 1.0.5.9003
 
-Published on GitHub 2019-06-12
+Published on GitHub 2019-06-12.
 
 ## Bug fixes
 
@@ -145,7 +145,7 @@ Published on GitHub 2019-06-12
 
 # replicateBE 1.0.5.9002
 
-Published on GitHub 2019-05-30
+Published on GitHub 2019-05-30.
 
 ## Issues
 
@@ -161,7 +161,7 @@ Published on GitHub 2019-05-30
 
 # replicateBE 1.0.5.9001
 
-Published on GitHub 2019-04-23
+Published on GitHub 2019-04-23.
 
 ## Minor changes
 
@@ -169,7 +169,7 @@ Published on GitHub 2019-04-23
 
 # replicateBE 1.0.5.9000
 
-Published on GitHub 2017-11-25
+Published on GitHub 2017-11-25.
 
 ## Issues
 
@@ -230,7 +230,7 @@ Published on GitHub 2017-11-25
 
 # replicateBE 1.0.5
 
-Released to collaborators 2017-06-24
+Released to collaborators 2017-06-24.
 
 ## Issues
 
@@ -243,7 +243,7 @@ Released to collaborators 2017-06-24
 
 # replicateBE 1.0.4
 
-Released to collaborators 2017-06-23
+Released to collaborators 2017-06-23.
 
 ## Issues
 
@@ -266,7 +266,7 @@ Released to collaborators 2017-06-23
   * Removed `CV.calc` from `NAMESPACE`. Man-page not needed any more. THX to DL!
   * Replaced `subset()` in `get.data()` and `CV.calc()` by direct assignment. No need for the hacks any more.
   * Removed DS.xls and adapted man-examples accordingly. CRAN policy: Data sets should not be larger than 1 MB. BTW, why is the zip so much larger than the tarball? Before removing DS.xls their sizes were similar.
-  * F.i. data(ref02) followed by `print(ABE(details=T, print=F, data=data))` works. Problems: The descriptive header (variable `descr`) doesn't exist in the internal data set as well as its name. Hence, the same with the default `print=TRUE` in all functions gives an error. Stupid: The data set must be chosen outside of the function call. `foo(data = data(ref02))` gives an error.
+  * F.i. `data(ref02)` followed by `print(ABE(details = TRUE, print = FALSE, data = data))` works. Problems: The descriptive header (variable `descr`) doesn’t exist in the internal data set as well as its name. Hence, the same with the default `print = TRUE` in all functions gives an error. Stupid: The data set must be chosen outside of the function call. `foo(data = data(ref02))` gives an error.
   * Added argument `data = NULL` (default `NULL`) to top-level functions.
   * `method.B()`: Changed `print(anova.lm(modB))` to `print(anova(modB))`. [DL]
   * Modified imports in `NAMESPACE`. [DL]
@@ -274,7 +274,7 @@ Released to collaborators 2017-06-23
 
 # replicateBE 1.0.3
 
-Released to collaborators and beta-testers 2016-06-19
+Released to collaborators and beta-testers 2016-06-19.
 
 ## Major changes
 
@@ -288,7 +288,7 @@ Released to collaborators and beta-testers 2016-06-19
 
 # replicateBE 1.0.2
 
-Released to collaborators and beta-tester Mahmoud Teaima 2016-06-19
+Released to collaborators and beta-tester Mahmoud Teaima 2016-06-19.
 
 ## Minor changes
 
@@ -297,7 +297,7 @@ Released to collaborators and beta-tester Mahmoud Teaima 2016-06-19
 
 # replicateBE 1.0.1
 
-Released to collaborators and beta-tester Mahmoud Teaima 2016-06-18
+Released to collaborators and beta-tester Mahmoud Teaima 2016-06-18.
 
 ## Minor changes
 
@@ -309,7 +309,7 @@ Released to collaborators and beta-tester Mahmoud Teaima 2016-06-18
 
 # replicateBE 1.0.0
 
-Released to collaborators and beta-tester Mahmoud Teaima 2016-06-16
+Released to collaborators and beta-tester Mahmoud Teaima 2016-06-16.
 
 ## Major changes
 
@@ -329,7 +329,7 @@ Released to collaborators and beta-tester Mahmoud Teaima 2016-06-16
 
 # replicateBE 0.95
 
-Released to collaborators 2016-06-11
+Released to collaborators 2016-06-11.
 
 ## Bug fixes
 
@@ -344,7 +344,7 @@ Released to collaborators 2016-06-11
 
 # replicateBE 0.94
 
-Released to collaborators and beta-tester Mahmoud Teaima 2016-06-01
+Released to collaborators and beta-tester Mahmoud Teaima 2016-06-01.
 
 ## Minor changes
 
@@ -355,7 +355,7 @@ Released to collaborators and beta-tester Mahmoud Teaima 2016-06-01
 
 # replicateBE 0.93
 
-Released to collaborators 2016-12-16
+Released to collaborators 2016-12-16.
 
 ## Minor changes
 
@@ -370,7 +370,7 @@ Released to collaborators 2016-12-16
 
 # replicateBE 0.92
 
-Released to collaborators 2016-12-14
+Released to collaborators 2016-12-14.
 
 ## Bug fixes
 
@@ -382,7 +382,7 @@ Released to collaborators 2016-12-14
 
 # replicateBE 0.91
 
-Released to collaborators 2016-12-14
+Released to collaborators 2016-12-14.
 
 ## Minor changes
 
@@ -391,16 +391,16 @@ Released to collaborators 2016-12-14
 
 # replicateBE 0.90
 
-Released to collaborators 2016-12-14
+Released to collaborators 2016-12-14.
 
 ## Minor changes
 
-  * Removed `lmer`/`lmerTest` (was called by `option=1` in previous versions), since Satterthwaite’s DF are not compliant with the Q&A document.
-  * Added DF of the treatment difference to the output.
+  * Removed `lmer`/`lmerTest` (was called by `option = 1` in previous versions), since Satterthwaite’s DF are not compliant with the Q&A document (the SAS-code uses implicitely `DDFM=CONTAIN`).
+  * Added `DF` of the treatment difference to the output.
 
 # replicateBE 0.83
 
-Released to collaborators 2016-12-11
+Released to collaborators 2016-12-11.
 
 ## Major changes
 
@@ -410,17 +410,17 @@ Released to collaborators 2016-12-11
 
 # replicateBE 0.82
 
-Released to collaborators 2016-12-10
+Released to collaborators 2016-12-10.
 
 ## Bug fixes
 
-  * Added `na.action=na.omit` to `lme()` since its default (`na.fail`) stopped the model.
+  * Added `na.action = na.omit` to `lme()` since its default (`na.fail`) stopped the model.
 
 ## Major changes
 
-  * Changed the default in `method.B()` from `option = 1` to `option = 2`. No DDFM applied. `lme4`/`lmerTest` (`option = 1`) - like Phoenix by default - uses Satterthwaite’s DF.
+  * Changed the default in `method.B()` from `option = 1` to `option = 2`. No DDFM applied. `lme4`/`lmerTest` (`option = 1`) - like Phoenix WinNonlin by default - uses Satterthwaite’s DF.
   * Input checking:
-    * Converts variable names (except `PK` and `logPK`) to *lower* case. Stops if variables are not coded as `subject`, `period`, `sequence`, and `treatment`.
+    * Converts variable names (except `PK` and `logPK`) to lower case. Stops if variables are not coded as `subject`, `period`, `sequence`, and `treatment`.
     * Stops if treatments are not coded as `R` and `T`.
     * Stops if the number of sequences and/or periods does not match the specified design.
 
@@ -430,7 +430,7 @@ Released to collaborators 2016-12-10
 
 # replicateBE 0.81
 
-Released to collaborators 2016-12-09
+Released to collaborators 2016-12-09.
 
 ## Bug fixes
 
@@ -442,7 +442,7 @@ Released to collaborators 2016-12-09
 
 # replicateBE 0.8
 
-Released to collaborators 2016-12-09
+Released to collaborators 2016-12-09.
 
 ## Bug fixes
 
@@ -456,7 +456,7 @@ Released to collaborators 2016-12-09
 
 # replicateBE 0.7
 
-Released to collaborators and beta-tester Jiri Hofmann 2016-12-07
+Released to collaborators and beta-tester Jiři Hofmann 2016-12-07.
 
 ## Bug fixes
 
@@ -465,23 +465,23 @@ Released to collaborators and beta-tester Jiri Hofmann 2016-12-07
 
 # replicateBE 0.6
 
-Released to collaborators 2016-12-02
+Released to collaborators 2016-12-02.
 
 ## Major changes
 
-  * `sequence+subject%in%sequence+period according` to the Q&A and the setup in SAS and Phoenix. Note that the nested structure is superfluous. The more simple model `subject+period` gives exactly the same residual error!
+  * `sequence+subject%in%sequence+period according` to the EMA’s Q&A (setup in SAS) and the templates of Phoenix WinNonlin. Note that for unique coding of subjects the nested structure is superfluous / the model overspecified . The more simple model `subject+period` gives exactly the same residual error.
 
 # replicateBE 0.5
 
-Released to collaborators 2016-11-28
+Released to collaborators 2016-11-28.
 
 ## Major changes
 
-  * Added import format XLS(X). Requires package `readxl`. Cave: If the sheet(s) contains a commentary header, in the argument `skip` the number of rows *not* to be used must be given.
+  * Added import format xls(x). Requires package `readxl`. Cave: If the sheet(s) contains a commentary header, in the argument `skip` the number of rows *not* to be used must be given.
 
 # replicateBE 0.4
 
-Released to collaborators 2016-11-27
+Released to collaborators 2016-11-27.
 
 ## Major changes
 
@@ -493,7 +493,7 @@ Released to collaborators 2016-11-27
 
 # replicateBE 0.3
 
-Released to collaborators 2016-11-26
+Released to collaborators 2016-11-26.
 
 ## Bug fixes
 
@@ -506,33 +506,33 @@ Released to collaborators 2016-11-26
 
 # replicateBE 0.2
 
-Released to collaborators 2016-11-24
+Released to collaborators 2016-11-24.
 
 ## Major changes
 
-  * Use package `PowerTOST` for assessment of the Type I Error and (optional) adjustment of alpha (only `Method A`). New argument `adjust` (default `FALSE`). Results only to the console. Changed hard-coded parts to the respective functions of `PowerTOST`.
-  * New argument `logtrans` (default `TRUE`). If `TRUE`, the raw data (`PK`) are internally log-transformed. If `FALSE` the already log-transformed data (`logPK`) will be used.
+  * Use package `PowerTOST` for assessment of the Type I Error and (optional) iteratively adjustment of α (only `Method A`). New argument `adjust` (default `FALSE`). Results only to the console. Changed hard-coded parts to the respective functions of `PowerTOST`.
+  * New argument `logtrans` (default `TRUE`). If `TRUE`, the raw data (`PK`) are internally log-transformed. If `FALSE` the already log-transformed data (`logPK`) is used.
 
 ## Minor changes
 
-  * Data can be provided *without* the column logPK. If erroneously a call is made with `logtrans = FALSE`, the code switches to internal log-transformation (as if `logtrans=TRUE` would have been called) and throws a warning.
+  * Data can be provided *without* the column logPK. If erroneously a call is made with `logtrans = FALSE`, the code switches to internal log-transformation (as if `logtrans = TRUE` would have been called) and throws a warning.
   * Added log half-width to the data.frame `res`.
 
 # replicateBE 0.1
 
-Released to collaborators 2016-11-23
+Released to collaborators 2016-11-23.
 
 ## Major changes
 
-  * New argument `option` (`1` or `2`) in `method.B()`. `1` (default) evaluates by `lmerTest' and `2` by `nlme`.
-  * New arguments `print` (default `TRUE`) and `details` (default `FALSE`).
-    `  x <- foo(..., print = FALSE, details = TRUE)` provides a data.frame of results with 7 significant digits.
+  * `method.B()` has a new argument `option`: `1` (default) evaluates by `lmerTest()` and `2` by `nlme()`.
+  * New arguments `print` (default `TRUE`) and `details` (default `FALSE`).  
+    `foo(..., print = FALSE, details = TRUE)` returns a data.frame of results in full precision.
   * Using `intervals()` instead of a hard-coded confidence interval [DL].
   * Added coding for Method B by `nlme`. [MT]
-  * All changes done by [HS] if not stated otherwise.
+  * Unless stated otherwise all changes by [HS].
 
 # replicateBE 0.0
 
-Released to collaborators 2016-11-22
+Released to collaborators 2016-11-22.
 
   * New [HS].
