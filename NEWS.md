@@ -51,9 +51,7 @@ Published on Github 2019-08-25.
 
 # replicateBE 1.0.10
 
-Published on Github 2019-07-24.
-
-  * On CRAN.
+Published on Github 2019-07-24, on CRAN.
 
 ## Issues
 
@@ -72,9 +70,7 @@ Published on Github 2019-07-24.
 
 # replicateBE 1.0.9
 
-Published on Github 2019-07-22.
-
-  * On CRAN.
+Published on Github 2019-07-22, on CRAN.
 
 # replicateBE 1.0.8.9000
 
@@ -105,15 +101,15 @@ Published on Github 2019-07-20.
 
 # replicateBE 1.0.8
 
-Published on Github 2019-06-14.
+Published on Github 2019-06-14, on CRAN.
 
 ## Bug fixes
 
-  * THX to Uwe Ligges @CRAN. Resubmitted to CRAN.
+  * THX to Uwe Ligges @CRAN.
 
 # replicateBE 1.0.7
 
-Published on Github 2019-06-14.
+Published on Github 2019-06-14, on CRAN.
 
 ## Bug fixes
 
