@@ -83,8 +83,9 @@ get.data <- function(path.in, path.out, file, set = "",
                                                 na=c("NA", "ND", ".", "", "Missing"),
                                                 skip=0, col_names=FALSE, .name_repair="minimal"))
     } else {
-      datawithdescr <- read.csv(file=full.name, sep=sep, dec=dec, quote="", header=FALSE,
-                                strip.white=TRUE, na.strings=c("NA", "ND", ".", "", "Missing"),
+      datawithdescr <- read.csv(file=full.name, sep=sep, dec=dec, quote="'\"",
+                                header=FALSE, strip.white=TRUE,
+                                na.strings=c("NA", "ND", ".", "", "Missing"),
                                 stringsAsFactors=FALSE)
     }
     namesvector <- c("subject", "period", "sequence", "treatment")
@@ -120,10 +121,12 @@ get.data <- function(path.in, path.out, file, set = "",
     # Convert eventual mixed or upper case variable names to lower case
     facs  <- which(!names(data) %in% c("PK", "logPK")) # will be factors later
     names(data)[facs] <- tolower(names(data)[facs])
+    # if the file contains a first column named NA (imported row.name):
+    if (typeof(data[[1]]) == "integer") data <- data[, -1] # remove it
     # from demo(error.catching)
     tryCatch.W.E <- function(expr) {
       W <- NULL
-      w.handler <- function(w){ # warning handler
+      w.handler <- function(w) { # warning handler
         W <<- w
         invokeRestart("muffleWarning")
       }

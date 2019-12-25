@@ -8,6 +8,7 @@ Published on Github 2019-12-25.
 
 ## Minor changes
 
+  * Handle a case where a user exports one of the internal dataset as a CSV *with* row.names and quoted variables (*i.e.*, instead of `write.csv(rds01, 'rds01.csv', quote=FALSE, row.names=FALSE`) uses `write.csv(rds01, 'rds01.csv')`). Importing such a CSV-file was not possible so far.
   * Adapted tests for `method.B()`. `rds29`and `rds30` instead of `rds18`: Satterthwaite DF `(..., option=1)` and Kenward-Roger `(..., option=3)`.
   * Added two small imbalanced and incomplete datasets: `rds29` (TRTR|TRTR), `rds30` (TRR|RTR|RRT). Requested by a reviewer of the manuscript.
 
