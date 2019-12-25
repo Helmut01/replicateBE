@@ -208,7 +208,7 @@ Published on GitHub 2017-11-25.
   * Added dataset 27 for Balaam’s design (TR|RT|TT|RR) and dataset 28 (TTRR|RRTT); both simulated with homoscedasticy. The former only for completeness (poor power). The latter might be useful for steady state studies. Man-pages for both.
   * Balaam’s design implemented.
   * Compare variabilites according to the FDA’s [warfarin guidance](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf), *i.e.*, assess whether the upper confidence limit of σ<sub>wT</sub>/σ<sub>wR</sub> ≤2.5.
-  * Shows a 'graphical' presentation of the CI, PE, and BE-limits in the result file.
+  * Shows a ‘graphical’ presentation of the CI, PE, and BE-limits in the result file.
   * Added datasets:
     * 26 (TRTR|RTRT). One of the few where we have results for comparison (regrettably only three significant digits).
     * 25 (TRTR|RTRT) simulated with heteroscedasticy.
@@ -372,7 +372,7 @@ Released to collaborators and beta-tester Mahmoud Teaima 2016-12-16.
   * Result-file UTF-8 encoded (important for OSX; THX to Mahmoud).
   * Added license info and disclaimer (paranoia).
   * Added a statement if `nTR <12`. Suggested by MT.
-  * Added a statement about 'uncertain' CV~wR~ if `nRR <12` in one of the full replicate 3-period designs (acc. to the EMA’s [Q&A Rev. 12](https://bebac.at/downloads/WC500002963Jun2015.pdf)).
+  * Added a statement about ‘uncertain’ CV<sub>~wR</sub> if `nRR <12` in one of the full replicate 3-period designs (acc. to the EMA’s [Q&A Rev. 12](https://bebac.at/downloads/WC500002963Jun2015.pdf)).
   * Added argument `verbose` (default `FALSE`) to `method.A()`/`method.B()` to support detailed information without debugging.
   * Moved check for trailing `'/'` in the path-argument from `method.A()`/ `method.B()` to `get.data()`.
   * Restored the evaluation by `lmer`/`lmerTest` from v0.83 to support comparing the performance of packages. Wish of DL.
@@ -413,7 +413,7 @@ Released to collaborators 2016-12-11.
 
 ## Major changes
 
-  * Added function `complete()` to construct a data.frame of complete data based on the subjects and design. Called by `get.data()` to calculate the number of missing values independent whether the DS contains this information (NAs in 'PK') or not. Not vectorized yet.
+  * Added function `complete()` to construct a data.frame of complete data based on the subjects and design. Called by `get.data()` to calculate the number of missing values independent whether the DS contains this information (`NA` in `PK`) or not. Not vectorized yet.
   * New variable `Miss.seq`: Missings / sequence.
   * New variable `Miss.per`: Missings / period.
 
@@ -469,7 +469,7 @@ Released to collaborators and beta-tester Jiři Hofmann 2016-12-07.
 
 ## Bug fixes
 
-  * Calculation of `Nsub.seq`! DA12 (with N=77) gave 149 in both sequences.
+  * Calculation of `Nsub.seq` in DA12 (with N=77) falsely gave 149 in both sequences.
   * BE-assessment corrected (testing both `res$CI` and `res$GMR` instead of `unique()`.
 
 # replicateBE 0.6
@@ -519,8 +519,8 @@ Released to collaborators 2016-11-24.
 
 ## Major changes
 
-  * Use package `PowerTOST` for assessment of the Type I Error and (optional) iteratively adjustment of α (only `Method A`). New argument `adjust` (default `FALSE`). Results only to the console. Changed hard-coded parts to the respective functions of `PowerTOST`.
-  * New argument `logtrans` (default `TRUE`). If `TRUE`, the raw data (`PK`) are internally log-transformed. If `FALSE` the already log-transformed data (`logPK`) are used.
+  * Use package `PowerTOST` for assessment of the empiric type I error and (optionally) iteratively adjustment of α (only `Method A`). New argument `adjust` (default `FALSE`). Results only to the console. Changed hard-coded parts to the respective functions of `PowerTOST`.
+  * New argument `logtrans` (default `TRUE`). If `TRUE`, the raw data (column `PK`) are internally log-transformed. If `FALSE` the already log-transformed data (column `logPK`) are used.
 
 ## Minor changes
 
