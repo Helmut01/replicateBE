@@ -30,7 +30,7 @@ Published on Github 2019-10-03.
   * Replaced TOC-links in vignette by CSS-div (fixed background image).
   * Cosmetic fix. Treats the special case in verbose output of `CV.calc.R` when at least one *studentized* outlier is detected but no *standarized* outlier.
   * Badges in `README`.
-  * TOCs in `README.Rmd` and vignette. THX to Yihui Xie on r-help for the latter.
+  * TOCs in `README.Rmd` and vignette (THX to Yihui Xie on r-help for the latter).
 
 # replicateBE 1.0.11
 
@@ -225,7 +225,7 @@ Published on GitHub 2017-11-25.
 
   * Rewrite of reading from file. [MT]
     * The header is automatically identified (removed as an argument from the calling functions).
-    * Subject must no more be the first column. The word ‘subject’ is allowed in the header.
+    * The first column must no be more `subject` (any order is acceptable). Now the word ‘subject’ is allowed in the header.
   * Argument `set` can be an empty string `""` to support reading from CSV- files. Only required for XLS (the name of the sheet) now.
   * Argument `fence` for box plots instead of the hard-coded 3 as a multiplier of IQR. The default 1.5 in most (all?) software packages detects *a lot* of outliers. 3 seems to be too liberal. The new default 2 is a compromise.
   * Changed TRTR|TRRT|RTTR|RTRT to TRTR|RTRT|TRRT|RTTR. More logical (stacking sequences of the other full replicates). Adapted scripts and man pages accordingly.
