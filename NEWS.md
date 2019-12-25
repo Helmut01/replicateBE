@@ -4,13 +4,14 @@ Published on Github 2019-12-25.
 
 ## Bug fixes
 
-  * Use `as.data.frame(read_excel(..., col_names = FALSE, .name_repair = "minimal")))` in `get.data()` (THX to MT). Since the file may contain a header, we need `col_names = FALSE` and construct the names later. Results were correct but the message an annoyance.
+  * Resolved [issue 2](https://github.com/Helmut01/replicateBE/issues/2) raised by MT. Results were correct but the message an annoyance. Use `as.data.frame(read_excel(..., col_names = FALSE, .name_repair = "minimal"))` in `get.data()`. Since the file may contain a commentary header, we need `col_names = FALSE` and construct the names later (*i.e.*, the default `col_names = TRUE` is not possible).
 
 ## Minor changes
 
-  * Handle a case where a user exports one of the internal dataset as a CSV *with* row.names and quoted variables (*i.e.*, instead of `write.csv(rds01, 'rds01.csv', quote=FALSE, row.names=FALSE`) uses `write.csv(rds01, 'rds01.csv')`). Importing such a CSV-file was not possible so far.
-  * Adapted tests for `method.B()`. `rds29`and `rds30` instead of `rds18`: Satterthwaite DF `(..., option=1)` and Kenward-Roger `(..., option=3)`.
-  * Added two small imbalanced and incomplete datasets: `rds29` (TRTR|TRTR), `rds30` (TRR|RTR|RRT). Requested by a reviewer of the manuscript.
+  * Handles a case where a user exports one of the internal dataset as a CSV *with* row.names and quoted variables (*i.e.*, instead of `write.csv(rds01, 'rds01.csv', quote=FALSE, row.names=FALSE`) naïvely uses `write.csv(rds01, 'rds01.csv')`).  
+  Importing such a CSV-file was not possible so far. Resolved [issue 3](https://github.com/Helmut01/replicateBE/issues/3) raised by MT.
+  * Adapted tests for `method.B()`: `rds29` and `rds30` instead of `rds18`. Satterthwaite DF `(..., option = 1)` and Kenward-Roger `(..., option = 3)`.
+  * Added two small imbalanced and incomplete datasets: `rds29` (TRTR|TRTR, n=12), `rds30` (TRR|RTR|RRT, n=14). Requested by a reviewer of the manuscript.
 
 # replicateBE 1.0.12
 
@@ -27,7 +28,7 @@ Published on Github 2019-10-03.
 ## Minor changes
 
   * Replaced TOC-links in vignette by CSS-div (fixed background image).
-  * Cosmetic fix. Treats special case in verbose output of `CV.calc.R` when at least one studentized outlier is detected but no standarized outlier.
+  * Cosmetic fix. Treats the special case in verbose output of `CV.calc.R` when at least one *studentized* outlier is detected but no *standarized* outlier.
   * Badges in `README`.
   * TOCs in `README.Rmd` and vignette. THX to Yihui Xie on r-help for the latter.
 
@@ -45,7 +46,7 @@ Published on Github 2019-08-25
 
 ## Minor changes
 
-  * `print(..., , digits=7)` if `verbose=TRUE`. More significant digits not needed since in the result data.frame given in full precision anyway.
+  * `print(..., , digits = 7)` if `verbose = TRUE`. More significant digits not needed since given in the result data.frame in full precision anyway.
   * `README.Rmd` knitted to `README.md`.
 
 # replicateBE 1.0.10
@@ -56,7 +57,7 @@ Published on Github 2019-07-24
 
 ## Issues
 
-  * Seemingly the LaTeX-Installation on CRAN is corrupt (THX to Duncan Murdoch on r-package-devel). Either the file `hyperref.sty` is corrupt or missing (local rendering worked on Windows and Linux). Therefore, URLs in references are converted to truncated (*i.e.*, wrong) URLs in footnotes in the PDF-manual. Notified Uwe Ligges.
+  * Seemingly the LaTeX-Installation on CRAN is corrupt (THX to Duncan Murdoch on r-package-devel). Either the file `hyperref.sty` is corrupt or missing (local rendering works on Windows and Linux). Therefore, URLs in references are converted to truncated (*i.e.*, wrong) URLs in footnotes in the PDF-manual. Notified Uwe Ligges.
 
 ## Bug fixes
 
@@ -81,12 +82,13 @@ Published on Github 2019-07-20
 
 ## Bug fixes
 
-  * `importFrom(pbkrtest, getKR)` since on win-builder.r-project.org error `'pbkrtest package required for Kenward-Roger's method'` (not locally!)
-  * Forces `logtrans=TRUE` if a user asks for an internal dataset which does not have the column `logPK`.
+  * `importFrom(pbkrtest, getKR)` since error on win-builder.r-project.org  
+  `'pbkrtest package required for Kenward-Roger's method'` (not locally!)
+  * Forces `logtrans = TRUE` if a user asks for an internal dataset which does not have the column `logPK`.
 
 ## Major changes
 
-  * Added Kenward-Roger degrees of freedom to `method.B (..., option=3)`.
+  * Added Kenward-Roger degrees of freedom to `method.B (..., option = 3)`.
 
 ## Minor changes
 
@@ -96,8 +98,8 @@ Published on Github 2019-07-20
   * Kept column `logPK` only in `rds01` and `rds02` because given by the EMA. Removed in `rds06`, `rds12`, `rds14`, `rds18`, `rds19`, `rds20`, `rds21` (TRTR|RTRR) and `rds03`, `rds17` (TRT|RTR). Man-pages corrected. Reduces the footprint of the library by 5%.
   * If `path.in` and/or `path.out` not given or specified folder does not exist: Changed `cat()` to `warning()`.
   * Cosmetic changes in verbose output of `method.A()`.
-  * `suppressMessages()` no more needed (vignette and testthat). Issue orginating in `rlang` and `ggplot2` resolved. Both packages don't contain a NEWS file. THX Hadley!
-  * `stringsAsFactors=FALSE` in res-list of all methods.
+  * `suppressMessages()` no more needed (vignette and testthat). Issue orginating in `rlang` and `ggplot2` resolved. Both packages don't contain a NEWS file. THX Hadley for leaving us out in the dark!
+  * `stringsAsFactors = FALSE` in res-list of all methods.
   * Removed superfluous `options(ow)` after models (THX to DL).
   * Updated man-page of `method.A()` and the vignette.
 
@@ -137,7 +139,7 @@ Published on GitHub 2019-06-12
   * Updated WHO-reference.
   * Changed `{\eqn{foo\textsubscript}{bar}}` to simple `{\eqn{foo_{bar}}` in two man pages.
   * `StartupWarnings` seemingly unavoidable until `rlang` will be corrected.
-  * Small correction in text of box plot of `CV.calc()`. Studentized/standardized does not exactly agree with SAS (uses `type=2` by default).
+  * Small correction in text of box plot of `CV.calc()`. Studentized/standardized does not exactly agree with SAS (uses `type = 2` by default).
   * First version of vignette.
   * Added `\tests` for `testthat()`.
 
@@ -173,33 +175,31 @@ Published on GitHub 2017-11-25
 
   * CHECK throws a WARNING:
     
-    `checking for unstated dependencies in examples ... WARNING`
-    `Warning in parse(file = files, n = -1L) :`
-    `  invalid input found on input connection 'replicateBE-Ex.R'`
-    
+    `checking for unstated dependencies in examples ... WARNING`  
+    `Warning in parse(file = files, n = -1L) :`  
+    `  invalid input found on input connection 'replicateBE-Ex.R'`  
     `parse()` is used in the man-pages of `method.B` and `data`. Neither
-    `\dontrun{}`, commenting the code out, or completelly removing the
-    examples resolves the issue.
+    `\dontrun{}`, commenting the code out, or completelly removing the examples resolves the issue.
 
 ## Bug fixes
 
   * Import from XLS with a header.
   * `get.data()` CSV-file: Issue with characters in the header which were `== sep` resolved. [MT]
   * `get.data()` Sub/seq in data.frame was empty for complete sequences.
-  * `info.env()` gave 'path.out' as 'path.in'.
+  * `info.env()` returned `path.out` as `path.in`.
   * Mixed model was given in the result file of `method.A()`.
   * Adapt the No. of subjects/sequence and No. of missings/sequence to the reordered sequences in `get.data()`. Calculation was correct but output in result-files wrong.
   * nTT was NA in `get.data()` for TRTR|RTRT. Now design (full/replicate) is obtained from `info.design()`.
-  * In `CV.calc(..., ole=TRUE)` if an outlier is detected not in both methods (studentized, standardized).
-  * `method.B(option=1)` output to file.
-  * In package `PowerTOST` T is always first. The order is only relevant in `method.A(..., adjust=TRUE)` and an unbalanced RTR|TRT-design. In this case the order of subjects/sequence is reversed in calling
-    `scABEL(...,  n=rev(ret$Sub.Seq))`. THX to DL for discovering this bug.
+  * In `CV.calc(..., ole = TRUE)` if an outlier is detected not in both methods (studentized, standardized).
+  * `method.B(option = 1) ` output to file.
+  * In package `PowerTOST` T is always first. The order is only relevant in `method.A(..., adjust = TRUE)` and an unbalanced RTR|TRT-design. In this case the order of subjects/sequence is reversed in calling
+    `scABEL(...,  n = rev(ret$Sub.Seq))`. THX to DL for discovering this bug.
 
 ## Major changes
 
   * Added data set 27 for Balaam’s design (TR|RT|TT|RR) and data set 28 (TTRR|RRTT); both simulated with homoscedasticy. The former only for completeness (poor power). The latter might be useful for steady state studies. Man-pages for both.
   * Balaam’s design implemented.
-  * Compare variabilites according to the FDA’s warfarin guidance.
+  * Compare variabilites according to the FDA’s [warfarin guidance](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf).
   * Added data set 26 (TRTR|RTRT). One of the few where we have results for comparison.
   * Added data set 25 (TRTR|RTRT) simulated with heteroscedasticy.
   * Shows a 'graphical' presentation of the CI, PE, and BE-limits in the result file.
@@ -221,10 +221,10 @@ Published on GitHub 2017-11-25
   * Argument `fence` for box plots instead of the hard-coded 3 as a multiplier of IQR. The default 1.5 in most (all?) software packages detects *a lot* of outliers. 3 seems to be liberal. 2 is a compromise.
   * Changed TRTR|TRRT|RTTR|RTRT to TRTR|RTRT|TRRT|RTTR. More logical (stacking sequences of the other full replicates). Adapted scripts and man pages accordingly.
   * Changed the lexical order of sequences (T before R) in conformity with package `PowerTOST` and Q&A DSII.
-  * Introduced aliases in man pages for all data sets. Otherwise, warnings in CHECK about undocumented objects.
+  * Resolved [issue 1](https://github.com/Helmut01/replicateBE/issues/1): Introduced aliases in man pages for all data sets. Otherwise, warnings in CHECK about undocumented objects.
   * Identify internal data sets based on their attribute. Uses now `info.data().` THX to DL. Function `which.data()` removed.
   * Man pages reworked. [DL]
-  * `method.A(adjust=TRUE)` assesses additionally the TIE based on the
+  * `method.A(adjust = TRUE)` assesses additionally the TIE based on the
     recalculated `CVwR` (if applicable).
   * Changed TRR.RTT to RTT.TRR for consistancy (R always first).
 
@@ -235,7 +235,7 @@ Released to collaborators 2017-06-24
 ## Issues
 
   * CSV-files: Characters in the header which are equal to `sep` are lost.
-  * `method.B(option=1)` can't print to file with internal data.
+  * `method.B(option = 1)` can't print to file with internal data.
 
 ## Minor changes
 
@@ -247,27 +247,27 @@ Released to collaborators 2017-06-23
 
 ## Issues
 
-  * A user calls `foo(path.in=path.in, ...)` but the variable `path.in` is is not defined before. Gives `object 'path.in' not found in CV.calc()`.
+  * A user calls `foo(path.in = path.in, ...)` but the variable `path.in` is is not defined before. Throws `object 'path.in' not found in CV.calc()`.
 
 ## Bug fixes
 
-  * If 'descr' was read from an external file and the code stopped for data not matching the id in `which.data()`.
-  * Warning in man-pages: Header must not contain the word 'subject'.
+  * If `'descr'` was read from an external file and the code stopped for data not matching the id in `which.data()`.
+  * Warning in man-pages: Header must not contain the word `'subject'`.
   * If the specified file is not found in `path.in` the file browser opens.
   * If `verbose=TRUE` the anova was not shown in `ABE()`.
 
 ## Major changes
 
-  * New function `which.data()`: returns data.frame 'id' of checksum (MD5), file "DS", set ("01", ... "XX"), ref ("refXX"), descr. Used in `get.data()` to obtain required variables of the currently attached internal data set based on its MD5-checksum.
+  * New function `which.data()`: returns data.frame `'id'` of checksum (MD5), file "DS", set ("01", ... "XX"), ref ("refXX"), descr. Used in `get.data()` to obtain required variables of the currently attached internal data set based on its MD5-checksum.
   * Changed the default variable separator from `";"` to `","` (more common). Suggested by DL.
 
 ## Minor changes  
   
-  * Removed `CV.calc` from `NAMESPACE`. Man-page not needed any more. THX DL!
+  * Removed `CV.calc` from `NAMESPACE`. Man-page not needed any more. THX to DL!
   * Replaced `subset()` in `get.data()` and `CV.calc()` by direct assignment. No need for the hacks any more.
   * Removed DS.xls and adapted man-examples accordingly. CRAN policy: Data sets should not be larger than 1 MB. BTW, why is the zip so much larger than the tarball? Before removing DS.xls their sizes were similar.
-  * F.i. data(ref02) followed by `print(ABE(details=T, print=F, data=data))` works. Problems: The descriptive header (variable `descr`) doesn't exist in the internal data set as well as its name. Hence, the same with the default `print=TRUE` in all functions gives an error. Stupid: The data set must be chosen outside of the function call. `foo(data=data(ref02))` gives an error.
-  * Added argument `data=NULL` (default `NULL`) to top-level functions.
+  * F.i. data(ref02) followed by `print(ABE(details=T, print=F, data=data))` works. Problems: The descriptive header (variable `descr`) doesn't exist in the internal data set as well as its name. Hence, the same with the default `print=TRUE` in all functions gives an error. Stupid: The data set must be chosen outside of the function call. `foo(data = data(ref02))` gives an error.
+  * Added argument `data = NULL` (default `NULL`) to top-level functions.
   * `method.B()`: Changed `print(anova.lm(modB))` to `print(anova(modB))`. [DL]
   * Modified imports in `NAMESPACE`. [DL]
   * Working on `\data` and the documentation. All data sets observe the pattern `refXX.rda` in order to come last in the man-page.
@@ -304,7 +304,7 @@ Released to collaborators and beta-tester Mahmoud Teaima 2016-06-18
   * Argument `ask` (default `FALSE`). If `TRUE` and a result file already exists, the user is asked whether it should be overwritten.
   * Removed `lme4` from listed packages in `env.inf()`. `lmer`, `summary`, and `anova` obtained from `lmerTest`.
   * Changed in `get.data()` name of file from `"_results_"` to `"_ABEL_"`.
-  * Changed `get.data()`: `path.out` only required if `print=TRUE`. Default `path.out` in `method.A()` and `method.B()` set to `NULL`.
+  * Changed `get.data()`: `path.out` only required if `print = TRUE`. Default `path.out` in `method.A()` and `method.B()` set to `NULL`.
   * Improved man-pages. Added an example comparing Method B with Method A.
 
 # replicateBE 1.0.0
@@ -317,15 +317,15 @@ Released to collaborators and beta-tester Mahmoud Teaima 2016-06-16
 
 ## Minor changes
 
-  * Simplified output in `method.A()` if `adjust=TRUE`.
+  * Simplified output in `method.A()` if `adjust = TRUE`.
   * Housekeeping routine removed.
-  * The former variable `path` (used for in- /and/ output) substituted by variables `path.in` and `path.out`.
+  * The former variable `path` (used for in- *and* output) substituted by variables `path.in` and `path.out`.
   * Functions `env.info()`, `get.data()`, `CV.calc()`, `method.A()`, `method.B()` stand-alone in order to support package-building.
   * `method.A()`: Changed  
      `  lm(foo ~ subject + period + treatment, data)`  
      to the subject decomposition acc. to the Q&A document  
      `  lm(foo ~ sequence + subject%in%sequence + period + treatment, data)`  
-     Note: PE, MSE, DF are identical to the simple model, but less confusing if the ANOVA is shown (`verbose=TRUE`). [suggested by Mahmoud Teaima]
+     Note: PE, MSE, DF are identical to the simple model, but less confusing if the ANOVA is shown (`verbose = TRUE`). [suggested by Mahmoud Teaima]
 
 # replicateBE 0.95
 
@@ -348,10 +348,10 @@ Released to collaborators and beta-tester Mahmoud Teaima 2016-06-01
 
 ## Minor changes
 
-  * Outlier analysis to console if `verbose=TRUE`.
+  * Outlier analysis to console if `verbose = TRUE`.
   * Moved `DF` and `alpha` up after the number of subjects. More logical to me.
   * If outlier(s) detected, `CVwR` is recalculated and BE is *additionally* assessed based on the new limits.
-  * Added optional outlier assessment (`ola=TRUE`) for the reference. Defaults to `FALSE`. Studentized and standardized residuals are calculated and shown in box plots. Note: Only standardized (a.k.a internally studentized) residual are available in Phoenix WinNonlin.
+  * Added optional outlier assessment (`ola = TRUE`) for the reference. Defaults to `FALSE`. Studentized and standardized residuals are calculated and shown in box plots. Note: Only standardized (a.k.a internally studentized) residual are available in Phoenix WinNonlin.
 
 # replicateBE 0.93
 
@@ -374,7 +374,7 @@ Released to collaborators 2016-12-14
 
 ## Bug fixes
 
-  * Wrong `Miss.per` for data sets with `NA='.'` fixed. [MT]
+  * Wrong `Miss.per` for data sets with `NA = '.'` fixed. [MT]
 
 ## Minor changes
 
@@ -418,7 +418,7 @@ Released to collaborators 2016-12-10
 
 ## Major changes
 
-  * Changed the default in `method.B()` from `option=1` to `option=2`. No DDFM applied. `lme4`/`lmerTest` (`option=1`) - like Phoenix by default - uses Satterthwaite’s DF.
+  * Changed the default in `method.B()` from `option = 1` to `option = 2`. No DDFM applied. `lme4`/`lmerTest` (`option = 1`) - like Phoenix by default - uses Satterthwaite’s DF.
   * Input checking:
     * Converts variable names (except `PK` and `logPK`) to *lower* case. Stops if variables are not coded as `subject`, `period`, `sequence`, and `treatment`.
     * Stops if treatments are not coded as `R` and `T`.
@@ -469,7 +469,7 @@ Released to collaborators 2016-12-02
 
 ## Major changes
 
-  * `sequence+subject%in%sequence+period according` to the Q&A and the setup in SAS and Phoenix. Note that nested subjects are superfluous. The more simple model `subject+period` gives exactly the same residual error!
+  * `sequence+subject%in%sequence+period according` to the Q&A and the setup in SAS and Phoenix. Note that the nested structure is superfluous. The more simple model `subject+period` gives exactly the same residual error!
 
 # replicateBE 0.5
 
@@ -502,7 +502,7 @@ Released to collaborators 2016-11-26
 ## Minor changes
 
   * Added number of subjects/sequence and check for balance (not vectorized yet).
-  * Results of iteratively adjusted alpha printed. Throws a warning if `adjust=TRUE` for an unsupported design.
+  * Results of iteratively adjusted alpha printed. Throws a warning if `adjust = TRUE` for an unsupported design.
 
 # replicateBE 0.2
 
@@ -515,7 +515,7 @@ Released to collaborators 2016-11-24
 
 ## Minor changes
 
-  * Data can be provided *without* the column logPK. If erroneously a call is made with `logtrans=FALSE`, the code switches to internal log-transformation (as if `logtrans=TRUE` would have been called) and throws a warning.
+  * Data can be provided *without* the column logPK. If erroneously a call is made with `logtrans = FALSE`, the code switches to internal log-transformation (as if `logtrans=TRUE` would have been called) and throws a warning.
   * Added log half-width to the data.frame `res`.
 
 # replicateBE 0.1
@@ -526,7 +526,7 @@ Released to collaborators 2016-11-23
 
   * New argument `option` (`1` or `2`) in `method.B()`. `1` (default) evaluates by `lmerTest' and `2` by `nlme`.
   * New arguments `print` (default `TRUE`) and `details` (default `FALSE`).
-    `  x <- foo(..., print=FALSE, details=TRUE)` provides a data.frame of results with 7 significant digits.
+    `  x <- foo(..., print = FALSE, details = TRUE)` provides a data.frame of results with 7 significant digits.
   * Using `intervals()` instead of a hard-coded confidence interval [DL].
   * Added coding for Method B by `nlme`. [MT]
   * All changes done by [HS] if not stated otherwise.
