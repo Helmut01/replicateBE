@@ -207,7 +207,7 @@ Published on GitHub 2017-11-25.
 
   * Added dataset 27 for Balaam’s design (TR|RT|TT|RR) and dataset 28 (TTRR|RRTT); both simulated with homoscedasticy. The former only for completeness (poor power). The latter might be useful for steady state studies. Man-pages for both.
   * Balaam’s design implemented.
-  * Compare variabilites according to the FDA’s [warfarin guidance](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf), *i.e.*, assess whether the upper confidence limit of σ~wT~/σ~wR~ ≤2.5.
+  * Compare variabilites according to the FDA’s [warfarin guidance](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf), *i.e.*, assess whether the upper confidence limit of σ<sub>wT</sub>/σ<sub>wR</sub> ≤2.5.
   * Shows a 'graphical' presentation of the CI, PE, and BE-limits in the result file.
   * Added datasets:
     * 26 (TRTR|RTRT). One of the few where we have results for comparison (regrettably only three significant digits).
@@ -215,8 +215,8 @@ Published on GitHub 2017-11-25.
     * 24 (TRRT|RTTR|TTRR|RRTT) from the FDA. Subject 16 completely missing. Adapted `get.data()` for such a case.
     * 23 as an example of a 4-period 4-sequence design (though not recommended by the FDA).
     * 22 for the extra-reference design (RTR|TRR).
-  * Calculate s~wT~/s~wR~ (might be useful for the WHO’s scaling of AUC).
-  * `ABE()` has new arguments `theta1` and `theta2` (defaults `0.80` and `1.25`). Useful for NTIDs (EMA) or wider limits of C~max~ (GCC).
+  * Calculate s<sub>wT</sub>/s<sub>wR</sub> (might be useful for the WHO’s scaling of AUC).
+  * `ABE()` has new arguments `theta1` and `theta2` (defaults `0.80` and `1.25`). Useful for NTIDs (EMA) or wider limits of C<sub>max</sub> (GCC).
   * New function `info.design()`. Sorts sequences according to the preferred order (T first) and throws a message if the design is untested.
   * Changed the names of result files reflecting the Method used rather the internals (`lme`/`lmer`).
   * `Lazy data: true` in `DESCRIPTION` allows direct access of objects within `data()`.
@@ -301,7 +301,7 @@ Released to collaborators and beta-tester Mahmoud Teaima 2016-06-19.
 
 ## Minor changes
 
-  * New argument `plot.bxp`. If `FALSE` (default) the boxplot will be shown in the default graphics device. If `TRUE` the boxplot will be saved in PNG format to `path.out`. Argument `ask` is also observed.
+  * New argument `plot.bxp`. If `FALSE` (default) the boxplot will be shown in the default graphics device. If `TRUE` the boxplot will be saved in PNG format (720×720 px) to `path.out`. Argument `ask` is also observed.
   * If `path.in` and/or `path.out` not given or not existing, the user’s home folder will be used. Updated the man pages accordingly.
 
 # replicateBE 1.0.1
