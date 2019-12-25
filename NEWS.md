@@ -515,7 +515,7 @@ Released to collaborators 2016-11-24.
 
 ## Minor changes
 
-  * Data can be provided *without* the column logPK. If erroneously a call is made with `logtrans = FALSE`, the code switches to internal log-transformation (as if `logtrans = TRUE` would have been called) and throws a warning.
+  * Data can now be provided *without* the column `logPK`. If erroneously a call is made with `logtrans = FALSE` (and the column `logPK` is missing), the code switches to internal log-transformation (as if `logtrans = TRUE` would have been called) and throws a warning.
   * Added log half-width to the data.frame `res`.
 
 # replicateBE 0.1
