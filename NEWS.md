@@ -157,11 +157,11 @@ Published on GitHub 2019-05-30.
 ## Bug fixes
 
   * Updated links in man-pages to reflect changes in the FDA’s site.
+  * Updated links to reference data in `info.data()`.
+  * Updated links in CSV-files.
 
 ## Minor changes
 
-  * Updated links to reference data in `info.data()`.
-  * Updated links in CSV-files.
   * Renamed S3 methods (prefixed with `repBE`) acc. to [rlang issue 669](https://github.com/r-lib/rlang/issues/669) (THX to MT).
   * The warning in `CHECK` dissappeared in R 3.6.0. Throws other ones in examples which change the working directory. Wrapped all examples in man-pages in `\dontrun{}`.
 
@@ -172,6 +172,8 @@ Published on GitHub 2019-04-23.
 ## Bug fixes
 
   * Updated links in man-pages to reflect changes in the EMA’s site.
+  * Updated links to reference data in `info.data()`.
+  * Updated links in CSV-files.
 
 # replicateBE 1.0.5.9000
 
