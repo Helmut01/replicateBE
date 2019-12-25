@@ -8,7 +8,7 @@ Published on Github 2019-12-25.
 
 ## Minor changes
 
-  * Handles a case where a user exports one of the internal dataset as a CSV *with* row.names and quoted variables (*i.e.*, instead of `write.csv(rds01, 'rds01.csv', quote=FALSE, row.names=FALSE`) naïvely uses `write.csv(rds01, 'rds01.csv')`).  
+  * Handles a case where a user exports one of the internal dataset as a CSV *with* row.names and quoted variables (*i.e.*, instead of `write.csv(rds01, 'rds01.csv', quote = FALSE, row.names = FALSE`) naïvely uses just `write.csv(rds01, 'rds01.csv')`).  
   Importing such a CSV-file was not possible so far. Resolved [issue 3](https://github.com/Helmut01/replicateBE/issues/3) raised by MT.
   * Adapted tests for `method.B()`: `rds29` and `rds30` instead of `rds18`. Satterthwaite DF `(..., option = 1)` and Kenward-Roger `(..., option = 3)`.
   * Added two small imbalanced and incomplete datasets: `rds29` (TRTR|TRTR, n=12), `rds30` (TRR|RTR|RRT, n=14). Requested by a reviewer of the manuscript.
