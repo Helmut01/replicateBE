@@ -132,16 +132,19 @@ Published on GitHub 2019-06-12.
 ## Bug fixes
 
   * LaTeX problems partly fixed (THX to Duncan Murdoch on r-help). Final solution: Text between `\list{}{}`. Note that this is discouraged acc. to the R-Extension Manual 2.1.1!
+  * Updated WHO-reference in man-pages.
+
+## Major changes
+
+  * Added vignette.
+  * Added `\tests` for `testthat()`.
 
 ## Minor changes
 
   * Simplified and reordered sources of man-pages.
-  * Updated WHO-reference.
   * Changed `{\eqn{foo\textsubscript}{bar}}` to simple `{\eqn{foo_{bar}}` in two man pages.
   * `StartupWarnings` seemingly unavoidable until `rlang` will be corrected.
   * Small correction in text of box plot of `CV.calc()`. Studentized/standardized does not exactly agree with SAS (uses `type = 2` by default).
-  * First version of vignette.
-  * Added `\tests` for `testthat()`.
 
 # replicateBE 1.0.5.9002
 
@@ -151,19 +154,22 @@ Published on GitHub 2019-05-30.
 
   * Renaming S3 method doesn’t help.
 
-## Minor changes
+## Bug fixes
 
   * Updated links in man-pages to reflect changes in the FDA’s site.
+
+## Minor changes
+
   * Updated links to reference data in `info.data()`.
   * Updated links in CSV-files.
-  * Renamed S3 methods (prefixed with `repBE`) acc. to <https://github.com/r-lib/rlang/issues/669>. THX to MT!
-  * The warning in CHECK dissappeared in R 3.6.0. Throws other ones in examples which change the working directory. All changed to `\dontrun{}`.
+  * Renamed S3 methods (prefixed with `repBE`) acc. to [rlang issue 669](https://github.com/r-lib/rlang/issues/669) (THX to MT).
+  * The warning in `CHECK` dissappeared in R 3.6.0. Throws other ones in examples which change the working directory. Wrapped all examples in man-pages in `\dontrun{}`.
 
 # replicateBE 1.0.5.9001
 
 Published on GitHub 2019-04-23.
 
-## Minor changes
+## Bug fixes
 
   * Updated links in man-pages to reflect changes in the EMA’s site.
 
@@ -173,7 +179,7 @@ Published on GitHub 2017-11-25.
 
 ## Issues
 
-  * CHECK throws a WARNING:
+  * `CHECK` throws a `WARNING`:
     
     `checking for unstated dependencies in examples ... WARNING`  
     `Warning in parse(file = files, n = -1L) :`  
@@ -188,29 +194,30 @@ Published on GitHub 2017-11-25.
   * `get.data()` Sub/seq in data.frame was empty for complete sequences.
   * `info.env()` returned `path.out` as `path.in`.
   * Mixed model was given in the result file of `method.A()`.
-  * Adapt the No. of subjects/sequence and No. of missings/sequence to the reordered sequences in `get.data()`. Calculation was correct but output in result-files wrong.
-  * nTT was NA in `get.data()` for TRTR|RTRT. Now design (full/replicate) is obtained from `info.design()`.
+  * Adapt the number of subjects/sequence and number of missings/sequence to the reordered sequences in `get.data()`. Calculation was correct but output in result-files wrong.
+  * `nTT` was `NA` in `get.data()` for TRTR|RTRT. Now design (full/replicate) is obtained from `info.design()`.
   * In `CV.calc(..., ole = TRUE)` if an outlier is detected not in both methods (studentized, standardized).
   * `method.B(option = 1) ` output to file.
-  * In package `PowerTOST` T is always first. The order is only relevant in `method.A(..., adjust = TRUE)` and an unbalanced RTR|TRT-design. In this case the order of subjects/sequence is reversed in calling
+  * In package `PowerTOST` T is always first. The order is only relevant in `method.A(..., adjust = TRUE)` and an unbalanced RTR|TRT-design. In this case the order of subjects/sequence is reversed by calling
     `scABEL(...,  n = rev(ret$Sub.Seq))`. THX to DL for discovering this bug.
 
 ## Major changes
 
-  * Added data set 27 for Balaam’s design (TR|RT|TT|RR) and data set 28 (TTRR|RRTT); both simulated with homoscedasticy. The former only for completeness (poor power). The latter might be useful for steady state studies. Man-pages for both.
+  * Added dataset 27 for Balaam’s design (TR|RT|TT|RR) and dataset 28 (TTRR|RRTT); both simulated with homoscedasticy. The former only for completeness (poor power). The latter might be useful for steady state studies. Man-pages for both.
   * Balaam’s design implemented.
-  * Compare variabilites according to the FDA’s [warfarin guidance](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf).
-  * Added data set 26 (TRTR|RTRT). One of the few where we have results for comparison.
-  * Added data set 25 (TRTR|RTRT) simulated with heteroscedasticy.
+  * Compare variabilites according to the FDA’s [warfarin guidance](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf), *i.e.*, assess whether the upper confidence limit of σ~wT~/σ~wR~ ≤2.5.
   * Shows a 'graphical' presentation of the CI, PE, and BE-limits in the result file.
-  * Added data set 24 (TRRT|RTTR|TTRR|RRTT) from the FDA. Subject 16 completely missing. Adapted `get.data()` for such a case.
-  * Added Data Set 23 as an example of a 4-period 4-sequence design (though not recommended by the FDA).
-  * Added data set 22 for the extra-reference design (RTR|TRR).
-  * Calculate the sw-ratio (useful for the WHO’s scaling of AUC).
-  * Assessment for NTIDs implemented. `ABE()` has new arguments `theta1` and `theta2`. Default to 0.80 and 1.25.
-  * New function `info.design()`. Sorts sequences according to the preferred rder (T first) and throws a message if the design is untested.
+  * Added datasets:
+    * 26 (TRTR|RTRT). One of the few where we have results for comparison (regrettably only three significant digits).
+    * 25 (TRTR|RTRT) simulated with heteroscedasticy.
+    * 24 (TRRT|RTTR|TTRR|RRTT) from the FDA. Subject 16 completely missing. Adapted `get.data()` for such a case.
+    * 23 as an example of a 4-period 4-sequence design (though not recommended by the FDA).
+    * 22 for the extra-reference design (RTR|TRR).
+  * Calculate s~wT~/s~wR~ (might be useful for the WHO’s scaling of AUC).
+  * `ABE()` has new arguments `theta1` and `theta2` (defaults `0.80` and `1.25`). Useful for NTIDs (EMA) or wider limits of C~max~ (GCC).
+  * New function `info.design()`. Sorts sequences according to the preferred order (T first) and throws a message if the design is untested.
   * Changed the names of result files reflecting the Method used rather the internals (`lme`/`lmer`).
-  * `Lazy data: true` in DESCRIPTION allows direct access of objects within `data()`.
+  * `Lazy data: true` in `DESCRIPTION` allows direct access of objects within `data()`.
 
 ## Minor changes
 
@@ -218,15 +225,15 @@ Published on GitHub 2017-11-25.
     * The header is automatically identified (removed as an argument from the calling functions).
     * Subject must no more be the first column. The word 'subject' is allowed in the header. [MT]
   * Argument `set` can be an empty string `""` to support reading from CSV- files. Only required for XLS (the name of the sheet) now.
-  * Argument `fence` for box plots instead of the hard-coded 3 as a multiplier of IQR. The default 1.5 in most (all?) software packages detects *a lot* of outliers. 3 seems to be liberal. 2 is a compromise.
+  * Argument `fence` for box plots instead of the hard-coded 3 as a multiplier of IQR. The default 1.5 in most (all?) software packages detects *a lot* of outliers. 3 seems to be too liberal. The new default 2 is a compromise.
   * Changed TRTR|TRRT|RTTR|RTRT to TRTR|RTRT|TRRT|RTTR. More logical (stacking sequences of the other full replicates). Adapted scripts and man pages accordingly.
   * Changed the lexical order of sequences (T before R) in conformity with package `PowerTOST` and Q&A DSII.
   * Resolved [issue 1](https://github.com/Helmut01/replicateBE/issues/1): Introduced aliases in man pages for all data sets. Otherwise, warnings in CHECK about undocumented objects.
-  * Identify internal data sets based on their attribute. Uses now `info.data().` THX to DL. Function `which.data()` removed.
+  * Identify internal data sets based on their attribute. Uses now `info.data()` (THX to DL). Function `which.data()` removed.
   * Man pages reworked. [DL]
-  * `method.A(adjust = TRUE)` assesses additionally the TIE based on the
+  * `method.A(adjust = TRUE)` assesses additionally the empiric type I error based on the
     recalculated `CVwR` (if applicable).
-  * Changed TRR.RTT to RTT.TRR for consistancy (R always first).
+  * Changed TRR.RTT to RTT.TRR for consistency (R always first).
 
 # replicateBE 1.0.5
 
@@ -235,11 +242,11 @@ Released to collaborators 2017-06-24.
 ## Issues
 
   * CSV-files: Characters in the header which are equal to `sep` are lost.
-  * `method.B(option = 1)` can't print to file with internal data.
+  * `method.B(option = 1)` can’t print to file with internal data.
 
 ## Minor changes
 
-  * Unified data sets, updated man-pages, and changed `which.data()`: `ref` to `rds'. Warnings in CHECK: `'rdsXX' not found`.
+  * Unified data sets, updated man-pages, and changed `which.data()`: `ref` to `rds`. Warnings in `CHECK`: `'rdsXX' not found`.
 
 # replicateBE 1.0.4
 
@@ -247,13 +254,13 @@ Released to collaborators 2017-06-23.
 
 ## Issues
 
-  * A user calls `foo(path.in = path.in, ...)` but the variable `path.in` is is not defined before. Throws `object 'path.in' not found in CV.calc()`.
+  * If a user calls `foo(path.in = path.in, ...)` but the variable `path.in` is not defined before. Throws `object 'path.in' not found in CV.calc()`.
 
 ## Bug fixes
 
   * If `'descr'` was read from an external file and the code stopped for data not matching the id in `which.data()`.
   * Warning in man-pages: Header must not contain the word `'subject'`.
-  * If the specified file is not found in `path.in` the file browser opens.
+  * If the specified file is not found in `path.in` the file browser opens on Windows (other operating systems?).
   * If `verbose=TRUE` the anova was not shown in `ABE()`.
 
 ## Major changes
@@ -333,7 +340,7 @@ Released to collaborators 2016-06-11.
 
 ## Bug fixes
 
-  * print corrected. Line-endings CRLF (Windows), LF (UNIXes), CR (MacOS). Tested on Windows [HS] and on macOS Sierra 10.12.5 (THX to Mahmoud Teaima, Faculty of Pharmacy, Cairo University).
+  * print corrected. Line-endings CRLF (Windows), LF (UNIXes), CR (MacOS). Tested on Windows [HS] and on macOS Sierra 10.12.5 (THX to Mahmoud).
   * Reading xls(x)-files corrected. Converts the tibble-object to a data.frame.
 
 ## Minor changes
@@ -355,22 +362,22 @@ Released to collaborators and beta-tester Mahmoud Teaima 2016-06-01.
 
 # replicateBE 0.93
 
-Released to collaborators 2016-12-16.
+Released to collaborators and beta-tester Mahmoud Teaima 2016-12-16.
 
 ## Minor changes
 
   * Variable and decimal separators for reading CSV-files can be specified. Defaults `";"` and `"."`
-  * Result-file UTF-8 encoded (important for OSX).
+  * Result-file UTF-8 encoded (important for OSX; THX to Mahmoud).
   * Added license info and disclaimer (paranoia).
   * Added a statement if `nTR <12`. Suggested by MT.
-  * Added a statement about 'uncertain' CVwR if nRR <12 in one of the full replicate 3-period designs (acc. to the EMA's Q&A Rev. 12).
+  * Added a statement about 'uncertain' CV~wR~ if `nRR <12` in one of the full replicate 3-period designs (acc. to the EMA’s [Q&A Rev. 12](https://bebac.at/downloads/WC500002963Jun2015.pdf)).
   * Added argument `verbose` (default `FALSE`) to `method.A()`/`method.B()` to support detailed information without debugging.
   * Moved check for trailing `'/'` in the path-argument from `method.A()`/ `method.B()` to `get.data()`.
   * Restored the evaluation by `lmer`/`lmerTest` from v0.83 to support comparing the performance of packages. Wish of DL.
 
 # replicateBE 0.92
 
-Released to collaborators 2016-12-14.
+Released to collaborators and beta-tester Mahmoud Teaima (Faculty of Pharmacy, Cairo University) 2016-12-14.
 
 ## Bug fixes
 
@@ -378,7 +385,7 @@ Released to collaborators 2016-12-14.
 
 ## Minor changes
 
-  * If path does not exist, R’s working directory is used with warning. [MT]
+  * If `path` does not exist, R’s working directory is used with a warning. [MT]
 
 # replicateBE 0.91
 
@@ -395,7 +402,7 @@ Released to collaborators 2016-12-14.
 
 ## Minor changes
 
-  * Removed `lmer`/`lmerTest` (was called by `option = 1` in previous versions), since Satterthwaite’s DF are not compliant with the Q&A document (the SAS-code uses implicitely `DDFM=CONTAIN`).
+  * Removed `lmer`/`lmerTest` (was called by `option = 1` in previous versions), since Satterthwaite’s DF are not compliant with the EMA’s Q&A document (the SAS-code uses implicitely `DDFM = CONTAIN`).
   * Added `DF` of the treatment difference to the output.
 
 # replicateBE 0.83
@@ -511,7 +518,7 @@ Released to collaborators 2016-11-24.
 ## Major changes
 
   * Use package `PowerTOST` for assessment of the Type I Error and (optional) iteratively adjustment of α (only `Method A`). New argument `adjust` (default `FALSE`). Results only to the console. Changed hard-coded parts to the respective functions of `PowerTOST`.
-  * New argument `logtrans` (default `TRUE`). If `TRUE`, the raw data (`PK`) are internally log-transformed. If `FALSE` the already log-transformed data (`logPK`) is used.
+  * New argument `logtrans` (default `TRUE`). If `TRUE`, the raw data (`PK`) are internally log-transformed. If `FALSE` the already log-transformed data (`logPK`) are used.
 
 ## Minor changes
 
