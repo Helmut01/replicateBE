@@ -334,7 +334,7 @@ It is an open issue how outliers should be handled.
 
 Box plots were ‘suggested’ by the author as a mere joke [*sic*] at the EGA/EMA symposium, being aware of their non­para­metric nature and the EMA’s reluctance towards robust methods. Alas, this _joke_ was included in the Q&A document.
 
-> _[â€¦] a study could be acceptable if the bioequivalence requirements are met both including the outlier subject (using the scaled average bioequivalence approach and the within-subject CV with this subject) and after exclusion of the outlier (using the within-subject CV without this subject)._
+> _[…] a study could be acceptable if the bioequivalence requirements are met both including the outlier subject (using the scaled average bioequivalence approach and the within-subject CV with this subject) and after exclusion of the outlier (using the within-subject CV without this subject)._
 >
 > _An outlier test is not an expectation of the medicines agencies but outliers could be shown by a box plot. This would allow the medicines agencies to compare the data between them._
 >

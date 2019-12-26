@@ -34,7 +34,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/last-month/replicateBE?color=green)](https://r-pkg.org/pkg/replicateBE)
 
-Version 1.0.12.9000 built 2019-12-25 with R 3.6.2.
+Version 1.0.12.9000 built 2019-12-26 with R 3.6.2.
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
@@ -230,7 +230,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 treatment T – R:
   Estimate Std. Error    t value   Pr(>|t|) 
 0.14547400 0.04650870 3.12788000 0.00200215 
-217 Residual Degrees of Freedom
+217 Degrees of Freedom
 
 cols <- c(12, 15:19) # Relevant columns
 print(round(res[cols], 2), row.names=FALSE)
@@ -241,15 +241,13 @@ CVwR(%) EL.lo(%) EL.hi(%) CI.lo(%) CI.hi(%)  PE(%)
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
-  - Same dataset evaluated by Method B. Outlier assessment,
-    recalculation of *CV<sub>wR</sub>* after exclusion of outliers, new
-    expanded limits.
+  - Same dataset evaluated by Method B, Kenward-Roger approximation of degrees of freedom. Outlier assessment, recalculation of *CV<sub>wR</sub>* after exclusion of outliers, new expanded limits.
 
 <!-- end list -->
 
 ``` r
-res <- method.B(ola = TRUE, verbose = TRUE, details = TRUE, print = FALSE,
-                data = rds01)
+res <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
+                print = FALSE, data = rds01)
 
 Outlier analysis
  (externally) studentized residuals
@@ -266,17 +264,21 @@ Outlier analysis
       45     RTRT -5.246293
       52     RTRT  3.214663
 
-Data set DS01: Method B by lme (option=2; equivalent to SAS’ DDFM=CONTAIN) 
-────────────────────────────────────────────────────────────────────────── 
-            numDF denDF       F-value p-value
-(Intercept)     1   217 6162.79177905  <.0001
-sequence        1    75    0.01402184  0.9061
-period          3   217    0.82478701  0.4815
-treatment       1   217    9.86464146  0.0019
+Data set DS01: Method B by lmer (option=3; equivalent to SAS’ DDFM=KENWARDROGER) 
+──────────────────────────────────────────────────────────────────────────────── 
+Response: log(PK)
+Type III Analysis of Variance Table with Kenward-Roger's method
+                Sum Sq      Mean Sq NumDF        DenDF F value    Pr(>F)   
+sequence  0.0019172306 0.0019172306     1  74.98992027 0.01198 0.9131528   
+period    0.3980646169 0.1326882056     3 217.38749923 0.82878 0.4792976   
+treatment 1.5792804179 1.5792804179     1 217.20785508 9.86432 0.0019197 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 treatment T – R:
-       Value    Std.Error           DF      t-value      p-value 
-1.460882e-01 4.651301e-02 2.170000e+02 3.140803e+00 1.919596e-03
+   Estimate  Std. Error     t value    Pr(>|t|) 
+0.146088200 0.046513770 3.140751000 0.001919686 
+217.208 Degrees of Freedom
 
 cols <- c(25, 28:29, 17:19) # Relevant columns
 print(round(res[cols], 2), row.names=FALSE)

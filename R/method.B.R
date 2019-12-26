@@ -59,10 +59,11 @@ method.B <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
           ": Method B by lme (option=2; ",
           "equivalent to SAS\u2019 DDFM=CONTAIN)"),
           paste0("\n", paste0(rep("\u2500", 70+nchar(name)), collapse="")), "\n")
+      if (logtrans) cat("Response: log(PK)\n") else cat("\nResponse: logPK\n")
       print(anova(modB), digits=6)
       cat("\ntreatment T \u2013 R:\n")
-      print(signif(EMA.B$tTable["treatmentT", ], 7))
-      cat("\n")
+      print(signif(EMA.B$tTable["treatmentT", c(1:2, 4:5)], 7))
+      cat(DF, "Degrees of Freedom\n\n")
     }
   } else {              # by lmer/lmerTest (Satterthwaite's or Kenward-Roger DF)
     if (logtrans) {     # use the raw data and log-transform internally
@@ -87,17 +88,19 @@ method.B <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
          cat("\nData set", paste0(file, set,
              ": Method B by lmer (option=1; equivalent to SAS\u2019 DDFM=SATTERTHWAITE)"),
             paste0("\n", paste0(rep("\u2500", 81), collapse="")), "\n")
-        print(anova(modB, ddf="Satterthwaite"))
+        if (logtrans) cat("Response: log(PK)\n") else cat("\nResponse: logPK\n")
+        print(anova(modB, digits=7, ddf="Satterthwaite")) # digits=7 is ignored!
       } else {
         df.txt <- "3; equivalent to SAS\u2019 DDFM=KENWARDROGER)"
         cat("\nData set", paste0(file, set,
             ": Method B by lmer (option=3; equivalent to SAS\u2019 DDFM=KENWARDROGER)"),
             paste0("\n", paste0(rep("\u2500", 80), collapse="")), "\n")
-        print(anova(modB, ddf="Kenward-Roger"))
-     }
+        if (logtrans) cat("Response: log(PK)\n") else cat("\nResponse: logPK\n")
+        print(anova(modB, digits=7, ddf="Kenward-Roger"))    # digits=7 is ignored!
+      }
       cat("\ntreatment T \u2013 R:\n")
-      print(signif(EMA.B$coefficients["treatmentT", ], 7))
-      cat("\n")
+      print(signif(EMA.B$coefficients["treatmentT", c(1:2, 4:5)], 7))
+      cat(signif(DF, 6), "Degrees of Freedom\n\n")
     }
   } # end of evaluation by option=2 (lme) or option=1/3 (lmer)
   PE  <- exp(PE)
