@@ -3,27 +3,27 @@ replicateBE
 
   - [Comparative BA-calculation for the EMA’s Average Bioequivalence
     with Expanding Limits
-    (ABEL)](#comparative-ba-calculation-for-the-emas-average-bioequivalence-with-expanding-limits-abel)
-  - [Introduction](#introduction)
-      - [Methods](#methods)
+    (ABEL)](#user-content-comparative-ba-calculation-for-the-emas-average-bioequivalence-with-expanding-limits-abel)
+  - [Introduction](#user-content-introduction)
+      - [Methods](#user-content-methods)
           - [Estimation of *CV<sub>wR</sub>* (and *CV<sub>wT</sub>* in
             full replicate
-            designs)](#estimation-of-cvwr-and-cvwt-in-full-replicate-designs)
-          - [Method A](#method-a)
-          - [Method B](#method-b)
-          - [Average Bioequivalence](#average-bioequivalence)
-      - [Tested designs](#tested-designs)
+            designs)](#user-content-estimation-of-cvwr-and-cvwt-in-full-replicate-designs)
+          - [Method A](#user-content-method-a)
+          - [Method B](#user-content-method-b)
+          - [Average Bioequivalence](#user-content-average-bioequivalence)
+      - [Tested designs](#user-content-tested-designs)
           - [Four period (full)
-            replicates](#four-period-full-replicates)
+            replicates](#user-content-four-period-full-replicates)
           - [Three period (full)
-            replicates](#three-period-full-replicates)
-          - [Two period (full) replicate](#two-period-full-replicate)
+            replicates](#user-content-three-period-full-replicates)
+          - [Two period (full) replicate](#user-content-two-period-full-replicate)
           - [Three period (partial)
-            replicates](#three-period-partial-replicates)
-      - [Cross-validation](#cross-validation)
-  - [Examples](#examples)
-  - [Installation](#installation)
-  - [Disclaimer](#disclaimer)
+            replicates](#user-content-three-period-partial-replicates)
+      - [Cross-validation](#user-content-cross-validation)
+  - [Examples](#user-content-examples)
+  - [Installation](#user-content-installation)
+  - [Disclaimer](#user-content-disclaimer)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
