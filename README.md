@@ -23,6 +23,7 @@ replicateBE
       - [Cross-validation](#cross-validation)
   - [Examples](#examples)
   - [Installation](#installation)
+  - [Disclaimer](#disclaimer)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -37,13 +38,10 @@ Version 1.0.12.9000 built 2019-12-25 with R 3.6.2.
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
-**Package offered for Use without any Guarantees and Absolutely No
-Warranty. No Liability is accepted for any Loss and Risk to Public
-Health Resulting from Use of this R-Code.**
-
 ## Introduction
 
-The library provides data sets (internal `.rda` and in CSV-format in
+The library provides data sets (internal `.rda` and in
+<span title="Comma Separated Variables">CSV</span>-format in
 `/extdata/`) which support users in a black-box performance
 qualification (PQ) of their software installations. Users can perform
 analysis of their own data imported from CSV- and Excel-files. The
@@ -305,3 +303,13 @@ devtools::install_github("Helmut01/replicateBE")
 ```
 
 <small>[TOC ↩](#replicatebe)</small>
+
+## Disclaimer
+
+**Package offered for Use without any Guarantees and Absolutely No
+Warranty. No Liability is accepted for any Loss and Risk to Public
+Health Resulting from Use of this R-Code.**
+
+<small>[TOC ↩](#replicatebe)</small>
+
+-----

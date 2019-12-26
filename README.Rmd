@@ -17,10 +17,8 @@ Version `r packageVersion("replicateBE")` built `r packageDate("replicateBE")` w
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
-**Package offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.**  
-
 ## Introduction
-The library provides data sets (internal `.rda` and in CSV-format in `/extdata/`) which support users in a black-box performance qualification (PQ) of their software installations. Users can perform analysis of their own data imported from CSV- and Excel-files. The methods given by the EMA in [Annex I](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf "EMA/582648/2016, 21 September 2016") for reference-scaling according to the EMA’s [Guideline on the Investigation of Bioequivalence](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf "EMA, January 2010") are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint [EGA/EMA workshop](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf "London, June 2010").  
+The library provides data sets (internal `.rda` and in <span title="Comma Separated Variables">CSV</span>-format in `/extdata/`) which support users in a black-box performance qualification (PQ) of their software installations. Users can perform analysis of their own data imported from CSV- and Excel-files. The methods given by the EMA in [Annex I](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf "EMA/582648/2016, 21 September 2016") for reference-scaling according to the EMA’s [Guideline on the Investigation of Bioequivalence](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf "EMA, January 2010") are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint [EGA/EMA workshop](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf "London, June 2010").  
 In full replicate designs the variability of test and reference treatments can be assessed by _s~wT~_/_s~wR~_ and the upper confidence limit of _σ~wT~_/_σ~wR~_ (required for the [WHO’s approach](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf "Geneva, November 2018") for reference-scaling of _AUC_).
 
 <small>[TOC ↩](#replicatebe)</small>
@@ -205,3 +203,11 @@ devtools::install_github("Helmut01/replicateBE")
 ```
 
 <small>[TOC ↩](#replicatebe)</small>
+
+## Disclaimer
+
+**Package offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.**
+
+<small>[TOC ↩](#replicatebe)</small>
+
+***
