@@ -159,8 +159,8 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     \code{CVwR(\%)} \tab intra-subject coefficient of variation of the reference treatment\cr
     \code{BE.lo(\%)} \tab lower bioequivalence limit (\emph{e.g.}, \verb{ 80})\cr
     \code{BE.hi(\%)} \tab upper bioequivalence limit (\emph{e.g.}, \verb{125})\cr
-    \code{CI.lo(\%)} \tab lower confidence limit of the treatment comparison\cr
-    \code{CI.hi(\%)} \tab upper confidence limit of the treatment comparison\cr
+    \code{CL.lo(\%)} \tab lower confidence limit of the treatment comparison\cr
+    \code{CL.hi(\%)} \tab upper confidence limit of the treatment comparison\cr
     \code{PE(\%)} \tab point estimate of the treatment comparison (aka \acronym{GMR})\cr
     \code{BE} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{\eqn{100(1-2\alpha)}{100(1-2alpha)}} \acronym{CI} lies entirely within the acceptance range (\verb{pass|fail})
   }

@@ -12,6 +12,7 @@ Published on Github 2019-12-26 (passed 2019-12-25 on win-builder checks with R-r
 
 ## Minor changes
 
+  * Changed names of variables in the data.frame of results. Updated man-pages.
   * Unified ANOVA-table and degrees of freedom if `verbose = TRUE`. Added response to verbose-output of `method.B` (automatically in `method.A`).
   * Handles a case where a user exports one of the internal dataset as a CSV *with* row.names and quoted variables (*i.e.*, instead of `write.csv(rds01, 'rds01.csv', quote = FALSE, row.names = FALSE`) naïvely uses just `write.csv(rds01, 'rds01.csv')`).  
   Importing such a CSV-file was not possible so far. Resolved [issue 3](https://github.com/Helmut01/replicateBE/issues/3) raised by MT.

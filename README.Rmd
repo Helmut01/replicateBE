@@ -142,8 +142,8 @@ treatment T – R:
 cols <- c(12, 15:19) # Relevant columns
 print(round(res[cols], 2), row.names=FALSE)
 
-CVwR(%) EL.lo(%) EL.hi(%) CI.lo(%) CI.hi(%)  PE(%)
-  46.96    71.23    140.4   107.11   124.89 115.66
+CVwR(%)  L(%)  U(%) CL.lo(%) CL.hi(%)  PE(%)
+  46.96 71.23 140.4   107.11   124.89 115.66
 ```
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
@@ -188,8 +188,8 @@ treatment T – R:
 cols <- c(25, 28:29, 17:19) # Relevant columns
 print(round(res[cols], 2), row.names=FALSE)
 
-CVwR.new(%) EL.new.lo(%) EL.new.hi(%) CI.lo(%) CI.hi(%)  PE(%)
-      32.16        78.79       126.93   107.17   124.97 115.73
+CVwR.new(%) L.new(%) U.new(%) CL.lo(%) CL.hi(%)  PE(%)
+      32.16    78.79   126.93   107.17   124.97 115.73
 ```
 
 <small>[TOC ↩](#user-content-replicatebe)</small>

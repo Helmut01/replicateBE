@@ -117,19 +117,19 @@ method.B <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
                     stringsAsFactors=FALSE)
   names(res)<- c("Design", "Method", "n", "nTT", "nRR", "Sub/seq",
                  "Miss/seq", "Miss/per", "alpha", "DF", "CVwT(%)",
-                 "CVwR(%)", "sw.ratio", "sw.ratio.CL", "EL.lo(%)",
-                 "EL.hi(%)", "CI.lo(%)", "CI.hi(%)", "PE(%)",
+                 "CVwR(%)", "sw.ratio", "sw.ratio.CL", "L(%)",
+                 "U(%)", "CL.lo(%)", "CL.hi(%)", "PE(%)",
                  "CI", "GMR", "BE", "log.half-width", "outlier",
                  "CVwR.new(%)", "sw.ratio.new", "sw.ratio.new.CL",
-                 "EL.new.lo(%)", "EL.new.hi(%)",
+                 "L.new(%)", "U.new(%)",
                  "CI.new", "GMR.new", "BE.new")
   if (ret$BE2 == 1.25) { # change column names if not scaling
-    colnames(res)[which(names(res) == "EL.lo(%)")] <- "BE.lo(%)"
-    colnames(res)[which(names(res) == "EL.hi(%)")] <- "BE.hi(%)"
+    colnames(res)[which(names(res) == "L(%)")] <- "BE.lo(%)"
+    colnames(res)[which(names(res) == "U(%)")] <- "BE.hi(%)"
   }
   if (!is.na(ret$BE.new2) & ret$BE.new2 == 1.25) { # change column names if not scaling
-    colnames(res)[which(names(res) == "EL.new.lo(%)")] <- "BE.new.lo(%)"
-    colnames(res)[which(names(res) == "EL.new.hi(%)")] <- "BE.new.hi(%)"
+    colnames(res)[which(names(res) == "L.new(%)")] <- "BE.new.lo(%)"
+    colnames(res)[which(names(res) == "U.new(%)")] <- "BE.new.hi(%)"
   }
   # Convert CVs, limits, PE, and CI (up to here as fractions) to percent
   res$"CVwT(%)" <- 100*res$"CVwT(%)"
@@ -138,8 +138,8 @@ method.B <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
     res$"BE.lo(%)" <- 100*res$"BE.lo(%)"
     res$"BE.hi(%)" <- 100*res$"BE.hi(%)"
   } else {                          # expanded limits
-    res$"EL.lo(%)" <- 100*res$"EL.lo(%)"
-    res$"EL.hi(%)" <- 100*res$"EL.hi(%)"
+    res$"L(%)" <- 100*res$"L(%)"
+    res$"U(%)" <- 100*res$"U(%)"
   }
   if (!is.na(res$"CVwR.new(%)")) { # only if recalculated CVwR
     res$"CVwR.new(%)" <- 100*res$"CVwR.new(%)"
@@ -147,23 +147,23 @@ method.B <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
       res$"BE.new.lo(%)" <- 100*res$"BE.new.lo(%)"
       res$"BE.new.hi(%)" <- 100*res$"BE.new.hi(%)"
     } else {                              # expanded limits
-      res$"EL.new.lo(%)" <- 100*res$"EL.new.lo(%)"
-      res$"EL.new.hi(%)" <- 100*res$"EL.new.hi(%)"
+      res$"L.new(%)" <- 100*res$"L.new(%)"
+      res$"U.new(%)" <- 100*res$"U.new(%)"
     }
   }
   res$"PE(%)"    <- 100*res$"PE(%)"
-  res$"CI.lo(%)" <- 100*res$"CI.lo(%)"
-  res$"CI.hi(%)" <- 100*res$"CI.hi(%)"
-  if (round(res$"CI.lo(%)", 2) >= 100*ret$BE1 &
-      round(res$"CI.hi(%)", 2) <= 100*ret$BE2)
+  res$"CL.lo(%)" <- 100*res$"CL.lo(%)"
+  res$"CL.hi(%)" <- 100*res$"CL.hi(%)"
+  if (round(res$"CL.lo(%)", 2) >= 100*ret$BE1 &
+      round(res$"CL.hi(%)", 2) <= 100*ret$BE2)
     res$CI <- "pass"  # CI within acceptance range
   if (round(res$"PE(%)", 2) >= 80 & round(res[["PE(%)"]], 2) <= 125)
     res$GMR <- "pass" # PE within 80.00-125.00%
   if (res$CI == "pass" & res$GMR == "pass")
     res$BE <- "pass"  # if passing both, conclude BE
   if (!is.na(res$"CVwR.new(%)")) {
-    if (round(res$"CI.lo(%)", 2) >= 100*ret$BE.new1 &
-        round(res$"CI.hi(%)", 2) <= 100*ret$BE.new2)
+    if (round(res$"CL.lo(%)", 2) >= 100*ret$BE.new1 &
+        round(res$"CL.hi(%)", 2) <= 100*ret$BE.new2)
       res$CI.new <- "pass"  # CI within acceptance range
     res$GMR.new <- res$GMR
     if (res$CI.new == "pass" & res$GMR.new == "pass")
@@ -175,8 +175,8 @@ method.B <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
       # remove superfluous columns if ola=FALSE or ola=TRUE
       # and no outlier(s) detected
       ret <- ret[ , !names(ret) %in% c("outlier", "CVwR.new(%)",
-                                       "sw.ratio.new", "EL.new.lo(%)",
-                                       "EL.new.hi(%)", "CI.new",
+                                       "sw.ratio.new", "L.new(%)",
+                                       "U.new(%)", "CI.new",
                                        "GMR.new", "BE.new")]
     }
     #class(ret) <- "repBE"
@@ -189,20 +189,20 @@ method.B <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
     res$"BE.lo(%)" <- round(res$"BE.lo(%)", 2)
     res$"BE.hi(%)" <- round(res$"BE.hi(%)", 2)
   } else {                          # expanded limits
-    res$"EL.lo(%)" <- round(res$"EL.lo(%)", 2)
-    res$"EL.hi(%)" <- round(res$"EL.hi(%)", 2)
+    res$"L(%)" <- round(res$"L(%)", 2)
+    res$"U(%)" <- round(res$"U(%)", 2)
   }
   res$"PE(%)"    <- round(res$"PE(%)", 2)
-  res$"CI.lo(%)" <- round(res$"CI.lo(%)", 2)
-  res$"CI.hi(%)" <- round(res$"CI.hi(%)", 2)
+  res$"CL.lo(%)" <- round(res$"CL.lo(%)", 2)
+  res$"CL.hi(%)" <- round(res$"CL.hi(%)", 2)
   if (!is.na(res$"CVwR.new(%)")) { # only if recalculated CVwR
   res$"CVwR.new(%)" <- round(res$"CVwR.new(%)", 2)
     if ("BE.new.lo(%)" %in% names(res)) { # conventional limits
       res$"BE.new.lo(%)" <- round(res$"BE.new.lo(%)", 2)
       res$"BE.new.hi(%)" <- round(res$"BE.new.hi(%)", 2)
     } else {                          # expanded limits
-      res$"EL.new.lo(%)" <- round(res$"EL.new.lo(%)", 2)
-      res$"EL.new.hi(%)" <- round(res$"EL.new.hi(%)", 2)
+      res$"L.new(%)" <- round(res$"L.new(%)", 2)
+      res$"U.new(%)" <- round(res$"U.new(%)", 2)
     }
   }
   overwrite <- TRUE # default
@@ -240,7 +240,7 @@ method.B <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
   }
   txt <- paste0(txt,
                 "\nConfidence interval: ", sprintf("%6.2f%% ... %6.2f%%",
-                                                   res$"CI.lo(%)", res$"CI.hi(%)"),
+                                                   res$"CL.lo(%)", res$"CL.hi(%)"),
                 "  ", res$CI,
                 "\nPoint estimate     : ", sprintf("%6.2f%%", res$"PE(%)"),
                 "              ", res$GMR,
@@ -266,10 +266,10 @@ method.B <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
   if (res$Design %in% c("TRTR|RTRT|TRRT|RTTR", "TRRT|RTTR|TTRR|RRTT"))
     txt <- paste0(txt, "Note: Confounded effects; design not recommended.\n")
   if (print & overwrite) {
-    res.file <- file(description=results, open="ab")
-    res.str  <- txt # UNIXes LF
-    if (os == "Windows") res.str <- gsub("\n", "\r\n", txt) # CRLF
-    if (os == "Darwin")  res.str <- gsub("\n", "\r", txt)   # CR
+    res.file <- file(results, open="ab")                        # line endings
+    res.str  <- txt                                             # LF (UNIXes, Solaris)
+    if (os == "Windows") res.str <- gsub("\n", "\r\n", res.str) # CRLF (Windows)
+    if (os == "Darwin")  res.str <- gsub("\n", "\r", res.str)   # CR (OSX)
     writeBin(charToRaw(res.str), res.file)
     close(res.file)
   }

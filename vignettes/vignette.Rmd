@@ -174,7 +174,7 @@ We obtain these datasets:
 | #2 | Estimation of *CV~wT~* | 12 who received 2 treatments `T` | 1, 6, 8 |
 | #3 | Assessment of BE | 15 who received ≥1 treatment `T` _and_ ≥1 treatment `R` | 8 |
 
-Dataset #3 is required for ABE, datasets #1 and #3 for ABEL, wheras all three for the WHO’s reference-scaling of AUC (see [below](#app_out)).
+Dataset #3 is required for ABE, datasets #1 and #3 for ABEL, whereas all three for the WHO’s reference-scaling of AUC (see [below](#app_out)).
 
 # Notes on the methods{#notes}
 ## Estimation of intra-subject variability{#cv}

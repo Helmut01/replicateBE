@@ -69,16 +69,16 @@ ABE <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
                     stringsAsFactors=FALSE)
   names(res)<- c("Design", "Method", "n", "nTT", "nRR", "Sub/seq",
                  "Miss/seq", "Miss/per", "alpha", "DF", "CVwT(%)",
-                 "CVwR(%)", "BE.lo(%)", "BE.hi(%)", "CI.lo(%)",
-                 "CI.hi(%)", "PE(%)", "BE")
+                 "CVwR(%)", "BE.lo(%)", "BE.hi(%)", "CL.lo(%)",
+                 "CL.hi(%)", "PE(%)", "BE")
   # Convert CVs, limits, PE, and CI (till here as fractions) to percent
   res$"CVwT(%)"  <- 100*res$"CVwT(%)"
   res$"CVwR(%)"  <- 100*res$"CVwR(%)"
   res$"PE(%)"    <- 100*res$"PE(%)"
-  res$"CI.lo(%)" <- 100*res$"CI.lo(%)"
-  res$"CI.hi(%)" <- 100*res$"CI.hi(%)"
-  if (round(res$"CI.lo(%)", 2) >= 100*theta1 &
-      round(res$"CI.hi(%)", 2) <= 100*theta2)
+  res$"CL.lo(%)" <- 100*res$"CL.lo(%)"
+  res$"CL.hi(%)" <- 100*res$"CL.hi(%)"
+  if (round(res$"CL.lo(%)", 2) >= 100*theta1 &
+      round(res$"CL.hi(%)", 2) <= 100*theta2)
     res$BE <- "pass" # CI within acceptance range
   options(ow) # restore options
   if (details) { # results in default (7 digits) precision
@@ -92,8 +92,8 @@ ABE <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
   res$"BE.lo(%)" <- round(res$"BE.lo(%)", 2)
   res$"BE.hi(%)" <- round(res$"BE.hi(%)", 2)
   res$"PE(%)"    <- round(res$"PE(%)", 2)
-  res$"CI.lo(%)" <- round(res$"CI.lo(%)", 2)
-  res$"CI.hi(%)" <- round(res$"CI.hi(%)", 2)
+  res$"CL.lo(%)" <- round(res$"CL.lo(%)", 2)
+  res$"CL.hi(%)" <- round(res$"CL.hi(%)", 2)
   overwrite <- TRUE # default
   if (print) { # to file in UTF-8
     if (ask & file.exists(results)) {
@@ -115,7 +115,7 @@ ABE <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
                 " (", 100*(1-2*alpha), "% CI)")
   txt <- paste0(txt,
                 "\nConfidence interval: ", sprintf("%6.2f%% ... %6.2f%%",
-                res$"CI.lo(%)", res$"CI.hi(%)"), "  ", res$BE,
+                res$"CL.lo(%)", res$"CL.hi(%)"), "  ", res$BE,
                 "\nPoint estimate     : ", sprintf("%6.2f%%", res$"PE(%)"), "\n")
   txt <- paste0(txt,
                 repBE.draw.line(called.from="ABE", L=ret$BE1, U=ret$BE2,
@@ -129,10 +129,10 @@ ABE <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
     txt <- paste0(txt, "\nNote: Confounded effects; design not recommended.")
   txt <- paste0(txt, "\n")
   if (print & overwrite) {
-    res.file <- file(description=results, open="ab")
-    res.str  <- txt # UNIXes LF
-    if (os == "Windows") res.str <- gsub("\n", "\r\n", res.str) # CRLF
-    if (os == "Darwin")  res.str <- gsub("\n", "\r", res.str)   # CR
+    res.file <- file(results, open="ab")                        # line endings
+    res.str  <- txt                                             # LF (UNIXes, Solaris)
+    if (os == "Windows") res.str <- gsub("\n", "\r\n", res.str) # CRLF (Windows)
+    if (os == "Darwin")  res.str <- gsub("\n", "\r", res.str)   # CR (OSX)
     writeBin(charToRaw(res.str), res.file)
     close(res.file)
   }
