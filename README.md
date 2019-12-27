@@ -11,7 +11,7 @@ replicateBE
             designs)](#user-content-estimation-of-cvwr-and-cvwt-in-full-replicate-designs)
           - [Method A](#user-content-method-a)
           - [Method B](#user-content-method-b)
-          - [Average Bioequivalence](#user-content-average-bioequivalence)
+          - [Average Bioequivalence](#average-bioequivalence)
       - [Tested designs](#user-content-tested-designs)
           - [Four period (full)
             replicates](#user-content-four-period-full-replicates)
@@ -213,8 +213,8 @@ library(replicateBE) # attach the library
 res <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
                 data = rds01)
 # 
-# Data set DS01: Method A by lm 
-# ----------------------------- 
+# Data set DS01: Method A by lm() 
+# ------------------------------- 
 # Analysis of Variance Table
 # 
 # Response: log(PK)
@@ -264,8 +264,8 @@ res <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
 #       45     RTRT -5.246293
 #       52     RTRT  3.214663
 # 
-# Data set DS01: Method B by lmer (option=3; equivalent to SAS’ DDFM=KENWARDROGER) 
-# -------------------------------------------------------------------------------- 
+# Data set DS01: Method B (option = 3) by lmer() 
+# ---------------------------------------------- 
 # Response: log(PK)
 # Type III Analysis of Variance Table with Kenward-Roger's method
 #             Sum Sq  Mean Sq NumDF    DenDF F value    Pr(>F)
@@ -275,8 +275,8 @@ res <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
 # 
 # treatment T – R:
 #   Estimate Std. Error    t value   Pr(>|t|) 
-# 0.14608800 0.04651380 3.14075000 0.00191969 
-# 217.208 Degrees of Freedom
+#  0.1460900  0.0465140  3.1408000  0.0019197 
+# 217.208 Degrees of Freedom (equivalent to SAS’ DDFM=KENWARDROGER)
 cols <- c(25, 28:29, 17:19)    # extract relevant columns
 tmp  <- round(res[cols], 2)    # 2 decimal places acc. to GL
 tmp  <- cbind(tmp, res[30:32]) # pass|fail
@@ -297,8 +297,8 @@ print(tmp, row.names = FALSE)
 res <- ABE(verbose = TRUE, theta1 = 0.90, details = TRUE,
            print = FALSE, data = rds05)
 # 
-# Data set DS05: ABE by lm 
-# ------------------------ 
+# Data set DS05: ABE by lm() 
+# -------------------------- 
 # Analysis of Variance Table
 # 
 # Response: log(PK)
