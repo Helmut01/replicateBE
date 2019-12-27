@@ -3,7 +3,7 @@ replicateBE
 
   - [Comparative BA-calculation for the EMA’s Average Bioequivalence
     with Expanding Limits
-    (ABEL)](#user-content-comparative-ba-calculation-for-the-emas-average-bioequivalence-with-expanding-limits-abel)
+    (ABEL)](#comparative-ba-calculation-for-the-emas-average-bioequivalence-with-expanding-limits-abel)
   - [Introduction](#user-content-introduction)
       - [Methods](#user-content-methods)
           - [Estimation of *CV<sub>wR</sub>* (and *CV<sub>wT</sub>* in
@@ -209,34 +209,30 @@ Stata (15.0), and JMP (10.0.2).
 <!-- end list -->
 
 ``` r
-library(replicateBE)
+library(replicateBE) # attach the library
 res <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
                 data = rds01)
-
-Data set DS01 by Method A 
-────────────────────────── 
-Analysis of Variance Table
-
-Response: log(PK)
-                  Df    Sum Sq   Mean Sq  F value     Pr(>F)    
-sequence           1   0.00765 0.0076519  0.04783  0.8270958    
-period             3   0.69835 0.2327836  1.45494  0.2278285    
-treatment          1   1.76810 1.7680980 11.05095  0.0010405 ** 
-sequence:subject  75 214.12956 2.8550608 17.84467 < 2.22e-16 ***
-Residuals        217  34.71895 0.1599952                        
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-treatment T – R:
-  Estimate Std. Error    t value   Pr(>|t|) 
-0.14547400 0.04650870 3.12788000 0.00200215 
-217 Degrees of Freedom
-
-cols <- c(12, 15:19) # Relevant columns
+# 
+# Data set DS01 by Method A 
+# -------------------------- 
+# Analysis of Variance Table
+# 
+# Response: log(PK)
+#                   Df   Sum Sq  Mean Sq  F value     Pr(>F)
+# sequence           1   0.0077 0.007652  0.04783  0.8270958
+# period             3   0.6984 0.232784  1.45494  0.2278285
+# treatment          1   1.7681 1.768098 11.05095  0.0010405
+# sequence:subject  75 214.1296 2.855061 17.84467 < 2.22e-16
+# Residuals        217  34.7190 0.159995                    
+# 
+# treatment T – R:
+#   Estimate Std. Error    t value   Pr(>|t|) 
+# 0.14547400 0.04650870 3.12788000 0.00200215 
+# 217 Degrees of Freedom
+cols <- c(12, 15:19) # Relevant columns only
 print(round(res[cols], 2), row.names=FALSE)
-
-CVwR(%)  L(%)  U(%) CL.lo(%) CL.hi(%)  PE(%)
-  46.96 71.23 140.4   107.11   124.89 115.66
+#  CVwR(%)  L(%)  U(%) CL.lo(%) CL.hi(%)  PE(%)
+#    46.96 71.23 140.4   107.11   124.89 115.66
 ```
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
@@ -250,43 +246,39 @@ CVwR(%)  L(%)  U(%) CL.lo(%) CL.hi(%)  PE(%)
 ``` r
 res <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
                 print = FALSE, data = rds01)
-
-Outlier analysis
- (externally) studentized residuals
- Limits (2×IQR whiskers): -1.717435, 1.877877
- Outliers:
- subject sequence  stud.res
-      45     RTRT -6.656940
-      52     RTRT  3.453122
-
- standarized (internally studentized) residuals
- Limits (2×IQR whiskers): -1.69433, 1.845333
- Outliers:
- subject sequence stand.res
-      45     RTRT -5.246293
-      52     RTRT  3.214663
-
-Data set DS01: Method B by lmer (option=3; equivalent to SAS’ DDFM=KENWARDROGER) 
-──────────────────────────────────────────────────────────────────────────────── 
-Response: log(PK)
-Type III Analysis of Variance Table with Kenward-Roger's method
-                Sum Sq      Mean Sq NumDF        DenDF F value    Pr(>F)   
-sequence  0.0019172306 0.0019172306     1  74.98992027 0.01198 0.9131528   
-period    0.3980646169 0.1326882056     3 217.38749923 0.82878 0.4792976   
-treatment 1.5792804179 1.5792804179     1 217.20785508 9.86432 0.0019197 **
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-treatment T – R:
-   Estimate  Std. Error     t value    Pr(>|t|) 
-0.146088200 0.046513770 3.140751000 0.001919686 
-217.208 Degrees of Freedom
-
-cols <- c(25, 28:29, 17:19) # Relevant columns
+# 
+# Outlier analysis
+#  (externally) studentized residuals
+#  Limits (2×IQR whiskers): -1.717435, 1.877877
+#  Outliers:
+#  subject sequence  stud.res
+#       45     RTRT -6.656940
+#       52     RTRT  3.453122
+# 
+#  standarized (internally studentized) residuals
+#  Limits (2×IQR whiskers): -1.69433, 1.845333
+#  Outliers:
+#  subject sequence stand.res
+#       45     RTRT -5.246293
+#       52     RTRT  3.214663
+# 
+# Data set DS01: Method B by lmer (option=3; equivalent to SAS’ DDFM=KENWARDROGER) 
+# -------------------------------------------------------------------------------- 
+# Response: log(PK)
+# Type III Analysis of Variance Table with Kenward-Roger's method
+#             Sum Sq  Mean Sq NumDF    DenDF F value    Pr(>F)
+# sequence  0.001917 0.001917     1  74.9899 0.01198 0.9131528
+# period    0.398065 0.132688     3 217.3875 0.82878 0.4792976
+# treatment 1.579280 1.579280     1 217.2079 9.86432 0.0019197
+# 
+# treatment T – R:
+#   Estimate Std. Error    t value   Pr(>|t|) 
+# 0.14608800 0.04651380 3.14075000 0.00191969 
+# 217.208 Degrees of Freedom
+cols <- c(25, 28:29, 17:19) # Relevant columns only
 print(round(res[cols], 2), row.names=FALSE)
-
-CVwR.new(%) L.new(%) U.new(%) CL.lo(%) CL.hi(%)  PE(%)
-      32.16    78.79   126.93   107.17   124.97 115.73
+#  CVwR.rec(%) L.rec(%) U.rec(%) CL.lo(%) CL.hi(%)  PE(%)
+#        32.16    78.79   126.93   107.17   124.97 115.73
 ```
 
 <small>[TOC ↩](#user-content-replicatebe)</small>

@@ -9,7 +9,7 @@ method.A <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
                      verbose = FALSE, ask = FALSE, plot.bxp = FALSE,
                      fence = 2, data = NULL) {
   exec <- strftime(Sys.time(), usetz=TRUE)
-  ext  <- tolower(ext) # case-insensitive
+  if (!missing(ext)) ext <- tolower(ext) # case-insensitive
   ret  <- CV.calc(alpha=alpha, path.in=path.in, path.out=path.out,
                   file=file, set=set, ext=ext, na=na, sep=sep,
                   dec=dec, logtrans=logtrans, ola=ola,

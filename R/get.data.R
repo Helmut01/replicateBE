@@ -9,7 +9,7 @@ get.data <- function(path.in, path.out, file, set = "",
   graphics.off()
   transf <- logtrans # default
   if (is.null(data)) { # checking external data
-    ext     <- tolower(ext)
+    if (!missing(ext)) ext <- tolower(ext) # case-insensitive
     ext.csv <- "csv"
     ext.xls <- c("xls", "xlsx")
     if (missing(file))
