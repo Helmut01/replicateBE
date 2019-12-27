@@ -51,8 +51,8 @@ ABE <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
   }
   if (verbose) {
     name <-  paste0(file, set)
-    cat("\nData set", name, "by ABE",
-        paste0("\n", paste0(rep("\u2500", 16+nchar(name)), collapse="")), "\n")
+    cat(paste0("\nData set ", name, ": ABE by lm"),
+        paste0("\n", paste0(rep("\u2500", 20+nchar(name)), collapse="")), "\n")
     print(stats::anova(mod), digits=6, signif.stars=FALSE) # otherwise summary of lmerTest is used
     cat("\ntreatment T \u2013 R:\n")
     print(signif(summary(mod)$coefficients["treatmentT", ]), 6)

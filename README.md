@@ -213,8 +213,8 @@ library(replicateBE) # attach the library
 res  <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
                  data = rds01)
 # 
-# Data set DS01 by Method A 
-# -------------------------- 
+# Data set DS01: Method A by lm 
+# ----------------------------- 
 # Analysis of Variance Table
 # 
 # Response: log(PK)
@@ -229,8 +229,8 @@ res  <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
 #   Estimate Std. Error    t value   Pr(>|t|) 
 # 0.14547400 0.04650870 3.12788000 0.00200215 
 # 217 Degrees of Freedom
-cols <- c(12, 15:19)           # Relevant columns only
-tmp  <- round(res[cols], 2)    # 2 decimal places
+cols <- c(12, 15:19)           # extract relevant columns
+tmp  <- round(res[cols], 2)    # 2 decimal places acc. to GL
 tmp  <- cbind(tmp, res[20:22]) # pass|fail
 print(tmp, row.names=FALSE)
 #  CVwR(%)  L(%)  U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
@@ -277,8 +277,8 @@ res  <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
 #   Estimate Std. Error    t value   Pr(>|t|) 
 # 0.14608800 0.04651380 3.14075000 0.00191969 
 # 217.208 Degrees of Freedom
-cols <- c(25, 28:29, 17:19)    # Relevant columns only
-tmp  <- round(res[cols], 2)    # 2 decimal places
+cols <- c(25, 28:29, 17:19)    # extract relevant columns
+tmp  <- round(res[cols], 2)    # 2 decimal places acc. to GL
 tmp  <- cbind(tmp, res[30:32]) # pass|fail
 print(tmp, row.names = FALSE)
 #  CVwR.rec(%) L.rec(%) U.rec(%) CL.lo(%) CL.hi(%)  PE(%) CI.rec GMR.rec BE.rec
@@ -296,8 +296,8 @@ print(tmp, row.names = FALSE)
 res  <- ABE(verbose = TRUE, theta1 = 0.90, details = TRUE,
             print = FALSE, data = rds05)
 # 
-# Data set DS05 by ABE 
-# -------------------- 
+# Data set DS05: ABE by lm 
+# ------------------------ 
 # Analysis of Variance Table
 # 
 # Response: log(PK)
@@ -312,8 +312,8 @@ res  <- ABE(verbose = TRUE, theta1 = 0.90, details = TRUE,
 #   Estimate Std. Error    t value   Pr(>|t|) 
 # 0.07558800 0.02284850 3.30822000 0.00145167 
 # 74 Degrees of Freedom
-cols <- c(13:17)            # Relevant columns only
-tmp  <- round(res[cols], 2) # 2 decimal places
+cols <- c(13:17)            # extract relevant columns
+tmp  <- round(res[cols], 2) # 2 decimal places acc. to GL
 tmp  <- cbind(tmp, res[18]) # pass|fail
 print(tmp, row.names=FALSE)
 #  BE.lo(%) BE.hi(%) CL.lo(%) CL.hi(%)  PE(%)   BE

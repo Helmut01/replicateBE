@@ -119,8 +119,8 @@ Results of the 30 reference datasets agree with ones obtained in SAS (9.4), Phoe
 library(replicateBE) # attach the library
 res  <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
                  data = rds01)
-cols <- c(12, 15:19)           # Relevant columns only
-tmp  <- round(res[cols], 2)    # 2 decimal places
+cols <- c(12, 15:19)           # extract relevant columns
+tmp  <- round(res[cols], 2)    # 2 decimal places acc. to GL
 tmp  <- cbind(tmp, res[20:22]) # pass|fail
 print(tmp, row.names=FALSE)
 ```
@@ -132,8 +132,8 @@ print(tmp, row.names=FALSE)
 ```{r}
 res  <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
                  print = FALSE, data = rds01)
-cols <- c(25, 28:29, 17:19)    # Relevant columns only
-tmp  <- round(res[cols], 2)    # 2 decimal places
+cols <- c(25, 28:29, 17:19)    # extract relevant columns
+tmp  <- round(res[cols], 2)    # 2 decimal places acc. to GL
 tmp  <- cbind(tmp, res[30:32]) # pass|fail
 print(tmp, row.names = FALSE)
 ```
@@ -145,8 +145,8 @@ print(tmp, row.names = FALSE)
 ```{r}
 res  <- ABE(verbose = TRUE, theta1 = 0.90, details = TRUE,
             print = FALSE, data = rds05)
-cols <- c(13:17)            # Relevant columns only
-tmp  <- round(res[cols], 2) # 2 decimal places
+cols <- c(13:17)            # extract relevant columns
+tmp  <- round(res[cols], 2) # 2 decimal places acc. to GL
 tmp  <- cbind(tmp, res[18]) # pass|fail
 print(tmp, row.names=FALSE)
 ```
