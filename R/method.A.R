@@ -9,6 +9,7 @@ method.A <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
                      verbose = FALSE, ask = FALSE, plot.bxp = FALSE,
                      fence = 2, data = NULL) {
   exec <- strftime(Sys.time(), usetz=TRUE)
+  ext  <- tolower(ext) # case-insensitive
   ret  <- CV.calc(alpha=alpha, path.in=path.in, path.out=path.out,
                   file=file, set=set, ext=ext, na=na, sep=sep,
                   dec=dec, logtrans=logtrans, ola=ola,
@@ -41,7 +42,7 @@ method.A <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
     name <-  paste0(file, set)
     cat("\nData set", name, "by Method A",
         paste0("\n", paste0(rep("\u2500", 22+nchar(name)), collapse="")), "\n")
-    print(stats::anova(modA), digits=7) # otherwise summary of lmerTest is used, digits=7 ignored
+    print(stats::anova(modA), digits=6, signif.stars=FALSE) # otherwise summary of lmerTest is used
     cat("\ntreatment T \u2013 R:\n")
     print(signif(summary(modA)$coefficients["treatmentT", ]), 6)
     cat(summary(modA)$df[2], "Degrees of Freedom\n\n")
@@ -56,25 +57,25 @@ method.A <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
                     DF, ret$CVwT, ret$CVwR, ret$sw.ratio,
                     ret$sw.ratio.upper, ret$BE1, ret$BE2, CI[1], CI[2],
                     PE, "fail", "fail", "fail", log(CI[2])-log(PE),
-                    paste0(ret$ol, collapse="|"), ret$CVwR.new,
-                    ret$sw.ratio.new, ret$sw.ratio.new.upper, ret$BE.new1,
-                    ret$BE.new2, "fail", "fail", "fail",
+                    paste0(ret$ol, collapse="|"), ret$CVwR.rec,
+                    ret$sw.ratio.rec, ret$sw.ratio.rec.upper, ret$BE.rec1,
+                    ret$BE.rec2, "fail", "fail", "fail",
                     stringsAsFactors=FALSE)
   names(res)<- c("Design", "Method", "n", "nTT", "nRR", "Sub/seq",
                  "Miss/seq", "Miss/per", "alpha", "DF", "CVwT(%)",
                  "CVwR(%)", "sw.ratio", "sw.ratio.CL", "L(%)",
                  "U(%)", "CL.lo(%)", "CL.hi(%)", "PE(%)",
                  "CI", "GMR", "BE", "log.half-width", "outlier",
-                 "CVwR.new(%)", "sw.ratio.new", "sw.ratio.new.CL",
-                 "L.new(%)", "U.new(%)",
-                 "CI.new", "GMR.new", "BE.new")
+                 "CVwR.rec(%)", "sw.ratio.rec", "sw.ratio.rec.CL",
+                 "L.rec(%)", "U.rec(%)",
+                 "CI.rec", "GMR.rec", "BE.rec")
   if (ret$BE2 == 1.25) { # change column names if necessary
     colnames(res)[which(names(res) == "L(%)")] <- "BE.lo(%)"
     colnames(res)[which(names(res) == "U(%)")] <- "BE.hi(%)"
   }
-  if (!is.na(ret$BE.new2) & ret$BE.new2 == 1.25) { # change column names if necessary
-    colnames(res)[which(names(res) == "L.new(%)")] <- "BE.new.lo(%)"
-    colnames(res)[which(names(res) == "U.new(%)")] <- "BE.new.hi(%)"
+  if (!is.na(ret$BE.rec2) & ret$BE.rec2 == 1.25) { # change column names if necessary
+    colnames(res)[which(names(res) == "L.rec(%)")] <- "BE.rec.lo(%)"
+    colnames(res)[which(names(res) == "U.rec(%)")] <- "BE.rec.hi(%)"
   }
   # Convert CVs, limits, PE, and CI (till here as fractions) to percent
   res$"CVwT(%)" <- 100*res$"CVwT(%)"
@@ -86,14 +87,14 @@ method.A <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
     res$"L(%)" <- 100*res$"L(%)"
     res$"U(%)" <- 100*res$"U(%)"
   }
-  if (!is.na(res$"CVwR.new(%)")) {
-    res$"CVwR.new(%)"    <- 100*res$"CVwR.new(%)"
-    if ("BE.new.lo(%)" %in% names(res)) { # conventional limits
-      res$"BE.new.lo(%)" <- 100*res$"BE.new.lo(%)"
-      res$"BE.new.hi(%)" <- 100*res$"BE.new.hi(%)"
+  if (!is.na(res$"CVwR.rec(%)")) {
+    res$"CVwR.rec(%)"    <- 100*res$"CVwR.rec(%)"
+    if ("BE.rec.lo(%)" %in% names(res)) { # conventional limits
+      res$"BE.rec.lo(%)" <- 100*res$"BE.rec.lo(%)"
+      res$"BE.rec.hi(%)" <- 100*res$"BE.rec.hi(%)"
     } else {                              # expanded limits
-      res$"L.new(%)" <- 100*res$"L.new(%)"
-      res$"U.new(%)" <- 100*res$"U.new(%)"
+      res$"L.rec(%)" <- 100*res$"L.rec(%)"
+      res$"U.rec(%)" <- 100*res$"U.rec(%)"
     }
   }
   res$"PE(%)"    <- 100*res$"PE(%)"
@@ -106,23 +107,23 @@ method.A <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
     res$GMR <- "pass" # PE within 80.00-125.00%
   if (res$CI == "pass" & res$GMR == "pass")
     res$BE <- "pass"  # if passing both, conclude BE
-  if (!is.na(res$"CVwR.new(%)")) {
-    if (round(res$"CL.lo(%)", 2) >= 100*ret$BE.new1 &
-        round(res$"CL.hi(%)", 2) <= 100*ret$BE.new2)
-      res$CI.new <- "pass"  # CI within acceptance range
-    res$GMR.new <- res$GMR
-    if (res$CI.new == "pass" & res$GMR.new == "pass")
-      res$BE.new <- "pass"  # if passing both, conclude BE
+  if (!is.na(res$"CVwR.rec(%)")) {
+    if (round(res$"CL.lo(%)", 2) >= 100*ret$BE.rec1 &
+        round(res$"CL.hi(%)", 2) <= 100*ret$BE.rec2)
+      res$CI.rec <- "pass"  # CI within acceptance range
+    res$GMR.rec <- res$GMR
+    if (res$CI.rec == "pass" & res$GMR.rec == "pass")
+      res$BE.rec <- "pass"  # if passing both, conclude BE
   }
   if (details) { # results in default (7 digits) precision
     ret <- res
     if (as.character(res$outlier) == "NA") {
       # remove superfluous columns if ola=FALSE or ola=TRUE
       # and no outlier(s) detected
-      ret <- ret[, !names(ret) %in% c("outlier", "CVwR.new(%)",
-                                      "sw.ratio.new", "L.new(%)",
-                                      "U.new(%)", "CI.new",
-                                      "GMR.new", "BE.new")]
+      ret <- ret[, !names(ret) %in% c("outlier", "CVwR.rec(%)",
+                                      "sw.ratio.rec", "L.rec(%)",
+                                      "U.rec(%)", "CI.rec",
+                                      "GMR.rec", "BE.rec")]
     }
     #class(ret) <- "repBE"
     return(ret)
@@ -140,14 +141,14 @@ method.A <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
   res$"PE(%)"    <- round(res$"PE(%)", 2)
   res$"CL.lo(%)" <- round(res$"CL.lo(%)", 2)
   res$"CL.hi(%)" <- round(res$"CL.hi(%)", 2)
-  if (!is.na(res$"CVwR.new(%)")) {
-  res$"CVwR.new(%)" <- round(res$"CVwR.new(%)", 2)
-    if ("BE.new.lo(%)" %in% names(res)) { # conventional limits
-      res$"BE.new.lo(%)" <- round(res$"BE.new.lo(%)", 2)
-      res$"BE.new.hi(%)" <- round(res$"BE.new.hi(%)", 2)
+  if (!is.na(res$"CVwR.rec(%)")) {
+  res$"CVwR.rec(%)" <- round(res$"CVwR.rec(%)", 2)
+    if ("BE.rec.lo(%)" %in% names(res)) { # conventional limits
+      res$"BE.rec.lo(%)" <- round(res$"BE.rec.lo(%)", 2)
+      res$"BE.rec.hi(%)" <- round(res$"BE.rec.hi(%)", 2)
     } else {                          # expanded limits
-      res$"L.new(%)" <- round(res$"L.new(%)", 2)
-      res$"U.new(%)" <- round(res$"U.new(%)", 2)
+      res$"L.rec(%)" <- round(res$"L.rec(%)", 2)
+      res$"U.rec(%)" <- round(res$"U.rec(%)", 2)
     }
   }
   overwrite <- TRUE # default
@@ -175,7 +176,7 @@ method.A <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
                 "\nalpha              :   ", alpha,
                 " (", 100*(1-2*alpha), "% CI)\n")
   txt <- paste0(left.str, insert.str, right.str)
-  if (!is.na(res$"CVwR.new(%)")) {
+  if (!is.na(res$"CVwR.rec(%)")) {
     txt1 <- paste0("\n\nAssessment based on original CVwR",
                    sprintf(" %.2f%%", res$"CVwR(%)"))
     txt <- paste0(txt, txt1, "\n", paste0(rep("\u2500", nchar(txt1)-2), collapse=""))
@@ -189,15 +190,15 @@ method.A <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
   txt <- paste0(txt,
                 repBE.draw.line(called.from="ABEL", L=ret$BE1, U=ret$BE2,
                                 lo=CI[1], hi=CI[2], PE=PE), "\n")
-  if (!is.na(res$"CVwR.new(%)")) {
+  if (!is.na(res$"CVwR.rec(%)")) {
     txt1 <- paste0("\nAssessment based on recalculated CVwR",
-                 sprintf(" %.2f%%", res$"CVwR.new(%)"))
+                 sprintf(" %.2f%%", res$"CVwR.rec(%)"))
     txt <- paste0(txt, txt1, "\n", paste0(rep("\u2500", nchar(txt1)-1), collapse=""))
-    txt <- paste0(txt, "\nConfidence interval: ", res$CI.new,
-                  "\nPoint estimate     : ", res$GMR.new,
-                  "\nMixed (CI & PE)    : ", res$BE.new, "\n")
+    txt <- paste0(txt, "\nConfidence interval: ", res$CI.rec,
+                  "\nPoint estimate     : ", res$GMR.rec,
+                  "\nMixed (CI & PE)    : ", res$BE.rec, "\n")
     txt <- paste0(txt,
-                  repBE.draw.line(called.from="ABEL", L=ret$BE.new1, U=ret$BE.new2,
+                  repBE.draw.line(called.from="ABEL", L=ret$BE.rec1, U=ret$BE.rec2,
                                   lo=CI[1], hi=CI[2], PE=PE), "\n")
   }
   if (res$Design == "TRR|RTR")
@@ -229,12 +230,12 @@ method.A <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
           txt <- paste0("\n", paste0(rep("\u2500", 74), collapse=""))
           adj <- scABEL.ad(theta0=PE, CV=ret$CVwR, design=des,
                            n=ret$Sub.Seq, alpha.pre=alpha, print=FALSE)
-          if (!is.na(ret$CVwR.new)) { # 2nd run for recalculated CVwR
-            adj1 <- scABEL.ad(theta0=PE, CV=ret$CVwR.new, design=des,
+          if (!is.na(ret$CVwR.rec)) { # 2nd run for recalculated CVwR
+            adj1 <- scABEL.ad(theta0=PE, CV=ret$CVwR.rec, design=des,
                               n=ret$Sub.Seq, alpha.pre=alpha, print=FALSE)
           }
           no.infl <- "  TIE not > nominal 0.05; consumer risk is controlled.\n"
-          ifelse (is.na(ret$CVwR.new),
+          ifelse (is.na(ret$CVwR.rec),
             txt <- paste0(txt, "\nAssessment of the empiric Type I Error (TIE); "),
             txt <- paste0(txt, "\nAssessment of the empiric Type I Error (TIE) based on original CVwR;\n"))
             iter <- (adj$sims - adj$sims %% 1e6) / 1e6
@@ -252,7 +253,7 @@ method.A <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
                           sprintf(" %1.6f: %1.5f",
                                   adj$alpha.adj, adj$TIE.adj), "\n")
           } # EO orginal CVwR
-          if (!is.na(ret$CVwR.new)) {
+          if (!is.na(ret$CVwR.rec)) {
             txt <- paste0(txt, "Assessment of the empiric Type I Error (TIE) based on recalculated CVwR;")
             iter <- (adj1$sims - adj1$sims %% 1e6) / 1e6
             ifelse (iter == 1,
@@ -285,8 +286,8 @@ method.A <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
         } else { # to console
           scABEL.ad(theta0=PE, CV=ret$CVwR, design=des, n=ret$Sub.Seq,
                     alpha.pre=alpha, details=TRUE)
-          if (!is.na(ret$CVwR.new)) { # 2nd run for recalculated CVwR
-            scABEL.ad(theta0=PE, CV=ret$CVwR.new, design=des, n=ret$Sub.Seq,
+          if (!is.na(ret$CVwR.rec)) { # 2nd run for recalculated CVwR
+            scABEL.ad(theta0=PE, CV=ret$CVwR.rec, design=des, n=ret$Sub.Seq,
                       alpha.pre=alpha, details=TRUE)
           }
         }

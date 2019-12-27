@@ -9,8 +9,9 @@ get.data <- function(path.in, path.out, file, set = "",
   graphics.off()
   transf <- logtrans # default
   if (is.null(data)) { # checking external data
-    ext.csv <- c("CSV", "csv")
-    ext.xls <- c("XLS", "xls", "XLSX", "xlsx")
+    ext     <- tolower(ext)
+    ext.csv <- "csv"
+    ext.xls <- c("xls", "xlsx")
     if (missing(file))
       stop("Argument 'file' must be given.")
     if (is.numeric(file))

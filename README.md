@@ -241,7 +241,9 @@ CVwR(%)  L(%)  U(%) CL.lo(%) CL.hi(%)  PE(%)
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
-  - Same dataset evaluated by Method B, Kenward-Roger approximation of degrees of freedom. Outlier assessment, recalculation of *CV<sub>wR</sub>* after exclusion of outliers, new expanded limits.
+  - Same dataset evaluated by Method B, Kenward-Roger approximation of
+    degrees of freedom. Outlier assessment, recalculation of
+    *CV<sub>wR</sub>* after exclusion of outliers, new expanded limits.
 
 <!-- end list -->
 

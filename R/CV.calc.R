@@ -47,7 +47,7 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
     names(sw.ratio.CI) <- c("lower", "upper")
   }
   outlier <- FALSE
-  BE.new  <- rep(NA, 2)
+  BE.rec  <- rep(NA, 2)
   if (ola & !called.from == "ABE") { # check for outliers
     stud.res  <- rstudent(modCVR)  # studentized (SAS)
     stud.res  <- stud.res[!is.na(stud.res)] # get rid of NAs and zeros
@@ -128,21 +128,21 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
       ol   <- ret$ref[names(bp1$out), "subject"]
       excl <- ret$ref[!ret$ref$subject %in% ol, ]
       if (logtrans) { # use the raw data and log-transform internally
-        modCVR.new <- lm(log(PK) ~ sequence + subject%in%sequence + period,
+        modCVR.rec <- lm(log(PK) ~ sequence + subject%in%sequence + period,
                                    data=excl)
       } else {
-        modCVR.new <- lm(logPK ~ sequence + subject%in%sequence + period,
+        modCVR.rec <- lm(logPK ~ sequence + subject%in%sequence + period,
                                  data=excl)
       }
-      aovCVR.new <- anova(modCVR.new)
-      msewR.new  <- aovCVR.new["Residuals", "Mean Sq"]
-      DfCVR.new  <- aovCVR.new["Residuals", "Df"]
-      CVwR.new   <- mse2CV(msewR.new)
+      aovCVR.rec <- anova(modCVR.rec)
+      msewR.rec  <- aovCVR.rec["Residuals", "Mean Sq"]
+      DfCVR.rec  <- aovCVR.rec["Residuals", "Df"]
+      CVwR.rec   <- mse2CV(msewR.rec)
       if (ret$design == "full") {
-        sw.ratio.new <- sqrt(msewT)/sqrt(msewR.new)
-        sw.ratio.new.CI <- c(sw.ratio.new/sqrt(qf(0.1/2, df1=DfCVT, df2=DfCVR.new, lower.tail=FALSE)),
-                             sw.ratio.new/sqrt(qf(1-0.1/2, df1=DfCVT, df2=DfCVR.new, lower.tail=FALSE)))
-        names(sw.ratio.new.CI) <- c("lower", "upper")
+        sw.ratio.rec <- sqrt(msewT)/sqrt(msewR.rec)
+        sw.ratio.rec.CI <- c(sw.ratio.rec/sqrt(qf(0.1/2, df1=DfCVT, df2=DfCVR.rec, lower.tail=FALSE)),
+                             sw.ratio.rec/sqrt(qf(1-0.1/2, df1=DfCVT, df2=DfCVR.rec, lower.tail=FALSE)))
+        names(sw.ratio.rec.CI) <- c("lower", "upper")
       }
       if (verbose) {
         stud.res.whiskers <- signif(range(bp1$stats[, 1]), 7)
@@ -228,8 +228,8 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
     }
     if (ola) {
       if (outlier) {
-        if (ret$design == "full") sw.ratio.new <- sqrt(msewT)/sqrt(msewR.new)
-        BE.new <- as.numeric(scABEL(CV=CVwR.new, regulator="EMA"))
+        if (ret$design == "full") sw.ratio.rec <- sqrt(msewT)/sqrt(msewR.rec)
+        BE.rec <- as.numeric(scABEL(CV=CVwR.rec, regulator="EMA"))
         txt <- paste0(txt, "\n\nOutlier fence      :  ", fence,
                       "\u00D7IQR of studentized residuals.")
         txt1 <- paste0("\nRecalculation due to presence of ",
@@ -241,15 +241,15 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
         txt <- paste0(txt, txt1, "\n",
                       paste0(rep("\u2500", nchar(txt1)-1), collapse=""))
         txt <- paste0(txt,
-                      "\nCVwR (outl. excl.) : ", sprintf("%6.2f%%", 100*CVwR.new),
+                      "\nCVwR (outl. excl.) : ", sprintf("%6.2f%%", 100*CVwR.rec),
                       " (reference-scaling ")
-        if (CVwR.new > 0.3) {
+        if (CVwR.rec > 0.3) {
           txt <- paste0(txt, "applicable)")
           txt <- paste0(txt, "\nswR (recalculated) :   ",
-                        sprintf("%.5f", CV2se(CVwR.new)))
+                        sprintf("%.5f", CV2se(CVwR.rec)))
           txt <- paste0(txt, "\nExpanded limits    : ",
                         sprintf("%6.2f%% ... %.2f%%",
-                                100*BE.new[1], 100*BE.new[2]), " [100exp(\u00B1",
+                                100*BE.rec[1], 100*BE.rec[2]), " [100exp(\u00B1",
                         sprintf("%.3f", reg_set$r_const), "\u00B7swR)]")
         } else {
           txt <- paste0(txt, "not applicable)")
@@ -257,17 +257,17 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
         }
         if (ret$design == "full") {
           txt <- paste0(txt, "\nswT / swR (recalc.):   ",
-                        sprintf("%.4f", sw.ratio.new))
-          if (sw.ratio.new >= 2/3 & sw.ratio.new <= 3/2) { # like in PBE/IBE
+                        sprintf("%.4f", sw.ratio.rec))
+          if (sw.ratio.rec >= 2/3 & sw.ratio.rec <= 3/2) { # like in PBE/IBE
             txt <- paste0(txt, " (similar variabilities of T and R)")
           } else {
-            ifelse (sw.ratio.new < 2/3,
+            ifelse (sw.ratio.rec < 2/3,
               txt <- paste0(txt, " (T lower variability than R)"),
               txt <- paste0(txt, " (T higher variability than R)"))
           }
           txt <- paste0(txt, "\nsw-ratio (upper CL):   ",
-                        sprintf("%.4f", sw.ratio.new.CI[["upper"]]))
-          if (sw.ratio.new.CI[["upper"]] <= 2.5) { # like in the FDA's warfarin guidance
+                        sprintf("%.4f", sw.ratio.rec.CI[["upper"]]))
+          if (sw.ratio.rec.CI[["upper"]] <= 2.5) { # like in the FDA's warfarin guidance
             txt <- paste0(txt, " (comparable variabilities of T and R)")
           } else {
             txt <- paste0(txt, " (T higher variability than R)")
@@ -294,12 +294,12 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
            sw.ratio.upper=ifelse(called.from != "ABE" & ret$design == "full",
                            sw.ratio.CI[["upper"]], NA),
            ol=ifelse(called.from != "ABE" & outlier, list(ol.subj1), NA),
-           CVwR.new=ifelse(called.from != "ABE" & outlier, CVwR.new, NA),
-           sw.ratio.new=ifelse(called.from != "ABE" & outlier &
-                               ret$design == "full", sw.ratio.new, NA),
-           sw.ratio.new.upper=ifelse(called.from != "ABE" & outlier &
+           CVwR.rec=ifelse(called.from != "ABE" & outlier, CVwR.rec, NA),
+           sw.ratio.rec=ifelse(called.from != "ABE" & outlier &
+                               ret$design == "full", sw.ratio.rec, NA),
+           sw.ratio.rec.upper=ifelse(called.from != "ABE" & outlier &
                                      ret$design == "full",
-                                     sw.ratio.new.CI[["upper"]], NA),
-           BE.new=BE.new)
+                                     sw.ratio.rec.CI[["upper"]], NA),
+           BE.rec=BE.rec)
   return(ret)
 } # end of function CV.calc()

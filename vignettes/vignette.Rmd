@@ -202,7 +202,7 @@ If less than twelve subjects remain in sequence `RTR` of a `TRT | RTR` design (
 # Estimate sample sizes of full replicate designs (theta0 0.90, target
 # power 0.80) and CI of the CV with library PowerTOST
 CV <- 0.30
-n4 <- PowerTOST::sampleN.scABEL(CV =CV, design = "2x2x4", details = FALSE,
+n4 <- PowerTOST::sampleN.scABEL(CV = CV, design = "2x2x4", details = FALSE,
                                 print = FALSE)[["Sample size"]] # 4-period
 n3 <- PowerTOST::sampleN.scABEL(CV = CV, design = "2x2x3", details = FALSE,
                                 print = FALSE)[["Sample size"]] # 3-period
@@ -220,11 +220,11 @@ It is unclear why the four period replicate is considered by the EMA to give a m
 The EMA’s models assumes equal [_sic_] intra-subject variances of Test and Reference (like in 2×2×2 trials) – even if proven false in one of the full replicate designs (were _both_ *CV~wT~* and *CV~wR~* can be estimated). Hence, amongst biostatisticians they are called ‘crippled models’ because the replicative nature of the study is ignored.
 
 The nested structure _subject(sequence)_ of the [methods](#methods) leads to an over-specificed model.^[Contradics the law of simplicity. Such a nesting is superfluous since in BE trials subjects are uniquely coded. If, say, subject `1` is allocated to sequence `TRTR` there is not yet ‘another’ subject `1` allocated to sequence `RTRT`. This explains the many lines in SAS `PROC GML` given with `.` and in Phoenix WinNonlin as `not estimable`.] The simple model\
-    _sequence_, _subject_, _period_, _treatment_\
+&nbsp;&nbsp;&nbsp;&nbsp;_sequence_, _subject_, _period_, _treatment_\
 gives identical estimates of the residual variance and the treatment effect and hence, its confidence interval.
 
 The same holds true for the [EMA’s model](#cv) to estimate *CV~wR~*. The simple model\
-    _subject_, _period_\
+&nbsp;&nbsp;&nbsp;&nbsp;_subject_, _period_\
 gives an identical estimate of the residual variance.
 
 Reference-scaling is acceptable for C~max~ (immediate release products: BE-Guideline) and C~max~, C~max,ss~, C~Ï„,ss~, ~partial~AUC (modified release products^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.* London, 20 November 2014. [EMA/CHMP/EWP/280/96](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf)]). The intention to widen the limits has to be stated in the protocol and – contrary to the FDA’s <span title="Reference Scaled Average Bioequivalence">RSABE</span> – a clinical justification provided.
@@ -275,7 +275,7 @@ The SAS code provided by the EMA in the Q&A document does not specify how the de
 
 The EMA seemingly prefers ‘Method A’:
 
-> _A simple linear mixed model, which assumes identical within-subject variability (Method B), may be acceptable as long as results obtained with the two methods do not lead to different regulatory decisions. However, in borderline cases [â€¦] additional analysis using Method A might be required._
+> _A simple linear mixed model, which assumes identical within-subject variability (Method B), may be acceptable as long as results obtained with the two methods do not lead to different regulatory decisions. However, in borderline cases […] additional analysis using Method A might be required._
 > 
 > --- Q&A document (January 2011 and later revisions)
 
@@ -323,7 +323,6 @@ print(df[order(df$BE, df$hw, decreasing = c(FALSE, TRUE)), ],
       row.names = FALSE)
 ```
 All variants of ‘Method B’ are more conservative than ‘Method A’. Before rounding the confidence interval, `option = 2` with 192 degrees of freedom would be more conservative (lower CL 69.21029) than `option = 1` with 197.44 degrees of freedom (lower CL 69.21286). Given the incompleteness of this dataset (four missings in period 2, twelve in period 3, and 19 in period 4), Satterthwaite’s or Kenward-Roger degrees of freedom are probably the better choice.
-
 
 ## Outlier analysis{#ola}
 It is an open issue how outliers should be handled.
@@ -382,7 +381,7 @@ Outlier analysis
       52     RTRT  3.214663
 ```
 
-If based on studentized residuals outliers are detected, additionally to the expanded limits based on the complete reference data, tighter limits are calculated based on *CV~wR~* after exclusion of outliers and BE assessed with the new limits. Standardized residuals are shown for informational purposes only and are not used for exclusion of outliers.
+If based on *studentized* residuals outliers are detected, additionally to the expanded limits based on the complete reference data, tighter limits are calculated based on *CV~wR~* after exclusion of outliers and BE assessed with the new limits. Note that *standardized* residuals are given for informational purposes only and are not used for exclusion of outliers.
 
 Output for the reference dataset 01 (re-ordered for clarity):
 ```

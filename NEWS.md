@@ -1,17 +1,19 @@
 # replicateBE 1.0.12.9000
 
-Published on Github 2019-12-26 (passed 2019-12-25 on win-builder checks with R-release and R-devel).
+Published on Github 2019-12-27 (passed 2019-12-25 on win-builder checks with R-release and R-devel).
 
 ## Issues
 
-  * `digits = 7` is ignored in `print(anova(foo, ...))`. Why?
+  * Toplink in rendered vignette is not shown (though in the knitted preview in RStudio). Why? No changes in `vignette.Rmd` and `vignette.css`.
 
 ## Bug fixes
 
+  * Converts `ext` to lower-case. Mixed-case threw an error.
   * Resolved [issue 2](https://github.com/Helmut01/replicateBE/issues/2) raised by MT. Results were correct but the message an annoyance. Use `as.data.frame(read_excel(..., col_names = FALSE, .name_repair = "minimal"))` in `get.data()`. Since the file may contain a commentary header, we need `col_names = FALSE` and construct the names later (*i.e.*, the default `col_names = TRUE` is not possible).
 
 ## Minor changes
 
+  * If `verbose = TRUE` in all methods: `print(anova(...), digits = 6, signif.stars = FALSE)`.
   * Changed names of variables in the data.frame of results. Updated man-pages.
   * Unified ANOVA-table and degrees of freedom if `verbose = TRUE`. Added response to verbose-output of `method.B` (automatically in `method.A`).
   * Handles a case where a user exports one of the internal dataset as a CSV *with* row.names and quoted variables (*i.e.*, instead of `write.csv(rds01, 'rds01.csv', quote = FALSE, row.names = FALSE`) naïvely uses just `write.csv(rds01, 'rds01.csv')`).  

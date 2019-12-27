@@ -42,9 +42,9 @@ ABE(alpha = 0.05, path.in = "~/", path.out = "~/",
   }
   \item{ext}{
     File-extension enclosed in single or double quotation marks.
-    Acceptable are \verb{"CSV"} and \verb{"csv"} for comma delimited
-    variables (\acronym{CSV}) or \verb{"XLS"}, \verb{"xls"}, \verb{"XLSX"},
-    and \verb{"xlsx"} for Excel-files.
+    Acceptable are \verb{"csv"} for comma delimited
+    variables (\acronym{CSV}) or \verb{"xls"}, \verb{"xlsx"} for Excel-files.\cr
+    The file-extension is not case-sensitive.
   }
   \item{na}{
     Character string denoting missing values. Acceptable are \verb{"NA"}
@@ -55,13 +55,13 @@ ABE(alpha = 0.05, path.in = "~/", path.out = "~/",
   }
   \item{sep}{
     Variable separator in the \acronym{CSV}-file. Acceptable are \verb{","}
-    (comma -- \verb{ASCII 44}), \verb{";"} (semicolon -- \verb{ASCII 59}),
-    and \verb{"\\t"} (tabulator -- \verb{ASCII 9}). Defaults to \verb{","}.
+    (comma = \verb{ASCII 44}), \verb{";"} (semicolon = \verb{ASCII 59}),
+    and \verb{"\\t"} (tabulator = \verb{ASCII 9}). Defaults to \verb{","}.
   }
   \item{dec}{
     Decimal separator in the \acronym{CSV}-file. Acceptable are
-    \verb{"."} (period -- \verb{ASCII 46}) or \verb{","}
-    (comma -- \verb{ASCII 44}). Defaults to \verb{"."}.
+    \verb{"."} (period = \verb{ASCII 46}) or \verb{","}
+    (comma = \verb{ASCII 44}). Defaults to \verb{"."}.
   }
   \item{logtrans}{
     If \code{TRUE} (default) the raw data (provided in column \verb{PK})
@@ -86,18 +86,18 @@ ABE(alpha = 0.05, path.in = "~/", path.out = "~/",
     whether an already existing result file should be overwritten.
   }
   \item{data}{
-    Specification of one of the internal reference datasets (\verb{rds01}
-    -- \verb{rds28}). If given, \verb{path.in}, \verb{file}, \verb{set},
-    and \verb{ext} are ignored. For its use see the examples.\cr
+    Specification of one of the internal reference datasets (\verb{rds01}--\verb{rds30}).
+    If given, \verb{path.in}, \verb{file}, \verb{set}, and \verb{ext} are
+    ignored. For its use see the examples.\cr
     If not given, defaults to \code{NULL} (\emph{i.e.}, import data
     from a file).
   }
   \item{theta1}{
-    Lower bioequivalence limit. Defaults to \verb{0.80}. If missing
+    Lower limit of the acceptance range. Defaults to \verb{0.80}. If missing
     will be set to \code{1/theta2}.
   }
   \item{theta2}{
-    Lower bioequivalence limit. Defaults to \verb{1.25}. If missing
+    Upper limit of the acceptance range. Defaults to \verb{1.25}. If missing
     will be set to \code{1/theta1}.
   }
 }
@@ -169,7 +169,7 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
 \section{Warning}{
   Files may contain a commentary header. If reading from a \acronym{CSV}-file,
   \emph{each} line of the commentary header \emph{must} start with \verb{"# "}
-  (hash-space -- \verb{ASCII 35-32}). If reading from an \acronym{XLS}-file
+  (hash space = \verb{ASCII 35 ASCII 32}). If reading from an \acronym{XLS}-file
   all lines preceding the column headers are treated as a comment.
 }
 

@@ -31,7 +31,7 @@ method.A(alpha = 0.05, path.in = "~/", path.out = "~/",
     user’s home folder \verb{"~/"} will be used.
   }
   \item{path.out}{
-    Path to safe the result file if \code{print=TRUE}. The user must have
+    Path to safe the result file if \code{print = TRUE}. The user must have
     write-permission to the directory. If missing or not existing the
     user’s home folder \verb{"~/"} will be used.
   }
@@ -45,9 +45,9 @@ method.A(alpha = 0.05, path.in = "~/", path.out = "~/",
   }
   \item{ext}{
     File-extension enclosed in single or double quotation marks.
-    Acceptable are \verb{"CSV"} and \verb{"csv"} for comma delimited
-    variables (\acronym{CSV}) or \verb{"XLS"}, \verb{"xls"}, \verb{"XLSX"},
-    and \verb{"xlsx"} for Excel-files.
+    Acceptable are \verb{"csv"} for comma delimited
+    variables (\acronym{CSV}) or \verb{"xls"}, \verb{"xlsx"} for Excel-files.\cr
+    The file-extension is not case-sensitive.
   }
   \item{na}{
     Character string denoting missing values. Acceptable are \verb{"NA"}
@@ -58,12 +58,12 @@ method.A(alpha = 0.05, path.in = "~/", path.out = "~/",
   }
   \item{sep}{
     Variable separator in the \acronym{CSV}-file. Acceptable are \verb{","}
-    (comma -- \verb{ASCII 44}), \verb{";"} (semicolon -- \verb{ASCII 59}),
-    and \verb{"\\t"} (tabulator -- \verb{ASCII 9}). Defaults to \verb{","}.
+    (comma = \verb{ASCII 44}), \verb{";"} (semicolon = \verb{ASCII 59}),
+    and \verb{"\\t"} (tabulator = \verb{ASCII 9}). Defaults to \verb{","}.
   }
   \item{dec}{
     Decimal separator in the \acronym{CSV}-file. Acceptable are \verb{"."}
-    (period -- \verb{ASCII 46}) or \verb{","} (comma -- \verb{ASCII 44}).
+    (period = \verb{ASCII 46}) or \verb{","} (comma = \verb{ASCII 44}).
     Defaults to \verb{"."}.
   }
   \item{logtrans}{
@@ -74,8 +74,8 @@ method.A(alpha = 0.05, path.in = "~/", path.out = "~/",
   }
   \item{ola}{
     Defaults to \code{FALSE}. If \code{TRUE} an outlier analysis based
-    on the studentized and standardized residuals of the model estimating
-    \code{CVwR} is performed.
+    on the studentized and standardized (aka internally studentized) residuals
+    of the model estimating \code{CVwR} is performed.
   }
   \item{print}{
     If \code{TRUE} (default), the function prints its results to a
@@ -94,12 +94,12 @@ method.A(alpha = 0.05, path.in = "~/", path.out = "~/",
     the test \code{alpha}, \ifelse{html}{\out{&alpha;}}{\eqn{\alpha}{alpha}}
     is iteratively adjusted until
     \ifelse{html}{\out{TIE&nbsp;=&nbsp;alpha&nbsp;&plusmn;&nbsp;1E-6}}{\eqn{TIE~=~alpha~\pm~1E-6}}.\cr
-    If \code{ola=TRUE} and outlier(s) found which lead to an -- always lower --
+    If \code{ola = TRUE} and outlier(s) found -- which lead to an always lower --
     recalculated \code{CVwR}, the assessment is repeated for its value.
   }
   \item{verbose}{
     Defaults to \code{FALSE}. If \code{TRUE} the ANOVA-table is send to
-    the console. If \code{ola=TRUE} additional information about outliers
+    the console. If \code{ola = TRUE} additional information about outliers
     are shown.
   }
   \item{ask}{
@@ -108,20 +108,20 @@ method.A(alpha = 0.05, path.in = "~/", path.out = "~/",
     should be overwritten.
   }
   \item{plot.bxp}{
-    Only observed if \code{ola=TRUE} and at least one outlier is found.
+    Only observed if \code{ola = TRUE} and at least one outlier is found.
     If \code{FALSE} (default) the box plot will be shown in the graphics
     device. If \code{TRUE} the box plot will be saved in \acronym{PNG} format
     to \code{path.out}.
   }
   \item{fence}{
-    Only observed if \code{ola=TRUE}. The limit for outlier detection as
+    Only observed if \code{ola = TRUE}. The limit for outlier detection as
     a multiplier of the interquartile range. Defaults to 2. Less outliers
     will be detected with higher values (not recommended).
   }
   \item{data}{
-    Specification of one of the internal reference datasets (\verb{rds01}
-    -- \verb{rds30}). If given, \verb{path.in}, \verb{file}, \verb{set},
-    and \verb{ext} are ignored. For its use see the examples.\cr
+    Specification of one of the internal reference datasets (\verb{rds01}--\verb{rds30}).
+    If given, \verb{path.in}, \verb{file}, \verb{set}, and \verb{ext} are
+    ignored. For its use see the examples.\cr
     If not given, defaults to \code{NULL} (\emph{i.e.}, import data
     from a file).
   }
@@ -191,14 +191,14 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
 \itemize{
   \item{If reference-scaling is applicable (\emph{i.e.}, \code{CVwR(\%)} >30\%):}{
     \tabular{ll}{
-      \code{L(\%)} \tab lower expanded limit\cr
-      \code{U(\%)} \tab upper expanded limit
+      \code{L(\%)} \tab lower expanded limit of the acceptance range (AR)\cr
+      \code{U(\%)} \tab upper expanded limit of the acceptance range (AR)
     }
   }
   \item{If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR(\%)} \ifelse{html}{\out{&le;}}{\eqn{\leq}}30\%):}{
     \tabular{ll}{
-      \code{BE.lo(\%)} \tab conventional lower limit (\emph{i.e.}, \verb{ 80})\cr
-      \code{BE.hi(\%)} \tab conventional upper limit (\emph{i.e.}, \verb{125})
+      \code{BE.lo(\%)} \tab lower limit of the conventional AR (\verb{ 80})\cr
+      \code{BE.hi(\%)} \tab upper limit of the conventional AR (\verb{125})
     }
   }
 }
@@ -211,38 +211,38 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     \code{BE} \tab mixed (aggregate) assessment whether the study demonstrates bioequivalence (\verb{pass|fail})\cr
     \code{log.half-width} \tab half-width of the confidence interval in log-scale
   }
-If \code{ola=TRUE} and at least one outlier was detected:
+If \code{ola = TRUE} and at least one studentized outlier was detected:
   \tabular{ll}{
     \code{outlier} \tab outlying subject(s)\cr
-    \code{CVwR.new(\%)} \tab intra-subject coefficient of variation of \code{R}; recalculated after exclusion of outlier(s)\cr
-    \code{sw.ratio.new} \tab ratio of intrasubject variabilities of \code{T} and \code{R} after exclusion of outlier(s); full replicates only\cr
-    \code{sw.ratio.new.CL} \tab upper confidence limit of \code{sw.ratio.new} (full replicates only)
+    \code{CVwR.rec(\%)} \tab intra-subject coefficient of variation of \code{R}; recalculated after exclusion of outlier(s)\cr
+    \code{sw.ratio.rec} \tab ratio of intrasubject variabilities of \code{T} and \code{R} after exclusion of outlier(s); full replicates only\cr
+    \code{sw.ratio.rec.CL} \tab upper confidence limit of \code{sw.ratio.rec} (full replicates only)
   }
 \itemize{
-  \item{If reference-scaling is applicable (\emph{i.e.}, \code{CVwR.new(\%)} >30\%):}{
+  \item{If reference-scaling is applicable (\emph{i.e.}, \code{CVwR.rec(\%)} >30\%):}{
     \tabular{ll}{
-      \code{L.new(\%)} \tab recalculated lower expanded limit\cr
-      \code{U.new(\%)} \tab recalculated upper expanded limit
+      \code{L.rec(\%)} \tab recalculated lower expanded limit of the AR\cr
+      \code{U.rec(\%)} \tab recalculated upper expanded limit of the AR
     }
   }
-  \item{If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR.new(\%)} \ifelse{html}{\out{&le;}}{\eqn{\leq}}30\%):}{
+  \item{If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR.rec(\%)} \ifelse{html}{\out{&le;}}{\eqn{\leq}}30\%):}{
     \tabular{ll}{
-      \code{BE.new.lo(\%)} \tab conventional lower limit (\emph{i.e.}, \verb{ 80})\cr
-      \code{BE.new.hi(\%)} \tab conventional upper limit (\emph{i.e.}, \verb{125})
+      \code{BE.rec.lo(\%)} \tab lower limit of the conventional AR (\verb{ 80})\cr
+      \code{BE.rec.hi(\%)} \tab upper limit of the conventional AR (\verb{125})
     }
   }
 }
   \tabular{ll}{
-    \code{CI.new} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{\eqn{100(1-2\alpha)}{100(1-2alpha)}} \acronym{CI} lies entirely within the new acceptance range (\verb{pass|fail})\cr
-    \code{GMR.new} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%\enc{–}{-}125.00\% (\verb{pass|fail})\cr
-    \code{BE.new} \tab mixed (aggregate) assessment whether the study demonstrates bioequivalence (\verb{pass|fail})\cr
+    \code{CI.rec} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{\eqn{100(1-2\alpha)}{100(1-2alpha)}} \acronym{CI} lies entirely within the new acceptance range (\verb{pass|fail})\cr
+    \code{GMR.rec} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%\enc{–}{-}125.00\% (\verb{pass|fail})\cr
+    \code{BE.rec} \tab mixed (aggregate) assessment whether the study demonstrates bioequivalence (\verb{pass|fail})\cr
   }
 }
 
 \section{Warning}{
   Files may contain a commentary header. If reading from a \acronym{CSV}-file,
   \emph{each} line of the commentary header \emph{must} start with \verb{"# "}
-  (hash-space -- \verb{ASCII 35-32}). If reading from an \acronym{XLS}-file
+  (hash space = \verb{ASCII 35 ASCII 32}). If reading from an \acronym{XLS}-file
   all lines preceding the column headers are treated as a comment.
 }
 
