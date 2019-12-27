@@ -210,8 +210,8 @@ Stata (15.0), and JMP (10.0.2).
 
 ``` r
 library(replicateBE) # attach the library
-res  <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
-                 data = rds01)
+res <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
+                data = rds01)
 # 
 # Data set DS01: Method A by lm 
 # ----------------------------- 
@@ -246,8 +246,8 @@ print(tmp, row.names=FALSE)
 <!-- end list -->
 
 ``` r
-res  <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
-                 print = FALSE, data = rds01)
+res <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
+                print = FALSE, data = rds01)
 # 
 # Outlier analysis
 #  (externally) studentized residuals
@@ -287,14 +287,15 @@ print(tmp, row.names = FALSE)
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
-  - Evaluation of the internal reference dataset 05 of Shumaker and
-    Metzler by ABE, tighter limits for the NTID phenytoin.
+  - Evaluation of the internal reference dataset 05 of [Shumaker and
+    Metzler](https://doi.org/10.1177/009286159803200426) by ABE, tighter
+    limits for the narrow therapeutic index drug phenytoin.
 
 <!-- end list -->
 
 ``` r
-res  <- ABE(verbose = TRUE, theta1 = 0.90, details = TRUE,
-            print = FALSE, data = rds05)
+res <- ABE(verbose = TRUE, theta1 = 0.90, details = TRUE,
+           print = FALSE, data = rds05)
 # 
 # Data set DS05: ABE by lm 
 # ------------------------ 
