@@ -117,10 +117,12 @@ Results of the 30 reference datasets agree with ones obtained in SAS (9.4), Phoe
 
 ```{r}
 library(replicateBE) # attach the library
-res <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
-                data = rds01)
-cols <- c(12, 15:19) # Relevant columns only
-print(round(res[cols], 2), row.names=FALSE)
+res  <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
+                 data = rds01)
+cols <- c(12, 15:19)           # Relevant columns only
+tmp  <- round(res[cols], 2)    # 2 decimal places
+tmp  <- cbind(tmp, res[20:22]) # pass|fail
+print(tmp, row.names=FALSE)
 ```
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
@@ -128,10 +130,25 @@ print(round(res[cols], 2), row.names=FALSE)
   - Same dataset evaluated by Method B, Kenward-Roger approximation of degrees of freedom. Outlier assessment, recalculation of _CV~wR~_ after exclusion of outliers, new expanded limits.
 
 ```{r}
-res <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
-                print = FALSE, data = rds01)
-cols <- c(25, 28:29, 17:19) # Relevant columns only
-print(round(res[cols], 2), row.names=FALSE)
+res  <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
+                 print = FALSE, data = rds01)
+cols <- c(25, 28:29, 17:19)    # Relevant columns only
+tmp  <- round(res[cols], 2)    # 2 decimal places
+tmp  <- cbind(tmp, res[30:32]) # pass|fail
+print(tmp, row.names = FALSE)
+```
+
+<small>[TOC ↩](#user-content-replicatebe)</small>
+
+  - Evaluation of the internal reference dataset 05 of Shumaker and Metzler by ABE, tighter limits for the NTID phenytoin.
+
+```{r}
+res  <- ABE(verbose = TRUE, theta1 = 0.90, details = TRUE,
+            print = FALSE, data = rds05)
+cols <- c(13:17)            # Relevant columns only
+tmp  <- round(res[cols], 2) # 2 decimal places
+tmp  <- cbind(tmp, res[18]) # pass|fail
+print(tmp, row.names=FALSE)
 ```
 
 <small>[TOC ↩](#user-content-replicatebe)</small>

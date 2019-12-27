@@ -210,8 +210,8 @@ Stata (15.0), and JMP (10.0.2).
 
 ``` r
 library(replicateBE) # attach the library
-res <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
-                data = rds01)
+res  <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
+                 data = rds01)
 # 
 # Data set DS01 by Method A 
 # -------------------------- 
@@ -229,10 +229,12 @@ res <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
 #   Estimate Std. Error    t value   Pr(>|t|) 
 # 0.14547400 0.04650870 3.12788000 0.00200215 
 # 217 Degrees of Freedom
-cols <- c(12, 15:19) # Relevant columns only
-print(round(res[cols], 2), row.names=FALSE)
-#  CVwR(%)  L(%)  U(%) CL.lo(%) CL.hi(%)  PE(%)
-#    46.96 71.23 140.4   107.11   124.89 115.66
+cols <- c(12, 15:19)           # Relevant columns only
+tmp  <- round(res[cols], 2)    # 2 decimal places
+tmp  <- cbind(tmp, res[20:22]) # pass|fail
+print(tmp, row.names=FALSE)
+#  CVwR(%)  L(%)  U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
+#    46.96 71.23 140.4   107.11   124.89 115.66 pass pass pass
 ```
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
@@ -244,8 +246,8 @@ print(round(res[cols], 2), row.names=FALSE)
 <!-- end list -->
 
 ``` r
-res <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
-                print = FALSE, data = rds01)
+res  <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
+                 print = FALSE, data = rds01)
 # 
 # Outlier analysis
 #  (externally) studentized residuals
@@ -275,10 +277,47 @@ res <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
 #   Estimate Std. Error    t value   Pr(>|t|) 
 # 0.14608800 0.04651380 3.14075000 0.00191969 
 # 217.208 Degrees of Freedom
-cols <- c(25, 28:29, 17:19) # Relevant columns only
-print(round(res[cols], 2), row.names=FALSE)
-#  CVwR.rec(%) L.rec(%) U.rec(%) CL.lo(%) CL.hi(%)  PE(%)
-#        32.16    78.79   126.93   107.17   124.97 115.73
+cols <- c(25, 28:29, 17:19)    # Relevant columns only
+tmp  <- round(res[cols], 2)    # 2 decimal places
+tmp  <- cbind(tmp, res[30:32]) # pass|fail
+print(tmp, row.names = FALSE)
+#  CVwR.rec(%) L.rec(%) U.rec(%) CL.lo(%) CL.hi(%)  PE(%) CI.rec GMR.rec BE.rec
+#        32.16    78.79   126.93   107.17   124.97 115.73   pass    pass   pass
+```
+
+<small>[TOC ↩](#user-content-replicatebe)</small>
+
+  - Evaluation of the internal reference dataset 05 of Shumaker and
+    Metzler by ABE, tighter limits for the NTID phenytoin.
+
+<!-- end list -->
+
+``` r
+res  <- ABE(verbose = TRUE, theta1 = 0.90, details = TRUE,
+            print = FALSE, data = rds05)
+# 
+# Data set DS05 by ABE 
+# -------------------- 
+# Analysis of Variance Table
+# 
+# Response: log(PK)
+#                  Df   Sum Sq   Mean Sq  F value     Pr(>F)
+# sequence          1 0.092438 0.0924383  6.81025  0.0109629
+# period            3 0.069183 0.0230609  1.69898  0.1746008
+# treatment         1 0.148552 0.1485523 10.94435  0.0014517
+# sequence:subject 24 2.526550 0.1052729  7.75581 4.0383e-12
+# Residuals        74 1.004433 0.0135734                    
+# 
+# treatment T – R:
+#   Estimate Std. Error    t value   Pr(>|t|) 
+# 0.07558800 0.02284850 3.30822000 0.00145167 
+# 74 Degrees of Freedom
+cols <- c(13:17)            # Relevant columns only
+tmp  <- round(res[cols], 2) # 2 decimal places
+tmp  <- cbind(tmp, res[18]) # pass|fail
+print(tmp, row.names=FALSE)
+#  BE.lo(%) BE.hi(%) CL.lo(%) CL.hi(%)  PE(%)   BE
+#        90   111.11   103.82   112.04 107.85 fail
 ```
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
