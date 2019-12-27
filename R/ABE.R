@@ -9,8 +9,9 @@ ABE <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
                 data = NULL, theta1, theta2) {
   exec <- strftime(Sys.time(), usetz=TRUE)
   if (!missing(ext)) ext <- tolower(ext) # case-insensitive
-  if (missing(theta1)) theta1 <- 0.80
-  if (missing(theta2)) theta2 <- 1/theta1
+  if (missing(theta1) & missing(theta2)) theta1 <- 0.80
+  if (missing(theta1)) theta1 = 1/theta2
+  if (missing(theta2)) theta2 = 1/theta1
   ret  <- CV.calc(alpha=alpha, path.in=path.in, path.out=path.out,
                   file=file, set=set, ext=ext, na=na, sep=sep,
                   dec=dec, logtrans=logtrans, ola=FALSE,
