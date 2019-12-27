@@ -179,7 +179,7 @@ Dataset #3 is required for ABE, datasets #1 and #3 for ABEL, whereas all three f
 # Notes on the methods{#notes}
 ## Estimation of intra-subject variability{#cv}
 The EMA proposed a linear model of log-transformed PK responses of the reference treatment\
-    _sequence_, _subject(sequence)_, _period_\
+&nbsp;&nbsp;&nbsp;&nbsp;_sequence_, _subject(sequence)_, _period_\
 where all effects are fixed. Estimated via function `lm()` of library `stats`:
 ```{r eval=FALSE}
 modCV <- lm(log(PK) ~ sequence + subject%in%sequence + period,
@@ -227,7 +227,7 @@ The same holds true for the [EMA’s model](#cv) to estimate *CV~wR~*. The simpl
 &nbsp;&nbsp;&nbsp;&nbsp;_subject_, _period_\
 gives an identical estimate of the residual variance.
 
-Reference-scaling is acceptable for C~max~ (immediate release products: BE-Guideline) and C~max~, C~max,ss~, C~Ï„,ss~, ~partial~AUC (modified release products^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.* London, 20 November 2014. [EMA/CHMP/EWP/280/96](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf)]). The intention to widen the limits has to be stated in the protocol and – contrary to the FDA’s <span title="Reference Scaled Average Bioequivalence">RSABE</span> – a clinical justification provided.
+Reference-scaling is acceptable for C~max~ (immediate release products: BE-Guideline) and C~max~, C~max,ss~, C~τ,ss~, ~partial~AUC (modified release products^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.* London, 20 November 2014. [EMA/CHMP/EWP/280/96](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf)]). The intention to widen the limits has to be stated in the protocol and – contrary to the FDA’s <span title="Reference Scaled Average Bioequivalence">RSABE</span> – a clinical justification provided.
 
 > _Those HVDP for which a wider difference in C~max~ is considered clinically irrelevant based on a sound clinical justification can be assessed with a widened acceptance range.
 > The request for widened interval must be prospectively specified in the protocol._
