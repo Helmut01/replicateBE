@@ -27,12 +27,12 @@ Version `r packageVersion("replicateBE")` built `r packageDate("replicateBE")` w
 # Introduction{#intro}
 The library provides datasets (internal `.rda` and in <span title="Comma Separated Variables">CSV</span>-format in `/extdata/`) which support users in a [black-box](https://en.wikipedia.org/wiki/Black-box_testing) performance qualification (PQ) of their software installations.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. (2019). *Reference Datasets for Studies in a Replicate Design intended for Average Bioequivalence with Expanding Limits.* Manuscript submitted for publication.] Users can analyse own data imported from CSV- and Excel-files.  
 
-The methods given by the European Medicines Agency (EMA) in Annex I^[European Medicines Agency. *Annex I.* London, 21 September 2016. [EMA/582648/2016](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf).] for reference-scaling according to the EMA’s Guideline on the Investigation of Bioequivalence^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the Investigation of Bioequivalence.* London, 20 January 2010. [CPMP/EWP/QWP/1401/98 Rev. 1/Corr **](https://www.ema.europa.eu/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf).] are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint <span title="European Generic Medicines Association">EGA</span>/EMA symposium.^[European Generic Medicines Association. *Revised EMA Bioequivalence Guideline. *3^rd^ EGA Symposium on Bioequivalence. London, 1 June 2010. [Questions & Answers](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf).]
+The methods given by the European Medicines Agency (EMA) in Annex I^[European Medicines Agency. *Annex I.* London, 21 September 2016. [EMA/582648/2016](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf).] for reference-scaling according to the Guideline on the Investigation of Bioequivalence^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the Investigation of Bioequivalence.* London, 20 January 2010. [CPMP/EWP/QWP/1401/98 Rev. 1/Corr **](https://www.ema.europa.eu/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf).] are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint <span title="European Generic Medicines Association">EGA</span>/EMA symposium.^[European Generic Medicines Association. *Revised EMA Bioequivalence Guideline. *3^rd^ EGA Symposium on Bioequivalence. London, 1 June 2010. [Questions & Answers](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf).]
 
 # Functions{#methods}
 ## `method.A()`{#methodA}
 A linear model of log-transformed PK responses and effects\
-    _sequence_, _subject(sequence)_, _period_, _treatment_\
+&nbsp;&nbsp;&nbsp;&nbsp;_sequence_, _subject(sequence)_, _period_, _treatment_\
 where all effects are fixed (*i.e.*, ANOVA). Estimated via function `lm()` of library `stats`.
 
 ```{r eval=FALSE}
@@ -42,7 +42,7 @@ modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
 
 ## `method.B()`{#methodB}
 A linear model of log-transformed PK responses and effects\
-    _sequence_, _subject(sequence)_, _period_, _treatment_\
+&nbsp;&nbsp;&nbsp;&nbsp;_sequence_, _subject(sequence)_, _period_, _treatment_\
 where _subject(sequence)_ is a random effect and all others are fixed.\
 
 Three options are provided
@@ -133,7 +133,7 @@ Columns must have the headers `subject`, `period`, `sequence`, `treatment`, `PK`
 | `PK` | Real <span title="zero is not acceptable">positive</span> numbers of PK responses. |
 | `logPK` | Real numbers of already log~e~-transformed PK responses (optional and rarely needed). |
 
-Relevant data are used for the estimation of *CV~wR~* (and *CV~wT~* in full replicate designs) and BE, *i.e.*, the datasets might be different (see the [example below](#setexpl)). It is good practice to state that in the Statistical Analysis Plan (SAP).
+Relevant data are used for the estimation of *CV~wR~* (and *CV~wT~* in full replicate designs) and BE, *i.e.*, the data­sets might be different (see the [example below](#setexpl)). It is good practice to state that in the Statistical Analysis Plan (SAP).
 
 ## Incomplete data{#incomplete}
 ### Estimation of _CV~w~_{#setCW}
@@ -174,7 +174,7 @@ We obtain these datasets:
 | #2 | Estimation of *CV~wT~* | 12 who received 2 treatments `T` | 1, 6, 8 |
 | #3 | Assessment of BE | 15 who received ≥1 treatment `T` _and_ ≥1 treatment `R` | 8 |
 
-Dataset #3 is required for ABE, datasets #1 and #3 for ABEL, whereas all three for the WHO’s reference-scaling of AUC (see [below](#app_out)).
+Datasets #1 and #3 are required for ABEL and all three for the WHO’s reference-scaling of AUC (see [below](#app_out)). For ABE only dataset #3 is required.
 
 # Notes on the methods{#notes}
 ## Estimation of intra-subject variability{#cv}
@@ -429,7 +429,7 @@ The WHO accepts [reference-scaling for AUC](https://extranet.who.int/prequal/sit
 In Population Bioequivalence (PBE) and Individual Bioequivalence (IBE) the *s~wT~*/*s~wR~* ratio was assessed and ‘similar’ variability was concluded for a ratio within 0.667 – 1.500. However, the power of comparing variabilities in a study designed to demonstrate ABE is low. This was one of the reasons why PBE and IBE were not implemented in regulatory practice. An alternative approach is given in the FDA’s [guidance on warfarin](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf "Draft recommended Dec 2012") where variabilities are considered ‘comparable’ if the upper confidence limit of *σ~wT~*/*σ~wR~* is ≤2.5.
 
 # Cross-validation{#cross}
-Results of all reference datasets agree with ones obtained in SAS (v9.4), Phoenix WinNonlin (v6.4 – v8.1), STATISTICA (v13), SPSS (v22.0), Stata (v15.0), and JMP (v10.0.2).
+Results of all reference datasets agree with ones obtained in SAS (9.4), Phoenix WinNonlin (6.4--8.1), STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
 
 # Contributors{#contr}
 - Helmut Schütz (Author)

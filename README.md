@@ -232,7 +232,7 @@ res <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
 cols <- c(12, 15:19)           # extract relevant columns
 tmp  <- round(res[cols], 2)    # 2 decimal places acc. to GL
 tmp  <- cbind(tmp, res[20:22]) # pass|fail
-print(tmp, row.names=FALSE)
+print(tmp, row.names = FALSE)
 #  CVwR(%)  L(%)  U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
 #    46.96 71.23 140.4   107.11   124.89 115.66 pass pass pass
 ```
