@@ -2,7 +2,7 @@
 ^\.Rproj\.user$
 ^GitHubIcon.ico$
 stuff
-manual
+documentation
 .Rhistory
 .RData
 README.Rmd
