@@ -327,7 +327,8 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael 
     \code{rds09} \tab \code{rds08} \tab Wide numeric range (data of last 37 subjects multiplied by 1,000,000).\cr
     \code{rds12} \tab Phoenix NLME \tab Simulated with extreme intra- and intersubject variability.\cr
     \code{rds13} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data deleted).\cr
-    \code{rds14} \tab Phoenix NLME \tab Simulated with high intra- and intersubject and number of dropouts increasing with period.\cr
+    \code{rds14} \tab Phoenix NLME \tab Simulated with high intra-/intersubject variability and\cr
+     \tab \tab  number of dropouts increasing with period.\cr
     \code{rds15} \tab \code{rds08} edited \tab Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}).\cr
     \code{rds18} \tab \code{rds14} edited \tab Removed T data of subjects 63–78.\cr
     \code{rds19} \tab \code{rds18} edited \tab Removed data of subjects 63–78.\cr
