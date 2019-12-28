@@ -1,10 +1,6 @@
-# replicateBE 1.0.12.9000
+# replicateBE 1.0.12.9001
 
-Published on Github 2019-12-27 (passed 2019-12-25 on win-builder checks with R-release and R-devel).
-
-## Issues
-
-  * Toplink in rendered vignette is not shown (though in the knitted preview in RStudio). Why? No changes in `vignette.Rmd` and `vignette.css`.
+Published on Github 2019-12-28 (passed checks on win-builder with R-release and R-devel).
 
 ## Bug fixes
 
@@ -102,7 +98,7 @@ Published on Github 2019-07-20.
   * Kept column `logPK` only in `rds01` and `rds02` because given by the EMA. Removed in `rds06`, `rds12`, `rds14`, `rds18`, `rds19`, `rds20`, `rds21` (TRTR|RTRR) and `rds03`, `rds17` (TRT|RTR). Man-pages corrected. Reduces the footprint of the library by 5%.
   * If `path.in` and/or `path.out` not given or specified folder does not exist: Changed `cat()` to `warning()`.
   * Cosmetic changes in verbose output of `method.A()`.
-  * `suppressMessages()` no more needed (vignette and testthat). Issue orginating in `rlang` and `ggplot2` resolved. Both packages don't contain a `NEWS` file. THX Hadley for leaving us out in the dark!
+  * `suppressMessages()` no more needed (vignette and testthat). Issue orginating in `rlang` and `ggplot2` resolved. Both packages don’t contain a `NEWS` file. THX Hadley for leaving us out in the dark!
   * `stringsAsFactors = FALSE` in res-list of all methods.
   * Removed superfluous `options(ow)` after models (THX to DL).
   * Updated man-page of `method.A()` and the vignette.

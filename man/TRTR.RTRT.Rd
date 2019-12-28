@@ -272,7 +272,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
     }
 
     \item Reference dataset 29 (\code{rds29})\cr
-    Simulated with heteroscedasticity (\ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = 14\%, \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 28\%), \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = 28\%, \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 56\%, GMR = 0.90. 12 subjects.\cr
+    Simulated with heteroscedasticity (\ifelse{html}{\out{CV<sub>wT</sub> = 14\%, CV<sub>wR</sub> = 28\%, CV<sub>bT</sub> = 28\%, CV<sub>bR</sub> = 56\%}}{\eqn{CCV_{wT}=14\%,\:CV_{wR}=28\%,\:CV_{bT}=28\%,\:CV_{bR}=56\%}}), GMR = 0.90. 12 subjects.\cr
     Imbalanced (five subjects in sequence TRTR and seven in sequence RTRT) and incomplete (three missings in sequence TRTR and four in sequence RTRT). Missings / period: 0/1, 1/2, 2/3, 4/4. One outlier (subject 11) in sequence RTRT.\cr
     A data frame with 41 observations on the following 5 variables:
     \describe{

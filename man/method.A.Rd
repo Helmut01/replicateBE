@@ -242,7 +242,7 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
 \section{Warning}{
   Files may contain a commentary header. If reading from a \acronym{CSV}-file,
   \emph{each} line of the commentary header \emph{must} start with \verb{"# "}
-  (hash space = \verb{ASCII 35 ASCII 32}). If reading from an \acronym{XLS}-file
+  (hash space = \verb{ASCII 35 ASCII 32}). If reading from an Excel-file
   all lines preceding the column headers are treated as a comment.
 }
 
@@ -381,7 +381,7 @@ method.A(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 #   Mixed (CI & PE)    : pass
 # Same dataset. Show information about outliers and the ANOVA-table.
 method.A(ola = TRUE, verbose = TRUE, data = rds01)}
-# Generate the data.frame of results (7-digits precision) and show
+# Generate the data.frame of results (full precision) and show it
 # in the console
 x <- method.A(ola = TRUE, details = TRUE, print = FALSE, data = rds01)
 print(x, row.names = FALSE)

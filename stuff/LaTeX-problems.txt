@@ -1,0 +1,32 @@
+LaTeX-Problems in ABE.Rd
+
+version 1.0.12
+  \item{ext}{
+    File-extension enclosed in single or double quotation marks.
+    Acceptable are \verb{"CSV"} and \verb{"csv"} for comma delimited
+    variables (\acronym{CSV}) or \verb{"XLS"}, \verb{"xls"}, \verb{"XLSX"},
+    and \verb{"xlsx"} for Excel-files.
+  }
+==> works
+
+method.A.Rd and method.B.Rd
+  \item{ext}{
+    File-extension enclosed in single or double quotation marks. Acceptable are
+    \verb{"csv"} for comma delimited variables (\acronym{CSV}) or \verb{"xls"},
+    \verb{"xlsx"} for Excel-files.\cr
+    The file-extension is not case-sensitive.
+  }
+==> work
+
+fails in ABE.Rd. Tried a fucking lot, even the simple:
+  \item{ext}{
+    File-extension ("csv" for character-separated variables or "xls(x)" for Excel-
+    files) enclosed in single or double quotation marks.
+  }
+==> LaTeX error
+    ! pdfTeX error (ext4): \pdfendlink ended up in different nesting level than \pdfstartlink.
+
+Only working:
+  \item{ext}{
+    File-extension ("csv" or "xls(x)") enclosed in single or double quotation marks.
+  }

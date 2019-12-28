@@ -33,18 +33,16 @@ ABE(alpha = 0.05, path.in = "~/", path.out = "~/",
     user’s home folder \verb{"~/"} will be used.
   }
   \item{file}{
-    Name of the dataset for import (\emph{without} extension). Must be
-    a string (\emph{i.e.}, enclosed in single or double quotation marks).
+    Name of the dataset for import (\emph{without} extension). Must be a string
+    (\emph{i.e.}, enclosed in single or double quotation marks). The name is
+    case-sensitive.
   }
   \item{set}{
-    Name of the sheet of an Excel-file (mandatory). Must be a string
-    (\emph{i.e.}, enclosed in single or double quotation marks).
+    Name of the sheet of an Excel-file (mandatory). Must be a string (\emph{i.e.},
+    enclosed in single or double quotation marks). The name is case-sensitive.
   }
   \item{ext}{
-    File-extension enclosed in single or double quotation marks.
-    Acceptable are \verb{"csv"} for comma delimited
-    variables (\acronym{CSV}) or \verb{"xls"}, \verb{"xlsx"} for Excel-files.\cr
-    The file-extension is not case-sensitive.
+    File-extension ("csv" or "xls(x)") enclosed in single or double quotation marks.
   }
   \item{na}{
     Character string denoting missing values. Acceptable are \verb{"NA"}
@@ -59,9 +57,9 @@ ABE(alpha = 0.05, path.in = "~/", path.out = "~/",
     and \verb{"\\t"} (tabulator = \verb{ASCII 9}). Defaults to \verb{","}.
   }
   \item{dec}{
-    Decimal separator in the \acronym{CSV}-file. Acceptable are
-    \verb{"."} (period = \verb{ASCII 46}) or \verb{","}
-    (comma = \verb{ASCII 44}). Defaults to \verb{"."}.
+    Decimal separator in the \acronym{CSV}-file. Acceptable are \verb{"."}
+    (period = \verb{ASCII 46}) or \verb{","} (comma = \verb{ASCII 44}).
+    Defaults to \verb{"."}.
   }
   \item{logtrans}{
     If \code{TRUE} (default) the raw data (provided in column \verb{PK})
@@ -86,9 +84,9 @@ ABE(alpha = 0.05, path.in = "~/", path.out = "~/",
     whether an already existing result file should be overwritten.
   }
   \item{data}{
-    Specification of one of the internal reference datasets (\verb{rds01}--\verb{rds30}).
-    If given, \verb{path.in}, \verb{file}, \verb{set}, and \verb{ext} are
-    ignored. For its use see the examples.\cr
+    Specification of one of the internal reference datasets (\verb{rds01}
+    -- \verb{rds28}). If given, \verb{path.in}, \verb{file}, \verb{set},
+    and \verb{ext} are ignored. For its use see the examples.\cr
     If not given, defaults to \code{NULL} (\emph{i.e.}, import data
     from a file).
   }
@@ -159,8 +157,8 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     \code{CVwR(\%)} \tab intra-subject coefficient of variation of the reference treatment\cr
     \code{BE.lo(\%)} \tab lower bioequivalence limit (\emph{e.g.}, \verb{ 80})\cr
     \code{BE.hi(\%)} \tab upper bioequivalence limit (\emph{e.g.}, \verb{125})\cr
-    \code{CL.lo(\%)} \tab lower confidence limit of the treatment comparison\cr
-    \code{CL.hi(\%)} \tab upper confidence limit of the treatment comparison\cr
+    \code{CI.lo(\%)} \tab lower confidence limit of the treatment comparison\cr
+    \code{CI.hi(\%)} \tab upper confidence limit of the treatment comparison\cr
     \code{PE(\%)} \tab point estimate of the treatment comparison (aka \acronym{GMR})\cr
     \code{BE} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{\eqn{100(1-2\alpha)}{100(1-2alpha)}} \acronym{CI} lies entirely within the acceptance range (\verb{pass|fail})
   }
@@ -169,7 +167,7 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
 \section{Warning}{
   Files may contain a commentary header. If reading from a \acronym{CSV}-file,
   \emph{each} line of the commentary header \emph{must} start with \verb{"# "}
-  (hash space = \verb{ASCII 35 ASCII 32}). If reading from an \acronym{XLS}-file
+  (hash space = \verb{ASCII 35 ASCII 32}). If reading from an Excel-file
   all lines preceding the column headers are treated as a comment.
 }
 
@@ -212,9 +210,10 @@ Helmut \enc{Schütz}{Schuetz}
 }
 
 \references{
-  European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the Investigation of Bioequivalence.} London, 20 January 2010. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
 
-  European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.} London, 20 November 2014.
+European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the Investigation of Bioequivalence.} London, 20 January 2010. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
+
+European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.} London, 20 November 2014.
 \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{EMA/CPMP/EWP/280/96 Corr1}
 }
 
