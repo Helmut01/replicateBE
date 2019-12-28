@@ -342,9 +342,9 @@ devtools::install_github("Helmut01/replicateBE")
 
 ## Disclaimer
 
-**Package offered for Use without any Guarantees and Absolutely No
+*Package offered for Use without any Guarantees and Absolutely No
 Warranty. No Liability is accepted for any Loss and Risk to Public
-Health Resulting from Use of this R-Code.**
+Health Resulting from Use of this R-Code.*
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
