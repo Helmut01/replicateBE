@@ -150,7 +150,7 @@ Called by function `ABE()`. The model is identical to
 employed by default. Tighter limits for narrow therapeutic index drugs
 (EMA 90.00 – 111.11%) or wider limits (75.00 – 133.33% for
 *C<sub>max</sub>* according to the guidelines of the Gulf Cooperation
-Council [Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, and the United Arab
+Council [Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, and United Arab
 Emirates] and South Africa) can be specified.
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
