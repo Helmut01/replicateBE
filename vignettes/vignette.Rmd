@@ -72,7 +72,7 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
 Employs the Kenward-Roger approximation^[Kenward MG, Roger JH. *Small Sample Inference for Fixed Effects from Restricted Maximum Likelihood.* Biometrics. 1997; 53(3): 983–97. [doi:10.2307/2533558](https://doi.org/10.2307/2533558).] of the degrees of freedom `method.B(..., option = 3)` equivalent to SAS’ `DDFM=KENWARDROGER`. Note that this is the only available approximation in JMP.
 
 ## `ABE()`{#ABE}
-Conventional Average Bioequivalence, where the model is identical to [Method A](#methodA). Tighter limits for narrow therapeutic index drugs (EMA 90.00 – 111.11%) or wider limits (75.00 – 133.33% for C~max~ according to the guideline of the <span title="Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, and the United Arab Emirates.">GCC</span>) can be specified by the arguments `theta1` (lower limit) and/or `theta2` (upper limit).
+Conventional Average Bioequivalence, where the model is identical to [Method A](#methodA). Tighter limits for narrow therapeutic index drugs (EMA 90.00 – 111.11%) or wider limits (75.00 – 133.33% for C~max~ according to the guidelines of the <span title="Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, and the United Arab Emirates.">GCC</span> and South Africa) can be specified by the arguments `theta1` (lower limit) and/or `theta2` (upper limit).
 
 # Hypotheses{#hypotheses}
 The hypotheses are $$H_{0}:\theta_0\notin [L,U]\:vs\:H_{1}:L<\theta_0<U$$

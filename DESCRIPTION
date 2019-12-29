@@ -27,7 +27,7 @@ Description: Performs comparative bioavailability calculations for Average Bioeq
   If the design allows, assessment of the empiric Type I Error and iteratively adjusting alpha to
   control the consumer risk.
   Average Bioequivalence - optionally with a tighter (narrow therapeutic index drugs) or wider
-  acceptance range (Gulf Cooperation Council: Cmax) - is implemented as well.
+  acceptance range (Gulf Cooperation Council, South Africa: Cmax) - is implemented as well.
 License: GPL (>=3)
 LazyData: true
 VignetteBuilder: knitr
