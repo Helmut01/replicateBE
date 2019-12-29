@@ -419,4 +419,14 @@ for (i in seq_along(ds)) {
 #   ...
 #   rds14: A pass, B fail – Method B is conservative.
 #   ...
-}
+\donttest{
+# Health Canada: Only the PE of Cmax has to lie with 80.0-125.0\%
+# (i.e., no CI is required). With alpha = 0.5 the CI is practically
+# supressed (zero width) and ignored in the assessment.
+x    <- method.B(alpha = 0.5, option = 1, data = rds03,
+                 print = FALSE, details = TRUE)[c(19, 22)]
+x[1] <- round(x[1], 1) # one decimal place for HC
+print(x, row.names = FALSE)
+# Should result in:
+# PE(\%)   BE
+# 124.5 pass}}

@@ -251,14 +251,4 @@ ABE(data = rds02, theta1 = 0.90)
 # Should result in:
 #   BE-limits          :  90.00\% ... 111.11\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass
-#   Point estimate     : 102.26\%}
-\donttest{
-# Health Canada: Only the PE of Cmax has to lie with 80.0-125.0\%
-# (i.e., no CI is required).
-x    <- ABE(alpha = 0.5, data = rds03, print = FALSE,
-            details = TRUE)[c(13:14, 17:18)]
-x[3] <- round(x[3], 1)
-print(x, row.names = FALSE)
-# Should result in:
-# BE.lo(\%) BE.hi(\%) PE(\%)   BE
-#       80      125 124.2 pass}}
+#   Point estimate     : 102.26\%}}
