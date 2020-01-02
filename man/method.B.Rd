@@ -120,7 +120,8 @@ method.B(alpha = 0.05, path.in = "~/", path.out = "~/",
     \verb{lmerTest}. With \code{1} the degrees of freedom of the treatment comparison
     will be equivalent to \acronym{SAS}’ \verb{DDFM=SATTERTHWAITE}
     and Phoenix WinNonlin’s \verb{Satterthwaite}.\cr
-    \code{3} uses the Kenward-Roger approximation.
+    \code{3} uses the Kenward-Roger approximation equivalent to Stata’s
+    \verb{dfm=Kenward Roger (EIM)}.
   }
 }
 

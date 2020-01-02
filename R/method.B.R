@@ -77,11 +77,11 @@ method.B <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
     } else {
       EMA.B <- summary(modB, ddf="Kenward-Roger")
     }
-    PE    <- EMA.B$coefficients["treatmentT", "Estimate"]
-    CI    <- exp(PE + c(-1, +1) *
-                 qt(1-alpha, EMA.B$coef["treatmentT", "df"]) *
-                 EMA.B$coef["treatmentT", "Std. Error"])
-    DF    <- EMA.B$coefficients["treatmentT", "df"]
+    PE <- EMA.B$coefficients["treatmentT", "Estimate"]
+    CI <- exp(PE + c(-1, +1) *
+              qt(1-alpha, EMA.B$coef["treatmentT", "df"]) *
+              EMA.B$coef["treatmentT", "Std. Error"])
+    DF <- EMA.B$coefficients["treatmentT", "df"]
     if (verbose) {
       if (option == 1) {
         cat("\nData set", paste0(file, set, ": Method B (option = 1) by lmer()"),
@@ -92,14 +92,14 @@ method.B <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
         print(signif(EMA.B$coefficients["treatmentT", c(1:2, 4:5)], 5))
         cat(signif(DF, 6), "Degrees of Freedom (equivalent to SAS\u2019 DDFM=SATTERTHWAITE)\n\n")
       } else {
-        df.txt <- "3; equivalent to SAS\u2019 DDFM=KENWARDROGER)"
+        df.txt <- "3; equivalent to Stata\u2019s dfm=Kenward Roger EIM)"
         cat("\nData set", paste0(file, set, ": Method B (option = 3) by lmer()"),
             paste0("\n", paste0(rep("\u2500", 46), collapse="")), "\n")
         if (logtrans) cat("Response: log(PK)\n") else cat("\nResponse: logPK\n")
         print(anova(modB, ddf="Kenward-Roger"), digits=6, signif.stars=FALSE)
         cat("\ntreatment T \u2013 R:\n")
         print(signif(EMA.B$coefficients["treatmentT", c(1:2, 4:5)], 5))
-        cat(signif(DF, 6), "Degrees of Freedom (equivalent to SAS\u2019 DDFM=KENWARDROGER)\n\n")
+        cat(signif(DF, 6), "Degrees of Freedom (equivalent to Stata\u2019s dfm=Kenward Roger EIM)\n\n")
       }
     }
   } # end of evaluation by option=2 (lme) or option=1/3 (lmer)

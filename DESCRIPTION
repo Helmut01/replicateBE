@@ -1,7 +1,7 @@
 Encoding: UTF-8
 Package: replicateBE
 Version: 1.0.12.9001
-Date: 2019-12-28
+Date: 2020-01-02
 Title: Average Bioequivalence with Expanding Limits (ABEL)
 Authors@R: c(person("Helmut", "Schütz",
                role = c("aut", "cre"),

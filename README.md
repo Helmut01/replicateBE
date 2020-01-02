@@ -11,7 +11,7 @@ replicateBE
             designs)](#user-content-estimation-of-cvwr-and-cvwt-in-full-replicate-designs)
           - [Method A](#user-content-method-a)
           - [Method B](#user-content-method-b)
-          - [Average Bioequivalence](#average-bioequivalence)
+          - [Average Bioequivalence](#user-content-average-bioequivalence)
       - [Tested designs](#user-content-tested-designs)
           - [Four period (full)
             replicates](#user-content-four-period-full-replicates)
@@ -34,7 +34,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/last-month/replicateBE?color=green)](https://r-pkg.org/pkg/replicateBE)
 
-Version 1.0.12.9001 built 2019-12-28 with R 3.6.2.
+Version 1.0.12.9001 built 2020-01-02 with R 3.6.2.
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
@@ -106,9 +106,10 @@ where *subject(sequence)* is a random effect and all others are fixed.
 Three options are provided
 
 1.  Estimated by the function `lme()` of library `nlme`. Employs degrees
-    of freedom equivalent to SAS’ `DDFM=CONTAIN` and Phoenix WinNonlin’s
-    `DF Residual`. Implicitly preferred according to the Q\&A document
-    and hence, the default of the function.
+    of freedom equivalent to SAS’ `DDFM=CONTAIN`, Phoenix WinNonlin’s
+    `Degrees of Freedom Residual`, STATISTICA’s `GLM containment`, and
+    Stata’s `dfm=anova`. Implicitly preferred according to the EMA’s
+    Q\&A document and hence, the default of the function.
 
 <!-- end list -->
 
@@ -119,9 +120,10 @@ modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
 
 2.  Estimated by the function `lmer()` of library `lmerTest`. Employs
     Satterthwaite’s approximation of the degrees of freedom
-    `method.B(..., option = 1)` equivalent to SAS’ `DDFM=SATTERTHWAITE`
-    and Phoenix WinNonlin’s `DF Satterthwaite`. This is the only
-    available method in SPSS.
+    `method.B(..., option = 1)` equivalent to SAS’ `DDFM=SATTERTHWAITE`,
+    Phoenix WinNonlin’s `Degrees of Freedom Satterthwaite`, and Stata’s
+    `dfm=Satterthwaite`. Note that this is the only available
+    approximation in SPSS.
 
 <!-- end list -->
 
@@ -131,8 +133,13 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
 ```
 
 3.  Estimated by the function `lmer()` of library `lmerTest`. Employs
-    the Kenward-Roger approximation `method.B(..., option = 3)`. This is
-    the only available method in JMP.
+    the Kenward-Roger approximation `method.B(..., option = 3)`
+    equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’
+    `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected*
+    information matrix. Note that SAS with `DDFM=KENWARDROGER` and JMP
+    calculate Sattertwaite’s \[*sic*\] degrees of freedom and apply the
+    Kackar-Harville correction *i.e.*, based on the *observed*
+    information matrix.
 
 <!-- end list -->
 
@@ -147,11 +154,11 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
 
 Called by function `ABE()`. The model is identical to
 [Method A](#method-a). Conventional BE limits (80.00 – 125.00%) are
-employed by default. Tighter limits for narrow therapeutic index drugs
-(EMA 90.00 – 111.11%) or wider limits (75.00 – 133.33% for
+employed by default. Tighter limits (90.00 – 111.11%) for narrow
+therapeutic index drugs (EMA) or wider limits (75.00 – 133.33%) for
 *C<sub>max</sub>* according to the guidelines of the Gulf Cooperation
-Council [Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, United Arab
-Emirates] and South Africa) can be specified.
+Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, United Arab
+Emirates) and South Africa can be specified.
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
@@ -276,7 +283,7 @@ res <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
 # treatment T – R:
 #   Estimate Std. Error    t value   Pr(>|t|) 
 #  0.1460900  0.0465140  3.1408000  0.0019197 
-# 217.208 Degrees of Freedom (equivalent to SAS’ DDFM=KENWARDROGER)
+# 217.208 Degrees of Freedom (equivalent to Stata’s dfm=Kenward Roger EIM)
 cols <- c(25, 28:29, 17:19)    # extract relevant columns
 tmp  <- round(res[cols], 2)    # 2 decimal places acc. to GL
 tmp  <- cbind(tmp, res[30:32]) # pass|fail

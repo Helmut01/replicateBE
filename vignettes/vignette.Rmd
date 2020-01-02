@@ -1,6 +1,6 @@
 ---
 title: "replicateBE"
-subtitle: "Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)"
+subtitle: "Comparative BA-calculation for Average Bioequivalence with Expanding Limits (ABEL)"
 lang: "en"
 output:
   rmarkdown::html_vignette:
@@ -25,7 +25,7 @@ library(replicateBE) # attach the library
 Version `r packageVersion("replicateBE")` built `r packageDate("replicateBE")` with R `r getRversion()`.\
 
 # Introduction{#intro}
-The library provides datasets (internal `.rda` and in <span title="Comma Separated Variables">CSV</span>-format in `/extdata/`) which support users in a [black-box](https://en.wikipedia.org/wiki/Black-box_testing) performance qualification (PQ) of their software installations.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. (2019). *Reference Datasets for Studies in a Replicate Design intended for Average Bioequivalence with Expanding Limits.* Manuscript submitted for publication.] Users can analyse own data imported from CSV- and Excel-files.  
+The library provides datasets (internal `.rda` and in <span title="Comma Separated Variables">CSV</span>-format in `/extdata/`) which support users in a [black-box](https://en.wikipedia.org/wiki/Black-box_testing) performance qualification (PQ) of their software installations.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. (2019). *Reference Datasets for Studies in a Replicate Design intended for Average Bioequivalence with Expanding Limits.* Manuscript submitted for publication.] Users can analyze own data imported from CSV- and Excel-files.  
 
 The methods given by the European Medicines Agency (EMA) in Annex I^[European Medicines Agency. *Annex I.* London, 21 September 2016. [EMA/582648/2016](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf).] for reference-scaling according to the Guideline on the Investigation of Bioequivalence^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the Investigation of Bioequivalence.* London, 20 January 2010. [CPMP/EWP/QWP/1401/98 Rev. 1/Corr **](https://www.ema.europa.eu/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf).] are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint <span title="European Generic Medicines Association">EGA</span>/EMA symposium.^[European Generic Medicines Association. *Revised EMA Bioequivalence Guideline. *3^rd^ EGA Symposium on Bioequivalence. London, 1 June 2010. [Questions & Answers](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf).]
 
@@ -47,32 +47,35 @@ where _subject(sequence)_ is a random effect and all others are fixed.\
 
 Three options are provided
 
-1.  Estimated via function `lmer()` of library `lmerTest`.
+(@) Estimated via function `lmer()` of library `lmerTest`.
 ```{r eval=FALSE}
 modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
 ```
-Employs Satterthwaite’s approximation^[Satterthwaite FE. *An Approximate Distribution of Estimates of Variance Components.* Biometrics Bulletin. 1946; 2(6): 110–4. [doi:10.2307/3002019](https://doi.org/10.2307/3002019).] of the degrees of freedom `method.B(..., option = 1)` equivalent to SAS’ `DDFM=SATTERTHWAITE` and Phoenix WinNonlin’s `DF Satterthwaite`. Note that this is the only available approximation in SPSS.
 
-2.  Estimated via function `lme()` of library `nlme`.
+* Employs Satterthwaite’s approximation^[Satterthwaite FE. *An Approximate Distribution of Estimates of Variance Components.* Biometrics Bulletin. 1946; 2(6): 110–4. [doi:10.2307/3002019](https://doi.org/10.2307/3002019).] of the degrees of freedom `method.B(..., option = 1)` equivalent to SAS’ `DDFM=SATTERTHWAITE`, Phoenix WinNonlin’s `Degrees of Freedom Satterthwaite`, and Stata’s `dfm=Satterthwaite`.
+* Note that this is the only available approximation in SPSS.  
 
+(@) Estimated via function `lme()` of library `nlme`.
 ```{r eval=FALSE}
 modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
                       data = data)
 ```
 
-Employs degrees of freedom equivalent to SAS’ `DDFM=CONTAIN` and Phoenix WinNonlin’s `DF Residual`. Implicitly preferred according to the EMA’s Q&A document. Hence, `method.B(..., option = 2)` is the default (*i.e.*, if the argument `option` is missing).
+* Employs degrees of freedom equivalent to SAS’ `DDFM=CONTAIN` (implicitly preferred by the EMA), Phoenix WinNonlin’s `Degrees of Freedom Residual`, STATISTICAs `GLM containment`, and Stata’s `dfm=anova`.
+* To comply with the EMA’s Q&A document, `method.B(..., option = 2)` is the default (*i.e.*, if the argument `option` is missing).
 
-3.  Estimated via function `lmer()` of library `lmerTest`.
+(@) Estimated via function `lmer()` of library `lmerTest`.
 ```{r eval=FALSE}
 modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
 ```
 
-Employs the Kenward-Roger approximation^[Kenward MG, Roger JH. *Small Sample Inference for Fixed Effects from Restricted Maximum Likelihood.* Biometrics. 1997; 53(3): 983–97. [doi:10.2307/2533558](https://doi.org/10.2307/2533558).] of the degrees of freedom `method.B(..., option = 3)` equivalent to SAS’ `DDFM=KENWARDROGER`. Note that this is the only available approximation in JMP.
+* Employs the Kenward-Roger approximation^[Kenward MG, Roger JH. *Small Sample Inference for Fixed Effects from Restricted Maximum Likelihood.* Biometrics. 1997; 53(3): 983–97. [doi:10.2307/2533558](https://doi.org/10.2307/2533558).] of the degrees of freedom `method.B(..., option = 3)` equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’ `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected* information matrix.
+* Note that SAS with `DDFM=KENWARDROGER` and JMP calculate Sattertwaite’s [*sic*] degrees of freedom and apply the Kackar-Harville correction^[Kackar RN, Harville DA. *Approximations for Standard Errors of Estimators of Fixed and Random Effects in Mixed Linear Models.* J Am Stat Assoc. 1984; 79(388): 853–62. [doi:10.1080/01621459.1984.10477102](https://doi.org/10.1080/01621459.1984.10477102).] *i.e.*, based on the *observed* information matrix.
 
 ## `ABE()`{#ABE}
-Conventional Average Bioequivalence, where the model is identical to [Method A](#methodA). Tighter limits for narrow therapeutic index drugs (EMA 90.00 – 111.11%) or wider limits (75.00 – 133.33% for C~max~ according to the guidelines of the <span title="Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, the United Arab Emirates.">GCC</span> and South Africa) can be specified by the arguments `theta1` (lower limit) and/or `theta2` (upper limit).
+Average Bioequivalence, where the model is identical to [Method A](#methodA). By default the conventional acceptance range of 80.00 – 125.00\% is used. Tighter limits (90.00 – 111.11\%) for narrow therapeutic index drugs (EMA) or wider limits (75.00 – 133.33\% for C~max~ according to the guidelines of the <abbr title="Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, the United Arab Emirates.">GCC</abbr> and South Africa) can be specified by the arguments `theta1` (lower limit) and/or `theta2` (upper limit).
 
 # Hypotheses{#hypotheses}
 The hypotheses are $$H_{0}:\theta_0\notin [L,U]\:vs\:H_{1}:L<\theta_0<U$$
@@ -227,7 +230,7 @@ The same holds true for the [EMA’s model](#cv) to estimate *CV~wR~*. The simpl
 &nbsp;&nbsp;&nbsp;&nbsp;_subject_, _period_\
 gives an identical estimate of the residual variance.
 
-Reference-scaling is acceptable for C~max~ (immediate release products: BE-Guideline) and C~max~, C~max,ss~, C~τ,ss~, ~partial~AUC (modified release products^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.* London, 20 November 2014. [EMA/CHMP/EWP/280/96](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf)]). The intention to widen the limits has to be stated in the protocol and – contrary to the FDA’s <span title="Reference Scaled Average Bioequivalence">RSABE</span> – a clinical justification provided.
+Reference-scaling is acceptable for C~max~ (immediate release products: BE-Guideline) and C~max~, C~max,ss~, C~τ,ss~, ~partial~AUC (modified release products^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.* London, 20 November 2014. [EMA/CHMP/EWP/280/96](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf)]). The intention to widen the limits has to be stated in the protocol and – contrary to the FDAs <span title="Reference Scaled Average Bioequivalence">RSABE</span> – a clinical justification provided.
 
 > _Those HVDP for which a wider difference in C~max~ is considered clinically irrelevant based on a sound clinical justification can be assessed with a widened acceptance range.
 > The request for widened interval must be prospectively specified in the protocol._
@@ -237,20 +240,20 @@ Reference-scaling is acceptable for C~max~ (immediate release products: BE-Guide
 ## BE limits, PE restriction, rounding issues{#BElim}
 The limits can be expanded based on *CV~wR~*.
 
-* *CV~wR~* ≤ 30%\
+* *CV~wR~* ≤ 30\%\
     Lower cap, *i.e.*, no scaling, conventional limits:\
-    <small>$\left[ {L,U} \right] = {80.00 - 125.00\%}$</small>
-* 30% < *CV~wR~* ≤ 50%\
+    <small>$\left[{L,U}\right] = {80.00 - 125.00\%}$</small>
+* 30\% < *CV~wR~* ≤ 50%\
     Expanded limits based on $s_{wR}$:\
-    <small>$\left[ {L,U} \right] = 100{e^{ \mp 0.760 \cdot {s_{wR}}}}$</small>
-* *CV~wR~* > 50%\
+    <small>$\left[{L,U}\right] = 100{e^{\mp 0.760 \cdot {s_{wR}}}}$</small>
+* *CV~wR~* > 50\%\
     Upper cap, *i.e.*, applying <small>$s^*_{wR}=\sqrt{log(0.50^2+1)}$</small> in the expansion formula or\
     <small>$\left[ {L,U} \right] = {69.84 - 143.19\%}$</small>.
 
 In reference-scaling a so-called *mixed* (a.k.a. *aggregate*) criterion is applied. In order to pass BE,
 
-* the 90% confidence interval has to lie entirely within the acceptance range <small>$\left[ {L,U} \right]$</small> _and_
-* the point estimate has to lie within 80.00 – 125.00%.
+* the 90\% confidence interval has to lie entirely within the acceptance range <small>$\left[ {L,U} \right]$</small> _and_
+* the point estimate has to lie within 80.00 – 125.00\%.
 
 To avoid discontinuities due to double rounding, expanded limits are calculated in full numeric precision and only the confidence interval is rounded according to the guideline.
 
@@ -271,16 +274,17 @@ print(df, row.names = FALSE)
 ![Discrete limits resulting from rounding](figure1.png){width=80%}
 
 ## Degrees of freedom, comparison of methods{#df_comp}
-The SAS code provided by the EMA in the Q&A document does not specify how the degrees of freedom should be calculated in ‘Method B’. Hence, the default in `PROC MIXED`, namely `DDFM=CONTAIN` is applied, *i.e.*, `method.B(..., option = 2`). For incomplete data (missing periods) Satterthwaite’s approximation of the degrees of freedom, *i.e.*, `method.B(..., option = 1)` or Kenward-Roger `method.B(..., option = 3)` might be a better choice – if stated as such in the SAP.
+The SAS code provided by the EMA in the Q&A document does not specify how the degrees of freedom should be calculated in Method B. Hence, the default in `PROC MIXED`, namely `DDFM=CONTAIN` is applied, *i.e.*, `method.B(..., option = 2`). For incomplete data (missing periods) Satterthwaite’s approximation of the degrees of freedom, *i.e.*, `method.B(..., option = 1)` or Kenward-Roger `method.B(..., option = 3)` might be a better choice – if stated as such in the <abbr title="Statistical Analysis Plan">SAP</abbr>.\
+For background about approximations in different software packages see the electronic Supplementary Material of Schütz *et al.*
 
-The EMA seemingly prefers ‘Method A’:
+The EMA seemingly prefers Method A:
 
 > _A simple linear mixed model, which assumes identical within-subject variability (Method B), may be acceptable as long as results obtained with the two methods do not lead to different regulatory decisions. However, in borderline cases […] additional analysis using Method A might be required._
 > 
 > --- Q&A document (January 2011 and later revisions)
 
-The half-width of the confidence interval in log-scale allows a comparison of methods (B *v.s.* A) where a higher value _might_ point towards a more conservative decision.^[Of course, only if point estimates are identical.] In the provided example datasets – with one exception – the conclusion of BE (based on the mixed criterion) agrees between ‘Method A’ and ‘Method B’.\
-However, for the highly incomplete dataset 14 ‘Method A’ was _liberal_ (passing by ANOVA but failing by the random effects model):
+The half-width of the confidence interval in log-scale allows a comparison of methods (B *v.s.* A) where a higher value _might_ point towards a more conservative decision.^[Of course, only if point estimates are identical.] In the provided example datasets – with one exception – the conclusion of BE (based on the mixed criterion) agrees between Method A and Method B.\
+However, for the highly incomplete dataset 14 Method A was _liberal_ (passing by ANOVA but failing by the random effects model):
 
 ```{r}
 # Compare Method B acc. to the GL with Method A for all reference datasets.
@@ -322,7 +326,9 @@ df[, c(2, 11)] <- signif(df[, c(2, 11)], 5)
 print(df[order(df$BE, df$hw, decreasing = c(FALSE, TRUE)), ],
       row.names = FALSE)
 ```
-All variants of ‘Method B’ are more conservative than ‘Method A’. Before rounding the confidence interval, `option = 2` with 192 degrees of freedom would be more conservative (lower CL 69.21029) than `option = 1` with 197.44 degrees of freedom (lower CL 69.21286). Given the incompleteness of this dataset (four missings in period 2, twelve in period 3, and 19 in period 4), Satterthwaite’s or Kenward-Roger degrees of freedom are probably the better choice.
+All variants of Method B are more conservative than Method A. Before rounding the confidence interval, `option = 2` with 192 degrees of freedom would be more conservative (lower CL 69.21029) than `option = 1` with 197.44 degrees of freedom (lower CL 69.21286). Given the incompleteness of this dataset (four missings in period 2, twelve in period 3, and 19 in period 4), Satterthwaite’s or Kenward-Roger degrees of freedom are probably the better choice.
+
+For detailed comparisons between methods based on simulations see the electronic Supplementary Material of Schütz *et al.*
 
 ## Outlier analysis{#ola}
 It is an open issue how outliers should be handled.
@@ -359,7 +365,7 @@ q[c(2, 4, 6:8), 4] <- c("SAS, Stata", "SciPy", "Phoenix, Minitab, SPSS",
 print(as.data.frame(q))
 ```
 
-* Box plots of studentized^[*Externally* studentized: $\widehat{\sigma}_{(i)}^2={1 \over n-m-1}\sum_{\begin{smallmatrix}j = 1\\j \ne i\end{smallmatrix}}^n \widehat{\varepsilon\,}_j^{\,2}$] and standarized^[*Internally* studentized: $\widehat{\sigma}^2={1 \over n-m}\sum_{j=1}^n \widehat{\varepsilon\,}_j^{\,2}$] model residuals are constructed.^[Both are available in SAS and R, whereas only the latter in *e.g.*, Phoenix WinNonlin. In general the former are slightly more restrictive. Which one will be used has to be stated in the SAP.]
+* Box plots of studentized^[*Externally* studentized: $\widehat{\sigma}_{(i)}^2={1 \over n-m-1}\sum_{\begin{smallmatrix}j = 1\\j \ne i\end{smallmatrix}}^n \widehat{\varepsilon\,}_j^{\,2}$] and standarized^[*Internally* studentized: $\widehat{\sigma}^2={1 \over n-m}\sum_{j=1}^n \widehat{\varepsilon\,}_j^{\,2}$] model residuals are constructed.^[Both are available in SAS and R, whereas only the latter in *e.g.*, Phoenix WinNonlin. In general the former are slightly more restrictive. Which one will be used has to be stated in the <abbr title="Statistical Analysis Plan">SAP</abbr>.]
 * Potential outliers are flagged based on the argument `fence` provided by the user.
 * With the additional argument `verbose = TRUE` detailed information is shown in the console.
 
@@ -381,13 +387,13 @@ Outlier analysis
       52     RTRT  3.214663
 ```
 
-If based on *studentized* residuals outliers are detected, additionally to the expanded limits based on the complete reference data, tighter limits are calculated based on *CV~wR~* after exclusion of outliers and BE assessed with the new limits. Note that *standardized* residuals are given for informational purposes only and are not used for exclusion of outliers.
+If based on *studentized* residuals outliers are detected, additionally to the expanded limits based on the complete reference data, tighter limits are calculated based on *CV~wR~* after exclusion of outliers and BE assessed with the new limits. Note that *standardized* residuals are given for informational purposes only and *not* used for exclusion of outliers.
 
 Output for the reference dataset 01 (re-ordered for clarity):
 ```
 CVwR               :  46.96% (reference-scaling applicable)
 swR                :   0.44645
-Expanded limits    :  71.23% ... 140.40% [100exp(±0.760Â·swR)]
+Expanded limits    :  71.23% ... 140.40% [100exp(±0.760·swR)]
 Assessment based on original CVwR 46.96%
 ────────────────────────────────────────
 Confidence interval: 107.11% ... 124.89%  pass
@@ -409,13 +415,15 @@ Mixed (CI & PE)    : pass
          ╟┼─────────────────────┼───────■────────◊─────────■─╢
 ```
 Note that the PE and its CI are not affected since the entire data are used and therefore, these values not reported in the second analysis (only the conclusion of the assessement).\
-The ‘line plot’ is given for informational purposes since its resolution is only \~0.5%. The filled squares `■` are the lower and upper 90% confidence limits, the rhombus `◊` the point estimate, the vertical lines `│` at 100% and the PE restriction (80.00 – 125.00%), and the double vertical lines `║` the expanded limits. The PE and CI take pre­se­dence over other symbols. In this case the upper limit of the PE restriction is not visible.\
+The ‘line plot’ is given for informational purposes since its resolution is only \~0.5\%. The filled squares `■` are the lower and upper 90\% confidence limits, the rhombus `◊` the point estimate, the vertical lines `│` at 100\% and the PE restriction (80.00 – 125.00\%), and the double vertical lines `║` the expanded limits. The PE and CI take pre­se­dence over other symbols. In this case the upper limit of the PE restriction is not visible.\
 Since both analyses arrive at the same conclusion, the study should be acceptable according to the Q&A document.
 
 # Applicability, caveats, outlook{#app_out}
-The EMA’s approach of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (*e.g.*, the WHO; ASEAN States, Australia, Brazil, the East African Community, Egypt, the Eurasian Economic Union, New Zealand, the Russian Federation).
+The EMA’s approach of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (*e.g.*, the <abbr title="World Health Orgaization">WHO</abbr>; the <abbr title="Association of Southeast Asian Nations">ASEAN</abbr>, Australia, Brazil, the East African Community, Egypt, the <abbr title="Eurasian Economic Union">EEU</abbr>, New Zealand, and the Russian Federation). Health Canada accepts ABEL only for *AUC* with an upper cap of scaling at \~57.4\% (maximum expansion to 66.7 – 150.0\%) and *might* require a true mixed-effects model. Whether Method B is acceptable is unclear.
 
-The estimated *CV~wR~* is always uncertain (the degree of uncertainty depends on the *CV~wR~* itself, the design, and the sample size), which might lead to an inflation of the type I error (*i.e.*, if ABEL is falsely applied although the *true* – but unknown – *CV~wR~* is lower than its estimate).^[Wonnemann M, Frömke C, Koch A. *Inflation of the Type I Error: Investigations on Regulatory Recommendations for Bioequivalence of Highly Variable Drugs.* Pharm Res. 2015; 32(1): 135–43. [doi:10.1007/s11095-014-1450-z](https://doi.org/10.1007/s11095-014-1450-z).]<sup>,</sup> ^[Muñoz J, Alcaide D, Ocaña J. *Consumer’s risk in the EMA and FDA regulatory approaches for bioequivalence in highly variable drugs.* Stat Med. 2016; 35(12): 1933–43. [doi:10.1002/sim.6834](https://doi.org/10.1002/sim.6834).]\
+If degrees of freedom are approximated (Satterthwaite, Kenward-Roger), the <abbr title="Statistical Analysis Plan">SAP</abbr> and statistical report should always specify which method will be / was used (see [above](#method.b)) in order to allow recalculation in other software. This package uses the *observed* information matrix.
+
+The estimated *CV~wR~* is always uncertain (the degree of uncertainty depends on the *CV~wR~* itself, the design, and – to a minor degree – the sample size), which might lead to an inflation of the type I error (*i.e.*, if ABEL is falsely applied although the *true* – but unknown – *CV~wR~* is lower than its estimate).^[Wonnemann M, Frömke C, Koch A. *Inflation of the Type I Error: Investigations on Regulatory Recommendations for Bioequivalence of Highly Variable Drugs.* Pharm Res. 2015; 32(1): 135–43. [doi:10.1007/s11095-014-1450-z](https://doi.org/10.1007/s11095-014-1450-z).]<sup>,</sup> ^[Muñoz J, Alcaide D, Ocaña J. *Consumer’s risk in the EMA and FDA regulatory approaches for bioequivalence in highly variable drugs.* Stat Med. 2016; 35(12): 1933–43. [doi:10.1002/sim.6834](https://doi.org/10.1002/sim.6834).]\
 Use the optional argument `method.A(..., adjust = TRUE)` to iteratively adjust *α* to control the type I error.^[Labes D, Schütz H. *Inflation of Type I Error in the Evaluation of Scaled Average Bioequivalence, and a Method for its Control.* Pharm Res. 2016; 33(11): 2805–14. [doi:10.1007/s11095-016-2006-1](https://doi.org/10.1007/s11095-016-2006-1).]\
 If you want to apply the most conservative approach of Molins *et al.*^[Molins E, Cobo E, Ocaña J. *Two-Stage Designs Versus European Scaled Average Designs in Bioequivalence Studies for Highly Variable Drugs: Which to Choose?* Stat Med. 2017: 36(30); 4777--88. [doi:10.1002/sim.7452](https://doi.org/10.1002/sim.7452).] (which corrects for *CV~wR~* 30\% instead of the observed one), get the data.frame of results with\
 `  x <- method.A(..., details = TRUE, print = FALSE)`.\
@@ -426,7 +434,7 @@ Adjust *α* in library [PowerTOST](https://cran.r-project.org/package=PowerTOST)
 `  method.A(..., alpha = y$alpha.adj)`
 
 The WHO accepts [reference-scaling for AUC](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf "Guidance Document, 22 November 2018") (four period full replicate studies are mandatory in order to assess the vari­ability associated with each product). It is not evident how this assessment should be done./
-In Population Bioequivalence (PBE) and Individual Bioequivalence (IBE) the *s~wT~*/*s~wR~* ratio was assessed and ‘similar’ variability was concluded for a ratio within 0.667 – 1.500. However, the power of comparing variabilities in a study designed to demonstrate ABE is low. This was one of the reasons why PBE and IBE were not implemented in regulatory practice. An alternative approach is given in the FDA’s [guidance on warfarin](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf "Draft recommended Dec 2012") where variabilities are considered ‘comparable’ if the upper confidence limit of *σ~wT~*/*σ~wR~* is ≤2.5.
+In Population Bioequivalence (PBE) and Individual Bioequivalence (IBE) the *s~wT~*/*s~wR~* ratio was assessed and ‘similar’ variability was concluded for a ratio within 0.667 – 1.500. However, the power of comparing variabilities in a study designed to demonstrate ABE is low. This was one of the reasons why PBE and IBE were not implemented in regulatory practice. An alternative approach is given in the FDAs [guidance on warfarin](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf "Draft recommended Dec 2012") where variabilities are considered ‘comparable’ if the upper confidence limit of *σ~wT~*/*σ~wR~* is ≤2.5.
 
 # Cross-validation{#cross}
 Results of all reference datasets agree with ones obtained in SAS (9.4), Phoenix WinNonlin (6.4--8.1), STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
@@ -441,8 +449,7 @@ Results of all reference datasets agree with ones obtained in SAS (9.4), Phoenix
 [GPL-2](https://cran.r-project.org/web/licenses/GPL-2 "GNU General Public License, Version 2") | [GPL-3](https://cran.r-project.org/web/licenses/GPL-3 "GNU General Public License, Version 3")
 
 # Disclaimer{#disclaimer}
-**Program offered for Use without any Guarantees and Absolutely No Warranty.\
-No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.**
+Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.
 
 # Session Information{#session}
 Inspect this information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.
