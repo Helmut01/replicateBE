@@ -1,6 +1,6 @@
-# replicateBE 1.0.12.9001
+# replicateBE 1.0.13
 
-Published on Github 2020-01-02.
+Published on Github 2020-01-09.
 
 ## Bug fixes
 
