@@ -1,6 +1,6 @@
 # replicateBE 1.0.13
 
-Published on Github 2020-01-09.
+Published on Github 2020-01-09, on CRAN.
 
 ## Bug fixes
 
