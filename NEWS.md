@@ -1,3 +1,7 @@
+# replicateBE 1.0.13.9000
+
+Started new version on GitHub 2020-01-10.
+
 # replicateBE 1.0.13
 
 Published on Github 2020-01-09, on CRAN.
@@ -5,7 +9,7 @@ Published on Github 2020-01-09, on CRAN.
 ## Bug fixes
 
   * Converts `ext` to lower-case. Mixed-case threw an error.
-  * Resolved [issue 2](https://github.com/Helmut01/replicateBE/issues/2) raised by MT. Results were correct but the message an annoyance. Use `as.data.frame(read_excel(..., col_names = FALSE, .name_repair = "minimal"))` in `get.data()`. Since the file may contain a commentary header, we need `col_names = FALSE` and construct the names later (*i.e.*, the default `col_names = TRUE` is not possible).
+  * Resolved [issue 2](https://github.com/Helmut01/replicateBE/issues/2) raised by MT. Results were correct but the message an annoyance. Now use `as.data.frame(read_excel(..., col_names = FALSE, .name_repair = "minimal"))` in `get.data()`. Since the file may contain a commentary header, we need `col_names = FALSE` and construct the names later (*i.e.*, the default `col_names = TRUE` is not possible).
 
 ## Minor changes
 
