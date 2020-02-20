@@ -25,7 +25,7 @@ library(replicateBE) # attach the library
 Version `r packageVersion("replicateBE")` built `r packageDate("replicateBE")` with R `r getRversion()`.\
 
 # Introduction{#intro}
-The library provides datasets (internal `.rda` and in <span title="Comma Separated Variables">CSV</span>-format in `/extdata/`) which support users in a [black-box](https://en.wikipedia.org/wiki/Black-box_testing) performance qualification (PQ) of their software installations.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. (2019). *Reference Datasets for Studies in a Replicate Design intended for Average Bioequivalence with Expanding Limits.* Manuscript submitted for publication.] Users can analyze own data imported from CSV- and Excel-files.  
+The library provides datasets (internal `.rda` and in <span title="Comma Separated Variables">CSV</span>-format in `/extdata/`) which support users in a [black-box](https://en.wikipedia.org/wiki/Black-box_testing) performance qualification (PQ) of their software installations.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. *Reference Data&shy;sets for Studies in a Replicate Design intended for Average Bioequivalence with Expanding Limits.* AAPS J. 2020; 22:44. [doi:10.1208/s12248-020-0427-6](https://doi.org/10.1208/s12248-020-0427-6).] Users can analyze data imported from CSV- and Excel-files.  
 
 The methods given by the European Medicines Agency (EMA) in Annex I^[European Medicines Agency. *Annex I.* London, 21 September 2016. [EMA/582648/2016](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf).] for reference-scaling according to the Guideline on the Investigation of Bioequivalence^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the Investigation of Bioequivalence.* London, 20 January 2010. [CPMP/EWP/QWP/1401/98 Rev. 1/Corr **](https://www.ema.europa.eu/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf).] are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint <span title="European Generic Medicines Association">EGA</span>/EMA symposium.^[European Generic Medicines Association. *Revised EMA Bioequivalence Guideline. *3^rd^ EGA Symposium on Bioequivalence. London, 1 June 2010. [Questions & Answers](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf).]
 
@@ -78,8 +78,8 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
 Average Bioequivalence, where the model is identical to [Method A](#methodA). By default the conventional acceptance range of 80.00 – 125.00\% is used. Tighter limits (90.00 – 111.11\%) for narrow therapeutic index drugs (EMA) or wider limits (75.00 – 133.33\% for C~max~ according to the guidelines of the <abbr title="Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, the United Arab Emirates.">GCC</abbr> and South Africa) can be specified by the arguments `theta1` (lower limit) and/or `theta2` (upper limit).
 
 # Hypotheses{#hypotheses}
-The hypotheses are $$H_{0}:\theta_0\notin [L,U]\:vs\:H_{1}:L<\theta_0<U$$
-where <small>$\theta_0=\mu_T/\mu_R$</small> and the Null hypothesis is <u>in</u>equivalence. In Average Bioequivalence the limits <small>$[L,U]$</small> are fixed, whereas in ABEL they can be [expanded](#BElim) based on the variability of the reference treatment.
+The hypotheses are $$\small{H_{0}:\theta_0\notin [L,U]\:vs\:H_{1}:L<\theta_0<U}$$
+where $\small{\theta_0=\mu_T/\mu_R}$ and the Null hypothesis is <u>in</u>equivalence. In Average Bioequivalence the limits $\small{[L,U]}$ are fixed, whereas in ABEL they can be [expanded](#BElim) based on the variability of the reference treatment.
 
 # Tested designs{#designs}
 Details about the reference datasets and their designs:
@@ -174,7 +174,7 @@ We obtain these datasets:
 | Dataset | Purpose | included | excluded |
 |:-:|-----|----------|:---:|
 | #1 | Estimation of *CV~wR~* | 13 who received 2 treatments `R` | 6, 8, 14 |
-| #2 | Estimation of *CV~wT~* | 12 who received 2 treatments `T` | 1, 6, 8 |
+| #2 | Estimation of *CV~wT~* | 13 who received 2 treatments `T` | 1, 6, 8 |
 | #3 | Assessment of BE | 15 who received ≥1 treatment `T` _and_ ≥1 treatment `R` | 8 |
 
 Datasets #1 and #3 are required for ABEL and all three for the WHO’s reference-scaling of AUC (see [below](#app_out)). For ABE only dataset #3 is required.
@@ -222,7 +222,7 @@ It is unclear why the four period replicate is considered by the EMA to give a m
 ## Model structure{#model_struc}
 The EMA’s models assumes equal [_sic_] intra-subject variances of Test and Reference (like in 2×2×2 trials) – even if proven false in one of the full replicate designs (were _both_ *CV~wT~* and *CV~wR~* can be estimated). Hence, amongst biostatisticians they are called ‘crippled models’ because the replicative nature of the study is ignored.
 
-The nested structure _subject(sequence)_ of the [methods](#methods) leads to an over-specificed model.^[Contradics the law of simplicity. Such a nesting is superfluous since in BE trials subjects are uniquely coded. If, say, subject `1` is allocated to sequence `TRTR` there is not yet ‘another’ subject `1` allocated to sequence `RTRT`. This explains the many lines in SAS `PROC GML` given with `.` and in Phoenix WinNonlin as `not estimable`.] The simple model\
+The nested structure _subject(sequence)_ of the [methods](#methods) leads to an over-specificed model.^[Contradics the law of parsimony. Such a nesting is superfluous since in BE trials subjects are uniquely coded. If, say, subject `1` is allocated to sequence `TRTR` there is not yet ‘another’ subject `1` allocated to sequence `RTRT`. This explains the many lines in SAS `PROC GML` given with `.` and in Phoenix WinNonlin as `not estimable`.] The simple model\
 &nbsp;&nbsp;&nbsp;&nbsp;_sequence_, _subject_, _period_, _treatment_\
 gives identical estimates of the residual variance and the treatment effect and hence, its confidence interval.
 
@@ -242,17 +242,17 @@ The limits can be expanded based on *CV~wR~*.
 
 * *CV~wR~* ≤ 30\%\
     Lower cap, *i.e.*, no scaling, conventional limits:\
-    <small>$\left[{L,U}\right] = {80.00 - 125.00\%}$</small>
+    $\small{\left[{L,U}\right] = {80.00 - 125.00\%}}$
 * 30\% < *CV~wR~* ≤ 50%\
     Expanded limits based on $s_{wR}$:\
-    <small>$\left[{L,U}\right] = 100{e^{\mp 0.760 \cdot {s_{wR}}}}$</small>
+    $\small{\left[{L,U}\right] = 100\,{\text{e}^{\mp 0.760 \cdot {s_{wR}}}}}$
 * *CV~wR~* > 50\%\
-    Upper cap, *i.e.*, applying <small>$s^*_{wR}=\sqrt{log(0.50^2+1)}$</small> in the expansion formula or\
-    <small>$\left[ {L,U} \right] = {69.84 - 143.19\%}$</small>.
+    Upper cap, *i.e.*, applying $\small{s^*_{wR}=\sqrt{\text{log}(0.50^2+1)}}$ in the expansion formula or\
+    $\small{\left[ {L,U} \right] = {69.84 - 143.19\%}}$.
 
 In reference-scaling a so-called *mixed* (a.k.a. *aggregate*) criterion is applied. In order to pass BE,
 
-* the 90\% confidence interval has to lie entirely within the acceptance range <small>$\left[ {L,U} \right]$</small> _and_
+* the 90\% confidence interval has to lie entirely within the acceptance range $\small{\left[ {L,U} \right]}$ _and_
 * the point estimate has to lie within 80.00 – 125.00\%.
 
 To avoid discontinuities due to double rounding, expanded limits are calculated in full numeric precision and only the confidence interval is rounded according to the guideline.
