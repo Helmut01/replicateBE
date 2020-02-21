@@ -137,7 +137,7 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
     equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’
     `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected*
     information matrix. Note that SAS with `DDFM=KENWARDROGER` and JMP
-    calculate Sattertwaite’s \[*sic*\] degrees of freedom and apply the
+    calculate Sattertwaite’s (*sic*) degrees of freedom and apply the
     Kackar-Harville correction *i.e.*, based on the *observed*
     information matrix.
 
@@ -332,16 +332,38 @@ print(tmp, row.names=FALSE)
 
 ## Installation
 
-Install the released version from CRAN:
+The package requires R ≥ 3.5.0; for the Kenward-Roger approximation
+`method.B(..., option = 3)` R ≥ 3.6.0 is required.
+
+  - Install the released version from CRAN:
+
+<!-- end list -->
 
 ``` r
 install.packages("replicateBE", repos = "https://cloud.r-project.org/")
 ```
 
-Install the development version from GitHub:
+  - To use the development version, please install the released version
+    from [CRAN](https://cran.r-project.org/package=replicateBE) first to
+    get its dependencies right
+    ([readxl](https://cran.r-project.org/package=readxl) ≥ 1.0.0,
+    [PowerTOST](https://cran.r-project.org/package=PowerTOST) ≥ 1.3.3,
+    [lmerTest](https://cran.r-project.org/package=lmerTest),
+    [nlme](https://cran.r-project.org/package=nlme),
+    [pbkrtest](https://cran.r-project.org/package=pbkrtest)).
+    
+    You need tools for building R packages from sources on your machine.
+    For Windows users:  
+    
+      - Download
+        [Rtools](https://cran.r-project.org/bin/windows/Rtools/) from
+        CRAN and follow the suggestions of the installer.
+      - Install `devtools` and build the development version by:
+
+<!-- end list -->
 
 ``` r
-# install.packages("devtools", repos = "https://cloud.r-project.org/")
+install.packages("devtools", repos = "https://cloud.r-project.org/")
 devtools::install_github("Helmut01/replicateBE")
 ```
 
