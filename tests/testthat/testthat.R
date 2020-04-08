@@ -539,8 +539,8 @@ test_that("method.B (Satterthwaite DF, CVwR, EL, 90% CI, PE) of rds29", {
 })
 test_that("method.B (Satterthwaite DF, CVwR, EL, 90% CI, PE) of rds30", {
   x <- method.B(details=TRUE, print=FALSE, data=rds30, option=1)
-  expect_equivalent(x[, c(10, 12, 15:19)], tolerance=5e-7,
-                    expected=c(17.86418, 25.2277, 80, 125,
+  expect_equivalent(x[, c(10, 12, 15:19)], tolerance=1e-6,
+                    expected=c(17.86417, 25.2277, 80, 125,
                                79.57553, 108.0676, 92.73371))
 })
 #################################################
