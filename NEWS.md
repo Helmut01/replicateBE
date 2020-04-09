@@ -4,7 +4,7 @@ Published on Github 2020-04-08, on CRAN 2020-04-09.
 
 ## Bug fixes
 
-  * Changed expected value of `DF` obtained by `method.B(..., data = rds30, option = 1)` from 17.86418 to 17.86417 and reduced `tolerance` in function `expect_equivalent()` of `testthat` from 5e-7 to 1e-6. Prevents errors with r-devel on Linux and r-patched on Solaris. Not relevant because the CI passed already with the more strict tolerance and in practice only four to five significant digits (not seven) are required for the CI. Furthermore, all tests passed with the current release (R3.6.3) on all operating systems.
+  * Changed expected value of `DF` obtained by `method.B(..., data = rds30, option = 1)` from 17.86418 to 17.86417 and reduced `tolerance` in function `expect_equivalent()` of `testthat` from 5e-7 to 1e-6. Prevents errors with r-devel on Linux and r-patched on Solaris. Required due to changed default tolerance settings in v.1.1-23 of package `lme4` of 2020-04-07. Not relevant because the CI passed already with the more strict tolerance and in practice only four to five significant digits (not seven) are required for the CI. Furthermore, all tests passed with the current release (R3.6.3) on all operating systems.
 
 # replicateBE 1.0.13.9000
 
