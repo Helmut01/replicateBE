@@ -130,8 +130,8 @@ print(tmp, row.names = FALSE)
   - Same dataset evaluated by Method B, Kenward-Roger approximation of degrees of freedom. Outlier assessment, recalculation of _CV~wR~_ after exclusion of outliers, new expanded limits.
 
 ```{r}
-res <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
-                print = FALSE, data = rds01)
+res  <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
+                 print = FALSE, data = rds01)
 cols <- c(25, 28:29, 17:19)    # extract relevant columns
 tmp  <- round(res[cols], 2)    # 2 decimal places acc. to GL
 tmp  <- cbind(tmp, res[30:32]) # pass|fail
