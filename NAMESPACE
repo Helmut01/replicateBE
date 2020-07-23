@@ -1,4 +1,4 @@
-importFrom(grDevices, graphics.off, dev.off, png)
+importFrom(grDevices, png, graphics.off, dev.list, dev.off)
 importFrom(readxl, read_excel)
 importFrom(utils, read.csv, head, capture.output,
            citation, packageVersion, sessionInfo)

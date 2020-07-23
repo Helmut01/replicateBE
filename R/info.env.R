@@ -64,9 +64,9 @@ info.env <- function(fun, option=NA, path.in, path.out,
     } else {                                                         # external CSV or XLS(X)
       info <- paste(lic, discl, "\nInput from         : ")
       if (is.null(path.in)) {
-        info <- paste0(info, getwd(), "/")
+        info <- paste0(info, normalizePath(getwd()))
       } else {
-        info <- paste0(info, path.in)
+        info <- paste0(info, normalizePath(path.in))
       }
       if (ext %in% ext.xls) {
         info <- paste0(info, "\nFile [sheet]       : ", file, ".", ext,
@@ -78,9 +78,10 @@ info.env <- function(fun, option=NA, path.in, path.out,
   }
   info <- paste(info, "\nOutput to          : ")
   if (is.null(path.out)) {
-    info <- paste0(info, getwd(), "/")
+    #info <- paste0(info, getwd(), "/")
+    info <- paste0(info, normalizePath(getwd()))
   } else {
-    info <- paste0(info, path.out)
+    info <- paste0(info, normalizePath(path.out))
   }
   info <- paste0(info, "\nSystem             : ", node,
                  "\nUser               : ", user,

@@ -25,13 +25,15 @@ method.B(alpha = 0.05, path.in = "~/", path.out = "~/",
     confidence interval.
   }
   \item{path.in}{
-    Path to the data file for import. If missing or not existing the
-    user’s home folder \verb{"~/"} will be used.
+    Path to the data file for import (recommended). Only if none is given or the given one
+    does not exist -- as a fallback -- the user’s home folder \verb{"~/"} will be used.
   }
   \item{path.out}{
-    Path to safe the result file if \code{print=TRUE}. The user must have
-    write-permission to the directory. If missing or not existing the
-    user’s home folder \verb{"~/"} will be used.
+    Path to save the result file (recommended) if \code{print=TRUE}. The user must have
+    write-permission to the folder. Only if none is given or the given one does not exist
+    -- as a fallback -- the user’s home folder \verb{"~/"} will be used.\cr
+    If a box plot of outliers should be saved (\code{plot.bxp=TRUE}), this path will be
+    used as well.
   }
   \item{file}{
     Name of the dataset for import (\emph{without} extension). Must be
@@ -426,8 +428,9 @@ for (i in seq_along(ds)) {
 # supressed (zero width) and ignored in the assessment.
 x    <- method.B(alpha = 0.5, option = 1, data = rds03,
                  print = FALSE, details = TRUE)[c(19, 22)]
-x[1] <- round(x[1], 1) # one decimal place for HC
+x[1] <- round(x[1], 1) # only one decimal place for HC
 print(x, row.names = FALSE)
 # Should result in:
 # PE(\%)   BE
-# 124.5 pass}}
+# 124.5 pass}
+}

@@ -24,13 +24,13 @@ ABE(alpha = 0.05, path.in = "~/", path.out = "~/",
     confidence interval.
   }
   \item{path.in}{
-    Path to the data file for import. If missing or not existing the
-    user’s home folder \verb{"~/"} will be used.
+    Path to the data file for import (recommended). Only if none is given or the given one
+    does not exist -- as a fallback -- the user’s home folder \verb{"~/"} will be used.
   }
   \item{path.out}{
-    Path to safe the result file if \code{print=TRUE}. The user must have
-    write-permission to the directory. If missing or not existing the
-    user’s home folder \verb{"~/"} will be used.
+    Path to save the result file (recommended) if \code{print=TRUE}. The user must have
+    write-permission to the folder. Only if none is given or the given one does not exist
+    -- as a fallback -- the user’s home folder \verb{"~/"} will be used.
   }
   \item{file}{
     Name of the dataset for import (\emph{without} extension). Must be a string

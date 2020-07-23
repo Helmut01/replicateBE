@@ -27,13 +27,15 @@ method.A(alpha = 0.05, path.in = "~/", path.out = "~/",
     confidence interval.
   }
   \item{path.in}{
-    Path to the data file for import. If missing or not existing the
-    user’s home folder \verb{"~/"} will be used.
+    Path to the data file for import (recommended). Only if none is given or the given one
+    does not exist -- as a fallback -- the user’s home folder \verb{"~/"} will be used.
   }
   \item{path.out}{
-    Path to safe the result file if \code{print = TRUE}. The user must have
-    write-permission to the directory. If missing or not existing the
-    user’s home folder \verb{"~/"} will be used.
+    Path to save the result file (recommended) if \code{print=TRUE}. The user must have
+    write-permission to the folder. Only if none is given or the given one does not exist
+    -- as a fallback -- the user’s home folder \verb{"~/"} will be used.\cr
+    If a box plot of outliers should be saved (\code{plot.bxp=TRUE}), this path will be
+    used as well.
   }
   \item{file}{
     Name of the dataset for import (\emph{without} extension). Must be
@@ -368,9 +370,8 @@ method.A(path.in = path.in, file = "DS", set = "01", ext = "csv")
 #   Mixed (CI & PE)    :                      pass
 #
 # Internal reference dataset 01 used and results to the home
-# folder. Additional outlier-analyis and box plot saved as PNG
-# (accidental overwriting prevented).
-method.A(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
+# folder. Additional outlier-analyis.
+method.A(ola = TRUE, data = rds01)
 # Should give the same as above. Additionally:
 #   Outlier fence      :  2×IQR of studentized residuals.
 #   Recalculation due to presence of 2 outliers (subj. 45|52)

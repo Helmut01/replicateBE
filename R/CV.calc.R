@@ -123,7 +123,9 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
              sprintf("%+.3f", ol.value2))
       }
       abline(h=0, lty="dotted")
-      if (plot.bxp & overwrite) dev.off() # close PNG
+      if (plot.bxp && file.exists(ret$png.path)) {
+        graphics.off()
+      }
       # recalculate CVwR for data without outlier(s)
       ol   <- ret$ref[names(bp1$out), "subject"]
       excl <- ret$ref[!ret$ref$subject %in% ol, ]

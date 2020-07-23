@@ -1,14 +1,26 @@
+# replicateBE 1.0.14.9000
+
+Published on Github 2020-07-23.
+
+## Issues
+
+  * Unsuccessfully tried to deal with `graphics.off()` in `CV.calc.R`. Local (!) CHECK throws\
+    `Error in grDevices::dev.off() :`\
+    `  cannot shut down device 1 (the null device)`\
+    However, the package *can* be built and passes *without* errors on winbuilder.
+
+## Minor changes
+
+  * Use `normalizePath()` in `info.env.R` for clarity (*i.e.*, the OS-dependent full path is given in the result-file).
+  * Cosmetic changes in vignette.
+
 # replicateBE 1.0.14
 
 Published on Github 2020-04-08, on CRAN 2020-04-09.
 
 ## Bug fixes
 
-  * Changed expected value of `DF` obtained by `method.B(..., data = rds30, option = 1)` from 17.86418 to 17.86417 and reduced `tolerance` in function `expect_equivalent()` of `testthat` from 5e-7 to 1e-6. Prevents errors with r-devel on Linux and r-patched on Solaris. Required due to changed default tolerance settings in v.1.1-23 of package `lme4` of 2020-04-07. Not relevant because the CI passed already with the more strict tolerance and in practice only four to five significant digits (not seven) are required for the CI. Furthermore, all tests passed with the current release (R3.6.3) on all operating systems.
-
-# replicateBE 1.0.13.9000
-
-Started new version on GitHub 2020-01-10.
+  * Changed expected value of `DF` obtained by `method.B(..., data = rds30, option = 1)` from 17.86418 to 17.86417 and reduced `tolerance` in function `expect_equivalent()` of `testthat` from 5e-7 to 1e-6. Prevents errors with r-devel on Linux and r-patched on Solaris. Required due to changed default tolerance settings in v.1.1-23 of package `lme4` of 2020-04-07. Not relevant because the CI passed the test already with the more strict tolerance and in practice only four to five significant digits (not seven) are required for the CI. Furthermore, all tests passed with the current release (R3.6.3) on all operating systems.
 
 ## Minor changes
 
@@ -40,13 +52,6 @@ Published on Github 2019-11-11, on CRAN (carnival release).
 ## Minor changes
 
   * Updated CSS of vignette, fixes in `README`.
-
-# replicateBE 1.0.11.9000
-
-Published on Github 2019-10-03.
-
-## Minor changes
-
   * Replaced TOC-links in vignette by CSS-div (fixed background image).
   * Cosmetic fix. Treats the special case in verbose output of `CV.calc.R` when at least one *studentized* outlier is detected but no *standarized* outlier.
   * Badges in `README`.
@@ -55,10 +60,6 @@ Published on Github 2019-10-03.
 # replicateBE 1.0.11
 
 Published on Github 2019-08-25, on CRAN.
-
-# replicateBE 1.0.10.9000
-
-Published on Github 2019-08-25.
 
 ## Bug fixes
 
@@ -92,10 +93,6 @@ Published on Github 2019-07-24, on CRAN.
 
 Published on Github 2019-07-22, on CRAN.
 
-# replicateBE 1.0.8.9000
-
-Published on Github 2019-07-20.
-
 ## Bug fixes
 
   * `importFrom(pbkrtest, getKR)` since error on win-builder.r-project.org  
@@ -125,7 +122,7 @@ Published on Github 2019-06-14, on CRAN.
 
 ## Bug fixes
 
-  * THX to Uwe Ligges @CRAN.
+  * THX to Uwe Ligges @CRAN (adding `on.exit(...)` immediately after changing an option).
 
 # replicateBE 1.0.7
 
@@ -137,13 +134,7 @@ Published on Github 2019-06-14, on CRAN.
 
 # replicateBE 1.0.6
 
-Published on Github 2019-06-12.
-
-  * Submitted to CRAN (passed checks at R-release and R-devel).
-
-# replicateBE 1.0.5.9003
-
-Published on GitHub 2019-06-12.
+Published on Github 2019-06-12, submitted to CRAN (passed checks at R-release and R-devel).
 
 ## Bug fixes
 
@@ -172,41 +163,9 @@ Published on GitHub 2019-05-30.
 
 ## Bug fixes
 
-  * Updated links in man-pages to reflect changes in the FDA’s site.
+  * Updated links in man-pages to reflect changes in the FDA’s and the EMA’s sites.
   * Updated links to reference data in `info.data()`.
   * Updated links in CSV-files.
-
-## Minor changes
-
-  * Renamed S3 methods (prefixed with `repBE`) acc. to [rlang issue 669](https://github.com/r-lib/rlang/issues/669) (THX to MT).
-  * The warning in `CHECK` dissappeared in R 3.6.0. Throws other ones in examples which change the working directory. Wrapped all examples in man-pages in `\dontrun{}`.
-
-# replicateBE 1.0.5.9001
-
-Published on GitHub 2019-04-23.
-
-## Bug fixes
-
-  * Updated links in man-pages to reflect changes in the EMA’s site.
-  * Updated links to reference data in `info.data()`.
-  * Updated links in CSV-files.
-
-# replicateBE 1.0.5.9000
-
-Published on GitHub 2017-11-25.
-
-## Issues
-
-  * `CHECK` throws a `WARNING`:
-    
-    `checking for unstated dependencies in examples ... WARNING`  
-    `Warning in parse(file = files, n = -1L) :`  
-    `  invalid input found on input connection 'replicateBE-Ex.R'`  
-    `parse()` is used in the man-pages of `method.B` and `data`. Neither
-    `\dontrun{}`, commenting the code out, or completelly removing the examples resolves the issue.
-
-## Bug fixes
-
   * Import from XLS with a header.
   * `get.data()` CSV-file: Issue with characters in the header which were `== sep` resolved. [MT]
   * `get.data()` Sub/seq in data.frame was empty for complete sequences.
@@ -218,6 +177,24 @@ Published on GitHub 2017-11-25.
   * `method.B(option = 1) ` output to file.
   * In package `PowerTOST` T is always first. The order is only relevant in `method.A(..., adjust = TRUE)` and an unbalanced RTR|TRT-design. In this case the order of subjects/sequence is reversed by calling
     `scABEL(...,  n = rev(ret$Sub.Seq))`. THX to DL for discovering this bug.
+
+## Minor changes
+
+  * Renamed S3 methods (prefixed with `repBE`) acc. to [rlang issue 669](https://github.com/r-lib/rlang/issues/669) (THX to MT).
+  * A warning in `CHECK` dissappeared in R 3.6.0. Throws other ones in examples which change the working directory. Wrapped all examples in man-pages in `\dontrun{}`.
+  * Rewrite of reading from file. [MT]
+    * The header is automatically identified (removed as an argument from the calling functions).
+    * The first column must no be more `subject` (any order is acceptable). Now the word ‘subject’ is allowed in the header.
+  * Argument `set` can be an empty string `""` to support reading from CSV- files. Only required for XLS (the name of the sheet) now.
+  * Argument `fence` for box plots instead of the hard-coded 3 as a multiplier of IQR. The default 1.5 in most (all?) software packages detects *a lot* of outliers. 3 seems to be too liberal. The new default 2 is a compromise.
+  * Changed TRTR|TRRT|RTTR|RTRT to TRTR|RTRT|TRRT|RTTR. More logical (stacking sequences of the other full replicates). Adapted scripts and man pages accordingly.
+  * Changed the lexical order of sequences (T before R) in conformity with package `PowerTOST` and the EMA’s Q&A dataset II.
+  * Resolved [issue 1](https://github.com/Helmut01/replicateBE/issues/1): Introduced aliases in man pages for all data sets. Otherwise, warnings in `CHECK` about undocumented objects.
+  * Identify internal data sets based on their attribute. Uses now `info.data()` (THX to DL). Function `which.data()` removed.
+  * Man pages reworked. [DL]
+  * `method.A(adjust = TRUE)` assesses additionally the empiric type I error based on the
+    recalculated `CVwR` (if applicable).
+  * Changed TRR.RTT to RTT.TRR for consistency (R always first).
 
 ## Major changes
 
@@ -236,22 +213,6 @@ Published on GitHub 2017-11-25.
   * New function `info.design()`. Sorts sequences according to the preferred order (T first) and throws a message if the design is untested.
   * Changed the names of result files reflecting the Method used rather the internals (`lme`/`lmer`).
   * `Lazy data: true` in `DESCRIPTION` allows direct access of objects within `data()`.
-
-## Minor changes
-
-  * Rewrite of reading from file. [MT]
-    * The header is automatically identified (removed as an argument from the calling functions).
-    * The first column must no be more `subject` (any order is acceptable). Now the word ‘subject’ is allowed in the header.
-  * Argument `set` can be an empty string `""` to support reading from CSV- files. Only required for XLS (the name of the sheet) now.
-  * Argument `fence` for box plots instead of the hard-coded 3 as a multiplier of IQR. The default 1.5 in most (all?) software packages detects *a lot* of outliers. 3 seems to be too liberal. The new default 2 is a compromise.
-  * Changed TRTR|TRRT|RTTR|RTRT to TRTR|RTRT|TRRT|RTTR. More logical (stacking sequences of the other full replicates). Adapted scripts and man pages accordingly.
-  * Changed the lexical order of sequences (T before R) in conformity with package `PowerTOST` and the EMA’s Q&A dataset II.
-  * Resolved [issue 1](https://github.com/Helmut01/replicateBE/issues/1): Introduced aliases in man pages for all data sets. Otherwise, warnings in `CHECK` about undocumented objects.
-  * Identify internal data sets based on their attribute. Uses now `info.data()` (THX to DL). Function `which.data()` removed.
-  * Man pages reworked. [DL]
-  * `method.A(adjust = TRUE)` assesses additionally the empiric type I error based on the
-    recalculated `CVwR` (if applicable).
-  * Changed TRR.RTT to RTT.TRR for consistency (R always first).
 
 # replicateBE 1.0.5
 

@@ -53,7 +53,7 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
 ```
 
-* Employs Satterthwaite’s approximation^[Satterthwaite FE. *An Approximate Distribution of Estimates of Variance Components.* Biometrics Bulletin. 1946; 2(6): 110–4. [doi:10.2307/3002019](https://doi.org/10.2307/3002019).] of the degrees of freedom `method.B(..., option = 1)` equivalent to SAS’ `DDFM=SATTERTHWAITE`, Phoenix WinNonlin’s `Degrees of Freedom Satterthwaite`, and Stata’s `dfm=Satterthwaite`.
+* Employs Satterthwaite’s approximation^[Satterthwaite FE. *An Approximate Distribution of Estimates of Variance Components.* Biometrics Bulletin. 1946; 2(6): 110–4. [doi:10.2307/3002019](https://doi.org/10.2307/3002019).] of the degrees of freedom `method.B(..., option = 1)`, which is equivalent to SAS’ `DDFM=SATTERTHWAITE`, Phoenix WinNonlin’s `Degrees of Freedom Satterthwaite`, and Stata’s `dfm=Satterthwaite`.
 * Note that this is the only available approximation in SPSS.  
 
 (@) Estimated via function `lme()` of library `nlme`.
@@ -62,7 +62,7 @@ modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
                       data = data)
 ```
 
-* Employs degrees of freedom equivalent to SAS’ `DDFM=CONTAIN` (implicitly preferred by the EMA), Phoenix WinNonlin’s `Degrees of Freedom Residual`, STATISTICAs `GLM containment`, and Stata’s `dfm=anova`.
+* Employs degrees of freedom equivalent to SAS’ `DDFM=CONTAIN` (implicitly preferred by the EMA), Phoenix WinNonlin’s `Degrees of Freedom Residual`, STATISTICA’s `GLM containment`, and Stata’s `dfm=anova`.
 * To comply with the EMA’s Q&A document, `method.B(..., option = 2)` is the default (*i.e.*, if the argument `option` is missing).
 
 (@) Estimated via function `lmer()` of library `lmerTest`.
@@ -71,8 +71,8 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
 ```
 
-* Employs the Kenward-Roger approximation^[Kenward MG, Roger JH. *Small Sample Inference for Fixed Effects from Restricted Maximum Likelihood.* Biometrics. 1997; 53(3): 983–97. [doi:10.2307/2533558](https://doi.org/10.2307/2533558).] of the degrees of freedom `method.B(..., option = 3)` equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’ `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected* information matrix.
-* Note that SAS with `DDFM=KENWARDROGER` and JMP calculate Sattertwaite’s [*sic*] degrees of freedom and apply the Kackar-Harville correction^[Kackar RN, Harville DA. *Approximations for Standard Errors of Estimators of Fixed and Random Effects in Mixed Linear Models.* J Am Stat Assoc. 1984; 79(388): 853–62. [doi:10.1080/01621459.1984.10477102](https://doi.org/10.1080/01621459.1984.10477102).] *i.e.*, based on the *observed* information matrix.
+* Employs the Kenward-Roger approximation^[Kenward MG, Roger JH. *Small Sample Inference for Fixed Effects from Restricted Maximum Likelihood.* Biometrics. 1997; 53(3): 983–97. [doi:10.2307/2533558](https://doi.org/10.2307/2533558).] of the degrees of freedom `method.B(..., option = 3)`, which is equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’ `DDFM=KENWARDROGER(FIRSTORDER)`, *i.e.*, based on the *expected* information matrix.
+* Note that SAS with `DDFM=KENWARDROGER` and JMP calculate Satterthwaite’s [*sic*] degrees of freedom and apply the Kackar-Harville correction^[Kackar RN, Harville DA. *Approximations for Standard Errors of Estimators of Fixed and Random Effects in Mixed Linear Models.* J Am Stat Assoc. 1984; 79(388): 853–62. [doi:10.1080/01621459.1984.10477102](https://doi.org/10.1080/01621459.1984.10477102).] *i.e.*, based on the *observed* information matrix.
 
 ## `ABE()`{#ABE}
 Average Bioequivalence, where the model is identical to [Method A](#methodA). By default the conventional acceptance range of 80.00 – 125.00\% is used. Tighter limits (90.00 – 111.11\%) for narrow therapeutic index drugs (EMA) or wider limits (75.00 – 133.33\% for C~max~ according to the guidelines of the <abbr title="Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, the United Arab Emirates.">GCC</abbr> and South Africa) can be specified by the arguments `theta1` (lower limit) and/or `theta2` (upper limit).
@@ -140,44 +140,44 @@ Relevant data are used for the estimation of *CV~wR~* (and *CV~wT~* in full repl
 
 ## Incomplete data{#incomplete}
 ### Estimation of _CV~w~_{#setCW}
-If a subject drops out from the study in a higher period, data of repeated administrations will still be used for the estimation of _CV~w~_, although data of the other treatment might be missing. Examples for the estimation of *CV~wR~* (missings denoted by `.`):\
+If a subject drops out from the study in a higher period, data of repeated administrations will still be used for the estimation of _CV~w~_, although data of the other treatment might be missing. Examples for the estimation of *CV~wR~* (missings denoted by `·`):\
 
-`RTRT` | `RTR.`\
-`TRRT` | `TRR.`\
-`RRTT` | `RRT.` or `RR..`\
-`RRT` | `RR..`\
+`RTRT` | `RTR·`\
+`TRRT` | `TRR·`\
+`RRTT` | `RRT·` or `RR··`\
+`RRT` | `RR··`\
 
 ### Assessment of BE{#setBE}
-If a subject drops out from the study in a higher period, data with at least one administration of the Test and Reference will be used in the assessment of BE. Examples (missings denoted by `.`):\
+If a subject drops out from the study in a higher period, data with at least one administration of the Test and Reference will be used in the assessment of BE. Examples (missings denoted by `·`):\
 
-`TRTR` | `TRT.` or | `TR..`\
-`RTRT` | `RTR.` or | `RT..`\
-`TRRT` | `TRR.` or | `TR..`\
-`RTTR` | `RTT.` or | `RT..`\
+`TRTR` | `TRT·` or | `TR··`\
+`RTRT` | `RTR·` or | `RT··`\
+`TRRT` | `TRR·` or | `TR··`\
+`RTTR` | `RTT·` or | `RT··`\
 `TTRR` | `TTR.`\
-`TRT` | `TR.`\
-`RTR` | `RT.`\
-`TRR` | `TR.`\
-`RTR` | `RT.`\
-`RTT` | `RT.`\
+`TRT` | `TR·`\
+`RTR` | `RT·`\
+`TRR` | `TR·`\
+`RTR` | `RT·`\
+`RTT` | `RT·`\
 
 ### Example of different datasets{#setexpl}
 16 subjects enrolled in the study. In sequence `RTRT` one dropout in the 2^nd^ period and one in the 4^th^ period. In sequence `TRTR` one dropout in the 3^rd^ period and one in the 4^th^.\
 
 `1  RTR.    5  RTRT    9  TRTR   13  RTRT`\
-`2  RTRT    6  TR..   10  TRTR   14  TRT.`\
+`2  RTRT    6  TR··   10  TRTR   14  TRT·`\
 `3  RTRT    7  RTRT   11  RTRT   15  TRTR`\
-`4  TRTR    8  R...   12  TRTR   16  TRTR`  
+`4  TRTR    8  R···   12  TRTR   16  TRTR`  
 
 We obtain these datasets:
 
 | Dataset | Purpose | included | excluded |
 |:-:|-----|----------|:---:|
 | #1 | Estimation of *CV~wR~* | 13 who received 2 treatments `R` | 6, 8, 14 |
-| #2 | Estimation of *CV~wT~* | 13 who received 2 treatments `T` | 1, 6, 8 |
-| #3 | Assessment of BE | 15 who received ≥1 treatment `T` _and_ ≥1 treatment `R` | 8 |
+| #2 | Assessment of BE | 15 who received ≥1 treatment `T` _and_ ≥1 treatment `R` | 8 |
+| #3 | Estimation of *CV~wT~* | 13 who received 2 treatments `T` | 1, 6, 8 |
 
-Datasets #1 and #3 are required for ABEL and all three for the WHO’s reference-scaling of AUC (see [below](#app_out)). For ABE only dataset #3 is required.
+Datasets #1 and #2 are required for ABEL and all three for the WHO’s reference-scaling of AUC (see [below](#app_out)). For ABE only dataset #2 is required.
 
 # Notes on the methods{#notes}
 ## Estimation of intra-subject variability{#cv}
@@ -199,7 +199,7 @@ Special conditions for the sample size in three period full replicate designs:
 > --- Q&A document^[European Medicines Agency. *Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).* London, June 2015 (and later revisons). [EMA/618604/2008](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf).]
 
 
-If less than twelve subjects remain in sequence `RTR` of a `TRT | RTR` design (and in analogy in sequence `TRR` of a `TRR | RTT` design), the user is notified about the ‘uncertain’ estimate of *CV~wR~*. However, in a sufficiently powered study such a case is [extremely unlikely](https://forum.bebac.at/forum_entry.php?id=15139 "BEBA Forum, 23 July 2015"). Let us explore the confidence interval of the _CV_:
+If less than twelve subjects are eligible in sequence `RTR` of a `TRT | RTR` design (and in analogy in sequence `TRR` of a `TRR | RTT` design), the user is notified about the ‘uncertain’ estimate of *CV~wR~*. However, in a sufficiently powered study such a case is [extremely unlikely](https://forum.bebac.at/forum_entry.php?id=15139 "BEBA Forum, 23 July 2015"). Let us explore the confidence interval of the _CV_:
 
 ```{r}
 # Estimate sample sizes of full replicate designs (theta0 0.90, target
@@ -220,9 +220,9 @@ round(100*PowerTOST::CVCL(CV = CV, df = 2*24-3, "2-sided"), 2) # 3-period
 It is unclear why the four period replicate is considered by the EMA to give a more ‘reliable’ estimate than the three period replicate.
 
 ## Model structure{#model_struc}
-The EMA’s models assumes equal [_sic_] intra-subject variances of Test and Reference (like in 2×2×2 trials) – even if proven false in one of the full replicate designs (were _both_ *CV~wT~* and *CV~wR~* can be estimated). Hence, amongst biostatisticians they are called ‘crippled models’ because the replicative nature of the study is ignored.
+The EMA’s models assume equal [_sic_] intra-subject variances of Test and Reference (like in 2×2×2 trials) – even if proven false in one of the full replicate designs (were _both_ *CV~wT~* and *CV~wR~* can be estimated). Hence, amongst biostatisticians they are called ‘crippled models’ because the replicative nature of the study is ignored.
 
-The nested structure _subject(sequence)_ of the [methods](#methods) leads to an over-specificed model.^[Contradics the law of parsimony. Such a nesting is superfluous since in BE trials subjects are uniquely coded. If, say, subject `1` is allocated to sequence `TRTR` there is not yet ‘another’ subject `1` allocated to sequence `RTRT`. This explains the many lines in SAS `PROC GML` given with `.` and in Phoenix WinNonlin as `not estimable`.] The simple model\
+The nested structure _subject(sequence)_ of the [methods](#methods) leads to an over-specified model.^[Contradics the law of parsimony. Such a nesting is superfluous since in BE trials subjects are uniquely coded. If, say, subject `1` is allocated to sequence `TRTR` there is not yet ‘another’ subject `1` allocated to sequence `RTRT`. This explains the many lines in SAS `PROC GML` given with `.` and in Phoenix WinNonlin as `not estimable`.] The simple model\
 &nbsp;&nbsp;&nbsp;&nbsp;_sequence_, _subject_, _period_, _treatment_\
 gives identical estimates of the residual variance and the treatment effect and hence, its confidence interval.
 
@@ -275,7 +275,7 @@ print(df, row.names = FALSE)
 
 ## Degrees of freedom, comparison of methods{#df_comp}
 The SAS code provided by the EMA in the Q&A document does not specify how the degrees of freedom should be calculated in Method B. Hence, the default in `PROC MIXED`, namely `DDFM=CONTAIN` is applied, *i.e.*, `method.B(..., option = 2`). For incomplete data (missing periods) Satterthwaite’s approximation of the degrees of freedom, *i.e.*, `method.B(..., option = 1)` or Kenward-Roger `method.B(..., option = 3)` might be a better choice – if stated as such in the <abbr title="Statistical Analysis Plan">SAP</abbr>.\
-For background about approximations in different software packages see the electronic Supplementary Material of Schütz *et al.*
+For background about approximations in different software packages see the electronic [Supplementary Material](https://static-content.springer.com/esm/art%3A10.1208%2Fs12248-020-0427-6/MediaObjects/12248_2020_427_MOESM1_ESM.docx) of Schütz *et al.*
 
 The EMA seemingly prefers Method A:
 
@@ -328,7 +328,7 @@ print(df[order(df$BE, df$hw, decreasing = c(FALSE, TRUE)), ],
 ```
 All variants of Method B are more conservative than Method A. Before rounding the confidence interval, `option = 2` with 192 degrees of freedom would be more conservative (lower CL 69.21029) than `option = 1` with 197.44 degrees of freedom (lower CL 69.21286). Given the incompleteness of this dataset (four missings in period 2, twelve in period 3, and 19 in period 4), Satterthwaite’s or Kenward-Roger degrees of freedom are probably the better choice.
 
-For detailed comparisons between methods based on simulations see the electronic Supplementary Material of Schütz *et al.*
+For detailed comparisons between methods based on simulations see the electronic [Supplementary Material](https://static-content.springer.com/esm/art%3A10.1208%2Fs12248-020-0427-6/MediaObjects/12248_2020_427_MOESM1_ESM.docx) of Schütz *et al.*
 
 ## Outlier analysis{#ola}
 It is an open issue how outliers should be handled.
@@ -414,14 +414,14 @@ Point estimate     : pass
 Mixed (CI & PE)    : pass
          ╟┼─────────────────────┼───────■────────◊─────────■─╢
 ```
-Note that the PE and its CI are not affected since the entire data are used and therefore, these values not reported in the second analysis (only the conclusion of the assessement).\
+Note that the <abbr title="Point Estimate">PE</abbr> and its <abbr title="Confidence Interval">CI</abbr> are not affected since the entire data are used and therefore, these values not reported in the second analysis (only the conclusion of the assessment).\
 The ‘line plot’ is given for informational purposes since its resolution is only \~0.5\%. The filled squares `■` are the lower and upper 90\% confidence limits, the rhombus `◊` the point estimate, the vertical lines `│` at 100\% and the PE restriction (80.00 – 125.00\%), and the double vertical lines `║` the expanded limits. The PE and CI take pre­se­dence over other symbols. In this case the upper limit of the PE restriction is not visible.\
 Since both analyses arrive at the same conclusion, the study should be acceptable according to the Q&A document.
 
 # Applicability, caveats, outlook{#app_out}
-The EMA’s approach of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (*e.g.*, the <abbr title="World Health Orgaization">WHO</abbr>; the <abbr title="Association of Southeast Asian Nations">ASEAN</abbr>, Australia, Brazil, the East African Community, Egypt, the <abbr title="Eurasian Economic Union">EEU</abbr>, New Zealand, and the Russian Federation). Health Canada accepts ABEL only for *AUC* with an upper cap of scaling at \~57.4\% (maximum expansion to 66.7 – 150.0\%) and *might* require a true mixed-effects model. Whether Method B is acceptable is unclear.
+The EMA’s approach of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (*e.g.*, the <abbr title="World Health Organization">WHO</abbr>; the <abbr title="Association of Southeast Asian Nations">ASEAN</abbr>, Australia, Brazil, the East African Community, Egypt, the <abbr title="Eurasian Economic Union">EEU</abbr>, New Zealand, and the Russian Federation). Health Canada accepts ABEL only for *AUC* with an upper cap of scaling at \~57.4\% (maximum expansion to 66.7 – 150.0\%) and *might* require a true mixed-effects model. Whether Method B is acceptable is unclear.
 
-If degrees of freedom are approximated (Satterthwaite, Kenward-Roger), the <abbr title="Statistical Analysis Plan">SAP</abbr> and statistical report should always specify which method will be / was used (see [above](#method.b)) in order to allow recalculation in other software. This package uses the *expected* information matrix.^[For Satterthwaite only available in Phoenix WinNonlin, SPSS, and Stata; option in SAS by `SCORING=1`. For Kenward-Roger default option `EIM` in Stata. The *observed* information matrix is the only available in JMP and default `SCORING=0` in SAS; option `OIM` in Stata.]
+If degrees of freedom are approximated (Satterthwaite, Kenward-Roger), the <abbr title="Statistical Analysis Plan">SAP</abbr> and statistical report should always specify which method will be / was used (see [above](#method.b)) in order to allow recalculation in other software. This package uses the *expected* information matrix.^[For Satterthwaite only available in Phoenix WinNonlin, SPSS, and Stata; as an option in SAS by `SCORING=1`. For Kenward-Roger default option `EIM` in Stata. The *observed* information matrix is the only available in JMP and default `SCORING=0` in SAS; option `OIM` in Stata.]
 
 The estimated *CV~wR~* is always uncertain (the degree of uncertainty depends on the *CV~wR~* itself, the design, and – to a minor degree – the sample size), which might lead to an inflation of the type I error (*i.e.*, if ABEL is falsely applied although the *true* – but unknown – *CV~wR~* is lower than its estimate).^[Wonnemann M, Frömke C, Koch A. *Inflation of the Type I Error: Investigations on Regulatory Recommendations for Bioequivalence of Highly Variable Drugs.* Pharm Res. 2015; 32(1): 135–43. [doi:10.1007/s11095-014-1450-z](https://doi.org/10.1007/s11095-014-1450-z).]<sup>,</sup> ^[Muñoz J, Alcaide D, Ocaña J. *Consumer’s risk in the EMA and FDA regulatory approaches for bioequivalence in highly variable drugs.* Stat Med. 2016; 35(12): 1933–43. [doi:10.1002/sim.6834](https://doi.org/10.1002/sim.6834).]\
 Use the optional argument `method.A(..., adjust = TRUE)` to iteratively adjust *α* to control the type I error.^[Labes D, Schütz H. *Inflation of Type I Error in the Evaluation of Scaled Average Bioequivalence, and a Method for its Control.* Pharm Res. 2016; 33(11): 2805–14. [doi:10.1007/s11095-016-2006-1](https://doi.org/10.1007/s11095-016-2006-1).]\

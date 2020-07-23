@@ -185,7 +185,7 @@ get.data <- function(path.in, path.out, file, set = "",
     }
   }
   if (print) res.file <- paste0(path.out, file, set, "_ABEL")
-  if (plot.bxp) png.path <- paste0(path.out, "/", file, set, "_boxplot.png")
+  if (plot.bxp) png.path <- normalizePath(paste0(path.out, file, set, "_boxplot.png"))
   subjs  <- unique(data$subject)          # Subjects
   seqs   <- levels(unique(data$sequence)) # Sequences
   design <- info.design(seqs=seqs)        # fetch info
