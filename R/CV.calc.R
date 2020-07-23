@@ -72,14 +72,18 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
       pars <- list(boxwex=0.5, boxfill="lightblue", medcol="blue",
                    outpch=21, outcex=1.35, outcol="red", outbg="#FFCCCC")
       overwrite <- TRUE
-      if (plot.bxp) {   # save in PNG format to path.out
-        if (ask & file.exists(ret$png.path)) {
-          answer <- tolower(readline("Boxplot already exists. Overwrite the PNG  [y|n]? "))
-          if(answer != "y") overwrite <- FALSE
+      if (as.logical(capabilities("png"))) {
+        if (plot.bxp) {   # save in PNG format to path.out
+          if (ask & file.exists(ret$png.path)) {
+            answer <- tolower(readline("Boxplot already exists. Overwrite the PNG  [y|n]? "))
+            if(answer != "y") overwrite <- FALSE
+          }
+          if (overwrite) { # either the file does not exist or should be overwritten
+            png(ret$png.path, width=720, height=720, pointsize=18)
+          }
         }
-        if (overwrite) { # either the file does not exist or should be overwritten
-          png(ret$png.path, width=720, height=720, pointsize=18)
-        }
+      } else {
+        message("png-device is not available; changed to plot.bxp = FALSE")
       }
       bxp(bp1, xlim=c(0, 3), ylim=c(-1, 1)*max(abs(c(ol.value1, ol.value2))),
           las=1, ylab="residual", pars=pars, main="")
@@ -124,7 +128,9 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
       }
       abline(h=0, lty="dotted")
       if (plot.bxp && file.exists(ret$png.path)) {
-        graphics.off()
+        if (!is.null(dev.list()["png"])) {
+          invisible(dev.off(dev.list()["png"]))
+        }
       }
       # recalculate CVwR for data without outlier(s)
       ol   <- ret$ref[names(bp1$out), "subject"]

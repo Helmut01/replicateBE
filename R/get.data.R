@@ -1,12 +1,11 @@
 #################################
-# Get the data from the file or #
+# Get the data from a file or   #
 # internal data and generate    #
 # output common to all methods. #
 #################################
 get.data <- function(path.in, path.out, file, set = "",
                      ext, na = ".", sep = ",", dec = ".",
                      logtrans = TRUE, print, plot.bxp, data) {
-  graphics.off()
   transf <- logtrans # default
   if (is.null(data)) { # checking external data
     if (!missing(ext)) ext <- tolower(ext) # case-insensitive
@@ -38,7 +37,9 @@ get.data <- function(path.in, path.out, file, set = "",
     }
     if (!dir.exists(path.in)) {
       stop("Folder given in 'path.in' does not exist; please specify an existing one.")
-    } # Adds trailing '/' to path if missing
+    }
+    path.in <- normalizePath(path.in, winslash = "/")
+    # Adds trailing '/' to path if missing
     path.in <- ifelse(regmatches(path.in, regexpr(".$", path.in)) == "/",
                       path.in, paste0(path.in, "/"))
   } # EO checking external data
@@ -51,7 +52,9 @@ get.data <- function(path.in, path.out, file, set = "",
     }
     if (!dir.exists(path.out)) {
       stop("Folder given in 'path.out' does not exist; please specify an existing one.")
-    } # Adds trailing '/' to path if missing
+    }
+    path.out <- normalizePath(path.out, winslash = "/")
+    # Adds trailing '/' to path if missing
     path.out <- ifelse(regmatches(path.out, regexpr(".$", path.out)) == "/",
                        path.out, paste0(path.out, "/"))
   } # EO print/plot checks
@@ -169,8 +172,10 @@ get.data <- function(path.in, path.out, file, set = "",
       }
     }
   }
-  if (print) res.file <- paste0(path.out, file, set, "_ABEL")
-  if (plot.bxp) png.path <- normalizePath(paste0(path.out, file, set, "_boxplot.png"))
+  if (print) res.file <- normalizePath(paste0(path.out, file, set, "_ABEL"),
+                                       winslash = "/")
+  if (plot.bxp) png.path <- normalizePath(paste0(path.out, file, set, "_boxplot.png"),
+                                                 winslash = "/")
   subjs  <- unique(data$subject)          # Subjects
   seqs   <- levels(unique(data$sequence)) # Sequences
   design <- info.design(seqs=seqs)        # fetch info

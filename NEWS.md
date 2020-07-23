@@ -1,15 +1,6 @@
-# replicateBE 1.0.14.9000
+# replicateBE 1.0.15
 
 Published on Github 2020-07-23.
-
-## Issues
-
-  * Unsuccessfully tried to deal with `graphics.off()` in `CV.calc.R`.\
-    `devtools::check(manual = TRUE, cran = TRUE, args = c("--timings", "--no-clean"))`\
-    throws\
-    `Error in grDevices::dev.off() :`\
-    `  cannot shut down device 1 (the null device)`\
-    Strange because `dev.off()` is nowhere used in the package and this error was never thrown in its previous versions built in R up to 3.6.3. However, the package *can* be built and passed *without* errors on winbuilder.
 
 ## Major changes
 
@@ -18,6 +9,7 @@ Published on Github 2020-07-23.
 ## Minor changes
 
   * Use `normalizePath()` in `info.env.R` for clarity (*i.e.*, the OS-dependent full path is given in the result-file).
+  * Checks whether the png-device is available on the system. If not, show a message and change to `plot.bxp = FALSE`.
   * Cosmetic changes in vignette.
 
 # replicateBE 1.0.14

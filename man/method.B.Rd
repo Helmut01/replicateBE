@@ -376,9 +376,8 @@ method.B(path.in = path.in, path.out = "~/", file = "DS", set = "01", ext = "csv
 #   Mixed (CI & PE)    :                      pass
 #
 # Internal reference dataset 01 used and results to the home
-# folder. Additional outlier-analyis and box plot saved as PNG
-# (accidental overwriting prevented).
-method.B(ola = TRUE, path.out = "~/", ask = TRUE, plot.bxp = TRUE, data = rds01)
+# folder. Additional outlier-analyis and box plot saved as PNG.
+method.B(ola = TRUE, path.out = "~/", plot.bxp = TRUE, data = rds01)
 # Should give the same as above. Additionally:
 #   Recalculation due to presence of 2 outliers (subj. 45|52)
 #   CVwR (outl. excl.) :  32.16\% (reference-scaling applicable)

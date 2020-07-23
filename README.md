@@ -17,7 +17,7 @@ replicateBE
             replicates](#user-content-four-period-full-replicates)
           - [Three period (full)
             replicates](#user-content-three-period-full-replicates)
-          - [Two period (full) replicate](#user-content-two-period-full-replicate)
+          - [Two period (full) replicate](#two-period-full-replicate)
           - [Three period (partial)
             replicates](#user-content-three-period-partial-replicates)
       - [Cross-validation](#user-content-cross-validation)
@@ -34,7 +34,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/last-month/replicateBE?color=green)](https://r-pkg.org/pkg/replicateBE)
 
-Version 1.0.14 built 2020-04-08 with R 3.6.3.
+Version 1.0.15 built 2020-07-23 with R 4.0.2.
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
@@ -255,42 +255,45 @@ print(tmp, row.names = FALSE)
 ``` r
 res <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
                 print = FALSE, data = rds01)
-# 
-# Outlier analysis
-#  (externally) studentized residuals
-#  Limits (2×IQR whiskers): -1.717435, 1.877877
-#  Outliers:
-#  subject sequence  stud.res
-#       45     RTRT -6.656940
-#       52     RTRT  3.453122
-# 
-#  standarized (internally studentized) residuals
-#  Limits (2×IQR whiskers): -1.69433, 1.845333
-#  Outliers:
-#  subject sequence stand.res
-#       45     RTRT -5.246293
-#       52     RTRT  3.214663
-# 
-# Data set DS01: Method B (option = 3) by lmer() 
-# ---------------------------------------------- 
-# Response: log(PK)
-# Type III Analysis of Variance Table with Kenward-Roger's method
-#             Sum Sq  Mean Sq NumDF    DenDF F value    Pr(>F)
-# sequence  0.001917 0.001917     1  74.9899 0.01198 0.9131528
-# period    0.398065 0.132688     3 217.3875 0.82878 0.4792976
-# treatment 1.579280 1.579280     1 217.2079 9.86432 0.0019197
-# 
-# treatment T – R:
-#   Estimate Std. Error    t value   Pr(>|t|) 
-#  0.1460900  0.0465140  3.1408000  0.0019197 
-# 217.208 Degrees of Freedom (equivalent to Stata’s dfm=Kenward Roger EIM)
-cols <- c(25, 28:29, 17:19)    # extract relevant columns
-tmp  <- round(res[cols], 2)    # 2 decimal places acc. to GL
-tmp  <- cbind(tmp, res[30:32]) # pass|fail
-print(tmp, row.names = FALSE)
-#  CVwR.rec(%) L.rec(%) U.rec(%) CL.lo(%) CL.hi(%)  PE(%) CI.rec GMR.rec BE.rec
-#        32.16    78.79   126.93   107.17   124.97 115.73   pass    pass   pass
 ```
+
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+    # 
+    # Outlier analysis
+    #  (externally) studentized residuals
+    #  Limits (2×IQR whiskers): -1.717435, 1.877877
+    #  Outliers:
+    #  subject sequence  stud.res
+    #       45     RTRT -6.656940
+    #       52     RTRT  3.453122
+    # 
+    #  standarized (internally studentized) residuals
+    #  Limits (2×IQR whiskers): -1.69433, 1.845333
+    #  Outliers:
+    #  subject sequence stand.res
+    #       45     RTRT -5.246293
+    #       52     RTRT  3.214663
+    # 
+    # Data set DS01: Method B (option = 3) by lmer() 
+    # ---------------------------------------------- 
+    # Response: log(PK)
+    # Type III Analysis of Variance Table with Kenward-Roger's method
+    #             Sum Sq  Mean Sq NumDF    DenDF F value    Pr(>F)
+    # sequence  0.001917 0.001917     1  74.9899 0.01198 0.9131528
+    # period    0.398065 0.132688     3 217.3875 0.82878 0.4792976
+    # treatment 1.579280 1.579280     1 217.2079 9.86432 0.0019197
+    # 
+    # treatment T – R:
+    #   Estimate Std. Error    t value   Pr(>|t|) 
+    #  0.1460900  0.0465140  3.1408000  0.0019197 
+    # 217.208 Degrees of Freedom (equivalent to Stata’s dfm=Kenward Roger EIM)
+    cols <- c(25, 28:29, 17:19)    # extract relevant columns
+    tmp  <- round(res[cols], 2)    # 2 decimal places acc. to GL
+    tmp  <- cbind(tmp, res[30:32]) # pass|fail
+    print(tmp, row.names = FALSE)
+    #  CVwR.rec(%) L.rec(%) U.rec(%) CL.lo(%) CL.hi(%)  PE(%) CI.rec GMR.rec BE.rec
+    #        32.16    78.79   126.93   107.17   124.97 115.73   pass    pass   pass
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
