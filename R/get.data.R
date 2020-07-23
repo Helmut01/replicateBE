@@ -34,38 +34,23 @@ get.data <- function(path.in, path.out, file, set = "",
     if (ext %in% ext.xls & (set == ""))
       stop("Reading Excel\n       Argument 'set' (name of worksheet) must be given.")
     if (is.null(path.in) | missing(path.in)) {
-      home.path <- getwd()
-      setwd(home.path)
-      warning("'path.in' not given; home folder'", home.path, "' used.")
-      path.in <- home.path
+      stop("Argument 'path.in' not given. Please specify one or use '~/' for your home folder.")
     }
     if (!dir.exists(path.in)) {
-      home.path <- getwd()
-      setwd(home.path)
-      warning("Folder given in 'path.in' does not exist; home folder\n  '", home.path, "' used.")
-      path.in <- home.path
+      stop("Folder given in 'path.in' does not exist; please specify an existing one.")
     } # Adds trailing '/' to path if missing
     path.in <- ifelse(regmatches(path.in, regexpr(".$", path.in)) == "/",
                       path.in, paste0(path.in, "/"))
   } # EO checking external data
   if (print | plot.bxp) { # check only if necessary
     if (missing(path.out)) {
-      home.path <- getwd()
-      setwd(home.path)
-      warning("'path.out' not given; output to home folder\n  '", home.path, "'.")
-      path.out <- home.path
+      stop("Argument 'path.out' not given. Please specify one or use '~/' for your home folder.")
     }
     if (is.null(path.out)) {
-      home.path <- getwd()
-      setwd(home.path)
-      warning("'path.out' not given; output to home folder\n  '", home.path, "'.")
-      path.out <- home.path
+      stop("Argument 'path.out' not given. Please specify one or use '~/' for your home folder.")
     }
     if (!dir.exists(path.out)) {
-      home.path <- getwd()
-      setwd(home.path)
-      warning("Folder given in 'path.out' does not exist; output to home folder\n  '", home.path, "'.")
-      path.out <- home.path
+      stop("Folder given in 'path.out' does not exist; please specify an existing one.")
     } # Adds trailing '/' to path if missing
     path.out <- ifelse(regmatches(path.out, regexpr(".$", path.out)) == "/",
                        path.out, paste0(path.out, "/"))

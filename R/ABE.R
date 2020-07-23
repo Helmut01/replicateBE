@@ -2,11 +2,11 @@
 # Conventional (unscaled) ABE by ANOVA                  #
 # fixed: sequence, subject(sequence), period, treatment #
 #########################################################
-ABE <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
-                file, set = "", ext, na = ".", sep = ",",
-                dec = ".", logtrans = TRUE, print = TRUE,
-                details = FALSE, verbose = FALSE, ask = FALSE,
-                data = NULL, theta1, theta2) {
+ABE <- function(alpha = 0.05, path.in, path.out, file, set = "",
+                ext, na = ".", sep = ",", dec = ".",
+                logtrans = TRUE, print = TRUE, details = FALSE,
+                verbose = FALSE, ask = FALSE, data = NULL,
+                theta1, theta2) {
   exec <- strftime(Sys.time(), usetz=TRUE)
   if (!missing(ext)) ext <- tolower(ext) # case-insensitive
   if (missing(theta1) & missing(theta2)) theta1 <- 0.80

@@ -5,12 +5,12 @@
 # option=1: nlme/lme (Satterthwaite's DF)       #
 # option=2: lmerTest/lmer (CONTAIN/Residual DF) #
 #################################################
-method.B <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
-                     file, set = "", ext, na = ".", sep = ",",
-                     dec = ".", logtrans = TRUE, ola = FALSE,
-                     print = TRUE, details = FALSE, verbose = FALSE,
-                     ask = FALSE, plot.bxp = FALSE, fence = 2,
-                     data = NULL, option = 2) {
+method.B <- function(alpha = 0.05, path.in, path.out, file,
+                     set = "", ext, na = ".", sep = ",", dec = ".",
+                     logtrans = TRUE, ola = FALSE, print = TRUE,
+                     details = FALSE, verbose = FALSE, ask = FALSE,
+                     plot.bxp = FALSE, fence = 2, data = NULL,
+                     option = 2) {
   exec <- strftime(Sys.time(), usetz=TRUE)
   if (!missing(ext)) ext <- tolower(ext) # case-insensitive
   ret  <- CV.calc(alpha=alpha, path.in=path.in, path.out=path.out,

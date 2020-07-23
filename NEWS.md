@@ -4,10 +4,16 @@ Published on Github 2020-07-23.
 
 ## Issues
 
-  * Unsuccessfully tried to deal with `graphics.off()` in `CV.calc.R`. Local (!) CHECK throws\
+  * Unsuccessfully tried to deal with `graphics.off()` in `CV.calc.R`.\
+    `devtools::check(manual = TRUE, cran = TRUE, args = c("--timings", "--no-clean"))`\
+    throws\
     `Error in grDevices::dev.off() :`\
-    `  cannot shut down device 1 (the null device)`\
-    However, the package *can* be built and passes *without* errors on winbuilder.
+    `  cannot shut down device 1 (the null device)`\
+    Strange because `dev.off()` is nowhere used in the package and this error was never thrown in its previous versions built in R up to 3.6.3. However, the package *can* be built and passed *without* errors on winbuilder.
+
+## Major changes
+
+  * Stops now if `path.in` or `path.out` (if `print=TRUE` | `plot.bxp=TRUE`) is not given. Previously the user’s home folder `"~/"` was automatically used. Man-pages updated accordingly.
 
 ## Minor changes
 

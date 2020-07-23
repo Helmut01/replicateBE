@@ -11,11 +11,10 @@ Comparative BA-calculation for Average Bioequivalence with Expanding Limits by t
   random effect (\sQuote{Method B}) as specified in \emph{Annex I}.
 }
 \usage{
-method.B(alpha = 0.05, path.in = "~/", path.out = "~/",
-         file, set = "", ext, na = ".", sep = ",", dec = ".",
-         logtrans = TRUE, ola = FALSE, print = TRUE, details = FALSE,
-         verbose = FALSE, ask = FALSE, plot.bxp = FALSE,
-         fence = 2, data = NULL, option = 2)
+method.B(alpha = 0.05, path.in, path.out, file, set = "", ext,
+         na = ".", sep = ",", dec = ".", logtrans = TRUE, ola = FALSE,
+         print = TRUE, details = FALSE, verbose = FALSE,
+         ask = FALSE, plot.bxp = FALSE, fence = 2, data = NULL, option = 2)
 }
 \arguments{
   \item{alpha}{
@@ -25,13 +24,11 @@ method.B(alpha = 0.05, path.in = "~/", path.out = "~/",
     confidence interval.
   }
   \item{path.in}{
-    Path to the data file for import (recommended). Only if none is given or the given one
-    does not exist -- as a fallback -- the user’s home folder \verb{"~/"} will be used.
+    Path to the data file for import.
   }
   \item{path.out}{
-    Path to save the result file (recommended) if \code{print=TRUE}. The user must have
-    write-permission to the folder. Only if none is given or the given one does not exist
-    -- as a fallback -- the user’s home folder \verb{"~/"} will be used.\cr
+    Path to save the result file if \code{print=TRUE}. You must have
+    write-permission to the folder. For simplicity your home folder \verb{"~/"} can be used.\cr
     If a box plot of outliers should be saved (\code{plot.bxp=TRUE}), this path will be
     used as well.
   }
@@ -362,10 +359,10 @@ Food and Drug Administration, Office of Generic Drugs. \emph{Draft Guidance on W
 # print to file.
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
-# for 'path.out' in order to save the result file. If 'path.out' is
-# not specified, results are written to the home folder.
+# for 'path.out' in order to save the result file. Here to user's home
+# folder is used for simplicity.
 path.in <- paste0(find.package("replicateBE"), "/extdata/")
-method.B(path.in = path.in, file = "DS", set = "01", ext = "csv")
+method.B(path.in = path.in, path.out = "~/", file = "DS", set = "01", ext = "csv")
 # Should result in:
 #   CVwT               :  35.16\%
 #   swT                :   0.34138
@@ -381,7 +378,7 @@ method.B(path.in = path.in, file = "DS", set = "01", ext = "csv")
 # Internal reference dataset 01 used and results to the home
 # folder. Additional outlier-analyis and box plot saved as PNG
 # (accidental overwriting prevented).
-method.B(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
+method.B(ola = TRUE, path.out = "~/", ask = TRUE, plot.bxp = TRUE, data = rds01)
 # Should give the same as above. Additionally:
 #   Recalculation due to presence of 2 outliers (subj. 45|52)
 #   CVwR (outl. excl.) :  32.16\% (reference-scaling applicable)
@@ -394,7 +391,7 @@ method.B(ola = TRUE, ask = TRUE, plot.bxp = TRUE, data = rds01)
 #   Mixed (CI & PE)    : pass
 #
 # Same dataset. Show information about outliers and the model-table.
-method.B(ola = TRUE, verbose = TRUE, data = rds01)}
+method.B(ola = TRUE, print = FALSE, verbose = TRUE, data = rds01)}
 # data.frame of results (full precision) shown in the console.
 x <- method.B(ola = TRUE, print = FALSE, details = TRUE, data = rds01)
 print(x, row.names = FALSE)

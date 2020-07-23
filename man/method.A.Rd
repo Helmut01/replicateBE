@@ -12,11 +12,10 @@
 }
 
 \usage{
-method.A(alpha = 0.05, path.in = "~/", path.out = "~/",
-         file, set = "", ext, na = ".", sep = ",", dec = ".",
-         logtrans = TRUE, ola = FALSE, print = TRUE, details = FALSE,
-         adjust = FALSE, verbose = FALSE, ask = FALSE,
-         plot.bxp = FALSE, fence = 2, data = NULL)
+method.A(alpha = 0.05, path.in, path.out, file, set = "", ext,
+         na = ".", sep = ",", dec = ".", logtrans = TRUE, ola = FALSE,
+         print = TRUE, details = FALSE, adjust = FALSE, verbose = FALSE,
+         ask = FALSE, plot.bxp = FALSE, fence = 2, data = NULL)
 }
 
 \arguments{
@@ -27,13 +26,11 @@ method.A(alpha = 0.05, path.in = "~/", path.out = "~/",
     confidence interval.
   }
   \item{path.in}{
-    Path to the data file for import (recommended). Only if none is given or the given one
-    does not exist -- as a fallback -- the user’s home folder \verb{"~/"} will be used.
+    Path to the data file for import.
   }
   \item{path.out}{
-    Path to save the result file (recommended) if \code{print=TRUE}. The user must have
-    write-permission to the folder. Only if none is given or the given one does not exist
-    -- as a fallback -- the user’s home folder \verb{"~/"} will be used.\cr
+    Path to save the result file if \code{print=TRUE}. You must have
+    write-permission to the folder. For simplicity your home folder \verb{"~/"} can be used.\cr
     If a box plot of outliers should be saved (\code{plot.bxp=TRUE}), this path will be
     used as well.
   }
@@ -352,11 +349,11 @@ Labes D, \enc{Schütz}{Schuetz} H. \emph{Inflation of Type I Error in the Evalua
 # print to file.
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
-# for 'path.out' in order to save the result file. If 'path.out' is
-# not specified, results are written to the home folder.
+# for 'path.out' in order to save the result file. Here to user's home
+# folder is used for simplicity.
 \donttest{
-path.in <- paste0(find.package("replicateBE"), "/extdata/")
-method.A(path.in = path.in, file = "DS", set = "01", ext = "csv")
+path.in  <- paste0(find.package("replicateBE"), "/extdata/")
+method.A(path.in = path.in, path.out = "~/", file = "DS", set = "01", ext = "csv")
 # Should result in:
 #   CVwT               :  35.16\%
 #   swT                :   0.34138
@@ -371,7 +368,7 @@ method.A(path.in = path.in, file = "DS", set = "01", ext = "csv")
 #
 # Internal reference dataset 01 used and results to the home
 # folder. Additional outlier-analyis.
-method.A(ola = TRUE, data = rds01)
+method.A(ola = TRUE, path.out = "~/", data = rds01)
 # Should give the same as above. Additionally:
 #   Outlier fence      :  2×IQR of studentized residuals.
 #   Recalculation due to presence of 2 outliers (subj. 45|52)
@@ -384,7 +381,7 @@ method.A(ola = TRUE, data = rds01)
 #   Point estimate     : pass
 #   Mixed (CI & PE)    : pass
 # Same dataset. Show information about outliers and the ANOVA-table.
-method.A(ola = TRUE, verbose = TRUE, data = rds01)}
+method.A(ola = TRUE, print = FALSE, verbose = TRUE, data = rds01)}
 # Generate the data.frame of results (full precision) and show it
 # in the console
 x <- method.A(ola = TRUE, details = TRUE, print = FALSE, data = rds01)
@@ -393,7 +390,7 @@ print(x, row.names = FALSE)
 # Assess the Type I Error and iteratively adjust alpha if necessary.
 # Not run: due to timing policy of CRAN for examples
 \donttest{
-method.A(adjust = TRUE, data = rds01)}
+method.A(adjust = TRUE, path.out = "~/", data = rds01)}
 # Should give in the result file:
 #   Assessment of the empiric Type I Error (TIE); 1,000,000 studies simulated.
 #     TIE not > nominal 0.05; consumer risk is controlled.
@@ -401,7 +398,7 @@ method.A(adjust = TRUE, data = rds01)}
 # Same with recalculation based on outliers, iteratively adjust alpha
 # if necessary
 \donttest{
-method.A(ola = TRUE, adjust = TRUE, data = rds01)}
+method.A(ola = TRUE, path.out = "~/", adjust = TRUE, data = rds01)}
 # Should give in the result file:
 #   Assessment of the empiric Type I Error (TIE) based on original CVwR;
 #   1,000,000 studies simulated.
@@ -413,7 +410,7 @@ method.A(ola = TRUE, adjust = TRUE, data = rds01)}
 #
 # Repeat the evaluation with the adjusted alpha.
 \donttest{
-method.A(alpha = 0.033416, ola = TRUE, adjust = TRUE, data = rds01)}
+method.A(alpha = 0.033416, path.out = "~/", ola = TRUE, adjust = TRUE, data = rds01)}
 # Should give in the result file:
 #   alpha              :   0.033416 (93.3168\% CI)
 #   Confidence interval: 106.16\% ... 126.00\%  pass

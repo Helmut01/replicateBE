@@ -2,12 +2,12 @@
 # EMA's 'Method A' (ANOVA)                              #
 # fixed: sequence, subject(sequence), period, treatment #
 #########################################################
-method.A <- function(alpha = 0.05, path.in = "~/", path.out = "~/",
-                     file, set = "", ext, na = ".", sep = ",",
-                     dec = ".", logtrans = TRUE, ola = FALSE,
-                     print = TRUE, details = FALSE, adjust = FALSE,
-                     verbose = FALSE, ask = FALSE, plot.bxp = FALSE,
-                     fence = 2, data = NULL) {
+method.A <- function(alpha = 0.05, path.in, path.out, file,
+                     set = "", ext, na = ".", sep = ",", dec = ".",
+                     logtrans = TRUE, ola = FALSE, print = TRUE,
+                     details = FALSE, adjust = FALSE, verbose = FALSE,
+                     ask = FALSE, plot.bxp = FALSE, fence = 2,
+                     data = NULL) {
   exec <- strftime(Sys.time(), usetz=TRUE)
   if (!missing(ext)) ext <- tolower(ext) # case-insensitive
   ret  <- CV.calc(alpha=alpha, path.in=path.in, path.out=path.out,

@@ -10,10 +10,10 @@ Comparative BA-calculation for Average Bioequivalence
   \acronym{ANOVA} as recommended in the \acronym{EMA}’s guideline.
 }
 \usage{
-ABE(alpha = 0.05, path.in = "~/", path.out = "~/",
-    file, set = "", ext, na = ".", sep = ",", dec = ".",
-    logtrans = TRUE, print = TRUE, details = FALSE,
-    verbose = FALSE, ask = FALSE, data = NULL, theta1, theta2)
+ABE(alpha = 0.05, path.in, path.out, file, set = "", ext,
+    na = ".", sep = ",", dec = ".", logtrans = TRUE,
+    print = TRUE, details = FALSE, verbose = FALSE, ask = FALSE,
+    data = NULL, theta1, theta2)
 }
 
 \arguments{
@@ -24,13 +24,11 @@ ABE(alpha = 0.05, path.in = "~/", path.out = "~/",
     confidence interval.
   }
   \item{path.in}{
-    Path to the data file for import (recommended). Only if none is given or the given one
-    does not exist -- as a fallback -- the user’s home folder \verb{"~/"} will be used.
+    Path to the data file for import.
   }
   \item{path.out}{
-    Path to save the result file (recommended) if \code{print=TRUE}. The user must have
-    write-permission to the folder. Only if none is given or the given one does not exist
-    -- as a fallback -- the user’s home folder \verb{"~/"} will be used.
+    Path to save the result file if \code{print=TRUE}. You must have
+    write-permission to the folder. For simplicity your home folder \verb{"~/"} can be used.
   }
   \item{file}{
     Name of the dataset for import (\emph{without} extension). Must be a string
@@ -85,7 +83,7 @@ ABE(alpha = 0.05, path.in = "~/", path.out = "~/",
   }
   \item{data}{
     Specification of one of the internal reference datasets (\verb{rds01}
-    -- \verb{rds28}). If given, \verb{path.in}, \verb{file}, \verb{set},
+    -- \verb{rds30}). If given, \verb{path.in}, \verb{file}, \verb{set},
     and \verb{ext} are ignored. For its use see the examples.\cr
     If not given, defaults to \code{NULL} (\emph{i.e.}, import data
     from a file).
@@ -233,10 +231,10 @@ European Medicines Agency, Committee for Medicinal Products for Human Use. \emph
 # separator comma, decimal separator period, print to file.
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
-# for 'path.out' in order to save the result file. If 'path.out' is
-# not specified, results are written to the home folder.
+# for 'path.out' in order to save the result file. Here to user's home
+# folder is used for simplicity.
 path.in <- paste0(find.package("replicateBE"), "/extdata/")
-ABE(path.in = path.in, file = "DS", set = "02", ext = "csv")
+ABE(path.in = path.in, path.out = "~/", file = "DS", set = "02", ext = "csv")
 # Should result in:
 #   BE-limits          :  80.00\% ... 125.00\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass
@@ -247,7 +245,7 @@ x <- ABE(details = TRUE, print = FALSE, data = rds02)
 print(x, row.names = FALSE)
 \donttest{
 # Assuming a NTID and assess BE with narrower limits.
-ABE(data = rds02, theta1 = 0.90)
+ABE(path.out = "~/", data = rds02, theta1 = 0.90)
 # Should result in:
 #   BE-limits          :  90.00\% ... 111.11\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass
