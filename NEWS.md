@@ -1,6 +1,6 @@
 # replicateBE 1.0.15
 
-Published on Github 2020-07-24.
+Published on Github 2020-07-24, on CRAN.
 
 ## Major changes
 
