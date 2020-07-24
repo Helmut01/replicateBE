@@ -15,7 +15,7 @@ method.A <- function(alpha = 0.05, path.in, path.out, file,
                   dec=dec, logtrans=logtrans, ola=ola,
                   print=print, verbose=verbose, ask=ask,
                   plot.bxp=plot.bxp, fence=fence, data=data)
-  results  <- paste0(ret$res.file, "_MethodA.txt")
+  results <- paste0(ret$res.file, "_MethodA.txt")
   # generate variables based on the attribute
   # 2nd condition: Otherwise, the header from a CSV file will be overwritten
   if (!is.null(data) & missing(ext)) {

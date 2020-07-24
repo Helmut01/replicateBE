@@ -10,7 +10,8 @@ output:
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#"
+  comment = "#",
+  fig.path = "man/figures/README-"
 )
 ```
 Version `r packageVersion("replicateBE")` built `r packageDate("replicateBE")` with R `r getRversion()`.

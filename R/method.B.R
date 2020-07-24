@@ -23,7 +23,7 @@ method.B <- function(alpha = 0.05, path.in, path.out, file,
   if (option == 1) DF.suff <- "Satt"
   if (option == 2) DF.suff <- "GL"
   if (option == 3) DF.suff <- "KR"
-  results  <- paste0(ret$res.file, "_MethodB_DF_", DF.suff, ".txt")
+  results <- paste0(ret$res.file, "_MethodB_DF_", DF.suff, ".txt")
   # generate variables based on the attribute
   # 2nd condition: Otherwise, the header from a CSV file will be overwritten
   if (!is.null(data) & missing(ext)) {

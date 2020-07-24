@@ -1,6 +1,6 @@
 # replicateBE 1.0.15
 
-Published on Github 2020-07-23.
+Published on Github 2020-07-24.
 
 ## Major changes
 
@@ -8,7 +8,8 @@ Published on Github 2020-07-23.
 
 ## Minor changes
 
-  * Use `normalizePath()` in `info.env.R` for clarity (*i.e.*, the OS-dependent full path is given in the result-file).
+  * Use `normalizePath()` in `get.data.R` and `info.env.R` for clarity (*i.e.*, the OS-dependent full path is given in the result-file).
+  * Removed `graphics.off()` from the beginning of `get.data.R`. Caused the error in `check()` where a PDF is created.
   * Checks whether the png-device is available on the system. If not, show a message and change to `plot.bxp = FALSE`.
   * Cosmetic changes in vignette.
 
