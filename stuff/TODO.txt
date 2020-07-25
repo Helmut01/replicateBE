@@ -1,0 +1,10 @@
+- Add swR to the result data.frame (for recalculation of the expanded limits).
+  Currently only in the txt-file.
+  Shall we add sWT as well?
+- Picky (@THX to Shuanghe):
+  Acc. to the NIST’s “Typefaces for Symbols in Scientific Manuscripts”
+  (https://physics.nist.gov/cuu/pdf/typefaces.pdf):
+  ‘Symbols used as subscripts and superscripts are roman if descriptive.’
+  Therefore, in the man-pages and the vignette e.g.,
+    HTML:  \out{<em>CV</em><sub>wR</sub>}
+    LaTeX: \eqn{CV_\textrm{wR}}
