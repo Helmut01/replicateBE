@@ -3,7 +3,7 @@ replicateBE
 
   - [Comparative BA-calculation for the EMA’s Average Bioequivalence
     with Expanding Limits
-    (ABEL)](#comparative-ba-calculation-for-the-emas-average-bioequivalence-with-expanding-limits-abel)
+    (ABEL)](#user-content-comparative-ba-calculation-for-the-emas-average-bioequivalence-with-expanding-limits-abel)
   - [Introduction](#user-content-introduction)
       - [Methods](#user-content-methods)
           - [Estimation of *CV*<sub>wR</sub> (and *CV*<sub>wT</sub> in
