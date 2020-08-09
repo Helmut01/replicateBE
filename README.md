@@ -6,7 +6,7 @@ replicateBE
     (ABEL)](#comparative-ba-calculation-for-the-emas-average-bioequivalence-with-expanding-limits-abel)
   - [Introduction](#user-content-introduction)
       - [Methods](#user-content-methods)
-          - [Estimation of *CV<sub>wR</sub>* (and *CV<sub>wT</sub>* in
+          - [Estimation of *CV*<sub>wR</sub> (and *CV*<sub>wT</sub> in
             full replicate
             designs)](#user-content-estimation-of-cvwr-and-cvwt-in-full-replicate-designs)
           - [Method A](#user-content-method-a)
@@ -17,7 +17,7 @@ replicateBE
             replicates](#user-content-four-period-full-replicates)
           - [Three period (full)
             replicates](#user-content-three-period-full-replicates)
-          - [Two period (full) replicate](#two-period-full-replicate)
+          - [Two period (full) replicate](#user-content-two-period-full-replicate)
           - [Three period (partial)
             replicates](#user-content-three-period-partial-replicates)
       - [Cross-validation](#user-content-cross-validation)
@@ -27,8 +27,9 @@ replicateBE
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![cran
-checks](https://cranchecks.info/badges/summary/replicateBE)](https://cran.r-project.org/web/checks/check_results_replicateBE.html)
+![min R](https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg) ![on
+CRAN](https://www.r-pkg.org/badges/version-ago/replicateBE) [![cran
+checks](https://cranchecks.info/badges/worst/replicateBE)](https://cran.r-project.org/web/checks/check_results_replicateBE.html)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)](https://r-pkg.org/pkg/replicateBE)
 [![CRAN RStudio mirror
@@ -55,8 +56,8 @@ the reference can be assessed by box plots of studentized and
 standardized residuals as suggested at a joint [EGA/EMA
 workshop](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf "London, June 2010").  
 In full replicate designs the variability of test and reference
-treatments can be assessed by *s<sub>wT</sub>*/*s<sub>wR</sub>* and the
-upper confidence limit of *σ<sub>wT</sub>*/*σ<sub>wR</sub>* (required
+treatments can be assessed by *s*<sub>wT</sub>/*s*<sub>wR</sub> and the
+upper confidence limit of *σ*<sub>wT</sub>/*σ*<sub>wR</sub> (required
 for the [WHO’s
 approach](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf "Geneva, November 2018")
 for reference-scaling of *AUC*).
@@ -65,7 +66,7 @@ for reference-scaling of *AUC*).
 
 ### Methods
 
-#### Estimation of *CV<sub>wR</sub>* (and *CV<sub>wT</sub>* in full replicate designs)
+#### Estimation of *CV*<sub>wR</sub> (and *CV*<sub>wT</sub> in full replicate designs)
 
 Called internally by functions `method.A()` and `method.B()`. A linear
 model of log-transformed pharmacokinetic (PK) responses and effects  
@@ -156,7 +157,7 @@ Called by function `ABE()`. The model is identical to
 [Method A](#method-a). Conventional BE limits (80.00 – 125.00%) are
 employed by default. Tighter limits (90.00 – 111.11%) for narrow
 therapeutic index drugs (EMA) or wider limits (75.00 – 133.33%) for
-*C<sub>max</sub>* according to the guidelines of the Gulf Cooperation
+*C*<sub>max</sub> according to the guidelines of the Gulf Cooperation
 Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, United Arab
 Emirates) and South Africa can be specified.
 
@@ -237,7 +238,7 @@ res <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
 # 0.14547400 0.04650870 3.12788000 0.00200215 
 # 217 Degrees of Freedom
 cols <- c(12, 15:19)           # extract relevant columns
-tmp  <- round(res[cols], 2)    # 2 decimal places acc. to GL
+tmp  <- round(res[cols], 2)    # 2 decimal places acc. to the GL
 tmp  <- cbind(tmp, res[20:22]) # pass|fail
 print(tmp, row.names = FALSE)
 #  CVwR(%)  L(%)  U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
@@ -248,7 +249,7 @@ print(tmp, row.names = FALSE)
 
   - Same dataset evaluated by Method B, Kenward-Roger approximation of
     degrees of freedom. Outlier assessment, recalculation of
-    *CV<sub>wR</sub>* after exclusion of outliers, new expanded limits.
+    *CV*<sub>wR</sub> after exclusion of outliers, new expanded limits.
 
 <!-- end list -->
 
@@ -257,7 +258,7 @@ res  <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
                  print = FALSE, data = rds01)
 ```
 
-![](man/figures/README-unnamed-chunk-9-1.png)<!-- -->
+![](man/figures/README-example2-1.png)<!-- -->
 
     # 
     # Outlier analysis
@@ -289,7 +290,7 @@ res  <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
     #  0.1460900  0.0465140  3.1408000  0.0019197 
     # 217.208 Degrees of Freedom (equivalent to Stata’s dfm=Kenward Roger EIM)
     cols <- c(25, 28:29, 17:19)    # extract relevant columns
-    tmp  <- round(res[cols], 2)    # 2 decimal places acc. to GL
+    tmp  <- round(res[cols], 2)    # 2 decimal places acc. to the GL
     tmp  <- cbind(tmp, res[30:32]) # pass|fail
     print(tmp, row.names = FALSE)
     #  CVwR.rec(%) L.rec(%) U.rec(%) CL.lo(%) CL.hi(%)  PE(%) CI.rec GMR.rec BE.rec
@@ -324,7 +325,7 @@ res <- ABE(verbose = TRUE, theta1 = 0.90, details = TRUE,
 # 0.07558800 0.02284850 3.30822000 0.00145167 
 # 74 Degrees of Freedom
 cols <- c(13:17)            # extract relevant columns
-tmp  <- round(res[cols], 2) # 2 decimal places acc. to GL
+tmp  <- round(res[cols], 2) # 2 decimal places acc. to the GL
 tmp  <- cbind(tmp, res[18]) # pass|fail
 print(tmp, row.names=FALSE)
 #  BE.lo(%) BE.hi(%) CL.lo(%) CL.hi(%)  PE(%)   BE

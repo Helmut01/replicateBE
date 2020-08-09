@@ -1,7 +1,7 @@
 - Add swR to the result data.frame (for recalculation of the expanded limits).
   Currently only in the txt-file.
   Shall we add sWT as well?
-- Picky (@THX to Shuanghe):
+- Picky (THX to Shuanghe):
   Acc. to the NIST’s “Typefaces for Symbols in Scientific Manuscripts”
   (https://physics.nist.gov/cuu/pdf/typefaces.pdf):
   ‘Symbols used as subscripts and superscripts are roman if descriptive.’

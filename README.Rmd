@@ -6,7 +6,9 @@ output:
     toc_depth: 4
 ---
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![cran checks](https://cranchecks.info/badges/summary/replicateBE)](https://cran.r-project.org/web/checks/check_results_replicateBE.html) [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)](https://r-pkg.org/pkg/replicateBE) [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/last-month/replicateBE?color=green)](https://r-pkg.org/pkg/replicateBE)
+<!-- Don't forget to change [#foo] to [#user-content-foo] (except the 1st)
+     in README.md - otherwise, the links in the TOC on GitHub will not work -->
+![min R](https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg) ![on CRAN](https://www.r-pkg.org/badges/version-ago/replicateBE) [![cran checks](https://cranchecks.info/badges/worst/replicateBE)](https://cran.r-project.org/web/checks/check_results_replicateBE.html) [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)](https://r-pkg.org/pkg/replicateBE) [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/last-month/replicateBE?color=green)](https://r-pkg.org/pkg/replicateBE)
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -20,13 +22,13 @@ Version `r packageVersion("replicateBE")` built `r packageDate("replicateBE")` w
 
 ## Introduction
 The library provides data sets (internal `.rda` and in <span title="Comma Separated Variables">CSV</span>-format in `/extdata/`) which support users in a black-box performance qualification (PQ) of their software installations. Users can perform analysis of their own data imported from CSV- and Excel-files. The methods given by the EMA in [Annex I](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf "EMA/582648/2016, 21 September 2016") for reference-scaling according to the EMA’s [Guideline on the Investigation of Bioequivalence](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf "EMA, January 2010") are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint [EGA/EMA workshop](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf "London, June 2010").  
-In full replicate designs the variability of test and reference treatments can be assessed by _s~wT~_/_s~wR~_ and the upper confidence limit of _σ~wT~_/_σ~wR~_ (required for the [WHO’s approach](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf "Geneva, November 2018") for reference-scaling of _AUC_).
+In full replicate designs the variability of test and reference treatments can be assessed by _s_~wT~/_s_~wR~ and the upper confidence limit of _σ_~wT~/_σ_~wR~ (required for the [WHO’s approach](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf "Geneva, November 2018") for reference-scaling of _AUC_).
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
 ### Methods
 
-#### Estimation of _CV~wR~_ (and _CV~wT~_ in full replicate designs)
+#### Estimation of _CV_~wR~ (and _CV_~wT~ in full replicate designs)
 Called internally by functions `method.A()` and `method.B()`. A linear model of log-transformed pharmacokinetic (PK) responses and effects  
     _sequence_, _subject(sequence)_, _period_\
 where all effects are fixed (_i.e._, ANOVA). Estimated by the function `lm()` of library `stats`.
@@ -78,7 +80,7 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
 #### Average Bioequivalence
-Called by function `ABE()`. The model is identical to [Method A](#method-a). Conventional BE limits (80.00 – 125.00\%) are employed by default. Tighter limits (90.00 – 111.11\%) for narrow therapeutic index drugs (EMA) or wider limits (75.00 – 133.33\%) for *C~max~* according to the guidelines of the Gulf Cooperation Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, United Arab Emirates) and South Africa can be specified.
+Called by function `ABE()`. The model is identical to [Method A](#method-a). Conventional BE limits (80.00 – 125.00\%) are employed by default. Tighter limits (90.00 – 111.11\%) for narrow therapeutic index drugs (EMA) or wider limits (75.00 – 133.33\%) for *C*~max~ according to the guidelines of the Gulf Cooperation Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, United Arab Emirates) and South Africa can be specified.
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
@@ -116,25 +118,25 @@ Results of the 30 reference datasets agree with ones obtained in SAS (9.4), Phoe
 ## Examples
   - Evaluation of the internal reference dataset 01 of [Annex II](https://www.ema.europa.eu/en/documents/other/31-annex-ii-statistical-analysis-bioequivalence-study-example-data-set_en.pdf "EMA, 21 September 2016") by Method A.
 
-```{r}
+```{r example1}
 library(replicateBE) # attach the library
 res <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
                 data = rds01)
 cols <- c(12, 15:19)           # extract relevant columns
-tmp  <- round(res[cols], 2)    # 2 decimal places acc. to GL
+tmp  <- round(res[cols], 2)    # 2 decimal places acc. to the GL
 tmp  <- cbind(tmp, res[20:22]) # pass|fail
 print(tmp, row.names = FALSE)
 ```
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
-  - Same dataset evaluated by Method B, Kenward-Roger approximation of degrees of freedom. Outlier assessment, recalculation of _CV~wR~_ after exclusion of outliers, new expanded limits.
+  - Same dataset evaluated by Method B, Kenward-Roger approximation of degrees of freedom. Outlier assessment, recalculation of _CV_~wR~ after exclusion of outliers, new expanded limits.
 
-```{r}
+```{r example2}
 res  <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
                  print = FALSE, data = rds01)
 cols <- c(25, 28:29, 17:19)    # extract relevant columns
-tmp  <- round(res[cols], 2)    # 2 decimal places acc. to GL
+tmp  <- round(res[cols], 2)    # 2 decimal places acc. to the GL
 tmp  <- cbind(tmp, res[30:32]) # pass|fail
 print(tmp, row.names = FALSE)
 ```
@@ -143,11 +145,11 @@ print(tmp, row.names = FALSE)
 
   - Evaluation of the internal reference dataset 05 of [Shumaker and Metzler](https://doi.org/10.1177/009286159803200426) by ABE, tighter limits for the narrow therapeutic index drug phenytoin.
 
-```{r}
+```{r example3}
 res <- ABE(verbose = TRUE, theta1 = 0.90, details = TRUE,
            print = FALSE, data = rds05)
 cols <- c(13:17)            # extract relevant columns
-tmp  <- round(res[cols], 2) # 2 decimal places acc. to GL
+tmp  <- round(res[cols], 2) # 2 decimal places acc. to the GL
 tmp  <- cbind(tmp, res[18]) # pass|fail
 print(tmp, row.names=FALSE)
 ```
