@@ -25,9 +25,11 @@ replicateBE
   - [Installation](#user-content-installation)
   - [Disclaimer](#user-content-disclaimer)
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- README.md is generated from README.Rmd. Please edit that file
+     Don't forget to change [#foo] to [#user-content-foo] in README.md -
+     otherwise, the links in the TOC on GitHub will not work. -->
 
-![min R](https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg) ![on
+![active](https://www.repostatus.org/badges/latest/active.svg) ![min R](https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg) ![on
 CRAN](https://www.r-pkg.org/badges/version-ago/replicateBE) [![cran
 checks](https://cranchecks.info/badges/worst/replicateBE)](https://cran.r-project.org/web/checks/check_results_replicateBE.html)
 [![CRAN RStudio mirror
