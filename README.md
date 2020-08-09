@@ -336,8 +336,7 @@ print(tmp, row.names=FALSE)
 
 ## Installation
 
-The package requires R ≥ 3.5.0; for the Kenward-Roger approximation
-`method.B(..., option = 3)` R ≥ 3.6.0 is required.
+The package requires R ≥3.5.0. However, for the Kenward-Roger approximation `method.B(..., option = 3)` R ≥ 3.6.0 is required.
 
   - Install the released version from CRAN:
 
@@ -350,8 +349,8 @@ install.packages("replicateBE", repos = "https://cloud.r-project.org/")
   - To use the development version, please install the released version
     from [CRAN](https://cran.r-project.org/package=replicateBE) first to
     get its dependencies right
-    ([readxl](https://cran.r-project.org/package=readxl) ≥ 1.0.0,
-    [PowerTOST](https://cran.r-project.org/package=PowerTOST) ≥ 1.3.3,
+    ([readxl](https://cran.r-project.org/package=readxl) ≥1.0.0,
+    [PowerTOST](https://cran.r-project.org/package=PowerTOST) ≥1.3.3,
     [lmerTest](https://cran.r-project.org/package=lmerTest),
     [nlme](https://cran.r-project.org/package=nlme),
     [pbkrtest](https://cran.r-project.org/package=pbkrtest)).
