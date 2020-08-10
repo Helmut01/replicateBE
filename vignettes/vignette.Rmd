@@ -75,11 +75,11 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
 * Note that SAS with `DDFM=KENWARDROGER` and JMP calculate Satterthwaite’s [*sic*] degrees of freedom and apply the Kackar-Harville correction^[Kackar RN, Harville DA. *Approximations for Standard Errors of Estimators of Fixed and Random Effects in Mixed Linear Models.* J Am Stat Assoc. 1984; 79(388): 853–62. [doi:10.1080/01621459.1984.10477102](https://doi.org/10.1080/01621459.1984.10477102).] *i.e.*, based on the *observed* information matrix.
 
 ## `ABE()`{#ABE}
-Average Bioequivalence, where the model is identical to [Method A](#methodA). By default the conventional acceptance range of 80.00 – 125.00\% is used. Tighter limits (90.00 – 111.11\%) for narrow therapeutic index drugs (EMA) or wider limits (75.00 – 133.33\% for C~max~ according to the guidelines of the <abbr title="Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, the United Arab Emirates.">GCC</abbr> and South Africa) can be specified by the arguments `theta1` (lower limit) and/or `theta2` (upper limit).
+Average Bioequivalence, where the model is identical to [Method A](#methodA). By default the conventional acceptance range of 80.00 – 125.00\% is used. Tighter limits (90.00 – 111.11\%) for narrow therapeutic index drugs (<abbr title="European Medicines Agency">EMA</abbr>) or wider limits (75.00 – 133.33\% for *C*~max~ according to the guidelines of the <abbr title="Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, the United Arab Emirates.">GCC</abbr> and South Africa) can be specified by the arguments `theta1` (lower limit) and/or `theta2` (upper limit).
 
 # Hypotheses{#hypotheses}
 The hypotheses are $$\small{H_{0}:\theta_0\notin [L,U]\:vs\:H_{1}:L<\theta_0<U}$$
-where $\small{\theta_0=\mu_T/\mu_R}$ and the Null hypothesis is <u>in</u>equivalence. In Average Bioequivalence the limits $\small{[L,U]}$ are fixed, whereas in ABEL they can be [expanded](#BElim) based on the variability of the reference treatment.
+where $\small{\theta_0=\mu_\textrm{T}/\mu_\textrm{R}}$ and the Null hypothesis is <u>in</u>equivalence. In Average Bioequivalence the limits $\small{[L,U]}$ are fixed, whereas in ABEL they can be [expanded](#BElim) based on the variability of the reference treatment.
 
 # Tested designs{#designs}
 Details about the reference datasets and their designs:
@@ -109,7 +109,7 @@ The test treatment is administered at least once to ½ of the subjects and the r
 `TRR | RTT`
 
 ## Two period (full) replicate{#per2_full}
-The test and reference treatments are administered once to ½ of the subjects (for the estimation of the CI), *i.e.*, the first group of subjects follows a conventional 2×2×2 trial. In the second group the test and reference treatments are administered at least once to ¼ of the subjects, repectively (for the estimation of *CV~wT~* and *CV~wR~*).
+The test and reference treatments are administered once to ½ of the subjects (for the estimation of the CI), *i.e.*, the first group of subjects follows a conventional 2×2×2 trial. In the second group the test and reference treatments are administered at least once to ¼ of the subjects, respectively (for the estimation of *CV*~wT~ and *CV*~wR~).
 
 `TR | RT | TT | RR`
 
@@ -136,11 +136,11 @@ Columns must have the headers `subject`, `period`, `sequence`, `treatment`, `PK`
 | `PK` | Real <span title="zero is not acceptable">positive</span> numbers of PK responses. |
 | `logPK` | Real numbers of already log~e~-transformed PK responses (optional and rarely needed). |
 
-Relevant data are used for the estimation of *CV~wR~* (and *CV~wT~* in full replicate designs) and BE, *i.e.*, the data­sets might be different (see the [example below](#setexpl)). It is good practice to state that in the Statistical Analysis Plan (SAP).
+Relevant data are used for the estimation of *CV*~wR~ (and *CV*~wT~ in full replicate designs) and BE, *i.e.*, the data­sets might be different (see the [example below](#setexpl)). It is good practice to state that in the Statistical Analysis Plan (SAP).
 
 ## Incomplete data{#incomplete}
-### Estimation of _CV~w~_{#setCW}
-If a subject drops out from the study in a higher period, data of repeated administrations will still be used for the estimation of _CV~w~_, although data of the other treatment might be missing. Examples for the estimation of *CV~wR~* (missings denoted by `·`):\
+### Estimation of _CV_~w~{#setCW}
+If a subject drops out from the study in a higher period, data of repeated administrations will still be used for the estimation of *CV*~w~, although data of the other treatment might be missing. Examples for the estimation of *CV*~wR~ (missings denoted by `·`):\
 
 `RTRT` | `RTR·`\
 `TRRT` | `TRR·`\
@@ -173,11 +173,11 @@ We obtain these datasets:
 
 | Dataset | Purpose | included | excluded |
 |:-:|-----|----------|:---:|
-| #1 | Estimation of *CV~wR~* | 13 who received 2 treatments `R` | 6, 8, 14 |
+| #1 | Estimation of *CV*~wR~ | 13 who received 2 treatments `R` | 6, 8, 14 |
 | #2 | Assessment of BE | 15 who received ≥1 treatment `T` _and_ ≥1 treatment `R` | 8 |
-| #3 | Estimation of *CV~wT~* | 13 who received 2 treatments `T` | 1, 6, 8 |
+| #3 | Estimation of *CV*~wT~ | 13 who received 2 treatments `T` | 1, 6, 8 |
 
-Datasets #1 and #2 are required for ABEL and all three for the WHO’s reference-scaling of AUC (see [below](#app_out)). For ABE only dataset #2 is required.
+Datasets #1 and #2 are required for ABEL and all three for the WHO’s reference-scaling of *AUC* (see [below](#app_out)). For ABE only dataset #2 is required.
 
 # Notes on the methods{#notes}
 ## Estimation of intra-subject variability{#cv}
@@ -188,7 +188,7 @@ where all effects are fixed. Estimated via function `lm()` of library `stats`:
 modCV <- lm(log(PK) ~ sequence + subject%in%sequence + period,
                       data = data[data$treatment = "R", ])
 ```
-For informational purposes in full replicate designs (required by the WHO for reference-scaling of AUC; see [below](#app_out)) the same model is run with `data = data[data$treatment = "T", ]`.
+In full replicate designs (required by the WHO for reference-scaling of *AUC*; see [below](#app_out)) the same model is run with `data = data[data$treatment = "T", ]`.
 
 Special conditions for the sample size in three period full replicate designs:
 
@@ -198,8 +198,7 @@ Special conditions for the sample size in three period full replicate designs:
 > 
 > --- Q&A document^[European Medicines Agency. *Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).* London, June 2015 (and later revisons). [EMA/618604/2008](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf).]
 
-
-If less than twelve subjects are eligible in sequence `RTR` of a `TRT | RTR` design (and in analogy in sequence `TRR` of a `TRR | RTT` design), the user is notified about the ‘uncertain’ estimate of *CV~wR~*. However, in a sufficiently powered study such a case is [extremely unlikely](https://forum.bebac.at/forum_entry.php?id=15139 "BEBA Forum, 23 July 2015"). Let us explore the confidence interval of the _CV_:
+If less than twelve subjects are eligible in sequence `RTR` of a `TRT | RTR` design (and in analogy in sequence `TRR` of a `TRR | RTT` design), the user is notified about the ‘uncertain’ estimate of *CV*~wR~. However, in a sufficiently powered study such a case is [extremely unlikely](https://forum.bebac.at/forum_entry.php?id=15139 "BEBA Forum, 23 July 2015"). Let us explore the confidence interval of the _CV_:
 
 ```{r}
 # Estimate sample sizes of full replicate designs (theta0 0.90, target
@@ -220,17 +219,17 @@ round(100*PowerTOST::CVCL(CV = CV, df = 2*24-3, "2-sided"), 2) # 3-period
 It is unclear why the four period replicate is considered by the EMA to give a more ‘reliable’ estimate than the three period replicate.
 
 ## Model structure{#model_struc}
-The EMA’s models assume equal [_sic_] intra-subject variances of Test and Reference (like in 2×2×2 trials) – even if proven false in one of the full replicate designs (were _both_ *CV~wT~* and *CV~wR~* can be estimated). Hence, amongst biostatisticians they are called ‘crippled models’ because the replicative nature of the study is ignored.
+The EMA’s models assume equal [_sic_] intra-subject variances of Test and Reference (like in 2×2×2 trials) – even if proven false in one of the full replicate designs (were _both_ *CV*~wT~ and *CV*~wR~ can be estimated). Hence, amongst biostatisticians they are called ‘crippled models’ because the replicative nature of the study is ignored.
 
-The nested structure _subject(sequence)_ of the [methods](#methods) leads to an over-specified model.^[Contradics the law of parsimony. Such a nesting is superfluous since in BE trials subjects are uniquely coded. If, say, subject `1` is allocated to sequence `TRTR` there is not yet ‘another’ subject `1` allocated to sequence `RTRT`. This explains the many lines in SAS `PROC GML` given with `.` and in Phoenix WinNonlin as `not estimable`.] The simple model\
+The nested structure _subject(sequence)_ of the [methods](#methods) leads to an over-specified model.^[Contradicts the law of parsimony. Such a nesting is superfluous since in BE trials subjects are uniquely coded. If, say, subject `1` is allocated to sequence `TRTR` there is not yet ‘another’ subject `1` allocated to sequence `RTRT`. This explains the many lines in SAS `PROC GML` given with `.` and in Phoenix WinNonlin as `not estimable`.] The simple model\
 &nbsp;&nbsp;&nbsp;&nbsp;_sequence_, _subject_, _period_, _treatment_\
 gives identical estimates of the residual variance and the treatment effect and hence, its confidence interval.
 
-The same holds true for the [EMA’s model](#cv) to estimate *CV~wR~*. The simple model\
+The same holds true for the [EMA’s model](#cv) to estimate *CV*~wR~. The simple model\
 &nbsp;&nbsp;&nbsp;&nbsp;_subject_, _period_\
 gives an identical estimate of the residual variance.
 
-Reference-scaling is acceptable for C~max~ (immediate release products: BE-Guideline) and C~max~, C~max,ss~, C~τ,ss~, ~partial~AUC (modified release products^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.* London, 20 November 2014. [EMA/CHMP/EWP/280/96](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf)]). The intention to widen the limits has to be stated in the protocol and – contrary to the FDAs <span title="Reference Scaled Average Bioequivalence">RSABE</span> – a clinical justification provided.
+Reference-scaling is acceptable for *C*~max~ (immediate release products: BE-Guideline) and *C*~max~, *C*~max,ss~, *C*~τ,ss~, ~partial~*AUC* (modified release products^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.* London, 20 November 2014. [EMA/CHMP/EWP/280/96](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf)]). The intention to widen the limits has to be stated in the protocol and – contrary to the FDA’s <span title="Reference Scaled Average Bioequivalence">RSABE</span> – a clinical justification provided.
 
 > _Those HVDP for which a wider difference in C~max~ is considered clinically irrelevant based on a sound clinical justification can be assessed with a widened acceptance range.
 > The request for widened interval must be prospectively specified in the protocol._
@@ -238,16 +237,16 @@ Reference-scaling is acceptable for C~max~ (immediate release products: BE-Guide
 > --- BE Guideline
 
 ## BE limits, PE restriction, rounding issues{#BElim}
-The limits can be expanded based on *CV~wR~*.
+The limits can be expanded based on *CV*~wR~.
 
 * *CV~wR~* ≤ 30\%\
     Lower cap, *i.e.*, no scaling, conventional limits:\
     $\small{\left[{L,U}\right] = {80.00 - 125.00\%}}$
 * 30\% < *CV~wR~* ≤ 50%\
-    Expanded limits based on $s_{wR}$:\
-    $\small{\left[{L,U}\right] = 100\,{\text{e}^{\mp 0.760 \cdot {s_{wR}}}}}$
-* *CV~wR~* > 50\%\
-    Upper cap, *i.e.*, applying $\small{s^*_{wR}=\sqrt{\text{log}(0.50^2+1)}}$ in the expansion formula or\
+    Expanded limits based on $s_\textrm{wR}$:\
+    $\small{\left[ {L,\,U} \right] = 100\cdot \exp (\mp 0.760 \cdot {s_\textrm{wR}})}$
+* *CV*~wR~ > 50\%\
+    Upper cap, *i.e.*, applying $\small{s^*_\textrm{wR}=\sqrt{\log_{e}(CV_\textrm{cap}^{2}+1)}}$ in the expansion formula or\
     $\small{\left[ {L,U} \right] = {69.84 - 143.19\%}}$.
 
 In reference-scaling a so-called *mixed* (a.k.a. *aggregate*) criterion is applied. In order to pass BE,
@@ -287,7 +286,7 @@ The half-width of the confidence interval in log-scale allows a comparison of me
 However, for the highly incomplete dataset 14 Method A was _liberal_ (passing by ANOVA but failing by the random effects model):
 
 ```{r}
-# Compare Method B acc. to the GL with Method A for all reference datasets.
+# Compare Method B acc. to the GL with Method A for all reference data sets.
 ds <- substr(grep("rds", unname(unlist(data(package = "replicateBE"))),
                   value = TRUE), start = 1, stop = 5)
 for (i in seq_along(ds)) {
@@ -326,7 +325,7 @@ df[, c(2, 11)] <- signif(df[, c(2, 11)], 5)
 print(df[order(df$BE, df$hw, decreasing = c(FALSE, TRUE)), ],
       row.names = FALSE)
 ```
-All variants of Method B are more conservative than Method A. Before rounding the confidence interval, `option = 2` with 192 degrees of freedom would be more conservative (lower CL 69.21029) than `option = 1` with 197.44 degrees of freedom (lower CL 69.21286). Given the incompleteness of this dataset (four missings in period 2, twelve in period 3, and 19 in period 4), Satterthwaite’s or Kenward-Roger degrees of freedom are probably the better choice.
+All variants of Method B are more conservative than Method A. Before rounding the confidence interval, `option = 2` with 192 degrees of freedom would be more conservative (lower CL 69.21029) than `option = 1` with 197.44 degrees of freedom (lower CL 69.21286). Given the incompleteness of this data set (four missings in period 2, twelve in period 3, and 19 in period 4), Satterthwaite’s or Kenward-Roger degrees of freedom are probably the better choice.
 
 For detailed comparisons between methods based on simulations see the electronic [Supplementary Material](https://static-content.springer.com/esm/art%3A10.1208%2Fs12248-020-0427-6/MediaObjects/12248_2020_427_MOESM1_ESM.docx) of Schütz *et al.*
 
@@ -365,7 +364,7 @@ q[c(2, 4, 6:8), 4] <- c("SAS, Stata", "SciPy", "Phoenix, Minitab, SPSS",
 print(as.data.frame(q))
 ```
 
-* Box plots of studentized^[*Externally* studentized: $\widehat{\sigma}_{(i)}^2={1 \over n-m-1}\sum_{\begin{smallmatrix}j = 1\\j \ne i\end{smallmatrix}}^n \widehat{\varepsilon\,}_j^{\,2}$] and standarized^[*Internally* studentized: $\widehat{\sigma}^2={1 \over n-m}\sum_{j=1}^n \widehat{\varepsilon\,}_j^{\,2}$] model residuals are constructed.^[Both are available in SAS and R, whereas only the latter in *e.g.*, Phoenix WinNonlin. In general the former are slightly more restrictive. Which one will be used has to be stated in the <abbr title="Statistical Analysis Plan">SAP</abbr>.]
+* Box plots of studentized^[*Externally* studentized: $\small{\widehat{\sigma}_{(i)}^2={1 \over n-m-1}\sum_{\begin{smallmatrix}j = 1\\j \ne i\end{smallmatrix}}^n \widehat{\varepsilon\,}_j^{\,2}}$] and standarized^[*Internally* studentized: $\small{\widehat{\sigma}^2={1 \over n-m}\sum_{j=1}^n \widehat{\varepsilon\,}_j^{\,2}}$] model residuals are constructed.^[Both are available in SAS and R, whereas only the latter in *e.g.*, Phoenix WinNonlin. In general the former are slightly more restrictive. Which one will be used has to be stated in the <abbr title="Statistical Analysis Plan">SAP</abbr>.]
 * Potential outliers are flagged based on the argument `fence` provided by the user.
 * With the additional argument `verbose = TRUE` detailed information is shown in the console.
 
@@ -387,7 +386,7 @@ Outlier analysis
       52     RTRT  3.214663
 ```
 
-If based on *studentized* residuals outliers are detected, additionally to the expanded limits based on the complete reference data, tighter limits are calculated based on *CV~wR~* after exclusion of outliers and BE assessed with the new limits. Note that *standardized* residuals are given for informational purposes only and *not* used for exclusion of outliers.
+If based on *studentized* residuals outliers are detected, additionally to the expanded limits based on the complete reference data, tighter limits are calculated based on *CV*~wR~ after exclusion of outliers and BE assessed with the new limits. Note that *standardized* residuals are given for informational purposes only and *not* used for exclusion of outliers.
 
 Output for the reference dataset 01 (re-ordered for clarity):
 ```
@@ -423,9 +422,9 @@ The EMA’s approach of reference-scaling for highly variable drugs / drug prod
 
 If degrees of freedom are approximated (Satterthwaite, Kenward-Roger), the <abbr title="Statistical Analysis Plan">SAP</abbr> and statistical report should always specify which method will be / was used (see [above](#method.b)) in order to allow recalculation in other software. This package uses the *expected* information matrix.^[For Satterthwaite only available in Phoenix WinNonlin, SPSS, and Stata; as an option in SAS by `SCORING=1`. For Kenward-Roger default option `EIM` in Stata. The *observed* information matrix is the only available in JMP and default `SCORING=0` in SAS; option `OIM` in Stata.]
 
-The estimated *CV~wR~* is always uncertain (the degree of uncertainty depends on the *CV~wR~* itself, the design, and – to a minor degree – the sample size), which might lead to an inflation of the type I error (*i.e.*, if ABEL is falsely applied although the *true* – but unknown – *CV~wR~* is lower than its estimate).^[Wonnemann M, Frömke C, Koch A. *Inflation of the Type I Error: Investigations on Regulatory Recommendations for Bioequivalence of Highly Variable Drugs.* Pharm Res. 2015; 32(1): 135–43. [doi:10.1007/s11095-014-1450-z](https://doi.org/10.1007/s11095-014-1450-z).]<sup>,</sup> ^[Muñoz J, Alcaide D, Ocaña J. *Consumer’s risk in the EMA and FDA regulatory approaches for bioequivalence in highly variable drugs.* Stat Med. 2016; 35(12): 1933–43. [doi:10.1002/sim.6834](https://doi.org/10.1002/sim.6834).]\
+The estimated *CV*~wR~ is always uncertain (the degree of uncertainty depends on the *CV*~wR~ itself, the design, and – to a minor degree – the sample size), which might lead to an inflation of the type I error (*i.e.*, if ABEL is falsely applied although the *true* – but unknown – *CV*~wR~ is lower than its estimate).^[Wonnemann M, Frömke C, Koch A. *Inflation of the Type I Error: Investigations on Regulatory Recommendations for Bioequivalence of Highly Variable Drugs.* Pharm Res. 2015; 32(1): 135–43. [doi:10.1007/s11095-014-1450-z](https://doi.org/10.1007/s11095-014-1450-z).]<sup>,</sup> ^[Muñoz J, Alcaide D, Ocaña J. *Consumer’s risk in the EMA and FDA regulatory approaches for bioequivalence in highly variable drugs.* Stat Med. 2016; 35(12): 1933–43. [doi:10.1002/sim.6834](https://doi.org/10.1002/sim.6834).]\
 Use the optional argument `method.A(..., adjust = TRUE)` to iteratively adjust *α* to control the type I error.^[Labes D, Schütz H. *Inflation of Type I Error in the Evaluation of Scaled Average Bioequivalence, and a Method for its Control.* Pharm Res. 2016; 33(11): 2805–14. [doi:10.1007/s11095-016-2006-1](https://doi.org/10.1007/s11095-016-2006-1).]\
-If you want to apply the most conservative approach of Molins *et al.*^[Molins E, Cobo E, Ocaña J. *Two-Stage Designs Versus European Scaled Average Designs in Bioequivalence Studies for Highly Variable Drugs: Which to Choose?* Stat Med. 2017: 36(30); 4777--88. [doi:10.1002/sim.7452](https://doi.org/10.1002/sim.7452).] (which corrects for *CV~wR~* 30\% instead of the observed one), get the data.frame of results with\
+If you want to apply the most conservative approach of Molins *et al.*^[Molins E, Cobo E, Ocaña J. *Two-Stage Designs Versus European Scaled Average Designs in Bioequivalence Studies for Highly Variable Drugs: Which to Choose?* Stat Med. 2017: 36(30); 4777--88. [doi:10.1002/sim.7452](https://doi.org/10.1002/sim.7452).] (which corrects for *CV*~wR~ 30\% instead of the observed one), get the data.frame of results with\
 `  x <- method.A(..., details = TRUE, print = FALSE)`.\
 Adjust *α* in library [PowerTOST](https://cran.r-project.org/package=PowerTOST) and call `method.A()` again:\
 `  design <- "2x2x4" # your design`\
@@ -433,8 +432,8 @@ Adjust *α* in library [PowerTOST](https://cran.r-project.org/package=PowerTOST)
 `  y      <- PowerTOST::scABEL.ad(CV = 0.3, n = n, design = design, print = FALSE)`\
 `  method.A(..., alpha = y$alpha.adj)`
 
-The WHO accepts [reference-scaling for AUC](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf "Guidance Document, 22 November 2018") (four period full replicate studies are mandatory in order to assess the vari­ability associated with each product). It is not evident how this assessment should be done.\
-In Population Bioequivalence (PBE) and Individual Bioequivalence (IBE) the *s~wT~*/*s~wR~* ratio was assessed and ‘similar’ variability was concluded for a ratio within 0.667 – 1.500. However, the power of comparing variabilities in a study designed to compare means is low. This was one of the reasons why PBE and IBE were not implemented in regulatory practice. An alternative approach is given in the FDAs [guidance on warfarin](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf "Draft recommended Dec 2012") where variabilities are considered ‘comparable’ if the upper confidence limit of *σ~wT~*/*σ~wR~* is ≤2.5.
+The WHO accepts [reference-scaling for *AUC*](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf "Guidance Document, 22 November 2018") (four period full replicate studies are mandatory in order to assess the vari­ability associated with each product). It is not evident how this assessment should be done.\
+In Population Bioequivalence (PBE) and Individual Bioequivalence (IBE) the *s*~wT~/*s*~wR~ ratio was assessed and ‘similar’ variability was concluded for a ratio within 0.667 – 1.500. However, the power of comparing variabilities in a study designed to compare means is low. This was one of the reasons why PBE and IBE were not implemented in regulatory practice. An alternative approach is given in the FDAs [guidance on warfarin](https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf "Draft recommended Dec 2012") where variabilities are considered ‘comparable’ if the upper confidence limit of *σ*~wT~/*σ*~wR~ is ≤2.5.
 
 # Cross-validation{#cross}
 Results of all reference datasets agree with ones obtained in SAS (9.4), Phoenix WinNonlin (6.4--8.1), STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
@@ -446,7 +445,7 @@ Results of all reference datasets agree with ones obtained in SAS (9.4), Phoenix
 
 # License
 <h4 class="author">Helmut Schütz `r Sys.Date()`</h4>
-[GPL-2](https://cran.r-project.org/web/licenses/GPL-2 "GNU General Public License, Version 2") | [GPL-3](https://cran.r-project.org/web/licenses/GPL-3 "GNU General Public License, Version 3")
+[GPL-3](https://cran.r-project.org/web/licenses/GPL-3 "GNU General Public License, Version 3")
 
 # Disclaimer{#disclaimer}
 Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.

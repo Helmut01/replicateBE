@@ -8,6 +8,7 @@ output:
 <!-- README.md is generated from README.Rmd. Please edit that file
      Don't forget to change [#foo] to [#user-content-foo] in README.md -
      otherwise, the links in the TOC on GitHub will not work. -->
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![active](https://www.repostatus.org/badges/latest/active.svg) ![min R](https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg) ![on CRAN](https://www.r-pkg.org/badges/version-ago/replicateBE) [![cran checks](https://cranchecks.info/badges/worst/replicateBE)](https://cran.r-project.org/web/checks/check_results_replicateBE.html) [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)](https://r-pkg.org/pkg/replicateBE) [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/last-month/replicateBE?color=green)](https://r-pkg.org/pkg/replicateBE)
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(

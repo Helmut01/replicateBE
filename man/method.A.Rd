@@ -261,8 +261,8 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
   equal [\emph{sic}] intra-subject variances of test and reference (like in
   \ifelse{html}{\out{2&times;2&times;2}}{\eqn{2 \times 2 \times 2}{2x2x2}}
   trials) -- even if proven false in one of the full replicate designs (were
-  \emph{both} \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}{CVwT}} and
-  \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}{CVwR}} can be estimated).
+  \emph{both} \ifelse{html}{\out{<em>CV</em><sub>wT</sub>}}{\eqn{CV_\textrm{wT}}{CVwT}} and
+  \ifelse{html}{\out{<em>CV</em><sub>wR</sub>}}{\eqn{CV_\textrm{wR}}{CVwR}} can be estimated).
   Hence, amongst biostatisticians it is called the \dQuote{crippled model}
   because the replicative nature of the study is ignored.\cr
   The half-width of the \acronym{CI} in log-scale allows a comparison of
@@ -273,11 +273,9 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
   and \sQuote{Method B}. However, for the highly incomplete dataset 14
   \sQuote{Method A} was \emph{liberal} (passing by \acronym{ANOVA} but
   failing by the mixed effects model).\cr\cr
-  Reference-scaling is acceptable for \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}}
-  (immediate release products) and \ifelse{html}{\out{C<sub>max,ss</sub>}}{\eqn{C_{max,ss}}},
-  \ifelse{html}{\out{C<sub>&tau;,ss</sub>}}{\eqn{C_{\tau,ss}}}, and
-  \ifelse{html}{\out{<sub>partial</sub>AUC}}{\eqn{_{partial}AUC}} (modified
-  release products). However, quoting the \acronym{BE} guideline:\cr
+  Reference-scaling is acceptable for \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\textrm{max}}{Cmax}} (immediate release products) and \ifelse{html}{\out{<em>C</em><sub>max,ss</sub>}}{\eqn{C_\textrm{max,ss}}{Cmax,ss}},
+  \ifelse{html}{\out{<em>C</em><sub>&tau;,ss</sub>}}{\eqn{C_\textrm{\tau,ss}}}, and
+  \ifelse{html}{\out{<sub>partial</sub><em>AUC</em>}}{\eqn{_\textrm{partial}AUC}{partialAUC}} (modified release products). However, quoting the \acronym{BE} guideline:\cr
     \cite{The applicant should justify that the calculated intra-subject
     variability is a reliable estimate and that it is not the result of
     outliers.}\cr
@@ -295,19 +293,19 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
   as well (\emph{e.g.}, the \acronym{WHO}; \acronym{ASEAN} States, Australia,
   Brazil, Egypt, the Russian Federation, the Eurasian Economic Union,
   the East African Community, New Zealand).\cr\cr
-  The \acronym{WHO} accepts reference-scaling for AUC (4-period full replicate
+  The \acronym{WHO} accepts reference-scaling for \ifelse{html}{\out{<em>AUC</em>}}{\eqn{AUC}{AUC}} (4-period full replicate
   studies are mandatory in order to assess the variability associated with each product).
   It is an open issue how this assessment should be done. In Population Bioequivalence (\acronym{PBE})
   and Individual Bioequivalence (\acronym{IBE}) the
-  \ifelse{html}{\out{<em>s<sub>wT</sub></em>}}{\eqn{s_{wT}}}/\ifelse{html}{\out{<em>s<sub>wR</sub></em>}}{\eqn{s_{wR}}}
-  ratio was assessed and similar variability was concluded for a ratio
-  within 0.667–1.500. However, the power of comparing variabilities
-  in a study designed to demonstrate \acronym{ABE} is low. This was one of the
-  reasons why \acronym{PBE} and \acronym{IBE} were not implemented
-  in regulatory practice. An alternative approach is given in the
+  \ifelse{html}{\out{<em>s</em><sub>wT</sub>}}{\eqn{s_\textrm{wT}}}/\ifelse{html}{\out{<em>s</em><sub>wR</sub>}}{\eqn{s_\textrm{wR}}{sWT/sWR}} ratio was assessed and similar
+  variability was concluded for a ratio within 0.667–1.500. However, the power
+  of comparing variabilitiesin a study designed to demonstrate \acronym{ABE}
+  is low. This was one of the reasons why \acronym{PBE} and \acronym{IBE} were
+  not implemented in regulatory practice. An alternative approach is given in the
   \acronym{FDA}’s guidance on warfarin. Variabilities are
   considered comparable if the upper confidence limit of
-  \ifelse{html}{\out{<em>&sigma;<sub>wT</sub></em>}}{\eqn{\sigma_{wT}}}/\ifelse{html}{\out{<em>&sigma;<sub>wR</sub></em>}}{\eqn{\sigma_{wR}}} is less than or equal to 2.5.
+  \ifelse{html}{\out{<em>&sigma;</em><sub>wT</sub>}}{\eqn{\sigma_\textrm{wT}}}/\ifelse{html}{\out{<em>&sigma;</em><sub>wR</sub>}}{\eqn{\sigma_\textrm{wR}}{sigmaT/sigmaR}} is less
+  than or equal to 2.5.
 }
 
 \section{Disclaimer}{
