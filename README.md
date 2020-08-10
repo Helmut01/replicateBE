@@ -29,7 +29,10 @@ replicateBE
      Don't forget to change [#foo] to [#user-content-foo] in README.md -
      otherwise, the links in the TOC on GitHub will not work. -->
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![active](https://www.repostatus.org/badges/latest/active.svg) ![min R](https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg) ![on
+[![License: GPL
+v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+![active](https://www.repostatus.org/badges/latest/active.svg) ![min
+R](https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg) ![on
 CRAN](https://www.r-pkg.org/badges/version-ago/replicateBE) [![cran
 checks](https://cranchecks.info/badges/worst/replicateBE)](https://cran.r-project.org/web/checks/check_results_replicateBE.html)
 [![CRAN RStudio mirror
@@ -37,7 +40,8 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/last-month/replicateBE?color=green)](https://r-pkg.org/pkg/replicateBE)
 
-Version 1.0.15 built 2020-07-24 with R 4.0.2.
+Published on CRAN 2020-07-24 (version 1.0.15 built 2020-07-25 with R
+4.0.2).
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
@@ -338,7 +342,8 @@ print(tmp, row.names=FALSE)
 
 ## Installation
 
-The package requires R ≥3.5.0. However, for the Kenward-Roger approximation `method.B(..., option = 3)` R ≥ 3.6.0 is required.
+The package requires R ≥3.5.0. However, for the Kenward-Roger
+approximation `method.B(..., option = 3)` R ≥ 3.6.0 is required.
 
   - Install the released version from CRAN:
 

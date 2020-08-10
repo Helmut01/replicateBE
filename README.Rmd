@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-"
 )
 ```
-Version `r packageVersion("replicateBE")` built `r packageDate("replicateBE")` with R `r getRversion()`.
+Published on CRAN `r packageDate("replicateBE", date.fields = "Date/Publication")` (version `r packageVersion("replicateBE")` built `r packageDate("replicateBE", date.fields = "Built")` with R `r substr(packageDescription("replicateBE", fields = "Built"), 3, 7)`).
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
