@@ -343,7 +343,7 @@ print(tmp, row.names=FALSE)
 ## Installation
 
 The package requires R ≥3.5.0. However, for the Kenward-Roger
-approximation `method.B(..., option = 3)` R ≥ 3.6.0 is required.
+approximation `method.B(..., option = 3)` R ≥3.6.0 is required.
 
   - Install the released version from CRAN:
 

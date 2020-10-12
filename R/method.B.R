@@ -35,11 +35,13 @@ method.B <- function(alpha = 0.05, path.in, path.out, file,
     ext   <- ""
   }
   os <- Sys.info()[[1]]   # get OS for line-endings in output (Win: CRLF)
-  ow <- options("digits") # save options
+  od <- options("digits") # save options
   options(digits=12)      # increase digits for anova()
-  on.exit(ow)             # ensure that options are reset if an error occurs
+  on.exit(od)             # ensure that options are reset if an error occurs
   if (option == 2) {      # by nlme (Residual DF)
-    options(contrasts=c("contr.treatment", "contr.poly"))
+    oc <- options("contrasts") # save options
+    options(contrasts=c("contr.treatment", "contr.poly")) # assure defaults
+    on.exit(oc)           # ensure that options are reset if an error occurs
     if (logtrans) {       # use the raw data and log-transform internally
       modB <- lme(log(PK) ~ sequence + period + treatment,
                             random = ~1|subject, na.action=na.omit,

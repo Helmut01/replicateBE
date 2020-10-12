@@ -2,6 +2,10 @@
 
 Development version
 
+## Minor changes
+
+  * `method.B.R`: `options(contrasts = c("contr.treatment", "contr.poly"))` is the default. If a user has set other ones, restore them on exit.
+
 # replicateBE 1.0.15
 
 Published on Github 2020-07-24, on CRAN.
