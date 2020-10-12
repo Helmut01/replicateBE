@@ -49,8 +49,7 @@ Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding
 Introduction
 ------------
 
-The library provides data sets (internal `.rda` and in
-<abbr title="Character Separated Variables">CSV</abbr>-format in
+The library provides data sets (internal `.rda` and in CSV-format in
 `/extdata/`) which support users in a black-box performance
 qualification (PQ) of their software installations. Users can perform
 analysis of their own data imported from CSV- and Excel-files. The
@@ -168,10 +167,8 @@ Emirates) and South Africa can be specified.
 `TRTR | RTRT`  
 `TRRT | RTTR`  
 `TTRR | RRTT`  
-`TRTR | RTRT | TRRT | RTTR` <small>(confounded effects, *not
-recommended*)</small>  
-`TRRT | RTTR | TTRR | RRTT` <small>(confounded effects, *not
-recommended*)</small>
+`TRTR | RTRT | TRRT | RTTR`  
+`TRRT | RTTR | TTRR | RRTT`
 
 #### Three period (full) replicates
 
