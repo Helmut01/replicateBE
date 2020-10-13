@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 ```
 ```{r, echo=FALSE}
 pub <- packageDate("replicateBE", date.fields = "Date/Publication")
-txt <- paste0("Version ", packageVersion("PowerTOST"), " built ",
+txt <- paste0("Version ", packageVersion("replicateBE"), " built ",
          packageDate("replicateBE", date.fields = "Built"),
          " with R ", substr(packageDescription("replicateBE", fields = "Built"), 3, 7))
 if (is.na(pub)) {

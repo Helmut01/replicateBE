@@ -40,7 +40,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/last-month/replicateBE?color=green)](https://r-pkg.org/pkg/replicateBE)
 
-    # Version 1.5.0.9999 built 2020-10-12 with R 4.0.3 
+    # Version 1.0.15.9999 built 2020-10-12 with R 4.0.3 
     # (development version not on CRAN).
 
 Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
