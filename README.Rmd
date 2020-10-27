@@ -123,7 +123,7 @@ Details about the reference datasets:
 help("data", package = "replicateBE")
 ?replicateBE::data
 ```
-Results of the 30 reference datasets agree with ones obtained in SAS (9.4), Phoenix WinNonlin (6.4 – 8.1), STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
+Results of the 30 reference datasets agree with ones obtained in SAS (9.4), Phoenix WinNonlin (6.4 – 8.1), STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2): Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. *Reference Datasets for Studies in a Replicate Design Intended for Average Bioequivalence with Expanding Limits.* AAPS J. 2020; 22(2): Article 44. [doi:10.1208/s12248-020-0427-6](https://doi.org/10.1208/s12248-020-0427-6).
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
