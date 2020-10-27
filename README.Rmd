@@ -69,21 +69,21 @@ modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
 Called by function `method.B()`. A linear model of log-transformed PK responses and effects  
     _sequence_, _subject(sequence)_, _period_, _treatment_\
 where _subject(sequence)_ is a random effect and all others are fixed.  
-Three options are provided
+Three options are provided:
 
-1.  Estimated by the function `lme()` of library `nlme`. Employs degrees of freedom equivalent to SAS’ `DDFM=CONTAIN`, Phoenix WinNonlin’s `Degrees of Freedom Residual`, STATISTICA’s `GLM containment`, and Stata’s `dfm=anova`. Implicitly preferred according to the EMA’s Q&A document and hence, the default of the function.  
+* Estimated by the function `lmer()` of library `lmerTest`. `method.B(..., option = 1)` employs Satterthwaite’s approximation of the degrees of freedom equivalent to SAS’ `DDFM=SATTERTHWAITE`, Phoenix WinNonlin’s `Degrees of Freedom Satterthwaite`, and Stata’s `dfm=Satterthwaite`. Note that this is the only available approximation in SPSS.
+```{r eval=FALSE}
+modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
+                       data = data)
+```
+* Estimated by the function `lme()` of library `nlme`. `method.B(..., option = 2)` employs degrees of freedom equivalent to SAS’ `DDFM=CONTAIN`, Phoenix WinNonlin’s `Degrees of Freedom Residual`, STATISTICA’s `GLM containment`, and Stata’s `dfm=anova`. Implicitly preferred according to the EMA’s Q&A document and hence, the default of the function.
 ```{r eval=FALSE}
 modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
                       data = data)
 ```
 
-2.  Estimated by the function `lmer()` of library `lmerTest`. Employs Satterthwaite’s approximation of the degrees of freedom `method.B(..., option = 1)` equivalent to SAS’ `DDFM=SATTERTHWAITE`, Phoenix WinNonlin’s `Degrees of Freedom Satterthwaite`, and Stata’s `dfm=Satterthwaite`. Note that this is the only available approximation in SPSS.
-```{r eval=FALSE}
-modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
-                       data = data)
-```
+* Estimated by the function `lmer()` of library `lmerTest`. `method.B(..., option = 3)` employs the Kenward-Roger approximation equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’ `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected* information matrix. Note that SAS with `DDFM=KENWARDROGER` and JMP calculate Sattertwaite’s (*sic*) degrees of freedom and apply the Kackar-Harville correction *i.e.*, based on the *observed* information matrix.
 
-3.  Estimated by the function `lmer()` of library `lmerTest`. Employs the Kenward-Roger approximation `method.B(..., option = 3)` equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’ `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected* information matrix. Note that SAS with `DDFM=KENWARDROGER` and JMP calculate Sattertwaite’s (*sic*) degrees of freedom and apply the Kackar-Harville correction *i.e.*, based on the *observed* information matrix.  
 ```{r eval=FALSE}
 modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
@@ -187,6 +187,17 @@ install.packages("replicateBE", repos = "https://cloud.r-project.org/")
 ```{r eval = FALSE}
 install.packages("devtools", repos = "https://cloud.r-project.org/")
 devtools::install_github("Helmut01/replicateBE")
+```
+
+<small>[TOC ↩](#user-content-replicatebe)</small>
+
+## Session Information
+Inspect this information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.\
+Version `r packageVersion("replicateBE")` built `r packageDate("replicateBE", date.fields = "Built")` with R `r substr(packageDescription("replicateBE", fields = "Built"), 3, 7)`.
+
+```{r, sessioninfo}
+options(width = 80)
+devtools::session_info()
 ```
 
 <small>[TOC ↩](#user-content-replicatebe)</small>

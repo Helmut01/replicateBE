@@ -23,6 +23,7 @@ replicateBE
     -   [Cross-validation](#user-content-cross-validation)
 -   [Examples](#user-content-examples)
 -   [Installation](#user-content-installation)
+-   [Session Information](#user-content-session-information)
 -   [Disclaimer](#user-content-disclaimer)
 
 <!-- README.md is generated from README.Rmd. Please edit that file
@@ -40,14 +41,12 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/last-month/replicateBE?color=green)](https://r-pkg.org/pkg/replicateBE)
 
-    # Version 1.0.15.9999 built 2020-10-12 with R 4.0.3 
+    # Version 1.0.15.9999 built 2020-10-27 with R 4.0.3 
     # (development version not on CRAN).
 
-Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
---------------------------------------------------------------------------------------------
+## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
-Introduction
-------------
+## Introduction
 
 The library provides data sets (internal `.rda` and in CSV-format in
 `/extdata/`) which support users in a black-box performance
@@ -107,22 +106,11 @@ Called by function `method.B()`. A linear model of log-transformed PK
 responses and effects  
     *sequence*, *subject(sequence)*, *period*, *treatment*  
 where *subject(sequence)* is a random effect and all others are fixed.  
-Three options are provided
+Three options are provided:
 
-1.  Estimated by the function `lme()` of library `nlme`. Employs degrees
-    of freedom equivalent to SAS’ `DDFM=CONTAIN`, Phoenix WinNonlin’s
-    `Degrees of Freedom Residual`, STATISTICA’s `GLM containment`, and
-    Stata’s `dfm=anova`. Implicitly preferred according to the EMA’s Q&A
-    document and hence, the default of the function.
-
-<!-- -->
-
-    modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
-                          data = data)
-
-1.  Estimated by the function `lmer()` of library `lmerTest`. Employs
-    Satterthwaite’s approximation of the degrees of freedom
-    `method.B(..., option = 1)` equivalent to SAS’ `DDFM=SATTERTHWAITE`,
+-   Estimated by the function `lmer()` of library `lmerTest`.
+    `method.B(..., option = 1)` employs Satterthwaite’s approximation of
+    the degrees of freedom equivalent to SAS’ `DDFM=SATTERTHWAITE`,
     Phoenix WinNonlin’s `Degrees of Freedom Satterthwaite`, and Stata’s
     `dfm=Satterthwaite`. Note that this is the only available
     approximation in SPSS.
@@ -132,8 +120,20 @@ Three options are provided
     modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                            data = data)
 
-1.  Estimated by the function `lmer()` of library `lmerTest`. Employs
-    the Kenward-Roger approximation `method.B(..., option = 3)`
+-   Estimated by the function `lme()` of library `nlme`.
+    `method.B(..., option = 2)` employs degrees of freedom equivalent to
+    SAS’ `DDFM=CONTAIN`, Phoenix WinNonlin’s
+    `Degrees of Freedom Residual`, STATISTICA’s `GLM containment`, and
+    Stata’s `dfm=anova`. Implicitly preferred according to the EMA’s Q&A
+    document and hence, the default of the function.
+
+<!-- -->
+
+    modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
+                          data = data)
+
+-   Estimated by the function `lmer()` of library `lmerTest`.
+    `method.B(..., option = 3)` employs the Kenward-Roger approximation
     equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’
     `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected*
     information matrix. Note that SAS with `DDFM=KENWARDROGER` and JMP
@@ -201,8 +201,7 @@ Stata (15.0), and JMP (10.0.2).
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
-Examples
---------
+## Examples
 
 -   Evaluation of the internal reference dataset 01 of [Annex
     II](https://www.ema.europa.eu/en/documents/other/31-annex-ii-statistical-analysis-bioequivalence-study-example-data-set_en.pdf "EMA, 21 September 2016")
@@ -322,8 +321,7 @@ Examples
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
-Installation
-------------
+## Installation
 
 The package requires R ≥3.5.0. However, for the Kenward-Roger
 approximation `method.B(..., option = 3)` R ≥3.6.0 is required.
@@ -358,8 +356,105 @@ approximation `method.B(..., option = 3)` R ≥3.6.0 is required.
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
-Disclaimer
-----------
+## Session Information
+
+Inspect this information for reproducibility. Of particular importance
+are the versions of R and the packages used to create this workflow. It
+is considered good practice to record this information with every
+analysis.  
+Version 1.0.15.9999 built 2020-10-27 with R 4.0.3.
+
+    options(width = 80)
+    devtools::session_info()
+    # - Session info ---------------------------------------------------------------
+    #  setting  value                       
+    #  version  R version 4.0.3 (2020-10-10)
+    #  os       Windows 7 x64 SP 1          
+    #  system   x86_64, mingw32             
+    #  ui       RTerm                       
+    #  language EN                          
+    #  collate  German_Germany.1252         
+    #  ctype    German_Germany.1252         
+    #  tz       Europe/Vienna               
+    #  date     2020-10-27                  
+    # 
+    # - Packages -------------------------------------------------------------------
+    #  package       * version     date       lib source        
+    #  assertthat      0.2.1       2019-03-21 [1] CRAN (R 4.0.0)
+    #  backports       1.1.10      2020-09-15 [1] CRAN (R 4.0.2)
+    #  boot            1.3-25      2020-04-26 [1] CRAN (R 4.0.3)
+    #  callr           3.5.1       2020-10-13 [1] CRAN (R 4.0.3)
+    #  cellranger      1.1.0       2016-07-27 [1] CRAN (R 4.0.0)
+    #  cli             2.1.0       2020-10-12 [1] CRAN (R 4.0.3)
+    #  colorspace      1.4-1       2019-03-18 [1] CRAN (R 4.0.0)
+    #  crayon          1.3.4       2017-09-16 [1] CRAN (R 4.0.0)
+    #  cubature        2.0.4.1     2020-07-06 [1] CRAN (R 4.0.2)
+    #  desc            1.2.0       2018-05-01 [1] CRAN (R 4.0.0)
+    #  devtools        2.3.2       2020-09-18 [1] CRAN (R 4.0.2)
+    #  digest          0.6.27      2020-10-24 [1] CRAN (R 4.0.3)
+    #  dplyr           1.0.2       2020-08-18 [1] CRAN (R 4.0.2)
+    #  ellipsis        0.3.1       2020-05-15 [1] CRAN (R 4.0.0)
+    #  evaluate        0.14        2019-05-28 [1] CRAN (R 4.0.0)
+    #  fansi           0.4.1       2020-01-08 [1] CRAN (R 4.0.0)
+    #  fs              1.5.0       2020-07-31 [1] CRAN (R 4.0.2)
+    #  generics        0.0.2       2018-11-29 [1] CRAN (R 4.0.0)
+    #  ggplot2         3.3.2       2020-06-19 [1] CRAN (R 4.0.2)
+    #  glue            1.4.2       2020-08-27 [1] CRAN (R 4.0.2)
+    #  gtable          0.3.0       2019-03-25 [1] CRAN (R 4.0.0)
+    #  htmltools       0.5.0       2020-06-16 [1] CRAN (R 4.0.0)
+    #  knitr           1.30        2020-09-22 [1] CRAN (R 4.0.2)
+    #  lattice         0.20-41     2020-04-02 [1] CRAN (R 4.0.2)
+    #  lifecycle       0.2.0       2020-03-06 [1] CRAN (R 4.0.0)
+    #  lme4            1.1-25      2020-10-23 [1] CRAN (R 4.0.3)
+    #  lmerTest        3.1-3       2020-10-23 [1] CRAN (R 4.0.3)
+    #  magrittr        1.5         2014-11-22 [1] CRAN (R 4.0.0)
+    #  MASS            7.3-53      2020-09-09 [1] CRAN (R 4.0.2)
+    #  Matrix          1.2-18      2019-11-27 [1] CRAN (R 4.0.2)
+    #  memoise         1.1.0       2017-04-21 [1] CRAN (R 4.0.0)
+    #  minqa           1.2.4       2014-10-09 [1] CRAN (R 4.0.0)
+    #  munsell         0.5.0       2018-06-12 [1] CRAN (R 4.0.0)
+    #  mvtnorm         1.1-1       2020-06-09 [1] CRAN (R 4.0.0)
+    #  nlme            3.1-150     2020-10-24 [1] CRAN (R 4.0.3)
+    #  nloptr          1.2.2.2     2020-07-02 [1] CRAN (R 4.0.2)
+    #  numDeriv        2016.8-1.1  2019-06-06 [1] CRAN (R 4.0.0)
+    #  pbkrtest        0.4-8.6     2020-02-20 [1] CRAN (R 4.0.0)
+    #  pillar          1.4.6       2020-07-10 [1] CRAN (R 4.0.2)
+    #  pkgbuild        1.1.0       2020-07-13 [1] CRAN (R 4.0.2)
+    #  pkgconfig       2.0.3       2019-09-22 [1] CRAN (R 4.0.0)
+    #  pkgload         1.1.0       2020-05-29 [1] CRAN (R 4.0.0)
+    #  PowerTOST       1.5-2       2020-10-27 [1] CRAN (R 4.0.3)
+    #  prettyunits     1.1.1       2020-01-24 [1] CRAN (R 4.0.0)
+    #  processx        3.4.4       2020-09-03 [1] CRAN (R 4.0.2)
+    #  ps              1.4.0       2020-10-07 [1] CRAN (R 4.0.2)
+    #  purrr           0.3.4       2020-04-17 [1] CRAN (R 4.0.0)
+    #  R6              2.4.1       2019-11-12 [1] CRAN (R 4.0.0)
+    #  Rcpp            1.0.5       2020-07-06 [1] CRAN (R 4.0.2)
+    #  readxl          1.3.1       2019-03-13 [1] CRAN (R 4.0.0)
+    #  remotes         2.2.0       2020-07-21 [1] CRAN (R 4.0.2)
+    #  replicateBE   * 1.0.15.9999 2020-10-27 [1] local         
+    #  rlang           0.4.8       2020-10-08 [1] CRAN (R 4.0.3)
+    #  rmarkdown       2.5         2020-10-21 [1] CRAN (R 4.0.3)
+    #  rprojroot       1.3-2       2018-01-03 [1] CRAN (R 4.0.0)
+    #  scales          1.1.1       2020-05-11 [1] CRAN (R 4.0.0)
+    #  sessioninfo     1.1.1       2018-11-05 [1] CRAN (R 4.0.0)
+    #  statmod         1.4.35      2020-10-19 [1] CRAN (R 4.0.3)
+    #  stringi         1.5.3       2020-09-09 [1] CRAN (R 4.0.2)
+    #  stringr         1.4.0       2019-02-10 [1] CRAN (R 4.0.0)
+    #  TeachingDemos   2.12        2020-04-07 [1] CRAN (R 4.0.0)
+    #  testthat        2.3.2       2020-03-02 [1] CRAN (R 4.0.0)
+    #  tibble          3.0.4       2020-10-12 [1] CRAN (R 4.0.3)
+    #  tidyselect      1.1.0       2020-05-11 [1] CRAN (R 4.0.0)
+    #  usethis         1.6.3       2020-09-17 [1] CRAN (R 4.0.2)
+    #  vctrs           0.3.4       2020-08-29 [1] CRAN (R 4.0.2)
+    #  withr           2.3.0       2020-09-22 [1] CRAN (R 4.0.2)
+    #  xfun            0.18        2020-09-29 [1] CRAN (R 4.0.2)
+    #  yaml            2.2.1       2020-02-01 [1] CRAN (R 4.0.0)
+    # 
+    # [1] D:/Program Files/R/R-4.0.3/library
+
+<small>[TOC ↩](#user-content-replicatebe)</small>
+
+## Disclaimer
 
 *Package offered for Use without any Guarantees and Absolutely No
 Warranty. No Liability is accepted for any Loss and Risk to Public
