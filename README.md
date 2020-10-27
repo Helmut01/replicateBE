@@ -40,6 +40,10 @@ checks](https://cranchecks.info/badges/worst/replicateBE)](https://cran.r-projec
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)](https://r-pkg.org/pkg/replicateBE)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/last-month/replicateBE?color=green)](https://r-pkg.org/pkg/replicateBE)
+![code
+size](https://img.shields.io/github/languages/code-size/Helmut01/replicateBE?color=green)
+![repo
+size](https://img.shields.io/github/repo-size/Helmut01/replicateBE?color=yellow)
 
     # Version 1.0.15.9999 built 2020-10-27 with R 4.0.3 
     # (development version not on CRAN).
@@ -380,7 +384,7 @@ Version 1.0.15.9999 built 2020-10-27 with R 4.0.3.
     #  collate  German_Germany.1252         
     #  ctype    German_Germany.1252         
     #  tz       Europe/Vienna               
-    #  date     2020-10-27                  
+    #  date     2020-10-28                  
     # 
     # - Packages -------------------------------------------------------------------
     #  package       * version     date       lib source        
