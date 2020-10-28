@@ -45,18 +45,21 @@ size](https://img.shields.io/github/languages/code-size/Helmut01/replicateBE?col
 ![repo
 size](https://img.shields.io/github/repo-size/Helmut01/replicateBE?color=yellow)
 
-    # Version 1.0.15.9999 built 2020-10-27 with R 4.0.3 
-    # (development version not on CRAN).
+Version 1.0.15.9999 built 2020-10-27 with R 4.0.3 (development version
+not on CRAN).
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
 ## Introduction
 
-The library provides data sets (internal `.rda` and in CSV-format in
-`/extdata/`) which support users in a black-box performance
-qualification (PQ) of their software installations. Users can perform
-analysis of their own data imported from CSV- and Excel-files. The
-methods given by the EMA in [Annex
+The library provides data sets (internal `.rda` and in <span
+title="Character Separated Variables">CSV</span>-format in `/extdata/`)
+which support users in a black-box performance qualification (PQ) of
+their software installations. Users can perform analysis of their own
+data imported from <span
+title="Character Separated Variables">CSV</span>- and Excel-files. The
+methods given by the <span title="European Medicines Agency">EMA</span>
+in [Annex
 I](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf "EMA/582648/2016, 21 September 2016")
 for reference-scaling according to the EMA’s [Guideline on the
 Investigation of
@@ -81,7 +84,8 @@ for reference-scaling of *AUC*).
 Called internally by functions `method.A()` and `method.B()`. A linear
 model of log-transformed pharmacokinetic (PK) responses and effects  
     *sequence*, *subject(sequence)*, *period*  
-where all effects are fixed (*i.e.*, ANOVA). Estimated by the function
+where all effects are fixed (*i.e.*, <span
+title="Analysis of Variance">ANOVA</span>). Estimated by the function
 `lm()` of library `stats`.
 
     modCVwR <- lm(log(PK) ~ sequence + subject%in%sequence + period,
@@ -93,10 +97,11 @@ where all effects are fixed (*i.e.*, ANOVA). Estimated by the function
 
 #### Method A
 
-Called by function `method.A()`. A linear model of log-transformed PK
-responses and effects  
+Called by function `method.A()`. A linear model of log-transformed <span
+title="pharmacokinetic">PK</span> responses and effects  
     *sequence*, *subject(sequence)*, *period*, *treatment*  
-where all effects are fixed (*i.e.*, ANOVA). Estimated by the function
+where all effects are fixed (*i.e.*, <span
+title="Analysis of Variance">ANOVA</span>). Estimated by the function
 `lm()` of library `stats`.
 
     modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
@@ -106,8 +111,8 @@ where all effects are fixed (*i.e.*, ANOVA). Estimated by the function
 
 #### Method B
 
-Called by function `method.B()`. A linear model of log-transformed PK
-responses and effects  
+Called by function `method.B()`. A linear model of log-transformed <span
+title="pharmacokinetic">PK</span> responses and effects  
     *sequence*, *subject(sequence)*, *period*, *treatment*  
 where *subject(sequence)* is a random effect and all others are fixed.  
 Three options are provided:
@@ -128,8 +133,10 @@ Three options are provided:
     `method.B(..., option = 2)` employs degrees of freedom equivalent to
     SAS’ `DDFM=CONTAIN`, Phoenix WinNonlin’s
     `Degrees of Freedom Residual`, STATISTICA’s `GLM containment`, and
-    Stata’s `dfm=anova`. Implicitly preferred according to the EMA’s Q&A
-    document and hence, the default of the function.
+    Stata’s `dfm=anova`. Implicitly preferred according to the <span
+    title="European Medicines Agency">EMA</span>’s <span
+    title="Questions &amp; Answers">Q&A</span> document and hence, the
+    default of the function.
 
 <!-- -->
 
@@ -157,10 +164,11 @@ Three options are provided:
 Called by function `ABE()`. The model is identical to
 [Method A](#method-a). Conventional BE limits (80.00 – 125.00%) are
 employed by default. Tighter limits (90.00 – 111.11%) for narrow
-therapeutic index drugs (EMA) or wider limits (75.00 – 133.33%) for
-*C*<sub>max</sub> according to the guidelines of the Gulf Cooperation
-Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, United Arab
-Emirates) and South Africa can be specified.
+therapeutic index drugs (<span
+title="European Medicines Agency">EMA</span>) or wider limits (75.00 –
+133.33%) for *C*<sub>max</sub> according to the guidelines of the Gulf
+Cooperation Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, United
+Arab Emirates) and South Africa can be specified.
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
@@ -201,10 +209,11 @@ Details about the reference datasets:
 
 Results of the 30 reference datasets agree with ones obtained in SAS
 (9.4), Phoenix WinNonlin (6.4 – 8.1), STATISTICA (13), SPSS (22.0),
-Stata (15.0), and JMP (10.0.2): Schütz H, Tomashevskiy M, Labes D,
-Shitova A, González-de la Parra M, Fuglsang A. *Reference Datasets for
-Studies in a Replicate Design Intended for Average Bioequivalence with
-Expanding Limits.* AAPS J. 2020; 22(2): Article 44.
+Stata (15.0), and JMP (10.0.2):  
+Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M,
+Fuglsang A. *Reference Datasets for Studies in a Replicate Design
+Intended for Average Bioequivalence with Expanding Limits.* AAPS J.
+2020; 22(2): Article 44.
 [doi:10.1208/s12248-020-0427-6](https://doi.org/10.1208/s12248-020-0427-6).
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
@@ -296,8 +305,9 @@ Expanding Limits.* AAPS J. 2020; 22(2): Article 44.
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
 -   Evaluation of the internal reference dataset 05 of [Shumaker and
-    Metzler](https://doi.org/10.1177/009286159803200426) by ABE, tighter
-    limits for the narrow therapeutic index drug phenytoin.
+    Metzler](https://doi.org/10.1177/009286159803200426) for <span
+    title="Average Bioequivalence">ABE</span>, tighter limits for the
+    narrow therapeutic index drug phenytoin.
 
 <!-- -->
 
@@ -334,7 +344,8 @@ Expanding Limits.* AAPS J. 2020; 22(2): Article 44.
 The package requires R ≥3.5.0. However, for the Kenward-Roger
 approximation `method.B(..., option = 3)` R ≥3.6.0 is required.
 
--   Install the released version from CRAN:
+-   Install the released version from <span
+    title="The Comprehensive R Archive Network">CRAN</span>:
 
 <!-- -->
 
@@ -354,7 +365,8 @@ approximation `method.B(..., option = 3)` R ≥3.6.0 is required.
 
     -   Download
         [Rtools](https://cran.r-project.org/bin/windows/Rtools/) from
-        CRAN and follow the suggestions of the installer.
+        <span title="The Comprehensive R Archive Network">CRAN</span>
+        and follow the suggestions of the installer.
     -   Install `devtools` and build the development version by:
 
 <!-- -->
