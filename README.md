@@ -3,7 +3,7 @@ replicateBE
 
 -   [Comparative BA-calculation for the EMA’s Average Bioequivalence
     with Expanding Limits
-    (ABEL)](#user-content-comparative-ba-calculation-for-the-emas-average-bioequivalence-with-expanding-limits-abel)
+    (ABEL)](#comparative-ba-calculation-for-the-emas-average-bioequivalence-with-expanding-limits-abel)
 -   [Introduction](#user-content-introduction)
     -   [Methods](#user-content-methods)
         -   [Estimation of *CV*<sub>wR</sub> (and *CV*<sub>wT</sub> in
@@ -166,9 +166,9 @@ Called by function `ABE()`. The model is identical to
 employed by default. Tighter limits (90.00 – 111.11%) for narrow
 therapeutic index drugs (<span
 title="European Medicines Agency">EMA</span>) or wider limits (75.00 –
-133.33%) for *C*<sub>max</sub> according to the guidelines of the Gulf
+133.33%) for *C*<sub>max</sub> according to the guideline of the Gulf
 Cooperation Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, United
-Arab Emirates) and South Africa can be specified.
+Arab Emirates) can be specified.
 
 <small>[TOC ↩](#user-content-replicatebe)</small>
 
@@ -396,7 +396,7 @@ Version 1.0.15.9999 built 2020-10-27 with R 4.0.3.
     #  collate  German_Germany.1252         
     #  ctype    German_Germany.1252         
     #  tz       Europe/Vienna               
-    #  date     2020-10-28                  
+    #  date     2020-11-27                  
     # 
     # - Packages -------------------------------------------------------------------
     #  package       * version     date       lib source        
