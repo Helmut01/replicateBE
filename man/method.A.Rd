@@ -388,7 +388,7 @@ print(x, row.names = FALSE)
 # Assess the Type I Error and iteratively adjust alpha if necessary.
 # Not run: due to timing policy of CRAN for examples
 \donttest{
-method.A(adjust = TRUE, path.out = "~/", data = rds01)}
+method.A(adjust = TRUE, path.out = tempdir(), data = rds01)}
 # Should give in the result file:
 #   Assessment of the empiric Type I Error (TIE); 1,000,000 studies simulated.
 #     TIE not > nominal 0.05; consumer risk is controlled.
@@ -396,7 +396,7 @@ method.A(adjust = TRUE, path.out = "~/", data = rds01)}
 # Same with recalculation based on outliers, iteratively adjust alpha
 # if necessary
 \donttest{
-method.A(ola = TRUE, path.out = "~/", adjust = TRUE, data = rds01)}
+method.A(ola = TRUE, path.out = tempdir(), adjust = TRUE, data = rds01)}
 # Should give in the result file:
 #   Assessment of the empiric Type I Error (TIE) based on original CVwR;
 #   1,000,000 studies simulated.
@@ -408,7 +408,8 @@ method.A(ola = TRUE, path.out = "~/", adjust = TRUE, data = rds01)}
 #
 # Repeat the evaluation with the adjusted alpha.
 \donttest{
-method.A(alpha = 0.033416, path.out = "~/", ola = TRUE, adjust = TRUE, data = rds01)}
+method.A(alpha = 0.033416, path.out = tempdir(), ola = TRUE,
+         adjust = TRUE, data = rds01)}
 # Should give in the result file:
 #   alpha              :   0.033416 (93.3168\% CI)
 #   Confidence interval: 106.16\% ... 126.00\%  pass

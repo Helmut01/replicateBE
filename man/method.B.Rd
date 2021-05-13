@@ -356,10 +356,10 @@ Food and Drug Administration, Office of Generic Drugs. \emph{Draft Guidance on W
 # print to file.
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
-# for 'path.out' in order to save the result file. Here to user's home
+# for 'path.out' in order to save the result file. Here to R's temporary
 # folder is used for simplicity.
 path.in <- paste0(find.package("replicateBE"), "/extdata/")
-method.B(path.in = path.in, path.out = "~/", file = "DS", set = "01", ext = "csv")
+method.B(path.in = path.in, path.out = tempdir(), file = "DS", set = "01", ext = "csv")
 # Should result in:
 #   CVwT               :  35.16\%
 #   swT                :   0.34138
@@ -372,9 +372,9 @@ method.B(path.in = path.in, path.out = "~/", file = "DS", set = "01", ext = "csv
 #   Point estimate     : 115.73\%              pass
 #   Mixed (CI & PE)    :                      pass
 #
-# Internal reference dataset 01 used and results to the home
+# Internal reference dataset 01 used and results to R's temporary
 # folder. Additional outlier-analyis and box plot saved as PNG.
-method.B(ola = TRUE, path.out = "~/", plot.bxp = TRUE, data = rds01)
+method.B(ola = TRUE, path.out = tempdir(), plot.bxp = TRUE, data = rds01)
 # Should give the same as above. Additionally:
 #   Recalculation due to presence of 2 outliers (subj. 45|52)
 #   CVwR (outl. excl.) :  32.16\% (reference-scaling applicable)

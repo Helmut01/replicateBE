@@ -4,6 +4,7 @@ Development version
 
 ## Minor changes
 
+  * `path.out` in examples changed from `"~/"` to `tempdir()`. CRAN policy violation noted by B. Ripley.
   * `method.B.R`: `options(contrasts = c("contr.treatment", "contr.poly"))` is the default. If a user has set other ones, restore them on exit.
 
 # replicateBE 1.0.15

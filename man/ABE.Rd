@@ -234,7 +234,7 @@ European Medicines Agency, Committee for Medicinal Products for Human Use. \emph
 # for 'path.out' in order to save the result file. Here to user's home
 # folder is used for simplicity.
 path.in <- paste0(find.package("replicateBE"), "/extdata/")
-ABE(path.in = path.in, path.out = "~/", file = "DS", set = "02", ext = "csv")
+ABE(path.in = path.in, path.out = tempdir(), file = "DS", set = "02", ext = "csv")
 # Should result in:
 #   BE-limits          :  80.00\% ... 125.00\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass
@@ -245,7 +245,7 @@ x <- ABE(details = TRUE, print = FALSE, data = rds02)
 print(x, row.names = FALSE)
 \donttest{
 # Assuming a NTID and assess BE with narrower limits.
-ABE(path.out = "~/", data = rds02, theta1 = 0.90)
+ABE(path.out = tempdir(), data = rds02, theta1 = 0.90)
 # Should result in:
 #   BE-limits          :  90.00\% ... 111.11\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass
