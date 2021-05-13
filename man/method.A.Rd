@@ -347,11 +347,12 @@ Labes D, \enc{Schütz}{Schuetz} H. \emph{Inflation of Type I Error in the Evalua
 # print to file.
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
-# for 'path.out' in order to save the result file. Here to user's home
-# folder is used for simplicity.
+# for 'path.out' in order to save the result file. Here R's
+# temporary folder is used.
 \donttest{
 path.in  <- paste0(find.package("replicateBE"), "/extdata/")
-method.A(path.in = path.in, path.out = "~/", file = "DS", set = "01", ext = "csv")
+method.A(path.in = path.in, path.out = tempdir(), file = "DS",
+set = "01", ext = "csv")
 # Should result in:
 #   CVwT               :  35.16\%
 #   swT                :   0.34138
@@ -364,9 +365,9 @@ method.A(path.in = path.in, path.out = "~/", file = "DS", set = "01", ext = "csv
 #   Point estimate     : 115.66\%              pass
 #   Mixed (CI & PE)    :                      pass
 #
-# Internal reference dataset 01 used and results to the home
-# folder. Additional outlier-analyis.
-method.A(ola = TRUE, path.out = "~/", data = rds01)
+# Internal reference dataset 01 used and results to R's
+# temporary folder. Additional outlier-analyis.
+method.A(ola = TRUE, path.out = tempdir(), data = rds01)
 # Should give the same as above. Additionally:
 #   Outlier fence      :  2×IQR of studentized residuals.
 #   Recalculation due to presence of 2 outliers (subj. 45|52)
