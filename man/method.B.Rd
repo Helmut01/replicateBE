@@ -283,7 +283,7 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
   highly incomplete dataset 14 \sQuote{Method A} was \emph{liberal} (passing
   by \acronym{ANOVA} but failing by the mixed effects model).\cr\cr
   Reference-scaling is acceptable for \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\textrm{max}}{Cmax}} (immediate release products) and \ifelse{html}{\out{<em>C</em><sub>max,ss</sub>}}{\eqn{C_\textrm{max,ss}}{Cmax,ss}},
-  \ifelse{html}{\out{<em>C</em><sub>&tau;,ss</sub>}}{\eqn{C_\textrm{\tau,ss}}}, and
+  \ifelse{html}{\out{<em>C</em><sub>&tau;,ss</sub>}}{\eqn{C_{\tau,ss}}{tau,ss}}, and
   \ifelse{html}{\out{<sub>partial</sub><em>AUC</em>}}{\eqn{_\textrm{partial}AUC}{partialAUC}} (modified release products). However, quoting the \acronym{BE} guideline:\cr
     \cite{The applicant should justify that the calculated intra-subject
     variability is a reliable estimate and that it is not the result of
