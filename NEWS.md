@@ -1,6 +1,10 @@
+# replicateBE 1.0.17.9999
+
+Development version.
+
 # replicateBE 1.0.17
 
-Submitted to CRAN 2021-05-14
+On CRAN 2021-05-14.
 
 ## Minor changes
 

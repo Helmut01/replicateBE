@@ -149,7 +149,7 @@ Relevant data are used for the estimation of *CV*~wR~ (and *CV*~wT~ in full repl
 
 ## Incomplete data{#incomplete}
 ### Estimation of _CV_~w~{#setCW}
-If a subject drops out from the study in a higher period, data of repeated administrations will still be used for the estimation of *CV*~w~, although data of the other treatment might be missing. Examples for the estimation of *CV*~wR~ (missings denoted by `·`):\
+If a subject drops out from the study in a higher period, data of repeated administrations will still be used for the estimation of *CV*~w~, although data of the other treatment might be missing. Examples for the estimation of *CV*~wR~ (missing values denoted by `·`):\
 
 `RTRT` | `RTR·`\
 `TRRT` | `TRR·`\
@@ -157,7 +157,7 @@ If a subject drops out from the study in a higher period, data of repeated admin
 `RRT` | `RR··`\
 
 ### Assessment of BE{#setBE}
-If a subject drops out from the study in a higher period, data with at least one administration of the Test and Reference will be used in the assessment of BE. Examples (missings denoted by `·`):\
+If a subject drops out from the study in a higher period, data with at least one administration of the Test and Reference will be used in the assessment of BE. Examples (missing values denoted by `·`):\
 
 `TRTR` | `TRT·` or | `TR··`\
 `RTRT` | `RTR·` or | `RT··`\
@@ -248,19 +248,19 @@ Reference-scaling is acceptable for *C*~max~ (immediate release products: <abbr 
 ## BE limits, PE restriction, rounding issues{#BElim}
 The limits can be expanded based on *CV*~wR~.
 
-* *CV~wR~* ≤ 30\%\
+* *CV*~wR~ ≤ 30\%\
     Lower cap, *i.e.*, no scaling, conventional limits:\
-    $\small{\left[{L,U}\right] = {80.00 - 125.00\%}}$
-* 30\% < *CV~wR~* ≤ 50%\
+    $\small{\left\{{L,U}\right\} = 80.00 - 125.00\%}$
+* 30\% < *CV*~wR~ ≤ 50%\
     Expanded limits based on $s_\textrm{wR}$:\
-    $\small{\left[ {L,\,U} \right] = 100\cdot \exp (\mp 0.760 \cdot {s_\textrm{wR}})}$
+    $\small{\left\{L,\,U\right\} = 100\cdot \exp(\mp 0.760\cdot{s_\textrm{wR}})}$
 * *CV*~wR~ > 50\%\
     Upper cap, *i.e.*, applying $\small{s^*_\textrm{wR}=\sqrt{\log_{e}(CV_\textrm{cap}^{2}+1)}}$ in the expansion formula or\
-    $\small{\left[ {L,U} \right] = {69.84 - 143.19\%}}$.
+    $\small{\left\{L,U\right\} = 69.84 - 143.19\%}$.
 
 In reference-scaling a so-called *mixed* (a.k.a. *aggregate*) criterion is applied. In order to pass <abbr title="Bioequivalence">BE</abbr>,
 
-* the 90\% confidence interval has to lie entirely within the acceptance range $\small{\left[ {L,U} \right]}$ _and_
+* the 90\% confidence interval has to lie entirely within the acceptance range $\small{\left\{L,U\right\}}$ _and_
 * the point estimate (PE) has to lie within 80.00 – 125.00\%.
 
 To avoid discontinuities due to double rounding, expanded limits are calculated in full numeric precision and only the confidence interval is rounded according to the guideline.
