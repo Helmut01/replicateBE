@@ -1,6 +1,10 @@
-# replicateBE 1.0.17.9999
+# replicateBE 1.1.9000
 
 Development version.
+
+## Major changes
+
+  * Direct widening to 75.00--133.33\% for _C_~max~ according to the conditions of the Gulf Cooperation Council. New argument `regulator` (`"EMA"` = default or `"GCC"`) in `method.A()` and `method.B()`.
 
 # replicateBE 1.0.17
 

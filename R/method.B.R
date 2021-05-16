@@ -7,15 +7,15 @@
 #################################################
 method.B <- function(alpha = 0.05, path.in, path.out, file,
                      set = "", ext, na = ".", sep = ",", dec = ".",
-                     logtrans = TRUE, ola = FALSE, print = TRUE,
-                     details = FALSE, verbose = FALSE, ask = FALSE,
-                     plot.bxp = FALSE, fence = 2, data = NULL,
-                     option = 2) {
+                     logtrans = TRUE, regulator = "EMA", ola = FALSE,
+                     print = TRUE, details = FALSE, verbose = FALSE,
+                     ask = FALSE, plot.bxp = FALSE, fence = 2,
+                     data = NULL, option = 2) {
   exec <- strftime(Sys.time(), usetz=TRUE)
   if (!missing(ext)) ext <- tolower(ext) # case-insensitive
   ret  <- CV.calc(alpha=alpha, path.in=path.in, path.out=path.out,
                   file=file, set=set, ext=ext, na=na, sep=sep,
-                  dec=dec, logtrans=logtrans, ola=ola,
+                  dec=dec, logtrans=logtrans, regulator=regulator, ola=ola,
                   print=print, verbose=verbose, ask=ask,
                   plot.bxp=plot.bxp, fence=fence, data=data)
   logtrans <- ret$logtrans
@@ -265,8 +265,6 @@ method.B <- function(alpha = 0.05, path.in, path.out, file,
     txt <- paste0(txt, "Note: The extra-reference design assumes lacking period effects. ",
                   "The treatment\ncomparison will be biased in the presence of a ",
                   "true period effect.\n")
-  if (res$Design %in% c("TRTR|RTRT|TRRT|RTTR", "TRRT|RTTR|TTRR|RRTT"))
-    txt <- paste0(txt, "Note: Confounded effects; design not recommended.\n")
   if (print & overwrite) {
     res.file <- file(results, open="ab")                        # line endings
     res.str  <- txt                                             # LF (UNIXes, Solaris)

@@ -3,27 +3,27 @@
 ####################################################
 CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                     ext, na, sep = ",", dec = ".", logtrans = TRUE,
-                    ola = FALSE, details = FALSE, adjust = FALSE,
-                    print, verbose = FALSE, ask = FALSE,
+                    regulator, ola = FALSE, details = FALSE,
+                    adjust = FALSE, print, verbose = FALSE, ask = FALSE,
                     theta1 = theta1, theta2 = theta2, plot.bxp = FALSE,
                     fence = 2, data) {
   if (missing(path.in)) path.in <- NULL
   if (missing(data)) data <- NULL
   called.from <- as.character(sys.call(-1))[1]
-  ret   <- get.data(path.in=path.in, path.out=path.out, file=file,
-                    set=set, ext=ext, na=na, sep=sep, dec=dec,
-                    logtrans=logtrans, print=print,
-                    plot.bxp=plot.bxp, data=data)
+  ret   <- get.data(path.in = path.in, path.out = path.out, file = file,
+                    set = set, ext = ext, na = na, sep = sep, dec = dec,
+                    logtrans = logtrans, print = print,
+                    plot.bxp = plot.bxp, data = data)
   logtrans <- ret$logtrans
   ow <- options("digits")
   options(digits=12) # more digits for anova
   on.exit(ow)        # ensure that options are reset if an error occurs
   if (logtrans) {    # use raw data and log-transform internally
     modCVR <- lm(log(PK) ~ sequence + subject%in%sequence + period,
-                           data=ret$ref)
+                           data = ret$ref)
   } else {           # use already log-transformed data
     modCVR <- lm(logPK ~ sequence + subject%in%sequence + period,
-                         data=ret$ref)
+                         data = ret$ref)
   }
   aovCVR <- anova(modCVR)
   msewR  <- aovCVR["Residuals", "Mean Sq"]
@@ -32,18 +32,20 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
   if (ret$design == "full") { # not for the EMA but the WHO
     if (logtrans) {
       modCVT <- lm(log(PK) ~ sequence + subject%in%sequence + period,
-                             data=ret$test)
+                             data = ret$test)
     } else {
       modCVT <- lm(logPK ~ sequence + subject%in%sequence + period,
-                           data=ret$test)
+                           data = ret$test)
     }
     aovCVT <- anova(modCVT)
     msewT  <- aovCVT["Residuals", "Mean Sq"]
     DfCVT  <- aovCVT["Residuals", "Df"]
     CVwT  <- mse2CV(msewT)
     sw.ratio <- sqrt(msewT)/sqrt(msewR)
-    sw.ratio.CI <- c(sw.ratio/sqrt(qf(0.1/2, df1=DfCVT, df2=DfCVR, lower.tail=FALSE)),
-                     sw.ratio/sqrt(qf(1-0.1/2, df1=DfCVT, df2=DfCVR, lower.tail=FALSE)))
+    sw.ratio.CI <- c(sw.ratio/sqrt(qf(0.1/2, df1 = DfCVT, df2 = DfCVR,
+                                      lower.tail = FALSE)),
+                     sw.ratio/sqrt(qf(1-0.1/2, df1 = DfCVT, df2 = DfCVR,
+                                      lower.tail = FALSE)))
     names(sw.ratio.CI) <- c("lower", "upper")
   }
   outlier <- FALSE
@@ -69,8 +71,8 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
       ol.value2 <- as.numeric(bp2$out)
       ol.seq2   <- as.character(ret$ref[names(bp2$out), "sequence"])
       ol.subj2  <- as.character(ret$ref[names(bp2$out), "subject"])
-      pars <- list(boxwex=0.5, boxfill="lightblue", medcol="blue",
-                   outpch=21, outcex=1.35, outcol="red", outbg="#FFCCCC")
+      pars <- list(boxwex = 0.5, boxfill = "lightblue", medcol = "blue",
+                   outpch = 21, outcex = 1.35, outcol = "red", outbg = "#FFCCCC")
       overwrite <- TRUE
       if (as.logical(capabilities("png"))) {
         if (plot.bxp) {   # save in PNG format to path.out
@@ -79,20 +81,20 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
             if(answer != "y") overwrite <- FALSE
           }
           if (overwrite) { # either the file does not exist or should be overwritten
-            png(ret$png.path, width=720, height=720, pointsize=18)
+            png(ret$png.path, width = 720, height = 720, pointsize = 18)
           }
         }
       } else {
         message("png-device is not available; changed to plot.bxp = FALSE")
       }
-      bxp(bp1, xlim=c(0, 3), ylim=c(-1, 1)*max(abs(c(ol.value1, ol.value2))),
-          las=1, ylab="residual", pars=pars, main="")
-      title(main=expression(paste("EMA\u2019s model for ", CV[wR], ":")),
-            line=3, cex.main=1.1)
-      title(main=expression(paste("log(response) ~ sequence + subject(sequence) + period; data = R")),
-            line=2, cex.main=1.05)
-      title(main=bquote(paste("Outlier fence ", .(fence), "\u00D7IQR")),
-            line=1, cex.main=1.05)
+      bxp(bp1, xlim = c(0, 3), ylim = c(-1, 1)*max(abs(c(ol.value1, ol.value2))),
+          las = 1, ylab = "residual", pars = pars, main = "")
+      title(main = expression(paste("EMA\u2019s model for ", CV[wR], ":")),
+            line = 3, cex.main = 1.1)
+      title(main = expression(paste("log(response) ~ sequence + subject(sequence) + period; data = R")),
+            line = 2, cex.main = 1.05)
+      title(main = bquote(paste("Outlier fence ", .(fence), "\u00D7IQR")),
+            line = 1, cex.main = 1.05)
       if (length(names.ol1) == 0) {
         lab.txt <- "no outlier"
       } else {
@@ -100,16 +102,16 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
           lab.txt <- "1 outlier",
           lab.txt <- paste(length(ol.value1), "outliers"))
       } # Note: not /exactly/ equal. SAS uses 'type=2'
-      mtext(paste0("studentized\n(R, ~SAS)\n\n", lab.txt), 1, line=4, at=1)
-      text(rep(1.1, 2), bp1$stats[c(1, 5)], adj=c(0, 0.25), cex=0.8,
+      mtext(paste0("studentized\n(R, ~SAS)\n\n", lab.txt), 1, line = 4, at = 1)
+      text(rep(1.1, 2), bp1$stats[c(1, 5)], adj = c(0, 0.25), cex = 0.8,
            sprintf("%+.3f", bp1$stats[c(1, 5)]))
       if (!identical(ol.value1, numeric(0))) { # only if stud. outlier
-        text(rep(0.9, length(ol.value1)), ol.value1, adj=c(1, 0.25), cex=0.8,
+        text(rep(0.9, length(ol.value1)), ol.value1, adj = c(1, 0.25), cex = 0.8,
              paste0("# ", ol.subj1, " (", ol.seq1, ")"))
-        text(rep(1.1, length(ol.value1)), ol.value1, adj=c(0, 0.25), cex=0.8,
+        text(rep(1.1, length(ol.value1)), ol.value1, adj = c(0, 0.25), cex  =0.8,
              sprintf("%+.3f", ol.value1))
       }
-      bxp(bp2, axes=FALSE, at=2, add=TRUE, pars=pars)
+      bxp(bp2, axes = FALSE, at = 2, add = TRUE, pars = pars)
       if (length(names.ol2) == 0) {
         lab.txt <- "no outlier"
       } else {
@@ -117,16 +119,17 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
           lab.txt <- "1 outlier",
           lab.txt <- paste(length(ol.value2), "outliers"))
       } # Note: not /exactly/ equal. SAS uses 'type=2' and PHX/WNL 'type=6'
-      mtext(paste0("standardized\n(R, ~SAS,\n~Phoenix WinNonlin)\n", lab.txt), 1, line=4, at=2)
-      text(rep(2.1, 2), bp2$stats[c(1, 5)], adj=c(0, 0.25), cex=0.8,
+      mtext(paste0("standardized\n(R, ~SAS,\n~Phoenix WinNonlin)\n", lab.txt), 1,
+            line = 4, at = 2)
+      text(rep(2.1, 2), bp2$stats[c(1, 5)], adj = c(0, 0.25), cex = 0.8,
            sprintf("%+.3f", bp2$stats[c(1, 5)]))
       if (!identical(ol.value2, numeric(0))) { # only if stand. outlier
-        text(rep(1.9, length(ol.value2)), ol.value2, adj=c(1, 0.25), cex=0.8,
+        text(rep(1.9, length(ol.value2)), ol.value2, adj = c(1, 0.25), cex = 0.8,
              paste0("# ", ol.subj2, " (", ol.seq2, ")"))
-        text(rep(2.1, length(ol.value2)), ol.value2, adj=c(0, 0.25), cex=0.8,
+        text(rep(2.1, length(ol.value2)), ol.value2, adj = c(0, 0.25), cex = 0.8,
              sprintf("%+.3f", ol.value2))
       }
-      abline(h=0, lty="dotted")
+      abline(h = 0, lty = "dotted")
       if (plot.bxp && file.exists(ret$png.path)) {
         if (!is.null(dev.list()["png"])) {
           invisible(dev.off(dev.list()["png"]))
@@ -137,10 +140,10 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
       excl <- ret$ref[!ret$ref$subject %in% ol, ]
       if (logtrans) { # use the raw data and log-transform internally
         modCVR.rec <- lm(log(PK) ~ sequence + subject%in%sequence + period,
-                                   data=excl)
+                                   data = excl)
       } else {
         modCVR.rec <- lm(logPK ~ sequence + subject%in%sequence + period,
-                                 data=excl)
+                                 data = excl)
       }
       aovCVR.rec <- anova(modCVR.rec)
       msewR.rec  <- aovCVR.rec["Residuals", "Mean Sq"]
@@ -148,49 +151,71 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
       CVwR.rec   <- mse2CV(msewR.rec)
       if (ret$design == "full") {
         sw.ratio.rec <- sqrt(msewT)/sqrt(msewR.rec)
-        sw.ratio.rec.CI <- c(sw.ratio.rec/sqrt(qf(0.1/2, df1=DfCVT, df2=DfCVR.rec, lower.tail=FALSE)),
-                             sw.ratio.rec/sqrt(qf(1-0.1/2, df1=DfCVT, df2=DfCVR.rec, lower.tail=FALSE)))
+        sw.ratio.rec.CI <- c(sw.ratio.rec/sqrt(qf(0.1/2, df1 = DfCVT,
+                                                  df2 = DfCVR.rec,
+                                                  lower.tail = FALSE)),
+                             sw.ratio.rec/sqrt(qf(1-0.1/2, df1 = DfCVT,
+                                                  df2 = DfCVR.rec,
+                                                  lower.tail = FALSE)))
         names(sw.ratio.rec.CI) <- c("lower", "upper")
       }
       if (verbose) {
         stud.res.whiskers <- signif(range(bp1$stats[, 1]), 7)
-        stud.res.outliers <- data.frame(ol.subj1, ol.seq1, signif(ol.value1, 7))#
+        stud.res.outliers <- data.frame(ol.subj1, ol.seq1, signif(ol.value1, 7))
         names(stud.res.outliers) <- c("subject", "sequence", "stud.res")
         stand.res.whiskers <- signif(range(bp2$stats[, 1]), 7)
-        stand.res.outliers <- data.frame(ol.subj2, ol.seq2, signif(ol.value2, 7))#
+        stand.res.outliers <- data.frame(ol.subj2, ol.seq2, signif(ol.value2, 7))
         names(stand.res.outliers) <- c("subject", "sequence", "stand.res")
         cat(paste0("\nOutlier analysis\n (externally) studentized residuals",
                    "\n Limits (", fence, "\u00D7IQR whiskers): ",
                    stud.res.whiskers[1], ", ", stud.res.whiskers[2],
-                   "\n Outliers:\n")); print(stud.res.outliers, row.names=FALSE)
-        cat(paste0("\n standarized (internally studentized) residuals\n Limits (", fence, "\u00D7IQR whiskers): ",
-                   stand.res.whiskers[1], ", ", stand.res.whiskers[2],
-                   "\n Outliers:\n"))
+                   "\n Outliers:\n")); print(stud.res.outliers, row.names = FALSE)
+        cat(paste0("\n standarized (internally studentized) residuals\n Limits (",
+                   fence, "\u00D7IQR whiskers): ", stand.res.whiskers[1], ", ",
+                   stand.res.whiskers[2], "\n Outliers:\n"))
         # since standardized residuals are more liberal,
         # we have to deal with such a special case
         if (nrow(stand.res.outliers) == 0) {
           cat(" none detected\n")
         } else {
-          print(stand.res.outliers, row.names=FALSE)
+          print(stand.res.outliers, row.names = FALSE)
         }
       } # EO verbose
     } # EO >= 1 outlier
   } # EO outlier analysis (only if called from method.A()/method.B() & ola=TRUE)
   if (!called.from == "ABE") {
-    reg_set <- reg_const("EMA")
-    BE <- as.numeric(scABEL(CV=CVwR, regulator="EMA"))
+    if (regulator == "EMA") {
+      reg_set <- reg_const("EMA")
+      BE <- as.numeric(scABEL(CV = CVwR, regulator = "EMA"))
+    }
+    if (regulator == "GCC") {
+      reg_set <- reg_const("GCC")
+      BE <- as.numeric(scABEL(CV = CVwR, regulator = "GCC"))
+    }
   } else {
     BE <- c(theta1, theta2)
   }
   txt <- ret$txt
   if (called.from != "ABE") { # only for scaling
-    txt <- paste0(ret$txt, "\nSwitching CV       : ",
-                  sprintf("%6.2f%%", 100*reg_set$CVswitch),
-                  "\nScaling cap        : ",
-                  sprintf("%6.2f%%", 100*reg_set$CVcap),
-                  "\nRegulat. const (k) :   ",
-                  sprintf("%.3f", reg_set$r_const),
-                  "\nGMR restriction    :  80.00% ... 125.00%")
+    if (regulator == "EMA") {
+      txt <- paste0(ret$txt,
+                    "\nRegulator          : EMA",
+                    "\nSwitching CV       : ",
+                    sprintf("%6.2f%%", 100*reg_set$CVswitch),
+                    "\nScaling cap        : ",
+                    sprintf("%6.2f%%", 100*reg_set$CVcap),
+                    "\nRegul. constant (k):  ",
+                    sprintf("%.3f", reg_set$r_const))
+    }
+    if (regulator == "GCC") {
+      txt <- paste0(ret$txt,
+                    "\nRegulator          : GCC",
+                    "\nSwitching CV       : ",
+                    sprintf("%6.2f%%", 100*reg_set$CVswitch))
+    }
+    if (CVwR > 0.3) {
+      txt <- paste0(txt, "\nGMR restriction    :  80.00% ... 125.00%")
+    }
   }
   if (ret$design == "full") {
     # sw.ratio <- CV2se(CVwT)/CV2se(CVwR) # we should already have it, right?
@@ -207,14 +232,21 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
     if (CVwR <= 0.3) txt <- paste0(txt, "not ")
     txt <- paste0(txt, "applicable)")
     if (CVwR <= 0.3) {
-      txt <- paste0(txt, "\nUnscaled BE-limits :  80.00% ... 125.00%")
+      txt <- paste0(txt, "\nBE-limits          :  80.00% ... 125.00%")
     } else {
       txt <- paste0(txt, "\nswR                :   ",
                     sprintf("%.5f", CV2se(CVwR)))
-      txt <- paste0(txt, "\nExpanded limits    : ",
-                    sprintf("%6.2f%% ... %.2f%%",
-                            100*BE[1], 100*BE[2]), " [100exp(\u00B1",
-                    sprintf("%.3f", reg_set$r_const), "\u00B7swR)]")
+      if (regulator == "EMA") {
+        txt <- paste0(txt, "\nExpanded limits    : ",
+                      sprintf("%6.2f%% ... %.2f%%",
+                      100*BE[1], 100*BE[2]), " [100exp(\u00B1",
+                      sprintf("%.3f", reg_set$r_const), "\u00B7swR)]")
+      }
+      if (regulator == "GCC") {
+        txt <- paste0(txt, "\nWidened limits      :",
+                      sprintf("%6.2f%% ... %.2f%%",
+                      100*BE[1], 100*BE[2]))
+      }
     }
     if (ret$design == "full") {
       txt <- paste0(txt, "\nswT / swR          :   ",

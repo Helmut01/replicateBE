@@ -12,9 +12,10 @@ Comparative BA-calculation for Average Bioequivalence with Expanding Limits by t
 }
 \usage{
 method.B(alpha = 0.05, path.in, path.out, file, set = "", ext,
-         na = ".", sep = ",", dec = ".", logtrans = TRUE, ola = FALSE,
-         print = TRUE, details = FALSE, verbose = FALSE,
-         ask = FALSE, plot.bxp = FALSE, fence = 2, data = NULL, option = 2)
+         na = ".", sep = ",", dec = ".", logtrans = TRUE,
+         regulator = "EMA", ola = FALSE, print = TRUE, details = FALSE,
+         verbose = FALSE, ask = FALSE, plot.bxp = FALSE, fence = 2,
+         data = NULL, option = 2)
 }
 \arguments{
   \item{alpha}{
@@ -68,6 +69,11 @@ method.B(alpha = 0.05, path.in, path.out, file, set = "", ext,
     will be internally log-transformed and used in the calculations. If
     \code{FALSE} the already log-transformed data (provided in the column
     \verb{logPK}) will be used in the calculations.
+  }
+  \item{regulator}{
+    Set regulatory conditions. If \code{"EMA"} (default) conventional ABEL will
+    be used. If \code{"GCC"} direct widening to 75.00--133.33\% will be used if
+    \code{CVwR>30\%}.
   }
   \item{ola}{
     Defaults to \code{FALSE}. If \code{TRUE} an outlier analysis based

@@ -3,31 +3,31 @@ replicateBE
 
 -   [Comparative BA-calculation for the EMA’s Average Bioequivalence
     with Expanding Limits
-    (ABEL)](#user-content-comparative-ba-calculation-for-the-emas-average-bioequivalence-with-expanding-limits-abel)
--   [Introduction](#user-content-introduction)
-    -   [Methods](#user-content-methods)
+    (ABEL)](#comparative-ba-calculation-for-the-emas-average-bioequivalence-with-expanding-limits-abel)
+-   [Introduction](#introduction)
+    -   [Methods](#methods)
         -   [Estimation of *CV*<sub>wR</sub> (and *CV*<sub>wT</sub> in
             full replicate
-            designs)](#user-content-estimation-of-cvwr-and-cvwt-in-full-replicate-designs)
-        -   [Method A](#user-content-method-a)
-        -   [Method B](#user-content-method-b)
-        -   [Average Bioequivalence](#user-content-average-bioequivalence)
-    -   [Tested designs](#user-content-tested-designs)
+            designs)](#estimation-of-cvwr-and-cvwt-in-full-replicate-designs)
+        -   [Method A](#method-a)
+        -   [Method B](#method-b)
+        -   [Average Bioequivalence](#average-bioequivalence)
+    -   [Tested designs](#tested-designs)
         -   [Four period (full)
-            replicates](#user-content-four-period-full-replicates)
+            replicates](#four-period-full-replicates)
         -   [Three period (full)
-            replicates](#user-content-three-period-full-replicates)
-        -   [Two period (full) replicate](#user-content-two-period-full-replicate)
+            replicates](#three-period-full-replicates)
+        -   [Two period (full) replicate](#two-period-full-replicate)
         -   [Three period (partial)
-            replicates](#user-content-three-period-partial-replicates)
-    -   [Cross-validation](#user-content-cross-validation)
--   [Examples](#user-content-examples)
--   [Installation](#user-content-installation)
--   [Session Information](#user-content-session-information)
--   [Disclaimer](#user-content-disclaimer)
+            replicates](#three-period-partial-replicates)
+    -   [Cross-validation](#cross-validation)
+-   [Examples](#examples)
+-   [Installation](#installation)
+-   [Session Information](#session-information)
+-   [Disclaimer](#disclaimer)
 
 <!-- README.md is generated from README.Rmd. Please edit that file
-     Don't forget to change [#foo] to [#user-content-foo] in README.md -
+     Don't forget to change [#foo] to [#foo] in README.md -
      otherwise, the links in the TOC on GitHub will not work. -->
 
 [![License: GPL
@@ -45,8 +45,8 @@ size](https://img.shields.io/github/languages/code-size/Helmut01/replicateBE?col
 ![repo
 size](https://img.shields.io/github/repo-size/Helmut01/replicateBE?color=yellow)
 
-Version 1.0.16 built 2021-05-13 with R 4.0.5 (development version not on
-CRAN).
+Version 1.1.9000 built 2021-05-15 with R 4.0.5 (development version not
+on CRAN).
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
 
@@ -58,24 +58,27 @@ which support users in a black-box performance qualification (PQ) of
 their software installations. Users can perform analysis of their own
 data imported from <span
 title="Character Separated Variables">CSV</span>- and Excel-files. The
-methods given by the <span title="European Medicines Agency">EMA</span>
-in [Annex
-I](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf "EMA/582648/2016, 21 September 2016")
-for reference-scaling according to the EMA’s [Guideline on the
-Investigation of
-Bioequivalence](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf "EMA, January 2010")
-are implemented. Potential influence of outliers on the variability of
-the reference can be assessed by box plots of studentized and
-standardized residuals as suggested at a joint [EGA/EMA
-workshop](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf "London, June 2010").  
+methods given by the <span
+title="European Medicines Agency">EMA</span><sup id="a1">[1](#f1)</sup>
+for reference-scaling according to the <span
+title="European Medicines Agency">EMA</span>’s Guideline on the
+Investigation of Bioequivalence<sup id="a2">[2](#f2)</sup> are
+implemented. Potential influence of outliers on the variability of the
+reference can be assessed by box plots of studentized and standardized
+residuals as suggested at a joint <span
+title="European Generic Medicines Association">EGA</span>/<span
+title="European Medicines Agency">EMA</span>
+workshop.<sup id="a3">[3](#f3)</sup>  
+Direct widening of the acceptance range as recommended by the Gulf
+Cooperation Council<sup id="a4">[4](#f4)</sup> (Bahrain, Kuwait, Oman,
+Qatar, Saudi Arabia, United Arab Emirates) is provided as well.  
 In full replicate designs the variability of test and reference
 treatments can be assessed by *s*<sub>wT</sub>/*s*<sub>wR</sub> and the
 upper confidence limit of *σ*<sub>wT</sub>/*σ*<sub>wR</sub> (required
-for the [WHO’s
-approach](https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf "Geneva, November 2018")
-for reference-scaling of *AUC*).
+for the <span title="World Health Organization">WHO</span>’s
+approach<sup id="a5">[5](#f5)</sup> for reference-scaling of *AUC*).
 
-<small>[TOC ↩](#user-content-replicatebe)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ### Methods
 
@@ -93,7 +96,7 @@ title="Analysis of Variance">ANOVA</span>). Estimated by the function
     modCVwT <- lm(log(PK) ~ sequence + subject%in%sequence + period,
                             data = data[data$treatment == "T", ])
 
-<small>[TOC ↩](#user-content-replicatebe)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 #### Method A
 
@@ -107,7 +110,7 @@ title="Analysis of Variance">ANOVA</span>). Estimated by the function
     modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
                          data = data)
 
-<small>[TOC ↩](#user-content-replicatebe)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 #### Method B
 
@@ -148,7 +151,7 @@ Three options are provided:
     equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’
     `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected*
     information matrix. Note that SAS with `DDFM=KENWARDROGER` and JMP
-    calculate Sattertwaite’s (*sic*) degrees of freedom and apply the
+    calculate Satterthwaite’s (*sic*) degrees of freedom and apply the
     Kackar-Harville correction *i.e.*, based on the *observed*
     information matrix.
 
@@ -157,7 +160,7 @@ Three options are provided:
     modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                            data = data)
 
-<small>[TOC ↩](#user-content-replicatebe)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 #### Average Bioequivalence
 
@@ -166,11 +169,10 @@ Called by function `ABE()`. The model is identical to
 employed by default. Tighter limits (90.00 – 111.11%) for narrow
 therapeutic index drugs (<span
 title="European Medicines Agency">EMA</span>) or wider limits (75.00 –
-133.33%) for *C*<sub>max</sub> according to the guidelines of the Gulf
-Cooperation Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, United
-Arab Emirates) and South Africa can be specified.
+133.33%) for *C*<sub>max</sub> according to the guideline of South
+Africa can be specified.
 
-<small>[TOC ↩](#user-content-replicatebe)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ### Tested designs
 
@@ -198,7 +200,7 @@ poor power characteristics)</small>
 `TRR | RTR` <small>(Extra-reference design; biased in the presence of
 period effects, *not recommended*)</small>
 
-<small>[TOC ↩](#user-content-replicatebe)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ### Cross-validation
 
@@ -207,22 +209,16 @@ Details about the reference datasets:
     help("data", package = "replicateBE")
     ?replicateBE::data
 
-Results of the 30 reference datasets agree with ones obtained in SAS
-(9.4), Phoenix WinNonlin (6.4 – 8.1), STATISTICA (13), SPSS (22.0),
-Stata (15.0), and JMP (10.0.2):  
-Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M,
-Fuglsang A. *Reference Datasets for Studies in a Replicate Design
-Intended for Average Bioequivalence with Expanding Limits.* AAPS J.
-2020; 22(2): Article 44.
-[doi:10.1208/s12248-020-0427-6](https://doi.org/10.1208/s12248-020-0427-6).
+Results of the 30 reference datasets agree<sup id="a6">[6](#f6)</sup>
+with ones obtained in SAS (9.4), Phoenix WinNonlin (6.4 – 8.1),
+STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
 
-<small>[TOC ↩](#user-content-replicatebe)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ## Examples
 
--   Evaluation of the internal reference dataset 01 of [Annex
-    II](https://www.ema.europa.eu/en/documents/other/31-annex-ii-statistical-analysis-bioequivalence-study-example-data-set_en.pdf "EMA, 21 September 2016")
-    by Method A.
+-   Evaluation of the internal reference dataset 01 of Annex
+    II<sup id="a7">[7](#f7)</sup> by Method A.
 
 <!-- -->
 
@@ -247,13 +243,32 @@ Intended for Average Bioequivalence with Expanding Limits.* AAPS J.
     # 0.14547400 0.04650870 3.12788000 0.00200215 
     # 217 Degrees of Freedom
     cols <- c(12, 15:19)           # extract relevant columns
-    tmp  <- round(res[cols], 2)    # 2 decimal places acc. to the GL
+    # cosmetics: 2 decimal places acc. to the GL
+    tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
+    names(tmp) <- names(res)[cols]
     tmp  <- cbind(tmp, res[20:22]) # pass|fail
     print(tmp, row.names = FALSE)
-    #  CVwR(%)  L(%)  U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
-    #    46.96 71.23 140.4   107.11   124.89 115.66 pass pass pass
+    #  CVwR(%)  L(%)   U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
+    #    46.96 71.23 140.40   107.11   124.89 115.66 pass pass pass
 
-<small>[TOC ↩](#user-content-replicatebe)</small>
+<small>[TOC ↩](#replicatebe)</small>
+
+-   Same dataset evaluated according to the conditions of the <span
+    title="Gulf Cooperation Council">GCC</span>.
+
+<!-- -->
+
+    res <- method.A(regulator = "GCC", details = TRUE, print = FALSE,
+                    data = rds01)
+    cols <- c(12, 15:19)
+    tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
+    names(tmp) <- names(res)[cols]
+    tmp  <- cbind(tmp, res[20:22])
+    print(tmp, row.names = FALSE)
+    #  CVwR(%)  L(%)   U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
+    #    46.96 75.00 133.33   107.11   124.89 115.66 pass pass pass
+
+<small>[TOC ↩](#replicatebe)</small>
 
 -   Same dataset evaluated by Method B, Kenward-Roger approximation of
     degrees of freedom. Outlier assessment, recalculation of
@@ -261,10 +276,10 @@ Intended for Average Bioequivalence with Expanding Limits.* AAPS J.
 
 <!-- -->
 
-    res  <- method.B(option = 3, ola = TRUE, verbose = TRUE, details = TRUE,
-                     print = FALSE, data = rds01)
+    res  <- method.B(option = 3, ola = TRUE, verbose = TRUE,
+                     details = TRUE, print = FALSE, data = rds01)
 
-![](man/figures/README-example2-1.png)<!-- -->
+![](man/figures/README-example3-1.png)<!-- -->
 
     # 
     # Outlier analysis
@@ -295,19 +310,19 @@ Intended for Average Bioequivalence with Expanding Limits.* AAPS J.
     #   Estimate Std. Error    t value   Pr(>|t|) 
     #  0.1460900  0.0465140  3.1408000  0.0019197 
     # 217.208 Degrees of Freedom (equivalent to Stata’s dfm=Kenward Roger EIM)
-    cols <- c(25, 28:29, 17:19)    # extract relevant columns
-    tmp  <- round(res[cols], 2)    # 2 decimal places acc. to the GL
-    tmp  <- cbind(tmp, res[30:32]) # pass|fail
+    cols <- c(25, 28:29, 17:19)
+    tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
+    names(tmp) <- names(res)[cols]
+    tmp  <- cbind(tmp, res[30:32])
     print(tmp, row.names = FALSE)
     #  CVwR.rec(%) L.rec(%) U.rec(%) CL.lo(%) CL.hi(%)  PE(%) CI.rec GMR.rec BE.rec
     #        32.16    78.79   126.93   107.17   124.97 115.73   pass    pass   pass
 
-<small>[TOC ↩](#user-content-replicatebe)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
--   Evaluation of the internal reference dataset 05 of [Shumaker and
-    Metzler](https://doi.org/10.1177/009286159803200426) for <span
-    title="Average Bioequivalence">ABE</span>, tighter limits for the
-    narrow therapeutic index drug phenytoin.
+-   Evaluation of the internal reference dataset 05 of Shumaker and
+    Metzler,<sup id="a8">[8](#f8)</sup> tighter limits for the narrow
+    therapeutic index drug phenytoin.
 
 <!-- -->
 
@@ -330,14 +345,15 @@ Intended for Average Bioequivalence with Expanding Limits.* AAPS J.
     #   Estimate Std. Error    t value   Pr(>|t|) 
     # 0.07558800 0.02284850 3.30822000 0.00145167 
     # 74 Degrees of Freedom
-    cols <- c(13:17)            # extract relevant columns
-    tmp  <- round(res[cols], 2) # 2 decimal places acc. to the GL
-    tmp  <- cbind(tmp, res[18]) # pass|fail
-    print(tmp, row.names=FALSE)
+    cols <- c(13:17)
+    tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
+    names(tmp) <- names(res)[cols]
+    tmp  <- cbind(tmp, res[18])
+    print(tmp, row.names = FALSE)
     #  BE.lo(%) BE.hi(%) CL.lo(%) CL.hi(%)  PE(%)   BE
-    #        90   111.11   103.82   112.04 107.85 fail
+    #     90.00   111.11   103.82   112.04 107.85 fail
 
-<small>[TOC ↩](#user-content-replicatebe)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ## Installation
 
@@ -355,7 +371,7 @@ approximation `method.B(..., option = 3)` R ≥3.6.0 is required.
     from [CRAN](https://cran.r-project.org/package=replicateBE) first to
     get its dependencies right
     ([readxl](https://cran.r-project.org/package=readxl) ≥1.0.0,
-    [PowerTOST](https://cran.r-project.org/package=PowerTOST) ≥1.3.3,
+    [PowerTOST](https://cran.r-project.org/package=PowerTOST) ≥1.5.3,
     [lmerTest](https://cran.r-project.org/package=lmerTest),
     [nlme](https://cran.r-project.org/package=nlme),
     [pbkrtest](https://cran.r-project.org/package=pbkrtest)).
@@ -374,7 +390,7 @@ approximation `method.B(..., option = 3)` R ≥3.6.0 is required.
     install.packages("devtools", repos = "https://cloud.r-project.org/")
     devtools::install_github("Helmut01/replicateBE")
 
-<small>[TOC ↩](#user-content-replicatebe)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ## Session Information
 
@@ -382,11 +398,11 @@ Inspect this information for reproducibility. Of particular importance
 are the versions of R and the packages used to create this workflow. It
 is considered good practice to record this information with every
 analysis.  
-Version 1.0.16 built 2021-05-13 with R 4.0.5.
+Version 1.1.9000 built 2021-05-15 with R 4.0.5.
 
-    options(width = 80)
+    options(width = 60)
     devtools::session_info()
-    # - Session info ---------------------------------------------------------------
+    # - Session info -------------------------------------------
     #  setting  value                       
     #  version  R version 4.0.5 (2021-03-31)
     #  os       Windows 7 x64 SP 1          
@@ -396,9 +412,9 @@ Version 1.0.16 built 2021-05-13 with R 4.0.5.
     #  collate  German_Germany.1252         
     #  ctype    German_Germany.1252         
     #  tz       Europe/Vienna               
-    #  date     2021-05-14                  
+    #  date     2021-05-16                  
     # 
-    # - Packages -------------------------------------------------------------------
+    # - Packages -----------------------------------------------
     #  package       * version    date       lib source        
     #  backports       1.2.1      2020-12-09 [1] CRAN (R 4.0.3)
     #  boot            1.3-28     2021-05-03 [1] CRAN (R 4.0.5)
@@ -409,7 +425,7 @@ Version 1.0.16 built 2021-05-13 with R 4.0.5.
     #  cli             2.5.0      2021-04-26 [1] CRAN (R 4.0.5)
     #  colorspace      2.0-1      2021-05-04 [1] CRAN (R 4.0.5)
     #  crayon          1.4.1      2021-02-08 [1] CRAN (R 4.0.3)
-    #  cubature        2.0.4.1    2020-07-06 [1] CRAN (R 4.0.2)
+    #  cubature        2.0.4.2    2021-05-13 [1] CRAN (R 4.0.5)
     #  desc            1.3.0      2021-03-05 [1] CRAN (R 4.0.4)
     #  devtools        2.4.1      2021-05-05 [1] CRAN (R 4.0.5)
     #  digest          0.6.27     2020-10-24 [1] CRAN (R 4.0.3)
@@ -454,13 +470,13 @@ Version 1.0.16 built 2021-05-13 with R 4.0.5.
     #  Rcpp            1.0.6      2021-01-15 [1] CRAN (R 4.0.3)
     #  readxl          1.3.1      2019-03-13 [1] CRAN (R 4.0.0)
     #  remotes         2.3.0      2021-04-01 [1] CRAN (R 4.0.5)
-    #  replicateBE   * 1.0.16     2021-05-13 [1] local         
+    #  replicateBE   * 1.1.9000   2021-05-15 [1] local         
     #  rlang           0.4.11     2021-04-30 [1] CRAN (R 4.0.5)
     #  rmarkdown       2.8        2021-05-07 [1] CRAN (R 4.0.5)
     #  rprojroot       2.0.2      2020-11-15 [1] CRAN (R 4.0.3)
     #  scales          1.1.1      2020-05-11 [1] CRAN (R 4.0.0)
     #  sessioninfo     1.1.1      2018-11-05 [1] CRAN (R 4.0.0)
-    #  statmod         1.4.35     2020-10-19 [1] CRAN (R 4.0.3)
+    #  statmod         1.4.36     2021-05-10 [1] CRAN (R 4.0.5)
     #  stringi         1.5.3      2020-09-09 [1] CRAN (R 4.0.2)
     #  stringr         1.4.0      2019-02-10 [1] CRAN (R 4.0.0)
     #  TeachingDemos   2.12       2020-04-07 [1] CRAN (R 4.0.0)
@@ -477,7 +493,7 @@ Version 1.0.16 built 2021-05-13 with R 4.0.5.
     # 
     # [1] D:/Program Files/R/R-4.0.5/library
 
-<small>[TOC ↩](#user-content-replicatebe)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ## Disclaimer
 
@@ -485,6 +501,41 @@ Version 1.0.16 built 2021-05-13 with R 4.0.5.
 Warranty. No Liability is accepted for any Loss and Risk to Public
 Health Resulting from Use of this R-Code.*
 
-<small>[TOC ↩](#user-content-replicatebe)</small>
+<small>[TOC ↩](#replicatebe)</small>
 
 ------------------------------------------------------------------------
+
+<span id="f1" style="font-size:smaller">1. [EMA/582648/2016. Annex
+I.](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf)
+21 September 2016.</span> [↩](#a1)  
+<span id="f2" style="font-size:smaller">2. [CPMP/EWP/QWP/1401/98 Rev. 1/
+Corr
+\*\*.](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf)
+20 January 2010.</span> [↩](#a2)  
+<span id="f3" style="font-size:smaller">3. [Revised EMA Bioequivalence
+Guideline. Questions &
+Answers.](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf)
+London, June 2010.</span> [↩](#a3)  
+<span id="f4" style="font-size:smaller">4. [The GCC Guidelines for
+Bioequivalence. Version
+2.4.](https://old.sfda.gov.sa/en/drug/drug_reg/Regulations/GCC_Guidelines_Bioequivalence.pdf)
+30/3/2016.</span> [↩](#a4)  
+<span id="f5" style="font-size:smaller">5. [Application of
+reference-scaled criteria for AUC in bioequivalence studies conducted
+for submission to
+PQTm.](https://extranet.who.int/pqweb/sites/default/files/documents/AUC_criteria_November2018.pdf)
+22 November 2018.</span> [↩](#a5)  
+<span id="f6" style="font-size:smaller">6. Schütz H, Tomashevskiy M,
+Labes D, Shitova A, González-de la Parra M, Fuglsang A. *Reference
+Datasets for Studies in a Replicate Design Intended for Average
+Bioequivalence with Expanding Limits.* AAPS J. 2020; 22(2): Article 44.
+[doi:10.1208/s12248-020-0427-6](https://doi.org/10.1208/s12248-020-0427-6).</span>
+[↩](#a6)  
+<span id="f7" style="font-size:smaller">7. [EMA/582648/2016. Annex
+II.](https://www.ema.europa.eu/en/documents/other/31-annex-ii-statistical-analysis-bioequivalence-study-example-data-set_en.pdf)
+21 September 2016.</span> [↩](#a7)  
+<span id="f8" style="font-size:smaller">8. Shumaker RC, Metzler CM. *The
+Phenytoin Trial is a Case Study of ‘Individual’ Bioequivalence.* Drug
+Inf J. 1998; 32(4): 1063–1072.
+[doi:10.1177/009286159803200426](https://doi.org/10.1177/009286159803200426).</span>
+[↩](#a8)
