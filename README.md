@@ -243,11 +243,11 @@ STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
     #   Estimate Std. Error    t value   Pr(>|t|) 
     # 0.14547400 0.04650870 3.12788000 0.00200215 
     # 217 Degrees of Freedom
-    cols <- c(12, 15:19)           # extract relevant columns
+    cols <- c(12, 17:21)           # extract relevant columns
     # cosmetics: 2 decimal places acc. to the GL
     tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
     names(tmp) <- names(res)[cols]
-    tmp  <- cbind(tmp, res[20:22]) # pass|fail
+    tmp  <- cbind(tmp, res[22:24]) # pass|fail
     print(tmp, row.names = FALSE)
     #  CVwR(%)  L(%)   U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
     #    46.96 71.23 140.40   107.11   124.89 115.66 pass pass pass
@@ -261,10 +261,10 @@ STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
 
     res <- method.A(regulator = "GCC", details = TRUE, print = FALSE,
                     data = rds01)
-    cols <- c(12, 15:19)
+    cols <- c(12, 17:21)
     tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
     names(tmp) <- names(res)[cols]
-    tmp  <- cbind(tmp, res[20:22])
+    tmp  <- cbind(tmp, res[22:24])
     print(tmp, row.names = FALSE)
     #  CVwR(%)  L(%)   U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
     #    46.96 75.00 133.33   107.11   124.89 115.66 pass pass pass
@@ -311,13 +311,13 @@ STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
     #   Estimate Std. Error    t value   Pr(>|t|) 
     #  0.1460900  0.0465140  3.1408000  0.0019197 
     # 217.208 Degrees of Freedom (equivalent to Stata’s dfm=Kenward Roger EIM)
-    cols <- c(25, 28:29, 17:19)
+    cols <- c(27, 31:32, 19:21)
     tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
     names(tmp) <- names(res)[cols]
-    tmp  <- cbind(tmp, res[30:32])
+    tmp  <- cbind(tmp, res[22:24])
     print(tmp, row.names = FALSE)
-    #  CVwR.rec(%) L.rec(%) U.rec(%) CL.lo(%) CL.hi(%)  PE(%) CI.rec GMR.rec BE.rec
-    #        32.16    78.79   126.93   107.17   124.97 115.73   pass    pass   pass
+    #  CVwR.rec(%) L.rec(%) U.rec(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
+    #        32.16    78.79   126.93   107.17   124.97 115.73 pass pass pass
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -398,8 +398,7 @@ approximation `method.B(..., option = 3)` R ≥3.6.0 is required.
 Inspect this information for reproducibility. Of particular importance
 are the versions of R and the packages used to create this workflow. It
 is considered good practice to record this information with every
-analysis.  
-Version 1.1.9000 built 2021-05-17 with R 4.0.5.
+analysis.
 
     options(width = 60)
     devtools::session_info()
@@ -413,7 +412,7 @@ Version 1.1.9000 built 2021-05-17 with R 4.0.5.
     #  collate  German_Germany.1252         
     #  ctype    German_Germany.1252         
     #  tz       Europe/Vienna               
-    #  date     2021-05-17                  
+    #  date     2021-05-18                  
     # 
     # - Packages -----------------------------------------------
     #  package       * version    date       lib source        
@@ -458,7 +457,7 @@ Version 1.1.9000 built 2021-05-17 with R 4.0.5.
     #  nloptr          1.2.2.2    2020-07-02 [1] CRAN (R 4.0.2)
     #  numDeriv        2016.8-1.1 2019-06-06 [1] CRAN (R 4.0.0)
     #  pbkrtest        0.5.1      2021-03-09 [1] CRAN (R 4.0.4)
-    #  pillar          1.6.0      2021-04-13 [1] CRAN (R 4.0.5)
+    #  pillar          1.6.1      2021-05-16 [1] CRAN (R 4.0.5)
     #  pkgbuild        1.2.0      2020-12-15 [1] CRAN (R 4.0.3)
     #  pkgconfig       2.0.3      2019-09-22 [1] CRAN (R 4.0.0)
     #  pkgload         1.2.1      2021-04-06 [1] CRAN (R 4.0.5)

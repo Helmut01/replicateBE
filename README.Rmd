@@ -36,7 +36,6 @@ cat(txt)
 
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
-
 ## Introduction{#introduction}
 The library provides data sets (internal `.rda` and in <span title="Character Separated Variables">CSV</span>-format in `/extdata/`) which support users in a black-box performance qualification (PQ) of their software installations. Users can perform analysis of their own data imported from <span title="Character Separated Variables">CSV</span>- and Excel-files. The methods given by the <span title="European Medicines Agency">EMA</span><sup id="a1">[1](#f1)</sup> for reference-scaling according to the <span title="European Medicines Agency">EMA</span>’s Guideline on the Investigation of Bioequivalence<sup id="a2">[2](#f2)</sup> are implemented. Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint <span title="European Generic Medicines Association">EGA</span>/<span title="European Medicines Agency">EMA</span> workshop.<sup id="a3">[3](#f3)</sup>  
 Direct widening of the acceptance range as recommended by the Gulf Cooperation Council<sup id="a4">[4](#f4)</sup> (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, United Arab Emirates) is provided as well.  
@@ -45,7 +44,6 @@ In full replicate designs the variability of test and reference treatments can b
 <small>[TOC ↩](#replicatebe)</small>
 
 ### Methods{#methods}
-
 #### Estimation of _CV_~wR~ (and _CV_~wT~ in full replicate designs){#estimation-of-cvwr-and-cvwt-in-full-replicate-designs}
 Called internally by functions `method.A()` and `method.B()`. A linear model of log-transformed pharmacokinetic (PK) responses and effects  
     _sequence_, _subject_(_sequence_), _period_\
@@ -140,11 +138,11 @@ Results of the 30 reference datasets agree<sup id="a6">[6](#f6)</sup> with ones 
 library(replicateBE) # attach the library
 res <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
                 data = rds01)
-cols <- c(12, 15:19)           # extract relevant columns
+cols <- c(12, 17:21)           # extract relevant columns
 # cosmetics: 2 decimal places acc. to the GL
 tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
 names(tmp) <- names(res)[cols]
-tmp  <- cbind(tmp, res[20:22]) # pass|fail
+tmp  <- cbind(tmp, res[22:24]) # pass|fail
 print(tmp, row.names = FALSE)
 ```
 
@@ -155,10 +153,10 @@ print(tmp, row.names = FALSE)
 ```{r example2}
 res <- method.A(regulator = "GCC", details = TRUE, print = FALSE,
                 data = rds01)
-cols <- c(12, 15:19)
+cols <- c(12, 17:21)
 tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
 names(tmp) <- names(res)[cols]
-tmp  <- cbind(tmp, res[20:22])
+tmp  <- cbind(tmp, res[22:24])
 print(tmp, row.names = FALSE)
 ```
 
@@ -169,10 +167,10 @@ print(tmp, row.names = FALSE)
 ```{r example3}
 res  <- method.B(option = 3, ola = TRUE, verbose = TRUE,
                  details = TRUE, print = FALSE, data = rds01)
-cols <- c(25, 28:29, 17:19)
+cols <- c(27, 31:32, 19:21)
 tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
 names(tmp) <- names(res)[cols]
-tmp  <- cbind(tmp, res[30:32])
+tmp  <- cbind(tmp, res[22:24])
 print(tmp, row.names = FALSE)
 ```
 
@@ -216,9 +214,7 @@ devtools::install_github("Helmut01/replicateBE")
 <small>[TOC ↩](#replicatebe)</small>
 
 ## Session Information{#session-information}
-Inspect this information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.\
-Version `r packageVersion("replicateBE")` built `r packageDate("replicateBE", date.fields = "Built")` with R `r substr(packageDescription("replicateBE", fields = "Built"), 3, 7)`.
-
+Inspect this information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.
 ```{r, sessioninfo}
 options(width = 60)
 devtools::session_info()
