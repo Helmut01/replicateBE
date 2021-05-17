@@ -48,25 +48,26 @@ In full replicate designs the variability of test and reference treatments can b
 Called internally by functions `method.A()` and `method.B()`. A linear model of log-transformed pharmacokinetic (PK) responses and effects  
     _sequence_, _subject_(_sequence_), _period_\
 where all effects are fixed (_i.e._, <span title="Analysis of Variance">ANOVA</span>). Estimated by the function `lm()` of library `stats`.
+<div style="margin-left:1.4em">
 ```{r eval = FALSE}
 modCVwR <- lm(log(PK) ~ sequence + subject%in%sequence + period,
                         data = data[data$treatment == "R", ])
 modCVwT <- lm(log(PK) ~ sequence + subject%in%sequence + period,
                         data = data[data$treatment == "T", ])
 ```
-
+</div>
 <small>[TOC ↩](#replicatebe)</small>
 
 #### Method A{#method-a}
 Called by function `method.A()`. A linear model of log-transformed <span title="pharmacokinetic">PK</span> responses and effects  
     _sequence_, _subject_(_sequence_), _period_, _treatment_\
-where all effects are fixed (_i.e._, <span title="Analysis of Variance">ANOVA</span>). Estimated by the function `lm()` of library `stats`.
-
+where all effects are fixed (_e.g._, by an <span title="Analysis of Variance">ANOVA</span>). Estimated by the function `lm()` of library `stats`.
+<div style="margin-left:1.4em">
 ```{r eval = FALSE}
 modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
                      data = data)
 ```
-
+</div>
 <small>[TOC ↩](#replicatebe)</small>
 
 #### Method B{#method-b}
@@ -76,23 +77,29 @@ where _subject_(_sequence_) is a random effect and all others are fixed.
 Three options are provided:
 
 * Estimated by the function `lmer()` of library `lmerTest`. `method.B(..., option = 1)` employs Satterthwaite’s approximation of the degrees of freedom equivalent to SAS’ `DDFM=SATTERTHWAITE`, Phoenix WinNonlin’s `Degrees of Freedom Satterthwaite`, and Stata’s `dfm=Satterthwaite`. Note that this is the only available approximation in SPSS.
+
+<div style="margin-left:2em">
 ```{r eval = FALSE}
 modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
 ```
+</div>
 * Estimated by the function `lme()` of library `nlme`. `method.B(..., option = 2)` employs degrees of freedom equivalent to SAS’ `DDFM=CONTAIN`, Phoenix WinNonlin’s `Degrees of Freedom Residual`, STATISTICA’s `GLM containment`, and Stata’s `dfm=anova`. Implicitly preferred according to the <span title="European Medicines Agency">EMA</span>’s <span title="Questions &amp; Answers">Q&amp;A</span> document and hence, the default of the function.
+
+<div style="margin-left:2em">
 ```{r eval = FALSE}
 modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
                       data = data)
 ```
-
+</div>
 * Estimated by the function `lmer()` of library `lmerTest`. `method.B(..., option = 3)` employs the Kenward-Roger approximation equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’ `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected* information matrix. Note that SAS with `DDFM=KENWARDROGER` and JMP calculate Satterthwaite’s (*sic*) degrees of freedom and apply the Kackar-Harville correction *i.e.*, based on the *observed* information matrix.
 
+<div style="margin-left:2em">
 ```{r eval = FALSE}
 modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
 ```
-
+</div>
 <small>[TOC ↩](#replicatebe)</small>
 
 #### Average Bioequivalence{#average-bioequivalence}
@@ -134,6 +141,7 @@ Results of the 30 reference datasets agree<sup id="a6">[6](#f6)</sup> with ones 
 ## Examples{#examples}
   - Evaluation of the internal reference dataset 01 of Annex II<sup id="a7">[7](#f7)</sup> by Method A.
 
+<div style="margin-left:2em">
 ```{r example1}
 library(replicateBE) # attach the library
 res <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
@@ -145,11 +153,12 @@ names(tmp) <- names(res)[cols]
 tmp  <- cbind(tmp, res[22:24]) # pass|fail
 print(tmp, row.names = FALSE)
 ```
-
+</div>
 <small>[TOC ↩](#replicatebe)</small>
 
-  - Same dataset evaluated according to the conditions of the <span title="Gulf Cooperation Council">GCC</span>.
-  
+  - The same dataset evaluated according to the conditions of the <span title="Gulf Cooperation Council">GCC</span>.
+
+<div style="margin-left:2em">
 ```{r example2}
 res <- method.A(regulator = "GCC", details = TRUE, print = FALSE,
                 data = rds01)
@@ -159,11 +168,12 @@ names(tmp) <- names(res)[cols]
 tmp  <- cbind(tmp, res[22:24])
 print(tmp, row.names = FALSE)
 ```
-
+</div>
 <small>[TOC ↩](#replicatebe)</small>
 
-  - Same dataset evaluated by Method B, Kenward-Roger approximation of degrees of freedom. Outlier assessment, recalculation of _CV_~wR~ after exclusion of outliers, new expanded limits.
+  - The same dataset evaluated by Method B, Kenward-Roger approximation of degrees of freedom. Outlier assessment, recalculation of _CV_~wR~ after exclusion of outliers, new expanded limits.
 
+<div style="margin-left:2em">
 ```{r example3}
 res  <- method.B(option = 3, ola = TRUE, verbose = TRUE,
                  details = TRUE, print = FALSE, data = rds01)
@@ -173,11 +183,12 @@ names(tmp) <- names(res)[cols]
 tmp  <- cbind(tmp, res[22:24])
 print(tmp, row.names = FALSE)
 ```
-
+</div>
 <small>[TOC ↩](#replicatebe)</small>
 
   - Evaluation of the internal reference dataset 05 of Shumaker and Metzler,<sup id="a8">[8](#f8)</sup> tighter limits for the narrow therapeutic index drug phenytoin.
 
+<div style="margin-left:2em">
 ```{r example4}
 res <- ABE(verbose = TRUE, theta1 = 0.90, details = TRUE,
            print = FALSE, data = rds05)
@@ -187,30 +198,31 @@ names(tmp) <- names(res)[cols]
 tmp  <- cbind(tmp, res[18])
 print(tmp, row.names = FALSE)
 ```
-
+</div>
 <small>[TOC ↩](#replicatebe)</small>
 
 ## Installation{#installation}
-
 The package requires R ≥3.5.0. However, for the Kenward-Roger approximation `method.B(..., option = 3)` R ≥3.6.0 is required.
 
 * Install the released version from <span title="The Comprehensive R Archive Network">CRAN</span>:
 
+<div style="margin-left:2em">
 ```{r eval = FALSE}
 install.packages("replicateBE", repos = "https://cloud.r-project.org/")
 ```
-
+</div>
 * To use the development version, please install the released version from [CRAN](https://cran.r-project.org/package=replicateBE) first to get its dependencies right ([readxl](https://cran.r-project.org/package=readxl) ≥1.0.0, [PowerTOST](https://cran.r-project.org/package=PowerTOST) ≥1.5.3, [lmerTest](https://cran.r-project.org/package=lmerTest), [nlme](https://cran.r-project.org/package=nlme), [pbkrtest](https://cran.r-project.org/package=pbkrtest)).
 
     You need tools for building R packages from sources on your machine. For Windows users:\
     - Download [Rtools](https://cran.r-project.org/bin/windows/Rtools/) from <span title="The Comprehensive R Archive Network">CRAN</span> and follow the suggestions of the installer.
     - Install `devtools` and build the development version by:
 
+<div style="margin-left:4em">
 ```{r eval = FALSE}
 install.packages("devtools", repos = "https://cloud.r-project.org/")
 devtools::install_github("Helmut01/replicateBE")
 ```
-
+</div>
 <small>[TOC ↩](#replicatebe)</small>
 
 ## Session Information{#session-information}
@@ -219,11 +231,16 @@ Inspect this information for reproducibility. Of particular importance are the v
 options(width = 60)
 devtools::session_info()
 ```
+<small>[TOC ↩](#replicatebe)</small>
+
+## Contributors{#contributors}
+Helmut Schütz (author) <span style="font-size:smaller">[ORCID iD](https://orcid.org/0000-0002-1167-7880)</span><br>
+Michael Tomashevskiy (contributor)<br>
+Detlew Labes (contributor) <span style="font-size:smaller">[ORCID iD](https://orcid.org/0000-0003-2169-426X)</span>
 
 <small>[TOC ↩](#replicatebe)</small>
 
 ## Disclaimer{#disclaimer}
-
 *Package offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.*
 
 <small>[TOC ↩](#replicatebe)</small>

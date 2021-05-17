@@ -24,6 +24,7 @@ replicateBE
 -   [Examples](#examples)
 -   [Installation](#installation)
 -   [Session Information](#session-information)
+-   [Contributors](#contributors)
 -   [Disclaimer](#disclaimer)
 
 <!-- README.md is generated from README.Rmd. Please edit that file
@@ -91,10 +92,14 @@ where all effects are fixed (*i.e.*, <span
 title="Analysis of Variance">ANOVA</span>). Estimated by the function
 `lm()` of library `stats`.
 
+<div style="margin-left:1.4em">
+
     modCVwR <- lm(log(PK) ~ sequence + subject%in%sequence + period,
                             data = data[data$treatment == "R", ])
     modCVwT <- lm(log(PK) ~ sequence + subject%in%sequence + period,
                             data = data[data$treatment == "T", ])
+
+</div>
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -103,12 +108,16 @@ title="Analysis of Variance">ANOVA</span>). Estimated by the function
 Called by function `method.A()`. A linear model of log-transformed <span
 title="pharmacokinetic">PK</span> responses and effects  
     *sequence*, *subject*(*sequence*), *period*, *treatment*  
-where all effects are fixed (*i.e.*, <span
+where all effects are fixed (*e.g.*, by an <span
 title="Analysis of Variance">ANOVA</span>). Estimated by the function
 `lm()` of library `stats`.
 
+<div style="margin-left:1.4em">
+
     modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
                          data = data)
+
+</div>
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -128,10 +137,12 @@ Three options are provided:
     `dfm=Satterthwaite`. Note that this is the only available
     approximation in SPSS.
 
-<!-- -->
+<div style="margin-left:2em">
 
     modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                            data = data)
+
+</div>
 
 -   Estimated by the function `lme()` of library `nlme`.
     `method.B(..., option = 2)` employs degrees of freedom equivalent to
@@ -142,10 +153,12 @@ Three options are provided:
     title="Questions &amp; Answers">Q&A</span> document and hence, the
     default of the function.
 
-<!-- -->
+<div style="margin-left:2em">
 
     modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
                           data = data)
+
+</div>
 
 -   Estimated by the function `lmer()` of library `lmerTest`.
     `method.B(..., option = 3)` employs the Kenward-Roger approximation
@@ -156,10 +169,12 @@ Three options are provided:
     Kackar-Harville correction *i.e.*, based on the *observed*
     information matrix.
 
-<!-- -->
+<div style="margin-left:2em">
 
     modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                            data = data)
+
+</div>
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -221,7 +236,7 @@ STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
 -   Evaluation of the internal reference dataset 01 of Annex
     II<sup id="a7">[7](#f7)</sup> by Method A.
 
-<!-- -->
+<div style="margin-left:2em">
 
     library(replicateBE) # attach the library
     res <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
@@ -252,12 +267,14 @@ STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
     #  CVwR(%)  L(%)   U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
     #    46.96 71.23 140.40   107.11   124.89 115.66 pass pass pass
 
+</div>
+
 <small>[TOC ↩](#replicatebe)</small>
 
--   Same dataset evaluated according to the conditions of the <span
+-   The same dataset evaluated according to the conditions of the <span
     title="Gulf Cooperation Council">GCC</span>.
 
-<!-- -->
+<div style="margin-left:2em">
 
     res <- method.A(regulator = "GCC", details = TRUE, print = FALSE,
                     data = rds01)
@@ -269,13 +286,15 @@ STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
     #  CVwR(%)  L(%)   U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
     #    46.96 75.00 133.33   107.11   124.89 115.66 pass pass pass
 
+</div>
+
 <small>[TOC ↩](#replicatebe)</small>
 
--   Same dataset evaluated by Method B, Kenward-Roger approximation of
-    degrees of freedom. Outlier assessment, recalculation of
+-   The same dataset evaluated by Method B, Kenward-Roger approximation
+    of degrees of freedom. Outlier assessment, recalculation of
     *CV*<sub>wR</sub> after exclusion of outliers, new expanded limits.
 
-<!-- -->
+<div style="margin-left:2em">
 
     res  <- method.B(option = 3, ola = TRUE, verbose = TRUE,
                      details = TRUE, print = FALSE, data = rds01)
@@ -319,13 +338,15 @@ STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
     #  CVwR.rec(%) L.rec(%) U.rec(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
     #        32.16    78.79   126.93   107.17   124.97 115.73 pass pass pass
 
+</div>
+
 <small>[TOC ↩](#replicatebe)</small>
 
 -   Evaluation of the internal reference dataset 05 of Shumaker and
     Metzler,<sup id="a8">[8](#f8)</sup> tighter limits for the narrow
     therapeutic index drug phenytoin.
 
-<!-- -->
+<div style="margin-left:2em">
 
     res <- ABE(verbose = TRUE, theta1 = 0.90, details = TRUE,
                print = FALSE, data = rds05)
@@ -354,6 +375,8 @@ STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
     #  BE.lo(%) BE.hi(%) CL.lo(%) CL.hi(%)  PE(%)   BE
     #     90.00   111.11   103.82   112.04 107.85 fail
 
+</div>
+
 <small>[TOC ↩](#replicatebe)</small>
 
 ## Installation
@@ -364,9 +387,11 @@ approximation `method.B(..., option = 3)` R ≥3.6.0 is required.
 -   Install the released version from <span
     title="The Comprehensive R Archive Network">CRAN</span>:
 
-<!-- -->
+<div style="margin-left:2em">
 
     install.packages("replicateBE", repos = "https://cloud.r-project.org/")
+
+</div>
 
 -   To use the development version, please install the released version
     from [CRAN](https://cran.r-project.org/package=replicateBE) first to
@@ -386,10 +411,12 @@ approximation `method.B(..., option = 3)` R ≥3.6.0 is required.
         and follow the suggestions of the installer.
     -   Install `devtools` and build the development version by:
 
-<!-- -->
+<div style="margin-left:4em">
 
     install.packages("devtools", repos = "https://cloud.r-project.org/")
     devtools::install_github("Helmut01/replicateBE")
+
+</div>
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -492,6 +519,16 @@ analysis.
     #  yaml            2.2.1      2020-02-01 [1] CRAN (R 4.0.0)
     # 
     # [1] D:/Program Files/R/R-4.0.5/library
+
+<small>[TOC ↩](#replicatebe)</small>
+
+## Contributors
+
+Helmut Schütz (author) <span style="font-size:smaller">[ORCID
+iD](https://orcid.org/0000-0002-1167-7880)</span><br> Michael
+Tomashevskiy (contributor)<br> Detlew Labes (contributor) <span
+style="font-size:smaller">[ORCID
+iD](https://orcid.org/0000-0003-2169-426X)</span>
 
 <small>[TOC ↩](#replicatebe)</small>
 
