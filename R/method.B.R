@@ -106,24 +106,25 @@ method.B <- function(alpha = 0.05, path.in, path.out, file,
     }
   } # end of evaluation by option=2 (lme) or option=1/3 (lmer)
   PE  <- exp(PE)
-  res <- data.frame(ret$type, paste0("B-", option), ret$n, ret$nTT, ret$nRR,
+  res <- data.frame(ret$type, "A", ret$n, ret$nTT, ret$nRR,
                     paste0(ret$Sub.Seq, collapse="|"),
                     paste0(ret$Miss.seq, collapse="|"),
                     paste0(ret$Miss.per, collapse="|"), alpha,
-                    DF, ret$CVwT, ret$CVwR, ret$sw.ratio,
+                    DF, ret$CVwT, ret$CVwR, ret$swT, ret$swR, ret$sw.ratio,
                     ret$sw.ratio.upper, ret$BE1, ret$BE2, CI[1], CI[2],
                     PE, "fail", "fail", "fail", log(CI[2])-log(PE),
                     paste0(ret$ol, collapse="|"), ret$CVwR.rec,
-                    ret$sw.ratio.rec, ret$sw.ratio.rec.upper, ret$BE.rec1,
+                    ret$swR.rec, ret$sw.ratio.rec,
+                    ret$sw.ratio.rec.upper, ret$BE.rec1,
                     ret$BE.rec2, "fail", "fail", "fail",
                     stringsAsFactors=FALSE)
   names(res)<- c("Design", "Method", "n", "nTT", "nRR", "Sub/seq",
                  "Miss/seq", "Miss/per", "alpha", "DF", "CVwT(%)",
-                 "CVwR(%)", "sw.ratio", "sw.ratio.CL", "L(%)",
-                 "U(%)", "CL.lo(%)", "CL.hi(%)", "PE(%)",
+                 "CVwR(%)", "swT", "swR", "sw.ratio", "sw.ratio.CL",
+                 "L(%)", "U(%)", "CL.lo(%)", "CL.hi(%)", "PE(%)",
                  "CI", "GMR", "BE", "log.half-width", "outlier",
-                 "CVwR.rec(%)", "sw.ratio.rec", "sw.ratio.rec.CL",
-                 "L.rec(%)", "U.rec(%)",
+                 "CVwR.rec(%)", "swR.rec", "sw.ratio.rec",
+                 "sw.ratio.rec.CL", "L.rec(%)", "U.rec(%)",
                  "CI.rec", "GMR.rec", "BE.rec")
   if (ret$BE2 == 1.25) { # change column names if not scaling
     colnames(res)[which(names(res) == "L(%)")] <- "BE.lo(%)"
@@ -176,10 +177,10 @@ method.B <- function(alpha = 0.05, path.in, path.out, file,
     if (as.character(res$outlier) == "NA") {
       # remove superfluous columns if ola=FALSE or ola=TRUE
       # and no outlier(s) detected
-      ret <- ret[ , !names(ret) %in% c("outlier", "CVwR.rec(%)",
-                                       "sw.ratio.rec", "L.rec(%)",
-                                       "U.rec(%)", "CI.rec",
-                                       "GMR.rec", "BE.rec")]
+      ret <- ret[, !names(ret) %in% c("outlier", "CVwR.rec(%)",
+                                      "swR.rec", "sw.ratio.rec",
+                                      "L.rec(%)", "U.rec(%)",
+                                      "CI.rec", "GMR.rec", "BE.rec")]
     }
     #class(ret) <- "repBE"
     return(ret)
