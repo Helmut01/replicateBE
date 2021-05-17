@@ -45,7 +45,7 @@ size](https://img.shields.io/github/languages/code-size/Helmut01/replicateBE?col
 ![repo
 size](https://img.shields.io/github/repo-size/Helmut01/replicateBE?color=yellow)
 
-Version 1.1.9000 built 2021-05-15 with R 4.0.5 (development version not
+Version 1.1.9000 built 2021-05-17 with R 4.0.5 (development version not
 on CRAN).
 
 ## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
@@ -86,7 +86,7 @@ approach<sup id="a5">[5](#f5)</sup> for reference-scaling of *AUC*).
 
 Called internally by functions `method.A()` and `method.B()`. A linear
 model of log-transformed pharmacokinetic (PK) responses and effects  
-    *sequence*, *subject(sequence)*, *period*  
+    *sequence*, *subject*(*sequence*), *period*  
 where all effects are fixed (*i.e.*, <span
 title="Analysis of Variance">ANOVA</span>). Estimated by the function
 `lm()` of library `stats`.
@@ -102,7 +102,7 @@ title="Analysis of Variance">ANOVA</span>). Estimated by the function
 
 Called by function `method.A()`. A linear model of log-transformed <span
 title="pharmacokinetic">PK</span> responses and effects  
-    *sequence*, *subject(sequence)*, *period*, *treatment*  
+    *sequence*, *subject*(*sequence*), *period*, *treatment*  
 where all effects are fixed (*i.e.*, <span
 title="Analysis of Variance">ANOVA</span>). Estimated by the function
 `lm()` of library `stats`.
@@ -116,8 +116,9 @@ title="Analysis of Variance">ANOVA</span>). Estimated by the function
 
 Called by function `method.B()`. A linear model of log-transformed <span
 title="pharmacokinetic">PK</span> responses and effects  
-    *sequence*, *subject(sequence)*, *period*, *treatment*  
-where *subject(sequence)* is a random effect and all others are fixed.  
+    *sequence*, *subject*(*sequence*), *period*, *treatment*  
+where *subject*(*sequence*) is a random effect and all others are
+fixed.  
 Three options are provided:
 
 -   Estimated by the function `lmer()` of library `lmerTest`.
@@ -168,9 +169,9 @@ Called by function `ABE()`. The model is identical to
 [Method A](#method-a). Conventional BE limits (80.00 – 125.00%) are
 employed by default. Tighter limits (90.00 – 111.11%) for narrow
 therapeutic index drugs (<span
-title="European Medicines Agency">EMA</span>) or wider limits (75.00 –
-133.33%) for *C*<sub>max</sub> according to the guideline of South
-Africa can be specified.
+title="European Medicines Agency">EMA</span> and others) or wider limits
+(75.00 – 133.33%) for *C*<sub>max</sub> according to the guideline of
+South Africa can be specified.
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -227,12 +228,12 @@ STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
                     data = rds01)
     # 
     # Data set DS01: Method A by lm() 
-    # ------------------------------- 
-    # Analysis of Variance Table
+    # ----------------------------------- 
+    # Type III Analysis of Variance Table
     # 
     # Response: log(PK)
     #                   Df   Sum Sq  Mean Sq  F value     Pr(>F)
-    # sequence           1   0.0077 0.007652  0.04783  0.8270958
+    # sequence           1   0.0077 0.007652  0.00268  0.9588496
     # period             3   0.6984 0.232784  1.45494  0.2278285
     # treatment          1   1.7681 1.768098 11.05095  0.0010405
     # sequence:subject  75 214.1296 2.855061 17.84467 < 2.22e-16
@@ -330,12 +331,12 @@ STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
                print = FALSE, data = rds05)
     # 
     # Data set DS05: ABE by lm() 
-    # -------------------------- 
-    # Analysis of Variance Table
+    # ----------------------------------- 
+    # Type III Analysis of Variance Table
     # 
     # Response: log(PK)
     #                  Df   Sum Sq   Mean Sq  F value     Pr(>F)
-    # sequence          1 0.092438 0.0924383  6.81025  0.0109629
+    # sequence          1 0.092438 0.0924383  0.87808  0.3580620
     # period            3 0.069183 0.0230609  1.69898  0.1746008
     # treatment         1 0.148552 0.1485523 10.94435  0.0014517
     # sequence:subject 24 2.526550 0.1052729  7.75581 4.0383e-12
@@ -398,7 +399,7 @@ Inspect this information for reproducibility. Of particular importance
 are the versions of R and the packages used to create this workflow. It
 is considered good practice to record this information with every
 analysis.  
-Version 1.1.9000 built 2021-05-15 with R 4.0.5.
+Version 1.1.9000 built 2021-05-17 with R 4.0.5.
 
     options(width = 60)
     devtools::session_info()
@@ -412,7 +413,7 @@ Version 1.1.9000 built 2021-05-15 with R 4.0.5.
     #  collate  German_Germany.1252         
     #  ctype    German_Germany.1252         
     #  tz       Europe/Vienna               
-    #  date     2021-05-16                  
+    #  date     2021-05-17                  
     # 
     # - Packages -----------------------------------------------
     #  package       * version    date       lib source        
@@ -470,7 +471,7 @@ Version 1.1.9000 built 2021-05-15 with R 4.0.5.
     #  Rcpp            1.0.6      2021-01-15 [1] CRAN (R 4.0.3)
     #  readxl          1.3.1      2019-03-13 [1] CRAN (R 4.0.0)
     #  remotes         2.3.0      2021-04-01 [1] CRAN (R 4.0.5)
-    #  replicateBE   * 1.1.9000   2021-05-15 [1] local         
+    #  replicateBE   * 1.1.9000   2021-05-17 [1] local         
     #  rlang           0.4.11     2021-04-30 [1] CRAN (R 4.0.5)
     #  rmarkdown       2.8        2021-05-07 [1] CRAN (R 4.0.5)
     #  rprojroot       2.0.2      2020-11-15 [1] CRAN (R 4.0.3)

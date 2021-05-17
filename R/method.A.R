@@ -33,16 +33,27 @@ method.A <- function(alpha = 0.05, path.in, path.out, file,
   on.exit(ow)           # ensure that options are reset if an error occurs
   if (logtrans) {       # use the raw data and log-transform internally
     modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
-                         data=ret$data)
+                         data = ret$data)
   } else {              # use the already log-transformed data
     modA <- lm(logPK ~ sequence + subject%in%sequence + period + treatment,
-                       data=ret$data)
+                       data = ret$data)
   }
   if (verbose) {
     name <-  paste0(file, set)
+    len  <- max(27+nchar(name), 35)
     cat(paste0("\nData set ", name, ": Method A by lm()"),
-        paste0("\n", paste0(rep("\u2500", 27+nchar(name)), collapse="")), "\n")
-    print(stats::anova(modA), digits=6, signif.stars=FALSE) # otherwise summary of lmerTest is used
+        paste0("\n", paste0(rep("\u2500", len), collapse = "")), "\n")
+    # change from type I (default as in versions up to 1.0.17)
+    # to type III to get the correct carryover test
+    typeIII <- stats::anova(modA) # otherwise summary of lmerTest is used
+    attr(typeIII, "heading")[1] <- "Type III Analysis of Variance Table\n"
+    MSdenom <- typeIII["sequence:subject", "Mean Sq"]
+    df2     <- typeIII["sequence:subject", "Df"]
+    fvalue  <- typeIII["sequence", "Mean Sq"] / MSdenom
+    df1     <- typeIII["sequence", "Df"]
+    typeIII["sequence", 4] <- fvalue
+    typeIII["sequence", 5] <- pf(fvalue, df1, df2, lower.tail = FALSE)
+    print(typeIII, digits = 6, signif.stars = FALSE)
     cat("\ntreatment T \u2013 R:\n")
     print(signif(summary(modA)$coefficients["treatmentT", ]), 6)
     cat(summary(modA)$df[2], "Degrees of Freedom\n\n")

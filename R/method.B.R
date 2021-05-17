@@ -45,11 +45,11 @@ method.B <- function(alpha = 0.05, path.in, path.out, file,
     if (logtrans) {       # use the raw data and log-transform internally
       modB <- lme(log(PK) ~ sequence + period + treatment,
                             random = ~1|subject, na.action=na.omit,
-                            data=ret$data)
+                            data = ret$data)
     } else {              # use the already log-transformed data
       modB <- lme(logPK ~ sequence + period + treatment,
                           random = ~1|subject, na.action=na.omit,
-                          data=ret$data)
+                          data = ret$data)
     }
     EMA.B <- summary(modB)
     PE    <- EMA.B$tTable["treatmentT", "Value"]
@@ -61,7 +61,7 @@ method.B <- function(alpha = 0.05, path.in, path.out, file,
       cat("\nData set", paste0(name, ": Method B (option = 2) by lme()"),
           paste0("\n", paste0(rep("\u2500", 41+nchar(name)), collapse="")), "\n")
       if (logtrans) cat("Response: log(PK)\n") else cat("\nResponse: logPK\n")
-      print(anova(modB), digits=6, signif.stars=FALSE)
+      print(anova(modB), digits = 6, signif.stars = FALSE)
       cat("\ntreatment T \u2013 R:\n")
       print(signif(EMA.B$tTable["treatmentT", c(1:2, 4:5)], 5))
       cat(DF, "Degrees of Freedom (equivalent to SAS\u2019 DDFM=CONTAIN)\n\n")
@@ -69,10 +69,10 @@ method.B <- function(alpha = 0.05, path.in, path.out, file,
   } else {              # by lmer/lmerTest (Satterthwaite's or Kenward-Roger DF)
     if (logtrans) {     # use the raw data and log-transform internally
       modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
-                             data=ret$data)
+                             data = ret$data)
     } else {            # use the already log-transformed data
       modB <- lmer(logPK ~ sequence + period + treatment + (1|subject),
-                           data=ret$data)
+                           data = ret$data)
     }
     if (option == 1) {
       EMA.B <- summary(modB, ddf="Satterthwaite")
