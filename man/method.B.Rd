@@ -188,7 +188,9 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     \code{DF} \tab degrees of freedom of the treatment comparison\cr
     \code{CVwT(\%)} \tab intra-subject coefficient of variation of the test treatment (full replicates only)\cr
     \code{CVwR(\%)} \tab intra-subject coefficient of variation of the reference treatment\cr
-    \code{sw.ratio} \tab ratio of intrasubject variabilities of \code{T} and \code{R} (full replicates only)\cr
+    \code{swT} \tab intra-subject standard deviation of the test treatment (full replicates only)\cr
+    \code{swR} \tab intra-subject standard deviation of the reference treatment\cr
+    \code{sw.ratio} \tab ratio of intra-subject deviations of \code{T} and \code{R} (full replicates only)\cr
     \code{sw.ratio.CL} \tab upper confidence limit of \code{sw.ratio} (full replicates only)
   }
 \itemize{
@@ -218,7 +220,8 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
   \tabular{ll}{
     \code{outlier} \tab outlying subject(s)\cr
     \code{CVwR.rec(\%)} \tab intra-subject coefficient of variation of \code{R}; recalculated after exclusion of outlier(s)\cr
-    \code{sw.ratio.rec} \tab ratio of intrasubject variabilities of \code{T} and \code{R} after exclusion of outlier(s); full replicates only\cr
+    \code{swR.rec} \tab intra-subject standard deviation of the reference treatment after exclusion of outlier(s)\cr
+    \code{sw.ratio.rec} \tab ratio of intra-subjectstandard deviations of \code{T} and \code{R} after exclusion of outlier(s); full replicates only\cr
     \code{sw.ratio.rec.CL} \tab upper confidence limit of \code{sw.ratio.rec} (full replicates only)
   }
 \itemize{

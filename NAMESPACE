@@ -2,8 +2,8 @@ importFrom(grDevices, png, dev.list, dev.off)
 importFrom(readxl, read_excel)
 importFrom(utils, read.csv, head, capture.output,
            citation, packageVersion, sessionInfo)
-importFrom(stats, qt, df, qf, coef, confint, lm,
-           anova, aov, rstudent, rstandard,
+importFrom(stats, qt, df, qf, pf, coef, confint,
+           lm, anova, aov, rstudent, rstandard,
            complete.cases, na.omit, reshape)
 importFrom(graphics, boxplot, bxp, mtext, text,
            abline, title)

@@ -1,3 +1,0 @@
-- Add swR to the result data.frame (for recalculation of the expanded limits).
-  Currently only in the txt-file.
-  Shall we add sWT as well?
