@@ -184,7 +184,7 @@ print(tmp, row.names = FALSE)
 </div>
 <small>[TOC ↩](#replicatebe)</small>
 
-  - The same dataset evaluated according to the conditions of the <span title="Gulf Cooperation Council">GCC</span> (if _CV_~wR~ &gt; 30\% widended limits 75.00 – 133.33\%, GMR-constraint 80.00 – 125.00\%).
+  - The same dataset evaluated according to the conditions of the <span title="Gulf Cooperation Council">GCC</span> (if _CV_~wR~ &gt; 30\% widened limits 75.00 – 133.33\%, GMR-constraint 80.00 – 125.00\%).
 
 <div style="margin-left:2em">
 ```{r example4}

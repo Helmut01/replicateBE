@@ -354,7 +354,7 @@ Stata (15.0), and JMP (10.0.2).<sup id="a6">[6](#f6)</sup>
 
 -   The same dataset evaluated according to the conditions of the <span
     title="Gulf Cooperation Council">GCC</span> (if
-    *CV*<sub>wR</sub> &gt; 30% widended limits 75.00 – 133.33%,
+    *CV*<sub>wR</sub> &gt; 30% widened limits 75.00 – 133.33%,
     GMR-constraint 80.00 – 125.00%).
 
 <div style="margin-left:2em">
