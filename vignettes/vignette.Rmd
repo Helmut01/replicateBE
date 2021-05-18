@@ -346,11 +346,11 @@ B1 <- method.B(print = FALSE, details = TRUE, data = rds14, option = 1)
 B2 <- method.B(print = FALSE, details = TRUE, data = rds14) # apply default option
 B3 <- method.B(print = FALSE, details = TRUE, data = rds14, option = 3)
 # Rounding of CI according to the GL
-A[15:19]  <- round(A[15:19],  2) # all effects fixed
-B1[15:19] <- round(B1[15:19], 2) # Satterthwaite's df
-B2[15:19] <- round(B2[15:19], 2) # df acc. to Q&A
-B3[15:19] <- round(B3[15:19], 2) # Kenward-Roger df
-cs <- c(2, 10, 15:23)
+A[17:21]  <- round(A[17:21],  2) # all effects fixed
+B1[17:21] <- round(B1[17:21], 2) # Satterthwaite's df
+B2[17:21] <- round(B2[17:21], 2) # df acc. to Q&A
+B3[17:21] <- round(B3[17:21], 2) # Kenward-Roger df
+cs <- c(2, 10, 17:25)
 df <- rbind(A[cs], B1[cs], B2[cs], B3[cs])
 names(df)[c(1, 3:6, 11)] <- c("Meth.", "L(%)", "U(%)",
                               "CL.lo(%)", "CL.hi(%)", "hw")
