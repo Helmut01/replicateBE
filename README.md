@@ -53,12 +53,11 @@ Expanding Limits (ABEL)
 
 The library provides data sets (internal `.rda` and in <span
 title="Character Separated Variables">CSV</span>-format in `/extdata/`)
-which support users in a black-box performance qualification (PQ) of
-their software installations. Users can perform analysis of their own
-data imported from <span
-title="Character Separated Variables">CSV</span>- and Excel-files. The
-methods given by the <span title="European Medicines Agency">EMA</span>
-for
+supporting users in a black-box performance qualification (PQ) of their
+software installations. Users can perform analysis of their own data
+imported from <span title="Character Separated Variables">CSV</span>-
+and Excel-files. The methods given by the <span
+title="European Medicines Agency">EMA</span> for
 reference-scaling<sup id="a1">[1](#f1),</sup><sup id="a2">[2](#f2)</sup>
 are implemented.<br> Potential influence of outliers on the variability
 of the reference can be assessed by box plots of studentized and
@@ -161,7 +160,7 @@ Three options are provided:
     equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’
     `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected*
     information matrix. Note that SAS with `DDFM=KENWARDROGER` and JMP
-    calculate Satterthwaite’s (*sic*) degrees of freedom and apply the
+    calculate Satterthwaite’s \[*sic*\] degrees of freedom and apply the
     Kackar-Harville correction, *i.e.*, based on the *observed*
     information matrix.
 
@@ -182,7 +181,7 @@ employed by default. Tighter limits (90.00 – 111.11%) for narrow
 therapeutic index drugs (<span
 title="European Medicines Agency">EMA</span> and others) or wider limits
 (75.00 – 133.33%) for *C*<sub>max</sub> according to the guideline of
-South Africa can be specified.
+South Africa<sup id="a6">[6](#f6)</sup> can be specified.
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -223,14 +222,14 @@ Details about the reference datasets:
 
 Results of the 30 reference datasets agree with ones obtained in SAS
 (9.4), Phoenix WinNonlin (6.4 – 8.1), STATISTICA (13), SPSS (22.0),
-Stata (15.0), and JMP (10.0.2).<sup id="a6">[6](#f6)</sup>
+Stata (15.0), and JMP (10.0.2).<sup id="a7">[7](#f7)</sup>
 
 <small>[TOC ↩](#replicatebe)</small>
 
 ## Examples
 
 -   Evaluation of the internal reference dataset
-    01<sup id="a7">[7](#f7)</sup> by Method A.
+    01<sup id="a8">[8](#f8)</sup> by Method A.
 
 <div style="margin-left:2em">
 
@@ -392,7 +391,7 @@ Stata (15.0), and JMP (10.0.2).<sup id="a6">[6](#f6)</sup>
 <small>[TOC ↩](#replicatebe)</small>
 
 -   Evaluation of the internal reference dataset
-    05.<sup id="a8">[8](#f8)</sup> Tighter limits for the <span
+    05.<sup id="a9">[9](#f9)</sup> Tighter limits for the <span
     title="Narrow Therapeutic Index Drug">NTID</span> phenytoin.
 
 <div style="margin-left:2em">
@@ -597,18 +596,22 @@ Bioequivalence. Version
 studies conducted for submission to
 PQTm.](https://extranet.who.int/pqweb/sites/default/files/documents/AUC_criteria_November2018.pdf)
 22 November 2018.</span> [↩](#a5)  
-<span id="f6" style="font-size:smaller">6. Schütz H, Tomashevskiy M,
+<span id="f6" style="font-size:smaller">6. Medicines Control Council.
+Registration of Medicines.
+[Biostudies.](https://www.sahpra.org.za/wp-content/uploads/2020/01/61de452d2.06_Biostudies_Jun15_v6.pdf)
+June 2015.</span> [↩](#a6)  
+<span id="f7" style="font-size:smaller">7. Schütz H, Tomashevskiy M,
 Labes D, Shitova A, González-de la Parra M, Fuglsang A. *Reference
 Datasets for Studies in a Replicate Design Intended for Average
 Bioequivalence with Expanding Limits.* AAPS J. 2020; 22(2): Article 44.
 [doi:10.1208/s12248-020-0427-6](https://doi.org/10.1208/s12248-020-0427-6).</span>
-[↩](#a6)  
-<span id="f7" style="font-size:smaller">7. European Medices Agency.
+[↩](#a7)  
+<span id="f8" style="font-size:smaller">8. European Medices Agency.
 [EMA/582648/2016. Annex
 II.](https://www.ema.europa.eu/en/documents/other/31-annex-ii-statistical-analysis-bioequivalence-study-example-data-set_en.pdf)
-21 September 2016.</span> [↩](#a7)  
-<span id="f8" style="font-size:smaller">8. Shumaker RC, Metzler CM. *The
+21 September 2016.</span> [↩](#a8)  
+<span id="f9" style="font-size:smaller">9. Shumaker RC, Metzler CM. *The
 Phenytoin Trial is a Case Study of ‘Individual’ Bioequivalence.* Drug
 Inf J. 1998; 32(4): 1063–1072.
 [doi:10.1177/009286159803200426](https://doi.org/10.1177/009286159803200426).</span>
-[↩](#a8)
+[↩](#a9)
