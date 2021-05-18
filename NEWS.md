@@ -6,7 +6,7 @@ Development version.
 
   * Added `swT` (for full replicates), `swR` (and `swR.rec` if outlier(s) are detected) to the data.frame of results. Previously only in the txt-output.
   * In `method.A()` and `ABE()` changed the ANOVA from ‘Type I’ (default) to ‘Type III’ in order to get the correct test for carryover. Clarified in the vignette.
-  * Direct widening to 75.00--133.33\% for _C_~max~ according to the conditions of the Gulf Cooperation Council. New argument `regulator` (`"EMA"` = default or `"GCC"`) in `method.A()` and `method.B()`. Hence, at least version 1.5.3 of `PowerTOST` is required.
+  * Direct widening to 75.00–133.33\% for Cmax according to the conditions of the Gulf Cooperation Council. New argument `regulator` `"EMA"` (default) or `"GCC"` in `method.A()` and `method.B()`. Hence, at least version 1.5.3 of `PowerTOST` is required.
 
 # replicateBE 1.0.17
 

@@ -1,9 +1,6 @@
 replicateBE
 ================
 
--   [Comparative BA-calculation for the EMA’s Average Bioequivalence
-    with Expanding Limits
-    (ABEL)](#comparative-ba-calculation-for-the-emas-average-bioequivalence-with-expanding-limits-abel)
 -   [Introduction](#introduction)
     -   [Methods](#methods)
         -   [Estimation of *CV*<sub>wR</sub> (and *CV*<sub>wT</sub> in
@@ -27,9 +24,7 @@ replicateBE
 -   [Contributors](#contributors)
 -   [Disclaimer](#disclaimer)
 
-<!-- README.md is generated from README.Rmd. Please edit that file
-     Don't forget to change [#foo] to [#foo] in README.md -
-     otherwise, the links in the TOC on GitHub will not work. -->
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 [![License: GPL
 v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
@@ -49,7 +44,10 @@ size](https://img.shields.io/github/repo-size/Helmut01/replicateBE?color=yellow)
 Version 1.1.9000 built 2021-05-17 with R 4.0.5 (development version not
 on CRAN).
 
-## Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)
+<h2>
+Comparative BA-calculation for the EMA’s Average Bioequivalence with
+Expanding Limits (ABEL)
+</h2>
 
 ## Introduction
 
@@ -59,14 +57,12 @@ which support users in a black-box performance qualification (PQ) of
 their software installations. Users can perform analysis of their own
 data imported from <span
 title="Character Separated Variables">CSV</span>- and Excel-files. The
-methods given by the <span
-title="European Medicines Agency">EMA</span><sup id="a1">[1](#f1)</sup>
-for reference-scaling according to the <span
-title="European Medicines Agency">EMA</span>’s Guideline on the
-Investigation of Bioequivalence<sup id="a2">[2](#f2)</sup> are
-implemented. Potential influence of outliers on the variability of the
-reference can be assessed by box plots of studentized and standardized
-residuals as suggested at a joint <span
+methods given by the <span title="European Medicines Agency">EMA</span>
+for
+reference-scaling<sup id="a1">[1](#f1),</sup><sup id="a2">[2](#f2)</sup>
+are implemented.<br> Potential influence of outliers on the variability
+of the reference can be assessed by box plots of studentized and
+standardized residuals as suggested at a joint <span
 title="European Generic Medicines Association">EGA</span>/<span
 title="European Medicines Agency">EMA</span>
 workshop.<sup id="a3">[3](#f3)</sup>  
@@ -166,7 +162,7 @@ Three options are provided:
     `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected*
     information matrix. Note that SAS with `DDFM=KENWARDROGER` and JMP
     calculate Satterthwaite’s (*sic*) degrees of freedom and apply the
-    Kackar-Harville correction *i.e.*, based on the *observed*
+    Kackar-Harville correction, *i.e.*, based on the *observed*
     information matrix.
 
 <div style="margin-left:2em">
@@ -225,22 +221,22 @@ Details about the reference datasets:
     help("data", package = "replicateBE")
     ?replicateBE::data
 
-Results of the 30 reference datasets agree<sup id="a6">[6](#f6)</sup>
-with ones obtained in SAS (9.4), Phoenix WinNonlin (6.4 – 8.1),
-STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
+Results of the 30 reference datasets agree with ones obtained in SAS
+(9.4), Phoenix WinNonlin (6.4 – 8.1), STATISTICA (13), SPSS (22.0),
+Stata (15.0), and JMP (10.0.2).<sup id="a6">[6](#f6)</sup>
 
 <small>[TOC ↩](#replicatebe)</small>
 
 ## Examples
 
--   Evaluation of the internal reference dataset 01 of Annex
-    II<sup id="a7">[7](#f7)</sup> by Method A.
+-   Evaluation of the internal reference dataset
+    01<sup id="a7">[7](#f7)</sup> by Method A.
 
 <div style="margin-left:2em">
 
     library(replicateBE) # attach the library
-    res <- method.A(verbose = TRUE, details = TRUE, print = FALSE,
-                    data = rds01)
+    res <- method.A(verbose = TRUE, details = TRUE,
+                    print = FALSE, data = rds01)
     # 
     # Data set DS01: Method A by lm() 
     # ----------------------------------- 
@@ -271,20 +267,34 @@ STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
 
 <small>[TOC ↩](#replicatebe)</small>
 
--   The same dataset evaluated according to the conditions of the <span
-    title="Gulf Cooperation Council">GCC</span>.
+-   The same dataset evaluated by Method B, Satterthwaite approximation
+    of degrees of freedom.
 
 <div style="margin-left:2em">
 
-    res <- method.A(regulator = "GCC", details = TRUE, print = FALSE,
-                    data = rds01)
+    res  <- method.B(option = 1, verbose = TRUE, details = TRUE,
+                     print = FALSE, data = rds01)
+    # 
+    # Data set DS01: Method B (option = 1) by lmer() 
+    # ---------------------------------------------- 
+    # Response: log(PK)
+    # Type III Analysis of Variance Table with Satterthwaite's method
+    #             Sum Sq  Mean Sq NumDF    DenDF F value    Pr(>F)
+    # sequence  0.001917 0.001917     1  74.7208 0.01198 0.9131536
+    # period    0.398078 0.132693     3 217.1188 0.82881 0.4792840
+    # treatment 1.579332 1.579332     1 216.9386 9.86464 0.0019197
+    # 
+    # treatment T – R:
+    #   Estimate Std. Error    t value   Pr(>|t|) 
+    #  0.1460900  0.0465130  3.1408000  0.0019197 
+    # 216.939 Degrees of Freedom (equivalent to SAS’ DDFM=SATTERTHWAITE)
     cols <- c(12, 17:21)
     tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
     names(tmp) <- names(res)[cols]
     tmp  <- cbind(tmp, res[22:24])
     print(tmp, row.names = FALSE)
     #  CVwR(%)  L(%)   U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
-    #    46.96 75.00 133.33   107.11   124.89 115.66 pass pass pass
+    #    46.96 71.23 140.40   107.17   124.97 115.73 pass pass pass
 
 </div>
 
@@ -342,31 +352,53 @@ STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
 
 <small>[TOC ↩](#replicatebe)</small>
 
--   Evaluation of the internal reference dataset 05 of Shumaker and
-    Metzler,<sup id="a8">[8](#f8)</sup> tighter limits for the narrow
-    therapeutic index drug phenytoin.
+-   The same dataset evaluated according to the conditions of the <span
+    title="Gulf Cooperation Council">GCC</span> (if
+    *CV*<sub>wR</sub> &gt; 30% widended limits 75.00 – 133.33%,
+    GMR-constraint 80.00 – 125.00%).
 
 <div style="margin-left:2em">
 
-    res <- ABE(verbose = TRUE, theta1 = 0.90, details = TRUE,
+    res <- method.A(regulator = "GCC", details = TRUE,
+                    print = FALSE, data = rds01)
+    cols <- c(12, 17:21)
+    tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
+    names(tmp) <- names(res)[cols]
+    tmp  <- cbind(tmp, res[22:24])
+    print(tmp, row.names = FALSE)
+    #  CVwR(%)  L(%)   U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
+    #    46.96 75.00 133.33   107.11   124.89 115.66 pass pass pass
+
+</div>
+
+<small>[TOC ↩](#replicatebe)</small>
+
+-   The same dataset evaluated according to the conditions of South
+    Africa (if *CV*<sub>wR</sub> &gt; 30% fixed limits 75.00 – 133.33%).
+
+<div style="margin-left:2em">
+
+    res <- ABE(theta1 = 0.75, details = TRUE,
+               print = FALSE, data = rds01)
+    tmp <- data.frame(as.list(sprintf("%.2f", res[12:17])))
+    names(tmp) <- names(res)[12:17]
+    tmp <- cbind(tmp, res[18])
+    print(tmp, row.names = FALSE)
+    #  CVwR(%) BE.lo(%) BE.hi(%) CL.lo(%) CL.hi(%)  PE(%)   BE
+    #    46.96    75.00   133.33   107.11   124.89 115.66 pass
+
+</div>
+
+<small>[TOC ↩](#replicatebe)</small>
+
+-   Evaluation of the internal reference dataset
+    05.<sup id="a8">[8](#f8)</sup> Tighter limits for the <span
+    title="Narrow Therapeutic Index Drug">NTID</span> phenytoin.
+
+<div style="margin-left:2em">
+
+    res <- ABE(theta1 = 0.90, details = TRUE,
                print = FALSE, data = rds05)
-    # 
-    # Data set DS05: ABE by lm() 
-    # ----------------------------------- 
-    # Type III Analysis of Variance Table
-    # 
-    # Response: log(PK)
-    #                  Df   Sum Sq   Mean Sq  F value     Pr(>F)
-    # sequence          1 0.092438 0.0924383  0.87808  0.3580620
-    # period            3 0.069183 0.0230609  1.69898  0.1746008
-    # treatment         1 0.148552 0.1485523 10.94435  0.0014517
-    # sequence:subject 24 2.526550 0.1052729  7.75581 4.0383e-12
-    # Residuals        74 1.004433 0.0135734                    
-    # 
-    # treatment T – R:
-    #   Estimate Std. Error    t value   Pr(>|t|) 
-    # 0.07558800 0.02284850 3.30822000 0.00145167 
-    # 74 Degrees of Freedom
     cols <- c(13:17)
     tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
     names(tmp) <- names(res)[cols]
@@ -542,24 +574,27 @@ Health Resulting from Use of this R-Code.*
 
 ------------------------------------------------------------------------
 
-<span id="f1" style="font-size:smaller">1. [EMA/582648/2016. Annex
+<span id="f1" style="font-size:smaller">1. European Medices Agency.
+[EMA/582648/2016. Annex
 I.](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf)
 21 September 2016.</span> [↩](#a1)  
-<span id="f2" style="font-size:smaller">2. [CPMP/EWP/QWP/1401/98 Rev. 1/
-Corr
+<span id="f2" style="font-size:smaller">2. European Medices Agency.
+Committee for Medicinal Products for Human Use. [CPMP/EWP/QWP/1401/98
+Rev. 1/ Corr
 \*\*.](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf)
 20 January 2010.</span> [↩](#a2)  
-<span id="f3" style="font-size:smaller">3. [Revised EMA Bioequivalence
-Guideline. Questions &
+<span id="f3" style="font-size:smaller">3. European Generic Medicines
+Association. [Revised EMA Bioequivalence Guideline. Questions &
 Answers.](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf)
 London, June 2010.</span> [↩](#a3)  
-<span id="f4" style="font-size:smaller">4. [The GCC Guidelines for
+<span id="f4" style="font-size:smaller">4. Executive Board of the Health
+Ministers’ Council for GCC States. [The GCC Guidelines for
 Bioequivalence. Version
 2.4.](https://old.sfda.gov.sa/en/drug/drug_reg/Regulations/GCC_Guidelines_Bioequivalence.pdf)
 30/3/2016.</span> [↩](#a4)  
-<span id="f5" style="font-size:smaller">5. [Application of
-reference-scaled criteria for AUC in bioequivalence studies conducted
-for submission to
+<span id="f5" style="font-size:smaller">5. World Health Organization.
+[Application of reference-scaled criteria for AUC in bioequivalence
+studies conducted for submission to
 PQTm.](https://extranet.who.int/pqweb/sites/default/files/documents/AUC_criteria_November2018.pdf)
 22 November 2018.</span> [↩](#a5)  
 <span id="f6" style="font-size:smaller">6. Schütz H, Tomashevskiy M,
@@ -568,7 +603,8 @@ Datasets for Studies in a Replicate Design Intended for Average
 Bioequivalence with Expanding Limits.* AAPS J. 2020; 22(2): Article 44.
 [doi:10.1208/s12248-020-0427-6](https://doi.org/10.1208/s12248-020-0427-6).</span>
 [↩](#a6)  
-<span id="f7" style="font-size:smaller">7. [EMA/582648/2016. Annex
+<span id="f7" style="font-size:smaller">7. European Medices Agency.
+[EMA/582648/2016. Annex
 II.](https://www.ema.europa.eu/en/documents/other/31-annex-ii-statistical-analysis-bioequivalence-study-example-data-set_en.pdf)
 21 September 2016.</span> [↩](#a7)  
 <span id="f8" style="font-size:smaller">8. Shumaker RC, Metzler CM. *The
