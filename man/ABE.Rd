@@ -231,8 +231,8 @@ European Medicines Agency, Committee for Medicinal Products for Human Use. \emph
 # separator comma, decimal separator period, print to file.
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
-# for 'path.out' in order to save the result file. Here to user's home
-# folder is used for simplicity.
+# for 'path.out' in order to save the result file. Here R's temporary
+# folder is used.
 path.in <- paste0(find.package("replicateBE"), "/extdata/")
 ABE(path.in = path.in, path.out = tempdir(), file = "DS", set = "02", ext = "csv")
 # Should result in:
@@ -249,4 +249,5 @@ ABE(path.out = tempdir(), data = rds02, theta1 = 0.90)
 # Should result in:
 #   BE-limits          :  90.00\% ... 111.11\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass
-#   Point estimate     : 102.26\%}}
+#   Point estimate     : 102.26\%}
+}

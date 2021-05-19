@@ -127,7 +127,7 @@ method.A <- function(alpha = 0.05, path.in, path.out, file,
     if (res$CI.rec == "pass" & res$GMR.rec == "pass")
       res$BE.rec <- "pass"  # if passing both, conclude BE
   }
-  if (details) { # results in default (7 digits) precision
+  if (details) { # results in full precision
     ret <- res
     if (as.character(res$outlier) == "NA") {
       # remove superfluous columns if ola=FALSE or ola=TRUE

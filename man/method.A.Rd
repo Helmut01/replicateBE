@@ -164,7 +164,7 @@ method.A(alpha = 0.05, path.in, path.out, file, set = "", ext,
     Any order of columns is acceptable.\cr
     Uppercase and mixed case headers will be internally converted to lowercase headers.
     \itemize{
-      \item \code{subject} must be integer numbers or (any combination of) alphanumerics\cr
+      \item \code{subject} must be integers or (any combination of) alphanumerics\cr
       \verb{[A-Z, a-z, -, _, #, 0-9]}
       \item \code{period} must be integer numbers.
       \item \code{sequence} must be contained in the tested designs (numbers or
@@ -333,6 +333,8 @@ European Medicines Agency, Committee for Medicinal Products for Human Use. \emph
   \emph{Questions and Answers on the Revised \acronym{EMA} Bioequivalence Guideline.} London, 1 June 2010. \href{https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf}{open access}
 
 European Medicines Agency. \emph{Clinical pharmacology and pharmacokinetics: questions and answers. 3.1 Which statistical method for the analysis of a bioequivalence study does the Agency recommend? Annex I}. London, 21 September 2016. \href{https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf}{EMA/582648/2016}
+
+Executive Board of the Health Ministers’ Council for GCC States. \emph{The GCC Guidelines for Bioequivalence.} 30/3/2016. \href{https://old.sfda.gov.sa/en/drug/drug_reg/Regulations/GCC_Guidelines_Bioequivalence.pdf}{Version 2.4}
 
 European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.}London, 20 November 2014. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{EMA/CPMP/EWP/280/96 Corr1}
 

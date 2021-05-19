@@ -94,7 +94,7 @@ ABE <- function(alpha = 0.05, path.in, path.out, file, set = "",
       round(res$"CL.hi(%)", 2) <= 100*theta2)
     res$BE <- "pass" # CI within acceptance range
   options(ow) # restore options
-  if (details) { # results in default (7 digits) precision
+  if (details) { # results in full numeric precision
     ret <- res   # and remove superfluous columns
     #class(ret) <- "repBE"
     return(ret)

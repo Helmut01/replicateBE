@@ -4,7 +4,7 @@ Development version.
 
 ## Major changes
 
-  * Added `swT` (for full replicates), `swR` (and `swR.rec` if outlier(s) are detected) to the data.frame of results. Previously only in the txt-output.
+  * Added `swT` (full replicates), `swR` (and `swR.rec` if outlier(s) are detected) to the data.frame of results (previously only in the result file). Referring to the columns in examples of man-pages, vignette, and `testthat.R` adapted.
   * In `method.A()` and `ABE()` changed the ANOVA from ‘Type I’ (default) to ‘Type III’ in order to get the correct test for carryover. Clarified in the vignette.
   * Direct widening to 75.00–133.33\% for Cmax according to the conditions of the Gulf Cooperation Council. New argument `regulator` `"EMA"` (default) or `"GCC"` in `method.A()` and `method.B()`. Hence, at least version 1.5.3 of `PowerTOST` is required.
 

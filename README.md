@@ -41,7 +41,7 @@ size](https://img.shields.io/github/languages/code-size/Helmut01/replicateBE?col
 ![repo
 size](https://img.shields.io/github/repo-size/Helmut01/replicateBE?color=yellow)
 
-Version 1.1.9000 built 2021-05-18 with R 4.1.0 (development version not
+Version 1.1.9000 built 2021-05-19 with R 4.1.0 (development version not
 on CRAN).
 
 <h2>
@@ -489,7 +489,7 @@ analysis.
     #  pkgbuild        1.2.0      2020-12-15 [1] CRAN (R 4.1.0)
     #  pkgconfig       2.0.3      2019-09-22 [1] CRAN (R 4.1.0)
     #  pkgload         1.2.1      2021-04-06 [1] CRAN (R 4.1.0)
-    #  PowerTOST       1.5.3.9000 2021-05-18 [1] local         
+    #  PowerTOST       1.5.3.9000 2021-05-09 [1] local         
     #  prettyunits     1.1.1      2020-01-24 [1] CRAN (R 4.1.0)
     #  processx        3.5.2      2021-04-30 [1] CRAN (R 4.1.0)
     #  ps              1.6.0      2021-02-28 [1] CRAN (R 4.1.0)
@@ -498,7 +498,7 @@ analysis.
     #  Rcpp            1.0.6      2021-01-15 [1] CRAN (R 4.1.0)
     #  readxl          1.3.1      2019-03-13 [1] CRAN (R 4.1.0)
     #  remotes         2.3.0      2021-04-01 [1] CRAN (R 4.1.0)
-    #  replicateBE   * 1.1.9000   2021-05-18 [1] local         
+    #  replicateBE   * 1.1.9000   2021-05-19 [1] local         
     #  rlang           0.4.11     2021-04-30 [1] CRAN (R 4.1.0)
     #  rmarkdown       2.8        2021-05-07 [1] CRAN (R 4.1.0)
     #  rprojroot       2.0.2      2020-11-15 [1] CRAN (R 4.1.0)

@@ -344,6 +344,8 @@ European Medicines Agency, Committee for Medicinal Products for Human Use. \emph
 
 European Medicines Agency. \emph{Clinical pharmacology and pharmacokinetics: questions and answers. 3.1 Which statistical method for the analysis of a bioequivalence study does the Agency recommend? Annex I}. London, 21 September 2016. \href{https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf}{EMA/582648/2016}
 
+Executive Board of the Health Ministers’ Council for GCC States. \emph{The GCC Guidelines for Bioequivalence.} 30/3/2016. \href{https://old.sfda.gov.sa/en/drug/drug_reg/Regulations/GCC_Guidelines_Bioequivalence.pdf}{Version 2.4}
+
 European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.} London, 20 November 2014. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{EMA/CPMP/EWP/280/96 Corr1}
 
 World Health Organization, Prequalification Team: medicines. \emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm.} Geneva, 22 November 2018. \href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf}{open access}
@@ -365,8 +367,8 @@ Food and Drug Administration, Office of Generic Drugs. \emph{Draft Guidance on W
 # print to file.
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
-# for 'path.out' in order to save the result file. Here to R's temporary
-# folder is used for simplicity.
+# for 'path.out' in order to save the result file. Here R's temporary
+# folder is used.
 path.in <- paste0(find.package("replicateBE"), "/extdata/")
 method.B(path.in = path.in, path.out = tempdir(), file = "DS", set = "01", ext = "csv")
 # Should result in:
@@ -402,8 +404,8 @@ x <- method.B(ola = TRUE, print = FALSE, details = TRUE, data = rds01)
 print(x, row.names = FALSE)
 # Compare Method B with Method A for all reference datasets.
 \donttest{
-ds <- substr(grep("rds", unname(unlist(data(package="replicateBE"))),
-                  value=TRUE), start=1, stop=5)
+ds <- substr(grep("rds", unname(unlist(data(package = "replicateBE"))),
+                  value = TRUE), start = 1, stop = 5)
 for (i in seq_along(ds)) {
   A <- method.A(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
   B <- method.B(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
@@ -429,7 +431,7 @@ for (i in seq_along(ds)) {
 # (i.e., no CI is required). With alpha = 0.5 the CI is practically
 # supressed (zero width) and ignored in the assessment.
 x    <- method.B(alpha = 0.5, option = 1, data = rds03,
-                 print = FALSE, details = TRUE)[c(19, 22)]
+                 print = FALSE, details = TRUE)[c(21, 24)]
 x[1] <- round(x[1], 1) # only one decimal place for HC
 print(x, row.names = FALSE)
 # Should result in:

@@ -92,7 +92,7 @@ Average Bioequivalence, where the model is identical to [Method A](#methodA). B
 
 # Hypotheses{#hypotheses}
 The hypotheses are $$\small{H_{0}:\theta_0\ni \left\{L,U\right\}\:vs\:H_{1}:L<\theta_0<U}$$
-where $\small{\theta_0=\mu_\textrm{T}/\mu_\textrm{R}}$ and the null hypothesis is **in**equivalence. In Average Bioequivalence (ABE) the limits $\small{\left\{L,U\right\}}$ are fixed, whereas in <abbr title="Average Bioequivalence with Expanding Limits">ABEL</abbr> they can be [expanded](#BElim) based on the within-subject variability of the reference treatment.
+where $\small{\theta_0=\mu_\textrm{T}/\mu_\textrm{R}}$ and the null hypothesis is **in**equivalence. In Average Bioequivalence (ABE) the limits $\small{\left\{L,U\right\}}$ are *fixed*, whereas in <abbr title="Average Bioequivalence with Expanding Limits">ABEL</abbr> they can be [*expanded*](#BElim) based on the within-subject variability of the reference treatment.
 
 # Tested designs{#designs}
 Details about the reference datasets and their designs:
@@ -147,11 +147,11 @@ Columns must have the headers `subject`, `period`, `sequence`, `treatment`, `PK`
 | `PK` | Real <span title="zero is not acceptable">positive</span> numbers of <abbr title="pharmacokinetic">PK</abbr> responses. |
 | `logPK` | Real numbers of already log~e~-transformed PK responses (optional and rarely needed). |
 
-Relevant data are used for the estimation of *CV*~wR~ (and *CV*~wT~ in full replicate designs) and BE, *i.e.*, the data­sets might be different (see the [example below](#setexpl)). It is good practice to state that in the Statistical Analysis Plan (SAP).
+Relevant data are used for the estimation of *CV*~wR~ (and *CV*~wT~ in full replicate designs) and BE, *i.e.*, the data­sets might be different (see the [example below](#setexpl)). It is good practice to state that in the Statistical Analysis Plan.
 
 ## Incomplete data{#incomplete}
 ### Estimation of _CV_~w~{#setCW}
-If a subject drops out from the study in a higher period, data of repeated administrations will still be used for the estimation of *CV*~w~, although data of the other treatment might be missing. Examples for the estimation of *CV*~wR~ (missing values denoted by `·`):\
+If a subject drops out from the study in a higher period, data of repeated administrations will still be used for the estimation of *CV*~w~, although data of the other treatment might be missing. Examples for the estimation of *CV*~wR~ (missing values are denoted by `·`):\
 
 `RTRT` | `RTR·`\
 `TRRT` | `TRR·`\
@@ -159,7 +159,7 @@ If a subject drops out from the study in a higher period, data of repeated admin
 `RRT` | `RR··`\
 
 ### Assessment of BE{#setBE}
-If a subject drops out from the study in a higher period, data with at least one administration of the Test and Reference will be used in the assessment of BE. Examples (missing values denoted by `·`):\
+If a subject drops out from the study in a higher period, data with at least one administration of the Test and Reference will be used in the assessment of BE. Examples (missing values are denoted by `·`):\
 
 `TRTR` | `TRT·` or | `TR··`\
 `RTRT` | `RTR·` or | `RT··`\
@@ -209,25 +209,44 @@ Special conditions for the sample size in three period full replicate designs:
 > 
 > --- <abbr title="Questions & Answers">Q&amp;A</abbr> document^[European Medicines Agency. *Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).* [EMA/618604/2008](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf). London, June 2015 (and later revisons).]
 
-If less than twelve subjects are eligible in sequence `RTR` of a `TRT | RTR` design (and in analogy in sequence `TRR` of a `TRR | RTT` design), the user is notified about the ‘uncertain’ estimate of *CV*~wR~. However, in a sufficiently powered study such a case is [extremely unlikely](https://forum.bebac.at/forum_entry.php?id=15139 "BEBA Forum, 23 July 2015"). Let us explore the confidence interval of the _CV_:
+If less than twelve subjects are eligible in sequence `RTR` of a `TRT | RTR` design (and in analogy in sequence `TRR` of a `TRR | RTT` design), the user is notified about the ‘uncertain’ estimate of *CV*~wR~. However, in a sufficiently powered study such a case is [extremely unlikely](https://forum.bebac.at/forum_entry.php?id=15139 "BEBA Forum, 23 July 2015").\
+Let us explore the 95\% confidence interval of the _CV_:
 
 ```{r expl1}
-# Estimate sample sizes of full replicate designs (theta0 0.90, target
-# power 0.80) and CI of the CV with library PowerTOST
-CV <- 0.30
-n4 <- PowerTOST::sampleN.scABEL(CV = CV, design = "2x2x4", details = FALSE,
-                                print = FALSE)[["Sample size"]] # 4-period
-n3 <- PowerTOST::sampleN.scABEL(CV = CV, design = "2x2x3", details = FALSE,
-                                print = FALSE)[["Sample size"]] # 3-period
-# 95% CI of CVs in %
-round(100*PowerTOST::CVCL(CV = CV, df = 3*n4-4, "2-sided"), 2) # 4-period
-round(100*PowerTOST::CVCL(CV = CV, df = 2*n3-3, "2-sided"), 2) # 3-period
-# As above but assume that only 12 subjects remain in each sequence
-round(100*PowerTOST::CVCL(CV = CV, df = 3*24-4, "2-sided"), 2) # 4-period
-round(100*PowerTOST::CVCL(CV = CV, df = 2*24-3, "2-sided"), 2) # 3-period
+# Estimate sample sizes of full replicate designs (theta0 0.90,
+# target power 0.80) and CI of the CV with library PowerTOST
+CV     <- 0.30
+design <- c("2x2x4", "2x2x3") # 4- and 3-period full replicate designs
+res    <- data.frame(design = rep(design, 2), n = c(rep(NA, 2), rep(12, 2)),
+                     df = NA, CV = CV, lower = NA, upper = NA)
+# 95% confidence interval of the CV
+for (i in 1:nrow(res)) {
+  if (is.na(res$n[i])) {
+    res$n[i] <- PowerTOST::sampleN.scABEL(CV = CV,
+                                          design = res$design[i],
+                                          details = FALSE,
+                                          print = FALSE)[["Sample size"]]
+  }
+  if (i > 2 ) {
+    n.1 <- res$n[i-2] / 2 # no dropouts in one sequence
+    n.2 <- 12             # only 12 eligible subjects in the other
+    res$n[i] <- n.1 + n.2
+  }
+  if (res$design[i] == "2x2x4") {
+    res$df[i] <- 3 * res$n[i] - 4
+  } else {
+    res$df[i] <- 2 * res$n[i] - 3
+  }
+  res[i, 5:6] <- round(PowerTOST::CVCL(CV = CV,
+                                       df = res$df[i],
+                                       side = "2-sided",
+                                       alpha = 0.05), 3)
+}
+print(res, row.names = FALSE)
+# Rows 1-2: Sample sizes for target power
+# Rows 3-4: Only 12 eligible subjects in one sequence
 ```
-
-It is unclear why the four period replicate is considered by the <abbr title="European Medicines Agency">EMA</abbr> to give a more ‘reliable’ estimate than the three period replicate.
+It is incomprehensible why a four period full replicate design is considered by the <abbr title="European Medicines Agency">EMA</abbr> to give a more ‘reliable’ estimate of the _CV_ than a three period full replicate design.
 
 ## Model structure{#model_struc}
 The <abbr title="European Medicines Agency">EMA</abbr>’s models assume equal [_sic_] intra-subject variances of Test and Reference (like in <abbr title="2-treatment 2-sequence 2-period crossover">2×2×2</abbr> trials) – even if proven false in one of the full replicate designs (were _both_ *CV*~wT~ and *CV*~wR~ can be estimated). Hence, among biostatisticians they are called ‘crippled models’ because the replicative nature of the study is ignored.
