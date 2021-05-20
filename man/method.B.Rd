@@ -75,7 +75,7 @@ method.B(alpha = 0.05, path.in, path.out, file, set = "", ext,
     Set regulatory conditions. If \code{"EMA"} (default) conventional ABEL will
     be used. If \code{"HC"} Health Canada’s upper cap of scaling (~57.4\%)
     will be applied. If \code{"GCC"} direct widening to 75.00--133.33\% will be
-    sed if \code{CVwR>30\%}.
+    used if \code{CVwR>30\%}.
   }
   \item{ola}{
     Defaults to \code{FALSE}. If \code{TRUE} an outlier analysis based
