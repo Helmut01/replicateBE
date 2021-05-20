@@ -192,6 +192,14 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
       reg_set <- reg_const("GCC")
       BE <- as.numeric(scABEL(CV = CVwR, regulator = "GCC"))
     }
+    if (regulator == "HC") {
+      reg_set <- reg_const("HC")
+      if (!alpha == 0.5) {
+        BE <- as.numeric(scABEL(CV = CVwR, regulator = "HC"))
+      } else { # Cmax
+        BE <- c(0.80, 1.25)
+      }
+    }
   } else {
     BE <- c(theta1, theta2)
   }
@@ -213,7 +221,23 @@ CV.calc <- function(alpha = 0.05, path.in, path.out, file, set = "",
                     "\nSwitching CV       : ",
                     sprintf("%6.2f%%", 100*reg_set$CVswitch))
     }
-    if (CVwR > 0.3) {
+    if (regulator == "HC") {
+      if (!alpha == 0.5) {
+        txt <- paste0(ret$txt,
+                      "\nRegulator          : HC",
+                      "\nSwitching CV       : ",
+                      sprintf("%6.2f%%", 100*reg_set$CVswitch),
+                      "\nScaling cap        : ",
+                      sprintf("%6.2f%%", 100*reg_set$CVcap),
+                      "\nRegul. constant (k):  ",
+                      sprintf("%.3f", reg_set$r_const))
+      } else { # Cmax
+        txt <- paste0(ret$txt,
+                      "\nRegulator          : HC")
+
+      }
+    }
+    if (CVwR > 0.3 & !regulator == "HC" & !alpha == 0.5) {
       txt <- paste0(txt, "\nGMR restriction    :  80.00% ... 125.00%")
     }
   }

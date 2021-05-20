@@ -10,6 +10,8 @@ method.A <- function(alpha = 0.05, path.in, path.out, file,
                      fence = 2, data = NULL) {
   exec <- strftime(Sys.time(), usetz=TRUE)
   if (!missing(ext)) ext <- tolower(ext) # case-insensitive
+  if (regulator == "HC")
+    stop("For HC use method.B() option == 1 or option == 2 instead.")
   ret  <- CV.calc(alpha=alpha, path.in=path.in, path.out=path.out,
                   file=file, set=set, ext=ext, na=na, sep=sep,
                   dec=dec, logtrans=logtrans, regulator=regulator, ola=ola,

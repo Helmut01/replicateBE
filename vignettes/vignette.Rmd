@@ -38,7 +38,7 @@ cat(txt)
 # Introduction{#intro}
 The library provides datasets (internal `.rda` and in <abbr title="Character Separated Variables">CSV</abbr>-format in `/extdata/`) which support users in a [black-box](https://en.wikipedia.org/wiki/Black-box_testing) performance qualification (PQ) of their software installations.^[Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. *Reference Data&shy;sets for Studies in a Replicate Design Intended for Average Bioequivalence with Expanding Limits.* AAPS J. 2020; 22(2): Article 44. [doi:10.1208/s12248-020-0427-6](https://doi.org/10.1208/s12248-020-0427-6).] Users can analyze data imported from <abbr title="Character Separated Variables">CSV</abbr>- and Excel-files.  
 
-The methods^[European Medicines Agency. EMA/582648/2016 [*Annex I.*](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf) London. 21 September 2016.] given by the European Medicines Agency (EMA) for reference-scaling according to the Guideline on the Investigation of Bioequivalence^[European Medicines Agency. Committee for Medicinal Products for Human Use. *Guideline on the Investigation of Bioequivalence.* [CPMP/EWP/QWP/1401/98 Rev. 1/Corr **](https://www.ema.europa.eu/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf). London. 20 January 2010.] are implemented. Direct widening of the limits for *C*~max~ (as a special case of <abbr title="Average Bioequivalence with Expanding Limits">ABEL</abbr>) recommended by the <abbr title="Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, the United Arab Emirates.">GCC</abbr>^[Executive Board of the Health Ministers’ Council for GCC States. [*The GCC Guidelines for Bioequivalence.*](https://old.sfda.gov.sa/en/drug/drug_reg/Regulations/GCC_Guidelines_Bioequivalence.pdf) March 2016.] is supported as well.  
+The methods^[European Medicines Agency. EMA/582648/2016 [*Annex I.*](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf) London. 21 September 2016.] given by the European Medicines Agency (EMA) for reference-scaling according to the Guideline on the Investigation of Bioequivalence^[European Medicines Agency. Committee for Medicinal Products for Human Use. *Guideline on the Investigation of Bioequivalence.* [CPMP/EWP/QWP/1401/98 Rev. 1/Corr **](https://www.ema.europa.eu/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf). London. 20 January 2010.] are implemented. Health Canada’s approach^[Health Canada. [Guidance Document. Conduct and Analysis of Comparative Bioavailability Studies.](https://www.canada.ca/content/dam/hc-sc/documents/services/drugs-health-products/drug-products/applications-submissions/guidance-documents/bioavailability-bioequivalence/conduct-analysis-comparative.pdf) Ottawa. 2018/06/08.] -- requiring a mixed-effects model -- is approximated by intra-subject contrasts. Direct widening of the limits for *C*~max~ (as a special case of <abbr title="Average Bioequivalence with Expanding Limits">ABEL</abbr>) recommended by the <abbr title="Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, the United Arab Emirates.">GCC</abbr>^[Executive Board of the Health Ministers’ Council for GCC States. [*The GCC Guidelines for Bioequivalence.*](https://old.sfda.gov.sa/en/drug/drug_reg/Regulations/GCC_Guidelines_Bioequivalence.pdf) March 2016.] is supported as well.  
 
 Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint <abbr title="European Generic Medicines Association">EGA</abbr>/<abbr title="European Medicines Agency">EMA</abbr> symposium.^[European Generic Medicines Association. *Revised EMA Bioequivalence Guideline. [Questions &amp; Answers.](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf)* 3^rd^ EGA Symposium on Bioequivalence. London. 1 June 2010.]  
 
@@ -278,12 +278,13 @@ The limits can be expanded based on *CV*~wR~.
 * $\small{CV_\textrm{wR}\leq 30\%}$\
     Lower cap, *i.e.*, no scaling, conventional limits:\
     $\small{\left\{{L,U}\right\} = 80.00 - 125.00\%}$
-* $\small{30\%<CV_\textrm{wR}\leq 50\%}$\
+* $\small{30\%<CV_\textrm{wR}\leq 50\%}$ (EMA), $\small{30\%<CV_\textrm{wR}\leq \sim57.4\%}$ (Health Canada)\
     Expanded limits based on $s_\textrm{wR}$:\
     $\small{\left\{L,\,U\right\} = 100\cdot \exp(\mp 0.760\cdot{s_\textrm{wR}})}$
-* $\small{CV_\textrm{wR}>50\%}$\
+* $\small{CV_\textrm{wR}>50\%}$ (EMA), $\small{CV_\textrm{wR}>\sim57.4\%}$\
     Upper cap, *i.e.*, applying $\small{s^*_\textrm{wR}=\sqrt{\log_{e}(CV_\textrm{cap}^{2}+1)}}$ in the expansion formula or\
-    $\small{\left\{L,U\right\} = 69.84 - 143.19\%}$.
+    $\small{\left\{L,U\right\} = 69.84 - 143.19\%}$ (EMA)\
+    $\small{\left\{L,U\right\} = 66.7 - 150.0\%}$ (Health Canada).
 
 The special case recommended by the <abbr title="Gulf Cooperation Council: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, the United Arab Emirates.">GCC</abbr> is:
 
@@ -303,26 +304,31 @@ To avoid discontinuities due to double rounding, expanded limits are calculated 
 
 ```{r expl2}
 # Calculate limits with library PowerTOST
-CV <- c(30, 40, 49.6, 50, 50.4)
+CV <- c(30, 50, 57.382)
 df <- data.frame(CV = CV,
                  reg1 = "EMA", L1 = NA, U1 = NA, cap1 = "",
-                 reg2 = "GCC", L2 = NA, U2 = NA, cap2 = "",
+                 reg2 = "HC",  L2 = NA, U2 = NA, cap2 = "",
+                 reg3 = "GCC", L3 = NA, U3 = NA, cap3 = "",
                  stringsAsFactors = FALSE)
 for (i in seq_along(CV)) {
-  df[i, 3:4] <- sprintf("%.7f",
-                        PowerTOST::scABEL(CV[i]/100,
-                                          regulator = df$reg1[i])*100)
-  df[i, 7:8] <- sprintf("%.7f",
-                        PowerTOST::scABEL(CV[i]/100,
-                                          regulator = df$reg2[i])*100)
+  df[i, 3:4]   <- sprintf("%.3f",
+                          PowerTOST::scABEL(CV[i]/100,
+                                            regulator = df$reg1[i])*100)
+  df[i, 7:8]   <- sprintf("%.1f",
+                          PowerTOST::scABEL(CV[i]/100,
+                                            regulator = df$reg2[i])*100)
+  df[i, 11:12] <- sprintf("%.3f",
+                          PowerTOST::scABEL(CV[i]/100,
+                                            regulator = df$reg3[i])*100)
 }
-df$cap2[df$CV <= 30] <- df$cap1[df$CV <= 30] <- "lower"
-df$cap1[df$CV >= 50 & df$reg1 == "EMA"] <- "upper"
-names(df) <- c("CV(%)", rep(c("reg", "L(%)", "U(%)", "cap"), 2))
+df$cap3[df$CV <= 30] <- df$cap2[df$CV <= 30] <- df$cap1[df$CV <= 30] <- "lower"
+df$cap1[df$CV >= 50 & df$reg1 == "EMA"]    <- "upper"
+df$cap2[df$CV >= 57.382 & df$reg2 == "HC"] <- "upper"
+names(df) <- c("CV(%)", rep(c("reg", "L(%)", "U(%)", "cap"), 3))
 print(df, row.names = FALSE)
 ```
 
-![Discrete limits resulting from rounding](figure1.png){width=80%}
+![Discrete limits resulting from rounding (EMA)](figure1.png){width=80%}
 
 ## Degrees of freedom, comparison of methods{#df_comp}
 The SAS code provided by the <abbr title="European Medicines Agency">EMA</abbr> in the <abbr title="Questions & Answers">Q&A</abbr> document does not specify how the degrees of freedom should be calculated in Method B. Hence, the default in `PROC MIXED`, namely `DDFM=CONTAIN` is applied, *i.e.*, `method.B(..., option = 2`). For incomplete data (missing periods) Satterthwaite’s approximation of the degrees of freedom, *i.e.*, `method.B(..., option = 1)` or Kenward-Roger `method.B(..., option = 3)` might be a better choice – if stated as such in the <abbr title="Statistical Analysis Plan">SAP</abbr>.\

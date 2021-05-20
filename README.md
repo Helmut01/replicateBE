@@ -41,7 +41,7 @@ size](https://img.shields.io/github/languages/code-size/Helmut01/replicateBE?col
 ![repo
 size](https://img.shields.io/github/repo-size/Helmut01/replicateBE?color=yellow)
 
-Version 1.1.9000 built 2021-05-19 with R 4.1.0 (development version not
+Version 1.1.9000 built 2021-05-20 with R 4.1.0 (development version not
 on CRAN).
 
 <h2>
@@ -64,15 +64,17 @@ of the reference can be assessed by box plots of studentized and
 standardized residuals as suggested at a joint <span
 title="European Generic Medicines Association">EGA</span>/<span
 title="European Medicines Agency">EMA</span>
-workshop.<sup id="a3">[3](#f3)</sup>  
+workshop.<sup id="a3">[3](#f3)</sup><br> Health Canada’s
+approach<sup id="a4">[4](#f4)</sup> requiring a mixed-effects model is
+approximated by intra-subject contrasts.  
 Direct widening of the acceptance range as recommended by the Gulf
-Cooperation Council<sup id="a4">[4](#f4)</sup> (Bahrain, Kuwait, Oman,
+Cooperation Council<sup id="a5">[5](#f5)</sup> (Bahrain, Kuwait, Oman,
 Qatar, Saudi Arabia, United Arab Emirates) is provided as well.  
 In full replicate designs the variability of test and reference
 treatments can be assessed by *s*<sub>wT</sub>/*s*<sub>wR</sub> and the
 upper confidence limit of *σ*<sub>wT</sub>/*σ*<sub>wR</sub> (required
 for the <span title="World Health Organization">WHO</span>’s
-approach<sup id="a5">[5](#f5)</sup> for reference-scaling of *AUC*).
+approach<sup id="a6">[6](#f6)</sup> for reference-scaling of *AUC*).
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -167,7 +169,7 @@ employed by default. Tighter limits (90.00 – 111.11%) for narrow
 therapeutic index drugs (<span
 title="European Medicines Agency">EMA</span> and others) or wider limits
 (75.00 – 133.33%) for *C*<sub>max</sub> according to the guideline of
-South Africa<sup id="a6">[6](#f6)</sup> can be specified.
+South Africa<sup id="a7">[7](#f7)</sup> can be specified.
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -208,14 +210,14 @@ Details about the reference datasets:
 
 Results of the 30 reference datasets agree with ones obtained in SAS
 (9.4), Phoenix WinNonlin (6.4 – 8.1), STATISTICA (13), SPSS (22.0),
-Stata (15.0), and JMP (10.0.2).<sup id="a7">[7](#f7)</sup>
+Stata (15.0), and JMP (10.0.2).<sup id="a8">[8](#f8)</sup>
 
 <small>[TOC ↩](#replicatebe)</small>
 
 ## Examples
 
 -   Evaluation of the internal reference dataset
-    01<sup id="a8">[8](#f8)</sup> by Method A.
+    01<sup id="a9">[9](#f9)</sup> by Method A.
 
 <!-- -->
 
@@ -367,7 +369,7 @@ Stata (15.0), and JMP (10.0.2).<sup id="a7">[7](#f7)</sup>
 <small>[TOC ↩](#replicatebe)</small>
 
 -   Evaluation of the internal reference dataset
-    05.<sup id="a9">[9](#f9)</sup> Tighter limits for the <span
+    05.<sup id="a10">[10](#f10)</sup> Tighter limits for the <span
     title="Narrow Therapeutic Index Drug">NTID</span> phenytoin.
 
 <!-- -->
@@ -440,14 +442,14 @@ analysis.
     #  collate  German_Germany.1252         
     #  ctype    German_Germany.1252         
     #  tz       Europe/Vienna               
-    #  date     2021-05-19                  
+    #  date     2021-05-20                  
     # 
     # - Packages -----------------------------------------------
     #  package       * version    date       lib source        
     #  backports       1.2.1      2020-12-09 [1] CRAN (R 4.1.0)
     #  boot            1.3-28     2021-05-03 [1] CRAN (R 4.1.0)
     #  broom           0.7.6      2021-04-05 [1] CRAN (R 4.1.0)
-    #  cachem          1.0.4      2021-02-13 [1] CRAN (R 4.1.0)
+    #  cachem          1.0.5      2021-05-15 [1] CRAN (R 4.1.0)
     #  callr           3.7.0      2021-04-20 [1] CRAN (R 4.1.0)
     #  cellranger      1.1.0      2016-07-27 [1] CRAN (R 4.1.0)
     #  cli             2.5.0      2021-04-26 [1] CRAN (R 4.1.0)
@@ -489,7 +491,7 @@ analysis.
     #  pkgbuild        1.2.0      2020-12-15 [1] CRAN (R 4.1.0)
     #  pkgconfig       2.0.3      2019-09-22 [1] CRAN (R 4.1.0)
     #  pkgload         1.2.1      2021-04-06 [1] CRAN (R 4.1.0)
-    #  PowerTOST       1.5.3.9000 2021-05-09 [1] local         
+    #  PowerTOST       1.5.3.9000 2021-05-20 [1] local         
     #  prettyunits     1.1.1      2020-01-24 [1] CRAN (R 4.1.0)
     #  processx        3.5.2      2021-04-30 [1] CRAN (R 4.1.0)
     #  ps              1.6.0      2021-02-28 [1] CRAN (R 4.1.0)
@@ -498,7 +500,7 @@ analysis.
     #  Rcpp            1.0.6      2021-01-15 [1] CRAN (R 4.1.0)
     #  readxl          1.3.1      2019-03-13 [1] CRAN (R 4.1.0)
     #  remotes         2.3.0      2021-04-01 [1] CRAN (R 4.1.0)
-    #  replicateBE   * 1.1.9000   2021-05-19 [1] local         
+    #  replicateBE   * 1.1.9000   2021-05-20 [1] local         
     #  rlang           0.4.11     2021-04-30 [1] CRAN (R 4.1.0)
     #  rmarkdown       2.8        2021-05-07 [1] CRAN (R 4.1.0)
     #  rprojroot       2.0.2      2020-11-15 [1] CRAN (R 4.1.0)
@@ -508,7 +510,7 @@ analysis.
     #  stringr         1.4.0      2019-02-10 [1] CRAN (R 4.1.0)
     #  TeachingDemos   2.12       2020-04-07 [1] CRAN (R 4.1.0)
     #  testthat        3.0.2      2021-02-14 [1] CRAN (R 4.1.0)
-    #  tibble          3.1.1      2021-04-18 [1] CRAN (R 4.1.0)
+    #  tibble          3.1.2      2021-05-16 [1] CRAN (R 4.1.0)
     #  tidyr           1.1.3      2021-03-03 [1] CRAN (R 4.1.0)
     #  tidyselect      1.1.1      2021-04-30 [1] CRAN (R 4.1.0)
     #  usethis         2.0.1      2021-02-10 [1] CRAN (R 4.1.0)
@@ -542,45 +544,49 @@ Health Resulting from Use of this R-Code.*
 
 ------------------------------------------------------------------------
 
-<span id="f1" style="font-size:smaller">1. European Medices Agency.
+<span id="f1" style="font-size:smaller">  1. European Medices Agency.
 [EMA/582648/2016. Annex
 I.](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf)
 21 September 2016.</span> [↩](#a1)  
-<span id="f2" style="font-size:smaller">2. European Medices Agency.
+<span id="f2" style="font-size:smaller">  2. European Medices Agency.
 Committee for Medicinal Products for Human Use. [CPMP/EWP/QWP/1401/98
 Rev. 1/ Corr
 \*\*.](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf)
 20 January 2010.</span> [↩](#a2)  
-<span id="f3" style="font-size:smaller">3. European Generic Medicines
+<span id="f3" style="font-size:smaller">  3. European Generic Medicines
 Association. [Revised EMA Bioequivalence Guideline. Questions &
 Answers.](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf)
 London, June 2010.</span> [↩](#a3)  
-<span id="f4" style="font-size:smaller">4. Executive Board of the Health
-Ministers’ Council for GCC States. [The GCC Guidelines for
+<span id="f4" style="font-size:smaller">  4. Health Canada. [Guidance
+Document. Conduct and Analysis of Comparative Bioavailability
+Studies.](https://www.canada.ca/content/dam/hc-sc/documents/services/drugs-health-products/drug-products/applications-submissions/guidance-documents/bioavailability-bioequivalence/conduct-analysis-comparative.pdf)
+2018/06/08.</span> [↩](#a4)  
+<span id="f5" style="font-size:smaller">  5. Executive Board of the
+Health Ministers’ Council for GCC States. [The GCC Guidelines for
 Bioequivalence. Version
 2.4.](https://old.sfda.gov.sa/en/drug/drug_reg/Regulations/GCC_Guidelines_Bioequivalence.pdf)
-30/3/2016.</span> [↩](#a4)  
-<span id="f5" style="font-size:smaller">5. World Health Organization.
+30/3/2016.</span> [↩](#a5)  
+<span id="f6" style="font-size:smaller">  6. World Health Organization.
 [Application of reference-scaled criteria for AUC in bioequivalence
 studies conducted for submission to
 PQTm.](https://extranet.who.int/pqweb/sites/default/files/documents/AUC_criteria_November2018.pdf)
-22 November 2018.</span> [↩](#a5)  
-<span id="f6" style="font-size:smaller">6. Medicines Control Council.
+22 November 2018.</span> [↩](#a6)  
+<span id="f7" style="font-size:smaller">  7. Medicines Control Council.
 Registration of Medicines.
 [Biostudies.](https://www.sahpra.org.za/wp-content/uploads/2020/01/61de452d2.06_Biostudies_Jun15_v6.pdf)
-June 2015.</span> [↩](#a6)  
-<span id="f7" style="font-size:smaller">7. Schütz H, Tomashevskiy M,
+June 2015.</span> [↩](#a7)  
+<span id="f8" style="font-size:smaller">  8. Schütz H, Tomashevskiy M,
 Labes D, Shitova A, González-de la Parra M, Fuglsang A. *Reference
 Datasets for Studies in a Replicate Design Intended for Average
 Bioequivalence with Expanding Limits.* AAPS J. 2020; 22(2): Article 44.
 [doi:10.1208/s12248-020-0427-6](https://doi.org/10.1208/s12248-020-0427-6).</span>
-[↩](#a7)  
-<span id="f8" style="font-size:smaller">8. European Medices Agency.
+[↩](#a8)  
+<span id="f9" style="font-size:smaller">  9. European Medices Agency.
 [EMA/582648/2016. Annex
 II.](https://www.ema.europa.eu/en/documents/other/31-annex-ii-statistical-analysis-bioequivalence-study-example-data-set_en.pdf)
-21 September 2016.</span> [↩](#a8)  
-<span id="f9" style="font-size:smaller">9. Shumaker RC, Metzler CM. *The
-Phenytoin Trial is a Case Study of ‘Individual’ Bioequivalence.* Drug
-Inf J. 1998; 32(4): 1063–1072.
+21 September 2016.</span> [↩](#a9)  
+<span id="f10" style="font-size:smaller">10. Shumaker RC, Metzler CM.
+*The Phenytoin Trial is a Case Study of ‘Individual’ Bioequivalence.*
+Drug Inf J. 1998; 32(4): 1063–1072.
 [doi:10.1177/009286159803200426](https://doi.org/10.1177/009286159803200426).</span>
-[↩](#a9)
+[↩](#a10)

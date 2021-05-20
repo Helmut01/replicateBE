@@ -22,7 +22,8 @@ method.B(alpha = 0.05, path.in, path.out, file, set = "", ext,
     Type I Error (\acronym{TIE}) probability (nominal level of the test).
     Conventionally set to 0.05, resulting in a
     \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{\eqn{100(1-2\alpha)}{100(1-2alpha)}}
-    confidence interval.
+    confidence interval.\cr
+    If \code{regulator = "HC"} and \code{alpha = 0.5} only the point estimate will be assessed (for highly variable \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\textrm{max}}{Cmax}} within 80.0--125.0\%).
   }
   \item{path.in}{
     Path to the data file for import.
@@ -73,7 +74,8 @@ method.B(alpha = 0.05, path.in, path.out, file, set = "", ext,
   \item{regulator}{
     Set regulatory conditions. If \code{"EMA"} (default) conventional ABEL will
     be used. If \code{"GCC"} direct widening to 75.00--133.33\% will be used if
-    \code{CVwR>30\%}.
+    \code{CVwR>30\%} If \code{"HC"} Health Canada’s upper cap of scaling (~57.4\%)
+    will be applied.
   }
   \item{ola}{
     Defaults to \code{FALSE}. If \code{TRUE} an outlier analysis based
@@ -126,7 +128,8 @@ method.B(alpha = 0.05, path.in, path.out, file, set = "", ext,
     will be equivalent to \acronym{SAS}’ \verb{DDFM=SATTERTHWAITE}
     and Phoenix WinNonlin’s \verb{Satterthwaite}.\cr
     \code{3} uses the Kenward-Roger approximation equivalent to Stata’s
-    \verb{dfm=Kenward Roger (EIM)}.
+    \verb{dfm=Kenward Roger (EIM)}.\cr
+    If \verb{regulator = "HC"}, only \code{1} or \code{3} are supported.
   }
 }
 
@@ -311,6 +314,8 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
   as well (\emph{e.g.}, the \acronym{WHO}; \acronym{ASEAN} States, Australia,
   Brazil, Chile, Egypt, the Eurasian Economic Union, the East African Community,
   New Zealand, the Russian Federation).\cr\cr
+  Health Canada’s variant of ABEL (upper cap of scaling ~57.4\% limiting the expansion
+  at 67.7--150.0\%) is only approximate because a mixed-effects model would be required.\cr\cr
   The \acronym{WHO} accepts reference-scaling for \ifelse{html}{\out{<em>AUC</em>}}{\eqn{AUC}{AUC}} (4-period full replicate
   studies are mandatory in order to assess the variability associated with each product).
   It is an open issue how this assessment should be done. In Population Bioequivalence (\acronym{PBE})
@@ -345,6 +350,8 @@ European Medicines Agency, Committee for Medicinal Products for Human Use. \emph
 European Medicines Agency. \emph{Clinical pharmacology and pharmacokinetics: questions and answers. 3.1 Which statistical method for the analysis of a bioequivalence study does the Agency recommend? Annex I}. London, 21 September 2016. \href{https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf}{EMA/582648/2016}
 
 Executive Board of the Health Ministers’ Council for GCC States. \emph{The GCC Guidelines for Bioequivalence.} 30/3/2016. \href{https://old.sfda.gov.sa/en/drug/drug_reg/Regulations/GCC_Guidelines_Bioequivalence.pdf}{Version 2.4}
+
+Health Canada. \emph{Guidance Document. Conduct and Analysis of Comparative Bioavailability Studies.} 2018/06/08. \href{https://www.canada.ca/content/dam/hc-sc/documents/services/drugs-health-products/drug-products/applications-submissions/guidance-documents/bioavailability-bioequivalence/conduct-analysis-comparative.pdf}{open access}
 
 European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.} London, 20 November 2014. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{EMA/CPMP/EWP/280/96 Corr1}
 
@@ -427,14 +434,14 @@ for (i in seq_along(ds)) {
 #   rds14: A pass, B fail – Method B is conservative.
 #   ...
 \donttest{
-# Health Canada: Only the PE of Cmax has to lie with 80.0-125.0\%
+# Health Canada: Only the PE of Cmax has to lie within 80.0-125.0\%
 # (i.e., no CI is required). With alpha = 0.5 the CI is practically
 # supressed (zero width) and ignored in the assessment.
-x    <- method.B(alpha = 0.5, option = 1, data = rds03,
-                 print = FALSE, details = TRUE)[c(21, 24)]
+x    <- method.B(alpha = 0.5, regulator = "HC", option = 1,
+                 data = rds03, print = FALSE, details = TRUE)[19:20]
 x[1] <- round(x[1], 1) # only one decimal place for HC
 print(x, row.names = FALSE)
 # Should result in:
-# PE(\%)   BE
+# PE(\%)  GMR
 # 124.5 pass}
 }
