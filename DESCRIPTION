@@ -1,19 +1,22 @@
 Encoding: UTF-8
 Package: replicateBE
 Version: 1.1.9000
-Date: 2021-05-20
+Date: 2021-05-21
 Title: Average Bioequivalence with Expanding Limits (ABEL)
-Authors@R: c(person("Helmut", "Schütz",
-               role = c("aut", "cre"),
-               email = "helmut.schuetz@bebac.at",
-               comment = c(ORCID = "0000-0002-1167-7880")),
-             person("Michael", "Tomashevskiy",
-               role = "ctb",
-               email = "mittyright@yandex.ru"),
-             person("Detlew", "Labes",
-               role = "ctb",
-               email = "DetlewLabes@gmx.de",
-               comment = c(ORCID = "0000-0003-2169-426X")))
+Authors@R: c(person(given = "Helmut",
+                    family = "Schütz",
+                    role = c("aut", "cre"),
+                    email = "helmut.schuetz@bebac.at",
+                    comment = c(ORCID = "0000-0002-1167-7880")),
+             person(given = "Michael",
+                    family = "Tomashevskiy",
+                    role = "ctb",
+                    email = "mittyright@yandex.ru"),
+             person(given = "Detlew",
+                    family = "Labes",
+                    role = "ctb",
+                    email = "DetlewLabes@gmx.de",
+                    comment = c(ORCID = "0000-0003-2169-426X")))
 Author: Helmut Schütz [aut, cre] (<https://orcid.org/0000-0002-1167-7880>),
   Michael Tomashevskiy [ctb],
   Detlew Labes [ctb] (<https://orcid.org/0000-0003-2169-426X>)

@@ -12,7 +12,7 @@
 }
 
 \usage{
-method.A(alpha = 0.05, path.in, path.out, file, set = "", ext,
+method.A(alpha = 0.05, path.in, path.out = tempdir(), file, set = "", ext,
          na = ".", sep = ",", dec = ".", logtrans = TRUE,
          regulator = "EMA", ola = FALSE, print = TRUE, details = FALSE,
          adjust = FALSE, verbose = FALSE, ask = FALSE,
@@ -32,6 +32,7 @@ method.A(alpha = 0.05, path.in, path.out, file, set = "", ext,
   \item{path.out}{
     Path to save the result file if \code{print=TRUE}. You must have
     write-permission to the folder. For simplicity your home folder \verb{"~/"} can be used.\cr
+    If missing, R’s standard temporary folder will be used.\cr
     If a box plot of outliers should be saved (\code{plot.bxp=TRUE}), this path will be
     used as well.
   }
@@ -358,12 +359,11 @@ Labes D, \enc{Schütz}{Schuetz} H. \emph{Inflation of Type I Error in the Evalua
 # print to file.
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
-# for 'path.out' in order to save the result file. Here R's
-# temporary folder is used.
+# for 'path.out' in order to save the result file. Here the default
+# (R's temporary folder) is used.
 \donttest{
 path.in  <- paste0(find.package("replicateBE"), "/extdata/")
-method.A(path.in = path.in, path.out = tempdir(), file = "DS",
-set = "01", ext = "csv")
+method.A(path.in = path.in, file = "DS", set = "01", ext = "csv")
 # Should result in:
 #   CVwT               :  35.16\%
 #   swT                :   0.34138
@@ -378,7 +378,7 @@ set = "01", ext = "csv")
 #
 # Internal reference dataset 01 used and results to R's
 # temporary folder. Additional outlier-analyis.
-method.A(ola = TRUE, path.out = tempdir(), data = rds01)
+method.A(ola = TRUE, data = rds01)
 # Should give the same as above. Additionally:
 #   Outlier fence      :  2×IQR of studentized residuals.
 #   Recalculation due to presence of 2 outliers (subj. 45|52)
@@ -400,7 +400,7 @@ print(x, row.names = FALSE)
 # Assess the Type I Error and iteratively adjust alpha if necessary.
 # Not run: due to timing policy of CRAN for examples
 \donttest{
-method.A(adjust = TRUE, path.out = tempdir(), data = rds01)}
+method.A(adjust = TRUE, data = rds01)}
 # Should give in the result file:
 #   Assessment of the empiric Type I Error (TIE); 1,000,000 studies simulated.
 #     TIE not > nominal 0.05; consumer risk is controlled.
@@ -408,7 +408,7 @@ method.A(adjust = TRUE, path.out = tempdir(), data = rds01)}
 # Same with recalculation based on outliers, iteratively adjust alpha
 # if necessary
 \donttest{
-method.A(ola = TRUE, path.out = tempdir(), adjust = TRUE, data = rds01)}
+method.A(ola = TRUE, adjust = TRUE, data = rds01)}
 # Should give in the result file:
 #   Assessment of the empiric Type I Error (TIE) based on original CVwR;
 #   1,000,000 studies simulated.
@@ -420,8 +420,7 @@ method.A(ola = TRUE, path.out = tempdir(), adjust = TRUE, data = rds01)}
 #
 # Repeat the evaluation with the adjusted alpha.
 \donttest{
-method.A(alpha = 0.033416, path.out = tempdir(), ola = TRUE,
-         adjust = TRUE, data = rds01)}
+method.A(alpha = 0.033416, ola = TRUE, adjust = TRUE, data = rds01)}
 # Should give in the result file:
 #   alpha              :   0.033416 (93.3168\% CI)
 #   Confidence interval: 106.16\% ... 126.00\%  pass

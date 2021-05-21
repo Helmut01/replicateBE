@@ -2,7 +2,7 @@
 # Conventional (unscaled) ABE by ANOVA                  #
 # fixed: sequence, subject(sequence), period, treatment #
 #########################################################
-ABE <- function(alpha = 0.05, path.in, path.out, file, set = "",
+ABE <- function(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
                 ext, na = ".", sep = ",", dec = ".",
                 logtrans = TRUE, print = TRUE, details = FALSE,
                 verbose = FALSE, ask = FALSE, data = NULL,

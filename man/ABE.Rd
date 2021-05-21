@@ -10,7 +10,7 @@ Comparative BA-calculation for Average Bioequivalence
   \acronym{ANOVA} as recommended in the \acronym{EMA}’s guideline.
 }
 \usage{
-ABE(alpha = 0.05, path.in, path.out, file, set = "", ext,
+ABE(alpha = 0.05, path.in, path.out = tempdir(), file, set = "", ext,
     na = ".", sep = ",", dec = ".", logtrans = TRUE,
     print = TRUE, details = FALSE, verbose = FALSE, ask = FALSE,
     data = NULL, theta1, theta2)
@@ -28,7 +28,8 @@ ABE(alpha = 0.05, path.in, path.out, file, set = "", ext,
   }
   \item{path.out}{
     Path to save the result file if \code{print=TRUE}. You must have
-    write-permission to the folder. For simplicity your home folder \verb{"~/"} can be used.
+    write-permission to the folder. For simplicity your home folder \verb{"~/"} can be used.\cr
+    If missing, R’s standard temporary folder will be used.
   }
   \item{file}{
     Name of the dataset for import (\emph{without} extension). Must be a string
@@ -231,10 +232,10 @@ European Medicines Agency, Committee for Medicinal Products for Human Use. \emph
 # separator comma, decimal separator period, print to file.
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
-# for 'path.out' in order to save the result file. Here R's temporary
-# folder is used.
+# for 'path.out' in order to save the result file. Here the deafault
+# (R's temporary folder) is used.
 path.in <- paste0(find.package("replicateBE"), "/extdata/")
-ABE(path.in = path.in, path.out = tempdir(), file = "DS", set = "02", ext = "csv")
+ABE(path.in = path.in, file = "DS", set = "02", ext = "csv")
 # Should result in:
 #   BE-limits          :  80.00\% ... 125.00\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass
@@ -244,8 +245,9 @@ ABE(path.in = path.in, path.out = tempdir(), file = "DS", set = "02", ext = "csv
 x <- ABE(details = TRUE, print = FALSE, data = rds02)
 print(x, row.names = FALSE)
 \donttest{
-# Assuming a NTID and assess BE with narrower limits.
-ABE(path.out = tempdir(), data = rds02, theta1 = 0.90)
+# Assuming a NTID and assess BE with narrower limits for one
+# of the internal datasets.
+ABE(data = rds02, theta1 = 0.90)
 # Should result in:
 #   BE-limits          :  90.00\% ... 111.11\%
 #   Confidence interval:  97.32\% ... 107.46\%  pass

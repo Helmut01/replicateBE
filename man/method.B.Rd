@@ -11,7 +11,7 @@ Comparative BA-calculation for Average Bioequivalence with Expanding Limits by t
   random effect (\sQuote{Method B}) as specified in \emph{Annex I}.
 }
 \usage{
-method.B(alpha = 0.05, path.in, path.out, file, set = "", ext,
+method.B(alpha = 0.05, path.in, path.out = tempdir(), file, set = "", ext,
          na = ".", sep = ",", dec = ".", logtrans = TRUE,
          regulator = "EMA", ola = FALSE, print = TRUE, details = FALSE,
          verbose = FALSE, ask = FALSE, plot.bxp = FALSE, fence = 2,
@@ -31,6 +31,7 @@ method.B(alpha = 0.05, path.in, path.out, file, set = "", ext,
   \item{path.out}{
     Path to save the result file if \code{print=TRUE}. You must have
     write-permission to the folder. For simplicity your home folder \verb{"~/"} can be used.\cr
+    If missing, R’s standard temporary folder will be used.\cr
     If a box plot of outliers should be saved (\code{plot.bxp=TRUE}), this path will be
     used as well.
   }
@@ -374,10 +375,10 @@ Food and Drug Administration, Office of Generic Drugs. \emph{Draft Guidance on W
 # print to file.
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
-# for 'path.out' in order to save the result file. Here R's temporary
-# folder is used.
+# for 'path.out' in order to save the result file. Here the default
+# (R's temporary folder) is used.
 path.in <- paste0(find.package("replicateBE"), "/extdata/")
-method.B(path.in = path.in, path.out = tempdir(), file = "DS", set = "01", ext = "csv")
+method.B(path.in = path.in, file = "DS", set = "01", ext = "csv")
 # Should result in:
 #   CVwT               :  35.16\%
 #   swT                :   0.34138
@@ -392,7 +393,7 @@ method.B(path.in = path.in, path.out = tempdir(), file = "DS", set = "01", ext =
 #
 # Internal reference dataset 01 used and results to R's temporary
 # folder. Additional outlier-analyis and box plot saved as PNG.
-method.B(ola = TRUE, path.out = tempdir(), plot.bxp = TRUE, data = rds01)
+method.B(ola = TRUE, plot.bxp = TRUE, data = rds01)
 # Should give the same as above. Additionally:
 #   Recalculation due to presence of 2 outliers (subj. 45|52)
 #   CVwR (outl. excl.) :  32.16\% (reference-scaling applicable)
