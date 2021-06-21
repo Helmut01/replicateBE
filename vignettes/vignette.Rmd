@@ -512,6 +512,6 @@ Program offered for Use without any Guarantees and Absolutely No Warranty. No Li
 Inspect this information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.
 
 ```{r, sessioninfo}
-options(width = 60)
+options(width = 59)
 devtools::session_info()
 ```

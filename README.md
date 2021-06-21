@@ -1,28 +1,28 @@
 replicateBE
 ================
 
--   [Introduction](#introduction)
-    -   [Methods](#methods)
-        -   [Estimation of *CV*<sub>wR</sub> (and *CV*<sub>wT</sub> in
+  - [Introduction](#introduction)
+      - [Methods](#methods)
+          - [Estimation of *CV*<sub>wR</sub> (and *CV*<sub>wT</sub> in
             full replicate
             designs)](#estimation-of-cvwr-and-cvwt-in-full-replicate-designs)
-        -   [Method A](#method-a)
-        -   [Method B](#method-b)
-        -   [Average Bioequivalence](#average-bioequivalence)
-    -   [Tested designs](#tested-designs)
-        -   [Four period (full)
+          - [Method A](#method-a)
+          - [Method B](#method-b)
+          - [Average Bioequivalence](#average-bioequivalence)
+      - [Tested designs](#tested-designs)
+          - [Four period (full)
             replicates](#four-period-full-replicates)
-        -   [Three period (full)
+          - [Three period (full)
             replicates](#three-period-full-replicates)
-        -   [Two period (full) replicate](#two-period-full-replicate)
-        -   [Three period (partial)
+          - [Two period (full) replicate](#two-period-full-replicate)
+          - [Three period (partial)
             replicates](#three-period-partial-replicates)
-    -   [Cross-validation](#cross-validation)
--   [Examples](#examples)
--   [Installation](#installation)
--   [Session Information](#session-information)
--   [Contributors](#contributors)
--   [Disclaimer](#disclaimer)
+      - [Cross-validation](#cross-validation)
+  - [Examples](#examples)
+  - [Installation](#installation)
+  - [Session Information](#session-information)
+  - [Contributors](#contributors)
+  - [Disclaimer](#disclaimer)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -41,29 +41,29 @@ size](https://img.shields.io/github/languages/code-size/Helmut01/replicateBE?col
 ![repo
 size](https://img.shields.io/github/repo-size/Helmut01/replicateBE?color=yellow)
 
-Version 1.1.9000 built 2021-05-20 with R 4.1.0 (development version not
-on CRAN).
+Version 1.1.0 built 2021-06-21 with R 4.1.0 (stable release on CRAN NA).
 
 <h2>
+
 Comparative BA-calculation for the EMA’s Average Bioequivalence with
 Expanding Limits (ABEL)
+
 </h2>
 
 ## Introduction
 
-The library provides data sets (internal `.rda` and in <span
-title="Character Separated Variables">CSV</span>-format in `/extdata/`)
-supporting users in a black-box performance qualification (PQ) of their
-software installations. Users can analyze own data imported from <span
-title="Character Separated Variables">CSV</span>- and Excel-files. The
-methods given by the <span title="European Medicines Agency">EMA</span>
-for
+The library provides data sets (internal `.rda` and in
+<span title="Character Separated Variables">CSV</span>-format in
+`/extdata/`) supporting users in a black-box performance qualification
+(PQ) of their software installations. Users can analyze own data
+imported from <span title="Character Separated Variables">CSV</span>-
+and Excel-files. The methods given by the
+<span title="European Medicines Agency">EMA</span> for
 reference-scaling<sup id="a1">[1](#f1),</sup><sup id="a2">[2](#f2)</sup>
 are implemented.<br> Potential influence of outliers on the variability
 of the reference can be assessed by box plots of studentized and
-standardized residuals as suggested at a joint <span
-title="European Generic Medicines Association">EGA</span>/<span
-title="European Medicines Agency">EMA</span>
+standardized residuals as suggested at a joint
+<span title="European Generic Medicines Association">EGA</span>/<span title="European Medicines Agency">EMA</span>
 workshop.<sup id="a3">[3](#f3)</sup><br> Health Canada’s
 approach<sup id="a4">[4](#f4)</sup> requiring a mixed-effects model is
 approximated by intra-subject contrasts.  
@@ -85,67 +85,75 @@ approach<sup id="a6">[6](#f6)</sup> for reference-scaling of *AUC*).
 Called internally by functions `method.A()` and `method.B()`. A linear
 model of log-transformed pharmacokinetic (PK) responses and effects  
     *sequence*, *subject*(*sequence*), *period*  
-where all effects are fixed (*i.e.*, <span
-title="Analysis of Variance">ANOVA</span>). Estimated by the function
-`lm()` of library `stats`.
+where all effects are fixed (*i.e.*,
+<span title="Analysis of Variance">ANOVA</span>). Estimated by the
+function `lm()` of library `stats`.
 
-    modCVwR <- lm(log(PK) ~ sequence + subject%in%sequence + period,
-                            data = data[data$treatment == "R", ])
-    modCVwT <- lm(log(PK) ~ sequence + subject%in%sequence + period,
-                            data = data[data$treatment == "T", ])
+``` r
+modCVwR <- lm(log(PK) ~ sequence + subject%in%sequence + period,
+                        data = data[data$treatment == "R", ])
+modCVwT <- lm(log(PK) ~ sequence + subject%in%sequence + period,
+                        data = data[data$treatment == "T", ])
+```
 
 <small>[TOC ↩](#replicatebe)</small>
 
 #### Method A
 
-Called by function `method.A()`. A linear model of log-transformed <span
-title="pharmacokinetic">PK</span> responses and effects  
+Called by function `method.A()`. A linear model of log-transformed
+<span title="pharmacokinetic">PK</span> responses and effects  
     *sequence*, *subject*(*sequence*), *period*, *treatment*  
-where all effects are fixed (*e.g.*, by an <span
-title="Analysis of Variance">ANOVA</span>). Estimated by the function
-`lm()` of library `stats`.
+where all effects are fixed (*e.g.*, by an
+<span title="Analysis of Variance">ANOVA</span>). Estimated by the
+function `lm()` of library `stats`.
 
-    modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
-                         data = data)
+``` r
+modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
+                     data = data)
+```
 
 <small>[TOC ↩](#replicatebe)</small>
 
 #### Method B
 
-Called by function `method.B()`. A linear model of log-transformed <span
-title="pharmacokinetic">PK</span> responses and effects  
+Called by function `method.B()`. A linear model of log-transformed
+<span title="pharmacokinetic">PK</span> responses and effects  
     *sequence*, *subject*(*sequence*), *period*, *treatment*  
 where *subject*(*sequence*) is a random effect and all others are
 fixed.  
 Three options are provided:
 
--   Estimated by the function `lmer()` of library `lmerTest`.
+  - Estimated by the function `lmer()` of library `lmerTest`.
     `method.B(..., option = 1)` employs Satterthwaite’s approximation of
     the degrees of freedom equivalent to SAS’ `DDFM=SATTERTHWAITE`,
     Phoenix WinNonlin’s `Degrees of Freedom Satterthwaite`, and Stata’s
     `dfm=Satterthwaite`. Note that this is the only available
     approximation in SPSS.
 
-<!-- -->
+<!-- end list -->
 
-    modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
-                           data = data)
+``` r
+modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
+                       data = data)
+```
 
--   Estimated by the function `lme()` of library `nlme`.
-    `method.B(..., option = 2)` employs degrees of freedom equivalent to
-    SAS’ `DDFM=CONTAIN`, Phoenix WinNonlin’s
-    `Degrees of Freedom Residual`, STATISTICA’s `GLM containment`, and
-    Stata’s `dfm=anova`. Implicitly preferred according to the <span
-    title="European Medicines Agency">EMA</span>’s <span
-    title="Questions &amp; Answers">Q&A</span> document and hence, the
-    default of the function.
+  - Estimated by the function `lme()` of library `nlme`. `method.B(...,
+    option = 2)` employs degrees of freedom equivalent to SAS’
+    `DDFM=CONTAIN`, Phoenix WinNonlin’s `Degrees of Freedom Residual`,
+    STATISTICA’s `GLM containment`, and Stata’s `dfm=anova`. Implicitly
+    preferred according to the
+    <span title="European Medicines Agency">EMA</span>’s
+    <span title="Questions &amp; Answers">Q\&A</span> document and
+    hence, the default of the function.
 
-<!-- -->
+<!-- end list -->
 
-    modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
-                          data = data)
+``` r
+modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
+                      data = data)
+```
 
--   Estimated by the function `lmer()` of library `lmerTest`.
+  - Estimated by the function `lmer()` of library `lmerTest`.
     `method.B(..., option = 3)` employs the Kenward-Roger approximation
     equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’
     `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected*
@@ -154,10 +162,12 @@ Three options are provided:
     Kackar-Harville correction, *i.e.*, based on the *observed*
     information matrix.
 
-<!-- -->
+<!-- end list -->
 
-    modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
-                           data = data)
+``` r
+modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
+                       data = data)
+```
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -166,10 +176,10 @@ Three options are provided:
 Called by function `ABE()`. The model is identical to
 [Method A](#method-a). Conventional BE limits (80.00 – 125.00%) are
 employed by default. Tighter limits (90.00 – 111.11%) for narrow
-therapeutic index drugs (<span
-title="European Medicines Agency">EMA</span> and others) or wider limits
-(75.00 – 133.33%) for *C*<sub>max</sub> according to the guideline of
-South Africa<sup id="a7">[7](#f7)</sup> can be specified.
+therapeutic index drugs
+(<span title="European Medicines Agency">EMA</span> and others) or wider
+limits (75.00 – 133.33%) for *C*<sub>max</sub> according to the
+guideline of South Africa<sup id="a7">[7](#f7)</sup> can be specified.
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -205,8 +215,10 @@ period effects, *not recommended*)</small>
 
 Details about the reference datasets:
 
-    help("data", package = "replicateBE")
-    ?replicateBE::data
+``` r
+help("data", package = "replicateBE")
+?replicateBE::data
+```
 
 Results of the 30 reference datasets agree with ones obtained in SAS
 (9.4), Phoenix WinNonlin (6.4 – 8.1), STATISTICA (13), SPSS (22.0),
@@ -216,81 +228,87 @@ Stata (15.0), and JMP (10.0.2).<sup id="a8">[8](#f8)</sup>
 
 ## Examples
 
--   Evaluation of the internal reference dataset
+  - Evaluation of the internal reference dataset
     01<sup id="a9">[9](#f9)</sup> by Method A.
 
-<!-- -->
+<!-- end list -->
 
-    library(replicateBE) # attach the library
-    res <- method.A(verbose = TRUE, details = TRUE,
-                    print = FALSE, data = rds01)
-    # 
-    # Data set DS01: Method A by lm() 
-    # ----------------------------------- 
-    # Type III Analysis of Variance Table
-    # 
-    # Response: log(PK)
-    #                   Df   Sum Sq  Mean Sq  F value     Pr(>F)
-    # sequence           1   0.0077 0.007652  0.00268  0.9588496
-    # period             3   0.6984 0.232784  1.45494  0.2278285
-    # treatment          1   1.7681 1.768098 11.05095  0.0010405
-    # sequence:subject  75 214.1296 2.855061 17.84467 < 2.22e-16
-    # Residuals        217  34.7190 0.159995                    
-    # 
-    # treatment T – R:
-    #   Estimate Std. Error    t value   Pr(>|t|) 
-    # 0.14547400 0.04650870 3.12788000 0.00200215 
-    # 217 Degrees of Freedom
-    cols <- c(12, 17:21)           # extract relevant columns
-    # cosmetics: 2 decimal places acc. to the GL
-    tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
-    names(tmp) <- names(res)[cols]
-    tmp  <- cbind(tmp, res[22:24]) # pass|fail
-    print(tmp, row.names = FALSE)
-    #  CVwR(%)  L(%)   U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
-    #    46.96 71.23 140.40   107.11   124.89 115.66 pass pass pass
+``` r
+library(replicateBE) # attach the library
+res <- method.A(verbose = TRUE, details = TRUE,
+                print = FALSE, data = rds01)
+# 
+# Data set DS01: Method A by lm() 
+# ----------------------------------- 
+# Type III Analysis of Variance Table
+# 
+# Response: log(PK)
+#                   Df   Sum Sq  Mean Sq  F value     Pr(>F)
+# sequence           1   0.0077 0.007652  0.00268  0.9588496
+# period             3   0.6984 0.232784  1.45494  0.2278285
+# treatment          1   1.7681 1.768098 11.05095  0.0010405
+# sequence:subject  75 214.1296 2.855061 17.84467 < 2.22e-16
+# Residuals        217  34.7190 0.159995                    
+# 
+# treatment T – R:
+#   Estimate Std. Error    t value   Pr(>|t|) 
+# 0.14547400 0.04650870 3.12788000 0.00200215 
+# 217 Degrees of Freedom
+cols <- c(12, 17:21)           # extract relevant columns
+# cosmetics: 2 decimal places acc. to the GL
+tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
+names(tmp) <- names(res)[cols]
+tmp  <- cbind(tmp, res[22:24]) # pass|fail
+print(tmp, row.names = FALSE)
+#  CVwR(%)  L(%)   U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
+#    46.96 71.23 140.40   107.11   124.89 115.66 pass pass pass
+```
 
 <small>[TOC ↩](#replicatebe)</small>
 
--   The same dataset evaluated by Method B, Satterthwaite approximation
+  - The same dataset evaluated by Method B, Satterthwaite approximation
     of degrees of freedom.
 
-<!-- -->
+<!-- end list -->
 
-    res  <- method.B(option = 1, verbose = TRUE, details = TRUE,
-                     print = FALSE, data = rds01)
-    # 
-    # Data set DS01: Method B (option = 1) by lmer() 
-    # ---------------------------------------------- 
-    # Response: log(PK)
-    # Type III Analysis of Variance Table with Satterthwaite's method
-    #             Sum Sq  Mean Sq NumDF    DenDF F value    Pr(>F)
-    # sequence  0.001917 0.001917     1  74.7208 0.01198 0.9131536
-    # period    0.398078 0.132693     3 217.1188 0.82881 0.4792840
-    # treatment 1.579332 1.579332     1 216.9386 9.86464 0.0019197
-    # 
-    # treatment T – R:
-    #   Estimate Std. Error    t value   Pr(>|t|) 
-    #  0.1460900  0.0465130  3.1408000  0.0019197 
-    # 216.939 Degrees of Freedom (equivalent to SAS’ DDFM=SATTERTHWAITE)
-    cols <- c(12, 17:21)
-    tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
-    names(tmp) <- names(res)[cols]
-    tmp  <- cbind(tmp, res[22:24])
-    print(tmp, row.names = FALSE)
-    #  CVwR(%)  L(%)   U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
-    #    46.96 71.23 140.40   107.17   124.97 115.73 pass pass pass
+``` r
+res  <- method.B(option = 1, verbose = TRUE, details = TRUE,
+                 print = FALSE, data = rds01)
+# 
+# Data set DS01: Method B (option = 1) by lmer() 
+# ---------------------------------------------- 
+# Response: log(PK)
+# Type III Analysis of Variance Table with Satterthwaite's method
+#             Sum Sq  Mean Sq NumDF    DenDF F value    Pr(>F)
+# sequence  0.001917 0.001917     1  74.7208 0.01198 0.9131536
+# period    0.398078 0.132693     3 217.1188 0.82881 0.4792840
+# treatment 1.579332 1.579332     1 216.9386 9.86464 0.0019197
+# 
+# treatment T – R:
+#   Estimate Std. Error    t value   Pr(>|t|) 
+#  0.1460900  0.0465130  3.1408000  0.0019197 
+# 216.939 Degrees of Freedom (equivalent to SAS’ DDFM=SATTERTHWAITE)
+cols <- c(12, 17:21)
+tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
+names(tmp) <- names(res)[cols]
+tmp  <- cbind(tmp, res[22:24])
+print(tmp, row.names = FALSE)
+#  CVwR(%)  L(%)   U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
+#    46.96 71.23 140.40   107.17   124.97 115.73 pass pass pass
+```
 
 <small>[TOC ↩](#replicatebe)</small>
 
--   The same dataset evaluated by Method B, Kenward-Roger approximation
+  - The same dataset evaluated by Method B, Kenward-Roger approximation
     of degrees of freedom. Outlier assessment, recalculation of
     *CV*<sub>wR</sub> after exclusion of outliers, new expanded limits.
 
-<!-- -->
+<!-- end list -->
 
-    res  <- method.B(option = 3, ola = TRUE, verbose = TRUE,
-                     details = TRUE, print = FALSE, data = rds01)
+``` r
+res  <- method.B(option = 3, ola = TRUE, verbose = TRUE,
+                 details = TRUE, print = FALSE, data = rds01)
+```
 
 ![](man/figures/README-example3-1.png)<!-- -->
 
@@ -333,56 +351,62 @@ Stata (15.0), and JMP (10.0.2).<sup id="a8">[8](#f8)</sup>
 
 <small>[TOC ↩](#replicatebe)</small>
 
--   The same dataset evaluated according to the conditions of the <span
-    title="Gulf Cooperation Council">GCC</span> (if
-    *CV*<sub>wR</sub> &gt; 30% widened limits 75.00 – 133.33%,
+  - The same dataset evaluated according to the conditions of the
+    <span title="Gulf Cooperation Council">GCC</span> (if
+    *CV*<sub>wR</sub> \> 30% widened limits 75.00 – 133.33%,
     GMR-constraint 80.00 – 125.00%).
 
-<!-- -->
+<!-- end list -->
 
-    res <- method.A(regulator = "GCC", details = TRUE,
-                    print = FALSE, data = rds01)
-    cols <- c(12, 17:21)
-    tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
-    names(tmp) <- names(res)[cols]
-    tmp  <- cbind(tmp, res[22:24])
-    print(tmp, row.names = FALSE)
-    #  CVwR(%)  L(%)   U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
-    #    46.96 75.00 133.33   107.11   124.89 115.66 pass pass pass
-
-<small>[TOC ↩](#replicatebe)</small>
-
--   The same dataset evaluated according to the conditions of South
-    Africa (if *CV*<sub>wR</sub> &gt; 30% fixed limits 75.00 – 133.33%).
-
-<!-- -->
-
-    res <- ABE(theta1 = 0.75, details = TRUE,
-               print = FALSE, data = rds01)
-    tmp <- data.frame(as.list(sprintf("%.2f", res[12:17])))
-    names(tmp) <- names(res)[12:17]
-    tmp <- cbind(tmp, res[18])
-    print(tmp, row.names = FALSE)
-    #  CVwR(%) BE.lo(%) BE.hi(%) CL.lo(%) CL.hi(%)  PE(%)   BE
-    #    46.96    75.00   133.33   107.11   124.89 115.66 pass
+``` r
+res <- method.A(regulator = "GCC", details = TRUE,
+                print = FALSE, data = rds01)
+cols <- c(12, 17:21)
+tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
+names(tmp) <- names(res)[cols]
+tmp  <- cbind(tmp, res[22:24])
+print(tmp, row.names = FALSE)
+#  CVwR(%)  L(%)   U(%) CL.lo(%) CL.hi(%)  PE(%)   CI  GMR   BE
+#    46.96 75.00 133.33   107.11   124.89 115.66 pass pass pass
+```
 
 <small>[TOC ↩](#replicatebe)</small>
 
--   Evaluation of the internal reference dataset
-    05.<sup id="a10">[10](#f10)</sup> Tighter limits for the <span
-    title="Narrow Therapeutic Index Drug">NTID</span> phenytoin.
+  - The same dataset evaluated according to the conditions of South
+    Africa (if *CV*<sub>wR</sub> \> 30% fixed limits 75.00 – 133.33%).
 
-<!-- -->
+<!-- end list -->
 
-    res <- ABE(theta1 = 0.90, details = TRUE,
-               print = FALSE, data = rds05)
-    cols <- c(13:17)
-    tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
-    names(tmp) <- names(res)[cols]
-    tmp  <- cbind(tmp, res[18])
-    print(tmp, row.names = FALSE)
-    #  BE.lo(%) BE.hi(%) CL.lo(%) CL.hi(%)  PE(%)   BE
-    #     90.00   111.11   103.82   112.04 107.85 fail
+``` r
+res <- ABE(theta1 = 0.75, details = TRUE,
+           print = FALSE, data = rds01)
+tmp <- data.frame(as.list(sprintf("%.2f", res[12:17])))
+names(tmp) <- names(res)[12:17]
+tmp <- cbind(tmp, res[18])
+print(tmp, row.names = FALSE)
+#  CVwR(%) BE.lo(%) BE.hi(%) CL.lo(%) CL.hi(%)  PE(%)   BE
+#    46.96    75.00   133.33   107.11   124.89 115.66 pass
+```
+
+<small>[TOC ↩](#replicatebe)</small>
+
+  - Evaluation of the internal reference dataset
+    05.<sup id="a10">[10](#f10)</sup> Tighter limits for the
+    <span title="Narrow Therapeutic Index Drug">NTID</span> phenytoin.
+
+<!-- end list -->
+
+``` r
+res <- ABE(theta1 = 0.90, details = TRUE,
+           print = FALSE, data = rds05)
+cols <- c(13:17)
+tmp  <- data.frame(as.list(sprintf("%.2f", res[cols])))
+names(tmp) <- names(res)[cols]
+tmp  <- cbind(tmp, res[18])
+print(tmp, row.names = FALSE)
+#  BE.lo(%) BE.hi(%) CL.lo(%) CL.hi(%)  PE(%)   BE
+#     90.00   111.11   103.82   112.04 107.85 fail
+```
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -391,14 +415,16 @@ Stata (15.0), and JMP (10.0.2).<sup id="a8">[8](#f8)</sup>
 The package requires R ≥3.5.0. However, for the Kenward-Roger
 approximation `method.B(..., option = 3)` R ≥3.6.0 is required.
 
--   Install the released version from <span
-    title="The Comprehensive R Archive Network">CRAN</span>:
+  - Install the released version from
+    <span title="The Comprehensive R Archive Network">CRAN</span>:
 
-<!-- -->
+<!-- end list -->
 
-    install.packages("replicateBE", repos = "https://cloud.r-project.org/")
+``` r
+install.packages("replicateBE", repos = "https://cloud.r-project.org/")
+```
 
--   To use the development version, please install the released version
+  - To use the development version, please install the released version
     from [CRAN](https://cran.r-project.org/package=replicateBE) first to
     get its dependencies right
     ([readxl](https://cran.r-project.org/package=readxl) ≥1.0.0,
@@ -406,20 +432,22 @@ approximation `method.B(..., option = 3)` R ≥3.6.0 is required.
     [lmerTest](https://cran.r-project.org/package=lmerTest),
     [nlme](https://cran.r-project.org/package=nlme),
     [pbkrtest](https://cran.r-project.org/package=pbkrtest)).
-
+    
     You need tools for building R packages from sources on your machine.
     For Windows users:  
-
-    -   Download
+    
+      - Download
         [Rtools](https://cran.r-project.org/bin/windows/Rtools/) from
         <span title="The Comprehensive R Archive Network">CRAN</span>
         and follow the suggestions of the installer.
-    -   Install `devtools` and build the development version by:
+      - Install `devtools` and build the development version by:
 
-<!-- -->
+<!-- end list -->
 
-    install.packages("devtools", repos = "https://cloud.r-project.org/")
-    devtools::install_github("Helmut01/replicateBE")
+``` r
+install.packages("devtools", repos = "https://cloud.r-project.org/")
+devtools::install_github("Helmut01/replicateBE")
+```
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -430,97 +458,99 @@ are the versions of R and the packages used to create this workflow. It
 is considered good practice to record this information with every
 analysis.
 
-    options(width = 60)
-    devtools::session_info()
-    # - Session info -------------------------------------------
-    #  setting  value                       
-    #  version  R version 4.1.0 (2021-05-18)
-    #  os       Windows 7 x64 SP 1          
-    #  system   x86_64, mingw32             
-    #  ui       RTerm                       
-    #  language EN                          
-    #  collate  German_Germany.1252         
-    #  ctype    German_Germany.1252         
-    #  tz       Europe/Vienna               
-    #  date     2021-05-20                  
-    # 
-    # - Packages -----------------------------------------------
-    #  package       * version    date       lib source        
-    #  backports       1.2.1      2020-12-09 [1] CRAN (R 4.1.0)
-    #  boot            1.3-28     2021-05-03 [1] CRAN (R 4.1.0)
-    #  broom           0.7.6      2021-04-05 [1] CRAN (R 4.1.0)
-    #  cachem          1.0.5      2021-05-15 [1] CRAN (R 4.1.0)
-    #  callr           3.7.0      2021-04-20 [1] CRAN (R 4.1.0)
-    #  cellranger      1.1.0      2016-07-27 [1] CRAN (R 4.1.0)
-    #  cli             2.5.0      2021-04-26 [1] CRAN (R 4.1.0)
-    #  colorspace      2.0-1      2021-05-04 [1] CRAN (R 4.1.0)
-    #  crayon          1.4.1      2021-02-08 [1] CRAN (R 4.1.0)
-    #  cubature        2.0.4.2    2021-05-13 [1] CRAN (R 4.1.0)
-    #  desc            1.3.0      2021-03-05 [1] CRAN (R 4.1.0)
-    #  devtools        2.4.1      2021-05-05 [1] CRAN (R 4.1.0)
-    #  digest          0.6.27     2020-10-24 [1] CRAN (R 4.1.0)
-    #  dplyr           1.0.6      2021-05-05 [1] CRAN (R 4.1.0)
-    #  ellipsis        0.3.2      2021-04-29 [1] CRAN (R 4.1.0)
-    #  evaluate        0.14       2019-05-28 [1] CRAN (R 4.1.0)
-    #  fansi           0.4.2      2021-01-15 [1] CRAN (R 4.1.0)
-    #  fastmap         1.1.0      2021-01-25 [1] CRAN (R 4.1.0)
-    #  fs              1.5.0      2020-07-31 [1] CRAN (R 4.1.0)
-    #  generics        0.1.0      2020-10-31 [1] CRAN (R 4.1.0)
-    #  ggplot2         3.3.3      2020-12-30 [1] CRAN (R 4.1.0)
-    #  glue            1.4.2      2020-08-27 [1] CRAN (R 4.1.0)
-    #  gtable          0.3.0      2019-03-25 [1] CRAN (R 4.1.0)
-    #  highr           0.9        2021-04-16 [1] CRAN (R 4.1.0)
-    #  htmltools       0.5.1.1    2021-01-22 [1] CRAN (R 4.1.0)
-    #  knitr           1.33       2021-04-24 [1] CRAN (R 4.1.0)
-    #  lattice         0.20-44    2021-05-02 [1] CRAN (R 4.1.0)
-    #  lifecycle       1.0.0      2021-02-15 [1] CRAN (R 4.1.0)
-    #  lme4            1.1-27     2021-05-15 [1] CRAN (R 4.1.0)
-    #  lmerTest        3.1-3      2020-10-23 [1] CRAN (R 4.1.0)
-    #  magrittr        2.0.1      2020-11-17 [1] CRAN (R 4.1.0)
-    #  MASS            7.3-54     2021-05-03 [1] CRAN (R 4.1.0)
-    #  Matrix          1.2-18     2019-11-27 [1] CRAN (R 4.1.0)
-    #  memoise         2.0.0      2021-01-26 [1] CRAN (R 4.1.0)
-    #  minqa           1.2.4      2014-10-09 [1] CRAN (R 4.1.0)
-    #  munsell         0.5.0      2018-06-12 [1] CRAN (R 4.1.0)
-    #  mvtnorm         1.1-1      2020-06-09 [1] CRAN (R 4.1.0)
-    #  nlme            3.1-152    2021-02-04 [1] CRAN (R 4.1.0)
-    #  nloptr          1.2.2.2    2020-07-02 [1] CRAN (R 4.1.0)
-    #  numDeriv        2016.8-1.1 2019-06-06 [1] CRAN (R 4.1.0)
-    #  pbkrtest        0.5.1      2021-03-09 [1] CRAN (R 4.1.0)
-    #  pillar          1.6.1      2021-05-16 [1] CRAN (R 4.1.0)
-    #  pkgbuild        1.2.0      2020-12-15 [1] CRAN (R 4.1.0)
-    #  pkgconfig       2.0.3      2019-09-22 [1] CRAN (R 4.1.0)
-    #  pkgload         1.2.1      2021-04-06 [1] CRAN (R 4.1.0)
-    #  PowerTOST       1.5.3.9000 2021-05-20 [1] local         
-    #  prettyunits     1.1.1      2020-01-24 [1] CRAN (R 4.1.0)
-    #  processx        3.5.2      2021-04-30 [1] CRAN (R 4.1.0)
-    #  ps              1.6.0      2021-02-28 [1] CRAN (R 4.1.0)
-    #  purrr           0.3.4      2020-04-17 [1] CRAN (R 4.1.0)
-    #  R6              2.5.0      2020-10-28 [1] CRAN (R 4.1.0)
-    #  Rcpp            1.0.6      2021-01-15 [1] CRAN (R 4.1.0)
-    #  readxl          1.3.1      2019-03-13 [1] CRAN (R 4.1.0)
-    #  remotes         2.3.0      2021-04-01 [1] CRAN (R 4.1.0)
-    #  replicateBE   * 1.1.9000   2021-05-20 [1] local         
-    #  rlang           0.4.11     2021-04-30 [1] CRAN (R 4.1.0)
-    #  rmarkdown       2.8        2021-05-07 [1] CRAN (R 4.1.0)
-    #  rprojroot       2.0.2      2020-11-15 [1] CRAN (R 4.1.0)
-    #  scales          1.1.1      2020-05-11 [1] CRAN (R 4.1.0)
-    #  sessioninfo     1.1.1      2018-11-05 [1] CRAN (R 4.1.0)
-    #  stringi         1.6.1      2021-05-10 [1] CRAN (R 4.1.0)
-    #  stringr         1.4.0      2019-02-10 [1] CRAN (R 4.1.0)
-    #  TeachingDemos   2.12       2020-04-07 [1] CRAN (R 4.1.0)
-    #  testthat        3.0.2      2021-02-14 [1] CRAN (R 4.1.0)
-    #  tibble          3.1.2      2021-05-16 [1] CRAN (R 4.1.0)
-    #  tidyr           1.1.3      2021-03-03 [1] CRAN (R 4.1.0)
-    #  tidyselect      1.1.1      2021-04-30 [1] CRAN (R 4.1.0)
-    #  usethis         2.0.1      2021-02-10 [1] CRAN (R 4.1.0)
-    #  utf8            1.2.1      2021-03-12 [1] CRAN (R 4.1.0)
-    #  vctrs           0.3.8      2021-04-29 [1] CRAN (R 4.1.0)
-    #  withr           2.4.2      2021-04-18 [1] CRAN (R 4.1.0)
-    #  xfun            0.23       2021-05-15 [1] CRAN (R 4.1.0)
-    #  yaml            2.2.1      2020-02-01 [1] CRAN (R 4.1.0)
-    # 
-    # [1] D:/Program Files/R/R-4.1.0/library
+``` r
+options(width = 59)
+devtools::session_info()
+# - Session info ------------------------------------------
+#  setting  value                       
+#  version  R version 4.1.0 (2021-05-18)
+#  os       Windows 7 x64 SP 1          
+#  system   x86_64, mingw32             
+#  ui       RTerm                       
+#  language EN                          
+#  collate  German_Germany.1252         
+#  ctype    German_Germany.1252         
+#  tz       Europe/Vienna               
+#  date     2021-06-21                  
+# 
+# - Packages ----------------------------------------------
+#  package       * version    date       lib source        
+#  backports       1.2.1      2020-12-09 [1] CRAN (R 4.1.0)
+#  boot            1.3-28     2021-05-03 [1] CRAN (R 4.1.0)
+#  broom           0.7.7      2021-06-13 [1] CRAN (R 4.1.0)
+#  cachem          1.0.5      2021-05-15 [1] CRAN (R 4.1.0)
+#  callr           3.7.0      2021-04-20 [1] CRAN (R 4.1.0)
+#  cellranger      1.1.0      2016-07-27 [1] CRAN (R 4.1.0)
+#  cli             2.5.0      2021-04-26 [1] CRAN (R 4.1.0)
+#  colorspace      2.0-1      2021-05-04 [1] CRAN (R 4.1.0)
+#  crayon          1.4.1      2021-02-08 [1] CRAN (R 4.1.0)
+#  cubature        2.0.4.2    2021-05-13 [1] CRAN (R 4.1.0)
+#  desc            1.3.0      2021-03-05 [1] CRAN (R 4.1.0)
+#  devtools        2.4.2      2021-06-07 [1] CRAN (R 4.1.0)
+#  digest          0.6.27     2020-10-24 [1] CRAN (R 4.1.0)
+#  dplyr           1.0.7      2021-06-18 [1] CRAN (R 4.1.0)
+#  ellipsis        0.3.2      2021-04-29 [1] CRAN (R 4.1.0)
+#  evaluate        0.14       2019-05-28 [1] CRAN (R 4.1.0)
+#  fansi           0.5.0      2021-05-25 [1] CRAN (R 4.1.0)
+#  fastmap         1.1.0      2021-01-25 [1] CRAN (R 4.1.0)
+#  fs              1.5.0      2020-07-31 [1] CRAN (R 4.1.0)
+#  generics        0.1.0      2020-10-31 [1] CRAN (R 4.1.0)
+#  ggplot2         3.3.4      2021-06-16 [1] CRAN (R 4.1.0)
+#  glue            1.4.2      2020-08-27 [1] CRAN (R 4.1.0)
+#  gtable          0.3.0      2019-03-25 [1] CRAN (R 4.1.0)
+#  highr           0.9        2021-04-16 [1] CRAN (R 4.1.0)
+#  htmltools       0.5.1.1    2021-01-22 [1] CRAN (R 4.1.0)
+#  knitr           1.33       2021-04-24 [1] CRAN (R 4.1.0)
+#  lattice         0.20-44    2021-05-02 [1] CRAN (R 4.1.0)
+#  lifecycle       1.0.0      2021-02-15 [1] CRAN (R 4.1.0)
+#  lme4            1.1-27     2021-05-15 [1] CRAN (R 4.1.0)
+#  lmerTest        3.1-3      2020-10-23 [1] CRAN (R 4.1.0)
+#  magrittr        2.0.1      2020-11-17 [1] CRAN (R 4.1.0)
+#  MASS            7.3-54     2021-05-03 [1] CRAN (R 4.1.0)
+#  Matrix          1.3-4      2021-06-01 [1] CRAN (R 4.1.0)
+#  memoise         2.0.0      2021-01-26 [1] CRAN (R 4.1.0)
+#  minqa           1.2.4      2014-10-09 [1] CRAN (R 4.1.0)
+#  munsell         0.5.0      2018-06-12 [1] CRAN (R 4.1.0)
+#  mvtnorm         1.1-2      2021-06-07 [1] CRAN (R 4.1.0)
+#  nlme            3.1-152    2021-02-04 [1] CRAN (R 4.1.0)
+#  nloptr          1.2.2.2    2020-07-02 [1] CRAN (R 4.1.0)
+#  numDeriv        2016.8-1.1 2019-06-06 [1] CRAN (R 4.1.0)
+#  pbkrtest        0.5.1      2021-03-09 [1] CRAN (R 4.1.0)
+#  pillar          1.6.1      2021-05-16 [1] CRAN (R 4.1.0)
+#  pkgbuild        1.2.0      2020-12-15 [1] CRAN (R 4.1.0)
+#  pkgconfig       2.0.3      2019-09-22 [1] CRAN (R 4.1.0)
+#  pkgload         1.2.1      2021-04-06 [1] CRAN (R 4.1.0)
+#  PowerTOST       1.5.3.9000 2021-05-26 [1] local         
+#  prettyunits     1.1.1      2020-01-24 [1] CRAN (R 4.1.0)
+#  processx        3.5.2      2021-04-30 [1] CRAN (R 4.1.0)
+#  ps              1.6.0      2021-02-28 [1] CRAN (R 4.1.0)
+#  purrr           0.3.4      2020-04-17 [1] CRAN (R 4.1.0)
+#  R6              2.5.0      2020-10-28 [1] CRAN (R 4.1.0)
+#  Rcpp            1.0.6      2021-01-15 [1] CRAN (R 4.1.0)
+#  readxl          1.3.1      2019-03-13 [1] CRAN (R 4.1.0)
+#  remotes         2.4.0      2021-06-02 [1] CRAN (R 4.1.0)
+#  replicateBE   * 1.1.0      2021-06-21 [1] local         
+#  rlang           0.4.11     2021-04-30 [1] CRAN (R 4.1.0)
+#  rmarkdown       2.9        2021-06-15 [1] CRAN (R 4.1.0)
+#  rprojroot       2.0.2      2020-11-15 [1] CRAN (R 4.1.0)
+#  scales          1.1.1      2020-05-11 [1] CRAN (R 4.1.0)
+#  sessioninfo     1.1.1      2018-11-05 [1] CRAN (R 4.1.0)
+#  stringi         1.6.1      2021-05-10 [1] CRAN (R 4.1.0)
+#  stringr         1.4.0      2019-02-10 [1] CRAN (R 4.1.0)
+#  TeachingDemos   2.12       2020-04-07 [1] CRAN (R 4.1.0)
+#  testthat        3.0.3      2021-06-16 [1] CRAN (R 4.1.0)
+#  tibble          3.1.2      2021-05-16 [1] CRAN (R 4.1.0)
+#  tidyr           1.1.3      2021-03-03 [1] CRAN (R 4.1.0)
+#  tidyselect      1.1.1      2021-04-30 [1] CRAN (R 4.1.0)
+#  usethis         2.0.1      2021-02-10 [1] CRAN (R 4.1.0)
+#  utf8            1.2.1      2021-03-12 [1] CRAN (R 4.1.0)
+#  vctrs           0.3.8      2021-04-29 [1] CRAN (R 4.1.0)
+#  withr           2.4.2      2021-04-18 [1] CRAN (R 4.1.0)
+#  xfun            0.24       2021-06-15 [1] CRAN (R 4.1.0)
+#  yaml            2.2.1      2020-02-01 [1] CRAN (R 4.1.0)
+# 
+# [1] D:/Program Files/R/R-4.1.0/library
+```
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -528,8 +558,8 @@ analysis.
 
 Helmut Schütz (author) <span style="font-size:smaller">[ORCID
 iD](https://orcid.org/0000-0002-1167-7880)</span><br> Michael
-Tomashevskiy (contributor)<br> Detlew Labes (contributor) <span
-style="font-size:smaller">[ORCID
+Tomashevskiy (contributor)<br> Detlew Labes (contributor)
+<span style="font-size:smaller">[ORCID
 iD](https://orcid.org/0000-0003-2169-426X)</span>
 
 <small>[TOC ↩](#replicatebe)</small>
@@ -542,7 +572,7 @@ Health Resulting from Use of this R-Code.*
 
 <small>[TOC ↩](#replicatebe)</small>
 
-------------------------------------------------------------------------
+-----
 
 <span id="f1" style="font-size:smaller">  1. European Medices Agency.
 [EMA/582648/2016. Annex
@@ -563,8 +593,8 @@ Studies.](https://www.canada.ca/content/dam/hc-sc/documents/services/drugs-healt
 2018/06/08.</span> [↩](#a4)  
 <span id="f5" style="font-size:smaller">  5. Executive Board of the
 Health Ministers’ Council for GCC States. [The GCC Guidelines for
-Bioequivalence. Version
-2.4.](https://old.sfda.gov.sa/en/drug/drug_reg/Regulations/GCC_Guidelines_Bioequivalence.pdf)
+Bioequivalence.
+Version 2.4.](https://old.sfda.gov.sa/en/drug/drug_reg/Regulations/GCC_Guidelines_Bioequivalence.pdf)
 30/3/2016.</span> [↩](#a5)  
 <span id="f6" style="font-size:smaller">  6. World Health Organization.
 [Application of reference-scaled criteria for AUC in bioequivalence
