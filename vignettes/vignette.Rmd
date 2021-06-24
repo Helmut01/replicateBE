@@ -20,19 +20,7 @@ knitr::opts_chunk$set(
 ```
 <div class="top"><a class="toplink" href="#" title="▲ top"> </a></div>
 ```{r setup}
-library(replicateBE) # attach the library
-```
-```{r, echo = FALSE}
-txt <- paste0("Version ", packageVersion("replicateBE"), " built ",
-         packageDate("replicateBE", date.fields = "Built"),
-         " with R ", substr(packageDescription("replicateBE", fields = "Built"), 3, 7))
-if (grepl("900",  as.character(packageVersion("replicateBE")))) {
-  txt <- paste(txt, "\n(development version not on CRAN).")
-} else {
-  txt <- paste0(txt, "\n(stable release on CRAN ",
-           packageDate("replicateBE", date.fields = "Date/Publication"), ").")
-}
-cat(txt)
+library(replicateBE) # attach the library to run example scripts
 ```
 
 # Introduction{#intro}
@@ -207,7 +195,7 @@ Special conditions for the sample size in three period full replicate designs:
 > 
 > _The <abbr title="Committee for Medicinal Products for Human Use">CHMP</abbr> bioequivalence guideline requires that at least 12 patients are needed to provide data for a bioequivalence study to be considered valid, and to estimate all the key parameters. Therefore, if a 3-period replicate design, where treatments are given in the order TRT or RTR, is to be used to justify widening of a confidence interval for C~max~ then it is considered that at least 12 patients would need to provide data from the RTR arm. This implies a study with at least 24 patients in total would be required if equal number of subjects are allocated to the 2 treatment sequences._
 > 
-> --- <abbr title="Questions & Answers">Q&amp;A</abbr> document^[European Medicines Agency. *Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).* [EMA/618604/2008](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf). London, June 2015 (and later revisons).]
+> --- <abbr title="Questions & Answers">Q&amp;A</abbr> document^[European Medicines Agency. *Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).* [EMA/618604/2008](https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf). London. June 2015 (and later revisons).]
 
 If less than twelve subjects are eligible in sequence `RTR` of a `TRT | RTR` design (and in analogy in sequence `TRR` of a `TRR | RTT` design), the user is notified about the ‘uncertain’ estimate of *CV*~wR~. However, in a sufficiently powered study such a case is [extremely unlikely](https://forum.bebac.at/forum_entry.php?id=15139 "BEBA Forum, 23 July 2015").\
 Let us explore the 95\% confidence interval of the _CV_:
@@ -265,7 +253,7 @@ The same holds true for the [EMA’s model](#cv) to estimate *CV*~wR~. The simpl
 &nbsp;&nbsp;&nbsp;&nbsp;_subject_, _period_\
 gives an identical estimate of the residual variance.
 
-Reference-scaling is acceptable for *C*~max~ (immediate release products: <abbr title="Bioequivalence">BE</abbr> Guideline) and *C*~max~, *C*~max,ss~, *C*~τ,ss~, ~partial~*AUC* (modified release products^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.* [EMA/CHMP/EWP/280/96.](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf) London, 20 November 2014.]). The intention to expand the limits has to be stated in the protocol and – contrary to the <abbr title="U.S. Food and Drug Administration">FDA</abbr>’s <abbr title="Reference Scaled Average Bioequivalence">RSABE</abbr> – a clinical justification provided.
+Reference-scaling is acceptable for *C*~max~ (immediate release products: <abbr title="Bioequivalence">BE</abbr> Guideline) and *C*~max~, *C*~max,ss~, *C*~τ,ss~, ~partial~*AUC* (modified release products^[European Medicines Agency, Committee for Medicinal Products for Human Use. *Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.* [EMA/CHMP/EWP/280/96.](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf) London. 20 November 2014.]). The intention to expand the limits has to be stated in the protocol and – contrary to the <abbr title="U.S. Food and Drug Administration">FDA</abbr>’s <abbr title="Reference Scaled Average Bioequivalence">RSABE</abbr> – a clinical justification provided.
 
 > _Those <abbr title="Highly Variable Drug Product">HVDP</abbr> for which a wider difference in C~max~ is considered clinically irrelevant based on a sound clinical justification can be assessed with a widened acceptance range.
 > The request for widened interval must be prospectively specified in the protocol._
@@ -475,6 +463,44 @@ Note that the <abbr title="Point Estimate">PE</abbr> and its <abbr title="Confid
 The ‘line plot’ is given for informational purposes since its resolution is only \~0.5\%. The filled squares `■` are the lower and upper 90\% confidence limits, the rhombus `◊` the point estimate, the vertical lines `│` at 100\% and the <abbr title="Point Estimate">PE</abbr> restriction (80.00 – 125.00\%), and the double vertical lines `║` the expanded limits. The <abbr title="Point Estimate">PE</abbr> and <abbr title="Confidence Interval">CI</abbr> take pre­se­dence over other symbols. In this case the upper limit of the <abbr title="Point Estimate">PE</abbr> restriction is not visible.\
 Since both analyses arrive at the same conclusion, the study should be acceptable according to the <abbr title="Questions &amp; Answers">Q&amp;A</abbr> document.
 
+An assessment of outliers is *not* required for Brazil’s ANVISA.
+
+Health Canada^[Health Canada. [*Guidance Document: Conduct and Analysis of Comparative Bioavailability Studies. 2.3.5. Outlier Consideration.*](https://www.canada.ca/en/health-canada/services/drugs-health-products/drug-products/applications-submissions/guidance-documents/bioavailability-bioequivalence/conduct-analysis-comparative.html#a234) Ottawa. 2018/06/08.] accepts exclusion of outliers (irrespective of the treatment) if
+
+1. the procedure is stated in the protocol and followed *before* the results of the analysis are summarised into confidence intervals (*i.e.*, regardless of whether results meet the standard),
+2. no more than 5\% of the subjects may be considered to be outliers, unless there are 20 or fewer subjects, in which case only one subject may be removed,
+3. it is recommended that a simple outlier test such as a studentised residual being greater than 3 be used, and
+4. the subject in question should be identified as an outlier for all parameters, for either the test or reference product, upon which the bioequivalence decision is to be based.
+
+Note that assessing of outliers of the <span style="text-decoration:underline">test treatment</span> is currently not supported. In order to comply with conditions #1 and #3 use (here for the internal dataset 01 with a fence narrower than the default):\
+```
+B1 <- method.B(ola = TRUE, verbose = TRUE, print = FALSE,
+               details = FALSE, fence = 1.5, data = rds01,
+               option = 1)
+```
+You will get
+```
+Outlier analysis
+ (externally) studentized residuals
+ Limits (1.5×IQR whiskers): -1.631514, 1.553557
+ Outliers:
+ subject sequence  stud.res
+      41     RTRT  1.877877
+      45     RTRT -6.656940
+      46     TRTR -1.717435
+      52     RTRT  3.453122
+
+ standarized (internally studentized) residuals
+ Limits (1.5×IQR whiskers): -1.612749, 1.53832
+ Outliers:
+ subject sequence stand.res
+      41     RTRT  1.845333
+      45     RTRT -5.246293
+      46     TRTR -1.694330
+      52     RTRT  3.214663
+```
+There are 73 subjects in the dataset with two treatments of the reference. Hence, while observing condition #2, we are allowed to delete 73×5\%~3 outliers. Delete subject 45 and 52 with residuals outside ±3 from the dataset. Run the analysis on the reduced dataset as usual.
+
 # Applicability, caveats, outlook{#app_out}
 The <abbr title="European Medicines Agency">EMA</abbr>’s approach of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (*e.g.*, the <abbr title="World Health Organization">WHO</abbr>; the <abbr title="Association of Southeast Asian Nations">ASEAN</abbr>, Australia, Brazil, Chile, the East African Community, Egypt, the <abbr title="Eurasian Economic Union">EEU</abbr>, New Zealand, and the Russian Federation). Health Canada accepts <abbr title="Average Bioequivalence with Expanding Limits">ABEL</abbr> only for *AUC* with an upper cap of scaling at \~57.4\% (maximum expansion to 66.7 – 150.0\%) and *might* require a true mixed-effects model. Whether Method B is acceptable is unclear.
 
@@ -504,14 +530,5 @@ Results of all reference datasets agree with ones obtained in SAS (9.4), Phoenix
 # License
 [GPL-3](https://cran.r-project.org/web/licenses/GPL-3 "GNU General Public License, Version 3") Helmut Schütz `r packageDate("replicateBE", date.fields = "Built")`
 
-
 # Disclaimer{#disclaimer}
 Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.
-
-# Session Information{#session}
-Inspect this information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.
-
-```{r, sessioninfo}
-options(width = 59)
-devtools::session_info()
-```
