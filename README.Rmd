@@ -20,16 +20,11 @@ knitr::opts_chunk$set(
 )
 ```
 ```{r, echo = FALSE, results = "asis"}
-txt <- paste0("Version ", packageVersion("replicateBE"), " built ",
-         packageDate("replicateBE", date.fields = "Built"),
-         " with R ", substr(packageDescription("replicateBE", fields = "Built"), 3, 7))
-if (grepl("900",  as.character(packageVersion("replicateBE")))) {
-  txt <- paste(txt, "\n(development version not on CRAN).")
-} else {
-  txt <- paste0(txt, "\n(stable release on CRAN ",
-           packageDate("replicateBE", date.fields = "Date/Publication"), ").")
-}
-cat(txt)
+cat(paste0("Version ", packageVersion("replicateBE"), " built ",
+           packageDate("replicateBE", date.fields = "Built"),
+           " with R ",
+           substr(packageDescription("replicateBE",
+                                     fields = "Built"), 3, 7), "."))
 ```
 
 <h2>Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)</h2>
@@ -38,7 +33,7 @@ The library provides data sets (internal `.rda` and in <span title="Character Se
 Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint <span title="European Generic Medicines Association">EGA</span>/<span title="European Medicines Agency">EMA</span> workshop.<sup id="a3">[3](#f3)</sup><br>
 Health Canada’s approach<sup id="a4">[4](#f4)</sup> requiring a mixed-effects model is approximated by intra-subject contrasts.  
 Direct widening of the acceptance range as recommended by the Gulf Cooperation Council<sup id="a5">[5](#f5)</sup> (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, United Arab Emirates) is provided as well.  
-In full replicate designs the variability of test and reference treatments can be assessed by _s_~wT~/_s_~wR~ and the upper confidence limit of _σ_~wT~/_σ_~wR~ (required for the <span title="World Health Organization">WHO</span>’s approach<sup id="a6">[6](#f6)</sup> for reference-scaling of _AUC_).
+In full replicate designs the variability of test and reference treatments can be assessed by _s_~wT~/_s_~wR~ and the upper confidence limit of _σ_~wT~/_σ_~wR~. This was required in a pilot phase by the <span title="World Health Organization">WHO</span> but lifted in 2021; reference-scaling of _AUC_ is acceptable if the protocol is submitted to the <span title="Prequalification Unit – Medicines Assessment Team">PQT/MED</span>.<sup id="a6">[6](#f6)</sup>
 
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -243,8 +238,7 @@ devtools::install_github("Helmut01/replicateBE")
 ## Session Information{#session-information}
 Inspect this information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.
 ```{r, sessioninfo}
-options(width = 59)
-devtools::session_info()
+sessionInfo()
 ```
 <small>[TOC ↩](#replicatebe)</small>
 
@@ -262,12 +256,12 @@ Detlew Labes (contributor) <span style="font-size:smaller">[ORCID iD](https://or
 
 ***
 
-<span id="f1" style="font-size:smaller">  1. European Medices Agency. [EMA/582648/2016. Annex I.](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf) 21 September 2016.</span> [↩](#a1)\
-<span id="f2" style="font-size:smaller">  2. European Medices Agency. Committee for Medicinal Products for Human Use. [CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **.](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf) 20 January 2010.</span> [↩](#a2)\
+<span id="f1" style="font-size:smaller">  1. European Medicines Agency. [EMA/582648/2016. Annex I.](https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf) 21 September 2016.</span> [↩](#a1)\
+<span id="f2" style="font-size:smaller">  2. European Medicines Agency. Committee for Medicinal Products for Human Use. [CPMP/EWP/QWP/1401/98 Rev. 1/ Corr \*\*.](https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf) 20 January 2010.</span> [↩](#a2)\
 <span id="f3" style="font-size:smaller">  3. European Generic Medicines Association. [Revised EMA Bioequivalence Guideline. Questions &amp; Answers.](https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf) London, June 2010.</span> [↩](#a3)\
 <span id="f4" style="font-size:smaller">  4. Health Canada. [Guidance Document. Conduct and Analysis of Comparative Bioavailability Studies.](https://www.canada.ca/content/dam/hc-sc/documents/services/drugs-health-products/drug-products/applications-submissions/guidance-documents/bioavailability-bioequivalence/conduct-analysis-comparative.pdf) 2018/06/08.</span> [↩](#a4)\
-<span id="f5" style="font-size:smaller">  5. Executive Board of the Health Ministers’ Council for GCC States. [The GCC Guidelines for Bioequivalence. Version 2.4.](https://old.sfda.gov.sa/en/drug/drug_reg/Regulations/GCC_Guidelines_Bioequivalence.pdf) 30/3/2016.</span> [↩](#a5)\
-<span id="f6" style="font-size:smaller">  6. World Health Organization. [Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm.](https://extranet.who.int/pqweb/sites/default/files/documents/AUC_criteria_November2018.pdf) 22 November 2018.</span> [↩](#a6)\
+<span id="f5" style="font-size:smaller">  5. Executive Board of the Health Ministers’ Council for GCC States. [The GCC Guidelines for Bioequivalence. Version 3.0.](https://www.sfda.gov.sa/sites/default/files/2021-10/GCC_Guidelines_Bioequivalence.pdf) May 2021.</span> [↩](#a5)\
+<span id="f6" style="font-size:smaller">  6. World Health Organization. [Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQT/MED.](https://extranet.who.int/pqweb/sites/default/files/documents/AUC_criteria_July2021.pdf) 02 July 2021.</span> [↩](#a6)\
 <span id="f7" style="font-size:smaller">  7. Medicines Control Council. Registration of Medicines. [Biostudies.](https://www.sahpra.org.za/wp-content/uploads/2020/01/61de452d2.06_Biostudies_Jun15_v6.pdf) June 2015.</span> [↩](#a7)\
 <span id="f8" style="font-size:smaller">  8. Schütz H, Tomashevskiy M, Labes D, Shitova A, González-de la Parra M, Fuglsang A. *Reference Datasets for Studies in a Replicate Design Intended for Average Bioequivalence with Expanding Limits.* AAPS J. 2020; 22(2): Article 44. [doi:10.1208/s12248-020-0427-6](https://doi.org/10.1208/s12248-020-0427-6).</span> [↩](#a8)\
 <span id="f9" style="font-size:smaller">  9. European Medices Agency. [EMA/582648/2016. Annex II.](https://www.ema.europa.eu/en/documents/other/31-annex-ii-statistical-analysis-bioequivalence-study-example-data-set_en.pdf) 21 September 2016.</span> [↩](#a9)\

@@ -11,8 +11,8 @@ Comparative BA-calculation for Average Bioequivalence with Expanding Limits by t
   random effect (\sQuote{Method B}) as specified in \emph{Annex I}.
 }
 \usage{
-method.B(alpha = 0.05, path.in, path.out = tempdir(), file, set = "", ext,
-         na = ".", sep = ",", dec = ".", logtrans = TRUE,
+method.B(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
+         ext, na = ".", sep = ",", dec = ".", logtrans = TRUE,
          regulator = "EMA", ola = FALSE, print = TRUE, details = FALSE,
          verbose = FALSE, ask = FALSE, plot.bxp = FALSE, fence = 2,
          data = NULL, option = 2)
@@ -317,19 +317,20 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
   New Zealand, the Russian Federation).\cr\cr
   Health Canada’s variant of ABEL (upper cap of scaling ~57.4\% limiting the expansion
   at 67.7--150.0\%) is only approximate because a mixed-effects model would be required.\cr\cr
-  The \acronym{WHO} accepts reference-scaling for \ifelse{html}{\out{<em>AUC</em>}}{\eqn{AUC}{AUC}} (4-period full replicate
+  In a pilot phase the \acronym{WHO} accepted reference-scaling for \ifelse{html}{\out{<em>AUC</em>}}{\eqn{AUC}{AUC}} (4-period full replicate
   studies are mandatory in order to assess the variability associated with each product).
-  It is an open issue how this assessment should be done. In Population Bioequivalence (\acronym{PBE})
+  It was an open issue how this assessment should be done. In Population Bioequivalence (\acronym{PBE})
   and Individual Bioequivalence (\acronym{IBE}) the
-  \ifelse{html}{\out{<em>s</em><sub>wT</sub>}}{\eqn{s_\textrm{wT}}}/\ifelse{html}{\out{<em>s</em><sub>wR</sub>}}{\eqn{s_\textrm{wR}}{sWT/sWR}} ratio
-  ratio was assessed and similar variability was concluded for a ratio
-  within 0.667–1.500. However, the power of comparing variabilities
-  in a study designed to demonstrate \acronym{ABE} is low. This was one of the
-  reasons why why \acronym{PBE} and \acronym{IBE} were not implemented
-  in regulatory practice. An alternative approach is given in the
-  \acronym{FDA}’s guidance on warfarin. Variabilities are
+  \ifelse{html}{\out{<em>s</em><sub>wT</sub>}}{\eqn{s_\textrm{wT}}}/\ifelse{html}{\out{<em>s</em><sub>wR</sub>}}{\eqn{s_\textrm{wR}}{sWT/sWR}} ratio was assessed and similar
+  variability was concluded for a ratio within 0.667–1.500. However, the power
+  of comparing variabilities in a study designed to demonstrate \acronym{ABE}
+  is low. This was one of the reasons why \acronym{PBE} and \acronym{IBE} were
+  not implemented in regulatory practice. An alternative approach is given in the
+  \acronym{FDA}’s draft ANDA guidance. Variabilities are
   considered comparable if the upper confidence limit of
-  \ifelse{html}{\out{<em>&sigma;</em><sub>wT</sub>}}{\eqn{\sigma_\textrm{wT}}}/\ifelse{html}{\out{<em>&sigma;</em><sub>wR</sub>}}{\eqn{\sigma_\textrm{wR}}{sigmaT/sigmaR}} is less than or equal to 2.5.
+  \ifelse{html}{\out{<em>&sigma;</em><sub>wT</sub>}}{\eqn{\sigma_\textrm{wT}}}/\ifelse{html}{\out{<em>&sigma;</em><sub>wR</sub>}}{\eqn{\sigma_\textrm{wR}}{sigmaT/sigmaR}} is less
+  than or equal to 2.5.\cr
+  In 2021 the requirement of comparing variabilities was lifted by the \acronym{WHO}.
 }
 
 \section{Disclaimer}{
@@ -350,7 +351,7 @@ European Medicines Agency, Committee for Medicinal Products for Human Use. \emph
 
 European Medicines Agency. \emph{Clinical pharmacology and pharmacokinetics: questions and answers. 3.1 Which statistical method for the analysis of a bioequivalence study does the Agency recommend? Annex I}. London, 21 September 2016. \href{https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf}{EMA/582648/2016}
 
-Executive Board of the Health Ministers’ Council for GCC States. \emph{The GCC Guidelines for Bioequivalence.} 30/3/2016. \href{https://old.sfda.gov.sa/en/drug/drug_reg/Regulations/GCC_Guidelines_Bioequivalence.pdf}{Version 2.4}
+Executive Board of the Health Ministers’ Council for GCC States. \emph{The GCC Guidelines for Bioequivalence.} May 2021. \href{https://www.sfda.gov.sa/sites/default/files/2021-10/GCC_Guidelines_Bioequivalence.pdf}{Version 3.0}
 
 Health Canada. \emph{Guidance Document. Conduct and Analysis of Comparative Bioavailability Studies.} 2018/06/08. \href{https://www.canada.ca/content/dam/hc-sc/documents/services/drugs-health-products/drug-products/applications-submissions/guidance-documents/bioavailability-bioequivalence/conduct-analysis-comparative.pdf}{open access}
 
@@ -358,7 +359,9 @@ European Medicines Agency, Committee for Medicinal Products for Human Use. \emph
 
 World Health Organization, Prequalification Team: medicines. \emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm.} Geneva, 22 November 2018. \href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf}{open access}
 
-Food and Drug Administration, Office of Generic Drugs. \emph{Draft Guidance on Warfarin Sodium.} Rockville, December 2012. \href{https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf}{open access}
+World Health Organization. \emph{Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQT/MED.} Geneva, 02 July 2021. \href{https://extranet.who.int/pqweb/sites/default/files/documents/AUC_criteria_July2021.pdf}{open access}
+
+U.S. Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Draft Guidance for Industry. Bioequivalence Studies with Pharmacokinetic Endpoints for Drugs Submitted Under an ANDA.} August 2021. \href{https://www.fda.gov/media/87219/Download}{open access}
 }
 
 \seealso{
@@ -417,7 +420,7 @@ ds <- substr(grep("rds", unname(unlist(data(package = "replicateBE"))),
 for (i in seq_along(ds)) {
   A <- method.A(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
   B <- method.B(print=FALSE, details=TRUE, data=eval(parse(text=ds[i])))$BE
-  r <- paste0("A ", A, ", B ", B, " \u2013 ")
+  r <- paste0("A ", A, ", B ", B, " - ")
   cat(paste0(ds[i], ":"), r)
   if (A == B) {
     cat("Methods A and B agree.\n")
@@ -430,9 +433,9 @@ for (i in seq_along(ds)) {
   }
 }}
 # should give
-#   rds01: A pass, B pass – Methods A and B agree.
+#   rds01: A pass, B pass - Methods A and B agree.
 #   ...
-#   rds14: A pass, B fail – Method B is conservative.
+#   rds14: A pass, B fail - Method B is conservative.
 #   ...
 \donttest{
 # Health Canada: Only the PE of Cmax has to lie within 80.0-125.0\%

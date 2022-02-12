@@ -12,8 +12,8 @@
 }
 
 \usage{
-method.A(alpha = 0.05, path.in, path.out = tempdir(), file, set = "", ext,
-         na = ".", sep = ",", dec = ".", logtrans = TRUE,
+method.A(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
+         ext, na = ".", sep = ",", dec = ".", logtrans = TRUE,
          regulator = "EMA", ola = FALSE, print = TRUE, details = FALSE,
          adjust = FALSE, verbose = FALSE, ask = FALSE,
          plot.bxp = FALSE, fence = 2, data = NULL)
@@ -303,19 +303,20 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
   as well (\emph{e.g.}, the \acronym{WHO}; \acronym{ASEAN} States, Australia,
   Brazil, Chile, Egypt, the Eurasian Economic Union, the East African Community,
   New Zealand, the Russian Federation).\cr\cr
-  The \acronym{WHO} accepts reference-scaling for \ifelse{html}{\out{<em>AUC</em>}}{\eqn{AUC}{AUC}} (4-period full replicate
+  In a pilot phase the \acronym{WHO} accepted reference-scaling for \ifelse{html}{\out{<em>AUC</em>}}{\eqn{AUC}{AUC}} (4-period full replicate
   studies are mandatory in order to assess the variability associated with each product).
-  It is an open issue how this assessment should be done. In Population Bioequivalence (\acronym{PBE})
+  It was an open issue how this assessment should be done. In Population Bioequivalence (\acronym{PBE})
   and Individual Bioequivalence (\acronym{IBE}) the
   \ifelse{html}{\out{<em>s</em><sub>wT</sub>}}{\eqn{s_\textrm{wT}}}/\ifelse{html}{\out{<em>s</em><sub>wR</sub>}}{\eqn{s_\textrm{wR}}{sWT/sWR}} ratio was assessed and similar
   variability was concluded for a ratio within 0.667–1.500. However, the power
-  of comparing variabilitiesin a study designed to demonstrate \acronym{ABE}
+  of comparing variabilities in a study designed to demonstrate \acronym{ABE}
   is low. This was one of the reasons why \acronym{PBE} and \acronym{IBE} were
   not implemented in regulatory practice. An alternative approach is given in the
-  \acronym{FDA}’s guidance on warfarin. Variabilities are
+  \acronym{FDA}’s draft ANDA guidance. Variabilities are
   considered comparable if the upper confidence limit of
   \ifelse{html}{\out{<em>&sigma;</em><sub>wT</sub>}}{\eqn{\sigma_\textrm{wT}}}/\ifelse{html}{\out{<em>&sigma;</em><sub>wR</sub>}}{\eqn{\sigma_\textrm{wR}}{sigmaT/sigmaR}} is less
-  than or equal to 2.5.
+  than or equal to 2.5.\cr
+  In 2021 the requirement of comparing variabilities was lifted.
 }
 
 \section{Disclaimer}{
@@ -335,13 +336,15 @@ European Medicines Agency, Committee for Medicinal Products for Human Use. \emph
 
 European Medicines Agency. \emph{Clinical pharmacology and pharmacokinetics: questions and answers. 3.1 Which statistical method for the analysis of a bioequivalence study does the Agency recommend? Annex I}. London, 21 September 2016. \href{https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf}{EMA/582648/2016}
 
-Executive Board of the Health Ministers’ Council for GCC States. \emph{The GCC Guidelines for Bioequivalence.} 30/3/2016. \href{https://old.sfda.gov.sa/en/drug/drug_reg/Regulations/GCC_Guidelines_Bioequivalence.pdf}{Version 2.4}
+Executive Board of the Health Ministers’ Council for GCC States. \emph{The GCC Guidelines for Bioequivalence.} May 2021. \href{https://www.sfda.gov.sa/sites/default/files/2021-10/GCC_Guidelines_Bioequivalence.pdf}{Version 3.0}
 
 European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.}London, 20 November 2014. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{EMA/CPMP/EWP/280/96 Corr1}
 
 World Health Organization, Prequalification Team: medicines. \emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm.} Geneva, 22 November 2018. \href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf}{open access}
 
-Food and Drug Administration, Office of Generic Drugs. \emph{Draft Guidance on Warfarin Sodium.} Rockville, December 2012. \href{https://www.accessdata.fda.gov/drugsatfda_docs/psg/Warfarin_Sodium_tab_09218_RC12-12.pdf}{open access}
+World Health Organization. \emph{Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQT/MED.} Geneva, 02 July 2021. \href{https://extranet.who.int/pqweb/sites/default/files/documents/AUC_criteria_July2021.pdf}{open access}
+
+U.S. Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Draft Guidance for Industry. Bioequivalence Studies with Pharmacokinetic Endpoints for Drugs Submitted Under an ANDA.} August 2021. \href{https://www.fda.gov/media/87219/Download}{open access}
 
 Labes D, \enc{Schütz}{Schuetz} H. \emph{Inflation of Type I Error in the Evaluation of Scaled Average Bioequivalence, and a Method for its Control.} Pharm Res. 2016;33(11):2805--14. \doi{10.1007/s11095-016-2006-1}
 }
