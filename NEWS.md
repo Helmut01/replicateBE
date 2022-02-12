@@ -1,6 +1,6 @@
 # replicateBE 1.1.1
 
-Published on Github 2022-02-12.
+Published on Github 2022-02-12, on CRAN.
 
 ## Bug fixes
 

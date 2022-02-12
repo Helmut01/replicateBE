@@ -41,7 +41,7 @@ size](https://img.shields.io/github/languages/code-size/Helmut01/replicateBE?col
 ![repo
 size](https://img.shields.io/github/repo-size/Helmut01/replicateBE?color=yellow)
 
-Version 1.1.1 built 2022-02-11 with R 4.1.2.
+Version 1.1.1 built 2022-02-12 with R 4.1.2.
 
 <h2>
 Comparative BA-calculation for the EMA’s Average Bioequivalence with
