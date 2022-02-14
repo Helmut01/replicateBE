@@ -18,7 +18,7 @@ Published on Github 2021-06-21, on CRAN.
 ## Major changes
 
   * If `path.out` is missing, R’s temporary folder will be used.
-  * Added `regulator` `"HC" `in `method.B()` to support Health Canada’s approach (upper cap of scaling ~57.4\%). If `alpha = 0.5` only the PE has to lie within 80.0--125.0\% (highly variable C<sub>max</sub>). However, both `option = 1` (Satterthwaite) and `option = 3` (Kenward-Roger) are only approximate because Health Canada prefers a mixed-effects model. THX to Philippe Liége.
+  * Added `regulator` `"HC"` in `method.B()` to support Health Canada’s approach (upper cap of scaling ~57.4\%). If `alpha = 0.5` only the PE has to lie within 80.0--125.0\% (highly variable C<sub>max</sub>). However, both `option = 1` (Satterthwaite) and `option = 3` (Kenward-Roger) are only approximate because Health Canada prefers a mixed-effects model. THX to Philippe Liége.
   * Added `swT` (full replicates), `swR` (and `swR.rec` if outlier(s) are detected) to the data frame of results (previously only in the result file). Referring to the columns in examples of man pages, vignette, and `testthat.R` adapted.
   * In `method.A()` and `ABE()` changed the ANOVA from ‘Type I’ (default) to ‘Type III’ in order to get the correct test for carryover. Clarified in the vignette.
   * Direct widening to 75.00--133.33\% for C<sub>max</sub> according to the conditions of the Gulf Cooperation Council. New argument `regulator` `"EMA"` (default) or `"GCC"` in `method.A()` and `method.B()`. Hence, at least version 1.5.3 of `PowerTOST` is required.
