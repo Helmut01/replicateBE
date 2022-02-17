@@ -58,9 +58,12 @@ The library provides data sets (internal `.rda` and in
 imported from <abbr title="Character Separated Variables">CSV</abbr>-
 and Excel-files (in `xlsx` or the legacy `xls` format). The methods
 given by the <abbr title="European Medicines Agency">EMA</abbr> for
-reference-scaling<sup id="a1">[1](#f1),</sup><sup id="a2">[2](#f2)</sup>
-are implemented.<br> Potential influence of outliers on the variability
-of the reference can be assessed by box plots of studentized and
+reference-scaling of
+<abbr title="Highy Variable Drugs / Drug Products">HVD(P)s</abbr>,
+*i.e.*, Average Bioequivalence with Expanding Limits
+(ABEL)<sup id="a1">[1](#f1),</sup><sup id="a2">[2](#f2)</sup> are
+implemented.<br> Potential influence of outliers on the variability of
+the reference can be assessed by box plots of studentized and
 standardized residuals as suggested at a joint
 <abbr title="European Generic Medicines Association">EGA</abbr>/<abbr title="European Medicines Agency">EMA</abbr>
 workshop.<sup id="a3">[3](#f3)</sup><br> Health Canada’s
