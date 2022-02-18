@@ -30,8 +30,10 @@ replicateBE
 v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![repo](https://img.shields.io/badge/repo%20since-Jun%202017-brightgreen)
 ![active](https://www.repostatus.org/badges/latest/active.svg) ![min
-R](https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg) ![on
-CRAN](https://www.r-pkg.org/badges/version-ago/replicateBE) [![cran
+R](https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg) ![code
+size](https://img.shields.io/github/languages/code-size/Detlew/PowerTOST?color=green)
+![first](https://img.shields.io/badge/CRAN%20since-Jun%202019-brightgreen)
+![on CRAN](https://www.r-pkg.org/badges/version-ago/replicateBE) [![cran
 checks](https://cranchecks.info/badges/worst/replicateBE)](https://cran.r-project.org/web/checks/check_results_replicateBE.html)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)](https://r-pkg.org/pkg/replicateBE)
@@ -474,10 +476,10 @@ sessionInfo()
 # [31] highr_0.9            broom_0.7.12         Rcpp_1.0.8          
 # [34] backports_1.4.1      scales_1.1.1         lme4_1.1-28         
 # [37] TeachingDemos_2.12   ggplot2_3.3.5        digest_0.6.29       
-# [40] stringi_1.7.6        dplyr_1.0.7          numDeriv_2016.8-1.1 
+# [40] stringi_1.7.6        dplyr_1.0.8          numDeriv_2016.8-1.1 
 # [43] grid_4.1.2           cli_3.1.1            tools_4.1.2         
 # [46] magrittr_2.0.2       tibble_3.1.6         tidyr_1.2.0         
-# [49] crayon_1.4.2         pkgconfig_2.0.3      MASS_7.3-55         
+# [49] crayon_1.5.0         pkgconfig_2.0.3      MASS_7.3-55         
 # [52] ellipsis_0.3.2       Matrix_1.4-0         minqa_1.2.4         
 # [55] rmarkdown_2.11       rstudioapi_0.13      cubature_2.0.4.2    
 # [58] R6_2.5.1             boot_1.3-28          nlme_3.1-155        
