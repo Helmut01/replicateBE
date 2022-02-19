@@ -30,11 +30,13 @@ replicateBE
 v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![repo](https://img.shields.io/badge/repo%20since-Jun%202017-brightgreen)
 ![active](https://www.repostatus.org/badges/latest/active.svg) ![min
-R](https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg) ![code
-size](https://img.shields.io/github/languages/code-size/Detlew/PowerTOST?color=green)
+R](https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg)
 ![first](https://img.shields.io/badge/CRAN%20since-Jun%202019-brightgreen)
 ![on CRAN](https://www.r-pkg.org/badges/version-ago/replicateBE) [![cran
 checks](https://cranchecks.info/badges/worst/replicateBE)](https://cran.r-project.org/web/checks/check_results_replicateBE.html)
+![commits](https://img.shields.io/github/commits-since/Helmut01/replicateBE/latest)
+![last
+commit](https://img.shields.io/github/last-commit/Helmut01/replicateBE)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/replicateBE?color=blue)](https://r-pkg.org/pkg/replicateBE)
 [![CRAN RStudio mirror
@@ -43,8 +45,13 @@ downloads](https://cranlogs.r-pkg.org/badges/last-month/replicateBE?color=green)
 size](https://img.shields.io/github/languages/code-size/Helmut01/replicateBE?color=green)
 ![repo
 size](https://img.shields.io/github/repo-size/Helmut01/replicateBE?color=yellow)
+![closed
+issues](https://img.shields.io/github/issues-closed-raw/Helmut01/replicateBE)
+![open
+issues](https://img.shields.io/github/issues-raw/Helmut01/replicateBE)
 
-Version 1.1.1 built 2022-02-14 with R 4.1.2.
+Version 1.1.1.9000 built 2022-02-18 with R 4.1.2 (development version
+not on CRAN).
 
 <h2>
 Comparative BA-calculation for the EMA’s Average Bioequivalence with
@@ -460,7 +467,7 @@ sessionInfo()
 # [1] stats     graphics  grDevices utils     datasets  methods   base     
 # 
 # other attached packages:
-# [1] replicateBE_1.1.1
+# [1] replicateBE_1.1.1.9000
 # 
 # loaded via a namespace (and not attached):
 #  [1] tidyselect_1.1.1     xfun_0.29            purrr_0.3.4         
