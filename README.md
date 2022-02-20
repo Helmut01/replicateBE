@@ -451,6 +451,7 @@ is considered good practice to record this information with every
 analysis.
 
 ``` r
+options(width = 66)
 sessionInfo()
 # R version 4.1.2 (2021-11-01)
 # Platform: x86_64-w64-mingw32/x64 (64-bit)
@@ -459,37 +460,40 @@ sessionInfo()
 # Matrix products: default
 # 
 # locale:
-# [1] LC_COLLATE=German_Germany.1252  LC_CTYPE=German_Germany.1252   
-# [3] LC_MONETARY=German_Germany.1252 LC_NUMERIC=C                   
+# [1] LC_COLLATE=German_Germany.1252 
+# [2] LC_CTYPE=German_Germany.1252   
+# [3] LC_MONETARY=German_Germany.1252
+# [4] LC_NUMERIC=C                   
 # [5] LC_TIME=German_Germany.1252    
 # 
 # attached base packages:
-# [1] stats     graphics  grDevices utils     datasets  methods   base     
+# [1] stats     graphics  grDevices utils     datasets  methods  
+# [7] base     
 # 
 # other attached packages:
 # [1] replicateBE_1.1.1.9000
 # 
 # loaded via a namespace (and not attached):
-#  [1] tidyselect_1.1.1     xfun_0.29            purrr_0.3.4         
-#  [4] splines_4.1.2        lmerTest_3.1-3       lattice_0.20-45     
-#  [7] colorspace_2.0-2     vctrs_0.3.8          generics_0.1.2      
-# [10] htmltools_0.5.2      yaml_2.2.2           utf8_1.2.2          
-# [13] rlang_1.0.1          pillar_1.7.0         nloptr_2.0.0        
-# [16] glue_1.6.1           PowerTOST_1.5.3.9000 readxl_1.3.1        
-# [19] lifecycle_1.0.1      stringr_1.4.0        munsell_0.5.0       
-# [22] gtable_0.3.0         cellranger_1.1.0     mvtnorm_1.1-3       
-# [25] evaluate_0.14        knitr_1.37           fastmap_1.1.0       
-# [28] parallel_4.1.2       pbkrtest_0.5.1       fansi_1.0.2         
-# [31] highr_0.9            broom_0.7.12         Rcpp_1.0.8          
-# [34] backports_1.4.1      scales_1.1.1         lme4_1.1-28         
-# [37] TeachingDemos_2.12   ggplot2_3.3.5        digest_0.6.29       
-# [40] stringi_1.7.6        dplyr_1.0.8          numDeriv_2016.8-1.1 
-# [43] grid_4.1.2           cli_3.1.1            tools_4.1.2         
-# [46] magrittr_2.0.2       tibble_3.1.6         tidyr_1.2.0         
-# [49] crayon_1.5.0         pkgconfig_2.0.3      MASS_7.3-55         
-# [52] ellipsis_0.3.2       Matrix_1.4-0         minqa_1.2.4         
-# [55] rmarkdown_2.11       rstudioapi_0.13      cubature_2.0.4.2    
-# [58] R6_2.5.1             boot_1.3-28          nlme_3.1-155        
+#  [1] tidyselect_1.1.1    xfun_0.29           purrr_0.3.4        
+#  [4] splines_4.1.2       lmerTest_3.1-3      lattice_0.20-45    
+#  [7] colorspace_2.0-2    vctrs_0.3.8         generics_0.1.2     
+# [10] htmltools_0.5.2     yaml_2.2.2          utf8_1.2.2         
+# [13] rlang_1.0.1         pillar_1.7.0        nloptr_2.0.0       
+# [16] glue_1.6.1          PowerTOST_1.5-4     readxl_1.3.1       
+# [19] lifecycle_1.0.1     stringr_1.4.0       munsell_0.5.0      
+# [22] gtable_0.3.0        cellranger_1.1.0    mvtnorm_1.1-3      
+# [25] evaluate_0.15       knitr_1.37          fastmap_1.1.0      
+# [28] parallel_4.1.2      pbkrtest_0.5.1      fansi_1.0.2        
+# [31] highr_0.9           broom_0.7.12        Rcpp_1.0.8         
+# [34] backports_1.4.1     scales_1.1.1        lme4_1.1-28        
+# [37] TeachingDemos_2.12  ggplot2_3.3.5       digest_0.6.29      
+# [40] stringi_1.7.6       dplyr_1.0.8         numDeriv_2016.8-1.1
+# [43] grid_4.1.2          cli_3.1.1           tools_4.1.2        
+# [46] magrittr_2.0.2      tibble_3.1.6        tidyr_1.2.0        
+# [49] crayon_1.5.0        pkgconfig_2.0.3     MASS_7.3-55        
+# [52] ellipsis_0.3.2      Matrix_1.4-0        minqa_1.2.4        
+# [55] rmarkdown_2.11      rstudioapi_0.13     cubature_2.0.4.2   
+# [58] R6_2.5.1            boot_1.3-28         nlme_3.1-155       
 # [61] compiler_4.1.2
 ```
 
