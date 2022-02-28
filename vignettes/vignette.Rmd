@@ -505,7 +505,7 @@ There are 73 subjects in the dataset with two treatments of the reference. Hence
 It must be mentioned that Health Canada’s approach might increase the Type I Error.^[Fuglsang A. *Increased Patient’s Risk Associated with the Canadian Bioequivalence Guidance Due to Outlier Removal.* Ther Innov Reg Sci. 2022; 56: 168–72. [doi:10.1007/s43441-021-00344-2](https://doi.org/10.1007/s43441-021-00344-2).]
 
 # Applicability, caveats, outlook{#app_out}
-The <abbr title="European Medicines Agency">EMA</abbr>’s approach of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (*i.e.*, the <abbr title="World Health Organization">WHO</abbr>; the <abbr title="Association of Southeast Asian Nations">ASEAN</abbr>, Australia, Brazil, Chile, the East African Community, Egypt, the <abbr title="Eurasian Economic Union">EEU</abbr>, and New Zealand). Health Canada accepts <abbr title="Average Bioequivalence with Expanding Limits">ABEL</abbr> only for *AUC* with an upper cap of scaling at \~57.4\% (maximum expansion to 66.7 – 150.0\%) and *might* require a true mixed-effects model. Whether Method B is acceptable is unclear.
+The <abbr title="European Medicines Agency">EMA</abbr>’s approach of reference-scaling for highly variable drugs / drug products is currently recommended in other jurisdictions as well (*i.e.*, the <abbr title="World Health Organization">WHO</abbr>; the <abbr title="Association of Southeast Asian Nations">ASEAN</abbr>, Australia, Belarus, Brazil, Chile, the East African Community, Egypt, the <abbr title="Eurasian Economic Union">EEU</abbr>, New Zealand, and the Russian Federation). Health Canada accepts <abbr title="Average Bioequivalence with Expanding Limits">ABEL</abbr> only for *AUC* with an upper cap of scaling at \~57.4\% (maximum expansion to 66.7 – 150.0\%) and *might* require a true mixed-effects model. Whether Method B is acceptable is unclear.
 
 If degrees of freedom are approximated (Satterthwaite, Kenward-Roger), the <abbr title="Statistical Analysis Plan">SAP</abbr> and statistical report should always specify which method will be / was used (see [above](#method.b)) in order to allow recalculation in other software. This package uses the *expected* information matrix.^[For Satterthwaite only available in Phoenix WinNonlin, SPSS, and Stata; as an option in SAS by `SCORING=1`. For Kenward-Roger default option `EIM` in Stata. The *observed* information matrix is the only available in JMP and default `SCORING=0` in SAS; option `OIM` in Stata.]
 
@@ -524,7 +524,7 @@ In <abbr title="Population Bioequivalence">PBE</abbr> and <abbr title="Individua
 However, in 2021 the requirement of comparing variabilities was lifted by the WHO.^[World Health Organization. [*Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQT/MED.*](https://extranet.who.int/pqweb/sites/default/files/documents/AUC_criteria_July2021.pdf) Geneva. 02 July 2021.]
 
 # Cross-validation{#cross}
-Results of all reference datasets agree with ones obtained in SAS (9.4), Phoenix WinNonlin (6.4--8.1), STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
+Results of all reference datasets agree with ones obtained in SAS (9.4), Phoenix WinNonlin (6.4--8.3.4), STATISTICA (13), SPSS (22.0), Stata (15.0), and JMP (10.0.2).
 
 # Contributors{#contr}
 - Helmut Schütz (Author)

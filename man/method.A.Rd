@@ -300,7 +300,7 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
     agencies to compare the data between them.}\cr\cr
   The \acronym{EMA}’s method of reference-scaling for highly
   variable drugs / drug products is currently recommended in other jurisdictions
-  as well (\emph{e.g.}, the \acronym{WHO}; \acronym{ASEAN} States, Australia,
+  as well (\emph{e.g.}, the \acronym{WHO}; \acronym{ASEAN} States, Australia, Belarus,
   Brazil, Chile, Egypt, the Eurasian Economic Union, the East African Community,
   New Zealand, the Russian Federation).\cr\cr
   In a pilot phase the \acronym{WHO} accepted reference-scaling for \ifelse{html}{\out{<em>AUC</em>}}{\eqn{AUC}{AUC}} (4-period full replicate
