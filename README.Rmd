@@ -245,7 +245,7 @@ devtools::install_github("Helmut01/replicateBE")
 Inspect this information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.
 ```{r, sessioninfo}
 options(width = 66)
-sessionInfo()
+print(sessionInfo(), locale = FALSE)
 ```
 <small>[TOC ↩](#replicatebe)</small>
 
