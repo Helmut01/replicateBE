@@ -50,7 +50,7 @@ issues](https://img.shields.io/github/issues-closed-raw/Helmut01/replicateBE)
 ![open
 issues](https://img.shields.io/github/issues-raw/Helmut01/replicateBE)
 
-Version 1.1.1.9000 built 2022-02-18 with R 4.1.2 (development version
+Version 1.1.1.9000 built 2022-03-01 with R 4.1.2 (development version
 not on CRAN).
 
 <h2>

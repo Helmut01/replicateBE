@@ -20,14 +20,14 @@ ABE(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
   \item{alpha}{
     Type I Error (\acronym{TIE}) probability (nominal level of the test).
     Conventionally set to 0.05, resulting in a
-    \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{\eqn{100(1-2\alpha)}{100(1-2alpha)}}
+    \ifelse{latex}{\out{$100(1-2\,\alpha)$}}{\ifelse{html}{\out{100(1&nbsp;&ndash;&nbsp;2<em>&alpha;</em>)}}{100(1-2alpha)}}
     confidence interval.
   }
   \item{path.in}{
     Path to the data file for import.
   }
   \item{path.out}{
-    Path to save the result file if \code{print=TRUE}. You must have
+    Path to save the result file if \code{print = TRUE}. You must have
     write-permission to the folder. For simplicity your home folder \verb{"~/"} can be used.\cr
     If missing, R’s standard temporary folder will be used.
   }
@@ -41,7 +41,10 @@ ABE(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
     enclosed in single or double quotation marks). The name is case-sensitive.
   }
   \item{ext}{
-    File-extension ("csv" or "xls(x)") enclosed in single or double quotation marks.
+    File-extension enclosed in single or double quotation marks.
+    Acceptable are \verb{"csv"} for character delimited
+    variables (\acronym{CSV}) or \verb{"xls"}, \verb{"xlsx"} for Excel-files.\cr
+    The file-extension is not case-sensitive.
   }
   \item{na}{
     Character string denoting missing values. Acceptable are \verb{"NA"}
@@ -68,11 +71,11 @@ ABE(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
   }
   \item{print}{
     If \code{TRUE} (default), the function prints its results to a
-    file. If \code{FALSE}, returns a data.frame of results.
+    file. If \code{FALSE}, returns a data frame of results.
   }
   \item{details}{
     Defaults to \code{FALSE}. If \code{TRUE}, the function sends
-    its results in 7-digits precision to a data.frame.
+    its results in 7-digits precision to a data frame.
   }
   \item{verbose}{
     Defaults to \code{FALSE}. If \code{TRUE} the ANOVA-table is send to
@@ -83,8 +86,7 @@ ABE(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
     whether an already existing result file should be overwritten.
   }
   \item{data}{
-    Specification of one of the internal reference datasets (\verb{rds01}
-    -- \verb{rds30}). If given, \verb{path.in}, \verb{file}, \verb{set},
+    Specification of one of the internal reference datasets (\verb{rds01} to \verb{rds30}). If given, the arguments \verb{path.in}, \verb{file}, \verb{set},
     and \verb{ext} are ignored. For its use see the examples.\cr
     If not given, defaults to \code{NULL} (\emph{i.e.}, import data
     from a file).
@@ -140,7 +142,7 @@ ABE(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
 
 \value{
 Prints results to a file if argument \code{print = TRUE} (default).\cr
-If argument \code{print = FALSE}, returns a data.frame with the elements:
+If argument \code{print = FALSE}, returns a data frame with the elements:
   \tabular{ll}{
     \code{Design} \tab \emph{e.g.}, TRTR|RTRT\cr
     \code{Method} \tab ABE\cr
@@ -159,19 +161,19 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     \code{CI.lo(\%)} \tab lower confidence limit of the treatment comparison\cr
     \code{CI.hi(\%)} \tab upper confidence limit of the treatment comparison\cr
     \code{PE(\%)} \tab point estimate of the treatment comparison (aka \acronym{GMR})\cr
-    \code{BE} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{\eqn{100(1-2\alpha)}{100(1-2alpha)}} \acronym{CI} lies entirely within the acceptance range (\verb{pass|fail})
+    \code{BE} \tab assessment whether the \ifelse{latex}{\out{$100(1-2\,\alpha)$}}{\ifelse{html}{\out{100(1&nbsp;&ndash;&nbsp;2<em>&alpha;</em>)}}{100(1-2alpha)}} \acronym{CI} lies entirely within the acceptance range (\verb{pass|fail})
   }
 }
 
 \section{Warning}{
   Files may contain a commentary header. If reading from a \acronym{CSV}-file,
   \emph{each} line of the commentary header \emph{must} start with \verb{"# "}
-  (hash space = \verb{ASCII 35 ASCII 32}). If reading from an Excel-file
+  (hashmark space = \verb{ASCII 35 ASCII 32}). If reading from an Excel-file
   all lines preceding the column headers are treated as a comment.
 }
 
 \section{Clarification}{
-  The \sQuote{graphical} presentation in the result file gives the confidence
+  The \sQuote{ASCII line chart} in the result file gives the confidence
   limits with filled black squares and the point estimate as a white rhombus.
   If a confidence limit exceeds the drawing range, it is shown as a triangle.
   The \acronym{BE} limits and 100\% are given with single vertical lines. The
@@ -185,7 +187,7 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
   even if proven false in one of the full replicate designs (were \emph{both}
   \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}{CVwT}} and
   \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}{CVwR}} can be estimated).
-  Hence, amongst biostatisticians it is called the \dQuote{crippled model}
+  Hence, amongst biostatisticians it is called the \sQuote{crippled model}
   because the replicative nature of the study is ignored.\cr
   Conventional unscaled \acronym{ABE} has to be employed for
   \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} (if widening of the
@@ -213,10 +215,9 @@ Helmut \enc{Schütz}{Schuetz}
 
 \references{
 
-European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the Investigation of Bioequivalence.} London, 20 January 2010. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
+European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the Investigation of Bioequivalence.} CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **. London. 20 January 2010. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{online}
 
-European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.} London, 20 November 2014.
-\href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{EMA/CPMP/EWP/280/96 Corr1}
+European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.} EMA/CPMP/EWP/280/96 Corr1. London. 20 November 2014. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{online}
 }
 
 \seealso{
@@ -233,7 +234,8 @@ European Medicines Agency, Committee for Medicinal Products for Human Use. \emph
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
 # for 'path.out' in order to save the result file. Here the deafault
-# (R's temporary folder) is used.
+# (R's temporary folder) is used. If you don't know where it is,
+# type tempdir() in the console.
 path.in <- paste0(find.package("replicateBE"), "/extdata/")
 ABE(path.in = path.in, file = "DS", set = "02", ext = "csv")
 # Should result in:

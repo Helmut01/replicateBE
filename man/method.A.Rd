@@ -23,7 +23,7 @@ method.A(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
   \item{alpha}{
     Type I Error (\acronym{TIE}) probability (nominal level of the test).
     Conventionally set to 0.05, resulting in a
-    \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{\eqn{100(1-2\alpha)}{100(1-2alpha)}}
+    \ifelse{latex}{\out{$100(1-2\,\alpha)$}}{\ifelse{html}{\out{100(1&nbsp;&ndash;&nbsp;2<em>&alpha;</em>)}}{100(1-2alpha)}}
     confidence interval.
   }
   \item{path.in}{
@@ -33,7 +33,7 @@ method.A(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
     Path to save the result file if \code{print=TRUE}. You must have
     write-permission to the folder. For simplicity your home folder \verb{"~/"} can be used.\cr
     If missing, R’s standard temporary folder will be used.\cr
-    If a box plot of outliers should be saved (\code{plot.bxp=TRUE}), this path will be
+    If a box plot of outliers should be saved (\code{plot.bxp = TRUE}), this path will be
     used as well.
   }
   \item{file}{
@@ -46,7 +46,7 @@ method.A(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
   }
   \item{ext}{
     File-extension enclosed in single or double quotation marks.
-    Acceptable are \verb{"csv"} for comma delimited
+    Acceptable are \verb{"csv"} for character delimited
     variables (\acronym{CSV}) or \verb{"xls"}, \verb{"xlsx"} for Excel-files.\cr
     The file-extension is not case-sensitive.
   }
@@ -76,7 +76,7 @@ method.A(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
   \item{regulator}{
     Set regulatory conditions. If \code{"EMA"} (default) conventional ABEL will
     be used. If \code{"GCC"} direct widening to 75.00--133.33\% will be used if
-    \code{CVwR>30\%}.
+    \code{CVwR > 30\%}.
   }
   \item{ola}{
     Defaults to \code{FALSE}. If \code{TRUE} an outlier analysis based
@@ -85,22 +85,22 @@ method.A(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
   }
   \item{print}{
     If \code{TRUE} (default), the function prints its results to a
-    file. If \code{FALSE}, returns a data.frame of results.
+    file. If \code{FALSE}, returns a data frame of results.
   }
   \item{details}{
     Defaults to \code{FALSE}. If \code{TRUE}, the function sends its
-    results in full precision to a data.frame.
+    results in full precision to a data frame.
   }
   \item{adjust}{
     Defaults to \code{FALSE}.\cr
-    If \code{TRUE}, the empiric Type I Error is evaluated via simulations
-    (by \link[PowerTOST]{scABEL.ad} of library PowerTOST). Currently
-    implemented designs are \verb{TRTR|RTRT}, \verb{TRT|RTR}, and
-    \verb{TRR|RTR|RRT}. If the \acronym{TIE} exceeeds the nominal level of
-    the test \code{alpha}, \ifelse{html}{\out{&alpha;}}{\eqn{\alpha}{alpha}}
+    If \code{TRUE}, the empiric Type I Error (\emph{TIE}) is evaluated via simulations
+    (by the function \link[PowerTOST]{scABEL.ad} of library \verb{PowerTOST}). Currently
+    implemented designs are \verb{2x2x4}, \verb{2x2x3}, and
+    \verb{2x3x3}. If the \emph{TIE} exceeds the nominal level of
+    the test \code{alpha}, \ifelse{latex}{\out{$\alpha$}}{\ifelse{html}{\out{<em>&alpha;</em>}}{alpha}}
     is iteratively adjusted until
-    \ifelse{html}{\out{TIE&nbsp;=&nbsp;alpha&nbsp;&plusmn;&nbsp;1E-6}}{\eqn{TIE~=~alpha~\pm~1E-6}}.\cr
-    If \code{ola = TRUE} and outlier(s) found -- which lead to an always lower --
+    \ifelse{latex}{\out{$TIE = \alpha\pm10^{-6}$}}{\ifelse{html}{\out{<em>TIE</em>&nbsp;=&nbsp;<em>&alpha;</em>&nbsp;&plusmn;&nbsp;10<sup>&ndash;6</sup>}}{TIE +/- 1E-6}}.\cr
+    If \code{ola = TRUE} and outlier(s) found -- which lead to an always lower --
     recalculated \code{CVwR}, the assessment is repeated for its value.
   }
   \item{verbose}{
@@ -125,8 +125,8 @@ method.A(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
     will be detected with higher values (not recommended).
   }
   \item{data}{
-    Specification of one of the internal reference datasets (\verb{rds01}--\verb{rds30}).
-    If given, \verb{path.in}, \verb{file}, \verb{set}, and \verb{ext} are
+    Specification of one of the internal reference datasets (\verb{rds01} to  \verb{rds30}).
+    If given, the arguments \verb{path.in}, \verb{file}, \verb{set}, and \verb{ext} are
     ignored. For its use see the examples.\cr
     If not given, defaults to \code{NULL} (\emph{i.e.}, import data
     from a file).
@@ -177,7 +177,7 @@ method.A(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
 
 \value{
 Prints results to a file if argument \code{print = TRUE} (default).\cr
-If argument \code{print = FALSE}, returns a data.frame with the elements:
+If argument \code{print = FALSE}, returns a data frame with the elements:
   \tabular{ll}{
     \code{Design} \tab \emph{e.g.}, TRTR|RTRT\cr
     \code{Method} \tab A\cr
@@ -214,8 +214,8 @@ If argument \code{print = FALSE}, returns a data.frame with the elements:
     \code{CL.lo(\%)} \tab lower confidence limit of the treatment comparison\cr
     \code{CL.hi(\%)} \tab upper confidence limit of the treatment comparison\cr
     \code{PE(\%)} \tab point estimate of the treatment comparison (aka \acronym{GMR})\cr
-    \code{CI} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{\eqn{100(1-2\alpha)}{100(1-2alpha)}} \acronym{CI} lies entirely within the acceptance range (\verb{pass|fail})\cr
-    \code{GMR} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%\enc{–}{-}125.00\% (\verb{pass|fail})\cr
+    \code{CI} \tab assessment whether the \ifelse{latex}{\out{$100(1-2\,\alpha)$}}{\ifelse{html}{\out{100(1&nbsp;&ndash;&nbsp;2<em>&alpha;</em>)}}{100(1-2alpha)}} \acronym{CI} lies entirely within the acceptance range (\verb{pass|fail})\cr
+    \code{GMR} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00--125.00\% (\verb{pass|fail})\cr
     \code{BE} \tab mixed (aggregate) assessment whether the study demonstrates bioequivalence (\verb{pass|fail})\cr
     \code{log.half-width} \tab half-width of the confidence interval in log-scale
   }
@@ -228,13 +228,13 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
     \code{sw.ratio.rec.CL} \tab upper confidence limit of \code{sw.ratio.rec} (full replicates only)
   }
 \itemize{
-  \item{If reference-scaling is applicable (\emph{i.e.}, \code{CVwR.rec(\%)} >30\%):}{
+  \item{If reference-scaling is applicable (\emph{i.e.}, \code{CVwR(\%)} >30):}{
     \tabular{ll}{
       \code{L.rec(\%)} \tab recalculated lower expanded limit of the AR\cr
       \code{U.rec(\%)} \tab recalculated upper expanded limit of the AR
     }
   }
-  \item{If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR.rec(\%)} \ifelse{html}{\out{&le;}}{\eqn{\leq}}30\%):}{
+  \item{If reference-scaling is not applicable (\emph{i.e.}, \code{CVwR(\%)} \ifelse{html}{\out{&le;}}{\eqn{\leq}}30):}{
     \tabular{ll}{
       \code{BE.rec.lo(\%)} \tab lower limit of the conventional AR (\verb{ 80})\cr
       \code{BE.rec.hi(\%)} \tab upper limit of the conventional AR (\verb{125})
@@ -243,7 +243,7 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
 }
   \tabular{ll}{
     \code{CI.rec} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{\eqn{100(1-2\alpha)}{100(1-2alpha)}} \acronym{CI} lies entirely within the new acceptance range (\verb{pass|fail})\cr
-    \code{GMR.rec} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00\%\enc{–}{-}125.00\% (\verb{pass|fail})\cr
+    \code{GMR.rec} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00--125.00\% (\verb{pass|fail})\cr
     \code{BE.rec} \tab mixed (aggregate) assessment whether the study demonstrates bioequivalence (\verb{pass|fail})\cr
   }
 }
@@ -251,12 +251,12 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
 \section{Warning}{
   Files may contain a commentary header. If reading from a \acronym{CSV}-file,
   \emph{each} line of the commentary header \emph{must} start with \verb{"# "}
-  (hash space = \verb{ASCII 35 ASCII 32}). If reading from an Excel-file
+  (hashmark space = \verb{ASCII 35 ASCII 32}). If reading from an Excel-file
   all lines preceding the column headers are treated as a comment.
 }
 
 \section{Clarification}{
-  The \sQuote{graphical} presentation in the result file gives the confidence
+  The \sQuote{ASCII line chart} in the result file gives the confidence
   limits with filled black squares and the point estimate as a white rhombus.
   If a confidence limit exceeds the maximum possible expansion limit, it is
   shown as a triangle. Expanded limits are given as double vertical lines.
@@ -269,16 +269,16 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
 \note{
   The \acronym{EMA}’s model specified as \sQuote{Method B} in \emph{Annex I} assumes
   equal [\emph{sic}] intra-subject variances of test and reference (like in
-  \ifelse{html}{\out{2&times;2&times;2}}{\eqn{2 \times 2 \times 2}{2x2x2}}
+  \ifelse{html}{\out{2&times;2&times;2}}{\eqn{2\times2\times 2}{2x2x2}}
   trials) -- even if proven false in one of the full replicate designs (were
   \emph{both} \ifelse{html}{\out{<em>CV</em><sub>wT</sub>}}{\eqn{CV_\textrm{wT}}{CVwT}} and
   \ifelse{html}{\out{<em>CV</em><sub>wR</sub>}}{\eqn{CV_\textrm{wR}}{CVwR}} can be estimated).
-  Hence, amongst biostatisticians it is called the \dQuote{crippled model}
+  Hence, amongst biostatisticians it is called the \sQuote{crippled model}
   because the replicative nature of the study is ignored.\cr
   The half-width of the \acronym{CI} in log-scale allows a comparison of
-  methods (B \emph{v.s.} A) where a higher value \emph{might} point towards
-  a more conservative decision. In the provided reference datasets -- with
-  one exception -- the conclusion of \acronym{BE} (based on the mixed
+  methods (B \emph{vs} A) where a higher value \emph{might} point towards
+  a more conservative decision. In the provided reference datasets -- with
+  one exception -- the conclusion of \acronym{BE} (based on the mixed
   \acronym{CI} and \acronym{GMR} criteria) agrees between \sQuote{Method A}
   and \sQuote{Method B}. However, for the highly incomplete dataset 14
   \sQuote{Method A} was \emph{liberal} (passing by \acronym{ANOVA} but
@@ -329,30 +329,33 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
 
 \references{
 
-European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the Investigation of Bioequivalence.} London, 20 January 2010. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **}
+European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the Investigation of Bioequivalence.} CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **. London. 20 January 2010. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{online}
 
-3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} \acronym{EGA} Symposium on Bioequivalence.
-  \emph{Questions and Answers on the Revised \acronym{EMA} Bioequivalence Guideline.} London, 1 June 2010. \href{https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf}{open access}
+European Generic and Biosimilar Medicines Association. 3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} \acronym{EGA} Symposium on Bioequivalence. \emph{Questions and Answers on the Revised \acronym{EMA} Bioequivalence Guideline.} London. 1 June 2010. \href{https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf}{online}
 
-European Medicines Agency. \emph{Clinical pharmacology and pharmacokinetics: questions and answers. 3.1 Which statistical method for the analysis of a bioequivalence study does the Agency recommend? Annex I}. London, 21 September 2016. \href{https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf}{EMA/582648/2016}
+European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).} EMA/618604/2008 Rev. 13. London. 19 November 2015. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf}{online}
 
-Executive Board of the Health Ministers’ Council for GCC States. \emph{The GCC Guidelines for Bioequivalence.} May 2021. \href{https://www.sfda.gov.sa/sites/default/files/2021-10/GCC_Guidelines_Bioequivalence.pdf}{Version 3.0}
+European Medicines Agency. \emph{Clinical pharmacology and pharmacokinetics: questions and answers. 3.1 Which statistical method for the analysis of a bioequivalence study does the Agency recommend? Annex I}. EMA/582648/2016. London. 21 September 2016. \href{https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf}{online}
 
-European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.}London, 20 November 2014. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{EMA/CPMP/EWP/280/96 Corr1}
+Executive Board of the Health Ministers’ Council for GCC States. \emph{The GCC Guidelines for Bioequivalence. Version 3.0.} May 2021. \href{https://www.sfda.gov.sa/sites/default/files/2021-10/GCC_Guidelines_Bioequivalence.pdf}{online}
 
-World Health Organization, Prequalification Team: medicines. \emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm.} Geneva, 22 November 2018. \href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf}{open access}
+Health Canada. \emph{Guidance Document. Conduct and Analysis of Comparative Bioavailability Studies.} Ottawa. 2018/06/08. \href{https://www.canada.ca/content/dam/hc-sc/documents/services/drugs-health-products/drug-products/applications-submissions/guidance-documents/bioavailability-bioequivalence/conduct-analysis-comparative.pdf}{online}
 
-World Health Organization. \emph{Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQT/MED.} Geneva, 02 July 2021. \href{https://extranet.who.int/pqweb/sites/default/files/documents/AUC_criteria_July2021.pdf}{open access}
+European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.} EMA/CPMP/EWP/280/96 Corr1. London. 20 November 2014. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{online}
 
-U.S. Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Draft Guidance for Industry. Bioequivalence Studies with Pharmacokinetic Endpoints for Drugs Submitted Under an ANDA.} August 2021. \href{https://www.fda.gov/media/87219/Download}{open access}
+World Health Organization, Prequalification Team: medicines. \emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm.} Geneva. 22 November 2018. \href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf}{online}
 
-Labes D, \enc{Schütz}{Schuetz} H. \emph{Inflation of Type I Error in the Evaluation of Scaled Average Bioequivalence, and a Method for its Control.} Pharm Res. 2016;33(11):2805--14. \doi{10.1007/s11095-016-2006-1}
+World Health Organization. \emph{Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQT/MED.} Geneva. 02 July 2021. \href{https://extranet.who.int/pqweb/sites/default/files/documents/AUC_criteria_July2021.pdf}{online}
+
+U.S. Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Draft Guidance for Industry. Bioequivalence Studies with Pharmacokinetic Endpoints for Drugs Submitted Under an ANDA.} August 2021. \href{https://www.fda.gov/media/87219/Download}{download}
+
+Labes D, \enc{Schütz}{Schuetz} H. \emph{Inflation of Type I Error in the Evaluation of Scaled Average Bioequivalence, and a Method for its Control.} Pharm Res. 2016; 33(11): 2805--14. \doi{10.1007/s11095-016-2006-1}
 }
 
 \seealso{
   \tabular{ll}{
     \code{\link{method.B}} \tab evaluation by a linear mixed effects model (subjects random)\cr
-    \code{\link{ABE}} \tab evaluation for conventional (unscaled) Average Bioeqivalence
+    \code{\link{ABE}} \tab evaluation for conventional (unscaled) Average Bioequivalence
   }
 }
 
@@ -363,7 +366,8 @@ Labes D, \enc{Schütz}{Schuetz} H. \emph{Inflation of Type I Error in the Evalua
 # Note: You must adapt the path-variables. The example reads from
 # the data provided by the library. Write-permissions must be granted
 # for 'path.out' in order to save the result file. Here the default
-# (R's temporary folder) is used.
+# (R's temporary folder) is used. If you don't know where it is,
+# type tempdir() in the console.
 \donttest{
 path.in  <- paste0(find.package("replicateBE"), "/extdata/")
 method.A(path.in = path.in, file = "DS", set = "01", ext = "csv")
