@@ -15,12 +15,12 @@ Dataset from the public domain to be evaluated by \code{method.A()}, \code{metho
 
 \format{
   \itemize{
-    \item Reference Dataset 10 (\code{rds10})\cr
+    \item Reference Dataset 10\cr
     18 subjects.\cr
     Balanced (nine subjects in both sequences) and complete. No outliers.\cr
     A data frame with 54 observations on the following 5 variables:
     \describe{
-      \item{}{
+      \item{rds10}{
         \tabular{ll}{
         \code{subject} \tab a factor with 18 levels: 1, 2, \ldots, 18\cr
         \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
@@ -41,7 +41,7 @@ Dataset from the public domain to be evaluated by \code{method.A()}, \code{metho
 }
 
 \note{
-In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTT", "TRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.\cr
+In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTT", "TRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The package follows this convention.\cr
 In analogy to the \acronym{EMA}’s Q&A: Uncertain estimate of \code{CVwR} since less than twelve subjects in sequence TRR.
 }
 

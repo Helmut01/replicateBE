@@ -15,12 +15,12 @@ Dataset simulated to be evaluated by \code{method.A()}, \code{method.B()}.
 
 \format{
   \itemize{
-    \item Reference dataset 22 (\code{rds22})\cr
+    \item Reference dataset 22\cr
     Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 45\%, \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 100\% GMR 0.90. 42 subjects.\cr
     Balanced (21 subjects in each of the sequences) and complete (no missing data). No outliers.\cr
     A data frame with 126 observations on the following 5 variables:
     \describe{
-      \item{}{
+      \item{rds22}{
         \tabular{ll}{
         \code{subject} \tab a factor with 42 levels: 1, 2, \ldots, 42\cr
         \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
@@ -42,7 +42,7 @@ Dataset simulated to be evaluated by \code{method.A()}, \code{method.B()}.
 }
 
 \note{
-In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTR", "TRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.\cr
+In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTR", "TRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The package follows this convention.\cr
 This partial replicate design is also known as the \sQuote{extra-reference design}. Since the Test is not administered in all periods, lacking period effects must be assumed. In the presence of \emph{true} period effects the treatment comparison will be biased. Hence, this design is not recommended.
 }
 

@@ -10,8 +10,8 @@ ABE <- function(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
   exec <- strftime(Sys.time(), usetz=TRUE)
   if (!missing(ext)) ext <- tolower(ext) # case-insensitive
   if (missing(theta1) & missing(theta2)) theta1 <- 0.80
-  if (missing(theta1)) theta1 <- 1/theta2
-  if (missing(theta2)) theta2 <- 1/theta1
+  if (missing(theta1)) theta1 = 1/theta2
+  if (missing(theta2)) theta2 = 1/theta1
   ret  <- CV.calc(alpha=alpha, path.in=path.in, path.out=path.out,
                   file=file, set=set, ext=ext, na=na, sep=sep,
                   dec=dec, logtrans=logtrans, ola=FALSE,
@@ -138,6 +138,8 @@ ABE <- function(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
     txt <- paste0(txt, "\nNote: The extra-reference design assumes lacking period effects. ",
                   "The treatment\ncomparison will be biased in the presence of a ",
                   "true period effect.")
+  if (res$Design %in% c("TRTR|RTRT|TRRT|RTTR", "TRRT|RTTR|TTRR|RRTT"))
+    txt <- paste0(txt, "\nNote: Confounded effects; design not recommended.")
   txt <- paste0(txt, "\n")
   if (print & overwrite) {
     res.file <- file(results, open="ab")                        # line endings

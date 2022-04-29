@@ -19,7 +19,7 @@ Dataset for Balaam’s design obtained by simulations to be evaluated by \code{m
     312 subjects. Balanced (78 subjects in each of the four sequences) and incomplete (T of subject 111 missing in period 2 of sequence RT). No outliers.\cr
     A data frame with 624 observations on the following 5 variables:
     \describe{
-      \item{}{
+      \item{rds27}{
           \tabular{ll}{
             \code{subject} \tab a factor with 312 levels: 1, 2, \ldots, 18\cr
             \code{period} \tab a factor with 2 levels: 1, 2\cr
@@ -39,7 +39,7 @@ Dataset for Balaam’s design obtained by simulations to be evaluated by \code{m
 }
 
 \note{
-In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RR", "RT", "TR", "TT"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.
+In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RR", "RT", "TR", "TT"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The package follows this convention.
 }
 
 \author{

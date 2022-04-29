@@ -1,28 +1,34 @@
 replicateBE
 ================
 
--   [Introduction](#introduction)
-    -   [Methods](#methods)
-        -   [Estimation of *CV*<sub>wR</sub> (and *CV*<sub>wT</sub> in
-            full replicate
-            designs)](#estimation-of-cvwr-and-cvwt-in-full-replicate-designs)
-        -   [Method A](#method-a)
-        -   [Method B](#method-b)
-        -   [Average Bioequivalence](#average-bioequivalence)
-    -   [Tested designs](#tested-designs)
-        -   [Four period (full)
-            replicates](#four-period-full-replicates)
-        -   [Three period (full)
-            replicates](#three-period-full-replicates)
-        -   [Two period (full) replicate](#two-period-full-replicate)
-        -   [Three period (partial)
-            replicates](#three-period-partial-replicates)
-    -   [Cross-validation](#cross-validation)
--   [Examples](#examples)
--   [Installation](#installation)
--   [Session Information](#session-information)
--   [Contributors](#contributors)
--   [Disclaimer](#disclaimer)
+-   <a href="#introduction" id="toc-introduction">Introduction</a>
+    -   <a href="#methods" id="toc-methods">Methods</a>
+        -   <a href="#estimation-of-cvwr-and-cvwt-in-full-replicate-designs"
+            id="toc-estimation-of-cvwr-and-cvwt-in-full-replicate-designs">Estimation
+            of <em>CV</em><sub>wR</sub> (and <em>CV</em><sub>wT</sub> in full
+            replicate designs)</a>
+        -   <a href="#method-a" id="toc-method-a">Method A</a>
+        -   <a href="#method-b" id="toc-method-b">Method B</a>
+        -   <a href="#average-bioequivalence"
+            id="toc-average-bioequivalence">Average Bioequivalence</a>
+    -   <a href="#tested-designs" id="toc-tested-designs">Tested designs</a>
+        -   <a href="#four-period-full-replicates"
+            id="toc-four-period-full-replicates">Four period (full) replicates</a>
+        -   <a href="#three-period-full-replicates"
+            id="toc-three-period-full-replicates">Three period (full) replicates</a>
+        -   <a href="#two-period-full-replicate"
+            id="toc-two-period-full-replicate">Two period (full) replicate</a>
+        -   <a href="#three-period-partial-replicates"
+            id="toc-three-period-partial-replicates">Three period (partial)
+            replicates</a>
+    -   <a href="#cross-validation"
+        id="toc-cross-validation">Cross-validation</a>
+-   <a href="#examples" id="toc-examples">Examples</a>
+-   <a href="#installation" id="toc-installation">Installation</a>
+-   <a href="#session-information" id="toc-session-information">Session
+    Information</a>
+-   <a href="#contributors" id="toc-contributors">Contributors</a>
+-   <a href="#disclaimer" id="toc-disclaimer">Disclaimer</a>
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -50,7 +56,7 @@ issues](https://img.shields.io/github/issues-closed-raw/Helmut01/replicateBE)
 ![open
 issues](https://img.shields.io/github/issues-raw/Helmut01/replicateBE)
 
-Version 1.1.1.9000 built 2022-03-01 with R 4.1.2 (development version
+Version 1.1.1.9000 built 2022-04-29 with R 4.2.0 (development version
 not on CRAN).
 
 <h2>
@@ -60,7 +66,7 @@ Expanding Limits (ABEL)
 
 ## Introduction
 
-The library provides data sets (internal `.rda` and in
+The package provides data sets (internal `.rda` and in
 <abbr title="Character Separated Variables">CSV</abbr>-format in
 `/extdata/`) supporting users in a black-box performance qualification
 (PQ) of their software installations. Users can analyze own data
@@ -101,7 +107,7 @@ model of log-transformed pharmacokinetic (PK) responses and effects
     *sequence*, *subject*(*sequence*), *period*  
 where all effects are fixed (*i.e.*, by an
 <abbr title="Analysis of Variance">ANOVA</abbr>). Estimated by the
-function `lm()` of library `stats`.
+function `lm()` of package `stats`.
 
 ``` r
 modCVwR <- lm(log(PK) ~ sequence + subject%in%sequence + period,
@@ -119,7 +125,7 @@ Called by function `method.A()`. A linear model of log-transformed
     *sequence*, *subject*(*sequence*), *period*, *treatment*  
 where all effects are fixed (*e.g.*, by an
 <abbr title="Analysis of Variance">ANOVA</abbr>). Estimated by the
-function `lm()` of library `stats`.
+function `lm()` of package `stats`.
 
 ``` r
 modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
@@ -137,7 +143,7 @@ where *subject*(*sequence*) is a random effect and all others are
 fixed.  
 Three options are provided:
 
--   Estimation by the function `lmer()` of library `lmerTest`.
+-   Estimation by the function `lmer()` of package `lmerTest`.
     `method.B(..., option = 1)` employs Satterthwaite’s approximation of
     the degrees of freedom equivalent to SAS’ `DDFM=SATTERTHWAITE`,
     Phoenix WinNonlin’s `Degrees of Freedom Satterthwaite`, and Stata’s
@@ -149,7 +155,7 @@ modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
 ```
 
--   Estimation by the function `lme()` of library `nlme`.
+-   Estimation by the function `lme()` of package `nlme`.
     `method.B(..., option = 2)` employs degrees of freedom equivalent to
     SAS’ `DDFM=CONTAIN`, Phoenix WinNonlin’s
     `Degrees of Freedom Residual`, STATISTICA’s `GLM containment`, and
@@ -163,7 +169,7 @@ modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
                       data = data)
 ```
 
--   Estimation by the function `lmer()` of library `lmerTest`.
+-   Estimation by the function `lmer()` of package `lmerTest`.
     `method.B(..., option = 3)` employs the Kenward-Roger approximation
     equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’
     `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected*
@@ -240,12 +246,12 @@ Results of the 30 reference datasets agree with ones obtained in SAS
     01<sup id="a9">[9](#f9)</sup> by Method A.
 
 ``` r
-library(replicateBE) # attach the library
+library(replicateBE) # attach the package
 res <- method.A(verbose = TRUE, details = TRUE,
                 print = FALSE, data = rds01)
 # 
 # Data set DS01: Method A by lm() 
-# ----------------------------------- 
+# ─────────────────────────────────── 
 # Type III Analysis of Variance Table
 # 
 # Response: log(PK)
@@ -280,7 +286,7 @@ res  <- method.B(option = 1, verbose = TRUE, details = TRUE,
                  print = FALSE, data = rds01)
 # 
 # Data set DS01: Method B (option = 1) by lmer() 
-# ---------------------------------------------- 
+# ────────────────────────────────────────────── 
 # Response: log(PK)
 # Type III Analysis of Variance Table with Satterthwaite's method
 #             Sum Sq  Mean Sq NumDF    DenDF F value    Pr(>F)
@@ -331,7 +337,7 @@ res  <- method.B(option = 3, ola = TRUE, verbose = TRUE,
     #       52     RTRT  3.214663
     # 
     # Data set DS01: Method B (option = 3) by lmer() 
-    # ---------------------------------------------- 
+    # ────────────────────────────────────────────── 
     # Response: log(PK)
     # Type III Analysis of Variance Table with Kenward-Roger's method
     #             Sum Sq  Mean Sq NumDF    DenDF F value    Pr(>F)
@@ -453,9 +459,9 @@ analysis.
 ``` r
 options(width = 66)
 print(sessionInfo(), locale = FALSE)
-# R version 4.1.2 (2021-11-01)
+# R version 4.2.0 (2022-04-22 ucrt)
 # Platform: x86_64-w64-mingw32/x64 (64-bit)
-# Running under: Windows 7 x64 (build 7601) Service Pack 1
+# Running under: Windows 10 x64 (build 22000)
 # 
 # Matrix products: default
 # 
@@ -467,27 +473,27 @@ print(sessionInfo(), locale = FALSE)
 # [1] replicateBE_1.1.1.9000
 # 
 # loaded via a namespace (and not attached):
-#  [1] tidyselect_1.1.2    xfun_0.29           purrr_0.3.4        
-#  [4] splines_4.1.2       lmerTest_3.1-3      lattice_0.20-45    
-#  [7] colorspace_2.0-3    vctrs_0.3.8         generics_0.1.2     
+#  [1] tidyselect_1.1.2    xfun_0.30           purrr_0.3.4        
+#  [4] splines_4.2.0       lmerTest_3.1-3      lattice_0.20-45    
+#  [7] colorspace_2.0-3    vctrs_0.4.1         generics_0.1.2     
 # [10] htmltools_0.5.2     yaml_2.3.5          utf8_1.2.2         
-# [13] rlang_1.0.1         pillar_1.7.0        nloptr_2.0.0       
-# [16] glue_1.6.1          PowerTOST_1.5-4     readxl_1.3.1       
+# [13] rlang_1.0.2         pillar_1.7.0        nloptr_2.0.0       
+# [16] glue_1.6.2          PowerTOST_1.5-4     readxl_1.4.0       
 # [19] lifecycle_1.0.1     stringr_1.4.0       munsell_0.5.0      
 # [22] gtable_0.3.0        cellranger_1.1.0    mvtnorm_1.1-3      
-# [25] evaluate_0.15       knitr_1.37          fastmap_1.1.0      
-# [28] parallel_4.1.2      pbkrtest_0.5.1      fansi_1.0.2        
-# [31] highr_0.9           broom_0.7.12        Rcpp_1.0.8         
-# [34] backports_1.4.1     scales_1.1.1        lme4_1.1-28        
+# [25] evaluate_0.15       knitr_1.39          fastmap_1.1.0      
+# [28] parallel_4.2.0      pbkrtest_0.5.1      fansi_1.0.3        
+# [31] highr_0.9           broom_0.8.0         Rcpp_1.0.8.3       
+# [34] backports_1.4.1     scales_1.2.0        lme4_1.1-29        
 # [37] TeachingDemos_2.12  ggplot2_3.3.5       digest_0.6.29      
 # [40] stringi_1.7.6       dplyr_1.0.8         numDeriv_2016.8-1.1
-# [43] grid_4.1.2          cli_3.2.0           tools_4.1.2        
-# [46] magrittr_2.0.2      tibble_3.1.6        tidyr_1.2.0        
-# [49] crayon_1.5.0        pkgconfig_2.0.3     MASS_7.3-55        
-# [52] ellipsis_0.3.2      Matrix_1.4-0        minqa_1.2.4        
-# [55] rmarkdown_2.11      rstudioapi_0.13     cubature_2.0.4.2   
-# [58] R6_2.5.1            boot_1.3-28         nlme_3.1-155       
-# [61] compiler_4.1.2
+# [43] grid_4.2.0          cli_3.3.0           tools_4.2.0        
+# [46] magrittr_2.0.3      tibble_3.1.6        tidyr_1.2.0        
+# [49] crayon_1.5.1        pkgconfig_2.0.3     MASS_7.3-57        
+# [52] ellipsis_0.3.2      Matrix_1.4-1        minqa_1.2.4        
+# [55] rmarkdown_2.14      rstudioapi_0.13     cubature_2.0.4.4   
+# [58] R6_2.5.1            boot_1.3-28         nlme_3.1-157       
+# [61] compiler_4.2.0
 ```
 
 <small>[TOC ↩](#replicatebe)</small>

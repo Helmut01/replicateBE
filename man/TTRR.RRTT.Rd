@@ -13,11 +13,11 @@ Dataset obtained by simulations to be evaluated by \code{method.A()} and/or \cod
 
 \format{
   \itemize{
-    \item Reference Dataset 28 (\code{rds28})\cr
+    \item Reference Dataset 28\cr
     64 subjects. Balanced (64 subjects in both sequences) and complete. No outliers.\cr
     A data frame with 256 observations on the following 5 variables:
     \describe{
-      \item{}{
+      \item{rds28}{
         \tabular{ll}{
           \code{subject} \tab a factor with 64 levels: 1, 2, \ldots, 64\cr
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
@@ -38,7 +38,7 @@ Dataset obtained by simulations to be evaluated by \code{method.A()} and/or \cod
 }
 
 \note{
-In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RRTT", "TTRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.
+In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RRTT", "TTRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The package follows this convention.
 }
 
 \author{

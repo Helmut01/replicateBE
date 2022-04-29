@@ -13,12 +13,12 @@ Dataset from the public domain to be evaluated by \code{method.A()} and/or \code
 
 \format{
   \itemize{
-    \item Reference Dataset 23 (\code{rds23})\cr
+    \item Reference Dataset 23\cr
     22 subjects.\cr
     Unbalanced (four subjects in sequence RTRT and six in each of the other three) and complete. Two outliers (subjects 8 and 17) in sequence TRTR.\cr
     A data frame with 88 observations on the following 5 variables:
     \describe{
-      \item{}{
+      \item{rds23}{
         \tabular{ll}{
           \code{subject} \tab a factor with 22 levels: 1, 2, \ldots, 27\cr
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
@@ -39,7 +39,7 @@ Dataset from the public domain to be evaluated by \code{method.A()} and/or \code
 }
 
 \note{
-In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTRT", "RTTR", "TRRT", "TRTR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.
+In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RTRT", "RTTR", "TRRT", "TRTR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The package follows this convention.
 }
 
 \source{

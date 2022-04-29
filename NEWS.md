@@ -2,6 +2,10 @@
 
 Development version.
 
+## Bug fixes
+
+  * Corrected empty labels in man pages of datasets in `item{}` leading to notes on r-devel-linux.
+
 # replicateBE 1.1.1
 
 Published on Github 2022-02-12, on CRAN.

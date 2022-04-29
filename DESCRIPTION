@@ -1,7 +1,7 @@
 Encoding: UTF-8
 Package: replicateBE
 Version: 1.1.1.9000
-Date: 2022-03-01
+Date: 2022-04-29
 Title: Average Bioequivalence with Expanding Limits (ABEL)
 Authors@R: c(person(given = "Helmut", family = "Schütz",
                     role = c("aut", "cre"),
@@ -27,8 +27,8 @@ Description: Performs comparative bioavailability calculations for Average
     'Method B' and the detection of outliers. If the design allows, assessment
     of the empiric Type I Error and iteratively adjusting alpha to control the
     consumer risk. Average Bioequivalence - optionally with a tighter (narrow
-    therapeutic index drugs) or wider acceptance range (Gulf Cooperation
-    Council, South Africa: Cmax) - is implemented as well.
+    therapeutic index drugs) or wider acceptance range (South Africa: Cmax) -
+    is implemented as well.
 License: GPL (>=3)
 LazyData: true
 VignetteBuilder: knitr

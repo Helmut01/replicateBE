@@ -16,12 +16,12 @@ Datasets from the public domain or simulated to be evaluated by \code{method.A()
 
 \format{
   \itemize{
-    \item Reference Dataset 02 (\code{rds02})\cr
+    \item Reference Dataset 02\cr
     24 subjects.\cr
     Balanced (eight subjects in each of the three sequences) and complete (no missing data). No outliers.\cr
     A data frame with 72 observations on the following 6 variables:
       \describe{
-          \item{}{
+          \item{rds02}{
             \tabular{ll}{
               \code{subject} \tab a factor with 24 levels: 1, 2, \ldots, 24\cr
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
@@ -32,7 +32,7 @@ Datasets from the public domain or simulated to be evaluated by \code{method.A()
             }
           }
           In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported results:
-          \item{}{
+          \item{SAS Proc GLM}{
             \tabular{ll}{
               \code{CVwR} \tab 11.2\%\cr
               \code{PE} \tab 102.26\% (Method A and B)\cr
@@ -41,12 +41,12 @@ Datasets from the public domain or simulated to be evaluated by \code{method.A()
           }
        }
 
-    \item Reference Dataset 04 (\code{rds04})\cr
+    \item Reference Dataset 04\cr
     Data set of Table II given by Patterson & Jones. 51 subjects.\cr
     Balanced (17 subjects in each of the three sequences) and complete. No outliers.\cr
     A data frame with 153 observations on the following 5 variables:
       \describe{
-          \item{}{
+          \item{rds04}{
             \tabular{ll}{
               \code{subject} \tab a factor with 51 levels: 1, 2, \ldots, 56\cr
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
@@ -56,7 +56,7 @@ Datasets from the public domain or simulated to be evaluated by \code{method.A()
             }
           }
           In the source evaluated by \acronym{SAS} with the \acronym{FDA}’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:
-          \item{}{
+          \item{SAS Proc MIXED}{
             \tabular{ll}{
               \code{CVwR} \tab 61\%\cr
               \code{PE} \tab 137\%\cr
@@ -65,12 +65,12 @@ Datasets from the public domain or simulated to be evaluated by \code{method.A()
           }
       }
 
-    \item Reference Dataset 07 (\code{rds07})\cr
+    \item Reference Dataset 07\cr
     Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 35\%, GMR 0.90. 360 subjects.\cr
     Balanced (120 subjects in each of the three sequences) and complete. No outliers.\cr
     A data frame with 1,080 observations on the following 5 variables:
       \describe{
-          \item{}{
+          \item{rds07}{
             \tabular{ll}{
               \code{subject} \tab a factor with 360 levels: 1, 2, \ldots, 360\cr
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
@@ -81,12 +81,12 @@ Datasets from the public domain or simulated to be evaluated by \code{method.A()
           }
       }
 
-    \item Reference Dataset 30 (\code{rds30})\cr
+    \item Reference Dataset 30\cr
     Simulated with heteroscedasticity (\ifelse{html}{\out{CV<sub>wT</sub> = 14\%, CV<sub>wR</sub> = 28\%, CV<sub>bT</sub> = 28\%, CV<sub>bR</sub> = 56\%}}{\eqn{CCV_{wT}=14\%,\:CV_{wR}=28\%,\:CV_{bT}=28\%,\:CV_{bR}=56\%}}), GMR = 0.90. 12 subjects. 14 subjects.\cr
     Imbalanced (six subjects in sequence TRR, five in RTR, and three RRT) and incomplete (two missings in sequences TRR and RTR and three in sequence RRT). Missings / period: 0/1, 0/2, 7/3. No outliers.\cr
     A data frame with 35 observations on the following 5 variables:
       \describe{
-          \item{}{
+          \item{rds30}{
             \tabular{ll}{
               \code{subject} \tab a factor with 14 levels: 1, 2, \ldots, 39\cr
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
@@ -110,7 +110,7 @@ Datasets from the public domain or simulated to be evaluated by \code{method.A()
 }
 
 \note{
-In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RRT", "RTR", "TRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The library follows this convention.
+In software sequences and treatments are ranked in lexical order. Hence, executing \code{str()} or \code{summary()} will show \code{sequence} as \code{"RRT", "RTR", "TRR"} and \code{treatment} as \code{"R", "T"}. In \acronym{BE} -- by convention -- sequences are ordered with \code{T} first. The package follows this convention.
 }
 
 \author{

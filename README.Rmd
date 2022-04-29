@@ -35,7 +35,7 @@ cat(txt)
 
 <h2>Comparative BA-calculation for the EMA’s Average Bioequivalence with Expanding Limits (ABEL)</h2>
 ## Introduction{#introduction}
-The library provides data sets (internal `.rda` and in <abbr title="Character Separated Variables">CSV</abbr>-format in `/extdata/`) supporting users in a black-box performance qualification (PQ) of their software installations. Users can analyze own data imported from <abbr title="Character Separated Variables">CSV</abbr>- and Excel-files (in `xlsx` or the legacy `xls` format). The methods given by the <abbr title="European Medicines Agency">EMA</abbr> for reference-scaling of <abbr title="Highy Variable Drugs / Drug Products">HVD(P)s</abbr>, *i.e.*, Average Bioequivalence with Expanding Limits (ABEL)<sup id="a1">[1](#f1),</sup><sup id="a2">[2](#f2)</sup> are implemented.<br>
+The package provides data sets (internal `.rda` and in <abbr title="Character Separated Variables">CSV</abbr>-format in `/extdata/`) supporting users in a black-box performance qualification (PQ) of their software installations. Users can analyze own data imported from <abbr title="Character Separated Variables">CSV</abbr>- and Excel-files (in `xlsx` or the legacy `xls` format). The methods given by the <abbr title="European Medicines Agency">EMA</abbr> for reference-scaling of <abbr title="Highy Variable Drugs / Drug Products">HVD(P)s</abbr>, *i.e.*, Average Bioequivalence with Expanding Limits (ABEL)<sup id="a1">[1](#f1),</sup><sup id="a2">[2](#f2)</sup> are implemented.<br>
 Potential influence of outliers on the variability of the reference can be assessed by box plots of studentized and standardized residuals as suggested at a joint <abbr title="European Generic Medicines Association">EGA</abbr>/<abbr title="European Medicines Agency">EMA</abbr> workshop.<sup id="a3">[3](#f3)</sup><br>
 Health Canada’s approach<sup id="a4">[4](#f4)</sup> requiring a mixed-effects model is approximated by intra-subject contrasts.  
 Direct widening of the acceptance range as recommended by the Gulf Cooperation Council<sup id="a5">[5](#f5)</sup> (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, United Arab Emirates) is provided as well.  
@@ -47,7 +47,7 @@ In full replicate designs the variability of test and reference treatments can b
 #### Estimation of _CV_~wR~ (and _CV_~wT~ in full replicate designs){#estimation-of-cvwr-and-cvwt-in-full-replicate-designs}
 Called internally by functions `method.A()` and `method.B()`. A linear model of log-transformed pharmacokinetic (PK) responses and effects  
     _sequence_, _subject_(_sequence_), _period_\
-where all effects are fixed (_i.e._, by an <abbr title="Analysis of Variance">ANOVA</abbr>). Estimated by the function `lm()` of library `stats`.
+where all effects are fixed (_i.e._, by an <abbr title="Analysis of Variance">ANOVA</abbr>). Estimated by the function `lm()` of package `stats`.
 ```{r eval = FALSE}
 modCVwR <- lm(log(PK) ~ sequence + subject%in%sequence + period,
                         data = data[data$treatment == "R", ])
@@ -60,7 +60,7 @@ modCVwT <- lm(log(PK) ~ sequence + subject%in%sequence + period,
 #### Method A{#method-a}
 Called by function `method.A()`. A linear model of log-transformed <abbr title="pharmacokinetic">PK</abbr> responses and effects  
     _sequence_, _subject_(_sequence_), _period_, _treatment_\
-where all effects are fixed (_e.g._, by an <abbr title="Analysis of Variance">ANOVA</abbr>). Estimated by the function `lm()` of library `stats`.
+where all effects are fixed (_e.g._, by an <abbr title="Analysis of Variance">ANOVA</abbr>). Estimated by the function `lm()` of package `stats`.
 ```{r eval = FALSE}
 modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
                      data = data)
@@ -74,21 +74,21 @@ Called by function `method.B()`. A linear model of log-transformed <abbr title="
 where _subject_(_sequence_) is a random effect and all others are fixed.  
 Three options are provided:
 
-* Estimation by the function `lmer()` of library `lmerTest`. `method.B(..., option = 1)` employs Satterthwaite’s approximation of the degrees of freedom equivalent to SAS’ `DDFM=SATTERTHWAITE`, Phoenix WinNonlin’s `Degrees of Freedom Satterthwaite`, and Stata’s `dfm=Satterthwaite`. Note that this is the only available approximation in SPSS.
+* Estimation by the function `lmer()` of package `lmerTest`. `method.B(..., option = 1)` employs Satterthwaite’s approximation of the degrees of freedom equivalent to SAS’ `DDFM=SATTERTHWAITE`, Phoenix WinNonlin’s `Degrees of Freedom Satterthwaite`, and Stata’s `dfm=Satterthwaite`. Note that this is the only available approximation in SPSS.
 
 ```{r eval = FALSE}
 modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
                        data = data)
 ```
 
-* Estimation by the function `lme()` of library `nlme`. `method.B(..., option = 2)` employs degrees of freedom equivalent to SAS’ `DDFM=CONTAIN`, Phoenix WinNonlin’s `Degrees of Freedom Residual`, STATISTICA’s `GLM containment`, and Stata’s `dfm=anova`. Implicitly preferred according to the <abbr title="European Medicines Agency">EMA</abbr>’s <abbr title="Questions &amp; Answers">Q&amp;A</abbr> document and hence, the default of the function.
+* Estimation by the function `lme()` of package `nlme`. `method.B(..., option = 2)` employs degrees of freedom equivalent to SAS’ `DDFM=CONTAIN`, Phoenix WinNonlin’s `Degrees of Freedom Residual`, STATISTICA’s `GLM containment`, and Stata’s `dfm=anova`. Implicitly preferred according to the <abbr title="European Medicines Agency">EMA</abbr>’s <abbr title="Questions &amp; Answers">Q&amp;A</abbr> document and hence, the default of the function.
 
 ```{r eval = FALSE}
 modB <- lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,
                       data = data)
 ```
 
-* Estimation by the function `lmer()` of library `lmerTest`. `method.B(..., option = 3)` employs the Kenward-Roger approximation equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’ `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected* information matrix. Note that SAS with `DDFM=KENWARDROGER` and JMP calculate Satterthwaite’s &#91;*sic*&#93; degrees of freedom and apply the Kackar-Harville correction, *i.e.*, based on the *observed* information matrix.
+* Estimation by the function `lmer()` of package `lmerTest`. `method.B(..., option = 3)` employs the Kenward-Roger approximation equivalent to Stata’s `dfm=Kenward Roger (EIM)` and SAS’ `DDFM=KENWARDROGER(FIRSTORDER)` *i.e.*, based on the *expected* information matrix. Note that SAS with `DDFM=KENWARDROGER` and JMP calculate Satterthwaite’s &#91;*sic*&#93; degrees of freedom and apply the Kackar-Harville correction, *i.e.*, based on the *observed* information matrix.
 
 ```{r eval = FALSE}
 modB <- lmer(log(PK) ~ sequence + period + treatment + (1|subject),
@@ -137,7 +137,7 @@ Results of the 30 reference datasets agree with ones obtained in SAS (v9.4), Pho
   - Evaluation of the internal reference dataset 01<sup id="a9">[9](#f9)</sup> by Method A.
 
 ```{r example1}
-library(replicateBE) # attach the library
+library(replicateBE) # attach the package
 res <- method.A(verbose = TRUE, details = TRUE,
                 print = FALSE, data = rds01)
 cols <- c(12, 17:21)           # extract relevant columns

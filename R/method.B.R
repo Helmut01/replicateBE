@@ -106,7 +106,7 @@ method.B <- function(alpha = 0.05, path.in, path.out = tempdir(), file,
     }
   } # end of evaluation by option=2 (lme) or option=1/3 (lmer)
   PE  <- exp(PE)
-  res <- data.frame(ret$type, "B", ret$n, ret$nTT, ret$nRR,
+  res <- data.frame(ret$type, "A", ret$n, ret$nTT, ret$nRR,
                     paste0(ret$Sub.Seq, collapse="|"),
                     paste0(ret$Miss.seq, collapse="|"),
                     paste0(ret$Miss.per, collapse="|"), alpha,
