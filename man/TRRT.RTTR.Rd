@@ -55,7 +55,7 @@ Datasets from the public domain to be evaluated by \code{method.A()}, \code{meth
             }
           }
           In the source evaluated by \acronym{SAS} with the \acronym{FDA}’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:
-          \item{}{
+          \item{SAS Proc MIXED}{
             \tabular{ll}{
               \code{PE} \tab 90.0\%\cr
               \code{90\% CI} \tab 79.6\% – 101.7\%

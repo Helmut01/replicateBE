@@ -67,7 +67,6 @@ Datasets from the public domain, edited, or obtained by simulations to be evalua
           \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
         }
       }
-      \item{}{}
     }
 
     \item Reference dataset 08\cr

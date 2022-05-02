@@ -56,7 +56,7 @@ issues](https://img.shields.io/github/issues-closed-raw/Helmut01/replicateBE)
 ![open
 issues](https://img.shields.io/github/issues-raw/Helmut01/replicateBE)
 
-Version 1.1.2 built 2022-05-02 with R 4.2.0 (development version not on
+Version 1.1.3 built 2022-05-02 with R 4.2.0 (development version not on
 CRAN).
 
 <h2>
@@ -470,7 +470,7 @@ print(sessionInfo(), locale = FALSE)
 # [7] base     
 # 
 # other attached packages:
-# [1] replicateBE_1.1.2
+# [1] replicateBE_1.1.3
 # 
 # loaded via a namespace (and not attached):
 #  [1] tidyselect_1.1.2    xfun_0.30           purrr_0.3.4        

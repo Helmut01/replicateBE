@@ -1,10 +1,18 @@
+# replicateBE 1.1.3
+
+Published on GitHub 2022-05-02.
+
+## Bug fixes
+
+  * Fixed two more empty `item{}` discovered by `CRAN` pretest.
+
 # replicateBE 1.1.2
 
 Published on GitHub 2022-05-02.
 
 ## Bug fixes
 
-  * Corrected empty labels in man pages of datasets in `item{}` leading to notes on r-devel-linux.
+  * Corrected empty labels in man pages of datasets in `item{}` leading to notes on `r-devel-linux`.
 
 # replicateBE 1.1.1
 
