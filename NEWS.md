@@ -1,6 +1,6 @@
-# replicateBE 1.1.1.9000
+# replicateBE 1.1.2
 
-Development version.
+Published on GitHub 2022-05-02.
 
 ## Bug fixes
 
