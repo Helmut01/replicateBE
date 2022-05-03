@@ -15,7 +15,7 @@ Datasets from the public domain to be evaluated by \code{method.A()}, \code{meth
 
 \format{
   \itemize{
-    \item Reference Dataset 05\cr
+    \item \bold{Reference Dataset 05}\cr
     26 subjects.\cr
     Balanced (13 subjects in both sequences) and complete. No outliers.\cr
     A data frame with 104 observations on the following 5 variables:
@@ -26,11 +26,9 @@ Datasets from the public domain to be evaluated by \code{method.A()}, \code{meth
               \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
               \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
               \code{treatment} \tab a factor with 2 levels: T, R\cr
-              \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+              \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\text{max}}})
             }
-          }
-          In the source evaluated by \acronym{SAS} with the \acronym{FDA}’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:
-          \item{SAS Proc Mixed}{
+            In the source evaluated by \acronym{SAS} (Prox MIXED) with the \acronym{FDA}’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:
             \tabular{ll}{
               \code{CVwR} \tab 5.47\%\cr
               \code{CVwT} \tab 6.75\%\cr
@@ -40,7 +38,7 @@ Datasets from the public domain to be evaluated by \code{method.A()}, \code{meth
           }
        }
 
-    \item Reference Dataset 11\cr
+    \item \bold{Reference Dataset 11}\cr
     37 subjects.\cr
     Unbalanced (18 subjects in sequence TRRT and 19 subjects in RTTR) and complete. No outliers.\cr
     A data frame with 148 observations on the following 5 variables
@@ -51,19 +49,17 @@ Datasets from the public domain to be evaluated by \code{method.A()}, \code{meth
               \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
               \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
               \code{treatment} \tab a factor with 2 levels: T, R\cr
-              \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+              \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\text{max}}})
             }
+          In the source evaluated by \acronym{SAS} (Proc MIXED) with the \acronym{FDA}’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:
+          \tabular{ll}{
+            \code{PE} \tab 90.0\%\cr
+            \code{90\% CI} \tab 79.6\% – 101.7\%
           }
-          In the source evaluated by \acronym{SAS} with the \acronym{FDA}’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:
-          \item{SAS Proc MIXED}{
-            \tabular{ll}{
-              \code{PE} \tab 90.0\%\cr
-              \code{90\% CI} \tab 79.6\% – 101.7\%
-            }
-          }
+        }
       }
 
-    \item Reference Dataset 16\cr
+    \item \bold{Reference Dataset 16}\cr
     38 subjects.\cr
     Unbalanced (18 subjects in sequence TRRT and 20 in RTTR) and complete. No outliers.\cr
     A data frame with 152 observations on the following 5 variables:
@@ -74,7 +70,7 @@ Datasets from the public domain to be evaluated by \code{method.A()}, \code{meth
               \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
               \code{sequence} \tab a factor with 2 levels: TRRT, RTTR\cr
               \code{treatment} \tab a factor with 2 levels: T, R\cr
-              \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+              \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\text{max}}})
             }
           }
       }
@@ -83,7 +79,7 @@ Datasets from the public domain to be evaluated by \code{method.A()}, \code{meth
 
 \details{
   \tabular{crcl}{
-    Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+    Dataset \tab N \tab \ifelse{html}{\out{<em>CV</em><sub>wR</sub>}}{\eqn{CV_\text{wR}}} (\%) \tab Evaluation\cr
     \code{rds05} \tab 26 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
     \code{rds11} \tab 37 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
     \code{rds16} \tab 38 \tab >30 \tab \code{method.A()}, \code{method.B()}
@@ -97,9 +93,9 @@ In software sequences and treatments are ranked in lexical order. Hence, executi
 \source{
   \tabular{cll}{
     Dataset \tab Origin \tab Description\cr
-    \code{rds05} \tab Shumaker & Metzler \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in the Appendix.\cr
-    \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Table 9.6.\cr
-    \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 14a.
+    \code{rds05} \tab Shumaker & Metzler \tab \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\text{max}}} data given in the Appendix.\cr
+    \code{rds11} \tab Hauschke \emph{et al.} \tab \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\text{max}}} data given in Table 9.6.\cr
+    \code{rds16} \tab FDA, CDER \tab \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\text{max}}} data of Drug 14a.
   }
 }
 

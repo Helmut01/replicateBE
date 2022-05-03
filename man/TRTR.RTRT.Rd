@@ -27,7 +27,7 @@ Datasets from the public domain, edited, or obtained by simulations to be evalua
 
 \format{
   \itemize{
-    \item Reference dataset 01\cr
+    \item \bold{Reference dataset 01}\cr
     77 subjects.\cr
     Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and three in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. Two outliers (subjects 45 and 52) in sequence RTRT.\cr
     A data frame with 298 observations on the following 6 variables:
@@ -38,22 +38,19 @@ Datasets from the public domain, edited, or obtained by simulations to be evalua
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling\cr
           \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
         }
-      }
-      In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported results:
-      % 2.1.1 Text between or after list items is discouraged.
-      \item{SAS Proc GLM}{
-      \tabular{ll}{
-        \code{CVwR} \tab 47.0\%\cr
-        \code{PE} \tab 115.66\% (Method A)\cr\tab 115.73\% (Method B)\cr
-        \code{90\% CI} \tab 107.11\% \enc{–}{-} 124.89\% (Method A)\cr\tab 107.17\% \enc{–}{-} 124.97\% (Method B)
+        In the source evaluated by \acronym{SAS} (Proc GLM) v9.1 for \acronym{ABEL}. Reported results:
+        \tabular{ll}{
+          \code{CVwR} \tab 47.0\%\cr
+          \code{PE} \tab 115.66\% (Method A)\cr\tab 115.73\% (Method B)\cr
+          \code{90\% CI} \tab 107.11\% \enc{–}{-} 124.89\% (Method A)\cr\tab 107.17\% \enc{–}{-} 124.97\% (Method B)
       }
     }
   }
 
-    \item Reference dataset 06\cr
+    \item \bold{Reference dataset 06}\cr
     Based on \code{rds01}. 77 subjects. Responses of T and R switched.\cr
     Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and three in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. No outliers.\cr
     A data frame with 298 observations on the following 6 variables:
@@ -64,12 +61,12 @@ Datasets from the public domain, edited, or obtained by simulations to be evalua
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
         }
       }
     }
 
-    \item Reference dataset 08\cr
+    \item \bold{Reference dataset 08}\cr
     Simulated with slight heteroscedasticity (\ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = 70\%, \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 80\%), \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 150\%, GMR = 0.85. 222 subjects.\cr
     Balanced (222 subjects in both sequences) and complete. No outliers.\cr
 The extreme sample size results from high variability, an assumed true GMR 0.85, and target power 90\%.\cr
@@ -81,12 +78,12 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
         }
       }
     }
 
-    \item Reference dataset 09\cr
+    \item \bold{Reference dataset 09}\cr
     Based on \code{rds08}. Wide numeric range (data of last 37 subjects multiplied by 1,000,000). 222 subjects.\cr
     Balanced (222 subjects in both sequences) and complete. No outliers.\cr
     A data frame with 888 observations on the following 5 variables:
@@ -97,12 +94,12 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
         }
       }
     }
 
-    \item Reference dataset 12\cr
+    \item \bold{Reference dataset 12}\cr
     Simulated with extreme intra- and intersubject variability, GMR = 1.6487. 77 subjects.\cr
     Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and three in sequence RTRT). Missings / period: 0/1, 1/2, 7/3, 2/4. No outliers.\cr
     A data frame with 298 observations on the following 6 variables:
@@ -113,12 +110,12 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
         }
       }
     }
 
-    \item Reference dataset 13\cr
+    \item \bold{Reference dataset 13}\cr
     Based on \code{rds08}. Highly incomplete (approx. 50\% of period 4 data deleted). 222 subjects.\cr
     Balanced (111 subjects in both sequences) and incomplete (56 missings in both sequences). Missings / period: 0/0, 0/0, 0/0, 112/4. No outliers.\cr
     A data frame with 776 observations on the following 5 variables:
@@ -129,12 +126,12 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
         }
       }
     }
 
-    \item Reference dataset 14\cr
+    \item \bold{Reference dataset 14}\cr
     Simulated with high variability, GMR = 1. Dropouts as a hazard function growing with period. 77 subjects.\cr
     Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (18 missings in sequence TRTR and 17 in sequence RTRT). Missings / period: 0/1, 4/2, 12/3, 19/4. No outliers.\cr
     A data frame with 273 observations on the following 6 variables:
@@ -145,12 +142,12 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
         }
       }
     }
 
-    \item Reference dataset 15\cr
+    \item \bold{Reference dataset 15}\cr
     Based on \code{ref08}. Highly incomplete (approx. 50\% of period 4 data coded as missing \code{'NA'}). 222 subjects.\cr
     Balanced (111 subjects in both sequences) and incomplete (56 missings in both sequences). Missings / period: 0/1, 0/2, 0/3, 112/4. No outliers.\cr
     A data frame with 888 observations (112 \code{NA}) on the following 5 variables
@@ -161,12 +158,12 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
         }
       }
     }
 
-    \item Reference dataset 18\cr
+    \item \bold{Reference dataset 18}\cr
     Data set based on \code{rds14}. Removed T data of subjects 63–78. 77 subjects.\cr
     Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (32 missings in sequence TRTR and 31 in sequence RTRT). Missings / period: 8/1, 12/2, 18/3, 25/4. No outliers.\cr
     A data frame with 245 observations on the following 6 variables:
@@ -177,12 +174,12 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
         }
       }
     }
 
-    \item Reference dataset 19\cr
+    \item \bold{Reference dataset 19}\cr
     Data set based on \code{rds18}. Removed data of subjects 63–78. 61 subjects.\cr
     Unbalanced (31 subjects in sequence TRTR and 30 in RTRT) and incomplete (14 missings in both sequences). Missings / period: 0/1, 4/2, 9/3, 15/4. Two outliers (subjects 18 and 51 in sequence RTRT).\cr
     A data frame with 216 observations on the following 6 variables:
@@ -193,12 +190,12 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
         }
       }
     }
 
-    \item Reference dataset 20\cr
+    \item \bold{Reference dataset 20}\cr
     Data set based on \code{rds19}. Extreme outlier of R (subject 1) introduced: original value ×100). 61 subjects.\cr
     Unbalanced (31 subjects in sequence TRTR and 30 in RTRT) and incomplete (14 missings in both sequences). Missings / period: 0/1, 4/2, 9/3, 15/4. Two outliers (subjects 1 and 51 in sequence RTRT).\cr
     A data frame with 216 observations on the following 6 variables:
@@ -209,13 +206,13 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
         }
       }
     }
 
-    \item Reference dataset 21\cr
-    Based on \code{ds01}. 77 subjects. One extreme result of subjects 45 & 52 set to NA.\cr
+    \item \bold{Reference dataset 21}\cr
+    Based on \code{rds01}. 77 subjects. One extreme result of subjects 45 & 52 set to NA.\cr
     Unbalanced (39 subjects in sequence TRTR and 38 in RTRT) and incomplete (seven missings in sequence TRTR and five in sequence RTRT). Missings / period: 1/1, 1/2, 8/3, 2/4. No outliers.\cr
     A data frame with 298 observations (2 NA) on the following 6 variables:
     \describe{
@@ -225,13 +222,13 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
         }
       }
     }
 
-    \item Reference dataset 25\cr
-    Simulated with heteroscedasticity (\ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = 50\%, \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 80\%), \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 130\%, GMR = 0.85. 70 subjects.\cr
+    \item \bold{Reference dataset 25}\cr
+    Simulated with heteroscedasticity (\ifelse{html}{\out{<em>CV</em><sub>wT</sub>}}{\eqn{CV_\text{wT}}} = 50\%, \ifelse{html}{\out{<em>CV</em><sub>wR</sub>}}{\eqn{CV_\text{wR}}} = 80\%), \ifelse{html}{\out{<em>CV</em><sub>bT</sub>}}{\eqn{CV_\text{bT}}} = \ifelse{html}{\out{<em>CV</em><sub>bR</sub>}}{\eqn{CV_\text{bR}}} = 130\%, GMR = 0.85. 70 subjects.\cr
     Balanced (70 subjects in both sequences) and complete. No outliers.\cr
     A data frame with 280 observations on the following 5 variables:
     \describe{
@@ -241,12 +238,12 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
         }
       }
     }
 
-    \item Reference dataset 26\cr
+    \item \bold{Reference dataset 26}\cr
     54 subjects.\cr
     Balanced (27 subjects in both sequences) and incomplete (two missings in both sequences). Missings / period: 0/1, 0/2, 2/3, 2/4. One outlier (subject 49) in sequence RTRT.\cr
     A data frame with 216 observations on the following 5 variables:
@@ -257,11 +254,9 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\text{max}}})
         }
-      }
-      In the source evaluated by \acronym{SAS} for \acronym{ABEL}. Reported results (Method A):
-      \item{SAS Proc GLM}{
+        In the source evaluated by \acronym{SAS} (Proc GLM) for \acronym{ABEL}. Reported results (Method A):
         \tabular{ll}{
           \code{CVwR} \tab 60.25\%\cr
           \code{PE} \tab 151.3\%\cr
@@ -270,8 +265,8 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
       }
     }
 
-    \item Reference dataset 29\cr
-    Simulated with heteroscedasticity (\ifelse{html}{\out{CV<sub>wT</sub> = 14\%, CV<sub>wR</sub> = 28\%, CV<sub>bT</sub> = 28\%, CV<sub>bR</sub> = 56\%}}{\eqn{CCV_{wT}=14\%,\:CV_{wR}=28\%,\:CV_{bT}=28\%,\:CV_{bR}=56\%}}), GMR = 0.90. 12 subjects.\cr
+    \item \bold{Reference dataset 29}\cr
+    Simulated with heteroscedasticity (\ifelse{html}{\out{<em>CV</em><sub>wT</sub> = 14\%, <em>CV</em><sub>wR</sub> = 28\%, <em>CV</em><sub>bT</sub> = 28\%, <em>CV</em><sub>bR</sub> = 56\%}}{\eqn{CV_\text{wT}=14\%,\:CV_\text{wR}=28\%,\:CV_\text{bT}=28\%,\:CV_\text{bR}=56\%}}), GMR = 0.90. 12 subjects.\cr
     Imbalanced (five subjects in sequence TRTR and seven in sequence RTRT) and incomplete (three missings in sequence TRTR and four in sequence RTRT). Missings / period: 0/1, 1/2, 2/3, 4/4. One outlier (subject 11) in sequence RTRT.\cr
     A data frame with 41 observations on the following 5 variables:
     \describe{
@@ -281,7 +276,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TRTR, RTRT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
         }
       }
     }
@@ -290,7 +285,7 @@ The extreme sample size results from high variability, an assumed true GMR 0.85,
 
 \details{
   \tabular{crcl}{
-    Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+    Dataset \tab N \tab \ifelse{html}{\out{<em>CV</em><sub>wR</sub>}}{\eqn{CV_\text{wR}}} (\%) \tab Evaluation\cr
     \code{rds01} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
     \code{rds06} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
     \code{rds08} \tab 222 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
@@ -334,7 +329,7 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes), Michael 
     \code{rds20} \tab \code{rds19} edited \tab Outlier of R (subject 1) introduced: original value ×100.\cr
     \code{rds21} \tab \code{rds01} edited \tab One extreme result of subjects 45 & 52 set to NA.\cr
     \code{rds25} \tab R \tab Simulated with heteroscedasticity.\cr
-    \code{rds26} \tab Patterson & Jones \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data given in Tables 4.40 and 4.31.\cr
+    \code{rds26} \tab Patterson & Jones \tab \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\text{max}}} data given in Tables 4.40 and 4.31.\cr
     \code{rds29} \tab R \tab Simulated with heteroscedasticity; imbalanced and incomplete.
   }
 }

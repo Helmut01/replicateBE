@@ -14,7 +14,7 @@ Datasets from the public domain and edited to be evaluated by \code{method.A()} 
 
 \format{
   \itemize{
-    \item Reference dataset 03\cr
+    \item \bold{Reference dataset 03}\cr
     Based on \code{rds01}. Removed all data of period 4. 77 subjects.\cr
     Unbalanced (39 subjects in sequence TRT and 38 in RTR) and incomplete (six missings in sequence TRT and two in RTR). Missings / period: 0/1, 1/2, 7/3. Two outliers (subjects 45 and 52) in sequence RTR.\cr
     A data frame with 223 observations on the following 6 variables:
@@ -25,12 +25,12 @@ Datasets from the public domain and edited to be evaluated by \code{method.A()} 
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
               \code{sequence} \tab a factor with 2 levels: TRT, RTR\cr
               \code{treatment} \tab a factor with 2 levels: T, R\cr
-              \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+              \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
             }
           }
        }
 
-    \item Reference dataset 17\cr
+    \item \bold{Reference dataset 17}\cr
     Based on \code{rds03}. 19 subjects.\cr
     Unbalanced (seven subjects in sequence TRT and twelve in RTR) and incomplete (one missing in sequence TRT). Missings / period: 0/1, 0/2, 1/3. One outlier (subject 18) in sequence RTR.\cr
     A data frame with 56 observations on the following 6 variables:
@@ -41,7 +41,7 @@ Datasets from the public domain and edited to be evaluated by \code{method.A()} 
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
               \code{sequence} \tab a factor with 2 levels: TRT, RTR\cr
               \code{treatment} \tab a factor with 2 levels: T, R\cr
-              \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+              \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
             }
           }
        }
@@ -50,7 +50,7 @@ Datasets from the public domain and edited to be evaluated by \code{method.A()} 
 
 \details{
   \tabular{crcl}{
-    Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+    Dataset \tab N \tab \ifelse{html}{\out{<em>CV</em><sub>wR</sub>}}{\eqn{CV_\text{wR}}} (\%) \tab Evaluation\cr
     \code{rds03} \tab 77 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
     \code{rds17} \tab 19 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }

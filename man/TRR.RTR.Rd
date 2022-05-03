@@ -15,8 +15,8 @@ Dataset simulated to be evaluated by \code{method.A()}, \code{method.B()}.
 
 \format{
   \itemize{
-    \item Reference dataset 22\cr
-    Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 45\%, \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bT}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 100\% GMR 0.90. 42 subjects.\cr
+    \item \bold{Reference dataset 22}\cr
+    Simulated with \ifelse{html}{\out{<em>CV</em><sub>wT</sub>}}{\eqn{CV_\text{wT}}} = \ifelse{html}{\out{<em>CV</em><sub>wR</sub>}}{\eqn{CV_\text{wR}}} = 45\%, \ifelse{html}{\out{<em>CV</em><sub>bT</sub>}}{\eqn{CV_\text{bT}}} = \ifelse{html}{\out{<em>CV</em><sub>bR</sub>}}{\eqn{CV_\text{bR}}} = 100\% GMR 0.90. 42 subjects.\cr
     Balanced (21 subjects in each of the sequences) and complete (no missing data). No outliers.\cr
     A data frame with 126 observations on the following 5 variables:
     \describe{
@@ -26,7 +26,7 @@ Dataset simulated to be evaluated by \code{method.A()}, \code{method.B()}.
         \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
         \code{sequence} \tab a factor with 2 levels: TRR, RTR\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
+        \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling\cr
         \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
         }
       }
@@ -36,7 +36,7 @@ Dataset simulated to be evaluated by \code{method.A()}, \code{method.B()}.
 
 \details{
    \tabular{crcl}{
-  Dataset \tab N \tab \ifelse{html}{\out{C<sub>wR</sub>}}{\eqn{C_{wR}}} (\%) \tab Evaluation\cr
+  Dataset \tab N \tab \ifelse{html}{\out{<em>C</em><sub>wR</sub>}}{\eqn{C_\text{wR}}} (\%) \tab Evaluation\cr
     \code{rds22} \tab 42 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 }

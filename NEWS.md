@@ -1,6 +1,19 @@
+# replicateBE 1.1.3.9000
+
+Development version.
+
+## Bug fixes
+
+  * Fixed problems in the PDF manual created on CRAN.
+
+## Minor changes
+
+  * Cosmetics in man pages (HTML and LaTeX formatting) and vignette.
+  * Added `doi` of publication to `DESCRIPTION` (suggested by Uwe Ligges).
+
 # replicateBE 1.1.3
 
-Published on GitHub 2022-05-02.
+Published on GitHub 2022-05-02, on CRAN.
 
 ## Bug fixes
 

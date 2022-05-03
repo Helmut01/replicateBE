@@ -20,7 +20,7 @@ ABE(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
   \item{alpha}{
     Type I Error (\acronym{TIE}) probability (nominal level of the test).
     Conventionally set to 0.05, resulting in a
-    \ifelse{latex}{\out{$100(1-2\,\alpha)$}}{\ifelse{html}{\out{100(1&nbsp;&ndash;&nbsp;2<em>&alpha;</em>)}}{100(1-2alpha)}}
+    \ifelse{latex}{\out{$100(1-2\,\alpha)$}}{\ifelse{html}{\out{100(1&nbsp;&ndash;&nbsp;2<em>&alpha;</em>)}}{100(1-2*alpha)}}
     confidence interval.
   }
   \item{path.in}{
@@ -103,8 +103,10 @@ ABE(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
 
 \details{
   The model for the treatment comparison is\cr
-  \code{lm(log(PK) ~ sequence + subject\%in\%sequence + period + treatment, data = data)}\cr
-  where all effects are fixed.\cr\cr
+  \verb{  lm(log(PK) ~ sequence + subject \%in\% sequence + period + treatment,}\cr
+  \verb{               data = data)}\cr
+  where all effects are fixed.
+  
   Tested designs
   \itemize{
     \item 4-period 2-sequence full replicates\cr
@@ -161,7 +163,7 @@ If argument \code{print = FALSE}, returns a data frame with the elements:
     \code{CI.lo(\%)} \tab lower confidence limit of the treatment comparison\cr
     \code{CI.hi(\%)} \tab upper confidence limit of the treatment comparison\cr
     \code{PE(\%)} \tab point estimate of the treatment comparison (aka \acronym{GMR})\cr
-    \code{BE} \tab assessment whether the \ifelse{latex}{\out{$100(1-2\,\alpha)$}}{\ifelse{html}{\out{100(1&nbsp;&ndash;&nbsp;2<em>&alpha;</em>)}}{100(1-2alpha)}} \acronym{CI} lies entirely within the acceptance range (\verb{pass|fail})
+    \code{BE} \tab assessment whether the \ifelse{latex}{\out{$100(1-2\,\alpha)$}}{\ifelse{html}{\out{100(1&nbsp;&ndash;&nbsp;2<em>&alpha;</em>)}}{100(1-2*alpha)}} \acronym{CI} lies entirely within the acceptance range (\verb{pass|fail})
   }
 }
 
@@ -174,39 +176,41 @@ If argument \code{print = FALSE}, returns a data frame with the elements:
 
 \section{Clarification}{
   The \sQuote{ASCII line chart} in the result file gives the confidence
-  limits with filled black squares and the point estimate as a white rhombus.
-  If a confidence limit exceeds the drawing range, it is shown as a triangle.
-  The \acronym{BE} limits and 100\% are given with single vertical lines. The
-  \sQuote{resolution} is approximatelly 0.5\% and therefore, not all symbols
-  might be shown. The \acronym{CI} and \acronym{PE} take presedence over the limits.
+  limits with filled black squares ■ and the point estimate as a white rhombus ◊.
+  The \acronym{BE} limits and 100\% are given with single vertical lines │. The      \sQuote{resolution} is approximatelly 0.5\% and therefore, not all symbols might
+  be shown. The \acronym{CI} and \acronym{PE} take presedence over the limits.
 }
 
 \note{
   The \acronym{EMA}’s model assumes equal [\emph{sic!}] intra-subject
   variances of test and reference (like in \enc{2×2×2}{2x2x2} trials) --
   even if proven false in one of the full replicate designs (were \emph{both}
-  \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}{CVwT}} and
-  \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}{CVwR}} can be estimated).
+  \ifelse{html}{\out{<em>CV</em><sub>wT</sub>}}{\eqn{CV_\text{wT}}{CVwT}} and
+  \ifelse{html}{\out{<em>CV</em><sub>wR</sub>}}{\eqn{CV_\text{wR}}{CVwR}} can be estimated).
   Hence, amongst biostatisticians it is called the \sQuote{crippled model}
   because the replicative nature of the study is ignored.\cr
   Conventional unscaled \acronym{ABE} has to be employed for
-  \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} (if widening of the
+  \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\text{max}}} (if widening of the
   acceptance range is clinically not justifiable),
-  \ifelse{html}{\out{AUC<sub>0&ndash;t</sub>}}{\eqn{AUC_{0-t}}},
-  \ifelse{html}{\out{AUC<sub>0&ndash;72</sub>}}{\eqn{AUC_{0-72}}} (immediate
+  \ifelse{html}{\out{<em>AUC</em><sub>0&ndash;t</sub>}}{\eqn{AUC_{0-t}}},
+  \ifelse{html}{\out{<em>AUC</em><sub>0&ndash;72</sub>}}{\eqn{AUC_{0-72}}} (immediate
   release products) and
-  \ifelse{html}{\out{C<sub>max,ss</sub>}}{\eqn{C_{max,ss}}},
-  \ifelse{html}{\out{C<sub>&tau;,ss</sub>}}{\eqn{C_{\tau,ss}}},
-  \ifelse{html}{\out{<sub>partial</sub>AUC}}{\eqn{_{partial}AUC}} (if widening
+  \ifelse{html}{\out{<em>C</em><sub>max,ss</sub>}}{\eqn{C_\text{max,ss}}},
+  \ifelse{html}{\out{<em>C</em><sub>&tau;,ss</sub>}}{\eqn{C_{\tau,ss}}},
+  \ifelse{html}{\out{<sub>partial</sub><em>AUC</em>}}{\eqn{_\text{partial}AUC}} (if widening
   of the acceptance range is clinically not justifiable), and
-  \ifelse{html}{\out{AUC<sub>0&ndash;t</sub>}}{\eqn{AUC_{0-t}}},
-  \ifelse{html}{\out{AUC<sub>0&ndash;&infin;</sub>}}{\eqn{AUC_{0-\infty}}},
-  \ifelse{html}{\out{AUC<sub>0&ndash;&tau;</sub>}}{\eqn{AUC_{0-\tau}}}
+  \ifelse{html}{\out{<em>AUC</em><sub>0&ndash;t</sub>}}{\eqn{AUC_{0-t}}},
+  \ifelse{html}{\out{<em>AUC</em><sub>0&ndash;&infin;</sub>}}{\eqn{AUC_{0-\infty}}},
+  \ifelse{html}{\out{<em>AUC</em><sub>0&ndash;&tau;</sub>}}{\eqn{AUC_{0-\tau}}}
   (modified release products).
+  
+  Direct widening of the limits for highly variable
+  \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\text{max}}} to
+  75.00--133.33\% is acceptable in South Africa and Kazakhstan.
 }
 
 \section{Disclaimer}{
-  \emph{Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.}
+  Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.
 }
 
 \author{
@@ -215,9 +219,13 @@ Helmut \enc{Schütz}{Schuetz}
 
 \references{
 
-European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the Investigation of Bioequivalence.} CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **. London. 20 January 2010. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{online}
+European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the Investigation of Bioequivalence.} CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **. London. 20 January 2010. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{Online}.
 
-European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.} EMA/CPMP/EWP/280/96 Corr1. London. 20 November 2014. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{online}
+European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.} EMA/CPMP/EWP/280/96 Corr1. London. 20 November 2014. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{Online}.
+
+Medicines Control Council. Registration of Medicines. \emph{Biostudies.} Pretoria. June 2015. \href{https://www.sahpra.org.za/wp-content/uploads/2020/01/61de452d2.06_Biostudies_Jun15_v6.pdf}{Online}.
+
+Shohin LE, Rozhdestvenkiy DA, Medvedev VYu, Komarow TN, Grebenkin DYu. \emph{Russia, Belarus & Kazakhstan.} In: Kanfer I, editor. \emph{Bioequivalence Requirements in Various Global Jurisdictions.} Charm: Springer; 2017. p. 223.
 }
 
 \seealso{

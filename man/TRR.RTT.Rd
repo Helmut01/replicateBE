@@ -15,7 +15,7 @@ Dataset from the public domain to be evaluated by \code{method.A()}, \code{metho
 
 \format{
   \itemize{
-    \item Reference Dataset 10\cr
+    \item \bold{Reference Dataset 10}\cr
     18 subjects.\cr
     Balanced (nine subjects in both sequences) and complete. No outliers.\cr
     A data frame with 54 observations on the following 5 variables:
@@ -26,7 +26,7 @@ Dataset from the public domain to be evaluated by \code{method.A()}, \code{metho
         \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
         \code{sequence} \tab a factor with 2 levels: TRR, RTT\cr
         \code{treatment} \tab a factor with 2 levels: T, R\cr
-        \code{PK} \tab a numeric vector of pharmacokinetic responses (here AUC)
+        \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{<em>AUC</em>}}{\eqn{AUC}})
         }
       }
     }
@@ -35,7 +35,7 @@ Dataset from the public domain to be evaluated by \code{method.A()}, \code{metho
 
 \details{
    \tabular{crcl}{
-  Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+  Dataset \tab N \tab \ifelse{html}{\out{<em>CV</em><sub>wR</sub>}}{\eqn{CV_\text{wR}}} (\%) \tab Evaluation\cr
     \code{rds10} \tab 36 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}
   }
 }
@@ -48,7 +48,7 @@ In analogy to the \acronym{EMA}’s Q&A: Uncertain estimate of \code{CVwR} since
 \source{
   \tabular{cll}{
   Dataset \tab Origin \tab Description\cr
-  \code{rds10} \tab Chow & Liu \tab AUC data given in Table 9.3.3.
+  \code{rds10} \tab Chow & Liu \tab \ifelse{html}{\out{<em>AUC</em>}}{\eqn{AUC}} data given in Table 9.3.3.
   }
 }
 

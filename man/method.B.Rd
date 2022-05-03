@@ -21,7 +21,7 @@ method.B(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
   \item{alpha}{
     Type I Error (\acronym{TIE}) probability (nominal level of the test).
     Conventionally set to 0.05, resulting in a
-    \ifelse{latex}{\out{$100(1-2\,\alpha)$}}{\ifelse{html}{\out{100(1&nbsp;&ndash;&nbsp;2<em>&alpha;</em>)}}{100(1-2alpha)}}
+    \ifelse{latex}{\out{$100(1-2\,\alpha)$}}{\ifelse{html}{\out{100(1&nbsp;&ndash;&nbsp;2<em>&alpha;</em>)}}{100(1-2*alpha)}}
     confidence interval.\cr
     If \code{regulator = "HC"} and \code{alpha = 0.5} only the point estimate will be assessed (for highly variable \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\textrm{max}}{Cmax}} within 80.0--125.0\%).
   }
@@ -30,10 +30,11 @@ method.B(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
   }
   \item{path.out}{
     Path to save the result file if \code{print = TRUE}. You must have
-    write-permission to the folder. For simplicity your home folder \verb{"~/"} can be used.\cr
+    write-permission to the folder. For simplicity your home folder \verb{"~/"}
+    can be used.\cr
     If missing, R’s standard temporary folder will be used.\cr
-    If a box plot of outliers should be saved (\code{plot.bxp = TRUE}), this path will be
-    used as well.
+    If a box plot of outliers should be saved (\code{plot.bxp = TRUE}), this
+    path will be used as well.
   }
   \item{file}{
     Name of the dataset for import (\emph{without} extension). Must be
@@ -92,9 +93,9 @@ method.B(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
     results in full precision to a data frame.
   }
   \item{verbose}{
-    Defaults to \code{FALSE}. If \code{TRUE} the model-table is send to
-    the console. If \code{ola = TRUE} additional information about outliers
-    are shown.
+    Defaults to \code{FALSE}. If \code{TRUE} the model-table is send to the
+    console. If \code{ola = TRUE} additional information about outliers are
+    shown.
   }
   \item{ask}{
     Defaults to \code{FALSE}. If \code{TRUE} the user will be asked whether
@@ -102,32 +103,31 @@ method.B(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
     should be overwritten.
   }
   \item{plot.bxp}{
-    Only observed if \code{ola = TRUE} and at least one outlier is found.
-    If \code{FALSE} (default) the box plot will be shown in the graphics
-    device. If \code{TRUE} the box plot will be saved in \acronym{PNG} format
-    to \code{path.out}.
+    Only observed if \code{ola = TRUE} and at least one outlier is found. If
+    \code{FALSE} (default) the box plot will be shown in the graphics device.
+    If \code{TRUE} the box plot will be saved in \acronym{PNG} format to
+    \code{path.out}.
   }
   \item{fence}{
-    Only observed if \code{ola = TRUE}. The limit for outlier detection as
-    a multiplier of the interquartile range. Defaults to 2. Less outliers
-    will be detected with higher values (not recommended).
+    Only observed if \code{ola = TRUE}. The limit for outlier detection as a
+    multiplier of the interquartile range. Defaults to 2. Less outliers will be
+    detected with higher values (not recommended).
   }
   \item{data}{
-    Specification of one of the internal reference datasets (\verb{rds01} to \verb{rds30}).
-    If given, the arguments \verb{path.in}, \verb{file}, \verb{set}, and \verb{ext} are
-    ignored. For its use see the examples.\cr
-    If not given, defaults to \code{NULL} (\emph{i.e.}, import data
-    from a file).
+    Specification of one of the internal reference datasets (\verb{rds01} to
+    \verb{rds30}). If given, the arguments \verb{path.in}, \verb{file},
+    \verb{set}, and \verb{ext} are ignored. For its use see the examples.\cr
+    If not given, defaults to \code{NULL} (\emph{i.e.}, import data from a file).
   }
   \item{option}{
     If \code{2} (default), the model will be evaluated by \verb{lme()} of
     package \verb{nlme}. The degrees of freedom of the treatment comparison
-    will be equivalent to \acronym{SAS}’ \verb{DDFM=CONTAIN} and
-    Phoenix WinNonlin’s \verb{Residual}.\cr
-    If \code{1} or \code{3}, the model will be evaluated by \verb{lmer()} of package
-    \verb{lmerTest}. With \code{1} the degrees of freedom of the treatment comparison
-    will be equivalent to \acronym{SAS}’ \verb{DDFM=SATTERTHWAITE}
-    and Phoenix WinNonlin’s \verb{Satterthwaite}.\cr
+    will be equivalent to \acronym{SAS}’ \verb{DDFM=CONTAIN} and Phoenix
+    WinNonlin’s \verb{Residual}.\cr
+    If \code{1} or \code{3}, the model will be evaluated by \verb{lmer()} of
+    package \verb{lmerTest}. With \code{1} the degrees of freedom of the
+    treatment comparison will be equivalent to \acronym{SAS}’
+    \verb{DDFM=SATTERTHWAITE} and Phoenix WinNonlin’s \verb{Satterthwaite}.\cr
     \code{3} uses the Kenward-Roger approximation equivalent to Stata’s
     \verb{dfm=Kenward Roger (EIM)}.\cr
     If \verb{regulator = "HC"}, only \code{1} or \code{3} are supported.
@@ -136,13 +136,18 @@ method.B(alpha = 0.05, path.in, path.out = tempdir(), file, set = "",
 
 \details{
   The model for the estimation of \code{CVwR} is\cr
-  \code{lm(log(PK) ~ sequence + subject\%in\%sequence + period, data = data[data$treatment == "R", ])}\cr
+  \verb{  lm(log(PK) ~ sequence + subject \%in\% sequence + period,}\cr
+  \verb{               data = data[data$treatment == "R", ])}\cr
   where all effects are fixed.\cr
-  The model for the treatment comparison is with the default \code{option=2}\cr
-  \code{lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject, data = data)}\cr
-  and with \code{option=1}, \code{option=3}\cr
-  \code{lmer(log(PK) ~ sequence + period + treatment + (1|subject), data = data)}\cr
-  where \code{sequence}, \code{period}, and \code{treatment} are fixed effects and \code{subject(sequence)} is a random effect.\cr\cr
+
+  The model for the treatment comparison is with \code{option = 2} (default)\cr
+  \verb{  lme(log(PK) ~ sequence +  period + treatment, random = ~1|subject,}\cr
+  \verb{                data = data)}\cr
+  and with \code{option = 1}, \code{option = 3}\cr
+  \verb{  lmer(log(PK) ~ sequence + period + treatment + (1|subject),}\cr
+  \verb{                 data = data)}\cr
+  where \emph{sequence}, \emph{period}, and \emph{treatment} are fixed effects and \emph{subject(sequence)} is a random effect.
+  
   Tested designs
   \itemize{
     \item 4-period 2-sequence full replicates\cr
@@ -243,7 +248,6 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
   }
 }
   \tabular{ll}{
-    \code{CI.rec} \tab assessment whether the \ifelse{html}{\out{100(1&ndash;2&alpha;)}}{\eqn{100(1-2\alpha)}{100(1-2alpha)}} \acronym{CI} lies entirely within the new acceptance range (\verb{pass|fail})\cr
     \code{GMR.rec} \tab assessment whether the \acronym{PE} lies entirely within the \acronym{GMR}-restriction 80.00--125.00\% (\verb{pass|fail})\cr
     \code{BE.rec} \tab mixed (aggregate) assessment whether the study demonstrates bioequivalence (\verb{pass|fail})\cr
   }
@@ -258,13 +262,13 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
 
 \section{Clarification}{
   The \sQuote{ASCII line chart} in the result file gives the confidence
-  limits with filled black squares and the point estimate as a white rhombus.
+  limits with filled black squares ■ and the point estimate as a white rhombus ◊.
   If a confidence limit exceeds the maximum possible expansion limit, it is
-  shown as a triangle. Expanded limits are given as double vertical lines.
-  Unscaled limits, the \acronym{GMR} restriction, and 100\% are given with
-  single vertical lines. The \sQuote{resolution} is approximatelly 0.5\% and
-  therefore, not all symbols might be shown. The \acronym{CI} and \acronym{PE} take presedence
-  over the limits and the expanded limits over unscaled ones.
+  shown as a triangle ◄ or ►. Expanded limits are given as double vertical
+  lines ║. Unscaled limits, the \acronym{GMR} restriction, and 100\% are given
+  with single vertical lines │. The \sQuote{resolution} is approximatelly 0.5\%
+  and therefore, not all symbols might be shown. The \acronym{CI} and \acronym{PE}
+  take presedence over the limits and the expanded limits over unscaled ones.
 }
 
 \note{
@@ -334,7 +338,7 @@ If \code{ola = TRUE} and at least one studentized outlier was detected:
 }
 
 \section{Disclaimer}{
-  \emph{Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.}
+  Program offered for Use without any Guarantees and Absolutely No Warranty. No Liability is accepted for any Loss and Risk to Public Health Resulting from Use of this R-Code.
 }
 
 \author{
@@ -343,25 +347,25 @@ Helmut \enc{Schütz}{Schuetz}, Michael Tomashevskiy, Detlew Labes
 
 \references{
 
-European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the Investigation of Bioequivalence.} CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **. London. 20 January 2010. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{online}
+European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the Investigation of Bioequivalence.} CPMP/EWP/QWP/1401/98 Rev. 1/ Corr **. London. 20 January 2010. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-investigation-bioequivalence-rev1_en.pdf}{Online}.
 
-European Generic and Biosimilar Medicines Association. 3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} \acronym{EGA} Symposium on Bioequivalence. \emph{Questions and Answers on the Revised \acronym{EMA} Bioequivalence Guideline.} London. 1 June 2010. \href{https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf}{online}
+European Generic and Biosimilar Medicines Association. 3\ifelse{html}{\out{<sup>rd</sup>}}{\eqn{^{rd}}} \acronym{EGA} Symposium on Bioequivalence. \emph{Questions and Answers on the Revised \acronym{EMA} Bioequivalence Guideline.} London. 1 June 2010. \href{https://www.medicinesforeurope.com/wp-content/uploads/2016/03/EGA_BEQ_QA_WEB_QA_1_32.pdf}{Online}.
 
-European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).} EMA/618604/2008 Rev. 13. London. 19 November 2015. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf}{online}
+European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Questions & Answers: positions on specific questions addressed to the Pharmacokinetics Working Party (PKWP).} EMA/618604/2008 Rev. 13. London. 19 November 2015. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/questions-answers-positions-specific-questions-addressed-pharmacokinetics-working-party_en.pdf}{Online}.
 
-European Medicines Agency. \emph{Clinical pharmacology and pharmacokinetics: questions and answers. 3.1 Which statistical method for the analysis of a bioequivalence study does the Agency recommend? Annex I}. EMA/582648/2016. London. 21 September 2016. \href{https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf}{online}
+European Medicines Agency. \emph{Clinical pharmacology and pharmacokinetics: questions and answers. 3.1 Which statistical method for the analysis of a bioequivalence study does the Agency recommend? Annex I}. EMA/582648/2016. London. 21 September 2016. \href{https://www.ema.europa.eu/en/documents/other/31-annex-i-statistical-analysis-methods-compatible-ema-bioequivalence-guideline_en.pdf}{Online}.
 
-Executive Board of the Health Ministers’ Council for GCC States. \emph{The GCC Guidelines for Bioequivalence. Version 3.0.} May 2021. \href{https://www.sfda.gov.sa/sites/default/files/2021-10/GCC_Guidelines_Bioequivalence.pdf}{online}
+Executive Board of the Health Ministers’ Council for GCC States. \emph{The GCC Guidelines for Bioequivalence. Version 3.0.} May 2021. \href{https://www.sfda.gov.sa/sites/default/files/2021-10/GCC_Guidelines_Bioequivalence.pdf}{Online}.
 
-Health Canada. \emph{Guidance Document. Conduct and Analysis of Comparative Bioavailability Studies.} Ottawa. 2018/06/08. \href{https://www.canada.ca/content/dam/hc-sc/documents/services/drugs-health-products/drug-products/applications-submissions/guidance-documents/bioavailability-bioequivalence/conduct-analysis-comparative.pdf}{online}
+Health Canada. \emph{Guidance Document. Conduct and Analysis of Comparative Bioavailability Studies.} Ottawa. 2018/06/08. \href{https://www.canada.ca/content/dam/hc-sc/documents/services/drugs-health-products/drug-products/applications-submissions/guidance-documents/bioavailability-bioequivalence/conduct-analysis-comparative.pdf}{Online}.
 
-European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.} EMA/CPMP/EWP/280/96 Corr1. London. 20 November 2014. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{online}
+European Medicines Agency, Committee for Medicinal Products for Human Use. \emph{Guideline on the pharmacokinetic and clinical evaluation of modified release dosage forms.} EMA/CPMP/EWP/280/96 Corr1. London. 20 November 2014. \href{https://www.ema.europa.eu/en/documents/scientific-guideline/guideline-pharmacokinetic-clinical-evaluation-modified-release-dosage-forms_en.pdf}{Online}.
 
-World Health Organization, Prequalification Team: medicines. \emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm.} Geneva. 22 November 2018. \href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf}{online}
+World Health Organization, Prequalification Team: medicines. \emph{Guidance Document: Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQTm.} Geneva. 22 November 2018. \href{https://extranet.who.int/prequal/sites/default/files/documents/AUC_criteria_November2018.pdf}{Online}.
 
-World Health Organization. \emph{Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQT/MED.} Geneva. 02 July 2021. \href{https://extranet.who.int/pqweb/sites/default/files/documents/AUC_criteria_July2021.pdf}{online}
+World Health Organization. \emph{Application of reference-scaled criteria for AUC in bioequivalence studies conducted for submission to PQT/MED.} Geneva. 02 July 2021. \href{https://extranet.who.int/pqweb/sites/default/files/documents/AUC_criteria_July2021.pdf}{Online}.
 
-U.S. Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Draft Guidance for Industry. Bioequivalence Studies with Pharmacokinetic Endpoints for Drugs Submitted Under an ANDA.} August 2021. \href{https://www.fda.gov/media/87219/Download}{download}
+U.S. Food and Drug Administration, Center for Drug Evaluation and Research. \emph{Draft Guidance for Industry. Bioequivalence Studies with Pharmacokinetic Endpoints for Drugs Submitted Under an ANDA.} August 2021. \href{https://www.fda.gov/media/87219/Download}{Download}.
 }
 
 \seealso{

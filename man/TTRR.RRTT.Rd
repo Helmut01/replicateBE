@@ -13,7 +13,7 @@ Dataset obtained by simulations to be evaluated by \code{method.A()} and/or \cod
 
 \format{
   \itemize{
-    \item Reference Dataset 28\cr
+    \item \bold{Reference Dataset 28}\cr
     64 subjects. Balanced (64 subjects in both sequences) and complete. No outliers.\cr
     A data frame with 256 observations on the following 5 variables:
     \describe{
@@ -23,7 +23,7 @@ Dataset obtained by simulations to be evaluated by \code{method.A()} and/or \cod
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 2 levels: TTRR, RRTT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
         }
       }
     }
@@ -32,7 +32,7 @@ Dataset obtained by simulations to be evaluated by \code{method.A()} and/or \cod
 
 \details{
   \tabular{crcl}{
-    Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+    Dataset \tab N \tab \ifelse{html}{\out{<em>CV</em><sub>wR</sub>}}{\eqn{CV_\text{wR}}} (\%) \tab Evaluation\cr
     \code{rds28} \tab 64 \tab <30 \tab \code{method.A()}, \code{method.B()}
   }
 }
@@ -48,7 +48,7 @@ Helmut \enc{Schütz}{Schuetz} (R-code for simulations by Detlew Labes)
 \source{
   \tabular{cll}{
     Dataset \tab Origin \tab Description\cr
-    \code{rds28} \tab R \tab Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 35\%, \ifelse{html}{\out{CV<sub>bT</sub>}}{\eqn{CV_{bR}}} = \ifelse{html}{\out{CV<sub>bR</sub>}}{\eqn{CV_{bR}}} = 75\%, GMR 0.90.
+    \code{rds28} \tab R \tab Simulated with \ifelse{html}{\out{<em>CV</em><sub>wT</sub>}}{\eqn{CV_\text{wT}}} = \ifelse{html}{\out{<em>CV</em><sub>wR</sub>}}{\eqn{CV_\text{wR}}} = 35\%, \ifelse{html}{\out{<em>CV</em><sub>bT</sub>}}{\eqn{CV_\text{bR}}} = \ifelse{html}{\out{<em>CV</em><sub>bR</sub>}}{\eqn{CV_\text{bR}}} = 75\%, GMR 0.90.
   }
 }
 

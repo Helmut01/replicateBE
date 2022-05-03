@@ -13,7 +13,7 @@ Dataset from the public domain to be evaluated by \code{method.A()} and/or \code
 
 \format{
   \itemize{
-    \item Reference Dataset 24\cr
+    \item \bold{Reference Dataset 24}\cr
     40 subjects (one completely missing).\cr
     Unbalanced (nine subjects in sequence TRRT and ten in each of the other three) and complete. Two outliers (subject 3 in sequence RTTR and subject 30 in sequence TTRR).\cr
     A data frame with 160 observations on the following 5 variables:
@@ -24,7 +24,7 @@ Dataset from the public domain to be evaluated by \code{method.A()} and/or \code
           \code{period} \tab a factor with 4 levels: 1, 2, 3, 4\cr
           \code{sequence} \tab a factor with 4 levels: TRRT, RTTR, TTRR, RRTT\cr
           \code{treatment} \tab a factor with 2 levels: T, R\cr
-          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+          \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (here \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\text{max}}})
           }
       }
     }
@@ -33,7 +33,7 @@ Dataset from the public domain to be evaluated by \code{method.A()} and/or \code
 
 \details{
   \tabular{crcl}{
-    Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+    Dataset \tab N \tab \ifelse{html}{\out{<em>CV</em><sub>wR</sub>}}{\eqn{CV_\text{wR}}} (\%) \tab Evaluation\cr
     \code{rds24} \tab 39 \tab >30 \tab \code{method.A()}, \code{method.B()}
   }
 }
@@ -45,7 +45,7 @@ In software sequences and treatments are ranked in lexical order. Hence, executi
 \source{
   \tabular{cll}{
   Dataset \tab Origin \tab Description\cr
-  \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}} data of Drug 1.
+  \code{rds24} \tab FDA, CDER \tab \ifelse{html}{\out{<em>C</em><sub>max</sub>}}{\eqn{C_\text{max}}} data of Drug 1.
   }
 }
 

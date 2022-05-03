@@ -56,8 +56,8 @@ issues](https://img.shields.io/github/issues-closed-raw/Helmut01/replicateBE)
 ![open
 issues](https://img.shields.io/github/issues-raw/Helmut01/replicateBE)
 
-Version 1.1.3 built 2022-05-02 with R 4.2.0 (development version not on
-CRAN).
+Version 1.1.3.9000 built 2022-05-03 with R 4.2.0 (development version
+not on CRAN).
 
 <h2>
 Comparative BA-calculation for the EMA’s Average Bioequivalence with
@@ -110,9 +110,9 @@ where all effects are fixed (*i.e.*, by an
 function `lm()` of package `stats`.
 
 ``` r
-modCVwR <- lm(log(PK) ~ sequence + subject%in%sequence + period,
+modCVwR <- lm(log(PK) ~ sequence + subject %in% sequence + period,
                         data = data[data$treatment == "R", ])
-modCVwT <- lm(log(PK) ~ sequence + subject%in%sequence + period,
+modCVwT <- lm(log(PK) ~ sequence + subject %in% sequence + period,
                         data = data[data$treatment == "T", ])
 ```
 
@@ -128,7 +128,7 @@ where all effects are fixed (*e.g.*, by an
 function `lm()` of package `stats`.
 
 ``` r
-modA <- lm(log(PK) ~ sequence + subject%in%sequence + period + treatment,
+modA <- lm(log(PK) ~ sequence + subject %in% sequence + period + treatment,
                      data = data)
 ```
 
@@ -470,7 +470,7 @@ print(sessionInfo(), locale = FALSE)
 # [7] base     
 # 
 # other attached packages:
-# [1] replicateBE_1.1.3
+# [1] replicateBE_1.1.3.9000
 # 
 # loaded via a namespace (and not attached):
 #  [1] tidyselect_1.1.2    xfun_0.30           purrr_0.3.4        
@@ -510,9 +510,9 @@ iD](https://orcid.org/0000-0003-2169-426X)</span>
 
 ## Disclaimer
 
-*Package offered for Use without any Guarantees and Absolutely No
+Package offered for Use without any Guarantees and Absolutely No
 Warranty. No Liability is accepted for any Loss and Risk to Public
-Health Resulting from Use of this R-Code.*
+Health Resulting from Use of this R-Code.
 
 <small>[TOC ↩](#replicatebe)</small>
 

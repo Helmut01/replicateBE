@@ -16,7 +16,7 @@ Datasets from the public domain or simulated to be evaluated by \code{method.A()
 
 \format{
   \itemize{
-    \item Reference Dataset 02\cr
+    \item \bold{Reference Dataset 02}\cr
     24 subjects.\cr
     Balanced (eight subjects in each of the three sequences) and complete (no missing data). No outliers.\cr
     A data frame with 72 observations on the following 6 variables:
@@ -27,21 +27,19 @@ Datasets from the public domain or simulated to be evaluated by \code{method.A()
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
               \code{sequence} \tab a factor with 3 levels: TRR, RTR, RRT\cr
               \code{treatment} \tab a factor with 2 levels: T, R\cr
-              \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})\cr
+              \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling\cr
               \code{logPK} \tab a numeric vector of the natural logarithms of {\code{PK}}
             }
+            In the source evaluated by \acronym{SAS} v9.1 (Proc GLM) for \acronym{ABEL}. Reported results:
+          \tabular{ll}{
+            \code{CVwR} \tab 11.2\%\cr
+            \code{PE} \tab 102.26\% (Method A and B)\cr
+            \code{90\% CI} \tab 97.32\% – 107.46\% (Method A and B)
           }
-          In the source evaluated by \acronym{SAS} v9.1 for \acronym{ABEL}. Reported results:
-          \item{SAS Proc GLM}{
-            \tabular{ll}{
-              \code{CVwR} \tab 11.2\%\cr
-              \code{PE} \tab 102.26\% (Method A and B)\cr
-              \code{90\% CI} \tab 97.32\% – 107.46\% (Method A and B)
-            }
-          }
-       }
+        }
+    }
 
-    \item Reference Dataset 04\cr
+    \item \bold{Reference Dataset 04}\cr
     Data set of Table II given by Patterson & Jones. 51 subjects.\cr
     Balanced (17 subjects in each of the three sequences) and complete. No outliers.\cr
     A data frame with 153 observations on the following 5 variables:
@@ -54,19 +52,17 @@ Datasets from the public domain or simulated to be evaluated by \code{method.A()
               \code{treatment} \tab a factor with 2 levels: T, R\cr
               \code{PK} \tab a numeric vector of pharmacokinetic responses (here \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
             }
+          In the source evaluated by \acronym{SAS} (Proc MIXED) with the \acronym{FDA}’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:
+          \tabular{ll}{
+            \code{CVwR} \tab 61\%\cr
+            \code{PE} \tab 137\%\cr
+            \code{90\% CI} \tab 119\% – 159\%
           }
-          In the source evaluated by \acronym{SAS} with the \acronym{FDA}’s mixed effects model (termed \sQuote{Method C} by the \acronym{EMA}; not compatible with the guideline). Reported results:
-          \item{SAS Proc MIXED}{
-            \tabular{ll}{
-              \code{CVwR} \tab 61\%\cr
-              \code{PE} \tab 137\%\cr
-              \code{90\% CI} \tab 119\% – 159\%
-            }
-          }
+        }
       }
 
-    \item Reference Dataset 07\cr
-    Simulated with \ifelse{html}{\out{CV<sub>wT</sub>}}{\eqn{CV_{wT}}} = \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} = 35\%, GMR 0.90. 360 subjects.\cr
+    \item \bold{Reference Dataset 07}\cr
+    Simulated with \ifelse{html}{\out{<em>CV</em><sub>wT</sub>}}{\eqn{CV_\text{wT}}} = \ifelse{html}{\out{<em>CV</em><sub>wR</sub>}}{\eqn{CV_\text{wR}}} = 35\%, GMR 0.90. 360 subjects.\cr
     Balanced (120 subjects in each of the three sequences) and complete. No outliers.\cr
     A data frame with 1,080 observations on the following 5 variables:
       \describe{
@@ -76,13 +72,13 @@ Datasets from the public domain or simulated to be evaluated by \code{method.A()
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
               \code{sequence} \tab a factor with 3 levels: TRR, RTR, RRT\cr
               \code{treatment} \tab a factor with 2 levels: T, R\cr
-              \code{PK} \tab a numeric vector of pharmacokinetic responses (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+              \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
             }
           }
       }
 
-    \item Reference Dataset 30\cr
-    Simulated with heteroscedasticity (\ifelse{html}{\out{CV<sub>wT</sub> = 14\%, CV<sub>wR</sub> = 28\%, CV<sub>bT</sub> = 28\%, CV<sub>bR</sub> = 56\%}}{\eqn{CCV_{wT}=14\%,\:CV_{wR}=28\%,\:CV_{bT}=28\%,\:CV_{bR}=56\%}}), GMR = 0.90. 12 subjects. 14 subjects.\cr
+    \item \bold{Reference Dataset 30}\cr
+    Simulated with heteroscedasticity (\ifelse{html}{\out{<em>CV</em><sub>wT</sub> = 14\%, <em>CV</em><sub>wR</sub> = 28\%, <em>CV</em><sub>bT</sub> = 28\%, <em>CV</em><sub>bR</sub> = 56\%}}{\eqn{CV_\text{wT}=14\%,\:CV_\text{wR}=28\%,\:CV_\text{bT}=28\%,\:CV_\text{bR}=56\%}}), GMR = 0.90. 12 subjects. 14 subjects.\cr
     Imbalanced (six subjects in sequence TRR, five in RTR, and three RRT) and incomplete (two missings in sequences TRR and RTR and three in sequence RRT). Missings / period: 0/1, 0/2, 7/3. No outliers.\cr
     A data frame with 35 observations on the following 5 variables:
       \describe{
@@ -92,7 +88,7 @@ Datasets from the public domain or simulated to be evaluated by \code{method.A()
               \code{period} \tab a factor with 3 levels: 1, 2, 3\cr
               \code{sequence} \tab a factor with 3 levels: TRR, RTR, RRT\cr
               \code{treatment} \tab a factor with 2 levels: T, R\cr
-              \code{PK} \tab a numeric vector of pharmacokinetic responses (generally \ifelse{html}{\out{C<sub>max</sub>}}{\eqn{C_{max}}})
+              \code{PK} \tab a numeric vector of pharmacokinetic responses acceptable for reference-scaling
             }
           }
       }
@@ -101,7 +97,7 @@ Datasets from the public domain or simulated to be evaluated by \code{method.A()
 
 \details{
    \tabular{crcl}{
-      Dataset \tab N \tab \ifelse{html}{\out{CV<sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
+      Dataset \tab N \tab \ifelse{html}{\out{<em>CV</em><sub>wR</sub>}}{\eqn{CV_{wR}}} (\%) \tab Evaluation\cr
       \code{rds02} \tab 24 \tab <30 \tab \code{method.A()}, \code{method.B()}, \code{ABE()}\cr
       \code{rds04} \tab 51 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
       \code{rds07} \tab 360 \tab >30 \tab \code{method.A()}, \code{method.B()}\cr
